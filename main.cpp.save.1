@@ -1,0 +1,121 @@
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+using namespace std;
+typedef vector<int> VI;
+typedef long long LL;
+#define FOR(x, b, e) for(int x = b; x <= (e); ++x)
+//#define FORD(x, b, e) for(int x = b; x >= (e); ––x)
+#define REP(x, n) for(int x = 0; x < (n); ++x)
+#define VAR(v, n) typeof(n) v = (n)
+#define ALL(c) (c).begin(), (c).end()
+#define SIZE(x) ((int)(x).size())
+#define FOREACH(i, c) for(VAR(i, (c).begin()); i != (c).end(); ++i)
+#define PB push_back
+#define ST first
+#define ND second
+#include <complex>
+#include <iterator>
+#include <set>
+#include <bitset>
+#include <map>
+#include <stack>
+#include <list>
+#include <queue>
+#include <deque>
+const int INF = 1000000001;
+const double EPS = 10e-9;
+typedef vector<VI> VVI;
+typedef vector<LL> VLL;
+typedef vector<double> VD;
+typedef vector<string> VS;
+typedef pair<int, int> PII;
+typedef vector<PII> VPII;
+#define PF push front
+#define MP make pair
+template <class V, class E> struct Graph {
+    // Typ krawędzi (Ed) dziedziczy po typie zawierającym dodatkowe informacje
+    // związane z krawędzią (E). Zawiera on również pole v, określające numer
+    // wierzchołka, do którego prowadzi krawędź. Zaimplementowany konstruktor
+    // pozwala na skrócenie zapisu wielu funkcji korzystających ze struktury grafu.
+
+    struct Ed : E {
+    int v;
+    Ed(E p, int w) : E(p), v(w) { }
+    };
+    // Typ wierzchołka (Ve) dziedziczy po typie zawierającym dodatkowe informacje
+    // z nim związane (V) oraz po wektorze krawędzi. To drugie dziedziczenie może
+    // wydawać się na pierwszy rzut oka stosunkowo dziwne, lecz jest ono przydatne -
+    // umożliwia łatwe iterowanie po wszystkich krawędziach wychodzących z
+    // wierzchołka v: FOREACH(it, g[v])
+
+    struct Ve : V, vector<Ed> { };
+    // Wektor wierzchołków w grafie
+
+    vector<Ve> g;
+    // Konstruktor grafu - przyjmuje jako parametr liczbę wierzchołków
+
+    Graph(int n = 0) : g(n) { }
+    // Funkcja dodająca do grafu nową krawędź skierowaną z wierzchołka b do e,
+    // zawierającą dodatkowe informacje określone przez zmienną d.
+
+    void EdgeD(int b, int e, E d = E()) {
+    g[b].PB(Ed(d, e));
+    }
+    // Funkcja dodająca do grafu nową krawędź nieskierowaną, łączącą wierzchołki
+    // b i e oraz zawierającą dodatkowe informacje określone przez zmienną
+    // d. Krawędź nieskierowana jest reprezentowana przez dwie krawędzie
+    // skierowane - jedną prowadzącą z wierzchołka b do wierzchołka e, oraz
+    // drugą z wierzchołka e do b. Struktura E w grafach nieskierowanych
+    // musi dodatkowo zawierać element int rev. Dla danej krawędzi skierowanej
+    // (b,e), pole to przechowuje pozycję krawędzi (e,b) na liście incydencji
+    // wierzchołka e. Dzięki temu, dla dowolnej krawędzi w grafie w czasie stałym
+    // można znaleźć krawędź o przeciwnym zwrocie.
+
+    void EdgeU(int b, int e, E d = E()) {
+    Ed eg(d, e);
+    eg.rev = SIZE(g[e]) + (b == e);
+    g[b].PB(eg);
+    eg.rev = SIZE(g[eg.v = b]) - 1;
+    g[e].PB(eg);
+    }
+    void Write() {
+    // Dla wszystkich wierzchołków w grafie zaczynając od 0...
+    REP(x, SIZE(g)) {
+    // Wypisz numer wierzchołka
+    cout << x << ":";
+    // Dla każdej krawędzi wychodzącej z przetwarzanego wierzchołka o numerze
+    // x, wypisz numer wierzchołka, do którego ona prowadzi
+    FOREACH(it, g[x]) cout << " " << it->v;
+    cout << endl;
+    }
+    }
+};
+
+int main() {
+// n = s[0]-'0'-16
+// s[0] = n+'0'+16
+
+    int n;
+    cin>>n;
+    while(n){
+        string s;
+        cin>>s;
+        int num2;
+     //   int num1;
+      //  int num1=atoi(&s[1])+atoi(&s[2]);
+        string num1=s.substr(1,2);
+        num2=s[4]+s[5];
+        cout<</*(s[0]-'0'-16)+*/""<<" - "<<num1;
+        n--;
+        cout<<endl;
+    }
+
+//    int n;
+//    cin>>n;
+//    cout<<static_cast<char>(n+'0'+16);
+    return 0;
+}
+
