@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/pc/CLionProjects/CF/cmake-build-debug/
+cmake_ninja_workdir = /home/pc/CLionProjects/Zadania/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target CF
 
@@ -49,59 +49,65 @@ cmake_ninja_workdir = /home/pc/CLionProjects/CF/cmake-build-debug/
 
 build cmake_object_order_depends_target_CF: phony || CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/main.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/main.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/main.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/main.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/CF.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/CF.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/CF.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/CF.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/CF.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/NOWY.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/NOWY.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/NOWY.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/NOWY.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/NOWY.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/pointers.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/pointers.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/pointers.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/pointers.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/pointers.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/krazki.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/krazki.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/krazki.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/krazki.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/krazki.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/maximum.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/maximum.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/maximum.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/maximum.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/maximum.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/n.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/n.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/n.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/n.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/n.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/v2krazki.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/v2krazki.cpp || cmake_object_order_depends_target_CF
+build CMakeFiles/CF.dir/v2krazki.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/v2krazki.cpp || cmake_object_order_depends_target_CF
   DEP_FILE = CMakeFiles/CF.dir/v2krazki.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir
 
-build CMakeFiles/CF.dir/flappy.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/CF/flappy.cpp || cmake_object_order_depends_target_CF
-  DEP_FILE = CMakeFiles/CF.dir/flappy.cpp.o.d
+build CMakeFiles/CF.dir/SZKOPUL/flappy.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SZKOPUL/flappy.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SZKOPUL/flappy.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/CF.dir
-  OBJECT_FILE_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SZKOPUL
+
+build CMakeFiles/CF.dir/SPOJ/Mayonnaise_Arrow.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SPOJ/Mayonnaise_Arrow.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SPOJ/Mayonnaise_Arrow.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SPOJ
 
 
 # =============================================================================
@@ -111,7 +117,7 @@ build CMakeFiles/CF.dir/flappy.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProje
 #############################################
 # Link the executable CF
 
-build CF: CXX_EXECUTABLE_LINKER__CF_Debug CMakeFiles/CF.dir/main.cpp.o CMakeFiles/CF.dir/CF.cpp.o CMakeFiles/CF.dir/NOWY.cpp.o CMakeFiles/CF.dir/pointers.cpp.o CMakeFiles/CF.dir/krazki.cpp.o CMakeFiles/CF.dir/maximum.cpp.o CMakeFiles/CF.dir/n.cpp.o CMakeFiles/CF.dir/v2krazki.cpp.o CMakeFiles/CF.dir/flappy.cpp.o
+build CF: CXX_EXECUTABLE_LINKER__CF_Debug CMakeFiles/CF.dir/main.cpp.o CMakeFiles/CF.dir/CF.cpp.o CMakeFiles/CF.dir/NOWY.cpp.o CMakeFiles/CF.dir/pointers.cpp.o CMakeFiles/CF.dir/krazki.cpp.o CMakeFiles/CF.dir/maximum.cpp.o CMakeFiles/CF.dir/n.cpp.o CMakeFiles/CF.dir/v2krazki.cpp.o CMakeFiles/CF.dir/SZKOPUL/flappy.cpp.o CMakeFiles/CF.dir/SPOJ/Mayonnaise_Arrow.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/CF.dir
   POST_BUILD = :
@@ -124,7 +130,7 @@ build CF: CXX_EXECUTABLE_LINKER__CF_Debug CMakeFiles/CF.dir/main.cpp.o CMakeFile
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/pc/CLionProjects/CF/cmake-build-debug && /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/pc/CLionProjects/Zadania/cmake-build-debug && /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -135,7 +141,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/pc/CLionProjects/CF/cmake-build-debug && /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/pc/CLionProjects/CF -B/home/pc/CLionProjects/CF/cmake-build-debug
+  COMMAND = cd /home/pc/CLionProjects/Zadania/cmake-build-debug && /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/pc/CLionProjects/Zadania -B/home/pc/CLionProjects/Zadania/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -151,7 +157,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /home/pc/CLionProjects/CF/cmake-build-debug
+# Folder: /home/pc/CLionProjects/Zadania/cmake-build-debug
 
 build all: phony CF
 
@@ -162,14 +168,14 @@ build all: phony CF
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/pc/CLionProjects/CF/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/pc/CLionProjects/Zadania/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/pc/CLionProjects/CF/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
+build /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/pc/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/pc/CLionProjects/Zadania/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
 
 
 #############################################

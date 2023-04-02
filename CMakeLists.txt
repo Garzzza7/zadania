@@ -3,4 +3,4 @@ project(CF)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(CF main.cpp CF.cpp NOWY.cpp pointers.cpp krazki.cpp maximum.cpp n.cpp v2krazki.cpp flappy.cpp)
+add_executable(CF main.cpp CF.cpp NOWY.cpp pointers.cpp krazki.cpp maximum.cpp n.cpp v2krazki.cpp SZKOPUL/flappy.cpp SPOJ/Mayonnaise_Arrow.cpp SPOJ/Mayonnaise_Arrow.cpp)
