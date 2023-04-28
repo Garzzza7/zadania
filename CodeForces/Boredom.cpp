@@ -28,7 +28,7 @@ int nextInt() {
     }
     return x * p;
 }
-
+z   
 const int maxn = 111111;
 
 int n;
