@@ -180,6 +180,70 @@ void solution2(){
     }
 
 }
+
+
+void solution3(){
+    /*
+     * n -  liczba przeszkód
+     * x - położenie mety
+     */
+    int n,x;
+    cin>>n>>x;
+    //unordered_map<int, pair<int,int>> umap;
+    int bird_y=0;
+    vector<pair<int,pair<int,int>>> vec;
+    for(int i = 0 ;i<n;i++){
+        int x,a,b;
+        cin>>x>>a>>b;
+        pair<int,int> a_b;
+        pair<int,pair<int,int>> res;
+        a_b.first=a;
+        a_b.second=b;
+        res.first=x;
+        res.second=a_b;
+        vec.push_back(res);
+    }
+    int counter=0;
+    int jumps=0;
+    bool flag=false;
+    for(int i = 0 ;i<=x;i++){
+        //cout<<"counter["<<i<<"] "<<counter[i]<<" bird_y = "<<bird_y<<" jumps = "<<jumps<<'\n';
+        //cout<<" bird_y = "<<bird_y<<" i = "<<i<<" counter = "<<counter<<" vec[counter].first = "<<vec[counter].first<<'\n';
+        //cout<<" bird_y = "<<bird_y<<" vec[counter].second.second = "<<vec[counter].second.second<<" vec[counter].second.first = "<<vec[counter].second.first<<" vec[counter].first = "<<vec[counter].first<<" i = "<<i<<'\n';
+        // cout<<" bcount = "<<bcount<<'\n';
+        if((bird_y>vec[counter].second.second && vec[counter].first==i) || (bird_y<vec[counter].second.first && vec[counter].first==i)){
+            flag= true;
+            break;
+        }
+        if((bird_y>vec[counter].second.second && vec[counter].first==i) || (bird_y<vec[counter].second.first && vec[counter].first==i)){
+            flag= true;
+            break;
+        }
+        if(vec[counter].first==i){
+            counter++;
+        }
+        if(vec[counter].second.first>=bird_y && ((vec[counter].second.first+1)-bird_y == vec[counter].first - i)){
+            bird_y++;
+            jumps++;
+        }else if(vec[counter].second.first<bird_y && (bird_y-vec[counter].second.first ==  i-vec[counter].first)){
+            bird_y++;
+            jumps++;
+        }
+//            else if(vec[counter].second.first>=bird_y && ((vec[counter].second.first+1)-bird_y > vec[counter].first - i)){
+//                flag= true;
+//                break;
+//            }
+        else{
+            bird_y--;
+        }
+    }
+    if(flag){
+        cout<<"NIE";
+    }else{
+        cout<<jumps;
+    }
+
+}
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
