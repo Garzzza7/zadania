@@ -175,6 +175,48 @@ build CMakeFiles/CF.dir/CodeForces/Celex_Update.cpp.o: CXX_COMPILER__CF_Debug /h
   OBJECT_DIR = CMakeFiles/CF.dir
   OBJECT_FILE_DIR = CMakeFiles/CF.dir/CodeForces
 
+build CMakeFiles/CF.dir/SPOJ/Factorial.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SPOJ/Factorial.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SPOJ/Factorial.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SPOJ
+
+build CMakeFiles/CF.dir/SPOJ/The_Knapsack_Problem.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SPOJ/The_Knapsack_Problem.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SPOJ/The_Knapsack_Problem.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SPOJ
+
+build CMakeFiles/CF.dir/SPOJ/Party_Schedule.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SPOJ/Party_Schedule.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SPOJ/Party_Schedule.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SPOJ
+
+build CMakeFiles/CF.dir/SPOJ/Hard_Fibonacci.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/SPOJ/Hard_Fibonacci.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/SPOJ/Hard_Fibonacci.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/SPOJ
+
+build CMakeFiles/CF.dir/CodeForces/Multiplication_Table.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/CodeForces/Multiplication_Table.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/CodeForces/Multiplication_Table.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/CodeForces
+
+build CMakeFiles/CF.dir/CodeForces/Arpas_hard_exam_and_Mehrdads_naive_cheat.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/CodeForces/Arpas_hard_exam_and_Mehrdads_naive_cheat.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/CodeForces/Arpas_hard_exam_and_Mehrdads_naive_cheat.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/CodeForces
+
+build CMakeFiles/CF.dir/CodeForces/Berland_Poker.cpp.o: CXX_COMPILER__CF_Debug /home/pc/CLionProjects/Zadania/CodeForces/Berland_Poker.cpp || cmake_object_order_depends_target_CF
+  DEP_FILE = CMakeFiles/CF.dir/CodeForces/Berland_Poker.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CF.dir
+  OBJECT_FILE_DIR = CMakeFiles/CF.dir/CodeForces
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CF
@@ -183,7 +225,7 @@ build CMakeFiles/CF.dir/CodeForces/Celex_Update.cpp.o: CXX_COMPILER__CF_Debug /h
 #############################################
 # Link the executable CF
 
-build CF: CXX_EXECUTABLE_LINKER__CF_Debug CMakeFiles/CF.dir/main.cpp.o CMakeFiles/CF.dir/CF.cpp.o CMakeFiles/CF.dir/NOWY.cpp.o CMakeFiles/CF.dir/pointers.cpp.o CMakeFiles/CF.dir/krazki.cpp.o CMakeFiles/CF.dir/maximum.cpp.o CMakeFiles/CF.dir/n.cpp.o CMakeFiles/CF.dir/banialuki.cpp.o CMakeFiles/CF.dir/SZKOPUL/flappy.cpp.o CMakeFiles/CF.dir/SPOJ/Mayonnaise_Arrow.cpp.o CMakeFiles/CF.dir/CodeForces/Climbing_the_Tree.cpp.o CMakeFiles/CF.dir/CodeForces/Accommodation.cpp.o CMakeFiles/CF.dir/SPOJ/Equipment_Box.cpp.o CMakeFiles/CF.dir/sorts.cpp.o CMakeFiles/CF.dir/CodeForces/Grid_Reconstruction.cpp.o CMakeFiles/CF.dir/CodeForces/Boredom.cpp.o CMakeFiles/CF.dir/SPOJ/Power_and_Mod.cpp.o CMakeFiles/CF.dir/CodeForces/The_Great_Julya_Calendar.cpp.o CMakeFiles/CF.dir/CSES/Dice_Combinations.cpp.o CMakeFiles/CF.dir/CodeForces/Spreadsheets.cpp.o CMakeFiles/CF.dir/CodeForces/Celex_Update.cpp.o
+build CF: CXX_EXECUTABLE_LINKER__CF_Debug CMakeFiles/CF.dir/main.cpp.o CMakeFiles/CF.dir/CF.cpp.o CMakeFiles/CF.dir/NOWY.cpp.o CMakeFiles/CF.dir/pointers.cpp.o CMakeFiles/CF.dir/krazki.cpp.o CMakeFiles/CF.dir/maximum.cpp.o CMakeFiles/CF.dir/n.cpp.o CMakeFiles/CF.dir/banialuki.cpp.o CMakeFiles/CF.dir/SZKOPUL/flappy.cpp.o CMakeFiles/CF.dir/SPOJ/Mayonnaise_Arrow.cpp.o CMakeFiles/CF.dir/CodeForces/Climbing_the_Tree.cpp.o CMakeFiles/CF.dir/CodeForces/Accommodation.cpp.o CMakeFiles/CF.dir/SPOJ/Equipment_Box.cpp.o CMakeFiles/CF.dir/sorts.cpp.o CMakeFiles/CF.dir/CodeForces/Grid_Reconstruction.cpp.o CMakeFiles/CF.dir/CodeForces/Boredom.cpp.o CMakeFiles/CF.dir/SPOJ/Power_and_Mod.cpp.o CMakeFiles/CF.dir/CodeForces/The_Great_Julya_Calendar.cpp.o CMakeFiles/CF.dir/CSES/Dice_Combinations.cpp.o CMakeFiles/CF.dir/CodeForces/Spreadsheets.cpp.o CMakeFiles/CF.dir/CodeForces/Celex_Update.cpp.o CMakeFiles/CF.dir/SPOJ/Factorial.cpp.o CMakeFiles/CF.dir/SPOJ/The_Knapsack_Problem.cpp.o CMakeFiles/CF.dir/SPOJ/Party_Schedule.cpp.o CMakeFiles/CF.dir/SPOJ/Hard_Fibonacci.cpp.o CMakeFiles/CF.dir/CodeForces/Multiplication_Table.cpp.o CMakeFiles/CF.dir/CodeForces/Arpas_hard_exam_and_Mehrdads_naive_cheat.cpp.o CMakeFiles/CF.dir/CodeForces/Berland_Poker.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/CF.dir
   POST_BUILD = :
