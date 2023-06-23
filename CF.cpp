@@ -1,39 +1,50 @@
 #include <iostream>
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <vector>
 using namespace std;
-
+int load(int a){
+    return a++;
+}
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int t;
-    cin>>t;
-    vector<int> vec;
-    vector<int> buffer;
-    vector<int> v;
-    vector<int> ordered;
-    while(t--){
-        int a,b;
-        cin>>a>>b;
-        vec.push_back(b);
-        v.push_back(b);
-        ordered.push_back(b);
+    int v1=0;
+    int v2=0;
+    int v3=0;
+    int v4=0;
+for(int iter = 1 ; iter < 100 ; iter++) {
+    for (int i = 0; i < 100000; i++) {
+        for (int j = 0; j < 50000; j++) {
+            v1++;
+        }
+//        for (int j = 0; j < 50000; j++) {
+//            v2++;
+//        }
+//        for (int j = 0; j < 50000; j++) {
+//            v3++;
+//        }
+//        for (int j = 0; j < 50000; j++) {
+//            v4++;
+//        }
     }
-    for(int i =0 ; i<vec.size();i++){
-        if(v[i]==v[i+1]){
-            v[i]=0;
+    for(int i = 0 ; i < 100000 ; i++){
+        for(int j = 0 ; j < 50000 ; j++){
+            v2++;
         }
     }
-    sort(vec.begin(), vec.end());
-    // Use unique() function to remove duplicates
-    //vec.erase(unique(vec.begin(), vec.end()), vec.end());
-    std::remove(vec.begin(), vec.end(),0);
-//    for(auto i:vec){
-//        cout<<i<<"\n";
-//    }
-    vec.erase(unique(vec.begin(), vec.end()), vec.end());
-    cout<<vec.size();
+    for(int i = 0 ; i < 100000 ; i++){
+        for(int j = 0 ; j < 50000 ; j++){
+            v3++;
+        }
+    }
+    for(int i = 0 ; i < 100000 ; i++){
+        for(int j = 0 ; j < 50000 ; j++){
+            v4++;
+        }
+    }
+    load(v1);
+    load(v2);
+    load(v3);
+    load(v4);
+    int result = v1 + v2 + v3 + v4;
+}
     return 0;
 }
