@@ -14,21 +14,22 @@ int main() {
     cin.tie(0);
     int n;
     cin>>n;
-    int maks=0;
     int counter=0;
-    vector<int> res;
+    int m = -100000;
     for(int i = 0 ; i < n ; i++){
         int a;
         cin>>a;
         if(a==-1){
-            counter--;
-        }else if(a!=-1 || i == n-1){
-            if(maks<counter){
-                maks=counter;
+            counter++;
+        }else if(a!=-1){
+            if(m<counter){
+                m=counter;
             }
-            counter+=a;
+            counter-=a;
         }
     }
-    cout<<max(abs(maks),abs(counter));
+    cout<<max(m,counter);
+    //cout<<m;
+
     return 0;
 }
