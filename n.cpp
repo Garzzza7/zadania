@@ -12,7 +12,6 @@ int main() {
     cin>>n>>k;
     vector<int> lec;
     vector<int> wake;
-
     for(int i = 0 ; i < n ; i++){
         int a;
         cin>>a;
