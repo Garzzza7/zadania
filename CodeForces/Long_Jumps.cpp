@@ -4,7 +4,7 @@
 #include <cstring>
 #include <map>
 #include <vector>
-#include <algorithm>    // std::sort
+#include <algorithm>    
 #include <math.h>
 
 using namespace std;
@@ -19,22 +19,41 @@ int main() {
         cin>>n;
         vector<int> vec(n,0);
         vector<int> result(n,0);
+        vector<int> dp(n,0);
         for(int i =0;i<n;i++){
             int a;cin>>a;
             vec[i]=a;
         }
         for(int i =0;i<n;i++){
-            int res=0;
-            int index=i;
-            //result[i]=i+vec[i]+1;
-            while(index<n){
-                res+=vec[index];
-                index+=vec[index];
-            }
-            result[i]=res;
+            //dp[i]=i+vec[i]+1;
+            dp[i]=vec[i];
+           // cout<<dp[i]<<" - "<<i<<"\n";
         }
-        sort (result.begin(), result.end());
-        cout<<result[result.size()-1]<<"\n";
+        for(int i =n-1;i>=0;i--){
+            // int iter=i;
+            // int index=dp[i]-1;
+            // result[i]+=vec[i];
+            dp[i]=vec[i];
+            int index = i + vec[i];
+            //int index=i;
+            //cout<<"dp["<<i<<"] = "<<dp[i]<<"\n";
+            if(index<n){
+                dp[i]+=dp[index];
+            }
+            // while(index<n){
+            //     result[i]+=vec[iter];
+            //     index=dp[index]-1;
+            //     iter=vec[index];
+            //     //cout<<"index = "<<index<<"\n";
+            // }
+        }
+        sort (dp.begin(), dp.end());
+       cout<<dp[dp.size()-1]<<"\n";
+       //cout<<result.size()<<"\n";
+        // for(auto&& a : result){
+        //         cout<<a<<"\n";
+        // }
+        //printf("///////////////////////////");
         //cout<<"PENIS"<<"\n";
     }
     return 0;
