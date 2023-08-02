@@ -1,86 +1,43 @@
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <map>
-#include <vector>
-#include <math.h>
-#include <algorithm>
+/**
+ *    author:  tourist
+ *    created: 12.05.2023 10:36:37       
+**/
+#include <bits/stdc++.h>
+
 using namespace std;
+
+#ifdef LOCAL
+#include "algo/debug.h"
+#else
+#define debug(...) 42
+#endif
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int t;
-    cin>>t;
-    while(t--){
-        int n,k;
-        cin>>n>>k;
-        vector<long long> numbers;
-
-        vector<long long> min_sum;
-        vector<long long> max_vec;
-        for(int i = 0 ; i < n ; i++){
-            int a;
-            cin>>a;
-            numbers.push_back(a);
-            max_vec.push_back(a);
+    int tt;
+    cin >> tt;
+    while (tt--) {
+        int n, k;
+        cin >> n >> k;
+        vector<int> a(n);
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
         }
-        sort(max_vec.begin(), max_vec.end());
-        reverse(max_vec.begin(), max_vec.end());
-        sort(numbers.begin(), numbers.end());
-        int m;
-        if(n%2==0){
-            m=n;
-        }else{
-            m=n-1;
+        sort(a.begin(), a.end());
+        vector<long long> pref(n + 1);
+        //cout<<" TUTAJ ->>>> "<<pref[0]<<"\n";
+        for (int i = 0; i < n; i++) {
+            pref[i + 1] = pref[i] + a[i];
+            cout<<"pref["<<i + 1<<"] = "<<pref[i + 1]<<" pref["<<i<<"] = "<<pref[i]<<" a["<<i<<"] = "<<a[i]<<"\n";
         }
-        for(int i = 0 ; i < m ; i+=2){
-            min_sum.push_back(numbers[i]+numbers[i+1]);
+        long long ans = 0;
+        for (int x = 0; x <= k; x++) {
+            int y = k - x;
+            cout<<"pref["<<n<<"-"<<y<<"] = "<<pref[n - y]<<" pref["<<"2 * "<<x<<"] = "<<pref[2 * x]<<"\n";
+            ans = max(ans, pref[n - y] - pref[2 * x]);
         }
-//        for(auto&& a : min_sum ){
-//            cout<<a<<"\n";
-//        }
-        int p1=0;
-        int p2=0;
-        long long sum1=0;
-        long long sum_min=0;
-        long long sum_max=0;
-        long long eqsum=0;
-        for(int i = 0 ; i < k ; i++){
-            sum_min+=min_sum[i];
-            sum_max+=max_vec[i];
-            if(min_sum[p1]<=max_vec[p2]){
-                sum1+=min_sum[p1];
-                p1++;
-            }else{
-                    sum1+=max_vec[p2];
-                    p2++;
-                }
-            }
-        long long sum=0;
-        for(auto&& a : numbers){
-            sum+=a;
-        }
-        cout<<sum-(long long)min(sum1,min(sum_min,sum_max))<<"\n";
-//        cout<<min_sum.size()<<"\n";
-//        long long sum=0;
-//
-//        for(int i = 0 ; i < k ; i+=1){
-//                if(numbers[numbers.size()-1]>=(numbers[0]+numbers[1])){
-//                    numbers.erase(std::next(numbers.begin()));
-//                    numbers.erase(numbers.begin());
-//                }else if(numbers[numbers.size()-1]<(numbers[0]+numbers[1])){
-//                    numbers.pop_back();
-//                }
-//        }
-//        //cout<<numbers[numbers.size()-1]<<"\n";
-//        for(auto&& a : numbers){
-//            cout<<a<<"\n";
-//            sum+=a;
-//        }
-//        cout<<"sum = "<<sum<<"\n";
-        //cout<<"////////////"<<"\n";
+        cout << ans << '\n';
     }
     return 0;
 }
