@@ -10,9 +10,9 @@ int main() {
     while(t--){
         int n,k;
         cin>>n>>k;
-        vector<int> vec;
-        vector<int> numbers;
-        vector<int> left((numbers.size()+1)*k);
+        vector<int> vec; //stores the given numbers
+        vector<int> numbers; //stores all the numbers
+        vector<int> left;
         for(int i = 0 ; i < n ; i++){
             int a;
             cin>>a;
@@ -23,28 +23,36 @@ int main() {
         // }
         // cout<<"\n";
         int m = vec[vec.size()-1];
-        for(int i = 1 ; i <= m*k ; i++){
+        for(int i = 1 ; i <= m*n ; i++){
             numbers.push_back(i);
-            left[i-1]=i;
+            left.push_back(i);
         }
+        // for(auto&& a : numbers){
+        //     cout<<a<<" - ";
+        // }
+        // cout<<"\n";
+        // cout<<"///////////////////\n";
         
         for(int i = 0 ; i < k ; i++){
             int incrementer=0;
-            for(int i = 1 ; i <= numbers.size()+1 ; i++){
-            if(std::find(vec.begin(), vec.end(), i) != vec.end()) {
+            for(int j = 1 ; j <= numbers.size()+1 ; j++){
+            if(std::find(vec.begin(), vec.end(), j) != vec.end()) {
                 /* vec contains i */
 
             } else {
                 /* vec does not contain i */
-                left[incrementer]=left[i];
+                left[incrementer]=left[j-1];
                 incrementer++;
             }
+            //cout<<" incrementer = "<<incrementer<<"\n";
         }
+        //cout<<"//////////\n";
         }
-        for(auto&& a : left){
-            cout<<a<<" - ";
-        }
-        cout<<"\n";
+        // for(auto&& a : left){
+        //     cout<<a<<" - ";
+        // }
+        // cout<<"\n";
+        cout<<numbers[left[0]-1]<<"\n";
     }
     return 0;
 }
