@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
+//https://codeforces.com/problemset/problem/1852/A
 using namespace std;
 int main() {
     ios::sync_with_stdio(false);
