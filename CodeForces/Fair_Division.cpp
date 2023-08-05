@@ -17,7 +17,13 @@ int main() {
         sort(candies.begin(),candies.end());
         int numo = count(candies.begin(),candies.end(),1);
         int numt = count(candies.begin(),candies.end(),2);
-        if(numo%2==0 && numt%2==0){
+        if((numo%2==0 && numo!=0) && (numt%2==0 && numt!=0)){
+                printf("YES\n");
+        }else if((numo%2==0 && numo!=0) && numt%2==0){
+                printf("YES\n");
+        }else if((numt%2==0 && numt!=0) && numo%2==0){
+                printf("YES\n");
+        }else if((numo%2==0 && numo!=0) && (numt%2!=0 && numt!=0)){
                 printf("YES\n");
         }else{
             printf("NO\n");
