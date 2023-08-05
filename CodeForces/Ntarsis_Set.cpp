@@ -23,6 +23,7 @@ int main() {
         // }
         // cout<<"\n";
         int m = vec[vec.size()-1];
+        
         for(int i = 1 ; i <= m*n ; i++){
             numbers.push_back(i);
             left.push_back(i);
@@ -32,10 +33,10 @@ int main() {
         // }
         // cout<<"\n";
         // cout<<"///////////////////\n";
-        
+        int adder = 0;
         for(int i = 0 ; i < k ; i++){
             int incrementer=0;
-            for(int j = 1 ; j <= numbers.size()+1 ; j++){
+            for(int j = 1 ; j <= numbers.size()+1   ; j++){
             if(std::find(vec.begin(), vec.end(), j) != vec.end()) {
                 /* vec contains i */
 
@@ -43,6 +44,7 @@ int main() {
                 /* vec does not contain i */
                 left[incrementer]=left[j-1];
                 incrementer++;
+                adder++;
             }
             //cout<<" incrementer = "<<incrementer<<"\n";
         }

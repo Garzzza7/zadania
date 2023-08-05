@@ -1,28 +1,38 @@
-#include <iostream>
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <vector>
-#include "memory"
+#include <bits/stdc++.h>
+#include <cmath>
 using namespace std;
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int n;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int bills[] = {1,5,10,20,100};
+    long long  n;
     cin>>n;
-    int arr[5]={1, 5, 10, 20, 100};
-    int sum=0;
     int counter=0;
-    int iterator=4;
-    while(sum<=n){
-        if(sum+arr[iterator]>n){
-            iterator--;
+    int incrementer=4;
+    while (true)
+    {
+        //cout<<"n = "<<n<<" incrementer = "<<incrementer<<" bills[incrementer] = "<<bills[incrementer]<<"\n";
+        if(n<bills[incrementer]){
+            incrementer--;
+
+        }else{
+            n-=bills[incrementer];
+            counter++;
+            if(n<=0){
+                break;
+            }
+            
         }
-        cout<<"sum = "<<sum<<" iterator = "<<iterator<<'\n';
-        sum+=arr[iterator];
-        counter++;
-        cout<<arr[iterator]<<'\n';
+        
     }
-    cout<<counter;
+    printf("%d\n",counter);
     return 0;
 }
+
+
+
+
+
+
+
+

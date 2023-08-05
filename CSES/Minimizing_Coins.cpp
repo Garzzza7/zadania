@@ -1,27 +1,36 @@
-//https://cses.fi/problemset/task/1634
-#include <iostream>
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <vector>
-#include <limits>
-#include <math.h>
-#include "memory"
+#include <bits/stdc++.h>
 using namespace std;
-
-long long reducer = 1e9+7;
-int main() {
+ 
+int main()
+{
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int n,x;
-    cin>>n>>x;
-    vector<int> values(n+1,0);
-    vector<int> dp(n+1,0);
-    for(int i = 0 ; i < n;i++){
-        int a;
-        cin>>a;
-        dp[i]=a;
-    }
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-    return 0;
-}
+ 
+   long long int c,n,x;
+    cin>>n>>x;
+    
+    vector<long long int> coins;
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>c;
+        coins.push_back(c);
+    }
+    
+    vector<long long int> dp(x+1,0);
+    
+    for(long long int i=1;i<=x;i++)
+    {
+        dp[i]=INT_MAX;
+        for(long long int j=0;j<n;j++)
+        {
+            if(i-coins[j] >= 0)
+            dp[i] = min(dp[i],dp[i-coins[j]]+1);
+        }
+    }
+    
+    cout << (dp[x] >= INT_MAX ? -1 : dp[x]) << endl;
+    
+}   
