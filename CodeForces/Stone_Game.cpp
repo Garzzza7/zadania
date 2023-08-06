@@ -33,23 +33,37 @@ int main() {
         }
         int maxpath;
         int minpath;
-        int half=vec.size();
+        int half=vec.size()/2;
+        max_element_index++;
+        min_element_index++;
+        //printf("half = %d\n", half);
             if(max_element_index>half){
-                int a=max_element_index-vec.size();
-                maxpath=abs(a);
+                //int a=vec.size()-max_element_index;
+                //maxpath=abs(a);
+                maxpath=vec.size()-max_element_index+1;
             }else{
-                int a=max_element_index;
-                maxpath=abs(a);
-            }
+                maxpath=max_element_index;
 
-            if(min_element_index>half){
-                int a=min_element_index-vec.size();
-                minpath=abs(a);
-            }else{
-                int a=min_element_index;
-                minpath=abs(a);
             }
-            cout<<maxpath+1<<" - "<<minpath+1<<"\n";
+            int res;
+            if(min_element_index>half){
+                //int a=vec.size()-min_element_index;
+                //minpath=abs(a);
+                minpath=vec.size()-min_element_index+1;
+            }else{
+                minpath=min_element_index;
+            }
+            // maxpath++;
+            // minpath++;
+            if(max_element_index>=half && min_element_index>=half){
+                    res=max(maxpath,minpath);
+            }else if(max_element_index<=half && min_element_index<=half){
+                    res=max(maxpath,minpath);
+            }else{
+                    res=minpath+maxpath;
+            }
+            cout<<" maxpath= "<<maxpath<<" - "<<" minpath = "<<minpath<<" half = "<<half<<" res = "<<res<<"\n";
+            //printf("%d\n",res);
     }
     return 0;
 }
