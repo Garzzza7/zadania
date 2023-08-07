@@ -12,7 +12,9 @@ int main() {
     cin>>n;
     cin>>a;
     cin>>b;
-    
+    if(n>a && n>b){
+        
+    }
     return 0;
 }
 
