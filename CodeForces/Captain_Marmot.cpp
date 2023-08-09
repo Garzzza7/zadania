@@ -25,6 +25,14 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
     int n;cin>>n;
+    Mole mm(5,1,4,3);
+    cout<<"Mole 1 = "<<mm.x<<" - "<<mm.y<<"\n";
+    mm = mm.rotate(mm,4,3);
+    cout<<"Mole 2 = "<<mm.x<<" - "<<mm.y<<"\n";
+     mm = mm.rotate(mm,4,3);
+    cout<<"Mole 3 = "<<mm.x<<" - "<<mm.y<<"\n";
+     mm = mm.rotate(mm,4,3);
+    cout<<"Mole 4 = "<<mm.x<<" - "<<mm.y<<"\n";
     for(int z = 0 ; z < n ; z++){
         vector<Mole> vec;
         for(int i = 0 ; i < 4 ; i++) {
