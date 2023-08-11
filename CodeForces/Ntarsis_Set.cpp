@@ -24,7 +24,7 @@ int main() {
         // cout<<"\n";
         int m = vec[vec.size()-1];
         
-        for(int i = 1 ; i <= m*n ; i++){
+        for(int i = 1 ; i <= n*k+1 ; i++){
             numbers.push_back(i);
             left.push_back(i);
         }
@@ -33,28 +33,28 @@ int main() {
         // }
         // cout<<"\n";
         // cout<<"///////////////////\n";
-        int adder = 0;
-        for(int i = 0 ; i < k ; i++){
-            int incrementer=0;
-            for(int j = 1 ; j <= numbers.size()+1   ; j++){
-            if(std::find(vec.begin(), vec.end(), j) != vec.end()) {
-                /* vec contains i */
+        //int adder = 0;
+        // for(int i = 0 ; i < k ; i++){
+        //     int incrementer=0;
+        //     for(int j = i*n ; j <= numbers.size()+1   ; j++){
+        //     if(std::find(vec.begin(), vec.end(), j) != vec.end()) {
+        //         /* vec contains i */
 
-            } else {
-                /* vec does not contain i */
-                left[incrementer]=left[j-1];
-                incrementer++;
-                adder++;
-            }
-            //cout<<" incrementer = "<<incrementer<<"\n";
-        }
-        //cout<<"//////////\n";
-        }
-        // for(auto&& a : left){
-        //     cout<<a<<" - ";
+        //     } else {
+        //         /* vec does not contain i */
+        //         left[incrementer]=left[j-1];
+        //         incrementer++;
+        //         //adder++;
+        //     }
+        //     //cout<<" incrementer = "<<incrementer<<"\n";
         // }
-        // cout<<"\n";
-        cout<<numbers[left[0]-1]<<"\n";
+        // //cout<<"//////////\n";
+        // }
+        // // for(auto&& a : left){
+        // //     cout<<a<<" - ";
+        // // }
+        // // cout<<"\n";
+        // cout<<numbers[left[0]-1]<<"\n";
     }
     return 0;
 }
