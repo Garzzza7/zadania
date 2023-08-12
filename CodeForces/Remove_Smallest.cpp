@@ -18,16 +18,25 @@ int main() {
             vec.push_back(a);
         }
         sort(vec.begin(), vec.end());
-        reverse(vec.begin(),vec.end());
-        for(int i = 0 ; i < vec.size()-1 ; i++){
-            if(abs(vec[i]-vec[i+1])<=1){
-                vec.erase(vec.begin()+(i+1));
+        reverse(vec.begin(), vec.end());
+        // for(auto&& a : vec){
+        //     cout<<a<<" - ";
+        // }cout<<"\n";
+        for(int i = vec.size()-1 ; i > 0 ; i--){
+            if(abs(vec[i]-vec[i-1])<=1){
+                vec.pop_back();
             }
         }
-        for(auto&& a : vec){
-            cout<<a<<" - ";
+        // for(auto&& a : vec){
+        //     cout<<a<<" - ";
+        // }
+        // cout<<"\n";
+        if(vec.size()==1){
+            cout<<"YES"<<"\n";
+        }else{
+            cout << "NO"
+                 << "\n";
         }
-        cout<<"\n";
     } 
     return 0;
 }
