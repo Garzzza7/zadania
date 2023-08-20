@@ -9,7 +9,7 @@ vector<int> bs(vector<int> vec, int t)
     long long sum1 = 0;
     long long sum2 = 0;
 
-     cout << "half = " << half << "\n";
+    // cout << "half = " << half << "\n";
     int modifier = 0;
     if (vec.size() % 2 != 0)
     {
