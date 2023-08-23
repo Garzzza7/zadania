@@ -12,89 +12,38 @@ int main()
     {
         int c, m, x;
         cin >> c >> m >> x;
-        if (c == m & m == x || (c == 0 || m == 0))
+        int ans;
+        if (x == 0)
         {
-            cout << min(c, m) << "\n";
-        }
-        else if (x == 0)
-        {
-            long long counter = 0;
-            while (true)
-            {
-                if (c > m)
-                {
-                    c -= 2;
-                    m -= 1;
-                }
-                else
-                {
-                    c -= 1;
-                    m -= 2;
-                }
-
-                if (c <= 0 || m <= 0)
-                {
-                    break;
-                }
-                counter++;
-            }
-            cout << counter << "\n";
+            ans = (c + m) / 3;
         }
         else
         {
-            long long counter1 = 0;
-            bool x_eq_zero = false;
-            while (true)
+            bool flag = false;
+            int cnt = 0 ;
+            for (int i = 0; i < x; i++)
             {
+                x--;
                 c--;
                 m--;
-                x--;
-                if (c <= 0 || m <= 0)
-                {
-                    break;
-                }
                 if (x <= 0)
                 {
-                    x_eq_zero = true;
                     break;
                 }
-                counter1++;
-            }
-            long long counter2 = 0;
-            // cout<<"c = "<<c<<" m = "<<m<<" x = "<<x<<"\n";
-            if (x_eq_zero)
-            {
-                while (true)
+                if (c <= 0 || m <= 0)
                 {
-                    if (c > m)
-                    {
-                        c -= 2;
-                        m -= 1;
-                    }
-                    else
-                    {
-                        c -= 1;
-                        m -= 2;
-                    }
-                    if (c <= 0 || m <= 0)
-                    {
-                        break;
-                    }
-                    counter2++;
+                    flag = true;
+                    break;
                 }
+                cnt++;
             }
-            // cout<<"/////////////////\n";
-            // cout<<"c = "<<c<<" m = "<<m<<" x = "<<x<<"\n";
-            cout << "counter1 = " << counter1 << " counter2 = " << counter2 << "\n";
-            if (x_eq_zero)
-            {
-//                cout << counter1 << "\n";
-            }
-            else
-            {
-  //              cout << counter2 + counter1 << "\n";
+            if(flag){
+                ans=cnt+(c+m)/3;
+            }else{
+                ans=cnt;
             }
         }
+        cout<<ans<<"\n";
     }
     return 0;
 }
