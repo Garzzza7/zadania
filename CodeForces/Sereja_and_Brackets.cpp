@@ -4,10 +4,43 @@
 using namespace std;
 class Substring{
     public:
-        int first;
-        int last;
-        int total;
+        int sum=0;
+        int opening=0;
+        int closing=0;
 };
+vector<Substring> countParenthesis(vector<Substring> s){
+    int size=s.size()/2;
+    Substring filler;
+    vector<Substring> result;
+    int iterator=0;
+    for(int i = 0 ; i < s.size() ; i+=2){
+        Substring value;
+        value.sum = s[i].sum + s[i + 1].sum;
+        if(s[i].opening>0 && s[i+1].closing>0){
+            value.sum+=2 * (min(s[i].opening, s[i + 1].closing));
+            s[i].opening-=(min(s[i].opening, s[i + 1].closing));
+             s[i+1].closing-=(min(s[i].opening, s[i + 1].closing));
+
+        }
+        value.opening = max(s[i].opening, s[i + 1].opening);
+        value.closing = max(s[i].closing,s[i+1].closing);
+        result.push_back(value);
+        //iterator++;
+    }
+    for(auto&& a : result){
+        cout<<a.sum<<"."<<a.opening<<"."<<a.closing<<" ";
+    }cout<<"\n";
+    // if(result.size()==1){
+    //     //vector<Substring> buffer = countParenthesis(result);
+    //     //return countParenthesis(result);
+    //     cout<<"LOL\n";
+    //     //return result;
+    // }else{
+    //     countParenthesis(result);
+    // }
+    return result;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -16,69 +49,42 @@ int main()
     int m;
     cin >> s;
     cin >> m;
-
-    vector<Substring> vec;
-    int cnt=0;
-    int substringtotal=0;
+    long long counter=0;
     int first=0;
     int last=0;
-    for(int i = 0 ; i < s.size(); i++){
+    int size=1;
+    while(size < s.size()){
+        size*=2;
+    }
+    Substring filler;
+    vector<Substring> vec(size,filler);
+    for(int i = 0 ; i < s.size() ; i++){
+        Substring substring;
         if(s[i]=='('){
-            cnt++;
+            substring.opening=1;
         }else{
-            cnt--;
+            substring.closing=1;
         }
+        vec.push_back(substring);
+    }
+    //for(auto&& a : vec){
+    //    cout<<a.first<<" - "<<a.second<<"\n";
+    //}
+    while (m--)
+    {
+        int l, r;
+        cin >> l >> r;
         
-        if(cnt>0){
-            substringtotal++;
-        }else if(cnt==0){
-            substringtotal++;
-            first=i;
+        vector<Substring> test=vec;
+        while(test.size()!=1){
+            test=countParenthesis(test);
         }
-        if (s[i + 1] == ')' && cnt == 1)
-        {
-            Substring sub;
-            sub.first=first;
-            sub.last=i;
-            sub.total=substringtotal;
-            substringtotal=0;
-            vec.push_back(sub);
+        for(auto&& a : test){
+            //cout<<a.sum<<"\n";
         }
+        cout<<"////////////////\n";
+        break;
     }
-    cout<<"TESTTESTESTESTESTESTESTESTEST\n";
-    for(auto&& a : vec){
-        cout<<a.first<<" - "<<a.last<<" - "<<a.total<<"\n";
-    }
-    // while (m--)
-    // {
-    //     int l, r;
-    //     int cnt = 0;
-    //     int maxcnt = 0;
-    //     cin >> l >> r;
-    //     for (int i = l - 1; i <= r - 1; i++)
-    //     {
-    //         if (s[i] == '(')
-    //         {
-    //             cnt++;
-    //         }
-    //         else
-    //         {
-    //             cnt--;
-    //         }
-    //         if (cnt >= 0)
-    //         {
-    //             maxcnt++;
-    //             // cout<<s[i];
-    //         }
-    //         else
-    //         {
-    //             cnt = 0;
-    //         }
-    //     }
-    //     // cout<<"\n";
-    //     // cout<<maxcnt<<" - "<<cnt<<"\n";
-    //     cout << maxcnt - cnt << "\n";
-    // }
 
     return 0;
 }

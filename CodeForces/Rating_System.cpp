@@ -79,7 +79,7 @@ int main()
             {
                  //cout<<a.left<<" "<<a.right<<" "<<a.right_index<<" | ";
                 long long sum = 0;
-                for (long long i = a.right_index; i < vec.size(); i++)
+                for (long long i = a.right_index; i <= vec.size(); i++)
                 {
                     sum += vec[i];
                 }
@@ -96,9 +96,9 @@ int main()
                           return lhs.first < rhs.first;
                       });
              //for(auto&& a : sums){
-             //     cout<<a.first<<" - "<<a.second<<" | ";
-             //}
-            //reverse(sums.begin(), sums.end());
+            //      cout<<a.first<<" - "<<a.second<<" | ";
+            // } 
+            reverse(sums.begin(), sums.end());
             long long final_sum = 0;
             //cout<<"\nASDADASDASDASDASDASDASDASDASDAS = "<<sums[sums.size() - 1].first<<"\n";
             for (int i = 0; i < sums[sums.size() - 1].second; i++)
@@ -115,7 +115,8 @@ int main()
             }
             else
             {
-                cout << final_sum << "\n";
+                cout << final_sum;
+               cout<<"\n";
             }
              //cout<<"\nROZMIAR = "<<triplets.size()<<"\n";
         }
