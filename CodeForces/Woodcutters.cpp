@@ -2,6 +2,7 @@
 #include <cmath>
 #include <stdlib.h>
 using namespace std;
+
 class Tree
 {
 public:
@@ -16,6 +17,7 @@ int main()
     cin.tie(0);
     int n;
     cin >> n;
+    
     if (n == 1)
     {
         cout << 1 << "\n";
