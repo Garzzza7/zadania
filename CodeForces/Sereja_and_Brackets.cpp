@@ -56,6 +56,7 @@ int main()
     while(size < s.size()){
         size*=2;
     }
+    cout<<"ROZMIAR = "<<size<<"\n";
     Substring filler;
     vector<Substring> vec(size,filler);
     for(int i = 0 ; i < s.size() ; i++){

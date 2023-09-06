@@ -6,40 +6,44 @@ int main() {
     int t;
     cin>>t;
     while(t--){
-        int n;
+        int n;cin>>n;
+        string enemy, gregor;    
+            cin>>enemy;
+            cin>>gregor;
         int counter=0;
-        cin>>n;
-        cout<<"n = "<<n<<'\n';
-        vector<int> graph(n,0);
-        vector<int> r1;
-        vector<int> r2;
-
-        for(int i = 0 ; i < n ; i++){
-            int a;cin>>a;
-            cout<<a;
-            r1.push_back(a);
+        if(gregor[0]=='1' && enemy[0]=='0'){
+            counter++;
+            enemy[0]='2';
+        }else if (gregor[0]=='1' && enemy[1]!='2' && enemy[1]!='0'){
+            enemy[1]='2';
+            counter++;
         }
-        cout<<r1.size()<<'\n';
-        for(int i = 0 ; i < n ; i++){
-            int a;cin>>a;
-            cout<<a;
-            r2.push_back(a);
+        if (gregor[n-1] == '1' && enemy[n-1] == '0')
+        {
+            counter++;
+            enemy[n-1]='2';
         }
-        cout<<r2.size()<<'\n';
-        for(int i = 0 ; i < n ; i++){
-            if(r1[i]==0 && r2[i]==0){
-                r1[i]=2;
-                graph[i]++;
-            }else if(r1[i-1]==1 && r2[i]==1){
-                r1[i-1]=2;
-                graph[i]++;
-            }else if(r1[i+1]==1 && r2[i]==1){
-                r1[i+1]=2;
-                graph[i]++;
+        else if (gregor[n-1] == '1' && enemy[n-2] != '2' && enemy[n-2] != '0')
+        {
+            enemy[n-2]='2';
+            counter++;
+        }
+        for(int i = 1 ; i < n-1 ; i++){
+            if(gregor[i]=='1' && enemy[i-1]!='2' && enemy[i-1]!='0'){
+                gregor[i]='0';
+                enemy[i-1]='2';
+                counter++;
+            }else if(gregor[i]=='1' && enemy[i]=='0'){
+                gregor[i]='0';
+                enemy[i]='2';
+                counter++;
+            }else if(gregor[i]=='1' && enemy[i+1]!='2' && enemy[i+1]!='0'){
+                gregor[i]='0';
+                enemy[i+1]='2';
+                counter++;
             }
         }
-        cout<<"SEPARATOR"<<'\n';
-        //cout<<counter<<'\n';
+        cout<<counter<<"\n";
     }
     return 0;
 }
