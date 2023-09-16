@@ -6,16 +6,10 @@ using namespace std;
 struct Node
 {
 public:
-    int c;
-    // useless
-    int parent;
-    // useless
     vector<int> vec;
     bool visited;
     Node()
     {
-        this->parent = 0;
-        this->c = 0;
         this->visited = false;
         vector<int> vec;
         this->vec = vec;
@@ -34,41 +28,47 @@ int main()
     {
         int a, b;
         cin >> a >> b;
-        vec[a].c = a;
-        vec[b].c = b;
-        vec[b].parent = a;
         vec[a].vec.push_back(b);
         vec[b].vec.push_back(a);
     }
-    for (auto &&a : vec)
-    {
-        cout << a.c << " -> ";
-        for (auto &&b : a.vec)
-        {
-            cout << b << " , ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
+    // for (auto &&a : vec)
+    // {
+    //     cout << a.c << " -> ";
+    //     for (auto &&b : a.vec)
+    //     {
+    //         cout << b << " , ";
+    //     }
+    //     cout << "\n";
+    // }
+    // cout << "\n";
     long long counter = 0;
     for (int i = 0; i < vec.size(); i++)
     {
-        int start = i;
+        int inital_node = i;
         if (!vec[i].visited && vec[i].vec.size() == 2)
         {
-            // while(){
+            int last_node = inital_node;
 
-            int buffer = (vec[i].vec[0] == vec[i].parent) ? vec[i].vec[1] : vec[i].vec[0];
-            cout << vec[i].c << " - " << buffer << "\n";
-            // while (true)
-            // {
-            //     if(vec[buffer].parent == 0){
-            //         counter++;
-            //         break;
-            //     }
-            //      buffer = (vec[buffer].vec[0] == vec[buffer].parent) ? vec[buffer].vec[1] : vec[i].vec[0];
-            // }
-            //}
+            int current_node = (vec[i].vec[0] == inital_node) ? vec[i].vec[1] : vec[i].vec[0];
+
+            while (!vec[current_node].visited && vec[current_node].vec.size() == 2)
+            {
+
+                vec[current_node].visited = true;
+                int buffer = current_node;
+                current_node = (vec[current_node].vec[0] == last_node) ? vec[current_node].vec[1] : vec[current_node].vec[0];
+                last_node = buffer;
+                // cout << "current_node = " << current_node << " last_node = " << last_node << " initial_node = " << inital_node << "\n";
+                if (current_node == inital_node)
+                {
+                    counter++;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            vec[i].visited = true;
         }
     }
     cout << counter << "\n";
