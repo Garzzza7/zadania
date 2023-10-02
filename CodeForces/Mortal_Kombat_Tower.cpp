@@ -20,13 +20,23 @@ int main()
             cin >> a;
             vec.push_back(a);
         }
-        if(iter==59){
-            for(auto&& a : vec){
-                cout<<a<<" ";
-            } cout<<'\n';
-        }
+        int counter = 0;
+
+        // if(iter==59){
+        //     // cout<<iter<<" = ";
+        //     // for(auto&& a : vec){
+        //     //     cout<<a<<" ";
+        //     // } cout<<'\n';
+        //     counter++;
+        // }
+        // if(iter==60){
+        //     cout<<iter<<" = ";
+        //     for(auto&& a : vec){
+        //         cout<<a<<" ";
+        //     } cout<<'\n';
+        //     counter++;
+        // }
         int i;
-        long long counter = 0;
         int lookahead = 1;
         if (vec.size() == 1)
         {
@@ -37,9 +47,9 @@ int main()
         {
             for (i = 0; i < vec.size(); i++)
             {
-                //if(i==vec.size()-1){
-                //   break;
-                //}
+                if(i==vec.size()-2){
+                    lookahead=-1;
+                }
                 // cout<<vec.size()<<"\n";
                 if (vec[i] == 0 && vec[i + 1] == 0)
                 {
@@ -92,18 +102,12 @@ int main()
                         i += 1;
                     }
                 }
-
+                if(i==vec.size()-1){
+                    break;
+                }
             }
             cout << counter << '\n';
         }
     }
     return 0;
 }
-
-
-
-
-
-
-
-
