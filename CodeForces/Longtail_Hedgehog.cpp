@@ -2,35 +2,37 @@
 #include <cmath>
 #include <stdlib.h>
 using namespace std;
-//https://codeforces.com/problemset/problem/615/B
-int main() {
+// https://codeforces.com/problemset/problem/615/B
+int main()
+{
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int m,n;
-    cin>>n>>m;
-    vector<int> filler;
-    vector<vector<int>> vec(n+1,filler);
-    for(int i = 0 ; i < m ; i++){
-        int a,b;
-        cin>>a>>b;
-        vec[a].push_back(b);
-        vec[b].push_back(a);
+    int n, m;
+    cin >> n >> m;
+    const int maxN = 1 << 17;
+
+    int dp[maxN];
+    vector<int> g[maxN];
+    while (m--)
+    {
+        int v, u;
+        cin >> v >> u;
+        g[v].push_back(u);
+        g[u].push_back(v);
     }
-    int row=0;
-    for(auto&& a : vec){
-        cout<<row<<" ";
-        for(auto&& b : a){
-            cout<<b<<' ';
-        }cout<<"\n";
-        row++;
+    long long ans = -INT32_MAX;
+    for (int v = 1; v <= n; v++)
+    {
+        dp[v] = 1;
+        for (auto u : g[v])
+        {
+            if (u < v)
+            {
+                dp[v] = max(dp[v], dp[u] + 1);
+            }
+        }
+        ans = max(ans, dp[v] * (long long)g[v].size());
     }
+    cout << ans << endl;
     return 0;
 }
-
-
-
-
-
-
-
-
