@@ -6,11 +6,24 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    long long r=0;
-    vector<int> v;
-    for(inti = 0 ; i <= n-1 ; i++){
-        r+=v[i];
-    } 
+    int m,n;
+    cin>>n>>m;
+    vector<int> filler;
+    vector<vector<int>> vec(n+1,filler);
+    for(int i = 0 ; i < m ; i++){
+        int a,b;
+        cin>>a>>b;
+        vec[a].push_back(b);
+        vec[b].push_back(a);
+    }
+    int row=0;
+    for(auto&& a : vec){
+        cout<<row<<" ";
+        for(auto&& b : a){
+            cout<<b<<' ';
+        }cout<<"\n";
+        row++;
+    }
     return 0;
 }
 
