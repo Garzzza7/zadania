@@ -10,3 +10,6 @@ Rating_System
 
 
 Xenia and Weights
+
+Prefix Purchase
+Sorting By Multiplication
