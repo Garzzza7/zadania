@@ -79,8 +79,8 @@ int main()
             }
             else
             {
-                if(a.vec[0]>last && (int)((int)a.vec[0]/(int)last)>=2){
-                    counter+=(a.vec.size()-1);
+                if(a.vec[0]>=last){
+                    counter+=a.vec.size()-1;
                 }else{
                     counter+=a.vec.size();
                 }
