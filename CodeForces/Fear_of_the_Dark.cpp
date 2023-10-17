@@ -23,11 +23,19 @@ float distance(Point a , Point b){
 }
 Point calc_intersection(Point a , Point b){
     Point res;
-    int x;
-    int y;
-    auto c = (powl(b.y,2)-powl(a.y,2) + powl(b.x,2)-powl(a.x,2))/2;
-    y = (powl(b.x,2)+powl(b.y,2) - powl(a.x,2) - powl(a.y,2))/(2*(b.y-a.y)*(a.x-c) - 2*a.y - 2*(b.y-a.y)*(b.x-c)+2*b.y);
-    x = c-y*(b.y-b.x);
+    float x;
+    float y;
+    float a2 = b.x;
+    float a1 = a.x;
+    float b2 = b.y;
+    float b1 = a.y;
+
+    //auto c = (powl(b.y,2)-powl(a.y,2) + powl(b.x,2)-powl(a.x,2))/2;
+    auto c = powl(a2,2) - powl(a1,2) + powl(b2,2) - powl(b1,2);;
+    //y = (powl(b.x,2)+powl(b.y,2) - powl(a.x,2) - powl(a.y,2))/(2*(b.y-a.y)*(a.x-c) - 2*a.y - 2*(b.y-a.y)*(b.x-c)+2*b.y);
+    //x = c-y*(b.y-b.x);
+    y=(c)/((b2-b1)/(a2-a1)-2*b2+2*b1);
+    x=((c)/(2*a2-2*a1)-y*(2*b2-2*b1))/(2*a2-2*a1);
     res.r=0;
     res.x=x;
     res.y=y;
