@@ -30,8 +30,13 @@ int main() {
         }else{
             s[iter] = '1';
             cout << s << '\n';
+            if(i%2!=0 && i!=1){
+                s[iter+1]='0';
+            }else{
+
+                iter--;
+            }
             //s[iter] = '0';
-            iter--;
         }
     }
     return 0;
