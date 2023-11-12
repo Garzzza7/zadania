@@ -7,8 +7,8 @@ class Node{
     public:
         int value=1;
         int sum=1;
-        vector<int> descendants;
         int parent;
+
 };
 int main() {
     ios::sync_with_stdio(false);
@@ -19,32 +19,29 @@ int main() {
         int n;
         cin>>n;
         vector<int> filler(0);
-        vector<Node> vec(n+1);
+        // vector<Node> vec(n+1);
+        vector<vector<int>> vec(n+1,filler);
         vector<int> values;
         for(int i = 0 ; i < n ; i++){
             int a,b;
             cin>>a>>b;
             vec[a].push_back(b);
         }
-        // int iter = 0; 
-        // for(auto&& a : vec){
-        //     cout<<iter<<" = ";
-        //     for(auto&& b : a){
-        //         cout<<b<<" ";
-        //     }
-        //     iter++;
-        //     cout<<"\n";
-        // }
-        queue<int> to_visit;
-        for(int i = 0 ; i < n; i++){
-            if(vec[i].size()!=0){
-                to_visit.push(i);
+        int iter = 0; 
+        for(auto&& a : vec){
+            cout<<iter<<" = ";
+            for(auto&& b : a){
+                cout<<b<<" ";
             }
-            for(auto&& a : vec[i]){
-                vec[a]
-            }
-            to_visit.pop();
+            iter++;
+            cout<<"\n";
         }
+        for(int i = 1 ; i <= vec.size() ; i++){
+            for(){
+                
+            }
+        }
+
     } 
     return 0;
 }
