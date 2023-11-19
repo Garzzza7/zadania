@@ -12,17 +12,14 @@ using namespace std;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n,x;
+    long long n,x;
     cin>>n>>x;
-    int counter=0;
-    int mino = min(n,x);
-    for(int i = 1 ; i <= n ; i++){
-        for(int j = i ; j<= n ; j++){
-            if(i*j==x){
-                counter++;
-            }
+    long long cnt = 0;
+    for(long long i = 1 ; i <= n ; i++){
+        if(x%i==0 && i*n>=x){
+            cnt++;
         }
     }
-    cout<<counter*2;
+    cout<<cnt<<'\n';
     return 0;
 }
