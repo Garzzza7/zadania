@@ -14,3 +14,8 @@ Xenia and Weights
 Prefix Purchase
 Sorting By Multiplication
 Non-Intersecting Subpermutations
+
+
+
+
+Reverse Madness
