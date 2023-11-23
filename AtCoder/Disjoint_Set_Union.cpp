@@ -5,34 +5,31 @@ using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 
 const long long mod = 1000000007;
-int vec[2000001];
-int find_set(int v)
+// int vec[2000001];
+int find_set(long long v,vector<long long> vec)
 {
     if (vec[v] == v)
     {
         return v;
     }
-    // else
-    // {
-        // return vec[v] = find(vec[v]);
-    // }
-    return find_set(vec[v]);
+    return find_set(vec[v],vec);
+    // return vec[v];
 }
-
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n, q;
+    long long n, q;
     cin >> n >> q;
-    for (int i = 0; i < n; i++)
+    vector<long long> vec(n+1,0);
+    for (long long i = 0; i < n; i++)
     {
         vec[i] = i;
     }
     // vector<vector<int>> vec(n+1,vector<int>());
-    for (int i = 0; i < q; i++)
+    for (long long i = 0; i < q; i++)
     {
-        int a, b, c;
+        long long a, b, c;
         cin >> a >> b >> c;
         if (a == 0)
         {
@@ -41,8 +38,8 @@ int main()
         }
         else
         {
-            int res1 = find_set(b);
-            int res2 = find_set(c);
+            long long res1 = find_set(b,vec);
+            long long res2 = find_set(c,vec);
             // cout<<"RES1 = "<<res1<<" RES2 = "<<res2<<'\n';
             if (res1 == res2)
             {
@@ -52,11 +49,10 @@ int main()
             {
                 cout << '0';
             }
-
             cout << '\n';
         }
     }
-    // for (int i = 0; i < n ; i++)
+    // for (long long i = 0; i < n ; i++)
     // {
     //     cout<<i<<" - "<<vec[i]<<'\n';
     // }
