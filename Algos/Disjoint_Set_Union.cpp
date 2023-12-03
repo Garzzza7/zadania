@@ -12,7 +12,7 @@ int find_set(long long v,vector<long long> vec)
     {
         return v;
     }
-    return find_set(vec[v],vec);
+    return vec[v]=find_set(vec[v],vec);
     // return vec[v];
 }
 int main()
@@ -21,10 +21,14 @@ int main()
     cin.tie(0);
     long long n, q;
     cin >> n >> q;
-    vector<long long> vec(n+1,0);
+    vector<long long> vec(n + 1, 0);
+    vector<long long> size(n + 1, 0);
+    vector<long long> rank(n + 1, 0);
     for (long long i = 0; i < n; i++)
     {
         vec[i] = i;
+        size[i]=1;
+        rank[i]=0;
     }
     // vector<vector<int>> vec(n+1,vector<int>());
     for (long long i = 0; i < q; i++)
@@ -33,8 +37,23 @@ int main()
         cin >> a >> b >> c;
         if (a == 0)
         {
-            vec[c] = b;
-            // vec[b] = c;
+            // int bb = find_set(b,vec);
+            // int cc = find_set(c,vec);
+            // if(bb!=cc){
+            //     vec[c] = b;
+            // }
+
+            long long bb = find_set(b,vec);
+            long long cc = find_set(c,vec);
+            if(bb!=cc){
+                if(rank[bb]<rank[cc]){
+                    swap(bb,cc);
+                }
+                vec[cc]=bb;
+                if(rank[bb]==rank[cc]){
+                    rank[bb]++;
+                }
+            }
         }
         else
         {
