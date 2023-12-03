@@ -13,6 +13,9 @@ int main() {
         int a;
         cin>>a;
         prefix[i]+=(prefix[i-1]+a);
+    }
+    for(int i =0 ; i < q; i++){
+        
     } 
     return 0;
 }
