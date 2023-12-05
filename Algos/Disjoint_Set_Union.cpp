@@ -6,7 +6,7 @@ using namespace std;
 
 const long long mod = 1000000007;
 // int vec[2000001];
-int find_set(long long v, vector<long long> vec)
+int find_set(long long v, vector<long long>& vec)
 {
     if (vec[v] == v)
     {

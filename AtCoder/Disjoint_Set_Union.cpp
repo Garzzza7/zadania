@@ -3,7 +3,6 @@
 #include <stdlib.h>
 using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
-
 const long long mod = 1000000007;
 // int vec[2000001];
 int find_set(long long v,vector<long long> vec)
