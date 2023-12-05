@@ -81,6 +81,7 @@ bool KMP(string s, string pattern)
     }
     if (j == pattern.size())
     {
+
         return true;
     }
     return false;

@@ -30,7 +30,7 @@ int main()
     cin.tie(0);
     long long sum = 0;
     int iter = 100;
-    vector<pair<string,int>> words={("zero",0),("one",1),("two",2),("three",3),("four",4),"five","six","seven","eight","nine"};
+    vector<string> words = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     while (iter--)
     {
         string s;
@@ -48,7 +48,6 @@ int main()
         {
             score += (slice[i] - '0') * pow(10, i);
         }
-        
-    }
+        }
     return 0;
 }
