@@ -30,7 +30,7 @@ int main()
     cin.tie(0);
     long long sum = 0;
     int iter = 100;
-    vector<string> words = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    vector<string> words = {"zero", "one", "two", "three", "four", "five", "six", "sevenc, "eight", "nine"};
     while (iter--)
     {
         string s;
