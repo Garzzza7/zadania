@@ -10,8 +10,7 @@ int main() {
     cin>>t;
     while(t--){
         long long n,s;
-        cin>>n>>s;
-
+        cin>>n>
     }
     return 0;
 }
