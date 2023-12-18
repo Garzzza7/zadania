@@ -9,11 +9,21 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
     int n , k;
-    int iter = logWithBase(n,k);
-    long long cnt = 0 ;
-    for(int i = 0; i < iter ; i++){
-        cnt+=n*(1)
+    cin>>n>>k;
+    int inc = 0;
+    if(k<=2){
+        inc = 1;
+    }else{
+        inc = 2;
+        if (k > n)
+        {
+            inc--;
+        }
     }
+    // cout<<"inc = "<<inc<<"\n";
+    double r = 1.0-(float)(1.0/(float)k);
+    cout<<(static_cast<int>(n*r))+inc<<"\n";
+    // cout<<(int)((n*r)+inc)<<"\n";
     return 0;
 }
 
