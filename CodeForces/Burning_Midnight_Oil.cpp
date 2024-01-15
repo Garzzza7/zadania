@@ -18,7 +18,11 @@ int main() {
         if (k > n)
         {
             inc--;
+<<<<<<< HEAD
         za}
+=======
+        }
+>>>>>>> 642db3aecb10b418d09e0d1cf8562ab72547f38f
     }
     // cout<<"inc = "<<inc<<"\n";
     double r = 1.0-(float)(1.0/(float)k);
