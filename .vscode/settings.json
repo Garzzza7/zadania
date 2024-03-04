@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "material-icon-theme.hidesExplorerArrows": true,
     "workbench.colorTheme": "Vim Deep Dark",
     "workbench.iconTheme": "vs-seti",
@@ -22,7 +22,7 @@
       "editor.renderWhitespace": "all",
       "editor.renderLineHighlight": "line",
       "editor.matchBrackets": "always",
-      "editor.lightbulb.enabled": false,
+      "editor.lightbulb.enabled": "off",
       "editor.hover.enabled": true,
       "editor.showFoldingControls": "mouseover",
       "editor.scrollbar.horizontal": "hidden",

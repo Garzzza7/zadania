@@ -7,32 +7,37 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n, x;
+    long long n, x;
     cin >> n >> x;
-    vector<int> vec;
+    vector<long long> vec;
     vector<long long> dp(x + 1, 0);
-    for (int i = 0; i < n; i++)
+    for (long long i = 0; i < n; i++)
     {
-        int a;
+        long long a;
         cin >> a;
         vec.push_back(a);
     }
     dp[0] = 1;
-    for (int i = 0; i < vec.size(); i++)
+    for (long long i = 0; i < vec.size(); i++)
     {
-        // int maxi = vec[0];
-        for (int j = 0; j <= x; j++)
+        // long long  maxi = vec[0];
+        for (long long j = 0; j <= x; j++)
         {
             if (j - vec[i] >= 0 /*&& vec[j] >= maxi*/)
             {
                 // cout<<"i = "<<i<<" MAX = "<<max<<'\n';
-                //if (vec[j] > maxi)
+                // if (vec[j] > maxi)
                 //    maxi = vec[j];
-                dp[j] += dp[j - vec[i]];
+                dp[j] += (dp[j - vec[i]]);
                 dp[j] %= mod;
             }
         }
     }
-    cout << dp[x] << '\n';
+    for (auto &&a : dp)
+    {
+        cout << a << " ";
+    }
+    cout << '\n';
+    // cout << dp[x] << '\n';
     return 0;
 }
