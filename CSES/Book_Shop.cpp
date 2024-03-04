@@ -3,12 +3,7 @@
 #include <stdlib.h>
 using namespace std;
 const long long mod = 1000000007;
-class Book
-{
-public:
-    long long price = 0;
-    long long pages = 0;
-};
+
 int main()
 {
     int n;
@@ -32,7 +27,7 @@ int main()
         int curr_cost = cost[i - 1];
         int curr_pages = pages[i - 1];
         for (int j = 1; j <= x; j++)
-        {
+    {
             dp[i][j] = dp[i - 1][j];
             if (curr_cost <= j)
             {
@@ -49,4 +44,5 @@ int main()
     //     cout << "\n";
     // }
     cout << dp[n][x] << '\n';
+    return 0;
 }

@@ -10,34 +10,26 @@ int main()
     long long n, x;
     cin >> n >> x;
     vector<long long> vec;
-    vector<long long> dp(x + 1, 0);
     for (long long i = 0; i < n; i++)
     {
         long long a;
         cin >> a;
         vec.push_back(a);
     }
-    dp[0] = 1;
-    for (long long i = 0; i < vec.size(); i++)
+    // sort(vec.begin(), vec.end());
+    vector<vector<long long>> dp(n + 1, vector<long long>(x + 1, 0));
+    dp[0][0] = 1;
+    for (long long i = 1; i <= vec.size(); i++)
     {
-        // long long  maxi = vec[0];
         for (long long j = 0; j <= x; j++)
         {
-            if (j - vec[i] >= 0 /*&& vec[j] >= maxi*/)
+            dp[i][j] = dp[i - 1][j];
+            if (j - vec[i-1] >= 0)
             {
-                // cout<<"i = "<<i<<" MAX = "<<max<<'\n';
-                // if (vec[j] > maxi)
-                //    maxi = vec[j];
-                dp[j] += (dp[j - vec[i]]);
-                dp[j] %= mod;
+                (dp[i][j] += dp[i][j - vec[i-1]]) %= mod;
             }
         }
     }
-    for (auto &&a : dp)
-    {
-        cout << a << " ";
-    }
-    cout << '\n';
-    // cout << dp[x] << '\n';
+    cout << dp[n][x] << "\n";
     return 0;
 }
