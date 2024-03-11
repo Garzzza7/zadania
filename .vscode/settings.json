@@ -53,6 +53,7 @@
       "files.associations": {
         "iostream": "cpp"
       },
+      "C_Cpp.errorSquiggles": "disabled",
       // "terminal.integrated.fontFamily": "'Fira Code',monospace",
       
       
