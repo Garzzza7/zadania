@@ -53,13 +53,13 @@ int main()
     {
         (ans += dp[n - 1][j]) %= mod;
     }
-    // cout << ans << endl;
-    cout<<"DP\n";
-    for(auto&& a : dp){
-        for(auto&& b : a){
-            cout<<b<<" ";
-        }
-        cout<<'\n';
-    }
+    cout << ans << endl;
+    // cout<<"DP\n";
+    // for(auto&& a : dp){
+    //     for(auto&& b : a){
+    //         cout<<b<<" ";
+    //     }
+    //     cout<<'\n';
+    // }
     return 0;
 }
