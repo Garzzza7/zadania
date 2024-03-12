@@ -7,35 +7,22 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    string a, b;
-    cin >> a >> b;
-    int na = a.size(), nb = b.size();
-    vector<vector<int>> dp(na + 1, vector<int>(nb + 1, 1e9));
-    dp[0][0] = 0;
-    for (int i = 0; i <= na; i++)
-    {
-        for (int j = 0; j <= nb; j++)
-        {
-            if (i)
-            {
-                dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
-            }
-            if (j)
-            {
-                dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
-            }
-            if (i && j)
-            {
-                dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + (a[i - 1] != b[j - 1]));
-            }
-        }
+    string s1;
+    string s2;
+    cin >> s1;
+    cin >> s2;
+    vector<vector<int>> dp(s1.size() + 1, vector<int>(s2.size() + 1, 0));
+    if(s1[1]==s2[1]){
+        
+    }else{
+        
     }
-    // cout << dp[na][nb] << endl;
-    for(auto&& a : dp){
-        for(auto&& b : a){
-            cout<<b<<' ';
+    for (int i = 0; i < s1.size(); i++)
+    {
+        for (int j = 0; j < s2.size(); j++)
+        {
+
         }
-        cout<<'\n';
     }
     return 0;
 }
