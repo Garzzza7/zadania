@@ -3,17 +3,28 @@
 #include <stdlib.h>
 using namespace std;
 const long long mod = 1000000007;
-class unit{
-
+int n;
+class unit
+{
+public:
+    vector<int> vec;
+    unit(){
+       this->vec.reserve(n+1); 
+    }
+    int max = 0;
+    void addmax()
+    {
+        this->max = this->vec.size();
+    }
 };
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n;
     cin >> n;
     vector<int> vec;
-    vector<int> his(n + 1, 0);
+    unit u;
+    vector<unit> his(n + 1, u);
     for (int i = 0; i < n; i++)
     {
         int a;
@@ -25,7 +36,8 @@ int main()
     // int cnt = 0;
     for (auto &&a : vec)
     {
-        his[a]++;
+        his[a].vec.push_back(a);
+        his[a].addmax();
         // if (a != last)
         // {
         //     his.push_back(cnt);
@@ -34,31 +46,40 @@ int main()
         // last = a;
         // cnt++;
     }
-    sort(his.begin(), his.end());
+    // sort(his.begin(), his.end());
     // sort(vec.begin(), vec.end());
     // reverse(his.begin(),his.end());
     for (int i = 0; i < his.size(); i++)
     {
-        for (int j = 0; j <= i; j++)
+        for (int j = 0; j <= his.size(); j++)
         {
-            if (his[j] <= his[i] / 2)
+            if (his[j].vec.size() <= (his[i].max / 2))
             {
-                // his[i]-=his[j];
-                his[j] = 0;
+                his[i].vec.insert(his[i].vec.end(), his[j].vec.begin(), his[j].vec.end());
+                his[j].vec.clear();
             }
+
+            // his[i].addmax();
+            for (auto &&a : his)
+            {
+                cout << a.vec.size() << ' ';
+            }
+            cout<<"\n";
+            cout<<"////////////////////\n";
         }
     }
     int cnt = 0;
     for (auto &&a : his)
     {
-        if (a > 0)
+        if (a.vec.size() > 0)
         {
             cnt++;
         }
     }
-    // for(auto&& a: his){
-    // cout<<a<<' ';
+    // for (auto &&a : his)
+    // {
+    //     cout << a.vec.size() << ' ';
     // }
-    cout << cnt << '\n';
+    // cout << cnt << '\n';
     return 0;
 }
