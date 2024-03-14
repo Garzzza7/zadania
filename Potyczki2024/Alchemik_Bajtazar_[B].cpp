@@ -38,27 +38,27 @@ int main()
     {
         sort(a.begin(), a.end());
     }
-    for (int i = 1; i < base.size(); i++)
-    {
-        // cout<<base[1][0]<<'\n';
-        cout << i << " -> ";
-        for (int j = 0; j < base[i].size(); j++)
-        {
-            cout << base[i][j] << " ";
-        }
-        cout << '\n';
-    }
-    cout << '\n';
-    for (int i = 1; i < target.size(); i++)
-    {
-        cout << i << " -> ";
-        for (int j = 0; j < target[i].size(); j++)
-        {
-            cout << target[i][j] << " ";
-        }
-        cout << '\n';
-    }
-    cout << "///////////////////////\n";
+    // for (int i = 1; i < base.size(); i++)
+    // {
+    //     // cout<<base[1][0]<<'\n';
+    //     cout << i << " -> ";
+    //     for (int j = 0; j < base[i].size(); j++)
+    //     {
+    //         cout << base[i][j] << " ";
+    //     }
+    //     cout << '\n';
+    // }
+    // cout << '\n';
+    // for (int i = 1; i < target.size(); i++)
+    // {
+    //     cout << i << " -> ";
+    //     for (int j = 0; j < target[i].size(); j++)
+    //     {
+    //         cout << target[i][j] << " ";
+    //     }
+    //     cout << '\n';
+    // }
+    // cout << "///////////////////////\n";
     int counter = 0;
     int iter;
     vector<string> res;
@@ -113,26 +113,26 @@ int main()
         {
             continue;
         }
-        for (int i = 1; i < base.size(); i++)
-        {
-            cout << i << " -> ";
-            for (int j = 0; j < base[i].size(); j++)
-            {
-                cout << base[i][j] << " ";
-            }
-            cout << '\n';
-        }
-        cout << '\n';
-        for (int i = 1; i < target.size(); i++)
-        {
-            cout << i << " -> ";
-            for (int j = 0; j < target[i].size(); j++)
-            {
-                cout << target[i][j] << " ";
-            }
-            cout << '\n';
-        }
-        cout << "///////////////////////\n";
+        // for (int i = 1; i < base.size(); i++)
+        // {
+        //     cout << i << " -> ";
+        //     for (int j = 0; j < base[i].size(); j++)
+        //     {
+        //         cout << base[i][j] << " ";
+        //     }
+        //     cout << '\n';
+        // }
+        // cout << '\n';
+        // for (int i = 1; i < target.size(); i++)
+        // {
+        //     cout << i << " -> ";
+        //     for (int j = 0; j < target[i].size(); j++)
+        //     {
+        //         cout << target[i][j] << " ";
+        //     }
+        //     cout << '\n';
+        // }
+        // cout << "///////////////////////\n";
     }
     cout << counter << '\n';
     for (auto &&a : res)
