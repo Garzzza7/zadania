@@ -6,7 +6,7 @@
     "workbench.statusBar.visible": false,
     "workbench.editor.showTabs": "multiple",
     "workbench.layoutControl.enabled": false,
-    "workbench.startupEditor": "welcomePage",
+    "workbench.startupEditor": "none",
     "workbench.tips.enabled": true,
     "workbench.colorCustomizations": {
         // "editorSuggestWidget.selectedBackground": "#231739",
