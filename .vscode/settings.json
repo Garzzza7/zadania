@@ -51,7 +51,12 @@
       "terminal.integrated.fontSize": 14,
       "terminal.integrated.fontFamily": "monospace",
       "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "deque": "cpp",
+        "format": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp"
       },
       "C_Cpp.errorSquiggles": "disabled",
       // "terminal.integrated.fontFamily": "'Fira Code',monospace",
