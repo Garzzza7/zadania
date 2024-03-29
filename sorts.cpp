@@ -25,7 +25,5 @@ int main() {
     for(auto&& i : arr){
         cout<<i<<'\n';
     }
-
-
     return 0;
 }
