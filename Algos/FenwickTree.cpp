@@ -3,48 +3,45 @@
 #include <stdlib.h>
 using namespace std;
 const long long mod = 1000000007;
-int BIT[1000], n;
 
-void update(int x, int delta)
+void update(vector<int> &vec, int val, int i)
 {
-    for (; x <= n; x += x & -x)
-        BIT[x] += delta;
+    while (i < vec.size())
+    {
+        vec[i] += val;
+        i += ((i) & (-i));
+    }
 }
-int query(int x)
+int sum(vector<int> &vec, int i)
 {
-    int sum = 0;
-    for (; x > 0; x -= x & -x)
-        sum += BIT[x];
+    i += 1;
+    long long sum = 0;
+    while (i)
+    {
+        sum += vec[i];
+        i -= ((i) & (-i));
+    }
     return sum;
 }
-
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
+    int n;
     cin >> n;
-    vector<int> vec;
-    for (int i = 0; i < n; i++)
+    vector<int> vec(n + 1);
+    for (int i = 1; i <= n; i++)
     {
         int a;
         cin >> a;
-        vec.push_back(a);
-        update(i, vec[i]);
+        update(vec, a, i);
     }
-    int q;
-    cin >> q;
-    while (q--)
+    for (int i = 0; i < n; i++)
     {
-        int l, r;
-        cin >> l >> r;
-        if (l == r)
-        {
-            cout << query(l) << "\n";
-        }
-        else
-        {
-            cout << query(r) - query(l - 1) << "\n";
-        }
+        cout << sum(vec, i) << "\n";
+    }
+    for(auto&& a : vec){
+        cout<<a<<' ';
     }
     return 0;
 }
