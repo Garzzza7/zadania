@@ -5,6 +5,12 @@ using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 const long long mod = 1000000007;
 // int vec[2000001];
+void swap(long long *a, long long *b)
+{
+    long long buffer = *b;
+    *b = *a;
+    *a = buffer;
+}
 int find_set(long long v, vector<long long> &vec)
 {
     if (vec[v] == v)
@@ -72,9 +78,9 @@ int main()
             cout << '\n';
         }
     }
-    // for (long long i = 0; i < n ; i++)
+    // for (long long i = 0; i < n; i++)
     // {
-    //     cout<<i<<" - "<<vec[i]<<'\n';
+    //     cout << i << " - " << vec[i] << " " << rank[i] << '\n';
     // }
     return 0;
 }
