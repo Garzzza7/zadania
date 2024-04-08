@@ -145,8 +145,21 @@ int main()
     cout << "\n";
 
     int a;
-    cin>>a;
-    Node * findkey = search(root,a);
-    cout<<findkey->value<<"\n";
+    cin >> a;
+    Node *findkey = search(root, a);
+    cout << findkey->value << "\n";
+    int aa;
+    cin >> aa;
+    Node *deleted = deletenode(root, aa);
+    cout << "/////////////////////////////////////////////////\n";
+    cout << "PREORDER\n";
+    preorder(root);
+    cout << "\n";
+    cout << "INORDER\n";
+    inorder(root);
+    cout << "\n";
+    cout << "POSTORDER\n";
+    postorder(root);
+    cout << "\n";
     return 0;
 }
