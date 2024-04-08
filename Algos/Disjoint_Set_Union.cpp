@@ -3,10 +3,9 @@
 #include <stdlib.h>
 using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
-
 const long long mod = 1000000007;
 // int vec[2000001];
-int find_set(long long v, vector<long long>& vec)
+int find_set(long long v, vector<long long> &vec)
 {
     if (vec[v] == v)
     {
@@ -42,7 +41,6 @@ int main()
             // if(bb!=cc){
             //     vec[c] = b;
             // }
-
             long long bb = find_set(b, vec);
             long long cc = find_set(c, vec);
             if (bb != cc)
