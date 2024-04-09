@@ -1,0 +1,11 @@
+Djikstra
+Splay 
+Fusion
+Lazy Prop
+Treap
+AVL
+RedBlack
+Fib Heap
+Hungarian
+B
+
