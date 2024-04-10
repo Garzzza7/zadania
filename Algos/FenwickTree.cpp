@@ -12,6 +12,7 @@ void update(vector<int> &vec, int val, int i)
         i += ((i) & (-i));
     }
 }
+
 int sum(vector<int> &vec, int i)
 {
     i += 1;
@@ -23,6 +24,12 @@ int sum(vector<int> &vec, int i)
     }
     return sum;
 }
+
+int rangeSum(vector<int> &vec, int l, int r)
+{
+    return sum(r) - sum(l - 1);
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -40,8 +47,9 @@ int main()
     {
         cout << sum(vec, i) << "\n";
     }
-    for(auto&& a : vec){
-        cout<<a<<' ';
+    for (auto &&a : vec)
+    {
+        cout << a << ' ';
     }
     return 0;
 }
