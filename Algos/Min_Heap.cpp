@@ -14,9 +14,9 @@ void heapify(vector<int> &vec, int i)
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
-    if (l < vec.size() && vec[l] > vec[largest])
+    if (l < vec.size() && vec[l] < vec[largest])
         largest = l;
-    if (r < vec.size() && vec[r] > vec[largest])
+    if (r < vec.size() && vec[r] < vec[largest])
         largest = r;
 
     if (largest != i)
