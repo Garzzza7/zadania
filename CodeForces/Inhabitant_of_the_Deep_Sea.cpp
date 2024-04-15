@@ -13,32 +13,38 @@ int main()
     {
         int n, k;
         cin >> n >> k;
-        vector<int> vec;
+        deque<int> dq(n);
         for (int i = 0; i < n; i++)
         {
-            int a;
-            cin >> a;
-            vec.push_back(a);
+            cin >> dq[i];
         }
-        int l = 0;
-        int r = vec.size() - 1;
-        int cnt = 0;
-        bool flip = true;
-        while (k!=0)
+        while (dq.size() > 1 && k)
         {
-            vec[l]--;
-            if(vec[l]==0){
-                l++;
-                cnt++;
+            int minimum = min(dq.front(), dq.back());
+            if (k < 2 * minimum)
+            {
+                dq.front() -= k / 2 + k % 2;
+                dq.back() -= k / 2;
+                k = 0;
             }
-            vec[r]--;
-            if(vec[r]==0){
-                r--;
-                cnt++;
+            else
+            {
+                dq.front() -= minimum;
+                dq.back() -= minimum;
+                k -= minimum;
+                k -= minimum;
             }
-            k--;
+            if (dq.front() == 0)
+            {
+                dq.pop_front();
+            }
+            if (dq.back() == 0)
+            {
+                dq.pop_back();
+            }
         }
-        cout << cnt << '\n';
+        int ans = n - dq.size();
+        cout << ans + (dq.size() && dq.front() <= k) << '\n';
     }
     return 0;
 }
