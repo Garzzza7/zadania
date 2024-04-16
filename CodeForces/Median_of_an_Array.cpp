@@ -21,16 +21,19 @@ int main()
             vec.push_back(a);
         }
         sort(vec.begin(), vec.end());
-        int cnt = 0;
-        for (int i = 0; i < vec.size() - 1; i++)
+        int res = max(abs(vec[(vec.size() / 2)] - vec[(vec.size() / 2) - 1]), abs(vec[(vec.size() / 2)] - vec[(vec.size() / 2) + 1]));
+        if (vec.size() == 1)
         {
-            if (vec[i] == vec[i + 1])
-            {
-                cnt++;
-            }
+            cout << 1 << "\n";
         }
-        // cnt += (n - (2 * cnt)) / 2;
-        cout << cnt << '\n';
+        else if (vec[(vec.size() / 2) - 1] == vec[vec.size() / 2] || vec[(vec.size() / 2) + 1] == vec[vec.size() / 2])
+        {
+            cout << 1 << "\n";
+        }
+        else
+        {
+            cout << res + 1 << "\n";
+        }
     }
     return 0;
 }
