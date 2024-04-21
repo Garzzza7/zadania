@@ -29,13 +29,10 @@ int querySum(int L, int R)
 
 int main()
 {
-	// 1) read input
 	int n;
 	cin >> n;
-	// bin_log[1] = 0;
 	bin_log.push_back(0);
 	bin_log.push_back(0);
-	// precomputer logarithms
 	for (int i = 2; i <= n; i++)
 	{
 		bin_log.push_back(bin_log[i / 2] + 1);
@@ -52,7 +49,6 @@ int main()
 	// 		}
 	// }
 
-	// preprocessing for sum
 	for (int i = 1; i <= LOG; i++)
 	{
 		for (int j = 0; j + (1 << i) <= n; j++)
@@ -61,7 +57,6 @@ int main()
 		}
 	}
 
-	// 3) answer queries
 	int q;
 	cin >> q;
 	for (int i = 0; i < q; i++)
