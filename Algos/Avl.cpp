@@ -190,17 +190,17 @@ Node *deleteNode(Node *root, int key)
     return root;
 }
 //TODO
-void printTree(Node *root, string &indent, bool last, bool isRoot)
+void printTree(Node *root, string &indent, string& indent2,bool last, bool isRoot)
 {
     if (root != NULL)
     {
         if (isRoot)
         {
             cout << indent << root->key << "\n";
-            // for (int i = 0; i < indent.size() / 2; i++)
-            // {
-            // indent.pop_back();
-            // }
+            for (int i = 0; i < indent.size() / 2; i++)
+            {
+                indent.pop_back();
+            } 
         }
         else if (last == false)
         {
@@ -209,33 +209,33 @@ void printTree(Node *root, string &indent, bool last, bool isRoot)
         }
         else
         {
-            string half = indent.substr(0, indent.length() / 2);
-            cout << indent << root->key << "\n";
+            // string half = indent.substr(0, indent.length() / 2);
+            cout << indent2 << root->key << "\n";
             for (int i = 0; i < indent.size() / 2; i++)
             {
                 indent.pop_back();
             }
         }
-        printTree(root->left, indent, false, false);
-        printTree(root->right, indent, true, false);
+        printTree(root->left, indent, indent2,false, false);
+        printTree(root->right, indent, indent2,true, false);
     }
-    else
-    {
-        if (last == false)
-        {
-            string half = indent.substr(0, indent.length() / 2);
-            cout << half << "NIL";
-            // printTree(root->right, indent, true, false);
-        }
-        else
-        {
-            cout << indent << "NIL\n";
-            for (int i = 0; i < indent.size() / 2; i++)
-            {
-                indent.pop_back();
-            }
-        }
-    }
+    // else
+    // {
+    //     if (last == false)
+    //     {
+    //         string half = indent.substr(0, indent.length() / 2);
+    //         cout << half << "NIL";
+    //         // printTree(root->right, indent, true, false);
+    //     }
+    //     else
+    //     {
+    //         cout << indent << "NIL\n";
+    //         for (int i = 0; i < indent.size() / 2; i++)
+    //         {
+    //             indent.pop_back();
+    //         }
+    //     }
+    // }
 }
 
 int main()
@@ -252,7 +252,10 @@ int main()
         root = insertNode(root, a);
     }
     // string indent = "                                              ";
-    // printTree(root, indent, false, true);
+    // string indent2 = indent;
+    // string half = indent.substr(0, indent.length() / 2);
+    // indent2 += half;
+    // printTree(root, indent, indent2,false, true);
     cin >> n;
     for (int i = 0; i < n; i++)
     {
