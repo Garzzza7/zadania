@@ -13,26 +13,18 @@ int main()
     {
         int a, b, l;
         cin >> a >> b >> l;
-        long long cnt = 1;
-        bool test = (20, 0 == 20);
-        cout << test << '\n';
-        for (int k = 1; k < l; k++)
+        set<int> res;
+        for (int x = 0; x <= 20; x++)
         {
-            if ((l / k) == (int)(l / k))
+            for (int y = 0; y <= 20; y++)
             {
-                if ((l / k) % a == 0 || (l / k) % b == 0)
+                if ((l / (pow(a, x) * pow(b, y))) >= 0 && (l / (pow(a, x) * pow(b, y))) == (int)(l / (pow(a, x) * pow(b, y))))
                 {
-                    cnt++;
-                    continue;
+                    res.insert(l / (pow(a, x) * pow(b, y)));
                 }
-                if (((l / k) / b) % a == 0 && ((l / k) / a) % b == 0)
-                {
-                    cnt++;
-                }
-                cout << "case: k = " << k << " l/k = " << l / k << " for a = " << a << " b = " << b << '\n';
             }
         }
-        cout << cnt << '\n';
+        cout << res.size() << "\n";
     }
     return 0;
 }

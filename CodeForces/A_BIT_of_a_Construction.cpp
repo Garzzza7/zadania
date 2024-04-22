@@ -13,23 +13,32 @@ int main()
     {
         int n, k;
         cin >> n >> k;
-
-        int ii = 1;
-        int cnt = 0;
-        while (ii <= k)
+        vector<int> a(n);
+        if (n == 1)
         {
-            ii = pow(2, cnt);
-            cnt++;
+            a[0] = k;
         }
-        // cout<<cnt<<'\n';
-        cnt--;
-        for (int i = 1; i <= n; i++)
+        else
         {
-            int res = pow(2, cnt - i-1) - pow(2, i-1);
-            if(res<=0){
-                res += pow(2, i);
+            int msb = 0;
+            for (int i = 0; i < 31; i++)
+            {
+                if (k & (1 << i))
+                {
+                    msb = i;
+                }
             }
-            cout << res << " ";
+            cout << "msb = " << msb << "\n";
+            a[0] = (1 << msb) - 1;
+            a[1] = k - a[0];
+            for (int i = 2; i < n; i++)
+            {
+                a[i] = 0;
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            cout << a[i] << " ";
         }
         cout << "\n";
     }
