@@ -30,6 +30,20 @@ int rangeSum(vector<int> &vec, int l, int r)
     return sum(vec, r) - sum(vec, l - 1);
 }
 
+int calcU(int u, int times)
+{
+    int res;
+    if (u >= times)
+    {
+        res = u * times - ((0 + (times - 1)) / 2) * times;
+    }
+    else
+    {
+        res = u * times - ((0 + (times - 1)) / 2) * times - ((1 + (times - u)) / 2) * (times - u);
+    }
+    return res;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -68,6 +82,12 @@ int main()
                 {
                     break;
                 }
+            }
+            int s1 = calcU(u, rangeSum(vec, l, r));
+            int s2 = calcU(u, rangeSum(vec, l, r + 1));
+            if (s1 < s2)
+            {
+                r = r + 1;
             }
             // cout << r + 1 << " -> " << rangeSum(vec, l, r) << " | ";
             cout << r + 1 << " ";
