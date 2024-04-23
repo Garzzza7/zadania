@@ -27,7 +27,7 @@ int sum(vector<int> &vec, int i)
 
 int rangeSum(vector<int> &vec, int l, int r)
 {
-    return sum(r) - sum(l - 1);
+    return sum(vec, r) - sum(vec, l - 1);
 }
 
 int main()
@@ -47,6 +47,7 @@ int main()
     {
         cout << sum(vec, i) << "\n";
     }
+    cout << "RANGE SUM 2 to 6 = " << rangeSum(vec, 1, 5) << "\n";
     for (auto &&a : vec)
     {
         cout << a << ' ';
