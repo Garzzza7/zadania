@@ -24,7 +24,6 @@ int main() {
         cntZeros++;
       } else {
         cntOnes++;
-        //asdfassadsdsafdsdafsdfs
       }
     }
     int cnt = 0;
@@ -33,8 +32,8 @@ int main() {
 
     vector<int> ans;
     for (int l = 0; l < vec.size(); l++) {
-      if (cnt >= round(l / 2) && cntOnes >= round((n - l) / 2) &&
-          cntZeros <= round((n - l) / 2)) {
+      if ((cnt >= round(l / 2) && cntOnes >= round((n - l) / 2)) ||
+          (cntOnes >= round((n - l) / 2) && cntZeros <= round((l) / 2))) {
         ans.push_back(l);
         cout << l << "\n";
         break;
@@ -47,7 +46,7 @@ int main() {
       }
     }
     sort(ans.begin(), ans.end());
-    // cout << "SIZE = " << ans.size() << "\n";
+    cout << "SIZE = " << ans.size() << "\n";
   }
   return 0;
 }

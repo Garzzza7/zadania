@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#include <cmath>
+#include <stdlib.h>
+using namespace std;
+const long long mod = 1000000007;
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int t;
+  cin >> t;
+  while (t--) {
+    int se;
+    int on;
+    for (int i = 1; i <= 9; i++) {
+      int a;
+      cin >> a;
+
+      if (a == 1) {
+        on = i;
+      }
+
+      if (a == 7) {
+        se = i;
+      }
+    }
+        cout<<"///////////////\n";
+        cout<<on<<" "<<se<<"\n";
+    if (se > on) {
+      cout << "17\n";
+    } else {
+      cout << "71\n";
+    }
+  }
+  return 0;
+}
