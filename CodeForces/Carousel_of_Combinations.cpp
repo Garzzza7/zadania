@@ -8,11 +8,11 @@ int main() {
     cin.tie(0);
     int t;
     cin>>t;
-    while (t--)
-    {
-    
-    }
-     
+    while(t--){
+        int n;
+        cin>>n;
+        
+    } 
     return 0;
 }
 
