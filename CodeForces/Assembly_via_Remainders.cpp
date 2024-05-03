@@ -19,16 +19,16 @@ int main() {
     vector<int> res;
     /*  if (*vec.begin() % 2 == 0) { */
     res.push_back(*vec.begin() + 1);
-    res.push_back(*vec.end() + vec[0]);
+    res.push_back(*vec.begin() + 1 + vec[0]);
     /* } else { */
     // res.push_back(*vec.begin());
     /* } */
     int iter = 1;
     for (int i = 2; i < n; i++) {
-      if (vec[iter] < res[i - 1]) {
+      if (vec[iter] < res[res.size() - 1]) {
         res.push_back(vec[iter]);
       } else {
-        res.push_back(*res.end() + vec[iter]);
+        res.push_back(res[res.size()-1] + vec[iter] * 2);
       }
       iter++;
     }
