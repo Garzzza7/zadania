@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
+#include <cstdint>
 #include <stdlib.h>
 #include <vector>
 using namespace std;
@@ -17,20 +18,11 @@ int main() {
       cin >> vec[i];
     }
     vector<int> res;
-    /*  if (*vec.begin() % 2 == 0) { */
-    res.push_back(*vec.begin() + 1);
-    res.push_back(*vec.begin() + 1 + vec[0]);
-    /* } else { */
-    // res.push_back(*vec.begin());
-    /* } */
-    int iter = 1;
-    for (int i = 2; i < n; i++) {
-      if (vec[iter] < res[res.size() - 1]) {
-        res.push_back(vec[iter]);
-      } else {
-        res.push_back(res[res.size()-1] + vec[iter] * 2);
-      }
-      iter++;
+
+    // res.push_back(*vec.begin() + 1);
+    res.push_back(10000);
+    for (int iter = 0; iter < n-1; iter++) {
+      res.push_back(res[res.size() - 1] + vec[iter]);
     }
     for (auto &&a : res) {
       cout << a << " ";
