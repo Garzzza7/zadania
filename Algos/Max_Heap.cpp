@@ -80,5 +80,35 @@ int main()
         cout << a << " ";
     }
     cout << "\n";
+    deleteNode(vec, 10000);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec, 100);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec, 1000);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec,10);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec, 9);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
     return 0;
 }

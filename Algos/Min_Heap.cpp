@@ -69,12 +69,31 @@ int main()
         cin >> a;
         insert(vec, a);
     }
-    insert(vec, 1);
-    insert(vec, 10);
-    insert(vec, 100);
-    insert(vec, 1000);
-    insert(vec, 10000);
+    // insert(vec, 1);
+    // insert(vec, 10);
+    // insert(vec, 100);
+    // insert(vec, 1000);
+    // insert(vec, 10000);
 
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+
+    deleteNode(vec, 0);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec, 1);
+    for (auto &&a : vec)
+    {
+        cout << a << " ";
+    }
+    cout << "\n";
+    deleteNode(vec, 2);
     for (auto &&a : vec)
     {
         cout << a << " ";
