@@ -1,20 +1,25 @@
 #!/bin/bash
+ask(){
+    echo Do you when to uninstall:
+    \n ALL - press A
+    \n Pick - press P
+    \n Cancel - press C
+}
 
 install_debian() {
-    sudo apt update
+    python -m pip uninstall beautifulsoup4
+    python -m pip uninstall requests    
     sudo apt install -y python3 g++ python3-pip
-    python -m pip install beautifulsoup4
-    python -m pip install requests    
 }
 
 install_arch() {
-    sudo pacman -Syu --noconfirm python g++ python3-pip
+    sudo pacman -Syu --noconfirm python3 g++ python3-pip
     python -m pip install beautifulsoup4
     python -m pip install requests    
 }
 
 install_mingw64() {
-    pacman -Syu --noconfirm python g++ python3-pip
+    pacman -Syu --noconfirm python3 g++ python3-pip
     python -m pip install beautifulsoup4
     python -m pip install requests    
 }

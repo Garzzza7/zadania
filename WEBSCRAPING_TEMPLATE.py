@@ -16,9 +16,12 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
 
+#TAGS TO MODIFY
 title_divs = soup.find("div", class_="title")
-
 examples = soup.find("pre")
+
+
+
 exe = examples.find_all()
 title = remove_until_dot(title_divs.get_text())
 
@@ -38,4 +41,4 @@ codefile.write(template)
 for a in exe:
     txtfile.write(a.get_text()+"\n")
 
-print("Done!\n")
+print("Files "+title+".cpp and "+title+".txt have been created!")
