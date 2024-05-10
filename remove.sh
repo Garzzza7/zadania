@@ -2,6 +2,7 @@
 remove_debian() {
 	python -m pip uninstall beautifulsoup4
 	python -m pip uninstall requests    
+	
 	sudo apt remove -y python3-pip
 	sudo apt remove -y g++
 	sudo apt remove -y python3 
