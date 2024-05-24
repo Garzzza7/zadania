@@ -1,7 +1,7 @@
 {
     "window.zoomLevel": 0,
     "material-icon-theme.hidesExplorerArrows": true,
-    "workbench.colorTheme": "Vim Light Soft",
+    "workbench.colorTheme": "Visual Studio 2017 Dark - C++",
     "workbench.iconTheme": "vs-seti",
     "workbench.statusBar.visible": false,
     "workbench.editor.showTabs": "multiple",
