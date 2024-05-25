@@ -9,10 +9,12 @@
   cout << "\n";
 #define help ios::sync_with_stdio(false)
 #define me cin.tie(0)
-#define sortasc(a) sort(a.begin(), a.end())
-#define sortdes(a) sort(a.end(), a.begin())
-#define rev(a) reverse(a.begin(), a.end())
-#define setasc(a) set<int, greater<int>> a
+#define sortasc(vec) sort(vec.begin(), vec.end())
+#define sortdes(vec) sort(vec.end(), vec.begin())
+#define rev(vec) reverse(vec.begin(), vec.end())
+#define setasc(vec) set<int, greater<int>> vec
+#define sortpairasc(vec) sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second < right.second; })
+#define sortpairdec(vec) sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second > right.second; })
 using namespace std;
 const long long mod = 1000000007;
 int main()
