@@ -25,24 +25,27 @@ int main()
   cin >> t;
   while (t--)
   {
-    int a, b, n, m;
-    cin >> a >> b >> n >> m;
-    vector<vector<int>> vec(a, vector<int>(b, 0));
+    int n, k;
+    cin >> n >> k;
+    vector<int> c(101, 0);
     for (int i = 0; i < n; i++)
     {
-      int x, y;
-      cin >> x >> y;
-      vec[x][y]++;
+      int aa;
+      cin >> aa;
+      c[aa]++;
     }
-
-    for (int i = 0; i < m; i++)
+    sortasc(c);
+    long long res = 0;
+    for (int i = c.size() - 1; i >= 0; i--)
     {
-      char c;
-      int k;
-      cin >> c;
-      cin >> k;
-      
+      if (c[i] >= k)
+      {
+        c[i] = 0;
+        c[i - 1] += (k - 1);
+      }
+      res += c[i];
     }
+    cout << res << "\n";
   }
 
   return 0;
