@@ -28,15 +28,27 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n;
-    cin >> n;
-    int size = n * (n + 1) / 2 - 1;
-    vector<int> s(size);
-    for (int i = 0; i < size; i++) {
-      cin >> s[i];
+    int n, f, k;
+    cin >> n >> f >> k;
+    f--;
+    k--;
+    vector<int> vec(n);
+    for (int i = 0; i < n; i++) {
+      cin >> vec[i];
     }
-    printarr(s);
+    int fav = vec[f];
+    sortdes(vec);
+    if (vec[k] < fav) {
+      cout << "YES\n";
+    } else if (vec[k] > fav) {
+      cout << "NO\n";
+    } else {
+      if (k == n - 1 || vec[k + 1] < fav) {
+        cout << "YES\n";
+      } else {
+        cout << "MAYBE\n";
+      }
+    }
   }
-
   return 0;
 }

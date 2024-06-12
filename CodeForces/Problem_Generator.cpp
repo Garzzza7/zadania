@@ -1,5 +1,9 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <cmath>
+#include <functional>
+#include <memory>
+#include <set>
 #include <stdlib.h>
 #define printarr(arr)                                                          \
   for (auto &&a : (arr)) {                                                     \
@@ -28,14 +32,23 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n;
-    cin >> n;
-    int size = n * (n + 1) / 2 - 1;
-    vector<int> s(size);
-    for (int i = 0; i < size; i++) {
-      cin >> s[i];
+    int n, m;
+    string s;
+    cin >> n >> m;
+    cin >> s;
+    vector<char> vec = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+    map<char, int> map = {{'A', 0}, {'B', 0}, {'C', 0}, {'D', 0},
+                          {'E', 0}, {'F', 0}, {'G', 0}};
+    for (int i = 0; i < s.size(); i++) {
+      map[s[i]]++;
     }
-    printarr(s);
+    long long res = 0;
+    for (auto &&a : vec) {
+      if (map[a] < m) {
+        res += (m - map[a]);
+      }
+    }
+    cout << res << "\n";
   }
 
   return 0;

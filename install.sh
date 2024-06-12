@@ -4,18 +4,18 @@ install_debian() {
 	sudo apt install -y python3
 	sudo apt install -y g++
 	sudo apt install -y python3-pip
-
-	python -m pip install beautifulsoup4
-	python -m pip install requests    
+	sudo apt-get install python3-bs4
+	#python -m pip install beautifulsoup4
+	#python -m pip install requests    
 }
 
 install_arch() {
 	sudo pacman -Sy --noconfirm python
 	sudo pacman -Sy --noconfirm g++
 	sudo pacman -Sy --noconfirm python3-pip
-
-	python -m pip install beautifulsoup4
-	python -m pip install requests    
+	sudo pacman -Sy python3-bs4
+	#python -m pip install beautifulsoup4
+	#python -m pip install requests    
 }
 
 install_mingw64() {

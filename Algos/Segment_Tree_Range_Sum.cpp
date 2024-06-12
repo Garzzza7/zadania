@@ -65,15 +65,17 @@ int main() {
   for (int i = tree_size - 1; i >= 1; i--) {
     tree[i] = tree[2 * i] + tree[2 * i + 1];
   }
-  cout << sum_query(1, 0, tree_size - 1, 0, 7) << "\n";
+
   for (auto &&a : tree) {
     cout << a << " ";
   }
-  cout << "\n";
-  // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
-  iterative_update(5, 100);
-  for (auto &&a : tree) {
-    cout << a << " ";
-  }
+  // cout << sum_query(1, 0, tree_size - 1, 0, 7) << "\n";
+
+  // cout << "\n";
+  // // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
+  // iterative_update(5, 100);
+  // for (auto &&a : tree) {
+  //   cout << a << " ";
+  // }
   return 0;
 }

@@ -30,13 +30,42 @@ int main() {
   while (t--) {
     int n;
     cin >> n;
-    int size = n * (n + 1) / 2 - 1;
-    vector<int> s(size);
-    for (int i = 0; i < size; i++) {
-      cin >> s[i];
+    vector<int> a(n), b(n);
+    for (int i = 0; i < n; i++) {
+      cin >> a[i];
     }
-    printarr(s);
-  }
+    for (int i = 0; i < n; i++) {
+      cin >> b[i];
+    }
+    int m;
+    cin >> m;
+    vector<int> d(m);
+    for (int i = 0; i < m; i++) {
+      cin >> d[i];
+    }
 
+    vector<bool> visited(m, false);
+    bool flag = true;
+    for (int i = 0; i < n; i++) {
+      if (flag == false) {
+        break;
+      }
+      for (int ii = m - 1; ii >= 0; ii--) {
+        if (visited[ii] == false && d[ii] == b[i]) {
+          visited[ii] = true;
+          break;
+        } else if (ii == 0 && a[i] != b[i]) {
+          flag = false;
+        }
+      }
+      //}
+    }
+
+    if (flag && visited[m - 1]) {
+      cout << "YES\n";
+    } else {
+      cout << "NO\n";
+    }
+  }
   return 0;
 }

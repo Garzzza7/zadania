@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <vector>
 #define printarr(arr)                                                          \
   for (auto &&a : (arr)) {                                                     \
     cout << a << " ";                                                          \
@@ -25,18 +26,14 @@ const long long mod = 1000000007;
 int main() {
   help;
   me;
-  int t;
-  cin >> t;
-  while (t--) {
-    int n;
-    cin >> n;
-    int size = n * (n + 1) / 2 - 1;
-    vector<int> s(size);
-    for (int i = 0; i < size; i++) {
-      cin >> s[i];
+  vector<vector<char>> vec(100, vector<char>(100));
+  for (int i = 0; i < 100; i++) {
+    for (int j = 0; j < 100; j++) {
+      cin >> vec[i][j];
     }
-    printarr(s);
   }
+
+  long long cnt = 1000000000;
 
   return 0;
 }
