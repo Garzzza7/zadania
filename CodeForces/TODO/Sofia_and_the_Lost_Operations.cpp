@@ -22,6 +22,7 @@
   })
 using namespace std;
 const long long mod = 1000000007;
+
 int main() {
   help;
   me;
@@ -50,15 +51,29 @@ int main() {
       if (flag == false) {
         break;
       }
-      for (int ii = m - 1; ii >= 0; ii--) {
-        if (visited[ii] == false && d[ii] == b[i]) {
-          visited[ii] = true;
-          break;
-        } else if (ii == 0 && a[i] != b[i]) {
-          flag = false;
+      if (a[i] != b[i]) {
+        for (int ii = m - 1; ii >= 0; ii--) {
+          if (visited[ii] == false && d[ii] == b[i]) {
+            visited[ii] = true;
+            break;
+          } else if (ii == 0) {
+            flag = false;
+          }
         }
       }
-      //}
+    }
+    for (int i = 0; i < n; i++) {
+      if (flag == false) {
+        break;
+      }
+      if (a[i] == b[i]) {
+        for (int ii = m - 1; ii >= 0; ii--) {
+          if (visited[ii] == false && d[ii] == b[i]) {
+            visited[ii] = true;
+            break;
+          }
+        }
+      }
     }
 
     if (flag && visited[m - 1]) {

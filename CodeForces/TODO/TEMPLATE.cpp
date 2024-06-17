@@ -15,8 +15,10 @@
 #define setasc(vec) std::set<int, std::greater<int>> vec
 #define sortpairasc(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second < right.second; })
 #define sortpairdec(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second > right.second; })
+#define MOD 1000000007
+
 using namespace std;
-const long long mod = 1000000007;
+
 int main()
 {
   help;
