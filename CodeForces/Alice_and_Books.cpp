@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
+#include <cstdint>
 #include <stdlib.h>
 #include <vector>
 #define printarr(arr)                                                          \
@@ -37,15 +38,13 @@ int main() {
     for (int i = 0; i < n; i++) {
       cin >> vec[i];
     }
-    sortdes(vec);
-    int res = vec[0];
-    for (int i = 1; i < n; i++) {
-      if (vec[i] != res) {
-        res += vec[i];
-        break;
-      }
+    int res = vec[n - 1];
+    int maxi = -INT32_MAX;
+    for (int i = 0; i < n - 1; i++) {
+      maxi = max(maxi, vec[i]);
     }
-    cout << res << "\n";
+
+    cout << res + maxi << "\n";
   }
 
   return 0;
