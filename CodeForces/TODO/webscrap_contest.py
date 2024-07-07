@@ -16,7 +16,8 @@ def generate_contest(url):
             contest = soup.find_all("a", href=problem)
             iterator = iterator + 1
             if iterator % 2 == 0:
-                os.system("./webscrap.py " + "https://codeforces.com/" + problem)
+                os.system("python3 webscrap.py " +
+                          "https://codeforces.com/" + problem)
 
 
 if len(sys.argv) == 1:

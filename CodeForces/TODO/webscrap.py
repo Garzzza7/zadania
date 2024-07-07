@@ -19,7 +19,9 @@ def generate_file(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     title_divs = soup.find("div", class_="title")
+    print(title_divs)
     examples = soup.find("pre")
+    print(examples)
     exe = examples.find_all()
     title = remove_until_dot(title_divs.get_text())
     title = title.replace(" ", "_")
@@ -43,7 +45,8 @@ def generate_file(url):
         proc = proc + inc
         loading = loading + "🔥"
         txtfile.write(a.get_text() + "\n")
-    print("\nFiles " + title + ".cpp and " + title + ".txt have been created\n")
+    print("\nFiles " + title + ".cpp and " +
+          title + ".txt have been created\n")
 
 
 if len(sys.argv) == 1:
