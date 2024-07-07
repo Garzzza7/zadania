@@ -17,6 +17,7 @@ def remove_until_dot(text):
 
 def generate_file(url):
     response = requests.get(url)
+    print(response)
     soup = BeautifulSoup(response.text, "html.parser")
     title_divs = soup.find("div", class_="title")
     examples = soup.find("pre")
