@@ -14,12 +14,12 @@
 #define setasc(vec) std::set<int, std::greater<int>> vec
 #define sortpairasc(vec)                                                       \
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second < right.second;                                         \
-  })
+      return left.second < right.second;                                         \
+      })
 #define sortpairdec(vec)                                                       \
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second > right.second;                                         \
-  })
+      return left.second > right.second;                                         \
+      })
 using namespace std;
 const long long mod = 1000000007;
 

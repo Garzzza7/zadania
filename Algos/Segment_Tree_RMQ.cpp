@@ -1,8 +1,24 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#define printarr(arr)    \
+  for (auto &&a : (arr)) \
+  {                      \
+    cout << a << " ";    \
+  }                      \
+  cout << "\n";
+#define help ios::sync_with_stdio(false)
+#define me cin.tie(0)
+#define sortasc(vec) std::sort(vec.begin(), vec.end())
+#define sortdes(vec)  std::sort(vec.begin(), vec.end(), std::greater<>())
+#define rev(vec) std::reverse(vec.begin(), vec.end())
+#define setasc(vec) std::set<int, std::greater<int>> vec
+#define sortpairasc(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second < right.second; })
+#define sortpairdec(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second > right.second; })
+#define MOD 1000000007
+
 using namespace std;
-const long long mod = 1000000007;
+
 vector<long long> tree;
 long long tree_size;
 long long min_query(long long start_node, long long node_left, long long node_right, long long query_left, long long query_right)
@@ -45,8 +61,8 @@ void iterative_update(long long index, long long value)
 }
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    help;
+    me;
     cin >> tree_size;
     vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++)
@@ -70,16 +86,11 @@ int main()
         tree[i] = min(tree[2 * i], tree[2 * i + 1]);
     }
     cout << min_query(1, 0, tree_size - 1, 0, 7) << "\n";
-    for (auto &&a : tree)
-    {
-        cout << a << " ";
-    }
+    printarr(tree);
+    
     // cout << "\n";
     // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
     // iterative_update(5, 100);
-    // for (auto &&a : tree)
-    // {
-    //     cout << a << " ";
-    // }
+    //printarr(tree);
     return 0;
 }

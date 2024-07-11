@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #define printarr(arr)    \
   for (auto &&a : (arr)) \
-  {                      \
-    cout << a << " ";    \
-  }                      \
-  cout << "\n";
+{                      \
+  cout << a << " ";    \
+}                      \
+cout << "\n";
 #define help ios::sync_with_stdio(false)
 #define me cin.tie(0)
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
@@ -24,7 +24,7 @@ int main()
   help;
   me;
   int t;
-  cin >> t;
+  scanf("%d",&t);
   while (t--)
   {
   }

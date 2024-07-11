@@ -30,38 +30,14 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    int cnt = 0;
-    string ss;
-    long long res1 = 0, res2 = 1;
-    if (n <= 2) {
-      int localcnt = 0;
-      for (auto &&a : s) {
-        if (a == '0') {
-          localcnt++;
-        }
-      }
-      if (localcnt == n) {
-        cout << "0\n";
-      } else {
-        s.erase(std::remove(s.begin(), s.end(), '0'), s.end());
-        cout << s << "\n";
-      }
-    } else {
-      for (int i = 0; i < n; i++) {
-        if (s[i] == '0') {
-          cnt++;
-        }
-      }
-      if (cnt >= 2) {
-        cout << "0\n";
-      } else {
-        cout << min(res1, res2) << "\n";
-      }
-    }
+    long long n, k;
+    // scanf("%d %d", &n, &k);
+    cin >> n >> k;
+    // if (k == 0 || k == n) {
+    //  cout << "0\n";
+    //} else {
+    cout << k - n << "\n";
+    //}
   }
 
   return 0;
