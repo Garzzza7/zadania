@@ -40,6 +40,16 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    int n, m, k;
+    cin >> n >> m >> k;
+    for (int i = n; i >= 1 + m; i--) {
+      cout << i << " ";
+    }
+    for (int i = 1; i <= m; i++) {
+      cout << i << " ";
+    }
+
+    cout << "\n";
   }
 
   return 0;
