@@ -1,6 +1,10 @@
+#include <array>
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <string>
+#include <utility>
+#include <vector>
 #define print_rvalues(arr)                                                     \
   for (auto &&a : (arr)) {                                                     \
     cout << a << " ";                                                          \
@@ -40,6 +44,37 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    int n;
+    cin >> n;
+    string s = to_string(n);
+    vector<pair<int, int>> res;
+
+    for (int top = 1; top <= 6; top++) {
+      string buffer = "";
+      int iter = 0;
+      for (int i = 0; i < top; i++) {
+        buffer.push_back(s[iter]);
+        iter++;
+        if (iter == s.size()) {
+          iter = 0;
+        }
+      }
+
+      long long target = stoll(buffer);
+
+      for (int a = 1; a <= 10000; a++) {
+        long long b = n * a - target;
+
+        if (1 <= b && b <= 10000 && s.size() * a - b == top) {
+          res.push_back({a, b});
+        }
+      }
+    }
+
+    cout << res.size() << "\n";
+    for (auto &&p : res) {
+      cout << p.first << " " << p.second << "\n";
+    }
   }
 
   return 0;
