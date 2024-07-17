@@ -25,7 +25,6 @@ def generate_file(url):
     print(examples)
     exe = examples.find_all()
     title = remove_until_dot(title_divs.get_text())
-    title.repleca()
     title = title.replace(" ", "_")
 
     for sep in separators:
