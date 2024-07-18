@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(arr)                                                     \
   for (auto &&a : (arr)) {                                                     \
     cout << a << " ";                                                          \
@@ -17,7 +16,7 @@
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
+#define setasc(vec) std::set<long long, std::greater<long long>> vec
 #define sortpairasc(vec)                                                       \
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
     return left.second < right.second;                                         \
@@ -32,55 +31,50 @@
   a ^= b;
 #define LSB(a) a & -a
 #define MOD 1000000007
+#define DEBUG false
 
 using namespace std;
 
 int main() {
   help;
   me;
-  int t;
+  long long t;
   cin >> t;
   while (t--) {
-    long long n;
-    cin >> n;
-    int power = -1;
-    int inc = 2;
-    while (inc < n) {
-      power++;
-      inc *= 2;
+    string s1, s2;
+    cin >> s1;
+    cin >> s2;
+    // if (s1 == s2) {
+    //   cout << s1.size() << "\n";
+    //   continue;
+    // }
+#if DEBUG
+    if (t == 447) {
+      cout << s1 << "|" << s2 << "\n";
     }
-    if (n == 1) {
-      cout << 1 << "\n";
-      cout << 1 << "\n";
-      continue;
-    }
-    vector<long long> res = {n};
-    if (n % 2 == 0) {
-      long long target = (n) | (n - 2);
-      res.push_back(n - 2);
-      long long last = n - 2;
-      for (long long i = n - 2; i >= power; i--) {
-        if ((last | i) == target) {
-          last = i;
-          res.push_back(i);
-        }
-      }
-    } else {
-      long long target = (n) | (n - 1);
-      res.push_back(n - 1);
-      long long last = n - 1;
-      for (long long i = n - 1; i >= power; i--) {
-        if ((last | i) == target) {
-          last = i;
-          res.push_back(i);
+#endif
+
+    long long start = 0;
+    long long cnt = s2.size();
+    for (long long i = 0; i < s2.size(); i++) {
+      for (long long j = start; j < s1.size(); j++) {
+        if (s1[j] == s2[i]) {
+          // cout << "s1 = " << s1[j] << " s2 = " << s2[i] << "\n";
+          cnt--;
+          start = j + 1;
+          if (start == s1.size() - 1)
+            while (s1[start] == s1[start - 1] && s1[start] != s2[i]) {
+              start++;
+              if (start == s1.size()) {
+                break;
+              }
+            }
+          break;
         }
       }
     }
-    cout << res.size() << "\n";
-    for (long long i = res.size() - 1; i >= 0; i--) {
-      cout << res[i] << " ";
-    }
-    cout << "\n";
+    // cout << "size = " << s1.size() << " rest = " << cnt << "\n";
+    cout << s1.size() + cnt << "\n";
   }
 
   return 0;
