@@ -53,31 +53,34 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n;
-    cin >> n;
-    vector<int> a(n + 1);
-    long long sum = 0;
-    a[0] = 0;
-    for (int i = 1; i <= n; i++) {
-      cin >> a[i];
-      sum += a[i];
-    }
-    long long health = sum;
-    vector<vector<int>> tree(n + 1, vector<int>());
-    for (int i = 0; i < n - 1; i++) {
-      int x, y;
-      cin >> x >> y;
-      tree[x].push_back(y);
-      tree[y].push_back(x);
-    }
-    for (auto &&a : tree) {
-      for (auto &&b : a) {
-        cout << b << " ";
-      }
-      cout << "\n";
+  int n;
+  cin >> n;
+  vector<int> vec(n);
+  for (int i = 0; i < n; i++) {
+    cin >> vec[i];
+  }
+  vector<long long> prefsum(n + 1);
+  prefsum[0] = 0;
+  for (int i = 1; i <= n; i++) {
+    prefsum[i] = prefsum[i - 1] + vec[i - 1];
+  }
+
+  sortasc(vec);
+  vector<long long> sortprefsum(n + 1);
+  sortprefsum[0] = 0;
+  for (int i = 1; i <= n; i++) {
+    sortprefsum[i] = sortprefsum[i - 1] + vec[i - 1];
+  }
+
+  int m;
+  cin >> m;
+  for (int i = 0; i < m; i++) {
+    int t, l, r;
+    cin >> t >> l >> r;
+    if (t == 1) {
+      cout << prefsum[r] - prefsum[l - 1] << "\n";
+    } else {
+      cout << sortprefsum[r] - sortprefsum[l - 1] << "\n";
     }
   }
 

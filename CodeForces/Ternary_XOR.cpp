@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
-    cout << a << " ";                                                          \
+    cout << a;                                                                 \
   }                                                                            \
   cout << "\n";
 #define print_lvalues(vec)                                                     \
   for (const auto &a : (vec)) {                                                \
-    cout << a << " ";                                                          \
+    cout << a;                                                                 \
   }                                                                            \
   cout << "\n";
 #define help ios::sync_with_stdio(false)
@@ -58,27 +58,33 @@ int main() {
   while (t--) {
     int n;
     cin >> n;
-    vector<int> a(n + 1);
-    long long sum = 0;
-    a[0] = 0;
-    for (int i = 1; i <= n; i++) {
-      cin >> a[i];
-      sum += a[i];
-    }
-    long long health = sum;
-    vector<vector<int>> tree(n + 1, vector<int>());
-    for (int i = 0; i < n - 1; i++) {
-      int x, y;
-      cin >> x >> y;
-      tree[x].push_back(y);
-      tree[y].push_back(x);
-    }
-    for (auto &&a : tree) {
-      for (auto &&b : a) {
-        cout << b << " ";
+    string s;
+    vector<char> a(n, '0'), b(n, '0');
+    cin >> s;
+    bool flag = false;
+    for (int i = 0; i < n; i++) {
+      if (s[i] == '2') {
+        if (flag == false) {
+          a[i] = '1';
+          b[i] = '1';
+        } else {
+          a[i] = '0';
+          b[i] = '2';
+        }
+
+      } else if (s[i] == '1') {
+        if (flag == false) {
+          a[i] = '1';
+          b[i] = '0';
+        } else {
+          a[i] = '0';
+          b[i] = '1';
+        }
+        flag = true;
       }
-      cout << "\n";
     }
+    print_rvalues(a);
+    print_rvalues(b);
   }
 
 #if TIME
