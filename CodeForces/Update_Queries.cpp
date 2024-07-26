@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -59,48 +58,28 @@ int main() {
   while (t--) {
     int n, m;
     cin >> n >> m;
-    vector<vector<int>> vec(n + 2, vector<int>(m + 2, 0));
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= m; j++) {
-        cin >> vec[i][j];
+    string s;
+    cin >> s;
+    vector<int> vec(m);
+    vector<bool> possib(n, 0);
+    for (int i = 0; i < m; i++) {
+      int aa;
+      cin >> aa;
+      aa--;
+      vec[i] = aa;
+      possib[aa] = 1;
+    }
+    string c;
+    cin >> c;
+    sortasc(c);
+    int iter = 0;
+    for (int i = 0; i < n; i++) {
+      if (possib[i] == 1 && m > iter) {
+        s[i] = c[iter];
+        iter++;
       }
     }
-
-    for (int i = 1; i <= n; i++) {
-      int buff = 0;
-      for (int j = 1; j <= m; j++) {
-        int cnt = 0;
-        if (vec[i][j] >= vec[i - 1][j]) {
-          buff = max(buff, vec[i - 1][j]);
-          cnt++;
-          // vec[i][j] = vec[i - 1][j];
-        }
-        if (vec[i][j] >= vec[i][j - 1]) {
-          buff = max(buff, vec[i][j - 1]);
-          cnt++;
-          // vec[i][j] = vec[i][j - 1];
-        }
-        if (vec[i][j] >= vec[i + 1][j]) {
-          buff = max(buff, vec[i + 1][j]);
-          cnt++;
-          // vec[i][j] = vec[i + 1][j];
-        }
-        if (vec[i][j] >= vec[i][j + 1]) {
-          buff = max(buff, vec[i][j + 1]);
-          cnt++;
-          // vec[i][j] = vec[i][j + 1];
-        }
-        if (cnt == 4) {
-          vec[i][j] = buff;
-        }
-      }
-    }
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= m; j++) {
-        cout << vec[i][j] << " ";
-      }
-      cout << "\n";
-    }
+    cout << s << "\n";
   }
 
 #if TIME
