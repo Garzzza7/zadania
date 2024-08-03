@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -54,30 +53,35 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
-      }
-    }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
-    }
+  int n, k;
+  cin >> n >> k;
+  vector<int> vec;
+  for (int i = 0; i < n; i++) {
+    int aac;
+    cin >> aac;
+    vec.push_back(aac);
   }
+  sortasc(vec);
+  // print_rvalues(vec);
+  if (k == n) {
+    cout << vec[n - 1];
+  } else if (vec[k - 1] == vec[k]) {
+    cout << vec[k - 1];
+  } else {
+    cout << vec[k - 1] + 1;
+  }
+
+  // vec.push_back(0);
+  // if (k == 0) {
+  //   int res = vec[0] == 1 ? -1 : vec[0] - 1;
+  //   cout << res;
+  // } else {
+  //   if (vec[k - 1] == vec[k]) {
+  //     cout << "-1";
+  //   } else {
+  //     cout << vec[k - 1] + 1;
+  //   }
+  // }
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

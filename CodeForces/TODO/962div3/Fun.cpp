@@ -1,7 +1,7 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -57,26 +57,30 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
+    long long n, x;
+    cin >> n >> x;
+    long long cnt = 0;
+    // for (int a = 1; a <= min(n / 2, x - 2); a++) {
+    //   for (int b = 1; b <= min(n / 2, x - 2); b++) {
+    //     if ((((a * b) - n) / (a + b)) <= (x - a - b) &&
+    //         1 <= (((a * b) - n) / (a + b))) {
+    //       // cout << "a = " << a << " b = " << b
+    //       //  << " c = " << (x - a - b) - (((a * b) - n) / (a + b)) << "\n";
+    //       cnt++;
+    //     }
+    //   }
+    // }
+    for (int a = 1; a <= min(n / 2, x - 2); a++) {
+      for (int b = 1; b <= min(n / 2, x - 2); b++) {
+        for (int c = max((int)((a * b - n) / (a + b)), 1); c <= (x - a - b);
+             c++) {
+          if ((a * b + a * c + b * c) <= n && (a + b + c) <= x)
+            cnt++;
+        }
       }
     }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
-    }
+    cout << cnt << "\n";
+    // cout << "//////////////////////////////\n";
   }
 
 #if TIME

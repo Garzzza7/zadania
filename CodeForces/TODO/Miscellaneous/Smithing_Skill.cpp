@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -54,30 +53,27 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
-      }
-    }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
+  int n, m;
+  cin >> n >> m;
+  vector<int> a(n), b(n), c(m);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
+  for (int i = 0; i < n; i++) {
+    cin >> b[i];
+  }
+  for (int i = 0; i < m; i++) {
+    cin >> c[i];
+  }
+  int res = 0;
+  for (int i = 0; i < min(m, n); i++) {
+    while (c[i] >= a[i]) {
+      c[i] -= a[i];
+      c[i] += b[i];
+      res += 2;
     }
   }
+  cout << res << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

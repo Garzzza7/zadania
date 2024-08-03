@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -57,25 +56,45 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
+    int n, q;
+    cin >> n >> q;
+    string a, b;
+    cin >> a;
+    cin >> b;
+    // sortasc(a);
+    // sortasc(b);
+    // vector<int> presum(n, 0);
+    // if (a[0] != b[0]) {
+    //   presum[0] = 1;
+    // }
+    // for (int i = 1; i < n; i++) {
+    //   presum[i] += presum[i - 1];
+    //   if (a[i] != b[i]) {
+    //     presum[i]++;
+    //   }
+    // }
+
+    while (q--) {
+      // int l, r;
+      // cin >> l >> r;
+      // cout << presum[r] - presum[l] << "\n";
+      int l, r;
+      cin >> l >> r;
+      l--;
+      r--;
+      int cnt = 0;
+      vector<bool> spare(n + 1, true);
+      for (int i = l; i <= r; i++) {
+        for (int j = l; j <= r; j++) {
+          if (a[i] == b[j] && spare[j - l]) {
+            cnt++;
+            spare[j - l] = 0;
+            break;
+          }
+        }
       }
-    }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
+      cout << r - l + 1 - cnt << "\n";
+      // cout << cnt << "\n";
     }
   }
 

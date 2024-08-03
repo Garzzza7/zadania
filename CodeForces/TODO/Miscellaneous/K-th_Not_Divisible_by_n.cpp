@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
-#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -57,26 +56,12 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n, k;
+    long long n, k;
     cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
-      }
-    }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
-    }
+    long long iter = k / n;
+    long long rest = k % n;
+    long long res = (n - 1) * iter + (k % (n - 1));
+    cout << res << "\n";
   }
 
 #if TIME

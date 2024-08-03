@@ -59,23 +59,27 @@ int main() {
   while (t--) {
     int n, k;
     cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
+    vector<vector<char>> vec(n, vector<char>(n, 'p'));
+
     for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
+      for (int j = 0; j < n; j++) {
+        char aa;
+        cin >> aa;
+        vec[i][j] = aa;
+        // vec[i].push_back(aa);
       }
     }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
+    // for (auto &&aa : vec) {
+    //   for (auto &&a : aa) {
+    //     cout << a << " ";
+    //   }
+    //   cout << "\n";
+    // }
+    for (int i = 0; i < n; i += k) {
+      for (int j = 0; j < n; j += k) {
+        cout << vec[i][j];
+      }
+      cout << "\n";
     }
   }
 

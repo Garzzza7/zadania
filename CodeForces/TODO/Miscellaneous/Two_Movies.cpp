@@ -57,26 +57,32 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
+    int n;
+    cin >> n;
+    int aa = 0, bb = 0;
+    vector<int> a(n), b(n);
+    vector<char> _;
+
     for (int i = 0; i < n; i++) {
-      cin >> vec[i];
+      cin >> a[i];
     }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
-        break;
+
+    for (int i = 0; i < n; i++) {
+      cin >> b[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+      int aaa = aa;
+      int bbb = bb;
+      aa = max(aaa, bbb);
+      bb = min(aaa, bbb);
+      if (a[i] == -1 && b[i] == -1) {
+        aa--;
+      } else {
+        bb += max(a[i], b[i]);
       }
     }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
-    }
+    cout << min(aa, bb) << "\n";
   }
 
 #if TIME

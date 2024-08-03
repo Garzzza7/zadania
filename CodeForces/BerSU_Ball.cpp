@@ -54,30 +54,31 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n, k;
-    cin >> n >> k;
-    bool poss = true;
-    vector<int> vec(n), arr(n, 0);
-    for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    sortdes(vec);
-    long long res = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if ((vec[i] - vec[i + 1]) % k != 0) {
-        poss = false;
+  int n, m;
+  cin >> n;
+  vector<int> a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
+  cin >> m;
+  vector<int> b(m);
+  for (int i = 0; i < m; i++) {
+    cin >> b[i];
+  }
+  sortasc(a);
+  sortasc(b);
+  int cnt = 0;
+  vector<bool> spare(m, true);
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (abs(a[i] - b[j]) <= 1 && spare[j]) {
+        cnt++;
+        spare[j] = 0;
         break;
       }
     }
-    if (poss) {
-      cout << res << "\n";
-    } else {
-      cout << "-1\n";
-    }
   }
+  cout << cnt << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
