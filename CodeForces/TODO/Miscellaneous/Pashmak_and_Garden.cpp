@@ -56,19 +56,21 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    long long n, k;
-    cin >> n >> k;
-    int res = 0;
-    if (n == 2) {
-      res = 4 / k + k % n + k + n - 1;
-    } else if (n == 3) {
-      res = 7 / k + k % n + k + n - 1;
-    } else if (n == 4) {
-      res = 8 / k + k % n + k + n - 1;
+    int x1, y1, x2, y2;
+    cin >> x1 >> y1 >> x2 >> y2;
+    if (x1 == x2) {
+      int diff = 0;
+      if (y2 > y1) {
+        diff = y2 - y1;
+      } else {
+        diff = y1 - y2;
+      }
+      cout <<
+    } else if (y1 == y2) {
+
     } else {
-      res = 9 / k + k % n + k + n - 1;
+      cout << "-1";
     }
-    cout << res << "\n";
   }
 
 #if TIME

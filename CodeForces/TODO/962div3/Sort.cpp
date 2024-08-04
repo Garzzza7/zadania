@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -58,26 +59,12 @@ int main() {
   while (t--) {
     int n, q;
     cin >> n >> q;
+    // solution 1 - too slow
+    /*
     string a, b;
     cin >> a;
     cin >> b;
-    // sortasc(a);
-    // sortasc(b);
-    // vector<int> presum(n, 0);
-    // if (a[0] != b[0]) {
-    //   presum[0] = 1;
-    // }
-    // for (int i = 1; i < n; i++) {
-    //   presum[i] += presum[i - 1];
-    //   if (a[i] != b[i]) {
-    //     presum[i]++;
-    //   }
-    // }
-
     while (q--) {
-      // int l, r;
-      // cin >> l >> r;
-      // cout << presum[r] - presum[l] << "\n";
       int l, r;
       cin >> l >> r;
       l--;
@@ -94,7 +81,41 @@ int main() {
         }
       }
       cout << r - l + 1 - cnt << "\n";
-      // cout << cnt << "\n";
+    }
+    */
+
+    int alphalen = 26;
+    vector<vector<int>> prefsuma(n + 1, vector<int>(26, 0));
+    vector<vector<int>> prefsumb(n + 1, vector<int>(26, 0));
+    for (int i = 1; i <= n; i++) {
+      char c;
+      cin >> c;
+      prefsuma[i][c - 'a']++;
+      for (int ii = 0; ii < alphalen; ii++) {
+        prefsuma[i][ii] += prefsuma[i - 1][ii];
+      }
+    }
+    for (int i = 1; i <= n; i++) {
+      char c;
+      cin >> c;
+      prefsumb[i][c - 'a']++;
+      for (int ii = 0; ii < alphalen; ii++) {
+        prefsumb[i][ii] += prefsumb[i - 1][ii];
+      }
+    }
+    while (q--) {
+      int l, r;
+      cin >> l >> r;
+      long long res = 0;
+
+      for (int c = 0; c < 26; c++) {
+        int c1 = prefsuma[r][c] - prefsuma[l - 1][c];
+        int c2 = prefsumb[r][c] - prefsumb[l - 1][c];
+
+        res += abs(c1 - c2);
+      }
+      res = res >> 1;
+      cout << res << "\n";
     }
   }
 

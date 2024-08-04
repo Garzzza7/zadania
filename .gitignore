@@ -1,5 +1,6 @@
 *.out
 *.exe
+*.o
 .idea
 .cache
 build/*

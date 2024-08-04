@@ -42,6 +42,24 @@
 #define TIME 0
 
 using namespace std;
+vector<long long> tree;
+long long tree_size;
+long long sum_query(long long start_node, long long node_left,
+                    long long node_right, long long query_left,
+                    long long query_right) {
+  if (node_left >= query_left && node_right <= query_right) {
+    return tree[start_node];
+  }
+  if (node_right < query_left || node_left > query_right) {
+    return 0;
+  }
+  long long mid = (node_left + node_right) / 2;
+  long long sum =
+      sum_query(2 * start_node, node_left, mid, query_left, query_right) +
+      sum_query(2 * start_node + 1, mid + 1, node_right, query_left,
+                query_right);
+  return sum;
+}
 
 int main() {
 #if TIME
@@ -53,22 +71,40 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    long long n, k;
-    cin >> n >> k;
-    int res = 0;
-    if (n == 2) {
-      res = 4 / k + k % n + k + n - 1;
-    } else if (n == 3) {
-      res = 7 / k + k % n + k + n - 1;
-    } else if (n == 4) {
-      res = 8 / k + k % n + k + n - 1;
-    } else {
-      res = 9 / k + k % n + k + n - 1;
+  string s;
+  cin >> s;
+  int n = s.size();
+  int m;
+  cin >> m;
+
+  vector<int> buff(n, 0);
+  int cnt = 0;
+  for (int i = 0; i < n; i++) {
+    if (s[i] == '(') {
+      cnt++;
+    } else if (s[i] == ')' && cnt > 0) {
+      cnt--;
+      buff[i] += 2;
     }
-    cout << res << "\n";
+  }
+  vector<int> pre(s.size(), 0);
+
+  pre[0] = buff[0];
+
+  for (int i = 1; i < n; i++) {
+    pre[i] += pre[i - 1] + buff[i];
+  }
+
+  // print_rvalues(s);
+  while (m--) {
+    int l, r;
+    cin >> l >> r;
+    l--;
+    r--;
+    while (s[l] == '(') {
+      l++;
+    }
+    cout << pre[r] - pre[l] << "\n";
   }
 
 #if TIME

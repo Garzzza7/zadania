@@ -58,17 +58,79 @@ int main() {
   while (t--) {
     long long n, k;
     cin >> n >> k;
-    int res = 0;
-    if (n == 2) {
-      res = 4 / k + k % n + k + n - 1;
-    } else if (n == 3) {
-      res = 7 / k + k % n + k + n - 1;
-    } else if (n == 4) {
-      res = 8 / k + k % n + k + n - 1;
+    if (k > n || k == n - 1 || (k % 2 == 0 && n % 2 != 0)) {
+      if (k == 1) {
+        cout << "Yes\n";
+        cout << n << "\n";
+      } else {
+        cout << "NO\n";
+      }
+    } else if (n == k) {
+      cout << "Yes\n";
+      for (int i = 0; i < k; i++) {
+        cout << "1" << " ";
+      }
+      cout << "\n";
     } else {
-      res = 9 / k + k % n + k + n - 1;
+      cout << "YES\n";
+      if (n % 2 == 0) {
+        if (n >> 1 < k) {
+          int iter = 1;
+          long long sum = 0;
+          for (int i = 0; i < k - 1; i++) {
+            sum += iter;
+            cout << iter << " ";
+          }
+          cout << n - sum << "\n";
+        } else {
+          int iter = 2;
+          long long sum = 0;
+          for (int i = 0; i < k - 1; i++) {
+            sum += iter;
+            cout << iter << " ";
+          }
+          cout << n - sum << "\n";
+        }
+      } else if (n % 2 != 0) {
+        int iter = 1;
+        long long sum = 0;
+        for (int i = 0; i < k - 1; i++) {
+          sum += iter;
+          cout << iter << " ";
+        }
+        cout << n - sum << "\n";
+      }
+
+      // cout << "YES\n";
+      // if (n % 2 == 0) {
+      //   if (k % 2 == 0) {
+      //     int iter = 1;
+      //     long long sum = 0;
+      //     for (int i = 0; i < k - 1; i++) {
+      //       sum += iter;
+      //       cout << iter << " ";
+      //     }
+      //     cout << n - sum << "\n";
+      //   } else {
+      //     long long iter = 2;
+      //     long long sum = 0;
+      //     for (int i = 0; i < k - 1; i++) {
+      //       sum += iter;
+      //       cout << iter << " ";
+      //     }
+      //     cout << n - sum << "\n";
+      //   }
+      //
+      // } else {
+      //   int iter = 1;
+      //   long long sum = 0;
+      //   for (int i = 0; i < k - 1; i++) {
+      //     sum += iter;
+      //     cout << iter << " ";
+      //   }
+      //   cout << n - sum << "\n";
+      // }
     }
-    cout << res << "\n";
   }
 
 #if TIME

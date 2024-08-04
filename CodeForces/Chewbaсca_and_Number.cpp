@@ -53,24 +53,23 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    long long n, k;
-    cin >> n >> k;
-    int res = 0;
-    if (n == 2) {
-      res = 4 / k + k % n + k + n - 1;
-    } else if (n == 3) {
-      res = 7 / k + k % n + k + n - 1;
-    } else if (n == 4) {
-      res = 8 / k + k % n + k + n - 1;
-    } else {
-      res = 9 / k + k % n + k + n - 1;
+  string x;
+  cin >> x;
+  string res;
+  for (int i = x.size() - 1; i >= 0; i--) {
+    char c = x[i];
+    if (i == 0 && x[0] == '9') {
+      res.push_back(c);
+      continue;
     }
-    cout << res << "\n";
+    if ((x[i] - '0') >= 5) {
+      c = '0' + (9 - (x[i] - '0'));
+    }
+    res.push_back(c);
   }
-
+  for (int i = x.size() - 1; i >= 0; i--) {
+    cout << res[i];
+  }
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

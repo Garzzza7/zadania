@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
+#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -53,22 +54,57 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    long long n, k;
-    cin >> n >> k;
-    int res = 0;
-    if (n == 2) {
-      res = 4 / k + k % n + k + n - 1;
-    } else if (n == 3) {
-      res = 7 / k + k % n + k + n - 1;
-    } else if (n == 4) {
-      res = 8 / k + k % n + k + n - 1;
-    } else {
-      res = 9 / k + k % n + k + n - 1;
+  int n;
+  cin >> n;
+  vector<vector<long long>> vec(n, vector<long long>(n, 1));
+  vector<vector<long long>> dp(n, vector<long long>(n, 1));
+  vector<vector<string>> dps(n, vector<string>(n));
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      int aa;
+      cin >> aa;
+      if (aa % 2 == 0 || aa == 5) {
+        vec[i][j] = aa;
+      }
     }
-    cout << res << "\n";
+  }
+  dp[0][0] = vec[0][0];
+  dps[0][0].push_back('P');
+  vector<char> res;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      int ii = max(i - 1, 0);
+      int jj = max(j - 1, 0);
+      long long one = dp[ii][j] * vec[i][j];
+      long long two = dp[i][jj] * vec[i][j];
+      if (one > two) {
+        dps[i][j] += dps[i][jj] + "D";
+      } else {
+        dps[i][j] += dps[ii][j] + "R";
+      }
+      // long long one = dp[ii][j] * vec[i][j];
+      // long long two = dp[i][jj] * vec[i][j];
+      // if (one > two && two % 10 != 0) {
+      //   dp[i][j] = two;
+      //   res.push_back('R');
+      // } else if (one < two && one % 10 != 0) {
+      //   dp[i][j] = one;
+      //   res.push_back('D');
+      // } else {
+      //   dp[i][j] = min(one, two);
+      //   res.push_back('T');
+      // }
+    }
+  }
+  // print_rvalues(res);
+  for (auto &&aa : dp) {
+    for (auto &&a : aa) {
+      cout << a << " ";
+    }
+    cout << "\n";
+  }
+  for (int i = 0; i < dps[n - 1][n - 1].size(); i++) {
+    cout << dps[n - 1][n - 1][i];
   }
 
 #if TIME
