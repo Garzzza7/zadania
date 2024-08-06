@@ -58,79 +58,25 @@ int main() {
   while (t--) {
     long long n, k;
     cin >> n >> k;
-    if (k > n || k == n - 1 || (k % 2 == 0 && n % 2 != 0)) {
-      if (k == 1) {
-        cout << "Yes\n";
-        cout << n << "\n";
-      } else {
-        cout << "NO\n";
+    int n1 = n - (k - 1);
+    if (n1 > 0 && n1 % 2 == 1) {
+      cout << "YES" << "\n";
+      for (int i = 0; i < k - 1; ++i) {
+        cout << "1 ";
       }
-    } else if (n == k) {
-      cout << "Yes\n";
-      for (int i = 0; i < k; i++) {
-        cout << "1" << " ";
-      }
-      cout << "\n";
-    } else {
-      cout << "YES\n";
-      if (n % 2 == 0) {
-        if (n >> 1 < k) {
-          int iter = 1;
-          long long sum = 0;
-          for (int i = 0; i < k - 1; i++) {
-            sum += iter;
-            cout << iter << " ";
-          }
-          cout << n - sum << "\n";
-        } else {
-          int iter = 2;
-          long long sum = 0;
-          for (int i = 0; i < k - 1; i++) {
-            sum += iter;
-            cout << iter << " ";
-          }
-          cout << n - sum << "\n";
-        }
-      } else if (n % 2 != 0) {
-        int iter = 1;
-        long long sum = 0;
-        for (int i = 0; i < k - 1; i++) {
-          sum += iter;
-          cout << iter << " ";
-        }
-        cout << n - sum << "\n";
-      }
-
-      // cout << "YES\n";
-      // if (n % 2 == 0) {
-      //   if (k % 2 == 0) {
-      //     int iter = 1;
-      //     long long sum = 0;
-      //     for (int i = 0; i < k - 1; i++) {
-      //       sum += iter;
-      //       cout << iter << " ";
-      //     }
-      //     cout << n - sum << "\n";
-      //   } else {
-      //     long long iter = 2;
-      //     long long sum = 0;
-      //     for (int i = 0; i < k - 1; i++) {
-      //       sum += iter;
-      //       cout << iter << " ";
-      //     }
-      //     cout << n - sum << "\n";
-      //   }
-      //
-      // } else {
-      //   int iter = 1;
-      //   long long sum = 0;
-      //   for (int i = 0; i < k - 1; i++) {
-      //     sum += iter;
-      //     cout << iter << " ";
-      //   }
-      //   cout << n - sum << "\n";
-      // }
+      cout << n1 << "\n";
+      continue;
     }
+    int n2 = n - 2 * (k - 1);
+    if (n2 > 0 && n2 % 2 == 0) {
+      cout << "Yes" << "\n";
+      for (int i = 0; i < k - 1; ++i) {
+        cout << "2 ";
+      }
+      cout << n2 << "\n";
+      continue;
+    }
+    cout << "NO" << "\n";
   }
 
 #if TIME

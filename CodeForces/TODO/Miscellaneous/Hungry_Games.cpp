@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <cstdint>
+#include <numeric>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -54,61 +54,48 @@ int main() {
   me;
 #endif
 
-  int n;
-  cin >> n;
-  vector<vector<long long>> vec(n, vector<long long>(n, 1));
-  vector<vector<long long>> dp(n, vector<long long>(n, 1));
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
+  int t;
+  cin >> t;
+  while (t--) {
+    long long n, x;
+    cin >> n >> x;
+    long long cnt = 0;
+    vector<long long> a(n);
+    for (int i = 0; i < n; i++) {
       int aa;
       cin >> aa;
-      if (aa % 2 == 0 || aa == 5) {
-        vec[i][j] = aa;
+      if (aa <= x) {
+        cnt++;
       }
+      cin >> a[i];
     }
+    vector<long long> dp(n);
+    for (int i = 0; i < n; i++) {
+      long long sum = 0;
+      int iter = i + 1;
+      while (sum <= x && iter < n) {
+        cnt++;
+        sum += a[iter];
+        iter++;
+      }
+      partial_sum()
+    }
+    cout << cnt << "\n";
+    // vector<long long> dp(n, 0);
+    // dp[0] = a[0];
+    // for (int i = 0; i < n; i++) {
+    //   dp[i] = dp[i - 1] + a[i];
+    //   if (dp[i] > x) {
+    //     dp[i] ^= dp[i];
+    //   }
+    // }
+    // for (auto &&a : dp) {
+    //   if (a) {
+    //     cnt++;
+    //   }
+    // }
+    // cout << cnt << "\n";
   }
-  dp[0][0] = vec[0][0];
-  vector<char> res;
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      int ii = max(i - 1, 0);
-      int jj = max(j - 1, 0);
-      long long one = dp[ii][j] * vec[i][j];
-      long long two = dp[i][jj] * vec[i][j];
-      dp[i][j] = min(one, two);
-    }
-  }
-  string ans;
-  int x = 0, y = 0, cntt = 0, cntf = 0;
-  while (true /*x != n - 1 && y != n - 1*/) {
-    if (x == n - 1 && y == n - 1)
-      break;
-    if (dp[x][y] % 2 == 0) {
-      cntt += dp[x][y] >> 1;
-    }
-    if (dp[x][y] % 5 == 0) {
-      cntt += dp[x][y] / 5;
-    }
-
-    if (dp[x + 1][y] < dp[x][y + 1] /*&& x + 1 <= n - 1*/) {
-      x++;
-      ans.push_back('D');
-      // cout << "D";
-    } else if (dp[x + 1][y] >= dp[x][y + 1] /*&& y + 1 <= n - 1*/) {
-      y++;
-      ans.push_back('R');
-    }
-  }
-  // cout << x << " " << y << "\n";
-  cout << min(cntt, cntf) << "\n";
-  cout << ans << "\n";
-  // print_rvalues(res);
-  // for (auto &&aa : dp) {
-  //   for (auto &&a : aa) {
-  //     cout << a << " ";
-  //   }
-  //   cout << "\n";
-  // }
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

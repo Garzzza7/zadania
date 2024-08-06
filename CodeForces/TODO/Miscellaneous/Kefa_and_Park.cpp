@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <cstdint>
+#include <stack>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,6 +43,26 @@
 #define TIME 0
 
 using namespace std;
+void dfs(int v, vector<bool> &visited, int cats, vector<int> &lookup,
+         vector<vector<int>> &adj, int m, int &cnt) {
+  if (visited[v]) {
+    return;
+  }
+  visited[v] = 1;
+
+  for (auto &&a : adj[v]) {
+    if (visited[a] == false) {
+      if (lookup[a] != lookup[v]) {
+        lookup[a]++;
+      }
+      dfs(a, visited, cats, lookup, adj, m, cnt);
+    }
+  }
+  if (adj[v].size() == 0 && lookup[v] <= m) {
+    cout << v << "\n";
+    cnt++;
+  }
+}
 
 int main() {
 #if TIME
@@ -54,61 +74,32 @@ int main() {
   me;
 #endif
 
-  int n;
-  cin >> n;
-  vector<vector<long long>> vec(n, vector<long long>(n, 1));
-  vector<vector<long long>> dp(n, vector<long long>(n, 1));
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      int aa;
-      cin >> aa;
-      if (aa % 2 == 0 || aa == 5) {
-        vec[i][j] = aa;
-      }
-    }
-  }
-  dp[0][0] = vec[0][0];
-  vector<char> res;
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      int ii = max(i - 1, 0);
-      int jj = max(j - 1, 0);
-      long long one = dp[ii][j] * vec[i][j];
-      long long two = dp[i][jj] * vec[i][j];
-      dp[i][j] = min(one, two);
-    }
-  }
-  string ans;
-  int x = 0, y = 0, cntt = 0, cntf = 0;
-  while (true /*x != n - 1 && y != n - 1*/) {
-    if (x == n - 1 && y == n - 1)
-      break;
-    if (dp[x][y] % 2 == 0) {
-      cntt += dp[x][y] >> 1;
-    }
-    if (dp[x][y] % 5 == 0) {
-      cntt += dp[x][y] / 5;
-    }
+  int n, m;
+  cin >> n >> m;
 
-    if (dp[x + 1][y] < dp[x][y + 1] /*&& x + 1 <= n - 1*/) {
-      x++;
-      ans.push_back('D');
-      // cout << "D";
-    } else if (dp[x + 1][y] >= dp[x][y + 1] /*&& y + 1 <= n - 1*/) {
-      y++;
-      ans.push_back('R');
-    }
+  vector<vector<int>> adj(n + 1, vector<int>());
+  vector<int> lookup(n + 1, 0);
+
+  vector<bool> visited(n, false);
+  for (int i = 1; i <= n; i++) {
+    int b;
+    cin >> b;
+    lookup[i] = b;
   }
-  // cout << x << " " << y << "\n";
-  cout << min(cntt, cntf) << "\n";
-  cout << ans << "\n";
-  // print_rvalues(res);
-  // for (auto &&aa : dp) {
-  //   for (auto &&a : aa) {
-  //     cout << a << " ";
-  //   }
-  //   cout << "\n";
-  // }
+  for (int i = 0; i < n - 1; i++) {
+    int x, y;
+    cin >> x >> y;
+    int xx = x;
+    int yy = y;
+    xx = min(x, y);
+    yy = max(x, y);
+    adj[xx].push_back(yy);
+    // adj[y].push_back(x);
+  }
+  int ct = 0;
+  int res = 0;
+  dfs(1, visited, ct, lookup, adj, m, res);
+  cout << res << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
