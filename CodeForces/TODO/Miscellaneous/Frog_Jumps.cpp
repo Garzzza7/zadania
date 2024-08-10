@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
+#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -56,6 +57,32 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    string s;
+    cin >> s;
+    s = 'R' + s;
+    s = s + 'R';
+    int last = s.size() - 1;
+    int res = -INT32_MAX;
+    for (int i = s.size() - 2; i >= 0; i--) {
+      if (s[i] == 'R') {
+        res = max(res, last - i);
+        last = i;
+      }
+    }
+    cout << res << "\n";
+    // vector<int> dp(s.size(), 1000);
+    // dp[0] = 0;
+    // for (int i = 1; i < s.size(); i++) {
+    //   for (int j = i - 1; j >= 0; j--) {
+    //     if (s[i] == 'L') {
+    //       break;
+    //     } else {
+    //       dp[i] = min(dp[i], dp[j] + (i - j));
+    //     }
+    //   }
+    // }
+    // // print_rvalues(dp);
+    // cout << dp[dp.size() - 1] << "\n";
   }
 
 #if TIME

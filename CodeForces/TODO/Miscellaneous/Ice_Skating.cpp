@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -43,6 +44,17 @@
 
 using namespace std;
 
+void dfs(int v, vector<vector<int>> &adj, vector<bool> &visited) {
+  if (visited[v])
+    return;
+  visited[v] = true;
+  for (auto &&a : adj[v]) {
+    if (!visited[a]) {
+      dfs(a, adj, visited);
+    }
+  }
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -53,10 +65,60 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
+  // int n;
+  // cin >> n;
+  // vector<int> vecx(1000 + 1, 0);
+  // vector<int> vecy(1000 + 1, 0);
+  // for (int i = 0; i < n; i++) {
+  //   int x, y;
+  //   cin >> x >> y;
+  //   vecx[x]++;
+  //   vecy[y]++;
+  // }
+  // int bx = 0;
+  // int by = 0;
+  // for (int i = 1; i <= 1000; i++) {
+  //   bx = max(bx, vecx[i]);
+  //   by = max(by, vecy[i]);
+  // }
+  // cout << min(n - bx, n - by) << "\n";
+  int n;
+  cin >> n;
+  vector<vector<int>> adj(1001, vector<int>());
+  vector<bool> visited(1001, true);
+  for (int i = 0; i < n; i++) {
+    int x, y;
+    cin >> x >> y;
+    visited[x] = false;
+    visited[y] = false;
+    adj[x].push_back(y);
+    // adj[y].push_back(x);
   }
+  int sum = 0;
+  vector<bool> used = visited;
+  for (int i = 1; i <= 1000; i++) {
+    if (!visited[i]) {
+      dfs(i, adj, visited);
+      sum++;
+    }
+  }
+  // vector<int> vecx(1000 + 1, 0);
+  // vector<int> vecy(1000 + 1, 0);
+  // for (int i = 0; i < n; i++) {
+  //   int x, y;
+  //   cin >> x >> y;
+  //   vecx[x]++;
+  //   vecy[y]++;
+  // }
+  // int bx = 0;
+  // int by = 0;
+  // for (int i = 1; i <= 1000; i++) {
+  //   bx = max(bx, vecx[i]);
+  //   by = max(by, vecy[i]);
+  // }
+  // int ans = min(n - bx, n - by);
+  // cout << min(sum, ans) << "\n";
+  cout << sum << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

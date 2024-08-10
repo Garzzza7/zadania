@@ -53,9 +53,30 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
+  int a, b;
+  cin >> a >> b;
+  vector<int> res = {b};
+  bool flag = true;
+  while (b > a) {
+    if (b % 2 == 0) {
+      b >>= 1;
+      res.push_back(b);
+    } else if ((b - 1) % 10 == 0) {
+      b--;
+      b /= 10;
+      res.push_back(b);
+    } else {
+      flag = 0;
+      break;
+    }
+  }
+  if (flag && b == a) {
+    cout << "YES\n" << res.size() << "\n";
+    for (int i = res.size() - 1; i >= 0; i--) {
+      cout << res[i] << " ";
+    }
+  } else {
+    cout << "NO\n";
   }
 
 #if TIME

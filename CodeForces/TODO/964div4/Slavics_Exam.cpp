@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <string>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -53,9 +54,34 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
+  int T;
+  cin >> T;
+  while (T--) {
+    string s;
+    cin >> s;
+    string t;
+    cin >> t;
+    int cnt1 = s.size();
+    int cnt2 = 0;
+    int jj = 0;
+    vector<bool> visited(s.size(), 0);
+    for (int i = 0; i < t.size(); i++) {
+      for (int j = jj; j < s.size(); j++) {
+        jj = j;
+        if (s[j] == '?')
+          cnt2++;
+        if (t[i] == s[j]) {
+          visited[j] = 1;
+          cnt1--;
+          break;
+        }
+      }
+    }
+    if (cnt2 >= cnt1) {
+      cout << "YES\n";
+    } else {
+      cout << "NO\n";
+    }
   }
 
 #if TIME

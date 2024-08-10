@@ -56,6 +56,14 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    string s;
+    cin >> s;
+
+    long long sum = 0;
+    for (auto &&c : s) {
+      sum += c - '0';
+    }
+    cout << sum << "\n";
   }
 
 #if TIME

@@ -56,6 +56,13 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    int n, k;
+    cin >> n >> k;
+    if (n - 1 > k) {
+      cout << n << "\n";
+    } else {
+      cout << 1 << "\n";
+    }
   }
 
 #if TIME

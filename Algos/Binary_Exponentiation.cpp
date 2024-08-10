@@ -43,6 +43,17 @@
 
 using namespace std;
 
+long long binpow(long long a, long long b) {
+  long long res = 1;
+  while (b > 0) {
+    if (b & 1)
+      res = res * a;
+    a = a * a;
+    b >>= 1;
+  }
+  return res;
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -53,10 +64,10 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-  }
+  long long a, b;
+  cin >> a >> b;
+  long long res = binpow(a, b);
+  cout << res << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

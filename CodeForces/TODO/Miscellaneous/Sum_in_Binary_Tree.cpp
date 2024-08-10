@@ -56,6 +56,14 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    long long n;
+    cin >> n;
+    long long sum = 0;
+    while (n >= 1) {
+      sum += n;
+      n >>= 1;
+    }
+    cout << sum << "\n";
   }
 
 #if TIME

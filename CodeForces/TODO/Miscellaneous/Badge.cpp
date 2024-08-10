@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cmath>
 #include <stdlib.h>
+#include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
     cout << a << " ";                                                          \
@@ -43,6 +44,23 @@
 
 using namespace std;
 
+void dfs(int v, vector<vector<int>> &adj, vector<int> &visited,
+         vector<int> &ans) {
+
+  if (visited[v] == 2) {
+    cout << v << " ";
+    return;
+  }
+  visited[v] += 1;
+
+  for (auto &&vec : adj[v]) {
+    // if (visited[vec] != 0) {
+    dfs(vec, adj, visited, ans);
+    //}
+  }
+  // ans.push_back(v);
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -53,11 +71,26 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-  }
+  int n;
+  cin >> n;
+  vector<vector<int>> adj(n + 1, vector<int>());
 
+  vector<int> visited(n + 1, 0);
+  for (int i = 1; i <= n; i++) {
+    int p;
+    cin >> p;
+    adj[i].push_back(p);
+    // visited[p]++;
+  }
+  vector<int> ans;
+  for (int i = 1; i <= n; i++) {
+    vector<int> vis = visited;
+    vis[i]++;
+    dfs(i, adj, vis, ans);
+  }
+  for (int i = ans.size() - n; i <= ans.size() - 1; i++) {
+    cout << ans[i] << " ";
+  }
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

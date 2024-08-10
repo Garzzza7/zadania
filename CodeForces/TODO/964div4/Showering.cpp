@@ -56,6 +56,24 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    int n, s, m;
+    cin >> n >> s >> m;
+    int last = 0;
+    bool flag = 0;
+    while (n--) {
+      int l, r;
+      cin >> l >> r;
+      // cout << "diff = " << l - last << "\n";
+      if (l - last >= s) {
+        flag = 1;
+      }
+      last = r;
+    }
+    if (flag || m - last >= s) {
+      cout << "YES\n";
+    } else {
+      cout << "NO\n";
+    }
   }
 
 #if TIME

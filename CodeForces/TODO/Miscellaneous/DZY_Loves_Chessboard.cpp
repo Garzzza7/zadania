@@ -19,7 +19,7 @@
 #define setasc(vec) std::set<int, std::greater<int>> vec
 #define sortpairascS(vec)                                                      \
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second < right.second;                                         \
+    returm left.second < right.second;                                         \
   })
 #define sortpairdecS(vec)                                                      \
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
@@ -53,9 +53,39 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
+  int n, m;
+  cin >> n >> m;
+  vector<string> vec(n);
+  for (int i = 0; i < n; i++) {
+    string s;
+    cin >> s;
+    vec[i] = s;
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (vec[i][j] == '.') {
+        if (i % 2 == 0) {
+          if (j % 2 == 0) {
+            vec[i][j] = 'W';
+          } else {
+            vec[i][j] = 'B';
+          }
+        } else {
+          if (j % 2 == 0) {
+            vec[i][j] = 'B';
+          } else {
+            vec[i][j] = 'W';
+          }
+        }
+      }
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cout << vec[i][j];
+    }
+    cout << "\n";
   }
 
 #if TIME

@@ -53,9 +53,19 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
+  int n, m;
+  cin >> n >> m;
+  if (m > n) {
+    cout << -1 << "\n";
+  } else {
+    int res = m;
+    while (1) {
+      if (res <= n && res * 2 >= n) {
+        break;
+      }
+      res += m;
+    }
+    cout << res << "\n";
   }
 
 #if TIME

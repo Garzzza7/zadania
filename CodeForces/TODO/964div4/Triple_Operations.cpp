@@ -56,6 +56,22 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
+    int l, r;
+    cin >> l >> r;
+    // vector<int> vec;
+    //  for (int i = l; i <= r; i++) {
+    //    vec.push_back(i);
+    //  }
+    long long res = 0;
+    if (l <= 3) {
+      res++;
+    } else {
+      res += (l / 3 + 1) << 1;
+    }
+    for (int i = l + 1; i <= r; i++) {
+      res += (l / 3) + 1;
+    }
+    cout << res << "\n";
   }
 
 #if TIME
