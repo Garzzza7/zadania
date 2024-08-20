@@ -1,5 +1,7 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <cmath>
+#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,15 +45,37 @@
 
 using namespace std;
 
-long long binpow(long long a, long long b) {
-  long long res = 1;
-  while (b > 0) {
-    if (b & 1)
-      res = res * a;
-    a = a * a;
-    b >>= 1;
+void merge(vector<int> &vec, int p, int q, int r) {
+  int size1 = q - p + 1;
+  int size2 = r - q;
+  vector<int> L(size1 + 1, INT32_MAX);
+  vector<int> R(size2 + 1, INT32_MAX);
+  for (int i = 0; i < size1; i++) {
+    L[i] = vec[p + i];
   }
-  return res;
+  for (int i = 0; i < size2; i++) {
+    R[i] = vec[q + i + 1];
+  }
+  int i = 0;
+  int j = 0;
+  for (int k = p; k <= r; k++) {
+    if (L[i] <= R[j]) {
+      vec[k] = L[i];
+      i++;
+    } else {
+      vec[k] = R[j];
+      j++;
+    }
+  }
+}
+
+void merge_sort(vector<int> &vec, int p, int r) {
+  if (p < r) {
+    int q = (p + r) / 2;
+    merge_sort(vec, p, q);
+    merge_sort(vec, q + 1, r);
+    merge(vec, p, q, r);
+  }
 }
 
 int main() {
@@ -66,15 +90,14 @@ int main() {
 
   int n;
   cin >> n;
-  for (int i = 1; i <= n; i++) {
-    int iter = i - 1;
-    long long res = 1;
-    while (iter != 0) {
-      res *= iter;
-      iter--;
-    }
-    cout << res << "\n";
+  vector<int> vec(n);
+  for (int i = 0; i < n; i++) {
+    cin >> vec[i];
   }
+  print_rvalues(vec);
+  cout << "//////////////////////\n";
+  merge_sort(vec, 0, n - 1);
+  print_rvalues(vec);
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

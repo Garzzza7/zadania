@@ -92,14 +92,14 @@ int main() {
     visited[x] = false;
     visited[y] = false;
     adj[x].push_back(y);
-    // adj[y].push_back(x);
+    adj[y].push_back(x);
   }
   int sum = 0;
   vector<bool> used = visited;
-  for (int i = 1; i <= 1000; i++) {
+  for (int i = 1; i <= n; i++) {
     if (!visited[i]) {
-      dfs(i, adj, visited);
       sum++;
+      dfs(i, adj, visited);
     }
   }
   // vector<int> vecx(1000 + 1, 0);
@@ -118,7 +118,7 @@ int main() {
   // }
   // int ans = min(n - bx, n - by);
   // cout << min(sum, ans) << "\n";
-  cout << sum << "\n";
+  cout << sum - 1 << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

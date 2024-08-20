@@ -25,7 +25,7 @@
   std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
     return left.second > right.second;                                         \
   })
-#define sortpairascF(vec)                                                      \
+#define sortpairascF(vec)                            i                          \
   std::sort(vec.begin(), vec.end(),                                            \
             [](auto &left, auto &right) { return left.first < right.first; })
 #define sortpairdecF(vec)                                                      \
@@ -53,24 +53,22 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int x1, y1, x2, y2;
-    cin >> x1 >> y1 >> x2 >> y2;
-    if (x1 == x2) {
-      int diff = 0;
-      if (y2 > y1) {
-        diff = y2 - y1;
-      } else {
-        diff = y1 - y2;
-      }
-      cout <<
-    } else if (y1 == y2) {
-
-    } else {
-      cout << "-1";
-    }
+  int x1, y1, x2, y2;
+  cin >> x1 >> y1 >> x2 >> y2;
+  if (x1 == x2) {
+    int distance = max(y1, y2) - min(y1, y2);
+    cout << x1 + distance << " " << min(y1, y2) << " " << x2 + distance << " "
+         << max(y1, y2);
+  } else if (y1 == y2) {
+    int distance = max(x1, x2) - min(x1, x2);
+    cout << min(x1, x2) << " " << y1 - distance << " " << max(x1, x2) << " "
+         << y2 - distance;
+  } else if (abs(x1 - x2) != abs(y1 - y2)) {
+    cout << "-1\n";
+  } else {
+    int distance = max(x1, x2) - min(x1, x2);
+    cout << min(x1, x2) << " " << min(y1, y2) + distance << " "
+         << min(x1, x2) + distance << " " << min(y1, y2);
   }
 
 #if TIME

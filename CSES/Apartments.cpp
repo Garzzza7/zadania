@@ -43,17 +43,6 @@
 
 using namespace std;
 
-long long binpow(long long a, long long b) {
-  long long res = 1;
-  while (b > 0) {
-    if (b & 1)
-      res = res * a;
-    a = a * a;
-    b >>= 1;
-  }
-  return res;
-}
-
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -64,17 +53,47 @@ int main() {
   me;
 #endif
 
-  int n;
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    int iter = i - 1;
-    long long res = 1;
-    while (iter != 0) {
-      res *= iter;
-      iter--;
-    }
-    cout << res << "\n";
+  int n, m, k;
+  cin >> n >> m >> k;
+  vector<long long> a(n);
+  vector<long long> b(m);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
   }
+  for (int i = 0; i < m; i++) {
+    cin >> b[i];
+  }
+  sortasc(a);
+  sortasc(b);
+  long long cnt = 0;
+  long long iter = 0;
+  int i = 0;
+  int j = 0;
+  while (i < n and j < m) {
+    if (a[i] - k > b[j])
+      j++;
+    else if (a[i] + k < b[j])
+      i++;
+    else {
+      i++, j++, cnt++;
+    }
+  }
+  // for (int i = 0; i < n; i++) {
+  //   if (cnt == m) {
+  //     break;
+  //   }
+  //   for (int j = iter; j < m; j++) {
+  //     if (b[j] - k <= a[i] && b[j] + k >= a[i]) {
+  //       cnt++;
+  //       iter = j + 1;
+  //       break;
+  //     }
+  //     if (cnt == m) {
+  //       break;
+  //     }
+  //   }
+  // }
+  cout << cnt << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
