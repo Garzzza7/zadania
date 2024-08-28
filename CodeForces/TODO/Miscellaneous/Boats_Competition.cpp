@@ -43,26 +43,6 @@
 
 using namespace std;
 
-long long recursive_binomial_coefficient(int n, int k) {
-  if (k == 1) {
-    return n;
-  } else if (n == k || k == 0) {
-    return 1;
-  }
-  return recursive_binomial_coefficient(n - 1, k - 1) +
-         recursive_binomial_coefficient(n - 1, k);
-}
-
-long long multiplicative_binomial_coefficient(int n, int k) {
-  long long res = 1;
-  int kk = min(k, n - k);
-  for (int i = 1; i <= kk; i++) {
-    res *= n + 1 - i;
-    res /= i;
-  }
-  return res;
-}
-
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -73,13 +53,31 @@ int main() {
   me;
 #endif
 
-  int n, k;
-  cin >> n >> k;
-  int a = multiplicative_binomial_coefficient(n, k);
-  cout << "Multiplicative:\n" << a << "\n";
-  int b = recursive_binomial_coefficient(n, k);
-  cout << "Recursive:\n" << b << "\n";
-
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> w(n);
+    for (int i = 0; i < n; i++) {
+      cin >> w[i];
+    }
+    map<int, int> mp;
+    for (int i = 0; i < n; i++) {
+      for (int j = i + 1; j < n; j++) {
+        if (mp.find(w[i] + w[j]) != mp.end()) {
+          mp.insert({w[i] + w[j], 0});
+        }
+        mp[w[i] + w[j]]++;
+      }
+    }
+    int res = 0;
+    for (auto &&a : mp) {
+      res = max(res, a.second);
+    }
+    cout << res << "\n";
+  }
+// 1 1 2 2 3 4
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

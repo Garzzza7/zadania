@@ -43,26 +43,6 @@
 
 using namespace std;
 
-long long recursive_binomial_coefficient(int n, int k) {
-  if (k == 1) {
-    return n;
-  } else if (n == k || k == 0) {
-    return 1;
-  }
-  return recursive_binomial_coefficient(n - 1, k - 1) +
-         recursive_binomial_coefficient(n - 1, k);
-}
-
-long long multiplicative_binomial_coefficient(int n, int k) {
-  long long res = 1;
-  int kk = min(k, n - k);
-  for (int i = 1; i <= kk; i++) {
-    res *= n + 1 - i;
-    res /= i;
-  }
-  return res;
-}
-
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -73,12 +53,29 @@ int main() {
   me;
 #endif
 
-  int n, k;
-  cin >> n >> k;
-  int a = multiplicative_binomial_coefficient(n, k);
-  cout << "Multiplicative:\n" << a << "\n";
-  int b = recursive_binomial_coefficient(n, k);
-  cout << "Recursive:\n" << b << "\n";
+  int t;
+  cin >> t;
+  while (t--) {
+    int n, k;
+    cin >> n >> k;
+    vector<int> vec(n);
+    for (int i = 0; i < n; i++) {
+      cin >> vec[i];
+    }
+    sortdes(vec);
+    long long res = 0;
+    for (int i = 0; i < n; i++) {
+      if (i & 1) {
+        int mini = min(k, vec[i - 1] - vec[i]);
+        vec[i] += mini;
+        k -= mini;
+        res -= vec[i];
+      } else {
+        res += vec[i];
+      }
+    }
+    cout << res << "\n";
+  }
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

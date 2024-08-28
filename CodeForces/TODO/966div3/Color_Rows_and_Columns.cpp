@@ -62,8 +62,58 @@ int main() {
     for (int i = 0; i < n; i++) {
       int aa, bb;
       cin >> aa >> bb;
-      a[i] = {aa, bb};
+      a[i] = {min(aa, bb), max(aa, bb)};
     }
+    sortpairascF(a);
+    int a_iter = 0;
+    int res = 0;
+    int kk = k;
+    int turn = 0;
+    bool flag = 0;
+    while (kk--) {
+      if (a[a_iter].first == a[a_iter].second) {
+        flag = 1;
+      }
+      if (flag) {
+
+        if (turn == 0) {
+          // res++;
+          res += a[a_iter].first;
+          a[a_iter].second--;
+
+          turn = 1;
+        } else if (turn == 1) {
+
+          // res++;
+          res += a[a_iter].second;
+          a[a_iter].first--;
+          turn = 2;
+        } else if (turn == 2) {
+
+          // res++;
+          res += a[a_iter].first;
+          a[a_iter].second--;
+          turn = 3;
+        } else if (turn == 3) {
+
+          // res++;
+          res += a[a_iter].second;
+          a[a_iter].first--;
+
+          turn = 0;
+        }
+
+      } else {
+
+        // res++;
+        res += a[a_iter].first;
+        a[a_iter].second--;
+      }
+      if (a[a_iter].first == 1 && a[a_iter].second == 1) {
+        a_iter++;
+      }
+    }
+    cout << res << "\n";
   }
 
 #if TIME

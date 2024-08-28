@@ -63,6 +63,49 @@ long long multiplicative_binomial_coefficient(int n, int k) {
   return res;
 }
 
+long long calculate(int x, char c, int y, int n) {
+  long long res = 0;
+  if (c == '+') {
+    for (int i = 0; i <= n; i++) {
+      res += (recursive_binomial_coefficient(n, i) * pow(x, i) * pow(y, n - i));
+    }
+  } else {
+    long long flip = -1;
+    for (int i = 0; i <= n; i++) {
+      res +=
+          flip *
+          ((recursive_binomial_coefficient(n, i) * pow(x, i) * pow(y, n - i)));
+      flip *= -1;
+    }
+  }
+  return res;
+}
+
+void show_calculation(int x, char c, int y, int n) {
+  if (c == '+') {
+    for (int i = 0; i <= n; i++) {
+      cout << recursive_binomial_coefficient(n, i) << " x^" << i << " y^"
+           << n - i;
+      if (i != n) {
+        cout << " " << c << " ";
+      }
+    }
+    cout << "\n";
+  } else {
+    int move = -2;
+    for (int i = 0; i <= n; i++) {
+      cout << recursive_binomial_coefficient(n, i) << " x^" << i << " y^"
+           << n - i;
+      if (i != n) {
+        cout << " " << c << " ";
+      }
+      c += move;
+      move *= -1;
+    }
+    cout << "\n";
+  }
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -73,12 +116,11 @@ int main() {
   me;
 #endif
 
-  int n, k;
-  cin >> n >> k;
-  int a = multiplicative_binomial_coefficient(n, k);
-  cout << "Multiplicative:\n" << a << "\n";
-  int b = recursive_binomial_coefficient(n, k);
-  cout << "Recursive:\n" << b << "\n";
+  int x, y, n;
+  char c;
+  cin >> x >> c >> y >> n;
+  show_calculation(x, c, y, n);
+  cout << calculate(x, c, y, n) << "\n";
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();

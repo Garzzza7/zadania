@@ -43,26 +43,6 @@
 
 using namespace std;
 
-long long recursive_binomial_coefficient(int n, int k) {
-  if (k == 1) {
-    return n;
-  } else if (n == k || k == 0) {
-    return 1;
-  }
-  return recursive_binomial_coefficient(n - 1, k - 1) +
-         recursive_binomial_coefficient(n - 1, k);
-}
-
-long long multiplicative_binomial_coefficient(int n, int k) {
-  long long res = 1;
-  int kk = min(k, n - k);
-  for (int i = 1; i <= kk; i++) {
-    res *= n + 1 - i;
-    res /= i;
-  }
-  return res;
-}
-
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -73,12 +53,31 @@ int main() {
   me;
 #endif
 
-  int n, k;
-  cin >> n >> k;
-  int a = multiplicative_binomial_coefficient(n, k);
-  cout << "Multiplicative:\n" << a << "\n";
-  int b = recursive_binomial_coefficient(n, k);
-  cout << "Recursive:\n" << b << "\n";
+  int t;
+  cin >> t;
+  while (t--) {
+    string s;
+    cin >> s;
+    vector<pair<char, int>> vec;
+    for (auto &&a : s) {
+      if (vec.empty() || vec.back().first != a) {
+        vec.push_back({a, 1});
+      } else {
+        vec.back().second++;
+      }
+    }
+    int res = INT32_MAX;
+    for (int i = 1; i < vec.size() - 1; i++) {
+      if (vec[i - 1].first != vec[i + 1].first) {
+        res = min(res, 2 + vec[i].second);
+      }
+    }
+    if (res > s.size()) {
+      cout << "0\n";
+    } else {
+      cout << res << "\n";
+    }
+  }
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
