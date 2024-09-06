@@ -43,6 +43,24 @@
 
 using namespace std;
 
+int ternary_search(vector<int> &vec, int l, int r, int x) {
+  if (r >= l) {
+    int mid1 = l + (r - l) / 3;
+    int mid2 = r - (r - l) / 3;
+    if (vec[mid1] == x)
+      return mid1;
+    if (vec[mid2] == x)
+      return mid2;
+    if (x < vec[mid1])
+      return ternary_search(vec, l, mid1 - 1, x);
+    else if (x > vec[mid2])
+      return ternary_search(vec, mid2 + 1, r, x);
+    else
+      return ternary_search(vec, mid1 + 1, mid2 - 1, x);
+  }
+  return -1;
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -53,33 +71,13 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    if (n & 1) {
-      int cnte = 0;
-      char c = '!';
-      vector<int> alphabet(26, 0);
-      for (int i = 1; i < n; i++) {
-        alphabet[i - '0' - 49]++;
-        if (s[i] != c) {
-          cnte = max(cnte - 1, 0);
-          if (cnte == 0) {
-            cnte = 1;
-            c = s[i];
-          }
-        } else {
-          cnte++;
-        }
-      }
-      cout << alphabet[c - '0' - 49] << "\n";
-    } else {
-    }
+  int n;
+  cin >> n;
+  vector<int> vec(n);
+  for (int i = 0; i < n; i++) {
+    cin >> vec[i];
   }
+  cout << ternary_search(vec, 0, n - 1, 14) << "\n";
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

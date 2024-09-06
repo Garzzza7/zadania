@@ -58,28 +58,27 @@ int main() {
   while (t--) {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-    if (n & 1) {
-      int cnte = 0;
-      char c = '!';
-      vector<int> alphabet(26, 0);
-      for (int i = 1; i < n; i++) {
-        alphabet[i - '0' - 49]++;
-        if (s[i] != c) {
-          cnte = max(cnte - 1, 0);
-          if (cnte == 0) {
-            cnte = 1;
-            c = s[i];
-          }
-        } else {
-          cnte++;
+    vector<string> vec;
+    for (int i = 0; i < n; i++) {
+      string s;
+      cin >> s;
+      vec.push_back(s);
+      /*char c;*/
+      /*cin >> c;*/
+      /*vec[i][j] = c;*/
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+      for (int j = 0; j < 4; j++) {
+        /*cout << vec[i][j] << " ";*/
+        if (vec[i][j] == '#') {
+          cout << j + 1 << " ";
         }
       }
-      cout << alphabet[c - '0' - 49] << "\n";
-    } else {
     }
+    cout << "\n";
   }
+
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

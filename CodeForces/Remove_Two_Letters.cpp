@@ -60,26 +60,32 @@ int main() {
     cin >> n;
     string s;
     cin >> s;
-    if (n & 1) {
-      int cnte = 0;
-      char c = '!';
-      vector<int> alphabet(26, 0);
-      for (int i = 1; i < n; i++) {
-        alphabet[i - '0' - 49]++;
-        if (s[i] != c) {
-          cnte = max(cnte - 1, 0);
-          if (cnte == 0) {
-            cnte = 1;
-            c = s[i];
-          }
-        } else {
-          cnte++;
-        }
+    long long res = n - 1;
+    for (int i = 1; i < n - 1; i++) {
+      if (s[i - 1] == s[i + 1]) {
+        res--;
       }
-      cout << alphabet[c - '0' - 49] << "\n";
-    } else {
     }
+    cout << res << "\n";
+    /*set<string> set;*/
+    /*int avoid1 = 0;*/
+    /*int avoid2 = 1;*/
+    /**/
+    /*for (int i = 0; i < n - 1; i++) {*/
+    /*  string buff = "";*/
+    /*  for (int j = 0; j < n; j++) {*/
+    /*    if (i == avoid1 || i == avoid2) {*/
+    /*      continue;*/
+    /*    }*/
+    /*    buff.push_back(s[j]);*/
+    /*  }*/
+    /*  avoid1++;*/
+    /*  avoid2++;*/
+    /*  set.insert(buff);*/
+    /*}*/
+    /*cout << set.size() << "\n";*/
   }
+
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

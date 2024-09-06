@@ -53,33 +53,31 @@ int main() {
   me;
 #endif
 
-  int t;
-  cin >> t;
-  while (t--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    if (n & 1) {
-      int cnte = 0;
-      char c = '!';
-      vector<int> alphabet(26, 0);
-      for (int i = 1; i < n; i++) {
-        alphabet[i - '0' - 49]++;
-        if (s[i] != c) {
-          cnte = max(cnte - 1, 0);
-          if (cnte == 0) {
-            cnte = 1;
-            c = s[i];
-          }
-        } else {
-          cnte++;
-        }
-      }
-      cout << alphabet[c - '0' - 49] << "\n";
-    } else {
+  long double n, k, x;
+  cin >> n >> k >> x;
+  vector<long double> vec(n);
+  for (int i = 0; i < n; i++) {
+    cin >> vec[i];
+  }
+  long long res = 1;
+  vector<long double> diffs;
+  sortasc(vec);
+  for (int i = 1; i < n; i++) {
+    if ((vec[i] - vec[i - 1]) > x) {
+      diffs.push_back(vec[i] - vec[i - 1]);
+      res++;
     }
   }
+  sortasc(diffs);
+  for (int i = 0; i < diffs.size(); i++) {
+    if (k > 0) {
+      k = k - (ceil(diffs[i] / x) - 1);
+      if (k >= 0) {
+        res--;
+      }
+    }
+  }
+  cout << res << "\n";
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

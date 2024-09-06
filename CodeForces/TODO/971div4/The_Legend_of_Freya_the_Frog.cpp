@@ -56,30 +56,13 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    if (n & 1) {
-      int cnte = 0;
-      char c = '!';
-      vector<int> alphabet(26, 0);
-      for (int i = 1; i < n; i++) {
-        alphabet[i - '0' - 49]++;
-        if (s[i] != c) {
-          cnte = max(cnte - 1, 0);
-          if (cnte == 0) {
-            cnte = 1;
-            c = s[i];
-          }
-        } else {
-          cnte++;
-        }
-      }
-      cout << alphabet[c - '0' - 49] << "\n";
-    } else {
-    }
+    int x, y, k;
+    cin >> x >> y >> k;
+    int add = (x % k > 0) ? 1 : 0;
+    int ad = (y % k > 0) ? 1 : 0;
+    cout << x / k + add + y / k + ad << "\n";
   }
+
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;
