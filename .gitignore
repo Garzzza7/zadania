@@ -1,6 +1,14 @@
 *.out
 *.exe
 *.o
+*.app
+*.slo
+*.lo
+*.obj
+*.d
+*.a
+*.so
+*.idx
 .idea
 .cache
 build/*

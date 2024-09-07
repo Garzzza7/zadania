@@ -58,55 +58,36 @@ int main() {
   while (t--) {
     int n;
     cin >> n;
-    vector<int> vec(n);
+    vector<long long> vec(n);
+    vector<long long> prefsum(n + 1, 0);
     for (int i = 0; i < n; i++) {
-      cin >> vec[i];
-    }
-    vector<int> pref(n, 0);
-    pref[0] = vec[0];
-    for (int i = 1; i < n; i++) {
-      pref[i] += pref[i - 1] + vec[i];
+      long long aa;
+      cin >> aa;
+      vec[i] = aa;
+      prefsum[i + 1] += prefsum[i] + aa;
     }
     string s;
     cin >> s;
-    int left = 0;
-    int right = s.size() - 1;
-
-    for (int i = 0; i < s.size(); i++) {
-      if (s[i] == 'L') {
-        left = i;
-        break;
-      }
-    }
-
-    for (int i = s.size() - 1; i >= 0; i--) {
-      if (s[i] == 'R') {
-        right = i;
-        break;
-      }
-    }
-
     long long res = 0;
-    res += pref[right] - pref[left - 1];
-
-    int l = left + 1;
-    int r = right - 1;
-
-    for (int i = l; i < r; i++) {
-      if (s[i] == 'L') {
-        left = i;
+    int r = n - 1;
+    int l = 0;
+    for (int i = 0; i < n; i++) {
+      if (l == r + 1) {
         break;
       }
-    }
-
-    for (int i = r; i >= l; i--) {
-      if (s[i] == 'R') {
-        right = i;
-        break;
+      if (s[l] == 'L' && s[r] == 'R') {
+        res += prefsum[r + 1] - prefsum[l];
+        l++;
+        r--;
+      } else if (s[l] != 'L' && s[r] == 'R') {
+        l++;
+      } else if (s[l] == 'L' && s[r] != 'R') {
+        r--;
+      } else {
+        l++;
+        r--;
       }
     }
-
-    res += pref[right] - pref[left - 1];
     cout << res << "\n";
   }
 

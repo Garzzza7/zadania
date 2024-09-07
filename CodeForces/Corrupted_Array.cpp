@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -71,41 +70,41 @@ int main() {
   int T;
   cin >> T;
   while (T--) {
-    int n;
-    cin >> n;
-    vector<pair<long long, long long>> vec(n);
-    long long maxi = INT32_MIN;
-    for (int i = 0; i < n; i++) {
-      long long aa;
-      cin >> aa;
-      maxi = max(maxi, aa);
-      vec[i] = {abs(aa), aa};
+    int N;
+    cin >> N;
+    vector<long long> vec(N + 2);
+    long long sum = (long long)0;
+    for (int i = 0; i < N + 2; i++) {
+      cin >> vec[i];
     }
-
-    if (maxi == 0) {
-      cout << "0\n";
-    } else if (maxi < 0) {
-      sortpairascS(vec);
-      cout << vec[n - 1].second * vec[n - 2].second * vec[n - 3].second *
-                  vec[n - 4].second * vec[n - 5].second
-           << "\n";
-    } else {
-      sortpairdesF(vec);
-      long long res = vec[0].second * vec[1].second * vec[2].second *
-                      vec[3].second * vec[4].second;
-      for (int i = 5; i < n; i++) {
-        for (int j = 0; j < 5; j++) {
-          long long buffer = vec[i].second;
-          for (int jj = 0; jj < 5; jj++) {
-            if (j != jj) {
-              buffer *= vec[jj].second;
-            }
-          }
-          res = max(res, buffer);
-        }
+    bool flag = 0;
+    sortasc(vec);
+    for (int i = 0; i < N; i++) {
+      sum += vec[i];
+    }
+    if (sum == vec[N]) {
+      for (int i = 0; i < N; i++) {
+        cout << vec[i] << " ";
       }
-      cout << res << "\n";
+      cout << "\n";
+      flag = 1;
+      continue;
     }
+    sum += vec[N];
+    for (int i = 0; i <= N; i++) {
+      if (sum - vec[i] == vec[N + 1]) {
+        for (int ii = 0; ii <= N; ii++) {
+          if (ii != i) {
+            cout << vec[ii] << " ";
+          }
+        }
+        cout << "\n";
+        flag = 1;
+        break;
+      }
+    }
+    if (!flag)
+      cout << "-1\n";
   }
 
 #if TIME
@@ -118,3 +117,4 @@ int main() {
 #endif
   return 0;
 }
+
