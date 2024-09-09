@@ -38,9 +38,9 @@
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
- 
+
 using namespace std;
- 
+
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1)
 {
@@ -52,37 +52,51 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1)
   {
     end = int(v.size());
   }
- 
+
   for (int i = begin; i < end; i++)
   {
     std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
   }
 }
- 
+
 int main()
 {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
 #endif
- 
+
 #if FAST
   help;
   me;
 #endif
- 
-  int N;
-  cin >> N;
-  long long cntD = 1;
-  long long cntabc = 0;
-  for (int i = 0; i < N; i++)
+
+  int T;
+  cin >> T;
+  while (T--)
   {
-    long long d = cntabc * 3 % MOD;
-    long long abc = (cntabc * 2 + cntD) % MOD;
-    cntD = d;
-    cntabc = abc;
+    int n, s;
+    cin >> n >> s;
+    vector<int> vec(n);
+    vector<int> prefsum(n + 1, 0);
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+      int aa;
+      cin >> aa;
+      prefsum[i + 1] += aa + prefsum[i];
+      vec[i] = aa;
+      sum += aa;
+    }
+    if (s > sum)
+    {
+      cout << "-1\n";
+    }
+    else
+    {
+      
+    }
   }
-  cout << cntD << "\n";
- 
+
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

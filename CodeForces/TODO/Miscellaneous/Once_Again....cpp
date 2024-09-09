@@ -38,9 +38,9 @@
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
- 
+
 using namespace std;
- 
+
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1)
 {
@@ -52,37 +52,78 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1)
   {
     end = int(v.size());
   }
- 
+
   for (int i = begin; i < end; i++)
   {
     std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
   }
 }
- 
+
 int main()
 {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
 #endif
- 
+
 #if FAST
   help;
   me;
 #endif
- 
-  int N;
-  cin >> N;
-  long long cntD = 1;
-  long long cntabc = 0;
-  for (int i = 0; i < N; i++)
+  // https://codeforces.com/contest/582/problem/B
+  int n, T;
+  cin >> n >> T;
+  if (n == 1)
   {
-    long long d = cntabc * 3 % MOD;
-    long long abc = (cntabc * 2 + cntD) % MOD;
-    cntD = d;
-    cntabc = abc;
+    cout << T << "\n";
+    return 0;
   }
-  cout << cntD << "\n";
- 
+  vector<int> vec(n);
+  int mini = INT32_MAX, maxi = INT32_MIN, minindex = 0, maxindex = 0;
+  for (int i = 0; i < n; i++)
+  {
+    int aa;
+    cin >> aa;
+    if (aa >= maxi)
+    {
+      maxi = aa;
+      maxindex = i;
+    }
+
+    if (aa < mini)
+    {
+      mini = aa;
+      minindex = i;
+    }
+    mini = min(mini, aa);
+    vec[i] = aa;
+  }
+  maxindex += n;
+  // cout << minindex << " " << maxindex << "\n";
+  int cntbiggest = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if (i > minindex && vec[i] == maxi)
+      cntbiggest++;
+    vec.push_back(vec[i]);
+  }
+  // print_rvalues(vec);
+  int currmin = INT32_MAX;
+  int cnt = 0;
+  int maxcnt = 0;
+  for (int i = minindex + 1; i < maxindex; i++)
+  {
+    if (/*vec[i] > mini && vec[i] < maxi &&*/ vec[i] <= currmin)
+    {
+      currmin = vec[i];
+      cnt++;
+    }
+    else
+    {
+      maxcnt = max(maxcnt, cnt);
+      cnt ^= cnt;
+    }
+  }
+  cout << 2 + maxcnt + ((T - 2) * cntbiggest) << "\n";
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;
