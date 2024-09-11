@@ -1,0 +1,3 @@
+https://graphics.stanford.edu/~seander/bithacks.html
+https://cp-algorithms.com/
+https://lodev.org/cgtutor/raycasting.html
