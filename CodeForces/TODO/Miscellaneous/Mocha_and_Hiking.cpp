@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -66,6 +57,18 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
   }
 }
 
+int dfs(int vertex, int cnt, vector<vector<int>> &adj, vector<bool> &visited) {
+  if (visited[vertex]) {
+    return cnt;
+  }
+  visited[vertex] = 1;
+  for (auto &&v : adj[vertex]) {
+    dfs(v, cnt, adj, visited);
+  }
+  cout << vertex << " ";
+  return cnt;
+}
+
 int main() {
 #if TIME
   auto begin = std::chrono::high_resolution_clock::now();
@@ -75,10 +78,39 @@ int main() {
   help;
   me;
 #endif
-
+  // https://codeforces.com/problemset/problem/1559/C
   int T;
   cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    vector<vector<int>> adj(n + 2, vector<int>());
+    int f = 0;
+    int l = 0;
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      if (i == 1) {
+        f = aa;
+      }
+      if (i == n) {
+        l = aa;
+      }
+    }
+    if (f == 1) {
+      cout << n + 1 << " ";
+      for (int i = 1; i <= n; i++) {
+        cout << i << " ";
+      }
+    } else if (l == 0) {
+      for (int i = 1; i <= n + 1; i++) {
+        cout << i << " ";
+      }
+    } else if (f == 0 && l == 1) {
+
+    } else {
+      puts("-1");
+    }
   }
 
 #if TIME

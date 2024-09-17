@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -79,6 +70,54 @@ int main() {
   int T;
   cin >> T;
   while (T--) {
+    string s;
+    cin >> s;
+    string ls = "";
+    string rs = "";
+    for (int i = 1; i < s.size(); i++) {
+      ls.push_back(s[i]);
+    }
+    ls.push_back(s[0]);
+
+    rs.push_back(s[s.size() - 1]);
+    for (int i = 0; i < s.size() - 1; i++) {
+      rs.push_back(s[i]);
+    }
+
+    /*
+
+    12345
+    l: 23451
+    r: 51234
+
+      l = r:
+          s = 5;
+          1 = 3 , 2 = 4 , 3 = 5 , 4 (s-1) = 1 , 5 (s) = 3
+
+      123456
+      l: 234561
+      r: 612345
+      l = r:
+          s = 6;
+          1 = 3 , 2 = 4 , 3 = 5 , 4 = 6 , 5 (s - 1) = 1 , 6 (s) = 4
+
+
+        all evens equal ,
+        all odds equal ,
+
+
+     */
+    cout << s << "\n";
+
+    cout << ls << "\n";
+
+    cout << rs << "\n";
+    int res = 0;
+    if (s.size() & 1) {
+
+    } else {
+    }
+    cout << res << "\n";
   }
 
 #if TIME

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
+#include <cstdint>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +43,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -75,10 +67,24 @@ int main() {
   help;
   me;
 #endif
-
+  // https://codeforces.com/contest/1559/problem/A
   int T;
   cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    long long maxi = -1000000001;
+    long long mini = 1000000001;
+    while (n--) {
+      long long aa;
+      cin >> aa;
+      maxi = max(maxi, aa);
+      mini = min(mini, aa);
+    }
+    int maxii = (maxi & mini);
+    int minii = (maxi & mini);
+
+    cout << (maxii & minii) << "\n";
   }
 
 #if TIME

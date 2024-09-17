@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -76,9 +67,47 @@ int main() {
   me;
 #endif
 
-  int T;
-  cin >> T;
-  while (T--) {
+  int q;
+  cin >> q;
+  while (q--) {
+    int n;
+    cin >> n;
+    vector<string> vec(2);
+
+    vector<vector<bool>> dp(2, vector<bool>(n, false));
+    dp[0][0] = 1;
+
+    string s1;
+    cin >> s1;
+    string s2;
+    cin >> s2;
+    vec[0] = s1;
+    vec[1] = s2;
+
+    int row = 0;
+    for (int i = 0; i < n; i++) {
+      if (vec[row][i] == '1' || vec[row][i] == '2') {
+        if (dp[row][max(0, i - 1)]) {
+          dp[row][i] = 1;
+        }
+      } else {
+        if (dp[row][max(0, i - 1)]) {
+          dp[row][i] = 1;
+        }
+        row ^= 1;
+        if (vec[row][i] != '1' && vec[row][i] != '2') {
+          dp[row][i] = 1;
+        } else {
+          break;
+        }
+      }
+    }
+
+    if (dp[1][n - 1] && row == 1) {
+      cout << "YES\n";
+    } else {
+      cout << "NO\n";
+    }
   }
 
 #if TIME

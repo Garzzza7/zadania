@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -76,11 +67,21 @@ int main() {
   me;
 #endif
 
-  int T;
-  cin >> T;
-  while (T--) {
+  int n;
+  cin >> n;
+  cout << n << "\n";
+  map<int, int> vec;
+  for (int i = 0; i < n; i++) {
+    int aa;
+    cin >> aa;
+    vec.insert({aa, 0});
+    vec[aa]++;
   }
-
+  for (auto const &[key, val] : vec) {
+    for (int i = 0; i < val; i++) {
+      cout << key << " ";
+    }
+  }
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
   cout << setprecision(4) << fixed;

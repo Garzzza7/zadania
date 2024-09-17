@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -76,9 +67,33 @@ int main() {
   me;
 #endif
 
-  int T;
-  cin >> T;
-  while (T--) {
+  int N;
+  cin >> N;
+  long long maxi = INT32_MIN;
+  string winner;
+  map<string, long long> m;
+  vector<string> vec;
+  vector<pair<long long, string>> pl;
+  for (int i = 0; i < N; i++) {
+    string name;
+    long long score;
+    cin >> name >> score;
+    vec.push_back(name);
+    m[name] += score;
+    pl.push_back({m[name], name});
+  }
+
+  for (int i = 0; i < N; i++) {
+    maxi = max(m[vec[i]], maxi);
+  }
+
+  /*cout << maxi << "\n";*/
+  for (auto &&p : pl) {
+    cout << p.first << " " << p.second << "\n";
+    if (p.first >= maxi) {
+      cout << p.second << "\n";
+      break;
+    }
   }
 
 #if TIME

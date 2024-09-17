@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <cmath>
-#include <ext/pb_ds/assoc_container.hpp>
 #include <stdlib.h>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,14 +42,6 @@
 #define TIME 0
 
 using namespace std;
-using namespace __gnu_pbds;
-
-// set with indexes works with g++ , not tested with clang++!!!
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    indexed_set;
-// find_by_order(n) -> value at index n
-// order_of_key(n) -> index of value n
 
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
@@ -76,10 +67,29 @@ int main() {
   me;
 #endif
 
-  int T;
-  cin >> T;
-  while (T--) {
+  int n;
+  cin >> n;
+  vector<int> vec(n);
+  for (int i = 0; i < n; i++) {
+    cin >> vec[i];
   }
+  vector<int> b = {0};
+  vector<int> s = {0};
+  int best = 0, sum = 0;
+  for (int k = 0; k < n; k++) {
+    sum = max(vec[k], sum + vec[k]);
+    best = max(best, sum);
+    s.push_back(sum);
+    b.push_back(best);
+  }
+  cout << best << '\n';
+
+  cout << "vec: ";
+  print_rvalues(vec);
+  cout << "sums: ";
+  print_rvalues(s);
+  cout << "bests: ";
+  print_rvalues(b);
 
 #if TIME
   auto end = std::chrono::high_resolution_clock::now();
