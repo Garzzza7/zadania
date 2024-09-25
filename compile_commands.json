@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/pc/zadania/build",
-  "command": "/usr/bin/c++   -std=gnu++14 -o CMakeFiles/cpp.dir/TEMPLATE.cpp.o -c /home/pc/zadania/TEMPLATE.cpp",
+  "command": "/usr/bin/c++   -std=gnu++20 -o CMakeFiles/cpp.dir/TEMPLATE.cpp.o -c /home/pc/zadania/TEMPLATE.cpp",
   "file": "/home/pc/zadania/TEMPLATE.cpp"
 }
 ]
