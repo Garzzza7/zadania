@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 #include <chrono>
 #include <cmath>
-#include <cstdint>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
@@ -75,6 +74,18 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
   }
 }
 
+void dfs(int vertex, vector<vector<int>> &adj, vector<bool> &visited,
+         vector<int> &c) {
+  if (visited[vertex]) {
+    return;
+  }
+  visited[vertex] = 1;
+  cout << vertex << " ";
+  for (auto &&v : adj[vertex]) {
+    dfs(v, adj, visited, c);
+  }
+}
+
 int main() {
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -92,48 +103,21 @@ int main() {
   while (T--) {
     int n;
     cin >> n;
-    vector<int> vec(n);
+    vector<vector<int>> a(n + 1, vector<int>(1));
+    vector<int> c(n);
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      a[i][0] = aa;
+    }
+    long long sum = 0;
     for (int i = 0; i < n; i++) {
       int aa;
       cin >> aa;
-      vec[i] = aa;
+      sum += aa;
+      c[i] = aa;
     }
-    string s;
-    cin >> s;
-    int onesxor = 0;
-    int zerosxor = 0;
-    vector<int> prefixxor(n + 1);
-    prefixxor[0] = vec[0];
-    for (int i = 0; i < n; i++) {
-      if (s[i] == '1') {
-        onesxor ^= vec[i];
-      }
-      if (s[i] == '0') {
-        zerosxor ^= vec[i];
-      }
-      prefixxor[i + 1] = prefixxor[i] ^ vec[i];
-    }
-    int q;
-    cin >> q;
-    while (q--) {
-      int tp;
-      cin >> tp;
-      if (tp == 1) {
-        int l, r;
-        cin >> l >> r;
-        onesxor = onesxor ^ (prefixxor[r] ^ prefixxor[l - 1]);
-        zerosxor = zerosxor ^ (prefixxor[r] ^ prefixxor[l - 1]);
-      } else {
-        int g;
-        cin >> g;
-        if (g == 1) {
-          cout << onesxor << " ";
-        } else {
-          cout << zerosxor << " ";
-        }
-      }
-    }
-    cout << "\n";
+    vector<bool> vec
   }
 
 #if TIME
