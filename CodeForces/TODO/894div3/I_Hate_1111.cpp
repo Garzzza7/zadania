@@ -5,7 +5,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <set>
 #include <stdlib.h>
 #include <string>
 #include <vector>
@@ -87,28 +86,23 @@ int main() {
   me;
 #endif
 
-  int n;
-  cin >> n;
-  vector<int> vec(n);
-  for (int i = 0; i < n; i++) {
-    int aa;
-    cin >> aa;
-    vec[i] = aa;
-  }
-  long long sum = 0;
-  multiset<int> buff;
-  for (int i = 0; i < n; i++) {
-    if (vec[i] + sum >= 0) {
-      sum += vec[i];
-      buff.insert(vec[i]);
-    } else if (vec[i] >= *buff.begin() && buff.size() != 0) {
-      sum -= *buff.begin();
-      sum += vec[i];
-      buff.erase(buff.begin());
-      buff.insert(vec[i]);
+  int T;
+  std::cin >> T;
+  while (T--) {
+    string x;
+    cin >> x;
+    string s = x;
+    /*cout<<x<<"\n";*/
+    sortasc(x);
+    /*cout<<x<<"\n";*/
+    /*cout<<"////////////////////////\n";*/
+    sortasc(x);
+    if (x[x.size() - 2] != x[x.size() - 1] || s != x) {
+      cout << "NO\n";
+    } else {
+      cout << "YES\n";
     }
   }
-  cout << buff.size() << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,
