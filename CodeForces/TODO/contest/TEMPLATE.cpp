@@ -60,6 +60,24 @@ typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, std::less<int>,
 // find_by_order(n) -> value at index n
 // order_of_key(n) -> index of value n
 
+namespace std {
+template <class Fun> class y_combinator_result {
+  Fun fun_;
+
+public:
+  template <class T>
+  explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {}
+
+  template <class... Args> decltype(auto) operator()(Args &&...args) {
+    return fun_(std::ref(*this), std::forward<Args>(args)...);
+  }
+};
+
+template <class Fun> decltype(auto) y_combinator(Fun &&fun) {
+  return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));
+}
+} // namespace std
+
 template <typename T_vector>
 void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
   if (begin < 0) {
