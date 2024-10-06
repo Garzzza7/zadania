@@ -88,6 +88,19 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
     std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
   }
 }
+int mex(vector<int> &vec) {
+  vector<bool> f(vec.size() + 1, false);
+  for (auto &&i : vec) {
+    if (i <= (int)vec.size()) {
+      f[i] = true;
+    }
+  }
+  int res = 0;
+  while (f[res]) {
+    ++res;
+  }
+  return res;
+}
 
 int main() {
 #if TIME
@@ -101,10 +114,21 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  int n, x;
+  cin >> n >> x;
+  int res = x;
+  int eq = 0;
+  for (int i = 0; i < n; i++) {
+    int aa;
+    cin >> aa;
+    if (aa == x) {
+      eq = 1;
+    }
+    if (aa < x) {
+      res--;
+    }
   }
+  cout << res + eq << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

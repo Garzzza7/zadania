@@ -89,6 +89,23 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
   }
 }
 
+vector<long long> red;
+vector<long long> blue;
+void dfs(vector<vector<long long>> &adj, vector<bool> &visited, int v,
+         int swt) {
+  if (swt == 1) {
+    red.push_back(v);
+  } else {
+    blue.push_back(v);
+  }
+  visited[v] = 1;
+  for (auto &&a : adj[v]) {
+    if (!visited[a]) {
+      dfs(adj, visited, a, swt * -1);
+    }
+  }
+}
+
 int main() {
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -101,10 +118,20 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  int n;
+  cin >> n;
+  vector<vector<long long>> adj(n + 1, vector<long long>());
+  for (int i = 1; i < n; i++) {
+    long long aa, bb;
+    cin >> aa >> bb;
+    adj[aa].push_back(bb);
+    adj[bb].push_back(aa);
   }
+  vector<bool> visited(n + 1, 0);
+  dfs(adj, visited, 1, 1);
+  long long res =
+      (long long)((long long)red.size() * (long long)blue.size() - n + 1);
+  cout << res << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

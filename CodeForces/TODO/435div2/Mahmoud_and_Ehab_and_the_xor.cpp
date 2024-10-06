@@ -101,9 +101,12 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  int n, x;
+  cin >> n >> x;
+  if (x % 4 == 0) {
+    for (int i = 1; i <= x) {
+    }
+  } else {
   }
 
 #if TIME
