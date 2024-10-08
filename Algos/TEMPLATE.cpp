@@ -55,9 +55,9 @@
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
 
-template <typename T> bool comparator(const T &x, const T &y) { return x < y; }
+bool cmp(const int &x, const int &y) { return x > y; }
 
-bool pair_comparator(const std::pair<int, int> &x,
+bool pair_cmp(const std::pair<int, int> &x,
                      const std::pair<int, int> &y) {
   if (x.second < y.second) {
     return x.second < y.second;
