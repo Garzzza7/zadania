@@ -5,8 +5,11 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
+#include <queue>
+#include <stack>
 #include <stdlib.h>
 #include <string>
+#include <utility>
 #include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -43,13 +46,25 @@
   b ^= a;                                                                      \
   a ^= b;
 #define LSB(a) a & -a
+#define cntbits(a) __builtin_popcount(a)
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
 
-using namespace std;
-using namespace __gnu_pbds;
+std::mt19937
+    rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
+
+long long ce(long long x, long long y) {
+  return x / y + ((x ^ y) > 0 && x % y);
+}
+
+long long fl(long long x, long long y) {
+  return x / y - ((x ^ y) < 0 && x % y);
+}
+
+template <typename T>
+T flog2(T x) { return x == 0 ? 0 : 31 - __builtin_clz(x); }
 
 // this is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
@@ -60,6 +75,7 @@ typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, std::less<int>,
 // find_by_order(n) -> value at index n
 // order_of_key(n) -> index of value n
 
+// y combinator
 namespace std {
 template <class Fun> class y_combinator_result {
   Fun fun_;
@@ -82,12 +98,15 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
     begin ^= begin;
   }
   if (end < 0) {
-    end = int(v.size());
+    end = (int)(v.size());
   }
   for (int i = begin; i < end; i++) {
     std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
   }
 }
+
+using namespace std;
+using namespace __gnu_pbds;
 
 int main() {
 #if TIME

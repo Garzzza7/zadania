@@ -9,7 +9,6 @@
 #include <stack>
 #include <stdlib.h>
 #include <string>
-#include <utility>
 #include <vector>
 #define print_rvalues(vec)                                                     \
   for (auto &&a : (vec)) {                                                     \
@@ -46,25 +45,13 @@
   b ^= a;                                                                      \
   a ^= b;
 #define LSB(a) a & -a
-#define cntbits(a) __builtin_popcount(a)
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
 
-std::mt19937
-    rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
-
-long long ce(long long x, long long y) {
-  return x / y + ((x ^ y) > 0 && x % y);
-}
-
-long long fl(long long x, long long y) {
-  return x / y - ((x ^ y) < 0 && x % y);
-}
-
-template <typename T>
-T flog2(T x) { return x == 0 ? 0 : 31 - __builtin_clz(x); }
+using namespace std;
+using namespace __gnu_pbds;
 
 // this is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
@@ -75,7 +62,6 @@ typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, std::less<int>,
 // find_by_order(n) -> value at index n
 // order_of_key(n) -> index of value n
 
-// y combinator
 namespace std {
 template <class Fun> class y_combinator_result {
   Fun fun_;
@@ -98,15 +84,12 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
     begin ^= begin;
   }
   if (end < 0) {
-    end = (int)(v.size());
+    end = int(v.size());
   }
   for (int i = begin; i < end; i++) {
     std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
   }
 }
-
-using namespace std;
-using namespace __gnu_pbds;
 
 int main() {
 #if TIME
@@ -120,10 +103,29 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  int n, k;
+  cin >> n >> k;
+  vector<int> vec(n);
+  vector<int> t(n);
+  for (int i = 0; i < n; i++) {
+    int aa;
+    cin >> aa;
+    vec[i] = aa;
   }
+  long long sum = 0;
+  vector<long long> prefsum(n + 1, 0);
+  for (int i = 0; i < n; i++) {
+    int aa;
+    cin >> aa;
+    t[i] = aa;
+    sum += vec[i] * t[i];
+    prefsum[i + 1] = prefsum[i] + (vec[i]) * (t[i] ^ 1);
+  }
+  long long maxi = INT32_MIN;
+  for (int i = 1; i < n - k + 2; i++) {
+    maxi = max(maxi, prefsum[i + k - 1] - prefsum[i - 1]);
+  }
+  cout << sum + maxi << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

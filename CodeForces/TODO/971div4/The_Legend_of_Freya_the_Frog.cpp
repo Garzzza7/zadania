@@ -56,11 +56,15 @@ int main() {
   int t;
   cin >> t;
   while (t--) {
-    int x, y, k;
+    long double x, y, k;
     cin >> x >> y >> k;
-    int add = (x % k > 0) ? 1 : 0;
-    int ad = (y % k > 0) ? 1 : 0;
-    cout << x / k + add + y / k + ad << "\n";
+    long long res = 0;
+    if (ceil(x / k) > ceil(y / k)) {
+      res += (ceil(x / k) * 2) - 1;
+    } else {
+      res += (ceil(y / k) * 2);
+    }
+    cout << res << "\n";
   }
 
 #if TIME
