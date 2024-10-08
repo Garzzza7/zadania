@@ -55,6 +55,17 @@
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
 
+template <typename T> bool comparator(const T &x, const T &y) { return x < y; }
+
+bool pair_comparator(const std::pair<int, int> &x,
+                     const std::pair<int, int> &y) {
+  if (x.second < y.second) {
+    return x.second < y.second;
+  } else {
+    return x.first < y.first;
+  }
+}
+
 long long ce(long long x, long long y) {
   return x / y + ((x ^ y) > 0 && x % y);
 }
@@ -63,8 +74,9 @@ long long fl(long long x, long long y) {
   return x / y - ((x ^ y) < 0 && x % y);
 }
 
-template <typename T>
-T flog2(T x) { return x == 0 ? 0 : 31 - __builtin_clz(x); }
+template <typename T> T flog2(T x) {
+  return x == (T)0 ? (T)0 : (T)31 - __builtin_clz(x);
+}
 
 // this is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
