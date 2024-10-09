@@ -133,9 +133,33 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  int n, d;
+  cin >> n >> d;
+  vector<vector<int>> vec(n, vector<int>(n));
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      int aa;
+      cin >> aa;
+      vec[i][j] = aa;
+    }
+  }
+
+  for (int i = n - 1; i >= 0; i--) {
+    for (int j = n - 1; j >= 0; j--) {
+      if (i - 1 >= 0 && abs(vec[i][j] - vec[i + 1][j]) < d) {
+        vec[i][j] += 1000;
+      }
+      if (j - 1 >= 0 && abs(vec[i][j] - vec[i][j + 1]) < d) {
+        vec[i][j] += 1000;
+      }
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      cout << vec[i][j] << " ";
+    }
+    cout << "\n";
   }
 
 #if TIME

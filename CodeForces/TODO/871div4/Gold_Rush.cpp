@@ -121,6 +121,16 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
 using namespace std;
 using namespace __gnu_pbds;
 
+int b;
+bool check(int a) {
+  if (a == b) {
+    return true;
+  } else if (a % 3 != 0) {
+    return false;
+  } else
+    return (check(a / 3) || check(2 * a / 3));
+}
+
 int main() {
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -136,6 +146,13 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n >> b;
+    if (check(n)) {
+      cout << "YES\n";
+    } else {
+      cout << "NO\n";
+    }
   }
 
 #if TIME

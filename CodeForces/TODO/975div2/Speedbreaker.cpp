@@ -136,6 +136,21 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    vector<int> vec(n + 1);
+    vector<pair<int, int>> p(n);
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      vec[i] = aa;
+      p[i - 1] = {aa, i};
+    }
+    /*sort(p.begin(), p.end());*/
+    /*for (auto &&a : p) {*/
+    /*  cout << a.first << " " << a.second << "\n";*/
+    /*}*/
+    /*cout<<"///////////////////\n";*/
   }
 
 #if TIME

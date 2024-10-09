@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include <chrono>
 #include <cmath>
+#include <cstdint>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
@@ -57,8 +58,7 @@ std::mt19937
 
 bool cmp(const int &x, const int &y) { return x > y; }
 
-bool pair_cmp(const std::pair<int, int> &x,
-                     const std::pair<int, int> &y) {
+bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
   if (x.second < y.second) {
     return x.second < y.second;
   } else {
@@ -74,7 +74,8 @@ long long fl(long long x, long long y) {
   return x / y - ((x ^ y) < 0 && x % y);
 }
 
-template <typename T> T flog2(T x) {
+// modify to work with 64bit ints
+template <typename T> constexpr T flog2(T x) {
   return x == (T)0 ? (T)0 : (T)31 - __builtin_clz(x);
 }
 

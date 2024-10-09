@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include <chrono>
 #include <cmath>
+#include <cstdint>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
@@ -55,6 +56,16 @@
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
 
+bool cmp(const int &x, const int &y) { return x > y; }
+
+bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
+  if (x.second < y.second) {
+    return x.second < y.second;
+  } else {
+    return x.first < y.first;
+  }
+}
+
 long long ce(long long x, long long y) {
   return x / y + ((x ^ y) > 0 && x % y);
 }
@@ -63,7 +74,8 @@ long long fl(long long x, long long y) {
   return x / y - ((x ^ y) < 0 && x % y);
 }
 
-template <typename T> T flog2(T x) {
+// modify to work with 64bit ints
+template <typename T> constexpr T flog2(T x) {
   return x == (T)0 ? (T)0 : (T)31 - __builtin_clz(x);
 }
 
@@ -124,6 +136,16 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    string s;
+    cin >> s;
+    string c = "codeforces";
+    int res = 0;
+    for (int i = 0; i < 10; i++) {
+      if (s[i] != c[i]) {
+        res++;
+      }
+    }
+    cout << res << "\n";
   }
 
 #if TIME

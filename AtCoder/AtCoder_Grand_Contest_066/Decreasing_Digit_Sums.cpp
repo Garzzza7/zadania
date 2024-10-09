@@ -133,10 +133,9 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
-  }
+  int n;
+  cin >> n;
+
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

@@ -136,6 +136,28 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    int mini1 = 300001;
+    int mini2 = 300001;
+    int total = INT32_MAX;
+    for (int i = 0; i < n; i++) {
+      int aa;
+      string s;
+      cin >> aa >> s;
+      if (s == "01") {
+        mini2 = min(mini2, aa);
+      } else if (s == "10") {
+        mini1 = min(mini1, aa);
+      } else if (s == "11") {
+        total = min(total, aa);
+      }
+    }
+    if ((mini1 == 300001 || mini2 == 300001) && total == INT32_MAX) {
+      cout << "-1\n";
+    } else {
+      cout << min(mini1 + mini2, total) << "\n";
+    }
   }
 
 #if TIME

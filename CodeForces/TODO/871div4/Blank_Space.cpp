@@ -136,6 +136,24 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    int res = 0;
+    int curr = 0;
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      if (aa == 0) {
+        curr++;
+      } else {
+        res = max(res, curr);
+        curr ^= curr;
+      }
+      if (i == n - 1) {
+        res = max(res, curr);
+      }
+    }
+    cout << res << "\n";
   }
 
 #if TIME

@@ -136,6 +136,25 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    vector<int> vec(n);
+    int cnt1 = 0;
+    int cnt2 = 0;
+    int maxi1 = INT32_MIN;
+    int maxi2 = INT32_MIN;
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      if (i & 1) {
+        cnt1++;
+        maxi1 = max(maxi1, aa);
+      } else {
+        cnt2++;
+        maxi2 = max(maxi2, aa);
+      }
+    }
+    cout << max(maxi1 + cnt1, maxi2 + cnt2) << "\n";
   }
 
 #if TIME

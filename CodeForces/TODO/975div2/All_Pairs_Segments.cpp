@@ -136,6 +136,28 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    long long n, q;
+    cin >> n >> q;
+    vector<long long> res;
+    int last = 0;
+    for (int i = 0; i < n; i++) {
+      long long aa;
+      cin >> aa;
+      res.push_back(aa - last + 1);
+      last = aa;
+    }
+
+    /*printarr(res);*/
+    for (int i = 0; i < q; i++) {
+      long long k;
+      cin >> k;
+      if (k >= n) {
+        cout << "0 ";
+      } else {
+        cout << res[k] << " ";
+      }
+    }
+    cout << "\n";
   }
 
 #if TIME

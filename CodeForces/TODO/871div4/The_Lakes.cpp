@@ -121,6 +121,23 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
 using namespace std;
 using namespace __gnu_pbds;
 
+int n;
+int m;
+long long sum = 0;
+void floodfill(vector<vector<int>> &vec, vector<vector<bool>> &visited, int i,
+               int j) {
+  if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0 || visited[i][j]) {
+    return;
+  }
+
+  visited[i][j] = true;
+  sum += vec[i][j];
+  floodfill(vec, visited, i, j + 1);
+  floodfill(vec, visited, i, j - 1);
+  floodfill(vec, visited, i - 1, j);
+  floodfill(vec, visited, i + 1, j);
+}
+
 int main() {
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -136,6 +153,28 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    cin >> n >> m;
+    vector<vector<int>> vec(n, vector<int>(m));
+    vector<vector<bool>> visited(n, vector<bool>(m));
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        int aa;
+        cin >> aa;
+        vec[i][j] = aa;
+      }
+    }
+
+    long long res = 0;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        if (!visited[i][j]) {
+          floodfill(vec, visited, i, j);
+          res = max(res, sum);
+          sum ^= sum;
+        }
+      }
+    }
+    cout << res << "\n";
   }
 
 #if TIME
