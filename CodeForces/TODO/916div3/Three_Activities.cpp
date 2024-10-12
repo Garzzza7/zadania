@@ -46,18 +46,12 @@
   a ^= b;                                                                      \
   b ^= a;                                                                      \
   a ^= b;
-// bits
-#define LSB(a) (a) & -(a)
+#define LSB(a) a & -a
 #define cntbits(a) __builtin_popcount(a)
-#define on(a, b) (a) |= (1 << (b))
-#define off(a, b) (a) &= ~(1 << (b))
-#define flip(a, b) (a) ^= (1 << (b))
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
-
-template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
@@ -65,10 +59,10 @@ std::mt19937
 bool cmp(const int &x, const int &y) { return x > y; }
 
 bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
-  if (x.second < y.second) {
-    return x.second < y.second;
+  if (x.first >= y.first) {
+    return x.first >= y.first;
   } else {
-    return x.first < y.first;
+    return x.second > y.second;
   }
 }
 
@@ -142,6 +136,45 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    vector<tuple<int, int, int>> vec;
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      vec.push_back({aa, i, 100001});
+    }
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      vec.push_back({aa, i, 100002});
+    }
+    for (int i = 1; i <= n; i++) {
+      int aa;
+      cin >> aa;
+      vec.push_back({aa, i, 100003});
+    }
+
+    sort(vec.begin(), vec.end());
+    for (auto &&a : vec) {
+      cout << get<0>(a) << " " << get<1>(a) << " " << get<2>(a) << "\n";
+    }
+    long long sum = 0;
+    int last = 0;
+    int cnt = 0;
+    set<int> s;
+    for (int i = vec.size() - 1; i >= 0; i--) {
+      if (s.find(get<1>(vec[i])) == s.end() &&
+          s.find(get<2>(vec[i])) == s.end()) {
+        sum += get<0>(vec[i]);
+        s.insert(get<1>(vec[i]));
+        s.insert(get<2>(vec[i]));
+        cnt++;
+      }
+      if (cnt == 3)
+        break;
+    }
+    cout << sum << "\n";
   }
 
 #if TIME

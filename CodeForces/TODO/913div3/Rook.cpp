@@ -46,18 +46,12 @@
   a ^= b;                                                                      \
   b ^= a;                                                                      \
   a ^= b;
-// bits
-#define LSB(a) (a) & -(a)
+#define LSB(a) a & -a
 #define cntbits(a) __builtin_popcount(a)
-#define on(a, b) (a) |= (1 << (b))
-#define off(a, b) (a) &= ~(1 << (b))
-#define flip(a, b) (a) ^= (1 << (b))
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
-
-template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
@@ -141,7 +135,21 @@ int main() {
 
   int T;
   std::cin >> T;
+  vector<char> vec = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
   while (T--) {
+    string s;
+    cin >> s;
+    int num = s[1] - '0';
+    for (int i = 1; i <= 8; i++) {
+      if (i != num) {
+        cout << s[0] << i << "\n";
+      }
+    }
+    for (int i = 0; i < 8; i++) {
+      if (vec[i] != s[0]) {
+        cout << vec[i] << num << "\n";
+      }
+    }
   }
 
 #if TIME

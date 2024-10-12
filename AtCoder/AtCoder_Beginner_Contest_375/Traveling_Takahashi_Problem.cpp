@@ -46,18 +46,12 @@
   a ^= b;                                                                      \
   b ^= a;                                                                      \
   a ^= b;
-// bits
-#define LSB(a) (a) & -(a)
+#define LSB(a) a & -a
 #define cntbits(a) __builtin_popcount(a)
-#define on(a, b) (a) |= (1 << (b))
-#define off(a, b) (a) &= ~(1 << (b))
-#define flip(a, b) (a) ^= (1 << (b))
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
-
-template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
@@ -139,10 +133,22 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
+  cout << setprecision(20) << fixed;
+  int n;
+  cin >> n;
+  long double res = 0;
+  double lastl = 0;
+  double lastr = 0;
+  for (int i = 0; i < n; i++) {
+    double aa, bb;
+    cin >> aa >> bb;
+    res += sqrt((lastl - aa) * (lastl - aa) + (lastr - bb) * (lastr - bb));
+    lastl = aa;
+    lastr = bb;
   }
+
+  res += sqrt((lastl - 0.0) * (lastl - 0.0) + (lastr - 0.0) * (lastr - 0.0));
+  cout << res << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

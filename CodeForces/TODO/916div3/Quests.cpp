@@ -140,8 +140,6 @@ int main() {
     cin >> n >> k;
     vector<int> a(n);
     vector<int> b(n);
-    vector<bool> visited(n);
-    visited[0] = 1;
     for (int i = 0; i < n; i++) {
       int aa;
       cin >> aa;
@@ -152,16 +150,13 @@ int main() {
       cin >> aa;
       b[i] = aa;
     }
-    long long res = a[0];
-    int curr = 1;
-    for (int i = 0; i < k; i++) {
-      if (visited[curr]) {
-        res += b[curr];
-      } else {
-        res += a[curr];
-        visited[curr] = 1;
-      }
+    long long suma = a[0];
+    long long sumb = a[0];
+    long long res = 0;
+    for (int i = 1; i < n; i++) {
+      suma += a[i];
     }
+    cout << res << "\n";
   }
 
 #if TIME

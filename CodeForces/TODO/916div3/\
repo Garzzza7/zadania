@@ -46,18 +46,12 @@
   a ^= b;                                                                      \
   b ^= a;                                                                      \
   a ^= b;
-// bits
-#define LSB(a) (a) & -(a)
+#define LSB(a) a & -a
 #define cntbits(a) __builtin_popcount(a)
-#define on(a, b) (a) |= (1 << (b))
-#define off(a, b) (a) &= ~(1 << (b))
-#define flip(a, b) (a) ^= (1 << (b))
 #define MOD 1000000007
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
-
-template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
 std::mt19937
     rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
@@ -65,10 +59,10 @@ std::mt19937
 bool cmp(const int &x, const int &y) { return x > y; }
 
 bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
-  if (x.second < y.second) {
-    return x.second < y.second;
+  if (x.first >= y.first) {
+    return x.first >= y.first;
   } else {
-    return x.first < y.first;
+    return x.second > y.second;
   }
 }
 
@@ -142,6 +136,44 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    long long A = 0;
+    long long B = 0;
+    vector<pair<int, int>> a(n);
+    vector<pair<int, int>> b(n);
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      a[i] = {aa, i};
+    }
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      b[i] = {aa, i};
+    }
+    sort(a.begin(), a.end(), pair_cmp);
+    sort(b.begin(), b.end(), pair_cmp);
+
+    int l = 0;
+    int r = n - 1;
+    int swt = 0;
+    set<int> done;
+    for (int i = 0; i < n; i++) {
+      if (swt) {
+        B--;
+        int iter = 0;
+        while (!done.contains(iter)) {
+          iter++;
+        }
+        done.insert(a[iter].second);
+        A -= a[iter].first;
+      } else {
+        A--;
+      }
+      swt ^= 1;
+    }
+    cout << A - B << "\n";
   }
 
 #if TIME
