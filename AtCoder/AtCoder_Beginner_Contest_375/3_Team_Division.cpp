@@ -133,19 +133,28 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    vector<int> cnt(26);
-    for (int i = 0; i < n; i++) {
-        
+  int n;
+  cin >> n;
+  vector<int> a;
+  long long sa = 0;
+
+  vector<int> b;
+  long long sb = 0;
+
+  vector<int> c;
+  long long sc = 0;
+
+  for (int i = 0; i < n; i++) {
+    int aa, bb;
+    cin >> aa >> bb;
+    if (aa == 1) {
+      sa += bb;
+    } else if (aa == 2) {
+      sb += bb;
+    } else {
+      sc += bb;
     }
   }
-
 #if TIME
   chrono::time_point<std::chrono::system_clock,
                      std::chrono::duration<long, ratio<1, 1000000000>>>

@@ -133,18 +133,17 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    vector<int> cnt(26);
-    for (int i = 0; i < n; i++) {
-        
+  string s;
+  cin >> s;
+  long long res = 0;
+  for (int i = 0; i < (int)s.size(); i++) {
+    for (int j = i + 1; j < (int)s.size(); j++) {
+      if (s[j] == s[i]) {
+        res += j - i - 1;
+      }
     }
   }
+  cout << res << "\n";
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -159,3 +158,4 @@ int main() {
 #endif
   return 0;
 }
+
