@@ -6,7 +6,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>
@@ -145,6 +144,32 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    vector<int> vec(n);
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      vec[i] = aa;
+    }
+    int nn = n;
+    set<int> factor;
+    for (int i = 2; i * i <= nn; i++) {
+      while (nn % i == 0) {
+        factor.insert(i);
+        nn /= i;
+      }
+    }
+    if (nn > 1) {
+      factor.insert(nn);
+    }
+    int res = factor.size();
+    for (auto &&a : factor) {
+      for (int i = 0; i < n; i += a) {
+        for (int j = i; j < i + a; j++) {
+        }
+      }
+    }
   }
 
 #if TIME

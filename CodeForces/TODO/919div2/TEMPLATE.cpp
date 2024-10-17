@@ -6,7 +6,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>

@@ -6,7 +6,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>
@@ -145,6 +144,29 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n, k, x;
+    cin >> n >> k >> x;
+    vector<int> vec(n);
+    long long sum = 0;
+    for (int i = 0; i < n; i++) {
+      int aa;
+      cin >> aa;
+      vec[i] = aa;
+      sum += aa;
+    }
+    sortdes(vec);
+
+    int iter = 0;
+    for (int i = 0; i < min(n, k); i++) {
+      sum -= vec[i];
+      iter++;
+    }
+
+    for (int i = iter; i < min(n, iter + x); i++) {
+      sum -= vec[i];
+      sum -= vec[i];
+    }
+    cout << sum << "\n";
   }
 
 #if TIME

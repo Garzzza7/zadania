@@ -6,7 +6,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>
@@ -145,6 +144,29 @@ int main() {
   int T;
   std::cin >> T;
   while (T--) {
+    int n;
+    cin >> n;
+    long long l = INT32_MIN;
+    long long r = INT32_MAX;
+    vector<long long> diff;
+    long long cnt = 0;
+    for (int i = 0; i < n; i++) {
+      long long aa, bb;
+      cin >> aa >> bb;
+      if (aa == 1) {
+        l = max(l, bb);
+      } else if (aa == 2) {
+        r = min(r, bb);
+      } else {
+        diff.push_back(bb);
+      }
+    }
+    for (auto &&a : diff) {
+      if (a >= l && a <= r) {
+        cnt++;
+      }
+    }
+    cout << max(0LL, r - l - cnt + 1) << "\n";
   }
 
 #if TIME

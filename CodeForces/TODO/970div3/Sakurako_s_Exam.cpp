@@ -58,10 +58,18 @@ int main() {
   while (t--) {
     int a, b;
     cin >> a >> b;
-    if ((2 * a == b) || ((a - b) / 2) % 2 == 0 || (2 * b - a) % 2 == 0) {
-      cout << "YES\n";
-    } else {
+    if (a % 2 == 1) {
       cout << "NO\n";
+    } else {
+      if (b % 2 == 0) {
+        cout << "YES\n";
+      } else {
+        if (a == 0) {
+          cout << "NO\n";
+        } else {
+          cout << "YES\n";
+        }
+      }
     }
   }
 

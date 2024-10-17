@@ -6,7 +6,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
-#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>
@@ -130,6 +129,20 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
 using namespace std;
 using namespace __gnu_pbds;
 
+vector<int> factorize(int n) {
+  vector<int> factor;
+  for (int i = 2; i * i <= n; i++) {
+    while (n % i == 0) {
+      factor.push_back(i);
+      n /= i;
+    }
+  }
+  if (n > 1) {
+    factor.push_back(n);
+  }
+  return factor;
+}
+
 int main() {
 #if TIME
   chrono::time_point<std::chrono::system_clock,
@@ -142,10 +155,9 @@ int main() {
   me;
 #endif
 
-  int T;
-  std::cin >> T;
-  while (T--) {
-  }
+  int n;
+  cin >> n;
+  printarr(factorize(n));
 
 #if TIME
   chrono::time_point<std::chrono::system_clock,

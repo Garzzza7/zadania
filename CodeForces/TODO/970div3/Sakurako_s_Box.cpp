@@ -59,23 +59,18 @@ int main() {
     int n;
     cin >> n;
     vector<int> vec(n);
+    long long res = 0;
     long long sum = 0;
     for (int i = 0; i < n; i++) {
       int aa;
       cin >> aa;
+      res += sum * aa;
       sum += aa;
-      vec[i] = aa;
     }
-    long long res = 0;
-    int cnt = 0;
-    int div = n * (n - 1) >> 1;
-    for (int i = 0; i < n; i++) {
-      for (int j = i + 1; j < n; j++) {
-        res += ((vec[i] * vec[j]) % MOD);
-        cnt++;
-      }
-    }
-    cout << res / div << "\n";
+    res *= 2;
+    res /= n;
+    res /= n - 1;
+    cout << res << "\n";
   }
 
 #if TIME
