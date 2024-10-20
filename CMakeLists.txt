@@ -4,8 +4,10 @@
 # also you might want to check here /usr/lib/gcc/x86_64-linux-gnu/
 cmake_minimum_required(VERSION 3.22)
 project(cmakeapp)
+project(cmakeappmini)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(cmakeapp TEMPLATE.cpp)
+add_executable(cmakeappmini MINTEMPLATE.cpp)
