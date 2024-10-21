@@ -6,6 +6,7 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
+#include <numeric>
 #include <queue>
 #include <random>
 #include <stack>
@@ -57,6 +58,36 @@
 #define DEBUG 0
 #define FAST 1
 #define TIME 0
+
+// https://github.com/Heltion/debug.h/blob/main/README.md
+template <class T, size_t size = std::tuple_size<T>::value>
+std::string to_debug(T, std::string s = "")
+  requires(not std::ranges::range<T>);
+std::string to_debug(auto x)
+  requires requires(std::ostream &os) { os << x; }
+{
+  return static_cast<std::ostringstream>(std::ostringstream() << x).str();
+}
+std::string to_debug(std::ranges::range auto x, std::string s = "")
+  requires(not std::is_same_v<decltype(x), std::string>)
+{
+  for (auto xi : x) {
+    s += ", " + to_debug(xi);
+  }
+  return "[" + s.substr(s.empty() ? 0 : 2) + "]";
+}
+template <class T, size_t size>
+std::string to_debug(T x, std::string s)
+  requires(not std::ranges::range<T>)
+{
+  [&]<size_t... I>(std::index_sequence<I...>) {
+    ((s += ", " + to_debug(get<I>(x))), ...);
+  }(std::make_index_sequence<size>());
+  return "(" + s.substr(s.empty() ? 0 : 2) + ")";
+}
+#define debug(...)                                                             \
+  cerr << __FILE__ ":" << __LINE__                                             \
+       << ": (" #__VA_ARGS__ ") = " << to_debug(tuple(__VA_ARGS__)) << "\n"
 
 template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
