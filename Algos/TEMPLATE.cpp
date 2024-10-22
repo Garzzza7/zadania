@@ -6,6 +6,7 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
+#include <mutex>
 #include <numeric>
 #include <queue>
 #include <random>
@@ -59,6 +60,9 @@
 #define FAST 1
 #define TIME 0
 
+std::mt19937
+    rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
+
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
@@ -90,9 +94,6 @@ std::string to_debug(T x, std::string s)
        << ": (" #__VA_ARGS__ ") = " << to_debug(tuple(__VA_ARGS__)) << "\n"
 
 template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
-
-std::mt19937
-    rng((uint32_t)std::chrono::steady_clock::now().time_since_epoch().count());
 
 bool cmp(const int &x, const int &y) { return x > y; }
 
