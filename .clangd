@@ -1,2 +1,7 @@
 Diagnostics:
   UnusedIncludes: None 
+Formatting:
+  InlayHints:
+    BlockEnd: false
+Index:
+  StandardLibrary: No

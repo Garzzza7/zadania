@@ -11,7 +11,7 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
   requires(not std::is_same_v<decltype(x), std::string>)
 {
-  for (auto xi : x) {
+  for (auto &&xi : x) {
     s += ", " + to_debug(xi);
   }
   return "[" + s.substr(s.empty() ? 0 : 2) + "]";
@@ -25,6 +25,5 @@ std::string to_debug(T x, std::string s)
   }(std::make_index_sequence<size>());
   return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
-#define debug(...)                                                             \
-  cerr << __FILE__ ":" << __LINE__                                             \
-       << ": (" #__VA_ARGS__ ") = " << to_debug(tuple(__VA_ARGS__)) << "\n"
+#define db(...)                                                                \
+  std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"

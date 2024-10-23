@@ -3,6 +3,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstdint>
+#include <cstdio>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <functional>
 #include <iostream>
@@ -75,7 +76,7 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
   requires(not std::is_same_v<decltype(x), std::string>)
 {
-  for (auto xi : x) {
+  for (auto &&xi : x) {
     s += ", " + to_debug(xi);
   }
   return "[" + s.substr(s.empty() ? 0 : 2) + "]";
@@ -89,9 +90,8 @@ std::string to_debug(T x, std::string s)
   }(std::make_index_sequence<size>());
   return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
-#define debug(...)                                                             \
-  cerr << __FILE__ ":" << __LINE__                                             \
-       << ": (" #__VA_ARGS__ ") = " << to_debug(tuple(__VA_ARGS__)) << "\n"
+#define db(...)                                                                \
+  std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
 template <typename T> bool is_on(T a, T b) { return a & ((T)1 << b); }
 
@@ -118,7 +118,7 @@ template <typename T> constexpr T flog2(T x) {
   return x == (T)0 ? (T)0 : (T)31 - __builtin_clz(x);
 }
 
-// this is a standard c++ set enhanced with indexes, works with g++
+// This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
 template <typename T>
 using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,
@@ -174,6 +174,7 @@ int main() {
 
   int T;
   std::cin >> T;
+  iset<int> s;
   while (T--) {
   }
 
