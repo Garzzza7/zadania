@@ -1,20 +1,2 @@
 Diagnostics:
-  UnusedIncludes: None
-  If:
-  PathMatch: /usr/include/.*
-  Suppress: "*"
-Index:
-  Background: Skip  
-  StandardLibrary: Yes
-InlayHints:
-  BlockEnd: No
-  Designators: Yes
-  Enabled: Yes
-  ParameterNames: Yes
-  DeducedTypes: Yes
-  TypeNameLimit: 24  
-Hover:  
-SemanticTokens:
-CompileFlags:
-  Add: [-std=c++20]
-  Compiler: g++  
+  UnusedIncludes: None 

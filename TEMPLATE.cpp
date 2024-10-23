@@ -121,10 +121,9 @@ template <typename T> constexpr T flog2(T x) {
 // this is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
 template <typename T>
-using indexed_set =
-    __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,
-                     __gnu_pbds::rb_tree_tag,
-                     __gnu_pbds::tree_order_statistics_node_update>;
+using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,
+                              __gnu_pbds::rb_tree_tag,
+                              __gnu_pbds::tree_order_statistics_node_update>;
 // find_by_order(n) -> value at index n
 // order_of_key(n) -> index of value n
 

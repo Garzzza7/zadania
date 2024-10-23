@@ -3,14 +3,14 @@ import requests
 
 
 def remove_until_dot(text):
-    dot_index = text.find('.')
+    dot_index = text.find(".")
     if dot_index != -1:
-        return text[dot_index + 1:].strip()
+        return text[dot_index + 1 :].strip()
     else:
         return text
 
 
-separators = ["?", "!", "'", ":", ";", "\"", "\\"]
+separators = ["?", "!", "'", ":", ";", '"', "\\"]
 url = input("URL: ")
 response = requests.get(url)
 
@@ -32,12 +32,12 @@ for sep in separators:
 temp = open("TEMPLATE.cpp", "r")
 template = temp.read()
 
-codefile = open(title+".cpp", "w")
-txtfile = open(title+".txt", "w")
+codefile = open(title + ".cpp", "w")
+txtfile = open(title + ".txt", "w")
 
 codefile.write(template)
 
 for a in exe:
-    txtfile.write(a.get_text()+"\n")
+    txtfile.write(a.get_text() + "\n")
 
-print("Files "+title+".cpp and "+title+".txt have been created!")
+print("Files " + title + ".cpp and " + title + ".txt have been created!")
