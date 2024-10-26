@@ -5,7 +5,7 @@ BreakBeforeBraces: Attach
 ColumnLimit: 80
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: Inline
+AllowShortFunctionsOnASingleLine: None 
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 SpaceBeforeParens: ControlStatements
