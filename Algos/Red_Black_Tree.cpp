@@ -11,7 +11,7 @@ class Vertex {
     int value;
 };
 void leftRotate(Vertex x) {
-    auto y = x.right;
+    /*auto y = x.right;*/
     /*x.right = y.left;*/
 }
 void rightRotate() {

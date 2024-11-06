@@ -6,7 +6,6 @@ int initialnode = 0;
 void dfs(vector<vector<int>> &vec, vector<bool> &visited, vector<int> &stack,
 	 int start) {
     visited[start] = true;
-    int last;
     for (auto &&a : vec[start]) {
 	if (a == initialnode) {
 	    stack.push_back(start);

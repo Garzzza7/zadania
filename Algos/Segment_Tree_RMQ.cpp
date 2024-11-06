@@ -68,7 +68,7 @@ class SegmentTree {
 /*} */
 
 vector<long long> tree;
-long long tree_size;
+int tree_size;
 long long min_query(long long start_node, long long node_left,
 		    long long node_right, long long query_left,
 		    long long query_right) {
@@ -104,7 +104,7 @@ void recursive_update(long long start_node, long long node_left,
 }
 void iterative_update(long long index, long long value) {
     tree[tree_size + index] = value;
-    for (int i = (tree_size + index) / 2; i >= 1; i /= 2) {
+    for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
 	tree[i] = min(tree[i * 2], tree[i * 2 + 1]);
     }
 }
