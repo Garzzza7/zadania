@@ -1,51 +1,24 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <queue>
-#include <stdlib.h>
-#include <vector>
-#define print_rvalues(vec)                                                     \
-    for (auto &&a : (vec)) {                                                   \
-	cout << a << " ";                                                      \
-    }                                                                          \
-    cout << "\n";
-#define print_lvalues(vec)                                                     \
-    for (const auto &a : (vec)) {                                              \
-	cout << a << " ";                                                      \
-    }                                                                          \
-    cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second < right.second;                                     \
-    })
-#define sortpairdecS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second > right.second;                                     \
-    })
-#define sortpairascF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first < right.first;                                       \
-    })
-#define sortpairdecF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first > right.first;                                       \
-    })
-#define swpint(a, b)                                                           \
-    a ^= b;                                                                    \
-    b ^= a;                                                                    \
-    a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
 
 using namespace std;
+
+void iterative_bfs(int vertex, vector<vector<int>> &adj,
+		   vector<bool> &visited) {
+    visited = vector<bool>(visited.size(), 0);
+    queue<int> que;
+    que.push(vertex);
+    while (!que.empty()) {
+	int current = que.front();
+	cout << current << " ";
+	que.pop();
+	for (auto &&v : adj[current]) {
+	    if (!visited[v]) {
+		visited[v] = 1;
+		que.push(v);
+	    }
+	}
+    }
+}
 
 void bfs(int vertex, vector<vector<int>> &adj, vector<bool> &visited,
 	 queue<int> que) {
@@ -58,22 +31,12 @@ void bfs(int vertex, vector<vector<int>> &adj, vector<bool> &visited,
 	que.push(v);
     }
     while (!que.empty()) {
-	int v = que.front();
 	bfs(que.front(), adj, visited, que);
 	que.pop();
     }
 }
 
 int main() {
-#if TIME
-    auto begin = std::chrono::high_resolution_clock::now();
-#endif
-
-#if FAST
-    help;
-    me;
-#endif
-
     int vertices;
     cin >> vertices;
     vector<vector<int>> adj(vertices + 1, vector<int>());
@@ -88,15 +51,7 @@ int main() {
     }
     queue<int> que;
     bfs(1, adj, visited, que);
-
-#if TIME
-    auto end = std::chrono::high_resolution_clock::now();
-    cout << setprecision(4) << fixed;
-    cout << "Execution time: "
-	 << std::chrono::duration_cast<std::chrono::duration<double>>(end -
-								      begin)
-		.count()
-	 << " seconds\n";
-#endif
+    cout << "\n";
+    iterative_bfs(1, adj, visited);
     return 0;
 }
