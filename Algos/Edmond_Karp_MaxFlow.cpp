@@ -3,24 +3,24 @@
 using namespace std;
 
 template <typename T>
-T bfs(T s, T t, vector<vector<T>> &adj, vector<vector<T>> &capacities,
-      vector<T> &parent) {
-    for (auto &&a : parent) {
-	a = -1;
+T bfs(T source, T target, vector<vector<T>> &adj, vector<vector<T>> &capacities,
+      vector<T> &path) {
+    for (auto &&a : path) {
+	a = (T) -1;
     }
-    parent[s] = -2137;
+    path[source] = (T) -2137;
     queue<pair<T, T>> q;
-    q.push({s, INT32_MAX});
+    q.push({source, INT32_MAX});
 
     while (!q.empty()) {
-	int cur = q.front().first;
+	int curr = q.front().first;
 	int flow = q.front().second;
 	q.pop();
-	for (auto &&next : adj[cur]) {
-	    if (parent[next] == -1ll && capacities[cur][next]) {
-		parent[next] = cur;
-		T new_flow = min(flow, capacities[cur][next]);
-		if (next == t) {
+	for (auto &&next : adj[curr]) {
+	    if (path[next] == (T) -1 && capacities[curr][next]) {
+		path[next] = curr;
+		T new_flow = min(flow, capacities[curr][next]);
+		if (next == target) {
 		    return new_flow;
 		}
 		q.push({next, new_flow});
@@ -31,19 +31,20 @@ T bfs(T s, T t, vector<vector<T>> &adj, vector<vector<T>> &capacities,
 }
 
 template <typename T>
-T maxflow(T s, T t, vector<vector<T>> &adj, vector<vector<T>> &capacities) {
-    T flow = 0;
-    vector<T> parent(adj.size());
-    T new_flow = 0;
+T maxflow(T source, T target, vector<vector<T>> &adj,
+	  vector<vector<T>> &capacities) {
+    T flow = (T) 0;
+    vector<T> path((int) adj.size());
+    T new_flow = (T) 0;
 
-    while ((new_flow = bfs(s, t, adj, capacities, parent))) {
+    while ((new_flow = bfs(source, target, adj, capacities, path))) {
 	flow += new_flow;
-	T cur = t;
-	while (cur != s) {
-	    T prev = parent[cur];
-	    capacities[prev][cur] -= new_flow;
-	    capacities[cur][prev] += new_flow;
-	    cur = prev;
+	T current_node = target;
+	while (current_node != source) {
+	    T previous_node = path[current_node];
+	    capacities[previous_node][current_node] -= new_flow;
+	    capacities[current_node][previous_node] += new_flow;
+	    current_node = previous_node;
 	}
     }
 
