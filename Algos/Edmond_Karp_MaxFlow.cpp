@@ -6,49 +6,48 @@ template <typename T>
 T bfs(T source, T target, vector<vector<T>> &adj, vector<vector<T>> &capacities,
       vector<T> &path) {
     for (auto &&a : path) {
-	a = (T) -1;
+	a = -1;
     }
-    path[source] = (T) -2137;
+    path[source] = -2137;
     queue<pair<T, T>> q;
     q.push({source, INT32_MAX});
 
     while (!q.empty()) {
-	int curr = q.front().first;
-	int flow = q.front().second;
+	T curr = q.front().first;
+	T flow = q.front().second;
 	q.pop();
 	for (auto &&next : adj[curr]) {
-	    if (path[next] == (T) -1 && capacities[curr][next]) {
+	    if (path[next] == -1 && capacities[curr][next]) {
 		path[next] = curr;
-		T new_flow = min(flow, capacities[curr][next]);
+		T bottleneck = min(flow, capacities[curr][next]);
 		if (next == target) {
-		    return new_flow;
+		    return bottleneck;
 		}
-		q.push({next, new_flow});
+		q.push({next, bottleneck});
 	    }
 	}
     }
-    return (T) 0;
+    return 0;
 }
 
 template <typename T>
 T maxflow(T source, T target, vector<vector<T>> &adj,
 	  vector<vector<T>> &capacities) {
-    T flow = (T) 0;
+    T mxflow = 0;
     vector<T> path((int) adj.size());
-    T new_flow = (T) 0;
+    T bottleneck = 0;
 
-    while ((new_flow = bfs(source, target, adj, capacities, path))) {
-	flow += new_flow;
+    while ((bottleneck = bfs(source, target, adj, capacities, path))) {
+	mxflow += bottleneck;
 	T current_node = target;
 	while (current_node != source) {
 	    T previous_node = path[current_node];
-	    capacities[previous_node][current_node] -= new_flow;
-	    capacities[current_node][previous_node] += new_flow;
+	    capacities[previous_node][current_node] -= bottleneck;
+	    capacities[current_node][previous_node] += bottleneck;
 	    current_node = previous_node;
 	}
     }
-
-    return flow;
+    return mxflow;
 }
 
 int main() {
