@@ -3,7 +3,7 @@
 using namespace std;
 
 vector<long long> tree;
-long long tree_size;
+int tree_size;
 long long sum_query(long long start_node, long long node_left,
 		    long long node_right, long long query_left,
 		    long long query_right) {

@@ -26,7 +26,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    int n, k;
+    long long n, k;
     cin >> n >> k;
     int a = multiplicative_binomial_coefficient(n, k);
     cout << "Multiplicative:\n" << a << "\n";
