@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
+
 int initialnode = 0;
 void dfs(vector<vector<int>> &vec, vector<bool> &visited, vector<int> &stack,
 	 int start) {
@@ -22,6 +21,9 @@ void dfs2() {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
+    // JUST USE KOSARAJU
+
     int vertices, edges;
     cin >> vertices >> edges;
     vector<vector<int>> vec(vertices, vector<int>());

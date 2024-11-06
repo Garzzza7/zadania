@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
+
 vector<long long> tree;
 long long tree_size;
 long long sum_query(long long start_node, long long node_left,
@@ -47,6 +46,7 @@ void iterative_update(long long index, long long value) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     cin >> tree_size;
     vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {

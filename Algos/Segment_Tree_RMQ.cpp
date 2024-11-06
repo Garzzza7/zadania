@@ -1,27 +1,4 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
-#include <vector>
-#define printarr(arr)                                                          \
-    for (auto &&a : (arr)) {                                                   \
-	cout << a << " ";                                                      \
-    }                                                                          \
-    cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairasc(vec)                                                       \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second < right.second;                                     \
-    })
-#define sortpairdec(vec)                                                       \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second > right.second;                                     \
-    })
-#define MOD 1000000007
 
 using namespace std;
 
@@ -132,8 +109,9 @@ void iterative_update(long long index, long long value) {
     }
 }
 int main() {
-    help;
-    me;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
     cin >> tree_size;
     vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {
@@ -153,7 +131,10 @@ int main() {
 	tree[i] = min(tree[2 * i], tree[2 * i + 1]);
     }
     cout << min_query(1, 0, tree_size - 1, 0, 7) << "\n";
-    printarr(tree);
+    for (auto &&v : tree) {
+	cout << v << " ";
+    }
+    cout << "\n";
 
     // cout << "\n";
     // recursive_update(1, 0, tree_size - 1, 5, 5, 100);

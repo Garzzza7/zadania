@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
+
 void swap(int *a, int *b) {
     int buffer = *b;
     *b = *a;
@@ -12,9 +11,9 @@ void heapify(vector<int> &vec, int i) {
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
-    if (l < vec.size() && vec[l] > vec[largest])
+    if (l < (int) vec.size() && vec[l] > vec[largest])
 	largest = l;
-    if (r < vec.size() && vec[r] > vec[largest])
+    if (r < (int) vec.size() && vec[r] > vec[largest])
 	largest = r;
 
     if (largest != i) {
@@ -23,25 +22,25 @@ void heapify(vector<int> &vec, int i) {
     }
 }
 void insert(vector<int> &vec, int newNum) {
-    if (vec.size() == 0) {
+    if ((int) vec.size() == 0) {
 	vec.push_back(newNum);
     } else {
 	vec.push_back(newNum);
-	for (int i = vec.size() / 2 - 1; i >= 0; i--) {
+	for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) {
 	    heapify(vec, i);
 	}
     }
 }
 void deleteNode(vector<int> &vec, int num) {
     int i;
-    for (i = 0; i < vec.size(); i++) {
+    for (i = 0; i < (int) vec.size(); i++) {
 	if (num == vec[i])
 	    break;
     }
-    swap(&vec[i], &vec[vec.size() - 1]);
+    swap(&vec[i], &vec[(int) vec.size() - 1]);
 
     vec.pop_back();
-    for (int i = vec.size() / 2 - 1; i >= 0; i--) {
+    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) {
 	heapify(vec, i);
     }
 }

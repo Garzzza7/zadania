@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
+
 bool hasSubstring(string s, string pattern) {
     int i = 0;
     int j = 0;
     int k = 0;
-    while (i < s.size() && j < pattern.size()) {
+    while (i < (int) s.size() && j < (int) pattern.size()) {
 	if (s[i] == pattern[j]) {
 	    i++;
 	    j++;
@@ -17,16 +16,16 @@ bool hasSubstring(string s, string pattern) {
 	    i = k;
 	}
     }
-    if (j == pattern.size()) {
+    if (j == (int) pattern.size()) {
 	return true;
     }
     return false;
 }
 vector<int> computeBuffer(string pattern) {
-    vector<int> lps(pattern.size());
+    vector<int> lps((int) pattern.size());
     int index = 0;
-    for (int i = 1; i < pattern.size();) {
-	if (pattern[i] = pattern[index]) {
+    for (int i = 1; i < (int) pattern.size();) {
+	if ((pattern[i] = pattern[index])) {
 	    lps[i] = index + 1;
 	    index++;
 	    i++;
@@ -45,7 +44,7 @@ bool KMP(string s, string pattern) {
     vector<int> lps = computeBuffer(pattern);
     int j = 0;
     int i = 0;
-    while (i < s.size() && j < pattern.size()) {
+    while (i < (int) s.size() && j < (int) pattern.size()) {
 	if (s[i] == pattern[j]) {
 	    i++;
 	    j++;
@@ -57,7 +56,7 @@ bool KMP(string s, string pattern) {
 	    }
 	}
     }
-    if (j == pattern.size()) {
+    if (j == (int) pattern.size()) {
 
 	return true;
     }
@@ -66,10 +65,11 @@ bool KMP(string s, string pattern) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     string s, pattern;
     cin >> s;
     cin >> pattern;
     bool res = KMP(s, pattern);
-    cout << res << '\n';
+    cout << res << "\n";
     return 0;
 }

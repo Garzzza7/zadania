@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-
 #define MAX_N 500001
+
 using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 

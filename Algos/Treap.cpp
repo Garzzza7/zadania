@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
+
 const long long mod = 1000000007;
 
 class Treap {
@@ -106,6 +106,6 @@ Treap *rangeAdd(Treap *t, int l, int r, int toAdd) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-
+    // TODO FINISH
     return 0;
 }

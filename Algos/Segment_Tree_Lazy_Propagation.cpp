@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
+
 vector<long long> tree;
-long long tree_size;
+int tree_size;
 long long sum_query(long long start_node, long long node_left,
 		    long long node_right, long long query_left,
 		    long long query_right) {
@@ -40,7 +39,7 @@ void recursive_update(long long start_node, long long node_left,
 }
 void iterative_update(long long index, long long value) {
     tree[tree_size + index] = value;
-    for (int i = (tree_size + index) / 2; i >= 1; i /= 2) {
+    for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
 	tree[i] = tree[i * 2] + tree[i * 2 + 1];
     }
 }
@@ -50,6 +49,7 @@ void range_update() {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     cin >> tree_size;
     vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {

@@ -1,19 +1,16 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
-#include <queue>
+
 using namespace std;
-const long long mod = 1000000007;
 
 void dijkstra(int source, vector<vector<pair<int, int>>> &adj,
 	      vector<int> &path, vector<int> &cost) {
-    int iter = adj.size();
-    vector<bool> known(adj.size(), false);
+    int iter = (int) adj.size();
+    vector<bool> known((int) adj.size(), false);
     cost[source] = 0;
     int current = source;
     while (iter--) {
 	int currentMinimum = INT_MAX;
-	for (int i = 0; i < known.size(); i++) {
+	for (int i = 0; i < (int) known.size(); i++) {
 	    if (known[i] == false && cost[i] < currentMinimum) {
 		currentMinimum = cost[i];
 		current = i;
@@ -34,8 +31,6 @@ void dijkstraWithSet(int source, vector<vector<pair<int, int>>> &adj,
     set<pair<int, int>> set;
     set.insert({source, 0});
     cost[source] = 0;
-    int currentNode;
-    int currentCost;
     while (set.empty() == false) {
 	auto current = set.extract(set.begin());
 	if (current.value().second != cost[current.value().first]) {

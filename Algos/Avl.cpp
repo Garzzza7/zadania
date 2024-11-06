@@ -148,7 +148,7 @@ void printTree(Node *root, string &indent, string &indent2, bool last,
     if (root != NULL) {
 	if (isRoot) {
 	    cout << indent << root->key << "\n";
-	    for (int i = 0; i < indent.size() / 2; i++) {
+	    for (int i = 0; i < (int) indent.size() / 2; i++) {
 		indent.pop_back();
 	    }
 	} else if (last == false) {
@@ -157,7 +157,7 @@ void printTree(Node *root, string &indent, string &indent2, bool last,
 	} else {
 	    // string half = indent.substr(0, indent.length() / 2);
 	    cout << indent2 << root->key << "\n";
-	    for (int i = 0; i < indent.size() / 2; i++) {
+	    for (int i = 0; i < (int) indent.size() / 2; i++) {
 		indent.pop_back();
 	    }
 	}

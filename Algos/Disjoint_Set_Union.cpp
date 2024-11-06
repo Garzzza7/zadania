@@ -45,7 +45,8 @@ void swap(long long *a, long long *b) {
     *b = *a;
     *a = buffer;
 }
-int find_set(long long v, vector<long long> &vec) {
+
+long long find_set(long long v, vector<long long> &vec) {
     if (vec[v] == v) {
 	return v;
     }

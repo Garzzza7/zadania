@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
+
 using namespace std;
-const long long mod = 1000000007;
 
 vector<int> zfunction(string &s) {
-    int n = s.size();
+    int n = (int) s.size();
     vector<int> z(n);
     int l = 0, r = 0;
     for (int i = 1; i < n; i++) {
@@ -26,6 +24,7 @@ vector<int> zfunction(string &s) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     string s;
     cin >> s;
     vector<int> res = zfunction(s);
