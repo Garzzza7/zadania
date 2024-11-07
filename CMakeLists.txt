@@ -3,13 +3,14 @@
 # the file should be detected from the build directory, in case it is not read this https://clangd.llvm.org/installation
 # also you might want to check here /usr/lib/gcc/x86_64-linux-gnu/
 cmake_minimum_required(VERSION 3.22)
-project(cmakeapp)
-project(cmakeappdebmini)
-project(cmakeappmini)
+project(template.exe)
+project(debminitemplate.exe)
+project(minitemplate.exe)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
 
-add_executable(cmakeapp TEMPLATE.cpp)
-add_executable(cmakeappmini MINTEMPLATE.cpp)
-add_executable(cmakeappdebmini DEBMINTEMPLATE.cpp)
+add_executable(template.exe TEMPLATE.cpp)
+add_executable(minitemplate.exe MINTEMPLATE.cpp)
+add_executable(debminitemplate.exe DEBMINTEMPLATE.cpp)
