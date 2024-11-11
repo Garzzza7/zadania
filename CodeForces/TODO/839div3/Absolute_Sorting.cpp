@@ -12,9 +12,8 @@ int main() {
 	int n;
 	cin >> n;
 	vector<long long> vec(n);
-        int cntm = 0 ;
-        int cntn
-	for (int i = 0; i < n; i++) {
+	int cntm = 0;
+	int cntn for (int i = 0; i < n; i++) {
 	    long long aa;
 	    cin >> aa;
 	    vec[i] = aa;
