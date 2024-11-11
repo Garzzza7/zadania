@@ -44,15 +44,14 @@ void bellmand_ford(T start, vector<tuple<T, T, T>> &edges, vector<T> &distances,
 }
 
 template <typename T> void shortest_path(T start, T target, vector<T> &paths) {
-    vector<T> path;
+    vector<T> sp;
     for (int cur = target; cur != -1; cur = paths[cur]) {
-	path.push_back(cur);
+	sp.push_back(cur);
     }
-    reverse(path.begin(), path.end());
 
     cout << "Path from " << start << " to " << target << ": ";
-    for (int i = 0; i < (int) path.size(); i++) {
-	cout << path[i] << (i < (int) path.size() - 1 ? " -> " : "\n");
+    for (int i = (int) sp.size() - 1; i >= 0; i--) {
+	cout << sp[i] << (i != 0 ? " -> " : "\n");
     }
     cout << "\n";
 }
@@ -70,18 +69,15 @@ int main() {
 	for (int i = 0; i < m; i++) {
 	    int a, b, w;
 	    cin >> a >> b >> w;
-	    a--;
-	    b--;
 	    edges.push_back({a, b, w});
-	    /*edges.push_back({b, a, w});*/
 	}
-	vector<int> distances(n);
-	vector<int> paths(n, -1);
-	bellmand_ford(0, edges, distances, paths);
-	for (int i = 0; i < n; i++) {
+	vector<int> distances(n + 1);
+	vector<int> paths(n + 1, -1);
+	bellmand_ford(1, edges, distances, paths);
+	for (int i = 1; i <= n; i++) {
 	    cout << i << ": " << distances[i] << "\n";
 	}
-	shortest_path(0, n - 1, paths);
+	shortest_path(1, n, paths);
     }
     return 0;
 }
