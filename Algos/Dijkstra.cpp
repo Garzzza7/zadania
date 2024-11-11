@@ -86,11 +86,10 @@ vector<int> shortestPath(int source, int target, vector<int> &path) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     int n, m;
     cin >> n >> m;
     vector<vector<pair<int, int>>> adj(n);
-    vector<int> path(n, -1);
-    vector<int> cost(n, INT_MAX);
     for (int i = 0; i < m; i++) {
 	int a, b, w;
 	cin >> a >> b >> w;
@@ -105,6 +104,9 @@ int main() {
     }
     int source, target;
     cin >> source >> target;
+
+    vector<int> path(n, -1);
+    vector<int> cost(n, INT_MAX);
     // dijkstra(0, adj, path, cost);
     dijkstraWithSet(0, adj, path, cost);
     // dijkstraWithPrioQueue(0, adj, path, cost);
