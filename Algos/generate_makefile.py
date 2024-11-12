@@ -89,12 +89,23 @@ for cpp_file in cpp_files:
         + ")"
         + '" == "$(cat '
         + cpp_file[:-4]
-        + '.test)" ]; then\n  printf "${green}'
+        + '.test)" ]; then\n    printf "${green}'
         + cpp_file[:-4]
-        + ' Passed.\\n"\nelse\n  printf "${red}'
+        + ' Passed.\\n"\nelse\n    printf "${red}'
         + cpp_file[:-4]
-        + " Failed.\\n"
-        + '"\nfi\n\n'
+        + ' Failed.\\n"\n'
+        + '    printf "${red} Got:\\n"\n'
+        + '    printf "${red}$(./'
+        + cpp_file[:-4]
+        + ".exe < "
+        + cpp_file[:-4]
+        + ".txt"
+        + ')\\n"\n'
+        + '    printf "${red} Should be:\\n"\n'
+        + '    printf "${red}$(cat '
+        + cpp_file[:-4]
+        + '.test)\\n"'
+        + "\nfi\n\n"
     )
 testfile.close()
 os.system("chmod +x run_tests.sh")
