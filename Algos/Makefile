@@ -1,4 +1,4 @@
-all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  BST.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  TEMPLATE.exe  Segment_Tree_Lazy_Propagation.exe  Euclid_s_Algorithm.exe  MINTEMPLATE.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  MODTEMPLATE.exe  CRT.exe  DFS.exe  Treap.exe  Segment_Tree_RMQ.exe  Avl.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Red_Black_Tree.exe  Segment_Tree_Range_Sum.exe  Fibonacci_heap.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
+all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  BST.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  Segment_Tree_Lazy_Propagation.exe  Euclid_s_Algorithm.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  CRT.exe  DFS.exe  Treap.exe  Segment_Tree_RMQ.exe  Avl.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Red_Black_Tree.exe  Segment_Tree_Range_Sum.exe  Fibonacci_heap.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
 MEX.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MEX.cpp -o MEX.exe
 Sieve_of_Eratosthenes.exe: 
@@ -15,14 +15,10 @@ Counting_Sort.exe:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Counting_Sort.cpp -o Counting_Sort.exe
 Euler_s_totient.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euler_s_totient.cpp -o Euler_s_totient.exe
-TEMPLATE.exe: 
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op TEMPLATE.cpp -o TEMPLATE.exe
 Segment_Tree_Lazy_Propagation.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Segment_Tree_Lazy_Propagation.cpp -o Segment_Tree_Lazy_Propagation.exe
 Euclid_s_Algorithm.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euclid_s_Algorithm.cpp -o Euclid_s_Algorithm.exe
-MINTEMPLATE.exe: 
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MINTEMPLATE.cpp -o MINTEMPLATE.exe
 KMP.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op KMP.cpp -o KMP.exe
 Edmond_Karp_MaxFlow.exe: 
@@ -39,8 +35,6 @@ Min_Heap.exe:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Min_Heap.cpp -o Min_Heap.exe
 Ternary_Search.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Ternary_Search.cpp -o Ternary_Search.exe
-MODTEMPLATE.exe: 
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MODTEMPLATE.cpp -o MODTEMPLATE.exe
 CRT.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op CRT.cpp -o CRT.exe
 DFS.exe: 
@@ -101,10 +95,8 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Merge_Sort.cpp -o Merge_Sort.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Counting_Sort.cpp -o Counting_Sort.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euler_s_totient.cpp -o Euler_s_totient.exe
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op TEMPLATE.cpp -o TEMPLATE.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Segment_Tree_Lazy_Propagation.cpp -o Segment_Tree_Lazy_Propagation.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euclid_s_Algorithm.cpp -o Euclid_s_Algorithm.exe
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MINTEMPLATE.cpp -o MINTEMPLATE.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op KMP.cpp -o KMP.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Binary_Exponentiation.cpp -o Binary_Exponentiation.exe
@@ -113,7 +105,6 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op FenwickTree.cpp -o FenwickTree.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Min_Heap.cpp -o Min_Heap.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Ternary_Search.cpp -o Ternary_Search.exe
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MODTEMPLATE.cpp -o MODTEMPLATE.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op CRT.cpp -o CRT.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op DFS.cpp -o DFS.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Treap.cpp -o Treap.exe
@@ -140,7 +131,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Binomial_Coefficient.cpp -o Binomial_Coefficient.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Priority_Queue.cpp -o Priority_Queue.exe
 
-fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBST.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fTEMPLATE.exe  fSegment_Tree_Lazy_Propagation.exe  fEuclid_s_Algorithm.exe  fMINTEMPLATE.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fMODTEMPLATE.exe  fCRT.exe  fDFS.exe  fTreap.exe  fSegment_Tree_RMQ.exe  fAvl.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fRed_Black_Tree.exe  fSegment_Tree_Range_Sum.exe  fFibonacci_heap.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
+fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBST.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fSegment_Tree_Lazy_Propagation.exe  fEuclid_s_Algorithm.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fCRT.exe  fDFS.exe  fTreap.exe  fSegment_Tree_RMQ.exe  fAvl.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fRed_Black_Tree.exe  fSegment_Tree_Range_Sum.exe  fFibonacci_heap.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
 fMEX.exe: 
 	g++ --std=c++20 -O0 MEX.cpp -o fMEX.exe
 fSieve_of_Eratosthenes.exe: 
@@ -157,14 +148,10 @@ fCounting_Sort.exe:
 	g++ --std=c++20 -O0 Counting_Sort.cpp -o fCounting_Sort.exe
 fEuler_s_totient.exe: 
 	g++ --std=c++20 -O0 Euler_s_totient.cpp -o fEuler_s_totient.exe
-fTEMPLATE.exe: 
-	g++ --std=c++20 -O0 TEMPLATE.cpp -o fTEMPLATE.exe
 fSegment_Tree_Lazy_Propagation.exe: 
 	g++ --std=c++20 -O0 Segment_Tree_Lazy_Propagation.cpp -o fSegment_Tree_Lazy_Propagation.exe
 fEuclid_s_Algorithm.exe: 
 	g++ --std=c++20 -O0 Euclid_s_Algorithm.cpp -o fEuclid_s_Algorithm.exe
-fMINTEMPLATE.exe: 
-	g++ --std=c++20 -O0 MINTEMPLATE.cpp -o fMINTEMPLATE.exe
 fKMP.exe: 
 	g++ --std=c++20 -O0 KMP.cpp -o fKMP.exe
 fEdmond_Karp_MaxFlow.exe: 
@@ -181,8 +168,6 @@ fMin_Heap.exe:
 	g++ --std=c++20 -O0 Min_Heap.cpp -o fMin_Heap.exe
 fTernary_Search.exe: 
 	g++ --std=c++20 -O0 Ternary_Search.cpp -o fTernary_Search.exe
-fMODTEMPLATE.exe: 
-	g++ --std=c++20 -O0 MODTEMPLATE.cpp -o fMODTEMPLATE.exe
 fCRT.exe: 
 	g++ --std=c++20 -O0 CRT.cpp -o fCRT.exe
 fDFS.exe: 
