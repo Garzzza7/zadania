@@ -10,3 +10,9 @@ do
     echo $path
     rm $path
 done
+
+for path in `find ./ -name '*.pdf'`
+do
+    echo $path
+    rm $path
+done

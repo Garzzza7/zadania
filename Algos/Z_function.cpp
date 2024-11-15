@@ -25,12 +25,16 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    string s;
-    cin >> s;
-    vector<int> res = zfunction(s);
-    for (auto &&a : res) {
-	cout << a << " ";
+    int t;
+    cin >> t;
+    while (t--) {
+	string s;
+	cin >> s;
+	vector<int> res = zfunction(s);
+	for (auto &&a : res) {
+	    cout << a << " ";
+	}
+	cout << "\n";
     }
-    cout << "\n";
     return 0;
 }
