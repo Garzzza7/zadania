@@ -91,7 +91,7 @@ for cpp_file in cpp_files:
         + cpp_file[:-4]
         + '.test)" ]; then\n    printf "${green}'
         + cpp_file[:-4]
-        + ' Passed.\\n"\nelse\n    printf "${red}'
+        + ' Passed.${normal}\\n"\nelse\n    printf "${red}'
         + cpp_file[:-4]
         + ' Failed.\\n"\n'
         + '    printf "${red} Got:\\n"\n'
@@ -104,7 +104,7 @@ for cpp_file in cpp_files:
         + '    printf "${red} Should be:\\n"\n'
         + '    printf "${red}$(cat '
         + cpp_file[:-4]
-        + '.test)\\n"'
+        + '.test)${normal}\\n"'
         + "\nfi\n\n"
     )
 testfile.close()
