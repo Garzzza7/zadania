@@ -37,24 +37,24 @@ int main() {
 	cin >> a[i];
 	m[0][i] = a[i];
     }
-    /*    2) preprocessing for min, O(N*log(N))*/
-    /*    for (int i = 1; i <= LOG; i++){*/
-    /*for (int j = 0; j + (1 << i) <= n; j++) {*/
-    /*    m[i][j] = min(m[i - 1][j], m[i - 1][j + (1 << (i - 1))]);*/
-    /*}*/
-    /*   }*/
-    for (int i = 1; i <= LOG; i++) {
-	for (int j = 0; j + (1 << i) <= n; j++) {
-	    m[i][j] = m[i - 1][j] + m[i - 1][j + (1 << (i - 1))];
-	}
+        /*2) preprocessing for min, O(N*log(N))*/
+        for (int i = 1; i <= LOG; i++){
+    for (int j = 0; j + (1 << i) <= n; j++) {
+        m[i][j] = min(m[i - 1][j], m[i - 1][j + (1 << (i - 1))]);
     }
+       }
+	/*   for (int i = 1; i <= LOG; i++) {*/
+	/*for (int j = 0; j + (1 << i) <= n; j++) {*/
+	/*    m[i][j] = m[i - 1][j] + m[i - 1][j + (1 << (i - 1))];*/
+	/*}*/
+	/*   }*/
 
     int q;
     cin >> q;
     for (int i = 0; i < q; i++) {
 	int L, R;
 	cin >> L >> R;
-	/*cout << queryMin(L, R) << "\n";*/
+	cout << queryMin(L, R) << "\n";
 	cout << querySum(L, R) << "\n";
     }
     /*   for (auto &&a : m) {*/

@@ -9,19 +9,19 @@ int main() {
     int T;
     cin >> T;
     while (T--) {
-        int n;
-        cin >> n;
-        map<int, int> m;
-        for (int i = 0; i < n; i++) {
-            int aa;
-            cin >> aa;
-            m[aa]++;
-        }
-        int res = 0;
-        for (const auto &[key, value] : m) {
-            res += floor(value / 2);
-        }
-        cout << res << "\n";
+	int n;
+	cin >> n;
+	map<int, int> m;
+	for (int i = 0; i < n; i++) {
+	    int aa;
+	    cin >> aa;
+	    m[aa]++;
+	}
+	int res = 0;
+	for (const auto &[key, value] : m) {
+	    res += floor(value / 2);
+	}
+	cout << res << "\n";
     }
     return 0;
 }
