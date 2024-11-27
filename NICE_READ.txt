@@ -1,3 +1,4 @@
 https://graphics.stanford.edu/~seander/bithacks.html
 https://cp-algorithms.com/
 https://lodev.org/cgtutor/raycasting.html
+https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2069.html
