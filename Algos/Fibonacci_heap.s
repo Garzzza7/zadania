@@ -1,4 +1,10 @@
 	.file	"Fibonacci_heap.cpp"
+	.intel_syntax noprefix
+# GNU C++17 (Ubuntu 13.2.0-23ubuntu4) version 13.2.0 (x86_64-linux-gnu)
+#	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+
+# GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+# options passed: -masm=intel -mtune=generic -march=x86-64 -O0 -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection
 	.text
 #APP
 	.globl _ZSt21ios_base_library_initv
@@ -15,22 +21,26 @@ _ZL3mod:
 main:
 .LFB9799:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movl	$0, %edi
-	call	_ZNSt8ios_base15sync_with_stdioEb@PLT
-	movl	$0, %esi
-	leaq	16+_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT
-	movl	$0, %eax
-	popq	%rbp
+# Fibonacci_heap.cpp:252:     ios::sync_with_stdio(false);
+	mov	edi, 0	#,
+	call	_ZNSt8ios_base15sync_with_stdioEb@PLT	#
+# Fibonacci_heap.cpp:253:     cin.tie(0);
+	mov	esi, 0	#,
+	lea	rax, _ZSt3cin[rip+16]	# tmp84,
+	mov	rdi, rax	#, tmp84
+	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT	#
+# Fibonacci_heap.cpp:255:     return 0;
+	mov	eax, 0	# _4,
+# Fibonacci_heap.cpp:256: }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9799:
 	.size	main, .-main

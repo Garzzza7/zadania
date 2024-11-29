@@ -1,4 +1,10 @@
 	.file	"Binomial_Coefficient.cpp"
+	.intel_syntax noprefix
+# GNU C++17 (Ubuntu 13.2.0-23ubuntu4) version 13.2.0 (x86_64-linux-gnu)
+#	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+
+# GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+# options passed: -masm=intel -mtune=generic -march=x86-64 -O0 -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection
 	.text
 #APP
 	.globl _ZSt21ios_base_library_initv
@@ -8,52 +14,61 @@
 _Z30recursive_binomial_coefficientii:
 .LFB9770:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$24, %rsp
+	push	rbx	#
+	sub	rsp, 24	#,
 	.cfi_offset 3, -24
-	movl	%edi, -20(%rbp)
-	movl	%esi, -24(%rbp)
-	cmpl	$1, -24(%rbp)
-	jne	.L2
-	movl	-20(%rbp), %eax
-	cltq
-	jmp	.L3
+	mov	DWORD PTR -20[rbp], edi	# n, n
+	mov	DWORD PTR -24[rbp], esi	# k, k
+# Binomial_Coefficient.cpp:6:     if (k == 1) {
+	cmp	DWORD PTR -24[rbp], 1	# k,
+	jne	.L2	#,
+# Binomial_Coefficient.cpp:7: 	return n;
+	mov	eax, DWORD PTR -20[rbp]	# tmp89, n
+	cdqe
+	jmp	.L3	#
 .L2:
-	movl	-20(%rbp), %eax
-	cmpl	-24(%rbp), %eax
-	je	.L4
-	cmpl	$0, -24(%rbp)
-	jne	.L5
+# Binomial_Coefficient.cpp:8:     } else if (n == k || k == 0) {
+	mov	eax, DWORD PTR -20[rbp]	# tmp90, n
+	cmp	eax, DWORD PTR -24[rbp]	# tmp90, k
+	je	.L4	#,
+# Binomial_Coefficient.cpp:8:     } else if (n == k || k == 0) {
+	cmp	DWORD PTR -24[rbp], 0	# k,
+	jne	.L5	#,
 .L4:
-	movl	$1, %eax
-	jmp	.L3
+# Binomial_Coefficient.cpp:9: 	return 1;
+	mov	eax, 1	# _6,
+	jmp	.L3	#
 .L5:
-	movl	-24(%rbp), %eax
-	leal	-1(%rax), %edx
-	movl	-20(%rbp), %eax
-	subl	$1, %eax
-	movl	%edx, %esi
-	movl	%eax, %edi
-	call	_Z30recursive_binomial_coefficientii
-	movq	%rax, %rbx
-	movl	-20(%rbp), %eax
-	leal	-1(%rax), %edx
-	movl	-24(%rbp), %eax
-	movl	%eax, %esi
-	movl	%edx, %edi
-	call	_Z30recursive_binomial_coefficientii
-	addq	%rbx, %rax
+# Binomial_Coefficient.cpp:11:     return recursive_binomial_coefficient(n - 1, k - 1) +
+	mov	eax, DWORD PTR -24[rbp]	# tmp91, k
+	lea	edx, -1[rax]	# _1,
+	mov	eax, DWORD PTR -20[rbp]	# tmp92, n
+	sub	eax, 1	# _2,
+	mov	esi, edx	#, _1
+	mov	edi, eax	#, _2
+	call	_Z30recursive_binomial_coefficientii	#
+	mov	rbx, rax	# _3,
+# Binomial_Coefficient.cpp:12: 	   recursive_binomial_coefficient(n - 1, k);
+	mov	eax, DWORD PTR -20[rbp]	# tmp93, n
+	lea	edx, -1[rax]	# _4,
+	mov	eax, DWORD PTR -24[rbp]	# tmp94, k
+	mov	esi, eax	#, tmp94
+	mov	edi, edx	#, _4
+	call	_Z30recursive_binomial_coefficientii	#
+# Binomial_Coefficient.cpp:12: 	   recursive_binomial_coefficient(n - 1, k);
+	add	rax, rbx	# _6, _3
 .L3:
-	movq	-8(%rbp), %rbx
-	leave
+# Binomial_Coefficient.cpp:13: }
+	mov	rbx, QWORD PTR -8[rbp]	#,
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9770:
 	.size	_Z30recursive_binomial_coefficientii, .-_Z30recursive_binomial_coefficientii
@@ -62,60 +77,76 @@ _Z30recursive_binomial_coefficientii:
 _Z35multiplicative_binomial_coefficientii:
 .LFB9771:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movl	%edi, -36(%rbp)
-	movl	%esi, -40(%rbp)
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	xorl	%eax, %eax
-	movq	$1, -16(%rbp)
-	movl	-40(%rbp), %eax
-	movl	-36(%rbp), %edx
-	subl	%eax, %edx
-	movl	%edx, -28(%rbp)
-	leaq	-28(%rbp), %rdx
-	leaq	-40(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt3minIiERKT_S2_S2_
-	movl	(%rax), %eax
-	movl	%eax, -20(%rbp)
-	movl	$1, -24(%rbp)
-	jmp	.L7
+	sub	rsp, 48	#,
+	mov	DWORD PTR -36[rbp], edi	# n, n
+	mov	DWORD PTR -40[rbp], esi	# k, k
+# Binomial_Coefficient.cpp:15: long long multiplicative_binomial_coefficient(int n, int k) {
+	mov	rax, QWORD PTR fs:40	# tmp104, MEM[(<address-space-1> long unsigned int *)40B]
+	mov	QWORD PTR -8[rbp], rax	# D.224469, tmp104
+	xor	eax, eax	# tmp104
+# Binomial_Coefficient.cpp:16:     long long res = 1;
+	mov	QWORD PTR -16[rbp], 1	# res,
+# Binomial_Coefficient.cpp:17:     int kk = min(k, n - k);
+	mov	eax, DWORD PTR -40[rbp]	# k.0_1, k
+	mov	edx, DWORD PTR -36[rbp]	# tmp91, n
+	sub	edx, eax	# _2, k.0_1
+	mov	DWORD PTR -28[rbp], edx	# D.208039, _2
+# Binomial_Coefficient.cpp:17:     int kk = min(k, n - k);
+	lea	rdx, -28[rbp]	# tmp92,
+	lea	rax, -40[rbp]	# tmp93,
+	mov	rsi, rdx	#, tmp92
+	mov	rdi, rax	#, tmp93
+	call	_ZSt3minIiERKT_S2_S2_	#
+# Binomial_Coefficient.cpp:17:     int kk = min(k, n - k);
+	mov	eax, DWORD PTR [rax]	# tmp94, *_3
+	mov	DWORD PTR -20[rbp], eax	# kk, tmp94
+# Binomial_Coefficient.cpp:18:     for (int i = 1; i <= kk; i++) {
+	mov	DWORD PTR -24[rbp], 1	# i,
+# Binomial_Coefficient.cpp:18:     for (int i = 1; i <= kk; i++) {
+	jmp	.L7	#
 .L8:
-	movl	-36(%rbp), %eax
-	addl	$1, %eax
-	subl	-24(%rbp), %eax
-	cltq
-	movq	-16(%rbp), %rdx
-	imulq	%rdx, %rax
-	movq	%rax, -16(%rbp)
-	movl	-24(%rbp), %eax
-	movslq	%eax, %rcx
-	movq	-16(%rbp), %rax
-	cqto
-	idivq	%rcx
-	movq	%rax, -16(%rbp)
-	addl	$1, -24(%rbp)
+# Binomial_Coefficient.cpp:19: 	res *= n + 1 - i;
+	mov	eax, DWORD PTR -36[rbp]	# tmp95, n
+	add	eax, 1	# _4,
+# Binomial_Coefficient.cpp:19: 	res *= n + 1 - i;
+	sub	eax, DWORD PTR -24[rbp]	# _5, i
+	cdqe
+# Binomial_Coefficient.cpp:19: 	res *= n + 1 - i;
+	mov	rdx, QWORD PTR -16[rbp]	# tmp97, res
+	imul	rax, rdx	# tmp96, tmp97
+	mov	QWORD PTR -16[rbp], rax	# res, tmp96
+# Binomial_Coefficient.cpp:20: 	res /= i;
+	mov	eax, DWORD PTR -24[rbp]	# tmp98, i
+	movsx	rcx, eax	# _7, tmp98
+# Binomial_Coefficient.cpp:20: 	res /= i;
+	mov	rax, QWORD PTR -16[rbp]	# tmp101, res
+	cqo
+	idiv	rcx	# _7
+	mov	QWORD PTR -16[rbp], rax	# res, tmp99
+# Binomial_Coefficient.cpp:18:     for (int i = 1; i <= kk; i++) {
+	add	DWORD PTR -24[rbp], 1	# i,
 .L7:
-	movl	-24(%rbp), %eax
-	cmpl	-20(%rbp), %eax
-	jle	.L8
-	movq	-16(%rbp), %rax
-	movq	-8(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L10
-	call	__stack_chk_fail@PLT
+# Binomial_Coefficient.cpp:18:     for (int i = 1; i <= kk; i++) {
+	mov	eax, DWORD PTR -24[rbp]	# tmp102, i
+	cmp	eax, DWORD PTR -20[rbp]	# tmp102, kk
+	jle	.L8	#,
+# Binomial_Coefficient.cpp:22:     return res;
+	mov	rax, QWORD PTR -16[rbp]	# _18, res
+# Binomial_Coefficient.cpp:23: }
+	mov	rdx, QWORD PTR -8[rbp]	# tmp105, D.224469
+	sub	rdx, QWORD PTR fs:40	# tmp105, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L10	#,
+	call	__stack_chk_fail@PLT	#
 .L10:
-	leave
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9771:
 	.size	_Z35multiplicative_binomial_coefficientii, .-_Z35multiplicative_binomial_coefficientii
@@ -132,85 +163,102 @@ _Z35multiplicative_binomial_coefficientii:
 main:
 .LFB9772:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	xorl	%eax, %eax
-	movl	$0, %edi
-	call	_ZNSt8ios_base15sync_with_stdioEb@PLT
-	movl	$0, %esi
-	leaq	16+_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT
-	leaq	-24(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSirsERx@PLT
-	movq	%rax, %rdx
-	leaq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZNSirsERx@PLT
-	movq	-16(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %esi
-	movl	%eax, %edi
-	call	_Z35multiplicative_binomial_coefficientii
-	movl	%eax, -32(%rbp)
-	leaq	.LC0(%rip), %rax
-	movq	%rax, %rsi
-	leaq	_ZSt4cout(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	%rax, %rdx
-	movl	-32(%rbp), %eax
-	movl	%eax, %esi
-	movq	%rdx, %rdi
-	call	_ZNSolsEi@PLT
-	movq	%rax, %rdx
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-16(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %esi
-	movl	%eax, %edi
-	call	_Z30recursive_binomial_coefficientii
-	movl	%eax, -28(%rbp)
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rsi
-	leaq	_ZSt4cout(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	%rax, %rdx
-	movl	-28(%rbp), %eax
-	movl	%eax, %esi
-	movq	%rdx, %rdi
-	call	_ZNSolsEi@PLT
-	movq	%rax, %rdx
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movl	$0, %eax
-	movq	-8(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L13
-	call	__stack_chk_fail@PLT
+	sub	rsp, 32	#,
+# Binomial_Coefficient.cpp:25: int main() {
+	mov	rax, QWORD PTR fs:40	# tmp112, MEM[(<address-space-1> long unsigned int *)40B]
+	mov	QWORD PTR -8[rbp], rax	# D.224472, tmp112
+	xor	eax, eax	# tmp112
+# Binomial_Coefficient.cpp:26:     ios::sync_with_stdio(false);
+	mov	edi, 0	#,
+	call	_ZNSt8ios_base15sync_with_stdioEb@PLT	#
+# Binomial_Coefficient.cpp:27:     cin.tie(0);
+	mov	esi, 0	#,
+	lea	rax, _ZSt3cin[rip+16]	# tmp99,
+	mov	rdi, rax	#, tmp99
+	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT	#
+# Binomial_Coefficient.cpp:30:     cin >> n >> k;
+	lea	rax, -24[rbp]	# tmp100,
+	mov	rsi, rax	#, tmp100
+	lea	rax, _ZSt3cin[rip]	# tmp101,
+	mov	rdi, rax	#, tmp101
+	call	_ZNSirsERx@PLT	#
+	mov	rdx, rax	# _1,
+# Binomial_Coefficient.cpp:30:     cin >> n >> k;
+	lea	rax, -16[rbp]	# tmp102,
+	mov	rsi, rax	#, tmp102
+	mov	rdi, rdx	#, _1
+	call	_ZNSirsERx@PLT	#
+# Binomial_Coefficient.cpp:31:     int a = multiplicative_binomial_coefficient(n, k);
+	mov	rax, QWORD PTR -16[rbp]	# k.1_2, k
+	mov	edx, eax	# _3, k.1_2
+	mov	rax, QWORD PTR -24[rbp]	# n.2_4, n
+	mov	esi, edx	#, _3
+	mov	edi, eax	#, _5
+	call	_Z35multiplicative_binomial_coefficientii	#
+# Binomial_Coefficient.cpp:31:     int a = multiplicative_binomial_coefficient(n, k);
+	mov	DWORD PTR -32[rbp], eax	# a, _6
+# Binomial_Coefficient.cpp:32:     cout << "Multiplicative:\n" << a << "\n";
+	lea	rax, .LC0[rip]	# tmp103,
+	mov	rsi, rax	#, tmp103
+	lea	rax, _ZSt4cout[rip]	# tmp104,
+	mov	rdi, rax	#, tmp104
+	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT	#
+	mov	rdx, rax	# _7,
+# Binomial_Coefficient.cpp:32:     cout << "Multiplicative:\n" << a << "\n";
+	mov	eax, DWORD PTR -32[rbp]	# tmp105, a
+	mov	esi, eax	#, tmp105
+	mov	rdi, rdx	#, _7
+	call	_ZNSolsEi@PLT	#
+	mov	rdx, rax	# _8,
+# Binomial_Coefficient.cpp:32:     cout << "Multiplicative:\n" << a << "\n";
+	lea	rax, .LC1[rip]	# tmp106,
+	mov	rsi, rax	#, tmp106
+	mov	rdi, rdx	#, _8
+	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT	#
+# Binomial_Coefficient.cpp:33:     int b = recursive_binomial_coefficient(n, k);
+	mov	rax, QWORD PTR -16[rbp]	# k.3_9, k
+	mov	edx, eax	# _10, k.3_9
+	mov	rax, QWORD PTR -24[rbp]	# n.4_11, n
+	mov	esi, edx	#, _10
+	mov	edi, eax	#, _12
+	call	_Z30recursive_binomial_coefficientii	#
+# Binomial_Coefficient.cpp:33:     int b = recursive_binomial_coefficient(n, k);
+	mov	DWORD PTR -28[rbp], eax	# b, _13
+# Binomial_Coefficient.cpp:34:     cout << "Recursive:\n" << b << "\n";
+	lea	rax, .LC2[rip]	# tmp107,
+	mov	rsi, rax	#, tmp107
+	lea	rax, _ZSt4cout[rip]	# tmp108,
+	mov	rdi, rax	#, tmp108
+	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT	#
+	mov	rdx, rax	# _14,
+# Binomial_Coefficient.cpp:34:     cout << "Recursive:\n" << b << "\n";
+	mov	eax, DWORD PTR -28[rbp]	# tmp109, b
+	mov	esi, eax	#, tmp109
+	mov	rdi, rdx	#, _14
+	call	_ZNSolsEi@PLT	#
+	mov	rdx, rax	# _15,
+# Binomial_Coefficient.cpp:34:     cout << "Recursive:\n" << b << "\n";
+	lea	rax, .LC1[rip]	# tmp110,
+	mov	rsi, rax	#, tmp110
+	mov	rdi, rdx	#, _15
+	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT	#
+# Binomial_Coefficient.cpp:36:     return 0;
+	mov	eax, 0	# _39,
+# Binomial_Coefficient.cpp:37: }
+	mov	rdx, QWORD PTR -8[rbp]	# tmp113, D.224472
+	sub	rdx, QWORD PTR fs:40	# tmp113, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L13	#,
+	call	__stack_chk_fail@PLT	#
 .L13:
-	leave
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9772:
 	.size	main, .-main
@@ -220,28 +268,33 @@ main:
 _ZSt3minIiERKT_S2_S2_:
 .LFB10458:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-16(%rbp), %rax
-	movl	(%rax), %edx
-	movq	-8(%rbp), %rax
-	movl	(%rax), %eax
-	cmpl	%eax, %edx
-	jge	.L15
-	movq	-16(%rbp), %rax
-	jmp	.L16
+	mov	QWORD PTR -8[rbp], rdi	# __a, __a
+	mov	QWORD PTR -16[rbp], rsi	# __b, __b
+# /usr/include/c++/13/bits/stl_algobase.h:238:       if (__b < __a)
+	mov	rax, QWORD PTR -16[rbp]	# tmp86, __b
+	mov	edx, DWORD PTR [rax]	# _1, *__b_5(D)
+	mov	rax, QWORD PTR -8[rbp]	# tmp87, __a
+	mov	eax, DWORD PTR [rax]	# _2, *__a_6(D)
+# /usr/include/c++/13/bits/stl_algobase.h:238:       if (__b < __a)
+	cmp	edx, eax	# _1, _2
+	jge	.L15	#,
+# /usr/include/c++/13/bits/stl_algobase.h:239: 	return __b;
+	mov	rax, QWORD PTR -16[rbp]	# _3, __b
+	jmp	.L16	#
 .L15:
-	movq	-8(%rbp), %rax
+# /usr/include/c++/13/bits/stl_algobase.h:240:       return __a;
+	mov	rax, QWORD PTR -8[rbp]	# _3, __a
 .L16:
-	popq	%rbp
+# /usr/include/c++/13/bits/stl_algobase.h:241:     }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10458:
 	.size	_ZSt3minIiERKT_S2_S2_, .-_ZSt3minIiERKT_S2_S2_

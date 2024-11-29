@@ -1,4 +1,10 @@
 	.file	"Ternary_Search.cpp"
+	.intel_syntax noprefix
+# GNU C++17 (Ubuntu 13.2.0-23ubuntu4) version 13.2.0 (x86_64-linux-gnu)
+#	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+
+# GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+# options passed: -masm=intel -mtune=generic -march=x86-64 -O0 -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection
 	.text
 	.section	.text._ZSt17__size_to_integerm,"axG",@progbits,_ZSt17__size_to_integerm,comdat
 	.weak	_ZSt17__size_to_integerm
@@ -6,17 +12,19 @@
 _ZSt17__size_to_integerm:
 .LFB354:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# __n, __n
+# /usr/include/c++/13/bits/stl_algobase.h:1018:   __size_to_integer(unsigned long __n) { return __n; }
+	mov	rax, QWORD PTR -8[rbp]	# _2, __n
+# /usr/include/c++/13/bits/stl_algobase.h:1018:   __size_to_integer(unsigned long __n) { return __n; }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE354:
 	.size	_ZSt17__size_to_integerm, .-_ZSt17__size_to_integerm
@@ -26,18 +34,20 @@ _ZSt17__size_to_integerm:
 _ZnwmPv:
 .LFB471:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-16(%rbp), %rax
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# D.15836, D.15836
+	mov	QWORD PTR -16[rbp], rsi	# __p, __p
+# /usr/include/c++/13/new:175: { return __p; }
+	mov	rax, QWORD PTR -16[rbp]	# _2, __p
+# /usr/include/c++/13/new:175: { return __p; }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE471:
 	.size	_ZnwmPv, .-_ZnwmPv
@@ -47,28 +57,33 @@ _ZnwmPv:
 _ZSt3minImERKT_S2_S2_:
 .LFB1923:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-16(%rbp), %rax
-	movq	(%rax), %rdx
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	cmpq	%rax, %rdx
-	jnb	.L6
-	movq	-16(%rbp), %rax
-	jmp	.L7
+	mov	QWORD PTR -8[rbp], rdi	# __a, __a
+	mov	QWORD PTR -16[rbp], rsi	# __b, __b
+# /usr/include/c++/13/bits/stl_algobase.h:238:       if (__b < __a)
+	mov	rax, QWORD PTR -16[rbp]	# tmp86, __b
+	mov	rdx, QWORD PTR [rax]	# _1, *__b_5(D)
+	mov	rax, QWORD PTR -8[rbp]	# tmp87, __a
+	mov	rax, QWORD PTR [rax]	# _2, *__a_6(D)
+# /usr/include/c++/13/bits/stl_algobase.h:238:       if (__b < __a)
+	cmp	rdx, rax	# _1, _2
+	jnb	.L6	#,
+# /usr/include/c++/13/bits/stl_algobase.h:239: 	return __b;
+	mov	rax, QWORD PTR -16[rbp]	# _3, __b
+	jmp	.L7	#
 .L6:
-	movq	-8(%rbp), %rax
+# /usr/include/c++/13/bits/stl_algobase.h:240:       return __a;
+	mov	rax, QWORD PTR -8[rbp]	# _3, __a
 .L7:
-	popq	%rbp
+# /usr/include/c++/13/bits/stl_algobase.h:241:     }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE1923:
 	.size	_ZSt3minImERKT_S2_S2_, .-_ZSt3minImERKT_S2_S2_
@@ -81,128 +96,157 @@ _ZSt3minImERKT_S2_S2_:
 _Z14ternary_searchRSt6vectorIiSaIiEEiii:
 .LFB9770:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movq	%rdi, -24(%rbp)
-	movl	%esi, -28(%rbp)
-	movl	%edx, -32(%rbp)
-	movl	%ecx, -36(%rbp)
-	movl	-32(%rbp), %eax
-	cmpl	-28(%rbp), %eax
-	jl	.L9
-	movl	-32(%rbp), %eax
-	subl	-28(%rbp), %eax
-	movslq	%eax, %rdx
-	imulq	$1431655766, %rdx, %rdx
-	shrq	$32, %rdx
-	sarl	$31, %eax
-	subl	%eax, %edx
-	movl	-28(%rbp), %eax
-	addl	%edx, %eax
-	movl	%eax, -8(%rbp)
-	movl	-32(%rbp), %eax
-	subl	-28(%rbp), %eax
-	movslq	%eax, %rdx
-	imulq	$1431655766, %rdx, %rdx
-	shrq	$32, %rdx
-	sarl	$31, %eax
-	subl	%edx, %eax
-	movl	%eax, %ecx
-	movl	-32(%rbp), %eax
-	addl	%ecx, %eax
-	movl	%eax, -4(%rbp)
-	movl	-8(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEEixEm
-	movl	(%rax), %eax
-	cmpl	%eax, -36(%rbp)
-	sete	%al
-	testb	%al, %al
-	je	.L10
-	movl	-8(%rbp), %eax
-	jmp	.L11
+	sub	rsp, 48	#,
+	mov	QWORD PTR -24[rbp], rdi	# vec, vec
+	mov	DWORD PTR -28[rbp], esi	# l, l
+	mov	DWORD PTR -32[rbp], edx	# r, r
+	mov	DWORD PTR -36[rbp], ecx	# x, x
+# Ternary_Search.cpp:6:     if (r >= l) {
+	mov	eax, DWORD PTR -32[rbp]	# tmp108, r
+	cmp	eax, DWORD PTR -28[rbp]	# tmp108, l
+	jl	.L9	#,
+# Ternary_Search.cpp:7: 	int mid1 = l + (r - l) / 3;
+	mov	eax, DWORD PTR -32[rbp]	# tmp109, r
+	sub	eax, DWORD PTR -28[rbp]	# _1, l
+# Ternary_Search.cpp:7: 	int mid1 = l + (r - l) / 3;
+	movsx	rdx, eax	# tmp110, _1
+	imul	rdx, rdx, 1431655766	# tmp111, tmp110,
+	shr	rdx, 32	# tmp112,
+	sar	eax, 31	# tmp113,
+	sub	edx, eax	# _2, tmp113
+# Ternary_Search.cpp:7: 	int mid1 = l + (r - l) / 3;
+	mov	eax, DWORD PTR -28[rbp]	# tmp117, l
+	add	eax, edx	# tmp116, _2
+	mov	DWORD PTR -8[rbp], eax	# mid1, tmp116
+# Ternary_Search.cpp:8: 	int mid2 = r - (r - l) / 3;
+	mov	eax, DWORD PTR -32[rbp]	# tmp118, r
+	sub	eax, DWORD PTR -28[rbp]	# _3, l
+# Ternary_Search.cpp:8: 	int mid2 = r - (r - l) / 3;
+	movsx	rdx, eax	# tmp119, _3
+	imul	rdx, rdx, 1431655766	# tmp120, tmp119,
+	shr	rdx, 32	# tmp121,
+	sar	eax, 31	# tmp122,
+	sub	eax, edx	# tmp122, tmp121
+	mov	ecx, eax	# _4, tmp122
+# Ternary_Search.cpp:8: 	int mid2 = r - (r - l) / 3;
+	mov	eax, DWORD PTR -32[rbp]	# tmp126, r
+	add	eax, ecx	# tmp125, _4
+	mov	DWORD PTR -4[rbp], eax	# mid2, tmp125
+# Ternary_Search.cpp:9: 	if (vec[mid1] == x)
+	mov	eax, DWORD PTR -8[rbp]	# tmp127, mid1
+	movsx	rdx, eax	# _5, tmp127
+	mov	rax, QWORD PTR -24[rbp]	# tmp128, vec
+	mov	rsi, rdx	#, _5
+	mov	rdi, rax	#, tmp128
+	call	_ZNSt6vectorIiSaIiEEixEm	#
+# Ternary_Search.cpp:9: 	if (vec[mid1] == x)
+	mov	eax, DWORD PTR [rax]	# _7, *_6
+	cmp	DWORD PTR -36[rbp], eax	# x, _7
+	sete	al	#, retval.0_32
+# Ternary_Search.cpp:9: 	if (vec[mid1] == x)
+	test	al, al	# retval.0_32
+	je	.L10	#,
+# Ternary_Search.cpp:10: 	    return mid1;
+	mov	eax, DWORD PTR -8[rbp]	# _21, mid1
+	jmp	.L11	#
 .L10:
-	movl	-4(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEEixEm
-	movl	(%rax), %eax
-	cmpl	%eax, -36(%rbp)
-	sete	%al
-	testb	%al, %al
-	je	.L12
-	movl	-4(%rbp), %eax
-	jmp	.L11
+# Ternary_Search.cpp:11: 	if (vec[mid2] == x)
+	mov	eax, DWORD PTR -4[rbp]	# tmp129, mid2
+	movsx	rdx, eax	# _8, tmp129
+	mov	rax, QWORD PTR -24[rbp]	# tmp130, vec
+	mov	rsi, rdx	#, _8
+	mov	rdi, rax	#, tmp130
+	call	_ZNSt6vectorIiSaIiEEixEm	#
+# Ternary_Search.cpp:11: 	if (vec[mid2] == x)
+	mov	eax, DWORD PTR [rax]	# _10, *_9
+	cmp	DWORD PTR -36[rbp], eax	# x, _10
+	sete	al	#, retval.1_34
+# Ternary_Search.cpp:11: 	if (vec[mid2] == x)
+	test	al, al	# retval.1_34
+	je	.L12	#,
+# Ternary_Search.cpp:12: 	    return mid2;
+	mov	eax, DWORD PTR -4[rbp]	# _21, mid2
+	jmp	.L11	#
 .L12:
-	movl	-8(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEEixEm
-	movl	(%rax), %eax
-	cmpl	%eax, -36(%rbp)
-	setl	%al
-	testb	%al, %al
-	je	.L13
-	movl	-8(%rbp), %eax
-	leal	-1(%rax), %edi
-	movl	-36(%rbp), %edx
-	movl	-28(%rbp), %esi
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	movl	%edi, %edx
-	movq	%rax, %rdi
-	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii
-	jmp	.L11
+# Ternary_Search.cpp:13: 	if (x < vec[mid1])
+	mov	eax, DWORD PTR -8[rbp]	# tmp131, mid1
+	movsx	rdx, eax	# _11, tmp131
+	mov	rax, QWORD PTR -24[rbp]	# tmp132, vec
+	mov	rsi, rdx	#, _11
+	mov	rdi, rax	#, tmp132
+	call	_ZNSt6vectorIiSaIiEEixEm	#
+# Ternary_Search.cpp:13: 	if (x < vec[mid1])
+	mov	eax, DWORD PTR [rax]	# _13, *_12
+	cmp	DWORD PTR -36[rbp], eax	# x, _13
+	setl	al	#, retval.2_36
+# Ternary_Search.cpp:13: 	if (x < vec[mid1])
+	test	al, al	# retval.2_36
+	je	.L13	#,
+# Ternary_Search.cpp:14: 	    return ternary_search(vec, l, mid1 - 1, x);
+	mov	eax, DWORD PTR -8[rbp]	# tmp133, mid1
+	lea	edi, -1[rax]	# _14,
+	mov	edx, DWORD PTR -36[rbp]	# tmp134, x
+	mov	esi, DWORD PTR -28[rbp]	# tmp135, l
+	mov	rax, QWORD PTR -24[rbp]	# tmp136, vec
+	mov	ecx, edx	#, tmp134
+	mov	edx, edi	#, _14
+	mov	rdi, rax	#, tmp136
+	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii	#
+# Ternary_Search.cpp:14: 	    return ternary_search(vec, l, mid1 - 1, x);
+	jmp	.L11	#
 .L13:
-	movl	-4(%rbp), %eax
-	movslq	%eax, %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEEixEm
-	movl	(%rax), %eax
-	cmpl	%eax, -36(%rbp)
-	setg	%al
-	testb	%al, %al
-	je	.L14
-	movl	-4(%rbp), %eax
-	leal	1(%rax), %esi
-	movl	-36(%rbp), %ecx
-	movl	-32(%rbp), %edx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii
-	jmp	.L11
+# Ternary_Search.cpp:15: 	else if (x > vec[mid2])
+	mov	eax, DWORD PTR -4[rbp]	# tmp137, mid2
+	movsx	rdx, eax	# _15, tmp137
+	mov	rax, QWORD PTR -24[rbp]	# tmp138, vec
+	mov	rsi, rdx	#, _15
+	mov	rdi, rax	#, tmp138
+	call	_ZNSt6vectorIiSaIiEEixEm	#
+# Ternary_Search.cpp:15: 	else if (x > vec[mid2])
+	mov	eax, DWORD PTR [rax]	# _17, *_16
+	cmp	DWORD PTR -36[rbp], eax	# x, _17
+	setg	al	#, retval.3_38
+# Ternary_Search.cpp:15: 	else if (x > vec[mid2])
+	test	al, al	# retval.3_38
+	je	.L14	#,
+# Ternary_Search.cpp:16: 	    return ternary_search(vec, mid2 + 1, r, x);
+	mov	eax, DWORD PTR -4[rbp]	# tmp139, mid2
+	lea	esi, 1[rax]	# _18,
+	mov	ecx, DWORD PTR -36[rbp]	# tmp140, x
+	mov	edx, DWORD PTR -32[rbp]	# tmp141, r
+	mov	rax, QWORD PTR -24[rbp]	# tmp142, vec
+	mov	rdi, rax	#, tmp142
+	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii	#
+# Ternary_Search.cpp:16: 	    return ternary_search(vec, mid2 + 1, r, x);
+	jmp	.L11	#
 .L14:
-	movl	-4(%rbp), %eax
-	leal	-1(%rax), %edi
-	movl	-8(%rbp), %eax
-	leal	1(%rax), %esi
-	movl	-36(%rbp), %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	movl	%edi, %edx
-	movq	%rax, %rdi
-	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii
-	jmp	.L11
+# Ternary_Search.cpp:18: 	    return ternary_search(vec, mid1 + 1, mid2 - 1, x);
+	mov	eax, DWORD PTR -4[rbp]	# tmp143, mid2
+	lea	edi, -1[rax]	# _19,
+	mov	eax, DWORD PTR -8[rbp]	# tmp144, mid1
+	lea	esi, 1[rax]	# _20,
+	mov	edx, DWORD PTR -36[rbp]	# tmp145, x
+	mov	rax, QWORD PTR -24[rbp]	# tmp146, vec
+	mov	ecx, edx	#, tmp145
+	mov	edx, edi	#, _19
+	mov	rdi, rax	#, tmp146
+	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii	#
+# Ternary_Search.cpp:18: 	    return ternary_search(vec, mid1 + 1, mid2 - 1, x);
+	jmp	.L11	#
 .L9:
-	movl	$-1, %eax
+# Ternary_Search.cpp:20:     return -1;
+	mov	eax, -1	# _21,
 .L11:
-	leave
+# Ternary_Search.cpp:21: }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9770:
 	.size	_Z14ternary_searchRSt6vectorIiSaIiEEiii, .-_Z14ternary_searchRSt6vectorIiSaIiEEiii
@@ -217,131 +261,152 @@ main:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA9771
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$72, %rsp
+	push	rbx	#
+	sub	rsp, 72	#,
 	.cfi_offset 3, -24
-	movq	%fs:40, %rax
-	movq	%rax, -24(%rbp)
-	xorl	%eax, %eax
-	movl	$0, %edi
+# Ternary_Search.cpp:23: int main() {
+	mov	rax, QWORD PTR fs:40	# tmp114, MEM[(<address-space-1> long unsigned int *)40B]
+	mov	QWORD PTR -24[rbp], rax	# D.225063, tmp114
+	xor	eax, eax	# tmp114
+# Ternary_Search.cpp:24:     ios::sync_with_stdio(false);
+	mov	edi, 0	#,
 .LEHB0:
-	call	_ZNSt8ios_base15sync_with_stdioEb@PLT
-	movl	$0, %esi
-	leaq	16+_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT
-	leaq	-64(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSirsERi@PLT
+	call	_ZNSt8ios_base15sync_with_stdioEb@PLT	#
+# Ternary_Search.cpp:25:     cin.tie(0);
+	mov	esi, 0	#,
+	lea	rax, _ZSt3cin[rip+16]	# tmp95,
+	mov	rdi, rax	#, tmp95
+	call	_ZNSt9basic_iosIcSt11char_traitsIcEE3tieEPSo@PLT	#
+# Ternary_Search.cpp:28:     cin >> n;
+	lea	rax, -64[rbp]	# tmp96,
+	mov	rsi, rax	#, tmp96
+	lea	rax, _ZSt3cin[rip]	# tmp97,
+	mov	rdi, rax	#, tmp97
+	call	_ZNSirsERi@PLT	#
 .LEHE0:
-	leaq	-65(%rbp), %rax
-	movq	%rax, -56(%rbp)
-	nop
-	nop
-	movl	-64(%rbp), %eax
-	movslq	%eax, %rcx
-	leaq	-65(%rbp), %rdx
-	leaq	-48(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
+	lea	rax, -65[rbp]	# tmp98,
+	mov	QWORD PTR -56[rbp], rax	# this, tmp98
+# /usr/include/c++/13/bits/new_allocator.h:88:       __new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+	nop	
+# /usr/include/c++/13/bits/allocator.h:163:       allocator() _GLIBCXX_NOTHROW { }
+	nop	
+# Ternary_Search.cpp:29:     vector<int> vec(n);
+	mov	eax, DWORD PTR -64[rbp]	# n.4_1, n
+	movsx	rcx, eax	# _2, n.4_1
+	lea	rdx, -65[rbp]	# tmp99,
+	lea	rax, -48[rbp]	# tmp100,
+	mov	rsi, rcx	#, _2
+	mov	rdi, rax	#, tmp100
 .LEHB1:
-	call	_ZNSt6vectorIiSaIiEEC1EmRKS0_
+	call	_ZNSt6vectorIiSaIiEEC1EmRKS0_	#
 .LEHE1:
-	leaq	-65(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiED2Ev
-	nop
-	movl	$0, -60(%rbp)
-	jmp	.L16
+# /usr/include/c++/13/bits/allocator.h:184:       ~allocator() _GLIBCXX_NOTHROW { }
+	lea	rax, -65[rbp]	# tmp101,
+	mov	rdi, rax	#, tmp101
+	call	_ZNSt15__new_allocatorIiED2Ev	#
+	nop	
+# Ternary_Search.cpp:30:     for (int i = 0; i < n; i++) {
+	mov	DWORD PTR -60[rbp], 0	# i,
+# Ternary_Search.cpp:30:     for (int i = 0; i < n; i++) {
+	jmp	.L16	#
 .L17:
-	movl	-60(%rbp), %eax
-	movslq	%eax, %rdx
-	leaq	-48(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEEixEm
-	movq	%rax, %rsi
-	leaq	_ZSt3cin(%rip), %rax
-	movq	%rax, %rdi
+# Ternary_Search.cpp:31: 	cin >> vec[i];
+	mov	eax, DWORD PTR -60[rbp]	# tmp102, i
+	movsx	rdx, eax	# _3, tmp102
+	lea	rax, -48[rbp]	# tmp103,
+	mov	rsi, rdx	#, _3
+	mov	rdi, rax	#, tmp103
+	call	_ZNSt6vectorIiSaIiEEixEm	#
+# Ternary_Search.cpp:31: 	cin >> vec[i];
+	mov	rsi, rax	#, _4
+	lea	rax, _ZSt3cin[rip]	# tmp104,
+	mov	rdi, rax	#, tmp104
 .LEHB2:
-	call	_ZNSirsERi@PLT
-	addl	$1, -60(%rbp)
+	call	_ZNSirsERi@PLT	#
+# Ternary_Search.cpp:30:     for (int i = 0; i < n; i++) {
+	add	DWORD PTR -60[rbp], 1	# i,
 .L16:
-	movl	-64(%rbp), %eax
-	cmpl	%eax, -60(%rbp)
-	jl	.L17
-	movl	-64(%rbp), %eax
-	leal	-1(%rax), %edx
-	leaq	-48(%rbp), %rax
-	movl	$14, %ecx
-	movl	$0, %esi
-	movq	%rax, %rdi
-	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii
-	movl	%eax, %esi
-	leaq	_ZSt4cout(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZNSolsEi@PLT
-	movq	%rax, %rdx
-	leaq	.LC0(%rip), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+# Ternary_Search.cpp:30:     for (int i = 0; i < n; i++) {
+	mov	eax, DWORD PTR -64[rbp]	# n.5_5, n
+	cmp	DWORD PTR -60[rbp], eax	# i, n.5_5
+	jl	.L17	#,
+# Ternary_Search.cpp:33:     cout << ternary_search(vec, 0, n - 1, 14) << "\n";
+	mov	eax, DWORD PTR -64[rbp]	# n.6_6, n
+	lea	edx, -1[rax]	# _7,
+	lea	rax, -48[rbp]	# tmp105,
+	mov	ecx, 14	#,
+	mov	esi, 0	#,
+	mov	rdi, rax	#, tmp105
+	call	_Z14ternary_searchRSt6vectorIiSaIiEEiii	#
+# Ternary_Search.cpp:33:     cout << ternary_search(vec, 0, n - 1, 14) << "\n";
+	mov	esi, eax	#, _8
+	lea	rax, _ZSt4cout[rip]	# tmp106,
+	mov	rdi, rax	#, tmp106
+	call	_ZNSolsEi@PLT	#
+	mov	rdx, rax	# _9,
+# Ternary_Search.cpp:33:     cout << ternary_search(vec, 0, n - 1, 14) << "\n";
+	lea	rax, .LC0[rip]	# tmp107,
+	mov	rsi, rax	#, tmp107
+	mov	rdi, rdx	#, _9
+	call	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT	#
 .LEHE2:
-	movl	$0, %ebx
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEED1Ev
-	movl	%ebx, %eax
-	movq	-24(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L23
-	jmp	.L26
+# Ternary_Search.cpp:34:     return 0;
+	mov	ebx, 0	# _26,
+# Ternary_Search.cpp:35: }
+	lea	rax, -48[rbp]	# tmp108,
+	mov	rdi, rax	#, tmp108
+	call	_ZNSt6vectorIiSaIiEED1Ev	#
+	mov	eax, ebx	# <retval>, _26
+	mov	rdx, QWORD PTR -24[rbp]	# tmp115, D.225063
+	sub	rdx, QWORD PTR fs:40	# tmp115, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L23	#,
+	jmp	.L26	#
 .L24:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-65(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiED2Ev
-	nop
-	movq	%rbx, %rax
-	movq	-24(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L20
-	call	__stack_chk_fail@PLT
+	endbr64	
+# /usr/include/c++/13/bits/allocator.h:184:       ~allocator() _GLIBCXX_NOTHROW { }
+	mov	rbx, rax	# tmp111,
+	lea	rax, -65[rbp]	# tmp110,
+	mov	rdi, rax	#, tmp110
+	call	_ZNSt15__new_allocatorIiED2Ev	#
+	nop	
+	mov	rax, rbx	# D.225061, tmp111
+	mov	rdx, QWORD PTR -24[rbp]	# tmp116, D.225063
+	sub	rdx, QWORD PTR fs:40	# tmp116, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L20	#,
+	call	__stack_chk_fail@PLT	#
 .L20:
-	movq	%rax, %rdi
+	mov	rdi, rax	#, D.225061
 .LEHB3:
-	call	_Unwind_Resume@PLT
+	call	_Unwind_Resume@PLT	#
 .L25:
-	endbr64
-	movq	%rax, %rbx
-	leaq	-48(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEED1Ev
-	movq	%rbx, %rax
-	movq	-24(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L22
-	call	__stack_chk_fail@PLT
+	endbr64	
+# Ternary_Search.cpp:35: }
+	mov	rbx, rax	# tmp113,
+	lea	rax, -48[rbp]	# tmp112,
+	mov	rdi, rax	#, tmp112
+	call	_ZNSt6vectorIiSaIiEED1Ev	#
+	mov	rax, rbx	# D.225062, tmp113
+	mov	rdx, QWORD PTR -24[rbp]	# tmp117, D.225063
+	sub	rdx, QWORD PTR fs:40	# tmp117, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L22	#,
+	call	__stack_chk_fail@PLT	#
 .L22:
-	movq	%rax, %rdi
-	call	_Unwind_Resume@PLT
+	mov	rdi, rax	#, D.225062
+	call	_Unwind_Resume@PLT	#
 .LEHE3:
 .L26:
-	call	__stack_chk_fail@PLT
+	call	__stack_chk_fail@PLT	#
 .L23:
-	movq	-8(%rbp), %rbx
-	leave
+	mov	rbx, QWORD PTR -8[rbp]	#,
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE9771:
 	.globl	__gxx_personality_v0
@@ -378,22 +443,26 @@ main:
 _ZNSt6vectorIiSaIiEEixEm:
 .LFB10457:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	-16(%rbp), %rdx
-	salq	$2, %rdx
-	addq	%rdx, %rax
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_vector.h:1129: 	return *(this->_M_impl._M_start + __n);
+	mov	rax, QWORD PTR -8[rbp]	# tmp86, this
+	mov	rax, QWORD PTR [rax]	# _1, this_4(D)->D.188304._M_impl.D.187644._M_start
+# /usr/include/c++/13/bits/stl_vector.h:1129: 	return *(this->_M_impl._M_start + __n);
+	mov	rdx, QWORD PTR -16[rbp]	# tmp87, __n
+	sal	rdx, 2	# _2,
+# /usr/include/c++/13/bits/stl_vector.h:1129: 	return *(this->_M_impl._M_start + __n);
+	add	rax, rdx	# _6, _2
+# /usr/include/c++/13/bits/stl_vector.h:1130:       }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10457:
 	.size	_ZNSt6vectorIiSaIiEEixEm, .-_ZNSt6vectorIiSaIiEEixEm
@@ -406,56 +475,62 @@ _ZNSt6vectorIiSaIiEEC2EmRKS0_:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA10466
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
+	push	rbx	#
+	sub	rsp, 40	#,
 	.cfi_offset 3, -24
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	movq	%rdx, -40(%rbp)
-	movq	-24(%rbp), %rbx
-	movq	-40(%rbp), %rdx
-	movq	-32(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
+	mov	QWORD PTR -24[rbp], rdi	# this, this
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+	mov	QWORD PTR -40[rbp], rdx	# __a, __a
+# /usr/include/c++/13/bits/stl_vector.h:557:       : _Base(_S_check_init_len(__n, __a), __a)
+	mov	rbx, QWORD PTR -24[rbp]	# _1, this
+	mov	rdx, QWORD PTR -40[rbp]	# tmp86, __a
+	mov	rax, QWORD PTR -32[rbp]	# tmp87, __n
+	mov	rsi, rdx	#, tmp86
+	mov	rdi, rax	#, tmp87
 .LEHB4:
-	call	_ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_
-	movq	%rax, %rcx
-	movq	-40(%rbp), %rax
-	movq	%rax, %rdx
-	movq	%rcx, %rsi
-	movq	%rbx, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEEC2EmRKS0_
+	call	_ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_	#
+	mov	rcx, rax	# _2,
+# /usr/include/c++/13/bits/stl_vector.h:557:       : _Base(_S_check_init_len(__n, __a), __a)
+	mov	rax, QWORD PTR -40[rbp]	# tmp88, __a
+	mov	rdx, rax	#, tmp88
+	mov	rsi, rcx	#, _2
+	mov	rdi, rbx	#, _1
+	call	_ZNSt12_Vector_baseIiSaIiEEC2EmRKS0_	#
 .LEHE4:
-	movq	-32(%rbp), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
+# /usr/include/c++/13/bits/stl_vector.h:558:       { _M_default_initialize(__n); }
+	mov	rdx, QWORD PTR -32[rbp]	# tmp89, __n
+	mov	rax, QWORD PTR -24[rbp]	# tmp90, this
+	mov	rsi, rdx	#, tmp89
+	mov	rdi, rax	#, tmp90
 .LEHB5:
-	call	_ZNSt6vectorIiSaIiEE21_M_default_initializeEm
+	call	_ZNSt6vectorIiSaIiEE21_M_default_initializeEm	#
 .LEHE5:
-	jmp	.L32
+# /usr/include/c++/13/bits/stl_vector.h:558:       { _M_default_initialize(__n); }
+	jmp	.L32	#
 .L31:
-	endbr64
-	movq	%rax, %rbx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEED2Ev
-	movq	%rbx, %rax
-	movq	%rax, %rdi
+	endbr64	
+# /usr/include/c++/13/bits/stl_vector.h:558:       { _M_default_initialize(__n); }
+	mov	rbx, rax	# tmp91,
+	mov	rax, QWORD PTR -24[rbp]	# _3, this
+	mov	rdi, rax	#, _3
+	call	_ZNSt12_Vector_baseIiSaIiEED2Ev	#
+	mov	rax, rbx	# D.225066, tmp91
+	mov	rdi, rax	#, D.225066
 .LEHB6:
-	call	_Unwind_Resume@PLT
+	call	_Unwind_Resume@PLT	#
 .LEHE6:
 .L32:
-	movq	-8(%rbp), %rbx
-	leave
+# /usr/include/c++/13/bits/stl_vector.h:558:       { _M_default_initialize(__n); }
+	mov	rbx, QWORD PTR -8[rbp]	#,
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10466:
 	.section	.gcc_except_table
@@ -491,37 +566,42 @@ _ZNSt6vectorIiSaIiEED2Ev:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA10469
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movq	%rdi, -40(%rbp)
-	movq	-40(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
-	movq	-40(%rbp), %rdx
-	movq	8(%rdx), %rdx
-	movq	-40(%rbp), %rcx
-	movq	(%rcx), %rcx
-	movq	%rcx, -24(%rbp)
-	movq	%rdx, -16(%rbp)
-	movq	%rax, -8(%rbp)
-	movq	-16(%rbp), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt8_DestroyIPiEvT_S1_
-	nop
-	movq	-40(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEED2Ev
-	nop
-	leave
+	sub	rsp, 48	#,
+	mov	QWORD PTR -40[rbp], rdi	# this, this
+# /usr/include/c++/13/bits/stl_vector.h:736: 		      _M_get_Tp_allocator());
+	mov	rax, QWORD PTR -40[rbp]	# _1, this
+	mov	rdi, rax	#, _1
+	call	_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv	#
+# /usr/include/c++/13/bits/stl_vector.h:735: 	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+	mov	rdx, QWORD PTR -40[rbp]	# tmp87, this
+	mov	rdx, QWORD PTR 8[rdx]	# _3, this_6(D)->D.188304._M_impl.D.187644._M_finish
+	mov	rcx, QWORD PTR -40[rbp]	# tmp88, this
+	mov	rcx, QWORD PTR [rcx]	# _4, this_6(D)->D.188304._M_impl.D.187644._M_start
+	mov	QWORD PTR -24[rbp], rcx	# __first, _4
+	mov	QWORD PTR -16[rbp], rdx	# __last, _3
+	mov	QWORD PTR -8[rbp], rax	# D.225013, _2
+# /usr/include/c++/13/bits/alloc_traits.h:948:       std::_Destroy(__first, __last);
+	mov	rdx, QWORD PTR -16[rbp]	# tmp89, __last
+	mov	rax, QWORD PTR -24[rbp]	# tmp90, __first
+	mov	rsi, rdx	#, tmp89
+	mov	rdi, rax	#, tmp90
+	call	_ZSt8_DestroyIPiEvT_S1_	#
+# /usr/include/c++/13/bits/alloc_traits.h:949:     }
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:738:       }
+	mov	rax, QWORD PTR -40[rbp]	# _5, this
+	mov	rdi, rax	#, _5
+	call	_ZNSt12_Vector_baseIiSaIiEED2Ev	#
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10469:
 	.section	.gcc_except_table
@@ -543,17 +623,18 @@ _ZNSt6vectorIiSaIiEED2Ev:
 _ZNSt15__new_allocatorIiED2Ev:
 .LFB10899:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	nop
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+# /usr/include/c++/13/bits/new_allocator.h:104:       ~__new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+	nop	
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10899:
 	.size	_ZNSt15__new_allocatorIiED2Ev, .-_ZNSt15__new_allocatorIiED2Ev
@@ -569,58 +650,68 @@ _ZNSt15__new_allocatorIiED2Ev:
 _ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_:
 .LFB10901:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$72, %rsp
+	push	rbx	#
+	sub	rsp, 72	#,
 	.cfi_offset 3, -24
-	movq	%rdi, -72(%rbp)
-	movq	%rsi, -80(%rbp)
-	movq	%fs:40, %rax
-	movq	%rax, -24(%rbp)
-	xorl	%eax, %eax
-	movq	-80(%rbp), %rax
-	movq	%rax, -48(%rbp)
-	leaq	-49(%rbp), %rax
-	movq	%rax, -40(%rbp)
-	movq	-48(%rbp), %rax
-	movq	%rax, -32(%rbp)
-	nop
-	nop
-	leaq	-49(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_
-	cmpq	-72(%rbp), %rax
-	setb	%bl
-	leaq	-49(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiED2Ev
-	nop
-	testb	%bl, %bl
-	je	.L36
-	movq	-24(%rbp), %rax
-	subq	%fs:40, %rax
-	je	.L37
-	call	__stack_chk_fail@PLT
+	mov	QWORD PTR -72[rbp], rdi	# __n, __n
+	mov	QWORD PTR -80[rbp], rsi	# __a, __a
+# /usr/include/c++/13/bits/stl_vector.h:1907:       _S_check_init_len(size_type __n, const allocator_type& __a)
+	mov	rax, QWORD PTR fs:40	# tmp93, MEM[(<address-space-1> long unsigned int *)40B]
+	mov	QWORD PTR -24[rbp], rax	# D.225067, tmp93
+	xor	eax, eax	# tmp93
+	mov	rax, QWORD PTR -80[rbp]	# tmp86, __a
+	mov	QWORD PTR -48[rbp], rax	# __a, tmp86
+	lea	rax, -49[rbp]	# tmp87,
+	mov	QWORD PTR -40[rbp], rax	# this, tmp87
+	mov	rax, QWORD PTR -48[rbp]	# tmp88, __a
+	mov	QWORD PTR -32[rbp], rax	# D.225047, tmp88
+# /usr/include/c++/13/bits/new_allocator.h:92:       __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+	nop	
+# /usr/include/c++/13/bits/allocator.h:168:       : __allocator_base<_Tp>(__a) { }
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:1909: 	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+	lea	rax, -49[rbp]	# tmp89,
+	mov	rdi, rax	#, tmp89
+	call	_ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_	#
+# /usr/include/c++/13/bits/stl_vector.h:1909: 	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+	cmp	rax, QWORD PTR -72[rbp]	# _1, __n
+	setb	bl	#, retval.7_6
+# /usr/include/c++/13/bits/allocator.h:184:       ~allocator() _GLIBCXX_NOTHROW { }
+	lea	rax, -49[rbp]	# tmp90,
+	mov	rdi, rax	#, tmp90
+	call	_ZNSt15__new_allocatorIiED2Ev	#
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:1909: 	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+	test	bl, bl	# retval.7_6
+	je	.L36	#,
+# /usr/include/c++/13/bits/stl_vector.h:1910: 	  __throw_length_error(
+	mov	rax, QWORD PTR -24[rbp]	# tmp94, D.225067
+	sub	rax, QWORD PTR fs:40	# tmp94, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L37	#,
+	call	__stack_chk_fail@PLT	#
 .L37:
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rdi
-	call	_ZSt20__throw_length_errorPKc@PLT
+	lea	rax, .LC1[rip]	# tmp91,
+	mov	rdi, rax	#, tmp91
+	call	_ZSt20__throw_length_errorPKc@PLT	#
 .L36:
-	movq	-72(%rbp), %rax
-	movq	-24(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L39
-	call	__stack_chk_fail@PLT
+# /usr/include/c++/13/bits/stl_vector.h:1912: 	return __n;
+	mov	rax, QWORD PTR -72[rbp]	# _8, __n
+# /usr/include/c++/13/bits/stl_vector.h:1913:       }
+	mov	rdx, QWORD PTR -24[rbp]	# tmp95, D.225067
+	sub	rdx, QWORD PTR fs:40	# tmp95, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L39	#,
+	call	__stack_chk_fail@PLT	#
 .L39:
-	movq	-8(%rbp), %rbx
-	leave
+	mov	rbx, QWORD PTR -8[rbp]	#,
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10901:
 	.size	_ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_, .-_ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_
@@ -631,24 +722,26 @@ _ZNSt6vectorIiSaIiEE17_S_check_init_lenEmRKS0_:
 _ZNSt12_Vector_baseIiSaIiEE12_Vector_implD2Ev:
 .LFB10904:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -24(%rbp)
-	movq	-24(%rbp), %rax
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiED2Ev
-	nop
-	nop
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -24[rbp], rdi	# this, this
+	mov	rax, QWORD PTR -24[rbp]	# tmp82, this
+	mov	QWORD PTR -8[rbp], rax	# this, tmp82
+# /usr/include/c++/13/bits/allocator.h:184:       ~allocator() _GLIBCXX_NOTHROW { }
+	mov	rax, QWORD PTR -8[rbp]	# tmp83, this
+	mov	rdi, rax	#, tmp83
+	call	_ZNSt15__new_allocatorIiED2Ev	#
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:133:       struct _Vector_impl
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10904:
 	.size	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD2Ev, .-_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD2Ev
@@ -663,47 +756,52 @@ _ZNSt12_Vector_baseIiSaIiEEC2EmRKS0_:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA10906
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
+	push	rbx	#
+	sub	rsp, 40	#,
 	.cfi_offset 3, -24
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	movq	%rdx, -40(%rbp)
-	movq	-24(%rbp), %rax
-	movq	-40(%rbp), %rdx
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC1ERKS0_
-	movq	-32(%rbp), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
+	mov	QWORD PTR -24[rbp], rdi	# this, this
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+	mov	QWORD PTR -40[rbp], rdx	# __a, __a
+# /usr/include/c++/13/bits/stl_vector.h:334:       : _M_impl(__a)
+	mov	rax, QWORD PTR -24[rbp]	# _1, this
+	mov	rdx, QWORD PTR -40[rbp]	# tmp85, __a
+	mov	rsi, rdx	#, tmp85
+	mov	rdi, rax	#, _1
+	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC1ERKS0_	#
+# /usr/include/c++/13/bits/stl_vector.h:335:       { _M_create_storage(__n); }
+	mov	rdx, QWORD PTR -32[rbp]	# tmp86, __n
+	mov	rax, QWORD PTR -24[rbp]	# tmp87, this
+	mov	rsi, rdx	#, tmp86
+	mov	rdi, rax	#, tmp87
 .LEHB7:
-	call	_ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm
+	call	_ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm	#
 .LEHE7:
-	jmp	.L44
+# /usr/include/c++/13/bits/stl_vector.h:335:       { _M_create_storage(__n); }
+	jmp	.L44	#
 .L43:
-	endbr64
-	movq	%rax, %rbx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD1Ev
-	movq	%rbx, %rax
-	movq	%rax, %rdi
+	endbr64	
+# /usr/include/c++/13/bits/stl_vector.h:335:       { _M_create_storage(__n); }
+	mov	rbx, rax	# tmp88,
+	mov	rax, QWORD PTR -24[rbp]	# _2, this
+	mov	rdi, rax	#, _2
+	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD1Ev	#
+	mov	rax, rbx	# D.225069, tmp88
+	mov	rdi, rax	#, D.225069
 .LEHB8:
-	call	_Unwind_Resume@PLT
+	call	_Unwind_Resume@PLT	#
 .LEHE8:
 .L44:
-	movq	-8(%rbp), %rbx
-	leave
+# /usr/include/c++/13/bits/stl_vector.h:335:       { _M_create_storage(__n); }
+	mov	rbx, QWORD PTR -8[rbp]	#,
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10906:
 	.section	.gcc_except_table
@@ -735,35 +833,40 @@ _ZNSt12_Vector_baseIiSaIiEED2Ev:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA10909
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	16(%rax), %rdx
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	subq	%rax, %rdx
-	movq	%rdx, %rax
-	sarq	$2, %rax
-	movq	%rax, %rdx
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rcx
-	movq	-8(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim
-	movq	-8(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD1Ev
-	nop
-	leave
+	sub	rsp, 16	#,
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+# /usr/include/c++/13/bits/stl_vector.h:370: 		      _M_impl._M_end_of_storage - _M_impl._M_start);
+	mov	rax, QWORD PTR -8[rbp]	# tmp89, this
+	mov	rdx, QWORD PTR 16[rax]	# _1, this_9(D)->_M_impl.D.187644._M_end_of_storage
+# /usr/include/c++/13/bits/stl_vector.h:370: 		      _M_impl._M_end_of_storage - _M_impl._M_start);
+	mov	rax, QWORD PTR -8[rbp]	# tmp90, this
+	mov	rax, QWORD PTR [rax]	# _2, this_9(D)->_M_impl.D.187644._M_start
+# /usr/include/c++/13/bits/stl_vector.h:370: 		      _M_impl._M_end_of_storage - _M_impl._M_start);
+	sub	rdx, rax	# _3, _2
+	mov	rax, rdx	# _3, _3
+	sar	rax, 2	# _3,
+# /usr/include/c++/13/bits/stl_vector.h:369: 	_M_deallocate(_M_impl._M_start,
+	mov	rdx, rax	# _5, _4
+	mov	rax, QWORD PTR -8[rbp]	# tmp92, this
+	mov	rcx, QWORD PTR [rax]	# _6, this_9(D)->_M_impl.D.187644._M_start
+	mov	rax, QWORD PTR -8[rbp]	# tmp93, this
+	mov	rsi, rcx	#, _6
+	mov	rdi, rax	#, tmp93
+	call	_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim	#
+# /usr/include/c++/13/bits/stl_vector.h:371:       }
+	mov	rax, QWORD PTR -8[rbp]	# _7, this
+	mov	rdi, rax	#, _7
+	call	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implD1Ev	#
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10909:
 	.section	.gcc_except_table
@@ -785,31 +888,35 @@ _ZNSt12_Vector_baseIiSaIiEED2Ev:
 _ZNSt6vectorIiSaIiEE21_M_default_initializeEm:
 .LFB10911:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
-	movq	%rax, %rdx
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	-16(%rbp), %rcx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E
-	movq	-8(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	nop
-	leave
+	sub	rsp, 16	#,
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_vector.h:1719: 					   _M_get_Tp_allocator());
+	mov	rax, QWORD PTR -8[rbp]	# _1, this
+	mov	rdi, rax	#, _1
+	call	_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv	#
+	mov	rdx, rax	# _2,
+# /usr/include/c++/13/bits/stl_vector.h:1718: 	  std::__uninitialized_default_n_a(this->_M_impl._M_start, __n,
+	mov	rax, QWORD PTR -8[rbp]	# tmp86, this
+	mov	rax, QWORD PTR [rax]	# _3, this_5(D)->D.188304._M_impl.D.187644._M_start
+	mov	rcx, QWORD PTR -16[rbp]	# tmp87, __n
+	mov	rsi, rcx	#, tmp87
+	mov	rdi, rax	#, _3
+	call	_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E	#
+# /usr/include/c++/13/bits/stl_vector.h:1717: 	this->_M_impl._M_finish =
+	mov	rdx, QWORD PTR -8[rbp]	# tmp88, this
+	mov	QWORD PTR 8[rdx], rax	# this_5(D)->D.188304._M_impl.D.187644._M_finish, _4
+# /usr/include/c++/13/bits/stl_vector.h:1720:       }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10911:
 	.size	_ZNSt6vectorIiSaIiEE21_M_default_initializeEm, .-_ZNSt6vectorIiSaIiEE21_M_default_initializeEm
@@ -820,17 +927,19 @@ _ZNSt6vectorIiSaIiEE21_M_default_initializeEm:
 _ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv:
 .LFB10912:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+# /usr/include/c++/13/bits/stl_vector.h:302:       { return this->_M_impl; }
+	mov	rax, QWORD PTR -8[rbp]	# _2, this
+# /usr/include/c++/13/bits/stl_vector.h:302:       { return this->_M_impl; }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE10912:
 	.size	_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv, .-_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
@@ -840,43 +949,52 @@ _ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv:
 _ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_:
 .LFB11126:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$64, %rsp
-	movq	%rdi, -56(%rbp)
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	xorl	%eax, %eax
-	movabsq	$2305843009213693951, %rax
-	movq	%rax, -48(%rbp)
-	movq	-56(%rbp), %rax
-	movq	%rax, -32(%rbp)
-	movq	-32(%rbp), %rax
-	movq	%rax, -24(%rbp)
-	movq	-24(%rbp), %rax
-	movq	%rax, -16(%rbp)
-	movabsq	$2305843009213693951, %rax
-	nop
-	nop
-	movq	%rax, -40(%rbp)
-	leaq	-40(%rbp), %rdx
-	leaq	-48(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt3minImERKT_S2_S2_
-	movq	(%rax), %rax
-	movq	-8(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L54
-	call	__stack_chk_fail@PLT
+	sub	rsp, 64	#,
+	mov	QWORD PTR -56[rbp], rdi	# __a, __a
+# /usr/include/c++/13/bits/stl_vector.h:1916:       _S_max_size(const _Tp_alloc_type& __a) _GLIBCXX_NOEXCEPT
+	mov	rax, QWORD PTR fs:40	# tmp92, MEM[(<address-space-1> long unsigned int *)40B]
+	mov	QWORD PTR -8[rbp], rax	# D.225070, tmp92
+	xor	eax, eax	# tmp92
+# /usr/include/c++/13/bits/stl_vector.h:1921: 	const size_t __diffmax
+	movabs	rax, 2305843009213693951	# tmp95,
+	mov	QWORD PTR -48[rbp], rax	# __diffmax, tmp95
+	mov	rax, QWORD PTR -56[rbp]	# tmp86, __a
+	mov	QWORD PTR -32[rbp], rax	# __a, tmp86
+	mov	rax, QWORD PTR -32[rbp]	# tmp87, __a
+	mov	QWORD PTR -24[rbp], rax	# this, tmp87
+	mov	rax, QWORD PTR -24[rbp]	# tmp88, this
+	mov	QWORD PTR -16[rbp], rax	# this, tmp88
+# /usr/include/c++/13/bits/new_allocator.h:233: 	return std::size_t(__PTRDIFF_MAX__) / sizeof(_Tp);
+	movabs	rax, 2305843009213693951	# D.225037,
+# /usr/include/c++/13/bits/new_allocator.h:183:       { return _M_max_size(); }
+	nop	
+# /usr/include/c++/13/bits/alloc_traits.h:574: 	return __a.max_size();
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:1923: 	const size_t __allocmax = _Alloc_traits::max_size(__a);
+	mov	QWORD PTR -40[rbp], rax	# __allocmax, D.225037
+# /usr/include/c++/13/bits/stl_vector.h:1924: 	return (std::min)(__diffmax, __allocmax);
+	lea	rdx, -40[rbp]	# tmp89,
+	lea	rax, -48[rbp]	# tmp90,
+	mov	rsi, rdx	#, tmp89
+	mov	rdi, rax	#, tmp90
+	call	_ZSt3minImERKT_S2_S2_	#
+# /usr/include/c++/13/bits/stl_vector.h:1924: 	return (std::min)(__diffmax, __allocmax);
+	mov	rax, QWORD PTR [rax]	# _8, *_2
+# /usr/include/c++/13/bits/stl_vector.h:1925:       }
+	mov	rdx, QWORD PTR -8[rbp]	# tmp93, D.225070
+	sub	rdx, QWORD PTR fs:40	# tmp93, MEM[(<address-space-1> long unsigned int *)40B]
+	je	.L54	#,
+	call	__stack_chk_fail@PLT	#
 .L54:
-	leave
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11126:
 	.size	_ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_, .-_ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_
@@ -887,32 +1005,36 @@ _ZNSt6vectorIiSaIiEE11_S_max_sizeERKS0_:
 _ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2ERKS0_:
 .LFB11131:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movq	%rdi, -40(%rbp)
-	movq	%rsi, -48(%rbp)
-	movq	-40(%rbp), %rax
-	movq	%rax, -32(%rbp)
-	movq	-48(%rbp), %rax
-	movq	%rax, -24(%rbp)
-	movq	-32(%rbp), %rax
-	movq	%rax, -16(%rbp)
-	movq	-24(%rbp), %rax
-	movq	%rax, -8(%rbp)
-	nop
-	nop
-	movq	-40(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev
-	nop
-	leave
+	sub	rsp, 48	#,
+	mov	QWORD PTR -40[rbp], rdi	# this, this
+	mov	QWORD PTR -48[rbp], rsi	# __a, __a
+	mov	rax, QWORD PTR -40[rbp]	# tmp83, this
+	mov	QWORD PTR -32[rbp], rax	# this, tmp83
+	mov	rax, QWORD PTR -48[rbp]	# tmp84, __a
+	mov	QWORD PTR -24[rbp], rax	# __a, tmp84
+	mov	rax, QWORD PTR -32[rbp]	# tmp85, this
+	mov	QWORD PTR -16[rbp], rax	# this, tmp85
+	mov	rax, QWORD PTR -24[rbp]	# tmp86, __a
+	mov	QWORD PTR -8[rbp], rax	# D.225006, tmp86
+# /usr/include/c++/13/bits/new_allocator.h:92:       __new_allocator(const __new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+	nop	
+# /usr/include/c++/13/bits/allocator.h:168:       : __allocator_base<_Tp>(__a) { }
+	nop	
+# /usr/include/c++/13/bits/stl_vector.h:147: 	: _Tp_alloc_type(__a)
+	mov	rax, QWORD PTR -40[rbp]	# _1, this
+	mov	rdi, rax	#, _1
+	call	_ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev	#
+# /usr/include/c++/13/bits/stl_vector.h:148: 	{ }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11131:
 	.size	_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2ERKS0_, .-_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2ERKS0_
@@ -925,37 +1047,45 @@ _ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2ERKS0_:
 _ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm:
 .LFB11133:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-16(%rbp), %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm
-	movq	-8(%rbp), %rdx
-	movq	%rax, (%rdx)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, 8(%rax)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	-16(%rbp), %rdx
-	salq	$2, %rdx
-	addq	%rax, %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, 16(%rax)
-	nop
-	leave
+	sub	rsp, 16	#,
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_vector.h:398: 	this->_M_impl._M_start = this->_M_allocate(__n);
+	mov	rdx, QWORD PTR -16[rbp]	# tmp87, __n
+	mov	rax, QWORD PTR -8[rbp]	# tmp88, this
+	mov	rsi, rdx	#, tmp87
+	mov	rdi, rax	#, tmp88
+	call	_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm	#
+# /usr/include/c++/13/bits/stl_vector.h:398: 	this->_M_impl._M_start = this->_M_allocate(__n);
+	mov	rdx, QWORD PTR -8[rbp]	# tmp89, this
+	mov	QWORD PTR [rdx], rax	# this_7(D)->_M_impl.D.187644._M_start, _1
+# /usr/include/c++/13/bits/stl_vector.h:399: 	this->_M_impl._M_finish = this->_M_impl._M_start;
+	mov	rax, QWORD PTR -8[rbp]	# tmp90, this
+	mov	rdx, QWORD PTR [rax]	# _2, this_7(D)->_M_impl.D.187644._M_start
+# /usr/include/c++/13/bits/stl_vector.h:399: 	this->_M_impl._M_finish = this->_M_impl._M_start;
+	mov	rax, QWORD PTR -8[rbp]	# tmp91, this
+	mov	QWORD PTR 8[rax], rdx	# this_7(D)->_M_impl.D.187644._M_finish, _2
+# /usr/include/c++/13/bits/stl_vector.h:400: 	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+	mov	rax, QWORD PTR -8[rbp]	# tmp92, this
+	mov	rax, QWORD PTR [rax]	# _3, this_7(D)->_M_impl.D.187644._M_start
+# /usr/include/c++/13/bits/stl_vector.h:400: 	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+	mov	rdx, QWORD PTR -16[rbp]	# tmp93, __n
+	sal	rdx, 2	# _4,
+	add	rdx, rax	# _5, _3
+# /usr/include/c++/13/bits/stl_vector.h:400: 	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+	mov	rax, QWORD PTR -8[rbp]	# tmp94, this
+	mov	QWORD PTR 16[rax], rdx	# this_7(D)->_M_impl.D.187644._M_end_of_storage, _5
+# /usr/include/c++/13/bits/stl_vector.h:401:       }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11133:
 	.size	_ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm, .-_ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm
@@ -966,36 +1096,41 @@ _ZNSt12_Vector_baseIiSaIiEE17_M_create_storageEm:
 _ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim:
 .LFB11134:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$64, %rsp
-	movq	%rdi, -40(%rbp)
-	movq	%rsi, -48(%rbp)
-	movq	%rdx, -56(%rbp)
-	cmpq	$0, -48(%rbp)
-	je	.L59
-	movq	-40(%rbp), %rax
-	movq	%rax, -24(%rbp)
-	movq	-48(%rbp), %rax
-	movq	%rax, -16(%rbp)
-	movq	-56(%rbp), %rax
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rdx
-	movq	-16(%rbp), %rcx
-	movq	-24(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiE10deallocateEPim
-	nop
+	sub	rsp, 64	#,
+	mov	QWORD PTR -40[rbp], rdi	# this, this
+	mov	QWORD PTR -48[rbp], rsi	# __p, __p
+	mov	QWORD PTR -56[rbp], rdx	# __n, __n
+# /usr/include/c++/13/bits/stl_vector.h:389: 	if (__p)
+	cmp	QWORD PTR -48[rbp], 0	# __p,
+	je	.L59	#,
+# /usr/include/c++/13/bits/stl_vector.h:390: 	  _Tr::deallocate(_M_impl, __p, __n);
+	mov	rax, QWORD PTR -40[rbp]	# _1, this
+	mov	QWORD PTR -24[rbp], rax	# __a, _1
+	mov	rax, QWORD PTR -48[rbp]	# tmp83, __p
+	mov	QWORD PTR -16[rbp], rax	# __p, tmp83
+	mov	rax, QWORD PTR -56[rbp]	# tmp84, __n
+	mov	QWORD PTR -8[rbp], rax	# __n, tmp84
+# /usr/include/c++/13/bits/alloc_traits.h:517:       { __a.deallocate(__p, __n); }
+	mov	rdx, QWORD PTR -8[rbp]	# tmp85, __n
+	mov	rcx, QWORD PTR -16[rbp]	# tmp86, __p
+	mov	rax, QWORD PTR -24[rbp]	# tmp87, __a
+	mov	rsi, rcx	#, tmp86
+	mov	rdi, rax	#, tmp87
+	call	_ZNSt15__new_allocatorIiE10deallocateEPim	#
+# /usr/include/c++/13/bits/alloc_traits.h:517:       { __a.deallocate(__p, __n); }
+	nop	
 .L59:
-	nop
-	leave
+# /usr/include/c++/13/bits/stl_vector.h:391:       }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11134:
 	.size	_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim, .-_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim
@@ -1005,24 +1140,26 @@ _ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim:
 _ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E:
 .LFB11135:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	%rdx, -24(%rbp)
-	movq	-16(%rbp), %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt25__uninitialized_default_nIPimET_S1_T0_
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -8[rbp], rdi	# __first, __first
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+	mov	QWORD PTR -24[rbp], rdx	# D.220897, D.220897
+# /usr/include/c++/13/bits/stl_uninitialized.h:779:     { return std::__uninitialized_default_n(__first, __n); }
+	mov	rdx, QWORD PTR -16[rbp]	# tmp84, __n
+	mov	rax, QWORD PTR -8[rbp]	# tmp85, __first
+	mov	rsi, rdx	#, tmp84
+	mov	rdi, rax	#, tmp85
+	call	_ZSt25__uninitialized_default_nIPimET_S1_T0_	#
+# /usr/include/c++/13/bits/stl_uninitialized.h:779:     { return std::__uninitialized_default_n(__first, __n); }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11135:
 	.size	_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E, .-_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E
@@ -1032,24 +1169,26 @@ _ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E:
 _ZSt8_DestroyIPiEvT_S1_:
 .LFB11136:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-16(%rbp), %rdx
-	movq	-8(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_
-	nop
-	leave
+	sub	rsp, 16	#,
+	mov	QWORD PTR -8[rbp], rdi	# __first, __first
+	mov	QWORD PTR -16[rbp], rsi	# __last, __last
+# /usr/include/c++/13/bits/stl_construct.h:196: 	__destroy(__first, __last);
+	mov	rdx, QWORD PTR -16[rbp]	# tmp82, __last
+	mov	rax, QWORD PTR -8[rbp]	# tmp83, __first
+	mov	rsi, rdx	#, tmp82
+	mov	rdi, rax	#, tmp83
+	call	_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_	#
+# /usr/include/c++/13/bits/stl_construct.h:197:     }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11136:
 	.size	_ZSt8_DestroyIPiEvT_S1_, .-_ZSt8_DestroyIPiEvT_S1_
@@ -1060,23 +1199,27 @@ _ZSt8_DestroyIPiEvT_S1_:
 _ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev:
 .LFB11290:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	$0, (%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 8(%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 16(%rax)
-	nop
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+# /usr/include/c++/13/bits/stl_vector.h:100: 	: _M_start(), _M_finish(), _M_end_of_storage()
+	mov	rax, QWORD PTR -8[rbp]	# tmp82, this
+	mov	QWORD PTR [rax], 0	# this_2(D)->_M_start,
+# /usr/include/c++/13/bits/stl_vector.h:100: 	: _M_start(), _M_finish(), _M_end_of_storage()
+	mov	rax, QWORD PTR -8[rbp]	# tmp83, this
+	mov	QWORD PTR 8[rax], 0	# this_2(D)->_M_finish,
+# /usr/include/c++/13/bits/stl_vector.h:100: 	: _M_start(), _M_finish(), _M_end_of_storage()
+	mov	rax, QWORD PTR -8[rbp]	# tmp84, this
+	mov	QWORD PTR 16[rax], 0	# this_2(D)->_M_end_of_storage,
+# /usr/include/c++/13/bits/stl_vector.h:101: 	{ }
+	nop	
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11290:
 	.size	_ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev, .-_ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev
@@ -1089,35 +1232,41 @@ _ZNSt12_Vector_baseIiSaIiEE17_Vector_impl_dataC2Ev:
 _ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm:
 .LFB11292:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	cmpq	$0, -32(%rbp)
-	je	.L65
-	movq	-24(%rbp), %rax
-	movq	%rax, -16(%rbp)
-	movq	-32(%rbp), %rax
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rcx
-	movq	-16(%rbp), %rax
-	movl	$0, %edx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt15__new_allocatorIiE8allocateEmPKv
-	nop
-	jmp	.L67
+	sub	rsp, 32	#,
+	mov	QWORD PTR -24[rbp], rdi	# this, this
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_vector.h:381: 	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+	cmp	QWORD PTR -32[rbp], 0	# __n,
+	je	.L65	#,
+# /usr/include/c++/13/bits/stl_vector.h:381: 	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+	mov	rax, QWORD PTR -24[rbp]	# _1, this
+	mov	QWORD PTR -16[rbp], rax	# __a, _1
+	mov	rax, QWORD PTR -32[rbp]	# tmp85, __n
+	mov	QWORD PTR -8[rbp], rax	# __n, tmp85
+# /usr/include/c++/13/bits/alloc_traits.h:482:       { return __a.allocate(__n); }
+	mov	rcx, QWORD PTR -8[rbp]	# tmp86, __n
+	mov	rax, QWORD PTR -16[rbp]	# tmp87, __a
+	mov	edx, 0	#,
+	mov	rsi, rcx	#, tmp86
+	mov	rdi, rax	#, tmp87
+	call	_ZNSt15__new_allocatorIiE8allocateEmPKv	#
+# /usr/include/c++/13/bits/alloc_traits.h:482:       { return __a.allocate(__n); }
+	nop	
+	jmp	.L67	#
 .L65:
-	movl	$0, %eax
+# /usr/include/c++/13/bits/stl_vector.h:381: 	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+	mov	eax, 0	# D.225016,
 .L67:
-	leave
+# /usr/include/c++/13/bits/stl_vector.h:382:       }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11292:
 	.size	_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm, .-_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm
@@ -1127,24 +1276,27 @@ _ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm:
 _ZSt25__uninitialized_default_nIPimET_S1_T0_:
 .LFB11294:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	movb	$1, -1(%rbp)
-	movq	-32(%rbp), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -24[rbp], rdi	# __first, __first
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_uninitialized.h:707:       constexpr bool __can_fill
+	mov	BYTE PTR -1[rbp], 1	# __can_fill,
+# /usr/include/c++/13/bits/stl_uninitialized.h:712: 	__uninit_default_n(__first, __n);
+	mov	rdx, QWORD PTR -32[rbp]	# tmp84, __n
+	mov	rax, QWORD PTR -24[rbp]	# tmp85, __first
+	mov	rsi, rdx	#, tmp84
+	mov	rdi, rax	#, tmp85
+	call	_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_	#
+# /usr/include/c++/13/bits/stl_uninitialized.h:713:     }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11294:
 	.size	_ZSt25__uninitialized_default_nIPimET_S1_T0_, .-_ZSt25__uninitialized_default_nIPimET_S1_T0_
@@ -1154,18 +1306,19 @@ _ZSt25__uninitialized_default_nIPimET_S1_T0_:
 _ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_:
 .LFB11295:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	nop
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# D.223204, D.223204
+	mov	QWORD PTR -16[rbp], rsi	# D.223205, D.223205
+# /usr/include/c++/13/bits/stl_construct.h:172:         __destroy(_ForwardIterator, _ForwardIterator) { }
+	nop	
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11295:
 	.size	_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_, .-_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_
@@ -1176,25 +1329,27 @@ _ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_:
 _ZNSt15__new_allocatorIiE10deallocateEPim:
 .LFB11399:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	%rdx, -24(%rbp)
-	movq	-24(%rbp), %rax
-	leaq	0(,%rax,4), %rdx
-	movq	-16(%rbp), %rax
-	movq	%rdx, %rsi
-	movq	%rax, %rdi
-	call	_ZdlPvm@PLT
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -8[rbp], rdi	# this, this
+	mov	QWORD PTR -16[rbp], rsi	# __p, __p
+	mov	QWORD PTR -24[rbp], rdx	# __n, __n
+# /usr/include/c++/13/bits/new_allocator.h:172: 	_GLIBCXX_OPERATOR_DELETE(_GLIBCXX_SIZED_DEALLOC(__p, __n));
+	mov	rax, QWORD PTR -24[rbp]	# tmp83, __n
+	lea	rdx, 0[0+rax*4]	# _2,
+	mov	rax, QWORD PTR -16[rbp]	# tmp84, __p
+	mov	rsi, rdx	#, _2
+	mov	rdi, rax	#, tmp84
+	call	_ZdlPvm@PLT	#
+# /usr/include/c++/13/bits/new_allocator.h:173:       }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11399:
 	.size	_ZNSt15__new_allocatorIiE10deallocateEPim, .-_ZNSt15__new_allocatorIiE10deallocateEPim
@@ -1204,38 +1359,46 @@ _ZNSt15__new_allocatorIiE10deallocateEPim:
 _ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_:
 .LFB11400:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	cmpq	$0, -32(%rbp)
-	je	.L75
-	movq	-24(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZSt11__addressofIiEPT_RS0_
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZSt10_ConstructIiJEEvPT_DpOT0_
-	addq	$4, -24(%rbp)
-	movq	-32(%rbp), %rax
-	leaq	-1(%rax), %rcx
-	movq	-8(%rbp), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt6fill_nIPimiET_S1_T0_RKT1_
-	movq	%rax, -24(%rbp)
+	sub	rsp, 32	#,
+	mov	QWORD PTR -24[rbp], rdi	# __first, __first
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+# /usr/include/c++/13/bits/stl_uninitialized.h:662: 	  if (__n > 0)
+	cmp	QWORD PTR -32[rbp], 0	# __n,
+	je	.L75	#,
+# /usr/include/c++/13/bits/stl_uninitialized.h:665: 		= std::__addressof(*__first);
+	mov	rax, QWORD PTR -24[rbp]	# tmp86, __first
+	mov	rdi, rax	#, tmp86
+	call	_ZSt11__addressofIiEPT_RS0_	#
+	mov	QWORD PTR -8[rbp], rax	# __val, tmp87
+# /usr/include/c++/13/bits/stl_uninitialized.h:666: 	      std::_Construct(__val);
+	mov	rax, QWORD PTR -8[rbp]	# tmp88, __val
+	mov	rdi, rax	#, tmp88
+	call	_ZSt10_ConstructIiJEEvPT_DpOT0_	#
+# /usr/include/c++/13/bits/stl_uninitialized.h:667: 	      ++__first;
+	add	QWORD PTR -24[rbp], 4	# __first,
+# /usr/include/c++/13/bits/stl_uninitialized.h:668: 	      __first = std::fill_n(__first, __n - 1, *__val);
+	mov	rax, QWORD PTR -32[rbp]	# tmp89, __n
+	lea	rcx, -1[rax]	# _1,
+	mov	rdx, QWORD PTR -8[rbp]	# tmp90, __val
+	mov	rax, QWORD PTR -24[rbp]	# tmp91, __first
+	mov	rsi, rcx	#, _1
+	mov	rdi, rax	#, tmp91
+	call	_ZSt6fill_nIPimiET_S1_T0_RKT1_	#
+# /usr/include/c++/13/bits/stl_uninitialized.h:668: 	      __first = std::fill_n(__first, __n - 1, *__val);
+	mov	QWORD PTR -24[rbp], rax	# __first, _12
 .L75:
-	movq	-24(%rbp), %rax
-	leave
+# /usr/include/c++/13/bits/stl_uninitialized.h:670: 	  return __first;
+	mov	rax, QWORD PTR -24[rbp]	# _14, __first
+# /usr/include/c++/13/bits/stl_uninitialized.h:671: 	}
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11400:
 	.size	_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_, .-_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_
@@ -1246,41 +1409,52 @@ _ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_:
 _ZNSt15__new_allocatorIiE8allocateEmPKv:
 .LFB11486:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	movq	%rdx, -40(%rbp)
-	movq	-24(%rbp), %rax
-	movq	%rax, -8(%rbp)
-	movabsq	$2305843009213693951, %rax
-	cmpq	-32(%rbp), %rax
-	setb	%al
-	movzbl	%al, %eax
-	testq	%rax, %rax
-	setne	%al
-	testb	%al, %al
-	je	.L79
-	movabsq	$4611686018427387903, %rax
-	cmpq	-32(%rbp), %rax
-	jnb	.L80
-	call	_ZSt28__throw_bad_array_new_lengthv@PLT
+	sub	rsp, 48	#,
+	mov	QWORD PTR -24[rbp], rdi	# this, this
+	mov	QWORD PTR -32[rbp], rsi	# __n, __n
+	mov	QWORD PTR -40[rbp], rdx	# D.224167, D.224167
+	mov	rax, QWORD PTR -24[rbp]	# tmp90, this
+	mov	QWORD PTR -8[rbp], rax	# this, tmp90
+# /usr/include/c++/13/bits/new_allocator.h:233: 	return std::size_t(__PTRDIFF_MAX__) / sizeof(_Tp);
+	movabs	rax, 2305843009213693951	# D.225050,
+# /usr/include/c++/13/bits/new_allocator.h:134: 	if (__builtin_expect(__n > this->_M_max_size(), false))
+	cmp	rax, QWORD PTR -32[rbp]	# D.225050, __n
+	setb	al	#, _2
+# /usr/include/c++/13/bits/new_allocator.h:134: 	if (__builtin_expect(__n > this->_M_max_size(), false))
+	movzx	eax, al	# _3, _2
+# /usr/include/c++/13/bits/new_allocator.h:134: 	if (__builtin_expect(__n > this->_M_max_size(), false))
+	test	rax, rax	# _4
+	setne	al	#, retval.9_9
+# /usr/include/c++/13/bits/new_allocator.h:134: 	if (__builtin_expect(__n > this->_M_max_size(), false))
+	test	al, al	# retval.9_9
+	je	.L79	#,
+# /usr/include/c++/13/bits/new_allocator.h:138: 	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
+	movabs	rax, 4611686018427387903	# tmp91,
+	cmp	rax, QWORD PTR -32[rbp]	# tmp91, __n
+	jnb	.L80	#,
+# /usr/include/c++/13/bits/new_allocator.h:139: 	      std::__throw_bad_array_new_length();
+	call	_ZSt28__throw_bad_array_new_lengthv@PLT	#
 .L80:
-	call	_ZSt17__throw_bad_allocv@PLT
+# /usr/include/c++/13/bits/new_allocator.h:140: 	    std::__throw_bad_alloc();
+	call	_ZSt17__throw_bad_allocv@PLT	#
 .L79:
-	movq	-32(%rbp), %rax
-	salq	$2, %rax
-	movq	%rax, %rdi
-	call	_Znwm@PLT
-	nop
-	leave
+# /usr/include/c++/13/bits/new_allocator.h:151: 	return static_cast<_Tp*>(_GLIBCXX_OPERATOR_NEW(__n * sizeof(_Tp)));
+	mov	rax, QWORD PTR -32[rbp]	# tmp92, __n
+	sal	rax, 2	# _6,
+	mov	rdi, rax	#, _6
+	call	_Znwm@PLT	#
+# /usr/include/c++/13/bits/new_allocator.h:151: 	return static_cast<_Tp*>(_GLIBCXX_OPERATOR_NEW(__n * sizeof(_Tp)));
+	nop	
+# /usr/include/c++/13/bits/new_allocator.h:152:       }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11486:
 	.size	_ZNSt15__new_allocatorIiE8allocateEmPKv, .-_ZNSt15__new_allocatorIiE8allocateEmPKv
@@ -1290,17 +1464,19 @@ _ZNSt15__new_allocatorIiE8allocateEmPKv:
 _ZSt11__addressofIiEPT_RS0_:
 .LFB11487:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	popq	%rbp
+	mov	QWORD PTR -8[rbp], rdi	# __r, __r
+# /usr/include/c++/13/bits/move.h:52:     { return __builtin_addressof(__r); }
+	mov	rax, QWORD PTR -8[rbp]	# _2, __r
+# /usr/include/c++/13/bits/move.h:52:     { return __builtin_addressof(__r); }
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11487:
 	.size	_ZSt11__addressofIiEPT_RS0_, .-_ZSt11__addressofIiEPT_RS0_
@@ -1310,23 +1486,27 @@ _ZSt11__addressofIiEPT_RS0_:
 _ZSt10_ConstructIiJEEvPT_DpOT0_:
 .LFB11488:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	%rax, %rsi
-	movl	$4, %edi
-	call	_ZnwmPv
-	movl	$0, (%rax)
-	nop
-	leave
+	sub	rsp, 16	#,
+	mov	QWORD PTR -8[rbp], rdi	# __p, __p
+# /usr/include/c++/13/bits/stl_construct.h:119:       ::new((void*)__p) _Tp(std::forward<_Args>(__args)...);
+	mov	rax, QWORD PTR -8[rbp]	# _2, __p
+# /usr/include/c++/13/bits/stl_construct.h:119:       ::new((void*)__p) _Tp(std::forward<_Args>(__args)...);
+	mov	rsi, rax	#, _2
+	mov	edi, 4	#,
+	call	_ZnwmPv	#
+# /usr/include/c++/13/bits/stl_construct.h:119:       ::new((void*)__p) _Tp(std::forward<_Args>(__args)...);
+	mov	DWORD PTR [rax], 0	# MEM[(int *)_5],
+# /usr/include/c++/13/bits/stl_construct.h:120:     }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11488:
 	.size	_ZSt10_ConstructIiJEEvPT_DpOT0_, .-_ZSt10_ConstructIiJEEvPT_DpOT0_
@@ -1336,29 +1516,33 @@ _ZSt10_ConstructIiJEEvPT_DpOT0_:
 _ZSt6fill_nIPimiET_S1_T0_RKT1_:
 .LFB11489:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	%rdx, -24(%rbp)
-	nop
-	movq	-16(%rbp), %rax
-	movq	%rax, %rdi
-	call	_ZSt17__size_to_integerm
-	movq	%rax, %rcx
-	movq	-8(%rbp), %rax
-	movq	-24(%rbp), %rdx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -8[rbp], rdi	# __first, __first
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+	mov	QWORD PTR -24[rbp], rdx	# __value, __value
+# /usr/include/c++/13/bits/stl_iterator_base_types.h:240:     { return typename iterator_traits<_Iter>::iterator_category(); }
+	nop	
+# /usr/include/c++/13/bits/stl_algobase.h:1157:       return std::__fill_n_a(__first, std::__size_to_integer(__n), __value,
+	mov	rax, QWORD PTR -16[rbp]	# tmp89, __n
+	mov	rdi, rax	#, tmp89
+	call	_ZSt17__size_to_integerm	#
+	mov	rcx, rax	# _1,
+# /usr/include/c++/13/bits/stl_algobase.h:1157:       return std::__fill_n_a(__first, std::__size_to_integer(__n), __value,
+	mov	rax, QWORD PTR -8[rbp]	# __first.10_2, __first
+	mov	rdx, QWORD PTR -24[rbp]	# tmp90, __value
+	mov	rsi, rcx	#, _1
+	mov	rdi, rax	#, __first.10_2
+	call	_ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag	#
+# /usr/include/c++/13/bits/stl_algobase.h:1159:     }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11489:
 	.size	_ZSt6fill_nIPimiET_S1_T0_RKT1_, .-_ZSt6fill_nIPimiET_S1_T0_RKT1_
@@ -1368,38 +1552,45 @@ _ZSt6fill_nIPimiET_S1_T0_RKT1_:
 _ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag:
 .LFB11529:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	%rdx, -24(%rbp)
-	cmpq	$0, -16(%rbp)
-	jne	.L89
-	movq	-8(%rbp), %rax
-	jmp	.L90
+	sub	rsp, 32	#,
+	mov	QWORD PTR -8[rbp], rdi	# __first, __first
+	mov	QWORD PTR -16[rbp], rsi	# __n, __n
+	mov	QWORD PTR -24[rbp], rdx	# __value, __value
+# /usr/include/c++/13/bits/stl_algobase.h:1123:       if (__n <= 0)
+	cmp	QWORD PTR -16[rbp], 0	# __n,
+	jne	.L89	#,
+# /usr/include/c++/13/bits/stl_algobase.h:1124: 	return __first;
+	mov	rax, QWORD PTR -8[rbp]	# _4, __first
+	jmp	.L90	#
 .L89:
-	movq	-16(%rbp), %rax
-	leaq	0(,%rax,4), %rdx
-	movq	-8(%rbp), %rax
-	leaq	(%rdx,%rax), %rcx
-	movq	-24(%rbp), %rdx
-	movq	-8(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt8__fill_aIPiiEvT_S1_RKT0_
-	movq	-16(%rbp), %rax
-	leaq	0(,%rax,4), %rdx
-	movq	-8(%rbp), %rax
-	addq	%rdx, %rax
+# /usr/include/c++/13/bits/stl_algobase.h:1128:       std::__fill_a(__first, __first + __n, __value);
+	mov	rax, QWORD PTR -16[rbp]	# tmp87, __n
+	lea	rdx, 0[0+rax*4]	# _1,
+# /usr/include/c++/13/bits/stl_algobase.h:1128:       std::__fill_a(__first, __first + __n, __value);
+	mov	rax, QWORD PTR -8[rbp]	# tmp88, __first
+	lea	rcx, [rdx+rax]	# _2,
+	mov	rdx, QWORD PTR -24[rbp]	# tmp89, __value
+	mov	rax, QWORD PTR -8[rbp]	# tmp90, __first
+	mov	rsi, rcx	#, _2
+	mov	rdi, rax	#, tmp90
+	call	_ZSt8__fill_aIPiiEvT_S1_RKT0_	#
+# /usr/include/c++/13/bits/stl_algobase.h:1129:       return __first + __n;
+	mov	rax, QWORD PTR -16[rbp]	# tmp91, __n
+	lea	rdx, 0[0+rax*4]	# _3,
+# /usr/include/c++/13/bits/stl_algobase.h:1129:       return __first + __n;
+	mov	rax, QWORD PTR -8[rbp]	# tmp92, __first
+	add	rax, rdx	# _4, _3
 .L90:
-	leave
+# /usr/include/c++/13/bits/stl_algobase.h:1130:     }
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11529:
 	.size	_ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag, .-_ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag
@@ -1409,26 +1600,28 @@ _ZSt10__fill_n_aIPimiET_S1_T0_RKT1_St26random_access_iterator_tag:
 _ZSt8__fill_aIPiiEvT_S1_RKT0_:
 .LFB11536:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	%rdx, -24(%rbp)
-	movq	-24(%rbp), %rdx
-	movq	-16(%rbp), %rcx
-	movq	-8(%rbp), %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZSt9__fill_a1IPiiEN9__gnu_cxx11__enable_ifIXsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S8_RKS4_
-	nop
-	leave
+	sub	rsp, 32	#,
+	mov	QWORD PTR -8[rbp], rdi	# __first, __first
+	mov	QWORD PTR -16[rbp], rsi	# __last, __last
+	mov	QWORD PTR -24[rbp], rdx	# __value, __value
+# /usr/include/c++/13/bits/stl_algobase.h:977:     { std::__fill_a1(__first, __last, __value); }
+	mov	rdx, QWORD PTR -24[rbp]	# tmp82, __value
+	mov	rcx, QWORD PTR -16[rbp]	# tmp83, __last
+	mov	rax, QWORD PTR -8[rbp]	# tmp84, __first
+	mov	rsi, rcx	#, tmp83
+	mov	rdi, rax	#, tmp84
+	call	_ZSt9__fill_a1IPiiEN9__gnu_cxx11__enable_ifIXsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S8_RKS4_	#
+# /usr/include/c++/13/bits/stl_algobase.h:977:     { std::__fill_a1(__first, __last, __value); }
+	nop	
+	leave	
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11536:
 	.size	_ZSt8__fill_aIPiiEvT_S1_RKT0_, .-_ZSt8__fill_aIPiiEvT_S1_RKT0_
@@ -1438,33 +1631,39 @@ _ZSt8__fill_aIPiiEvT_S1_RKT0_:
 _ZSt9__fill_a1IPiiEN9__gnu_cxx11__enable_ifIXsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S8_RKS4_:
 .LFB11540:
 	.cfi_startproc
-	endbr64
-	pushq	%rbp
+	endbr64	
+	push	rbp	#
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp	#,
 	.cfi_def_cfa_register 6
-	movq	%rdi, -24(%rbp)
-	movq	%rsi, -32(%rbp)
-	movq	%rdx, -40(%rbp)
-	movq	-40(%rbp), %rax
-	movl	(%rax), %eax
-	movl	%eax, -4(%rbp)
-	jmp	.L93
+	mov	QWORD PTR -24[rbp], rdi	# __first, __first
+	mov	QWORD PTR -32[rbp], rsi	# __last, __last
+	mov	QWORD PTR -40[rbp], rdx	# __value, __value
+# /usr/include/c++/13/bits/stl_algobase.h:929:       const _Tp __tmp = __value;
+	mov	rax, QWORD PTR -40[rbp]	# tmp82, __value
+	mov	eax, DWORD PTR [rax]	# tmp83, *__value_4(D)
+	mov	DWORD PTR -4[rbp], eax	# __tmp, tmp83
+# /usr/include/c++/13/bits/stl_algobase.h:930:       for (; __first != __last; ++__first)
+	jmp	.L93	#
 .L94:
-	movq	-24(%rbp), %rax
-	movl	-4(%rbp), %edx
-	movl	%edx, (%rax)
-	addq	$4, -24(%rbp)
+# /usr/include/c++/13/bits/stl_algobase.h:931: 	*__first = __tmp;
+	mov	rax, QWORD PTR -24[rbp]	# tmp84, __first
+	mov	edx, DWORD PTR -4[rbp]	# tmp85, __tmp
+	mov	DWORD PTR [rax], edx	# *__first_1, tmp85
+# /usr/include/c++/13/bits/stl_algobase.h:930:       for (; __first != __last; ++__first)
+	add	QWORD PTR -24[rbp], 4	# __first,
 .L93:
-	movq	-24(%rbp), %rax
-	cmpq	-32(%rbp), %rax
-	jne	.L94
-	nop
-	nop
-	popq	%rbp
+# /usr/include/c++/13/bits/stl_algobase.h:930:       for (; __first != __last; ++__first)
+	mov	rax, QWORD PTR -24[rbp]	# tmp86, __first
+	cmp	rax, QWORD PTR -32[rbp]	# tmp86, __last
+	jne	.L94	#,
+# /usr/include/c++/13/bits/stl_algobase.h:932:     }
+	nop	
+	nop	
+	pop	rbp	#
 	.cfi_def_cfa 7, 8
-	ret
+	ret	
 	.cfi_endproc
 .LFE11540:
 	.size	_ZSt9__fill_a1IPiiEN9__gnu_cxx11__enable_ifIXsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S8_RKS4_, .-_ZSt9__fill_a1IPiiEN9__gnu_cxx11__enable_ifIXsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S8_RKS4_
