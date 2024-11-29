@@ -1,4 +1,4 @@
-all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  BST.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  Segment_Tree_Lazy_Propagation.exe  Euclid_s_Algorithm.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  CRT.exe  DFS.exe  Treap.exe  Segment_Tree_RMQ.exe  Avl.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Red_Black_Tree.exe  Segment_Tree_Range_Sum.exe  Fibonacci_heap.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
+all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  BST.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  TEMPLATE.exe  Segment_Tree_Lazy_Propagation.exe  Euclid_s_Algorithm.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  CRT.exe  DFS.exe  Treap.exe  Segment_Tree_RMQ.exe  Avl.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Red_Black_Tree.exe  Segment_Tree_Range_Sum.exe  Fibonacci_heap.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Extended_Euclid_s_Algorithm.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
 MEX.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MEX.cpp -o MEX.exe
 Sieve_of_Eratosthenes.exe: 
@@ -15,6 +15,8 @@ Counting_Sort.exe:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Counting_Sort.cpp -o Counting_Sort.exe
 Euler_s_totient.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euler_s_totient.cpp -o Euler_s_totient.exe
+TEMPLATE.exe: 
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op TEMPLATE.cpp -o TEMPLATE.exe
 Segment_Tree_Lazy_Propagation.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Segment_Tree_Lazy_Propagation.cpp -o Segment_Tree_Lazy_Propagation.exe
 Euclid_s_Algorithm.exe: 
@@ -71,6 +73,8 @@ Kadane_s_Algorithm.exe:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.exe
 Bellman_Ford_Shortest_Path.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.exe
+Extended_Euclid_s_Algorithm.exe: 
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.exe
 Sparse_Table.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Sparse_Table.cpp -o Sparse_Table.exe
 Disjoint_Set_Union.exe: 
@@ -95,6 +99,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Merge_Sort.cpp -o Merge_Sort.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Counting_Sort.cpp -o Counting_Sort.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euler_s_totient.cpp -o Euler_s_totient.exe
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op TEMPLATE.cpp -o TEMPLATE.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Segment_Tree_Lazy_Propagation.cpp -o Segment_Tree_Lazy_Propagation.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euclid_s_Algorithm.cpp -o Euclid_s_Algorithm.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op KMP.cpp -o KMP.exe
@@ -123,6 +128,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Simple_Dijkstra.cpp -o Simple_Dijkstra.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.exe
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Sparse_Table.cpp -o Sparse_Table.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Disjoint_Set_Union.cpp -o Disjoint_Set_Union.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Binary_Search.cpp -o Binary_Search.exe
@@ -131,7 +137,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Binomial_Coefficient.cpp -o Binomial_Coefficient.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Priority_Queue.cpp -o Priority_Queue.exe
 
-fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBST.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fSegment_Tree_Lazy_Propagation.exe  fEuclid_s_Algorithm.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fCRT.exe  fDFS.exe  fTreap.exe  fSegment_Tree_RMQ.exe  fAvl.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fRed_Black_Tree.exe  fSegment_Tree_Range_Sum.exe  fFibonacci_heap.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
+fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBST.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fTEMPLATE.exe  fSegment_Tree_Lazy_Propagation.exe  fEuclid_s_Algorithm.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fCRT.exe  fDFS.exe  fTreap.exe  fSegment_Tree_RMQ.exe  fAvl.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fRed_Black_Tree.exe  fSegment_Tree_Range_Sum.exe  fFibonacci_heap.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fExtended_Euclid_s_Algorithm.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
 fMEX.exe: 
 	g++ --std=c++20 -O0 MEX.cpp -o fMEX.exe
 fSieve_of_Eratosthenes.exe: 
@@ -148,6 +154,8 @@ fCounting_Sort.exe:
 	g++ --std=c++20 -O0 Counting_Sort.cpp -o fCounting_Sort.exe
 fEuler_s_totient.exe: 
 	g++ --std=c++20 -O0 Euler_s_totient.cpp -o fEuler_s_totient.exe
+fTEMPLATE.exe: 
+	g++ --std=c++20 -O0 TEMPLATE.cpp -o fTEMPLATE.exe
 fSegment_Tree_Lazy_Propagation.exe: 
 	g++ --std=c++20 -O0 Segment_Tree_Lazy_Propagation.cpp -o fSegment_Tree_Lazy_Propagation.exe
 fEuclid_s_Algorithm.exe: 
@@ -204,6 +212,8 @@ fKadane_s_Algorithm.exe:
 	g++ --std=c++20 -O0 Kadane_s_Algorithm.cpp -o fKadane_s_Algorithm.exe
 fBellman_Ford_Shortest_Path.exe: 
 	g++ --std=c++20 -O0 Bellman_Ford_Shortest_Path.cpp -o fBellman_Ford_Shortest_Path.exe
+fExtended_Euclid_s_Algorithm.exe: 
+	g++ --std=c++20 -O0 Extended_Euclid_s_Algorithm.cpp -o fExtended_Euclid_s_Algorithm.exe
 fSparse_Table.exe: 
 	g++ --std=c++20 -O0 Sparse_Table.cpp -o fSparse_Table.exe
 fDisjoint_Set_Union.exe: 
@@ -218,6 +228,98 @@ fBinomial_Coefficient.exe:
 	g++ --std=c++20 -O0 Binomial_Coefficient.cpp -o fBinomial_Coefficient.exe
 fPriority_Queue.exe: 
 	g++ --std=c++20 -O0 Priority_Queue.cpp -o fPriority_Queue.exe
+
+asm: MEX.s  Sieve_of_Eratosthenes.s  Kosaraju.s  BST.s  Binomial_Theorem.s  Merge_Sort.s  Counting_Sort.s  Euler_s_totient.s  TEMPLATE.s  Segment_Tree_Lazy_Propagation.s  Euclid_s_Algorithm.s  KMP.s  Edmond_Karp_MaxFlow.s  Binary_Exponentiation.s  Z_function.s  Max_Heap.s  FenwickTree.s  Min_Heap.s  Ternary_Search.s  CRT.s  DFS.s  Treap.s  Segment_Tree_RMQ.s  Avl.s  Dijkstra.s  SCC.s  Factorize.s  Red_Black_Tree.s  Segment_Tree_Range_Sum.s  Fibonacci_heap.s  Floor_Sum.s  2D_Prefix_Sum.s  Flood_fill.s  BFS.s  Simple_Dijkstra.s  Kadane_s_Algorithm.s  Bellman_Ford_Shortest_Path.s  Extended_Euclid_s_Algorithm.s  Sparse_Table.s  Disjoint_Set_Union.s  Binary_Search.s  Floyd_Warshall.s  Tree_diameter.s  Binomial_Coefficient.s  Priority_Queue.s 
+MEX.s: 
+	oa.sh MEX
+Sieve_of_Eratosthenes.s: 
+	oa.sh Sieve_of_Eratosthenes
+Kosaraju.s: 
+	oa.sh Kosaraju
+BST.s: 
+	oa.sh BST
+Binomial_Theorem.s: 
+	oa.sh Binomial_Theorem
+Merge_Sort.s: 
+	oa.sh Merge_Sort
+Counting_Sort.s: 
+	oa.sh Counting_Sort
+Euler_s_totient.s: 
+	oa.sh Euler_s_totient
+TEMPLATE.s: 
+	oa.sh TEMPLATE
+Segment_Tree_Lazy_Propagation.s: 
+	oa.sh Segment_Tree_Lazy_Propagation
+Euclid_s_Algorithm.s: 
+	oa.sh Euclid_s_Algorithm
+KMP.s: 
+	oa.sh KMP
+Edmond_Karp_MaxFlow.s: 
+	oa.sh Edmond_Karp_MaxFlow
+Binary_Exponentiation.s: 
+	oa.sh Binary_Exponentiation
+Z_function.s: 
+	oa.sh Z_function
+Max_Heap.s: 
+	oa.sh Max_Heap
+FenwickTree.s: 
+	oa.sh FenwickTree
+Min_Heap.s: 
+	oa.sh Min_Heap
+Ternary_Search.s: 
+	oa.sh Ternary_Search
+CRT.s: 
+	oa.sh CRT
+DFS.s: 
+	oa.sh DFS
+Treap.s: 
+	oa.sh Treap
+Segment_Tree_RMQ.s: 
+	oa.sh Segment_Tree_RMQ
+Avl.s: 
+	oa.sh Avl
+Dijkstra.s: 
+	oa.sh Dijkstra
+SCC.s: 
+	oa.sh SCC
+Factorize.s: 
+	oa.sh Factorize
+Red_Black_Tree.s: 
+	oa.sh Red_Black_Tree
+Segment_Tree_Range_Sum.s: 
+	oa.sh Segment_Tree_Range_Sum
+Fibonacci_heap.s: 
+	oa.sh Fibonacci_heap
+Floor_Sum.s: 
+	oa.sh Floor_Sum
+2D_Prefix_Sum.s: 
+	oa.sh 2D_Prefix_Sum
+Flood_fill.s: 
+	oa.sh Flood_fill
+BFS.s: 
+	oa.sh BFS
+Simple_Dijkstra.s: 
+	oa.sh Simple_Dijkstra
+Kadane_s_Algorithm.s: 
+	oa.sh Kadane_s_Algorithm
+Bellman_Ford_Shortest_Path.s: 
+	oa.sh Bellman_Ford_Shortest_Path
+Extended_Euclid_s_Algorithm.s: 
+	oa.sh Extended_Euclid_s_Algorithm
+Sparse_Table.s: 
+	oa.sh Sparse_Table
+Disjoint_Set_Union.s: 
+	oa.sh Disjoint_Set_Union
+Binary_Search.s: 
+	oa.sh Binary_Search
+Floyd_Warshall.s: 
+	oa.sh Floyd_Warshall
+Tree_diameter.s: 
+	oa.sh Tree_diameter
+Binomial_Coefficient.s: 
+	oa.sh Binomial_Coefficient
+Priority_Queue.s: 
+	oa.sh Priority_Queue
 
 clean:
 	rm *.exe

@@ -97,6 +97,16 @@ else
     printf "${red}$(cat Euler_s_totient.test)${normal}\n"
 fi
 
+if [ "$(./TEMPLATE.exe < TEMPLATE.txt)" == "$(cat TEMPLATE.test)" ]; then
+    printf "${green}TEMPLATE Passed.${normal}\n"
+else
+    printf "${red}TEMPLATE Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./TEMPLATE.exe < TEMPLATE.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat TEMPLATE.test)${normal}\n"
+fi
+
 if [ "$(./Segment_Tree_Lazy_Propagation.exe < Segment_Tree_Lazy_Propagation.txt)" == "$(cat Segment_Tree_Lazy_Propagation.test)" ]; then
     printf "${green}Segment_Tree_Lazy_Propagation Passed.${normal}\n"
 else
@@ -375,6 +385,16 @@ else
     printf "${red}$(./Bellman_Ford_Shortest_Path.exe < Bellman_Ford_Shortest_Path.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Bellman_Ford_Shortest_Path.test)${normal}\n"
+fi
+
+if [ "$(./Extended_Euclid_s_Algorithm.exe < Extended_Euclid_s_Algorithm.txt)" == "$(cat Extended_Euclid_s_Algorithm.test)" ]; then
+    printf "${green}Extended_Euclid_s_Algorithm Passed.${normal}\n"
+else
+    printf "${red}Extended_Euclid_s_Algorithm Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Extended_Euclid_s_Algorithm.exe < Extended_Euclid_s_Algorithm.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Extended_Euclid_s_Algorithm.test)${normal}\n"
 fi
 
 if [ "$(./Sparse_Table.exe < Sparse_Table.txt)" == "$(cat Sparse_Table.test)" ]; then

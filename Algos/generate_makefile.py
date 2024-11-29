@@ -51,6 +51,14 @@ for cpp_file in cpp_files:
         + "\n"
     )
 
+makefile.write("\nasm:")
+for cpp_file in cpp_files:
+    makefile.write(" " + cpp_file[:-4] + ".s ")
+makefile.write("\n")
+
+for cpp_file in cpp_files:
+    makefile.write(cpp_file[:-4] + ".s" + ": \n" + "	oa.sh " + cpp_file[:-4] + "\n")
+
 
 makefile.write("\nclean:\n")
 makefile.write("	rm *.exe\n")
