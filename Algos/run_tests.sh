@@ -27,6 +27,16 @@ else
     printf "${red}$(cat Euclid_s_Algorithm.test)${normal}\n"
 fi
 
+if [ "$(./Difference_Array.exe < Difference_Array.txt)" == "$(cat Difference_Array.test)" ]; then
+    printf "${green}Difference_Array Passed.${normal}\n"
+else
+    printf "${red}Difference_Array Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Difference_Array.exe < Difference_Array.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Difference_Array.test)${normal}\n"
+fi
+
 if [ "$(./Dijkstra.exe < Dijkstra.txt)" == "$(cat Dijkstra.test)" ]; then
     printf "${green}Dijkstra Passed.${normal}\n"
 else

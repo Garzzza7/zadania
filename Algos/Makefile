@@ -1,6 +1,8 @@
-all: Euclid_s_Algorithm.exe  Dijkstra.exe  Euler_s_totient.exe  Ternary_Search.exe  SCC.exe  TEMPLATE.exe  Avl.exe  CRT.exe  Floyd_Warshall.exe  Flood_fill.exe  Binary_Exponentiation.exe  Sparse_Table.exe  Treap.exe  Segment_Tree_Lazy_Propagation.exe  Z_function.exe  Fibonacci_heap.exe  Merge_Sort.exe  Max_Heap.exe  Extended_Euclid_s_Algorithm.exe  FenwickTree.exe  Disjoint_Set_Union.exe  Binary_Search.exe  BST.exe  Binomial_Coefficient.exe  Floor_Sum.exe  Sieve_of_Eratosthenes.exe  DFS.exe  Segment_Tree_RMQ.exe  2D_Prefix_Sum.exe  Segment_Tree_Range_Sum.exe  Tree_diameter.exe  Binomial_Theorem.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  KMP.exe  Min_Heap.exe  Kosaraju.exe  Edmond_Karp_MaxFlow.exe  Priority_Queue.exe  Red_Black_Tree.exe  Factorize.exe  BFS.exe  Bellman_Ford_Shortest_Path.exe  MEX.exe  Counting_Sort.exe 
+all: Euclid_s_Algorithm.exe  Difference_Array.exe  Dijkstra.exe  Euler_s_totient.exe  Ternary_Search.exe  SCC.exe  TEMPLATE.exe  Avl.exe  CRT.exe  Floyd_Warshall.exe  Flood_fill.exe  Binary_Exponentiation.exe  Sparse_Table.exe  Treap.exe  Segment_Tree_Lazy_Propagation.exe  Z_function.exe  Fibonacci_heap.exe  Merge_Sort.exe  Max_Heap.exe  Extended_Euclid_s_Algorithm.exe  FenwickTree.exe  Disjoint_Set_Union.exe  Binary_Search.exe  BST.exe  Binomial_Coefficient.exe  Floor_Sum.exe  Sieve_of_Eratosthenes.exe  DFS.exe  Segment_Tree_RMQ.exe  2D_Prefix_Sum.exe  Segment_Tree_Range_Sum.exe  Tree_diameter.exe  Binomial_Theorem.exe  Simple_Dijkstra.exe  Kadane_s_Algorithm.exe  KMP.exe  Min_Heap.exe  Kosaraju.exe  Edmond_Karp_MaxFlow.exe  Priority_Queue.exe  Red_Black_Tree.exe  Factorize.exe  BFS.exe  Bellman_Ford_Shortest_Path.exe  MEX.exe  Counting_Sort.exe 
 Euclid_s_Algorithm.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euclid_s_Algorithm.cpp -o Euclid_s_Algorithm.exe
+Difference_Array.exe: 
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Difference_Array.cpp -o Difference_Array.exe
 Dijkstra.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Dijkstra.cpp -o Dijkstra.exe
 Euler_s_totient.exe: 
@@ -92,6 +94,7 @@ Counting_Sort.exe:
 
 force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euclid_s_Algorithm.cpp -o Euclid_s_Algorithm.exe
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Difference_Array.cpp -o Difference_Array.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Dijkstra.cpp -o Dijkstra.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Euler_s_totient.cpp -o Euler_s_totient.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Ternary_Search.cpp -o Ternary_Search.exe
@@ -137,9 +140,11 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MEX.cpp -o MEX.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Counting_Sort.cpp -o Counting_Sort.exe
 
-fast: fEuclid_s_Algorithm.exe  fDijkstra.exe  fEuler_s_totient.exe  fTernary_Search.exe  fSCC.exe  fTEMPLATE.exe  fAvl.exe  fCRT.exe  fFloyd_Warshall.exe  fFlood_fill.exe  fBinary_Exponentiation.exe  fSparse_Table.exe  fTreap.exe  fSegment_Tree_Lazy_Propagation.exe  fZ_function.exe  fFibonacci_heap.exe  fMerge_Sort.exe  fMax_Heap.exe  fExtended_Euclid_s_Algorithm.exe  fFenwickTree.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fBST.exe  fBinomial_Coefficient.exe  fFloor_Sum.exe  fSieve_of_Eratosthenes.exe  fDFS.exe  fSegment_Tree_RMQ.exe  f2D_Prefix_Sum.exe  fSegment_Tree_Range_Sum.exe  fTree_diameter.exe  fBinomial_Theorem.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fKMP.exe  fMin_Heap.exe  fKosaraju.exe  fEdmond_Karp_MaxFlow.exe  fPriority_Queue.exe  fRed_Black_Tree.exe  fFactorize.exe  fBFS.exe  fBellman_Ford_Shortest_Path.exe  fMEX.exe  fCounting_Sort.exe 
+fast: fEuclid_s_Algorithm.exe  fDifference_Array.exe  fDijkstra.exe  fEuler_s_totient.exe  fTernary_Search.exe  fSCC.exe  fTEMPLATE.exe  fAvl.exe  fCRT.exe  fFloyd_Warshall.exe  fFlood_fill.exe  fBinary_Exponentiation.exe  fSparse_Table.exe  fTreap.exe  fSegment_Tree_Lazy_Propagation.exe  fZ_function.exe  fFibonacci_heap.exe  fMerge_Sort.exe  fMax_Heap.exe  fExtended_Euclid_s_Algorithm.exe  fFenwickTree.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fBST.exe  fBinomial_Coefficient.exe  fFloor_Sum.exe  fSieve_of_Eratosthenes.exe  fDFS.exe  fSegment_Tree_RMQ.exe  f2D_Prefix_Sum.exe  fSegment_Tree_Range_Sum.exe  fTree_diameter.exe  fBinomial_Theorem.exe  fSimple_Dijkstra.exe  fKadane_s_Algorithm.exe  fKMP.exe  fMin_Heap.exe  fKosaraju.exe  fEdmond_Karp_MaxFlow.exe  fPriority_Queue.exe  fRed_Black_Tree.exe  fFactorize.exe  fBFS.exe  fBellman_Ford_Shortest_Path.exe  fMEX.exe  fCounting_Sort.exe 
 fEuclid_s_Algorithm.exe: 
 	g++ --std=c++20 -O0 Euclid_s_Algorithm.cpp -o fEuclid_s_Algorithm.exe
+fDifference_Array.exe: 
+	g++ --std=c++20 -O0 Difference_Array.cpp -o fDifference_Array.exe
 fDijkstra.exe: 
 	g++ --std=c++20 -O0 Dijkstra.cpp -o fDijkstra.exe
 fEuler_s_totient.exe: 
@@ -229,9 +234,11 @@ fMEX.exe:
 fCounting_Sort.exe: 
 	g++ --std=c++20 -O0 Counting_Sort.cpp -o fCounting_Sort.exe
 
-asm: Euclid_s_Algorithm.s  Dijkstra.s  Euler_s_totient.s  Ternary_Search.s  SCC.s  TEMPLATE.s  Avl.s  CRT.s  Floyd_Warshall.s  Flood_fill.s  Binary_Exponentiation.s  Sparse_Table.s  Treap.s  Segment_Tree_Lazy_Propagation.s  Z_function.s  Fibonacci_heap.s  Merge_Sort.s  Max_Heap.s  Extended_Euclid_s_Algorithm.s  FenwickTree.s  Disjoint_Set_Union.s  Binary_Search.s  BST.s  Binomial_Coefficient.s  Floor_Sum.s  Sieve_of_Eratosthenes.s  DFS.s  Segment_Tree_RMQ.s  2D_Prefix_Sum.s  Segment_Tree_Range_Sum.s  Tree_diameter.s  Binomial_Theorem.s  Simple_Dijkstra.s  Kadane_s_Algorithm.s  KMP.s  Min_Heap.s  Kosaraju.s  Edmond_Karp_MaxFlow.s  Priority_Queue.s  Red_Black_Tree.s  Factorize.s  BFS.s  Bellman_Ford_Shortest_Path.s  MEX.s  Counting_Sort.s 
+asm: Euclid_s_Algorithm.s  Difference_Array.s  Dijkstra.s  Euler_s_totient.s  Ternary_Search.s  SCC.s  TEMPLATE.s  Avl.s  CRT.s  Floyd_Warshall.s  Flood_fill.s  Binary_Exponentiation.s  Sparse_Table.s  Treap.s  Segment_Tree_Lazy_Propagation.s  Z_function.s  Fibonacci_heap.s  Merge_Sort.s  Max_Heap.s  Extended_Euclid_s_Algorithm.s  FenwickTree.s  Disjoint_Set_Union.s  Binary_Search.s  BST.s  Binomial_Coefficient.s  Floor_Sum.s  Sieve_of_Eratosthenes.s  DFS.s  Segment_Tree_RMQ.s  2D_Prefix_Sum.s  Segment_Tree_Range_Sum.s  Tree_diameter.s  Binomial_Theorem.s  Simple_Dijkstra.s  Kadane_s_Algorithm.s  KMP.s  Min_Heap.s  Kosaraju.s  Edmond_Karp_MaxFlow.s  Priority_Queue.s  Red_Black_Tree.s  Factorize.s  BFS.s  Bellman_Ford_Shortest_Path.s  MEX.s  Counting_Sort.s 
 Euclid_s_Algorithm.s: 
 	oa.sh Euclid_s_Algorithm
+Difference_Array.s: 
+	oa.sh Difference_Array
 Dijkstra.s: 
 	oa.sh Dijkstra
 Euler_s_totient.s: 
