@@ -1,99 +1,35 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
-#define print_rvalues(vec)                                                     \
-  for (auto &&a : (vec)) {                                                     \
-    cout << a << " ";                                                          \
-  }                                                                            \
-  cout << "\n";
-#define print_lvalues(vec)                                                     \
-  for (const auto &a : (vec)) {                                                \
-    cout << a << " ";                                                          \
-  }                                                                            \
-  cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                                      \
-  std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second < right.second;                                         \
-  })
-#define sortpairdecS(vec)                                                      \
-  std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second > right.second;                                         \
-  })
-#define sortpairascF(vec)                                                      \
-  std::sort(vec.begin(), vec.end(),                                            \
-            [](auto &left, auto &right) { return left.first < right.first; })
-#define sortpairdecF(vec)                                                      \
-  std::sort(vec.begin(), vec.end(),                                            \
-            [](auto &left, auto &right) { return left.first > right.first; })
-#define swpint(a, b)                                                           \
-  a ^= b;                                                                      \
-  b ^= a;                                                                      \
-  a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
 
 using namespace std;
 
 int main() {
-#if TIME
-  auto begin = std::chrono::high_resolution_clock::now();
-#endif
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-#if FAST
-  help;
-  me;
-#endif
-
-  int t;
-  cin >> t;
-  while (t--) {
-    int N;
-    cin >> N;
-    vector<int> vec(N);
-    vector<int> pref(N, 0);
-    for (int i = 0; i < N; i++) {
-      int aa;
-      cin >> aa;
-      vec[i] = aa;
+    int T;
+    cin >> T;
+    while (T--) {
+	int n;
+	cin >> n;
+	vector<long long> prefsum(n + 10, 0);
+	vector<long long> lookup(80001, 0);
+	long long cnt = 0;
+	for (int i = 1; i <= n; i++) {
+	    long long aa;
+	    cin >> aa;
+	    prefsum[i] = prefsum[i - 1] + aa;
+	    lookup[aa]++;
+	}
+	for (int i = 2; i < n + 1; i++) {
+	    for (int j = 1; j < i; j++) {
+		if (lookup[min(80000LL, prefsum[i] - prefsum[j - 1])]) {
+		    cnt += lookup[prefsum[i] - prefsum[j - 1]];
+		    lookup[prefsum[i] - prefsum[j - 1]] ^=
+			lookup[prefsum[i] - prefsum[j - 1]];
+		}
+	    }
+	}
+	cout << cnt << "\n";
     }
-
-    pref[0] = vec[0];
-    set<int> s;
-    for (int i = 1; i < N; i++) {
-      pref[i] += pref[i - 1] + vec[i];
-      s.insert(pref[i]);
-    }
-
-    for (int i = 0; i < N; i++) {
-      for (int r = 0; r < N; r++) {
-        for (int l = 0; l < N; l++) {
-        }
-      }
-    }
-    /*int res = 0;*/
-    /*for (auto &&a : vec) {*/
-    /*  if (s.count(a) != 0)*/
-    /*    res++;*/
-    /*}*/
-    /*cout << res << "\n";*/
-  }
-
-#if TIME
-  auto end = std::chrono::high_resolution_clock::now();
-  cout << setprecision(4) << fixed;
-  cout << "Execution time: "
-       << std::chrono::duration_cast<std::chrono::duration<double>>(end - begin)
-              .count()
-       << " seconds\n";
-#endif
-  return 0;
+    return 0;
 }
