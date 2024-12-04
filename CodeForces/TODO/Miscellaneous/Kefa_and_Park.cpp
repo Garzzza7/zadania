@@ -1,113 +1,49 @@
 #include <bits/stdc++.h>
-#include <cmath>
-#include <stack>
-#include <stdlib.h>
-#define print_rvalues(vec)                                                     \
-  for (auto &&a : (vec)) {                                                     \
-    cout << a << " ";                                                          \
-  }                                                                            \
-  cout << "\n";
-#define print_lvalues(vec)                                                     \
-  for (const auto &a : (vec)) {                                                \
-    cout << a << " ";                                                          \
-  }                                                                            \
-  cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                                      \
-  std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second < right.second;                                         \
-  })
-#define sortpairdecS(vec)                                                      \
-  std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {              \
-    return left.second > right.second;                                         \
-  })
-#define sortpairascF(vec)                                                      \
-  std::sort(vec.begin(), vec.end(),                                            \
-            [](auto &left, auto &right) { return left.first < right.first; })
-#define sortpairdecF(vec)                                                      \
-  std::sort(vec.begin(), vec.end(),                                            \
-            [](auto &left, auto &right) { return left.first > right.first; })
-#define swpint(a, b)                                                           \
-  a ^= b;                                                                      \
-  b ^= a;                                                                      \
-  a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
 
 using namespace std;
-void dfs(int v, vector<bool> &visited, int cats, vector<int> &lookup,
-         vector<vector<int>> &adj, int m, int &cnt) {
-  if (visited[v]) {
-    return;
-  }
-  visited[v] = 1;
 
-  for (auto &&a : adj[v]) {
-    if (visited[a] == false) {
-      if (lookup[a] != lookup[v]) {
-        lookup[a]++;
-      }
-      dfs(a, visited, cats, lookup, adj, m, cnt);
+vector<int> has_cat(100000 + 1, 0);
+vector<int> cnt_cats(100000 + 1, 0);
+int res = 0;
+
+void dfs(int vertex, int from, vector<vector<int>> &adj, int cnt, int limit) {
+    if (cnt > limit) {
+	return;
     }
-  }
-  if (adj[v].size() == 0 && lookup[v] <= m) {
-    cout << v << "\n";
-    cnt++;
-  }
+    /*cout << vertex << " -> " << cnt << "\n";*/
+    for (auto &&v : adj[vertex]) {
+	dfs(v, vertex, adj, cnt * has_cat[v] + has_cat[v], limit);
+    }
+    if ((int) adj[vertex].size() == 1 && adj[vertex][0] == from) {
+	/*maxi = max(maxi, cnt);*/
+	/*cout << "maxi : " << maxi << "\n";*/
+	/*res += (maxi <= limit);*/
+	res++;
+    }
 }
 
 int main() {
-#if TIME
-  auto begin = std::chrono::high_resolution_clock::now();
-#endif
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-#if FAST
-  help;
-  me;
-#endif
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> adj(n + 1, vector<int>());
+    for (int i = 1; i <= n; i++) {
+	int aa;
+	cin >> aa;
+	has_cat[i] = aa;
+    }
 
-  int n, m;
-  cin >> n >> m;
+    for (int i = 0; i < n - 1; i++) {
+	int aa, bb;
+	cin >> aa >> bb;
+	adj[aa].push_back(bb);
+	adj[bb].push_back(aa);
+    }
+    vector<bool> visited(n + 1, 0);
+    dfs(1, 0, adj, has_cat[1], m);
+    cout << res << "\n";
 
-  vector<vector<int>> adj(n + 1, vector<int>());
-  vector<int> lookup(n + 1, 0);
-
-  vector<bool> visited(n, false);
-  for (int i = 1; i <= n; i++) {
-    int b;
-    cin >> b;
-    lookup[i] = b;
-  }
-  for (int i = 0; i < n - 1; i++) {
-    int x, y;
-    cin >> x >> y;
-    int xx = x;
-    int yy = y;
-    xx = min(x, y);
-    yy = max(x, y);
-    adj[xx].push_back(yy);
-    // adj[y].push_back(x);
-  }
-  int ct = 0;
-  int res = 0;
-  dfs(1, visited, ct, lookup, adj, m, res);
-  cout << res << "\n";
-
-#if TIME
-  auto end = std::chrono::high_resolution_clock::now();
-  cout << setprecision(4) << fixed;
-  cout << "Execution time: "
-       << std::chrono::duration_cast<std::chrono::duration<double>>(end - begin)
-              .count()
-       << " seconds\n";
-#endif
-  return 0;
+    return 0;
 }
