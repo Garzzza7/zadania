@@ -42,7 +42,7 @@
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": true,
   "editor.cursorBlinking": "solid",
-  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSmoothCaretAnimation": "off",
   "editor.tabSize": 4,
   "editor.detectIndentation": true,
   "editor.fontFamily": "JetBrains Mono",

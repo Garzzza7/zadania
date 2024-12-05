@@ -13,7 +13,7 @@ SpaceAfterCStyleCast: true
 SpacesInParentheses: false
 SpacesInAngles: false
 SpacesBeforeTrailingComments: 1
-SortIncludes: false
+SortIncludes: false 
 ReflowComments: true
 Cpp11BracedListStyle: true
 
