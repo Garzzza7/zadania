@@ -53,8 +53,8 @@
 	std::cout << a << ' ';                                                 \
     }                                                                          \
     std::cout << '\n';
-#define help std::ios::sync_with_stdio(false)
-#define me std::cin.tie(0)
+#define help std::ios_base::sync_with_stdio(false);
+#define me std::cin.tie(nullptr);
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())

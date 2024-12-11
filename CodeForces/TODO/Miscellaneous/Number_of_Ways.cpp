@@ -15,51 +15,34 @@ int main() {
     for (int i = 0; i < n; i++) {
 	int aa;
 	cin >> aa;
+	vec[i] = aa;
 	total += aa;
     }
-    if (total % 3 != 0) {
+    if (total % 3ll != 0ll) {
 	cout << 0 << "\n";
 	return 0;
     }
-    int res = 0;
-    vector<int> cnt_git(n + 12, 0);
     long long sum = 0ll;
+    vector<int> rev_pref(n);
     for (int i = n - 1; i >= 0; i--) {
 	sum += vec[i];
-	if (sum == total / 3) {
-	    cnt_git[i] += 1;
+	if (sum == (long long) (total / 3)) {
+	    rev_pref[i] = 1;
 	}
     }
 
     for (int i = n - 2; i >= 0; i--) {
-	cnt_git[i] += cnt_git[i + 1];
+	rev_pref[i] += rev_pref[i + 1];
     }
-
     sum ^= sum;
-    for (int i = 0; i < n - 2; i++) {
+    long long res = 0;
+    for (int i = 0; i + 2 < n; i++) {
 	sum += vec[i];
-	if (sum == total / 3) {
-	    res += cnt_git[i + 2];
+	if (sum == (long long) (total / 3)) {
+	    res += rev_pref[i + 2];
 	}
     }
-    /*   for (int i = 1; i < n - 1; i++) {*/
-    /*if (prefsum[i] == prefsum[n] / 3) {*/
-    /*    for (int j = i + 1; j < n; j++) {*/
-    /*	if ((prefsum[j] - prefsum[i]) == prefsum[n] / 3) {*/
-    /*	    res++;*/
-    /*	}*/
-    /*    }*/
-    /*}*/
-    /*   }*/
-
-    /*   for (int i = 1; i < n - 1; i++) {*/
-    /*for (int j = i + 1; j < n; j++) {*/
-    /*    if (prefsum[i] == (prefsum[j] - prefsum[i]) &&*/
-    /*	prefsum[i] == (prefsum[n] - prefsum[j])) {*/
-    /*	res++;*/
-    /*    }*/
-    /*}*/
-    /*   }*/
     cout << res << "\n";
+
     return 0;
 }
