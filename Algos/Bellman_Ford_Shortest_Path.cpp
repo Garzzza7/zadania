@@ -43,7 +43,8 @@ void bellmand_ford(T start, vector<tuple<T, T, T>> &edges, vector<T> &distances,
     }
 }
 
-template <typename T> void shortest_path(T start, T target, vector<T> &paths) {
+template <typename T>
+void shortest_path(T start, T target, vector<T> &paths) {
     vector<T> sp;
     for (int cur = target; cur != -1; cur = paths[cur]) {
 	sp.push_back(cur);

@@ -2,7 +2,8 @@
 
 using namespace std;
 
-template <typename T> long long crt(vector<pair<T, T>> &vec) {
+template <typename T>
+long long crt(vector<pair<T, T>> &vec) {
     T mod = vec[0].second;
     T buff = vec[0].first;
     for (int i = 0; i < (int) vec.size() - 1; i++) {

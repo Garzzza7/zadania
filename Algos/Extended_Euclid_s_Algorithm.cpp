@@ -2,11 +2,13 @@
 
 using namespace std;
 
-template <typename T> T fl(T x, T y) {
+template <typename T>
+T fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
-template <typename T> std::vector<T> extended_euclid(T a, T b) {
+template <typename T>
+std::vector<T> extended_euclid(T a, T b) {
     if (b == 0) {
 	return std::vector({a, 1, 0});
     }

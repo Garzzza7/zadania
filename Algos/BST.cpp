@@ -4,7 +4,7 @@
 using namespace std;
 const long long mod = 1000000007;
 class Node {
-  public:
+   public:
     int value;
     Node *right;
     Node *left;

@@ -3,7 +3,7 @@
 using namespace std;
 
 class Vertex {
-  public:
+   public:
     bool color;
     Vertex *right;
     Vertex *left;

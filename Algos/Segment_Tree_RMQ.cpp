@@ -3,7 +3,7 @@
 using namespace std;
 
 class SegmentTree {
-  private:
+   private:
     vector<int> st, A;
     int n;
     int left(int p) {
@@ -47,7 +47,7 @@ class SegmentTree {
 	// as in build routine
     }
 
-  public:
+   public:
     SegmentTree(const vector<int> &_A) {
 	A = _A;
 	n = (int) A.size();

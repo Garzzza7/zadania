@@ -3,7 +3,8 @@
 
 using namespace std;
 
-template <typename T> vector<T> phi_1_to_n(T n) {
+template <typename T>
+vector<T> phi_1_to_n(T n) {
     vector<T> phi(n + 1);
     for (int i = 0; i <= n; i++) {
 	phi[i] = i;

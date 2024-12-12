@@ -8,10 +8,10 @@ const long long mod = 1000000007;
 
 // OOP VERSION OF UFDS
 class UnionFind {
-  private:
+   private:
     vector<int> p, rank;
 
-  public:
+   public:
     UnionFind(int N) {
 	rank.assign(N, 0);
 	p.assign(N, 0);

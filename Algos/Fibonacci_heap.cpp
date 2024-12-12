@@ -5,7 +5,7 @@ using namespace std;
 const long long mod = 1000000007;
 // Struct used for each Fibonacci heap node
 class FibonacciNode {
-  public:
+   public:
     int degree;
     FibonacciNode *parent;
     FibonacciNode *child;
@@ -17,7 +17,7 @@ class FibonacciNode {
 };
 // Fibonacci heap class
 class FibonacciHeap {
-  public:
+   public:
     FibonacciNode *minNode;
     int numNodes;
     vector<FibonacciNode *> degTable;

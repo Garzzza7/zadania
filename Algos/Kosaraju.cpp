@@ -55,7 +55,6 @@ void Kosaraju() {
 }
 
 int main() {
-
     cin >> n >> m;
     while (m--) {
 	int a, b;

@@ -2,14 +2,16 @@
 
 using namespace std;
 
-template <typename T> T euclid(T a, T b) {
+template <typename T>
+T euclid(T a, T b) {
     if (b == 0) {
 	return a;
     }
     return euclid(b, a % b);
 }
 
-template <typename T> T lcm(T a, T b) {
+template <typename T>
+T lcm(T a, T b) {
     return (a * b) / euclid(a, b);
 }
 

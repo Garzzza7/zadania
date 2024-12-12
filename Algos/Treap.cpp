@@ -5,7 +5,7 @@ using namespace std;
 const long long mod = 1000000007;
 
 class Treap {
-  public:
+   public:
     int data, priority;
     vector<Treap *> children;
     int subtreeSize, sum, toPropagate;

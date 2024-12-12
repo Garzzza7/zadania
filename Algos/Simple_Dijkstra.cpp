@@ -30,7 +30,8 @@ void djikstra(T start, vector<vector<pair<T, T>>> &adj, vector<T> &distances,
     }
 }
 
-template <typename T> void shortest_path(T start, T target, vector<T> &path) {
+template <typename T>
+void shortest_path(T start, T target, vector<T> &path) {
     vector<T> sp;
     for (int i = target; i != -1; i = path[i]) {
 	sp.push_back(i);

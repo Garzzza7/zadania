@@ -2,7 +2,8 @@
 
 using namespace std;
 
-template <typename T, T MOD, T RT> struct mint {
+template <typename T, T MOD, T RT>
+struct mint {
     static const T mod = MOD;
     static constexpr mint root() {
 	return RT;
