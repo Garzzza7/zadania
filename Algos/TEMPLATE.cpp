@@ -1,7 +1,9 @@
+#include <bits/stdc++.h>
+#include <stdlib.h>
+
 #include <algorithm>
 #include <array>
 #include <atomic>
-#include <bits/stdc++.h>
 #include <chrono>
 #include <cmath>
 #include <complex>
@@ -33,7 +35,6 @@
 #include <sstream>
 #include <stack>
 #include <stdexcept>
-#include <stdlib.h>
 #include <streambuf>
 #include <string>
 #include <typeinfo>

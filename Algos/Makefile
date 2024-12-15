@@ -328,5 +328,100 @@ Binomial_Coefficient.s:
 Priority_Queue.s: 
 	oa.sh Priority_Queue
 
+asmf: asmfMEX.s  asmfSieve_of_Eratosthenes.s  asmfKosaraju.s  asmfBST.s  asmfBinomial_Theorem.s  asmfMerge_Sort.s  asmfCounting_Sort.s  asmfEuler_s_totient.s  asmfDifference_Array.s  asmfTEMPLATE.s  asmfSegment_Tree_Lazy_Propagation.s  asmfEuclid_s_Algorithm.s  asmfKMP.s  asmfEdmond_Karp_MaxFlow.s  asmfBinary_Exponentiation.s  asmfZ_function.s  asmfMax_Heap.s  asmfFenwickTree.s  asmfMin_Heap.s  asmfTernary_Search.s  asmfCRT.s  asmfDFS.s  asmfTreap.s  asmfSegment_Tree_RMQ.s  asmfAvl.s  asmfDijkstra.s  asmfSCC.s  asmfFactorize.s  asmfRed_Black_Tree.s  asmfSegment_Tree_Range_Sum.s  asmfFibonacci_heap.s  asmfFloor_Sum.s  asmf2D_Prefix_Sum.s  asmfFlood_fill.s  asmfBFS.s  asmfSimple_Dijkstra.s  asmfKadane_s_Algorithm.s  asmfBellman_Ford_Shortest_Path.s  asmfExtended_Euclid_s_Algorithm.s  asmfSparse_Table.s  asmfDisjoint_Set_Union.s  asmfBinary_Search.s  asmfFloyd_Warshall.s  asmfTree_diameter.s  asmfBinomial_Coefficient.s  asmfPriority_Queue.s 
+asmfMEX.s: 
+	ofa.sh MEX
+asmfSieve_of_Eratosthenes.s: 
+	ofa.sh Sieve_of_Eratosthenes
+asmfKosaraju.s: 
+	ofa.sh Kosaraju
+asmfBST.s: 
+	ofa.sh BST
+asmfBinomial_Theorem.s: 
+	ofa.sh Binomial_Theorem
+asmfMerge_Sort.s: 
+	ofa.sh Merge_Sort
+asmfCounting_Sort.s: 
+	ofa.sh Counting_Sort
+asmfEuler_s_totient.s: 
+	ofa.sh Euler_s_totient
+asmfDifference_Array.s: 
+	ofa.sh Difference_Array
+asmfTEMPLATE.s: 
+	ofa.sh TEMPLATE
+asmfSegment_Tree_Lazy_Propagation.s: 
+	ofa.sh Segment_Tree_Lazy_Propagation
+asmfEuclid_s_Algorithm.s: 
+	ofa.sh Euclid_s_Algorithm
+asmfKMP.s: 
+	ofa.sh KMP
+asmfEdmond_Karp_MaxFlow.s: 
+	ofa.sh Edmond_Karp_MaxFlow
+asmfBinary_Exponentiation.s: 
+	ofa.sh Binary_Exponentiation
+asmfZ_function.s: 
+	ofa.sh Z_function
+asmfMax_Heap.s: 
+	ofa.sh Max_Heap
+asmfFenwickTree.s: 
+	ofa.sh FenwickTree
+asmfMin_Heap.s: 
+	ofa.sh Min_Heap
+asmfTernary_Search.s: 
+	ofa.sh Ternary_Search
+asmfCRT.s: 
+	ofa.sh CRT
+asmfDFS.s: 
+	ofa.sh DFS
+asmfTreap.s: 
+	ofa.sh Treap
+asmfSegment_Tree_RMQ.s: 
+	ofa.sh Segment_Tree_RMQ
+asmfAvl.s: 
+	ofa.sh Avl
+asmfDijkstra.s: 
+	ofa.sh Dijkstra
+asmfSCC.s: 
+	ofa.sh SCC
+asmfFactorize.s: 
+	ofa.sh Factorize
+asmfRed_Black_Tree.s: 
+	ofa.sh Red_Black_Tree
+asmfSegment_Tree_Range_Sum.s: 
+	ofa.sh Segment_Tree_Range_Sum
+asmfFibonacci_heap.s: 
+	ofa.sh Fibonacci_heap
+asmfFloor_Sum.s: 
+	ofa.sh Floor_Sum
+asmf2D_Prefix_Sum.s: 
+	ofa.sh 2D_Prefix_Sum
+asmfFlood_fill.s: 
+	ofa.sh Flood_fill
+asmfBFS.s: 
+	ofa.sh BFS
+asmfSimple_Dijkstra.s: 
+	ofa.sh Simple_Dijkstra
+asmfKadane_s_Algorithm.s: 
+	ofa.sh Kadane_s_Algorithm
+asmfBellman_Ford_Shortest_Path.s: 
+	ofa.sh Bellman_Ford_Shortest_Path
+asmfExtended_Euclid_s_Algorithm.s: 
+	ofa.sh Extended_Euclid_s_Algorithm
+asmfSparse_Table.s: 
+	ofa.sh Sparse_Table
+asmfDisjoint_Set_Union.s: 
+	ofa.sh Disjoint_Set_Union
+asmfBinary_Search.s: 
+	ofa.sh Binary_Search
+asmfFloyd_Warshall.s: 
+	ofa.sh Floyd_Warshall
+asmfTree_diameter.s: 
+	ofa.sh Tree_diameter
+asmfBinomial_Coefficient.s: 
+	ofa.sh Binomial_Coefficient
+asmfPriority_Queue.s: 
+	ofa.sh Priority_Queue
+
 clean:
 	rm *.exe
+	rm *.s

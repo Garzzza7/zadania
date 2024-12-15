@@ -60,8 +60,19 @@ for cpp_file in cpp_files:
     makefile.write(cpp_file[:-4] + ".s" + ": \n" + "	oa.sh " + cpp_file[:-4] + "\n")
 
 
+makefile.write("\nasmf:")
+for cpp_file in cpp_files:
+    makefile.write(" asmf" + cpp_file[:-4] + ".s ")
+makefile.write("\n")
+
+for cpp_file in cpp_files:
+    makefile.write(
+        "asmf" + cpp_file[:-4] + ".s" + ": \n" + "	ofa.sh " + cpp_file[:-4] + "\n"
+    )
+
 makefile.write("\nclean:\n")
 makefile.write("	rm *.exe\n")
+makefile.write("	rm *.s\n")
 makefile.close()
 
 testfile = open("run_tests.sh", "w")

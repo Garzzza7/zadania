@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
-#include <cmath>
 #include <stdlib.h>
+
+#include <cmath>
 using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 const long long mod = 1000000007;

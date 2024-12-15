@@ -16,3 +16,15 @@ do
     echo $path
     rm $path
 done
+
+for path in `find ./ -name '*.s'`
+do
+    echo $path
+    rm $path
+done
+
+for path in `find ./ -name '*.o'`
+do
+    echo $path
+    rm $path
+done
