@@ -1,11 +1,7 @@
-Djikstra
-Splay 
-Fusion
-Lazy Prop
-Treap
-AVL
-RedBlack
+WIP:
+Avl
+BST
 Fib Heap
-Hungarian
-B
-
+RB Tree
+Seg Tree Lazy
+Treap
