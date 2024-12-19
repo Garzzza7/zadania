@@ -1,24 +1,34 @@
-#include <bits/stdc++.h>
-#define sz(a) (int) (a).size()
-using ll = int64_t;
+#include <iostream>
+#include <string>
+#include <vector>
 
-using namespace std;
+void solve(long long& n, long long& a, long long& b) {
+    if (b == 1) {
+	std::cout << "YES\n";
+	return;
+    }
+    for (long long i = 1; i <= n; i *= a) {
+	if ((n - i) % b == 0) {
+	    std::cout << "YES\n";
+	    return;
+	}
+	if (a == 1) {
+	    break;
+	}
+    }
+    std::cout << "NO\n";
+}
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
 
     int T;
-    cin >> T;
+    std::cin >> T;
     while (T--) {
-	ll n, a, b;
-	cin >> n >> a >> b;
-	if (n % a == 0 || (n - 1) % b == 0 || (n - b) % a == 0 ||
-	    (n - a) % b == 0) {
-	    cout << "YES\n";
-	} else {
-	    cout << "NO\n";
-	}
+	long long n, a, b;
+	std::cin >> n >> a >> b;
+	solve(n, a, b);
     }
     return 0;
 }
