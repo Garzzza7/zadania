@@ -25,6 +25,6 @@ std::string to_debug(T x, std::string s)
     }(std::make_index_sequence<size>());
     return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
-#define db(...)                                                                \
-    std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__))      \
+#define db(...)                                                           \
+    std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) \
 	      << "\n"
