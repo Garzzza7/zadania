@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void query(int x1, int y1, int x2, int y2, vector<vector<int>> &prefsum) {
+void query(int x1, int y1, int x2, int y2, std::vector<std::vector<int>> &prefsum) {
     cout << prefsum[x2][y2] - prefsum[x1 - 1][y2] - prefsum[x2][y1 - 1] +
 		prefsum[x1 - 1][y1 - 1]
 	 << "\n";
@@ -14,8 +14,8 @@ int main() {
 
     int n, m;
     cin >> n >> m;
-    vector<vector<int>> prefsum(n + 1, vector<int>(m + 1));
-    vector<vector<int>> vec(n + 1, vector<int>(m + 1));
+    std::vector<std::vector<int>> prefsum(n + 1, std::vector<int>(m + 1));
+    std::vector<std::vector<int>> vec(n + 1, std::vector<int>(m + 1));
     for (int i = 0; i < n; i++) {
 	for (int j = 0; j < m; j++) {
 	    int aa;
