@@ -3,12 +3,12 @@
 using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
 
     int n;
-    cin >> n;
-    vector<int> sieve(n + 1, 0);
+    std::cin >> n;
+    std::vector<int> sieve(n + 1, 0);
     for (int i = 2; i <= n; i++) {
 	if (sieve[i]) {
 	    continue;
@@ -20,7 +20,7 @@ int main() {
     // 0 -> prime
     // !0 -> one of factors
     for (auto &&a : sieve) {
-	cout << a << " ";
+	std::cout << a << " ";
     }
     return 0;
 }

@@ -3,13 +3,13 @@
 using namespace std;
 
 template <typename T>
-T bfs(T source, T target, vector<vector<T>> &adj, vector<vector<T>> &capacities,
-      vector<T> &path) {
+T bfs(T source, T target, std::vector<std::vector<T>> &adj,
+      std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
     for (auto &&a : path) {
 	a = -1;
     }
     path[source] = -2137;
-    queue<pair<T, T>> q;
+    std::queue<std::pair<T, T>> q;
     q.push({source, INT32_MAX});
 
     while (!q.empty()) {
@@ -31,14 +31,14 @@ T bfs(T source, T target, vector<vector<T>> &adj, vector<vector<T>> &capacities,
 }
 
 template <typename T>
-T maxflow(T source, T target, vector<vector<T>> &adj,
-	  vector<vector<T>> &capacities) {
-    T mxflow = 0;
-    vector<T> path((int) adj.size());
+T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
+	  std::vector<std::vector<T>> &capacities) {
+    T maxflow = 0;
+    std::vector<T> path((int) adj.size());
     T bottleneck = 0;
 
     while ((bottleneck = bfs(source, target, adj, capacities, path))) {
-	mxflow += bottleneck;
+	maxflow += bottleneck;
 	T current_node = target;
 	while (current_node != source) {
 	    T previous_node = path[current_node];
@@ -47,26 +47,26 @@ T maxflow(T source, T target, vector<vector<T>> &adj,
 	    current_node = previous_node;
 	}
     }
-    return mxflow;
+    return maxflow;
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
     int n, m;
-    cin >> n >> m;
-    vector<vector<int>> adj(n, vector<int>());
-    vector<vector<int>> capacities(n, vector<int>(n, INT32_MIN));
+    std::cin >> n >> m;
+    std::vector<std::vector<int>> adj(n, std::vector<int>());
+    std::vector<std::vector<int>> capacities(n, std::vector<int>(n, INT32_MIN));
     for (int i = 0; i < m; i++) {
 	int from, to, cap;
-	cin >> from >> to >> cap;
+	std::cin >> from >> to >> cap;
 	adj[from].push_back(to);
 	adj[to].push_back(from);
 	capacities[from][to] = cap;
 	capacities[to][from] = 0;
     }
     int res = maxflow(0, n - 1, adj, capacities);
-    cout << res << "\n";
+    std::cout << res << "\n";
 
     return 0;
 }

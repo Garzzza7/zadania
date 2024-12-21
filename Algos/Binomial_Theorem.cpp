@@ -26,15 +26,16 @@ long long calculate(int x, char c, int y, int n) {
     long long res = 0;
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
-	    res += (long long) (recursive_binomial_coefficient(n, i) *
-				pow(x, i) * pow(y, n - i));
+	    res +=
+		(long long) (recursive_binomial_coefficient(n, i) *
+			     (long long) pow(x, i) * (long long) pow(y, n - i));
 	}
     } else {
 	long long flip = -1;
 	for (int i = 0; i <= n; i++) {
-	    res += flip * ((recursive_binomial_coefficient(n, i) * pow(x, i) *
-			    pow(y, n - i)));
-	    flip *= -1;
+	    res += flip * ((recursive_binomial_coefficient(n, i) *
+			    (long long) pow(x, i) * (long long) pow(y, n - i)));
+	    flip *= -1ll;
 	}
     }
     return res;
@@ -43,37 +44,37 @@ long long calculate(int x, char c, int y, int n) {
 void show_calculation(int x, char c, int y, int n) {
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
-	    cout << recursive_binomial_coefficient(n, i) << " x^" << i << " y^"
-		 << n - i;
+	    std::cout << recursive_binomial_coefficient(n, i) << " x^" << i
+		      << " y^" << n - i;
 	    if (i != n) {
-		cout << " " << c << " ";
+		std::cout << " " << c << " ";
 	    }
 	}
-	cout << "\n";
+	std::cout << "\n";
     } else {
 	int move = -2;
 	for (int i = 0; i <= n; i++) {
-	    cout << recursive_binomial_coefficient(n, i) << " x^" << i << " y^"
-		 << n - i;
+	    std::cout << recursive_binomial_coefficient(n, i) << " x^" << i
+		      << " y^" << n - i;
 	    if (i != n) {
-		cout << " " << c << " ";
+		std::cout << " " << c << " ";
 	    }
 	    c += move;
 	    move *= -1;
 	}
-	cout << "\n";
+	std::cout << "\n";
     }
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
 
     int x, y, n;
     char c;
-    cin >> x >> c >> y >> n;
+    std::cin >> x >> c >> y >> n;
     show_calculation(x, c, y, n);
-    cout << calculate(x, c, y, n) << "\n";
+    std::cout << calculate(x, c, y, n) << "\n";
 
     return 0;
 }

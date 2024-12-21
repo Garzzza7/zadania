@@ -5,8 +5,8 @@
 using namespace std;
 
 template <typename T>
-vector<T> phi_1_to_n(T n) {
-    vector<T> phi(n + 1);
+std::vector<T> phi_1_to_n(T n) {
+    std::vector<T> phi(n + 1);
     for (int i = 0; i <= n; i++) {
 	phi[i] = i;
     }
@@ -21,15 +21,15 @@ vector<T> phi_1_to_n(T n) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
 
     int n;
-    cin >> n;
-    vector<int> res = phi_1_to_n(n);
-    for (auto &&a : res) {
-	cout << a << " ";
+    std::cin >> n;
+    std::vector<int> res = phi_1_to_n(n);
+    for (auto&& a : res) {
+	std::cout << a << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
     return 0;
 }

@@ -2,9 +2,9 @@
 
 using namespace std;
 
-vector<int> zfunction(string &s) {
+std::vector<int> zfunction(std::string &s) {
     int n = (int) s.size();
-    vector<int> z(n);
+    std::vector<int> z(n);
     int l = 0, r = 0;
     for (int i = 1; i < n; i++) {
 	if (i < r) {
@@ -22,19 +22,19 @@ vector<int> zfunction(string &s) {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
 
     int t;
-    cin >> t;
+    std::cin >> t;
     while (t--) {
-	string s;
-	cin >> s;
-	vector<int> res = zfunction(s);
+	std::string s;
+	std::cin >> s;
+	std::vector<int> res = zfunction(s);
 	for (auto &&a : res) {
-	    cout << a << " ";
+	    std::cout << a << " ";
 	}
-	cout << "\n";
+	std::cout << "\n";
     }
     return 0;
 }

@@ -2,14 +2,14 @@
 
 using namespace std;
 
-void iterative_bfs(int vertex, vector<vector<int>> &adj,
-		   vector<bool> &visited) {
-    visited = vector<bool>(visited.size(), 0);
-    queue<int> que;
+void iterative_bfs(int vertex, std::vector<std::vector<int>> &adj,
+		   std::vector<bool> &visited) {
+    std::fill(visited.begin(), visited.end(), 0);
+    std::queue<int> que;
     que.push(vertex);
     while (!que.empty()) {
 	int current = que.front();
-	cout << current << " ";
+	std::cout << current << " ";
 	que.pop();
 	for (auto &&v : adj[current]) {
 	    if (!visited[v]) {
@@ -20,13 +20,13 @@ void iterative_bfs(int vertex, vector<vector<int>> &adj,
     }
 }
 
-void bfs(int vertex, vector<vector<int>> &adj, vector<bool> &visited,
-	 queue<int> que) {
+void bfs(int vertex, std::vector<std::vector<int>> &adj,
+	 std::vector<bool> &visited, std::queue<int> que) {
     if (visited[vertex]) {
 	return;
     }
     visited[vertex] = 1;
-    cout << vertex << " ";
+    std::cout << vertex << " ";
     for (auto &&v : adj[vertex]) {
 	que.push(v);
     }
@@ -37,21 +37,23 @@ void bfs(int vertex, vector<vector<int>> &adj, vector<bool> &visited,
 }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
     int vertices;
-    cin >> vertices;
-    vector<vector<int>> adj(vertices + 1, vector<int>());
-    vector<bool> visited(vertices + 1, 0);
+    std::cin >> vertices;
+    std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
+    std::vector<bool> visited(vertices + 1, 0);
     int edges;
-    cin >> edges;
+    std::cin >> edges;
     for (int i = 0; i < edges; i++) {
 	int x, y;
-	cin >> x >> y;
+	std::cin >> x >> y;
 	adj[x].push_back(y);
 	// adj[y].push_back(x);
     }
-    queue<int> que;
+    std::queue<int> que;
     bfs(1, adj, visited, que);
-    cout << "\n";
+    std::cout << "\n";
     iterative_bfs(1, adj, visited);
     return 0;
 }

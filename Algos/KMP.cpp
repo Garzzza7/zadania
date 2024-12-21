@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool hasSubstring(string s, string pattern) {
+bool hasSubstring(std::string s, std::string pattern) {
     int i = 0;
     int j = 0;
     int k = 0;
@@ -21,8 +21,8 @@ bool hasSubstring(string s, string pattern) {
     }
     return false;
 }
-vector<int> computeBuffer(string pattern) {
-    vector<int> lps((int) pattern.size());
+std::vector<int> computeBuffer(std::string pattern) {
+    std::vector<int> lps((int) pattern.size());
     int index = 0;
     for (int i = 1; i < (int) pattern.size();) {
 	if ((pattern[i] = pattern[index])) {
@@ -40,8 +40,8 @@ vector<int> computeBuffer(string pattern) {
     }
     return lps;
 }
-bool KMP(string s, string pattern) {
-    vector<int> lps = computeBuffer(pattern);
+bool KMP(std::string s, std::string pattern) {
+    std::vector<int> lps = computeBuffer(pattern);
     int j = 0;
     int i = 0;
     while (i < (int) s.size() && j < (int) pattern.size()) {
@@ -63,12 +63,12 @@ bool KMP(string s, string pattern) {
 }
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::cin.tie(0);
 
-    string s, pattern;
-    cin >> s;
-    cin >> pattern;
+    std::string s, pattern;
+    std::cin >> s;
+    std::cin >> pattern;
     bool res = KMP(s, pattern);
-    cout << res << "\n";
+    std::cout << res << "\n";
     return 0;
 }

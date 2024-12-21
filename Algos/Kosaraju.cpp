@@ -6,14 +6,14 @@ using namespace std;
 
 int n, m;
 
-vector<vector<int>> adj(MAX_N, vector<int>());
-vector<vector<int>> rev_adj(MAX_N, vector<int>());
-stack<int> Stack;
-vector<bool> visited(MAX_N, 0);
+std::vector<std::vector<int>> adj(MAX_N, std::vector<int>());
+std::vector<std::vector<int>> rev_adj(MAX_N, std::vector<int>());
+std::stack<int> Stack;
+std::vector<bool> visited(MAX_N, 0);
 
 int cntComponents = 0;
 
-map<int, vector<int>> total;
+std::map<int, std::vector<int>> total;
 
 void dfs_1(int v) {
     visited[v] = true;
@@ -55,22 +55,22 @@ void Kosaraju() {
 }
 
 int main() {
-    cin >> n >> m;
+    std::cin >> n >> m;
     while (m--) {
 	int a, b;
-	cin >> a >> b;
+	std::cin >> a >> b;
 	adj[a].push_back(b);
 	rev_adj[b].push_back(a);
     }
 
     Kosaraju();
-    cout << total.size() << "\n";
+    std::cout << total.size() << "\n";
     for (auto &&a : total) {
-	cout << a.second.size() << " ";
+	std::cout << a.second.size() << " ";
 	for (auto &&aa : a.second) {
-	    cout << aa << " ";
+	    std::cout << aa << " ";
 	}
-	cout << "\n";
+	std::cout << "\n";
     }
 
     return 0;

@@ -107,16 +107,6 @@ else
     printf "${red}$(cat TEMPLATE.test)${normal}\n"
 fi
 
-if [ "$(./Euclid_s_Algorithm.exe < Euclid_s_Algorithm.txt)" == "$(cat Euclid_s_Algorithm.test)" ]; then
-    printf "${green}Euclid_s_Algorithm Passed.${normal}\n"
-else
-    printf "${red}Euclid_s_Algorithm Failed.\n"
-    printf "${red} Got:\n"
-    printf "${red}$(./Euclid_s_Algorithm.exe < Euclid_s_Algorithm.txt)\n"
-    printf "${red} Should be:\n"
-    printf "${red}$(cat Euclid_s_Algorithm.test)${normal}\n"
-fi
-
 if [ "$(./KMP.exe < KMP.txt)" == "$(cat KMP.test)" ]; then
     printf "${green}KMP Passed.${normal}\n"
 else
@@ -315,6 +305,16 @@ else
     printf "${red}$(./Simple_Dijkstra.exe < Simple_Dijkstra.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Simple_Dijkstra.test)${normal}\n"
+fi
+
+if [ "$(./Euclid_GCD_LCM.exe < Euclid_GCD_LCM.txt)" == "$(cat Euclid_GCD_LCM.test)" ]; then
+    printf "${green}Euclid_GCD_LCM Passed.${normal}\n"
+else
+    printf "${red}Euclid_GCD_LCM Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Euclid_GCD_LCM.exe < Euclid_GCD_LCM.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Euclid_GCD_LCM.test)${normal}\n"
 fi
 
 if [ "$(./Kadane_s_Algorithm.exe < Kadane_s_Algorithm.txt)" == "$(cat Kadane_s_Algorithm.test)" ]; then
