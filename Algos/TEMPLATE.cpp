@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <array>
 #include <atomic>
+#include <bitset>
 #include <chrono>
 #include <cmath>
 #include <complex>
@@ -75,9 +76,9 @@
     std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
 	return left.first > right.first;                            \
     })
-#define swpint(a, b) \
-    a ^= b;          \
-    b ^= a;          \
+#define swp(a, b) \
+    a ^= b;       \
+    b ^= a;       \
     a ^= b;
 // bits
 #define LSB(a) (a) & -(a)
@@ -207,7 +208,7 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
 	end = (int) (v.size());
     }
     for (int i = begin; i < end; i++) {
-	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
+	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
     }
 }
 
