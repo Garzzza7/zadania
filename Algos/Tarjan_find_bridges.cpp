@@ -16,30 +16,35 @@ class tarjan_find_bridges {
     std::vector<std::vector<edge>> adj;
     std::vector<bool> visited;
     std::vector<bool> is_bridge;
+    std::vector<std::pair<int, int>> edges;
     std::vector<int> entry_time;
     std::vector<int> low;
     int visit_time;
     int edge_id;
 
-    tarjan_find_bridges(int n) {
-	n = n + 1;
+    tarjan_find_bridges(int n, int m) {
+	n++;
+	m++;
 	adj = std::vector<std::vector<edge>>(n, std::vector<edge>());
 	visited = std::vector<bool>(n);
-	is_bridge = std::vector<bool>(n);
+	is_bridge = std::vector<bool>(m);
 	entry_time = std::vector<int>(n);
 	low = std::vector<int>(n);
+	edges = std::vector<std::pair<int, int>>(m);
 	visit_time = 0;
 	edge_id = 0;
     }
 
     void add_edge(int p, int v) {
 	adj[p].push_back(edge(v, edge_id));
+	edges[edge_id] = {p, v};
 	edge_id++;
     }
 
     void add_bi_edge(int p, int v) {
 	adj[p].push_back(edge(v, edge_id));
 	adj[v].push_back(edge(p, edge_id));
+	edges[edge_id] = {p, v};
 	edge_id++;
     }
 
@@ -62,8 +67,6 @@ class tarjan_find_bridges {
 		low[v] = std::min(low[v], low[e.vertex]);
 		if (low[e.vertex] > entry_time[v]) {
 		    is_bridge[e.id] = 1;
-		    std::cout << "edge " << e.vertex << " to " << v
-			      << " is a bridge.\n";
 		}
 	    }
 	}
@@ -93,13 +96,19 @@ int main() {
 
     int n, m;
     std::cin >> n >> m;
-    tarjan_find_bridges graph(n);
+    tarjan_find_bridges graph(n, m);
     for (int i = 0; i < m; i++) {
 	int p, v;
 	std::cin >> p >> v;
 	graph.add_bi_edge(p, v);
     }
     graph.run();
+    for (int i = 0; i < (int) graph.is_bridge.size(); i++) {
+	if (graph.is_bridge[i]) {
+	    std::cout << "edge " << graph.edges[i].first << " to "
+		      << graph.edges[i].second << " is a bridge.\n";
+	}
+    }
 
     return 0;
 }
