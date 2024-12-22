@@ -1,0 +1,16 @@
+1th ancestor of 2137 -> 897
+2th ancestor of 2137 -> 312
+3th ancestor of 2137 -> 2351
+4th ancestor of 2137 -> 234
+5th ancestor of 2137 -> 321
+1th ancestor of 1000 -> 897
+2th ancestor of 1000 -> 312
+3th ancestor of 1000 -> 2351
+4th ancestor of 1000 -> 234
+5th ancestor of 1000 -> 321
+1th ancestor of 4573 -> 234
+2th ancestor of 4573 -> 321
+4th ancestor of 312 -> -123
+1th ancestor of 745 -> 21345
+2th ancestor of 745 -> 321
+3th ancestor of 745 -> -123

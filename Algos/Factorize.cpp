@@ -15,8 +15,8 @@ void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
     }
 }
 
-vector<int> factorize(int n) {
-    vector<int> factor;
+std::vector<int> factorize(int n) {
+    std::vector<int> factor;
     for (int i = 2; i * i <= n; i++) {
 	while (n % i == 0) {
 	    factor.push_back(i);
@@ -34,8 +34,8 @@ int main() {
     std::cin.tie(0);
 
     int n;
-    cin >> n;
-    cout << n << ": ";
+    std::cin >> n;
+    std::cout << n << ": ";
     printarr(factorize(n));
 
     return 0;

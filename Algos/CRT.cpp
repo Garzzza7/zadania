@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename T>
-long long crt(vector<pair<T, T>> &vec) {
+long long crt(std::vector<std::pair<T, T>> &vec) {
     T mod = vec[0].second;
     T buff = vec[0].first;
     for (int i = 0; i < (int) vec.size() - 1; i++) {
@@ -18,23 +18,23 @@ long long crt(vector<pair<T, T>> &vec) {
 	    }
 	    buff += mod;
 	}
-	mod = lcm(mod, vec[i + 1].second);
+	mod = std::lcm(mod, vec[i + 1].second);
     }
     return (long long) buff;
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
     int n;
-    cin >> n;
-    vector<pair<int, int>> vec(n);
+    std::cin >> n;
+    std::vector<std::pair<int, int>> vec(n);
     for (int i = 0; i < n; i++) {
 	int aa, bb;
-	cin >> aa >> bb;
+	std::cin >> aa >> bb;
 	vec[i] = {aa, bb};
     }
-    cout << crt(vec) << "\n";
+    std::cout << crt(vec) << "\n";
 
     return 0;
 }

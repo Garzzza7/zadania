@@ -147,6 +147,16 @@ else
     printf "${red}$(cat Z_function.test)${normal}\n"
 fi
 
+if [ "$(./Binary_Lifting.exe < Binary_Lifting.txt)" == "$(cat Binary_Lifting.test)" ]; then
+    printf "${green}Binary_Lifting Passed.${normal}\n"
+else
+    printf "${red}Binary_Lifting Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Binary_Lifting.exe < Binary_Lifting.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Binary_Lifting.test)${normal}\n"
+fi
+
 if [ "$(./Max_Heap.exe < Max_Heap.txt)" == "$(cat Max_Heap.test)" ]; then
     printf "${green}Max_Heap Passed.${normal}\n"
 else

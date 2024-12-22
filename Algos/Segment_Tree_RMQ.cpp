@@ -4,7 +4,7 @@ using namespace std;
 
 class SegmentTree {
    private:
-    vector<int> st, A;
+    std::vector<int> st, A;
     int n;
     int left(int p) {
 	return p << 1;
@@ -48,7 +48,7 @@ class SegmentTree {
     }
 
    public:
-    SegmentTree(const vector<int> &_A) {
+    SegmentTree(const std::vector<int> &_A) {
 	A = _A;
 	n = (int) A.size();
 	st.assign(4 * n, 0);
@@ -61,13 +61,13 @@ class SegmentTree {
 };
 /*int main() {*/
 /*  int arr[] = {18, 17, 13, 19, 15, 11, 20};*/
-/*  vector<int> A(arr, arr + 7);*/
+/*  std::vector<int> A(arr, arr + 7);*/
 /*  SegmentTree st(A);*/
 /*  printf("RMQ(1, 3) = %d\n", st.rmq(1, 3));*/
 /*  printf("RMQ(4, 6) = %d\n", st.rmq(4, 6));*/
 /*} */
 
-vector<long long> tree;
+std::vector<long long> tree;
 int tree_size;
 long long min_query(long long start_node, long long node_left,
 		    long long node_right, long long query_left,
@@ -79,10 +79,10 @@ long long min_query(long long start_node, long long node_left,
 	return 0;
     }
     long long mid = (node_left + node_right) / 2;
-    long long minimum =
-	min(min_query(2 * start_node, node_left, mid, query_left, query_right),
-	    min_query(2 * start_node + 1, mid + 1, node_right, query_left,
-		      query_right));
+    long long minimum = std::min(
+	min_query(2 * start_node, node_left, mid, query_left, query_right),
+	min_query(2 * start_node + 1, mid + 1, node_right, query_left,
+		  query_right));
     return minimum;
 }
 void recursive_update(long long start_node, long long node_left,
@@ -100,23 +100,23 @@ void recursive_update(long long start_node, long long node_left,
 		     value);
     recursive_update(2 * start_node + 1, mid + 1, node_right, query_left,
 		     query_right, value);
-    tree[start_node] = min(tree[start_node * 2], tree[start_node * 2 + 1]);
+    tree[start_node] = std::min(tree[start_node * 2], tree[start_node * 2 + 1]);
 }
 void iterative_update(long long index, long long value) {
     tree[tree_size + index] = value;
     for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
-	tree[i] = min(tree[i * 2], tree[i * 2 + 1]);
+	tree[i] = std::min(tree[i * 2], tree[i * 2 + 1]);
     }
 }
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0);
 
-    cin >> tree_size;
-    vector<long long> initial_array;
+    std::cin >> tree_size;
+    std::vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {
 	int a;
-	cin >> a;
+	std::cin >> a;
 	initial_array.push_back(a);
     }
     while (__builtin_popcount(tree_size) != 1) {
@@ -128,15 +128,15 @@ int main() {
 	tree[tree_size + i] = initial_array[i];
     }
     for (int i = tree_size - 1; i >= 1; i--) {
-	tree[i] = min(tree[2 * i], tree[2 * i + 1]);
+	tree[i] = std::min(tree[2 * i], tree[2 * i + 1]);
     }
-    cout << min_query(1, 0, tree_size - 1, 0, 7) << "\n";
+    std::cout << min_query(1, 0, tree_size - 1, 0, 7) << "\n";
     for (auto &&v : tree) {
-	cout << v << " ";
+	std::cout << v << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 
-    // cout << "\n";
+    // std::cout << "\n";
     // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
     // iterative_update(5, 100);
     // printarr(tree);
