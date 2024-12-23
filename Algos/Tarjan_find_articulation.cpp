@@ -9,7 +9,6 @@ class tarjan_find_articulation {
     std::vector<int> entry_time;
     std::vector<int> low;
     int visit_time;
-    int edge_id;
 
     tarjan_find_articulation(int n) {
 	adj = std::vector<std::vector<int>>(n + 1, std::vector<int>());
@@ -38,7 +37,7 @@ class tarjan_find_articulation {
 	low[v] = visit_time;
 	visit_time++;
 	int decs = 0;
-	for (auto&& e : adj[v]) {
+	for (const auto& e : adj[v]) {
 	    if (e == p) {
 		continue;
 	    }
@@ -66,8 +65,8 @@ class tarjan_find_articulation {
 	}
     }
     void print() {
-	for (auto&& ee : adj) {
-	    for (auto&& e : ee) {
+	for (const auto& ee : adj) {
+	    for (const auto& e : ee) {
 		std::cout << e << " ";
 	    }
 	    std::cout << "\n";
