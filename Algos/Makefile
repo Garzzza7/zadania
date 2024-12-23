@@ -1,4 +1,4 @@
-all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  Difference_Array.exe  TEMPLATE.exe  Tarjan_find_articulation.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Binary_Lifting.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  CRT.exe  DFS.exe  Segment_Tree_RMQ.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Tarjan_find_bridges.exe  Segment_Tree_Range_Sum.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Euclid_GCD_LCM.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Extended_Euclid_s_Algorithm.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
+all: MEX.exe  Sieve_of_Eratosthenes.exe  Kosaraju.exe  Binomial_Theorem.exe  Merge_Sort.exe  Counting_Sort.exe  Euler_s_totient.exe  Difference_Array.exe  TEMPLATE.exe  Tarjan_find_articulation.exe  KMP.exe  Edmond_Karp_MaxFlow.exe  Binary_Exponentiation.exe  Z_function.exe  Binary_Lifting.exe  Max_Heap.exe  FenwickTree.exe  Min_Heap.exe  Ternary_Search.exe  CRT.exe  DFS.exe  Segment_Tree_RMQ.exe  Dijkstra.exe  SCC.exe  Factorize.exe  Tarjan_find_bridges.exe  Segment_Tree_Range_Sum.exe  Floor_Sum.exe  2D_Prefix_Sum.exe  DEsopo_Pape.exe  Flood_fill.exe  BFS.exe  Simple_Dijkstra.exe  Euclid_GCD_LCM.exe  Kadane_s_Algorithm.exe  Bellman_Ford_Shortest_Path.exe  Extended_Euclid_s_Algorithm.exe  Sparse_Table.exe  Disjoint_Set_Union.exe  Binary_Search.exe  Floyd_Warshall.exe  Tree_diameter.exe  Binomial_Coefficient.exe  Priority_Queue.exe 
 MEX.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op MEX.cpp -o MEX.exe
 Sieve_of_Eratosthenes.exe: 
@@ -57,6 +57,8 @@ Floor_Sum.exe:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Floor_Sum.cpp -o Floor_Sum.exe
 2D_Prefix_Sum.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.exe
+DEsopo_Pape.exe: 
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op DEsopo_Pape.cpp -o DEsopo_Pape.exe
 Flood_fill.exe: 
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Flood_fill.cpp -o Flood_fill.exe
 BFS.exe: 
@@ -116,6 +118,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Segment_Tree_Range_Sum.cpp -o Segment_Tree_Range_Sum.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Floor_Sum.cpp -o Floor_Sum.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.exe
+	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op DEsopo_Pape.cpp -o DEsopo_Pape.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Flood_fill.cpp -o Flood_fill.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op BFS.cpp -o BFS.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Simple_Dijkstra.cpp -o Simple_Dijkstra.exe
@@ -131,7 +134,7 @@ force:
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Binomial_Coefficient.cpp -o Binomial_Coefficient.exe
 	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op Priority_Queue.cpp -o Priority_Queue.exe
 
-fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fDifference_Array.exe  fTEMPLATE.exe  fTarjan_find_articulation.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fBinary_Lifting.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fCRT.exe  fDFS.exe  fSegment_Tree_RMQ.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fTarjan_find_bridges.exe  fSegment_Tree_Range_Sum.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fEuclid_GCD_LCM.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fExtended_Euclid_s_Algorithm.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
+fast: fMEX.exe  fSieve_of_Eratosthenes.exe  fKosaraju.exe  fBinomial_Theorem.exe  fMerge_Sort.exe  fCounting_Sort.exe  fEuler_s_totient.exe  fDifference_Array.exe  fTEMPLATE.exe  fTarjan_find_articulation.exe  fKMP.exe  fEdmond_Karp_MaxFlow.exe  fBinary_Exponentiation.exe  fZ_function.exe  fBinary_Lifting.exe  fMax_Heap.exe  fFenwickTree.exe  fMin_Heap.exe  fTernary_Search.exe  fCRT.exe  fDFS.exe  fSegment_Tree_RMQ.exe  fDijkstra.exe  fSCC.exe  fFactorize.exe  fTarjan_find_bridges.exe  fSegment_Tree_Range_Sum.exe  fFloor_Sum.exe  f2D_Prefix_Sum.exe  fDEsopo_Pape.exe  fFlood_fill.exe  fBFS.exe  fSimple_Dijkstra.exe  fEuclid_GCD_LCM.exe  fKadane_s_Algorithm.exe  fBellman_Ford_Shortest_Path.exe  fExtended_Euclid_s_Algorithm.exe  fSparse_Table.exe  fDisjoint_Set_Union.exe  fBinary_Search.exe  fFloyd_Warshall.exe  fTree_diameter.exe  fBinomial_Coefficient.exe  fPriority_Queue.exe 
 fMEX.exe: 
 	g++ --std=c++20 -O0 MEX.cpp -o fMEX.exe
 fSieve_of_Eratosthenes.exe: 
@@ -190,6 +193,8 @@ fFloor_Sum.exe:
 	g++ --std=c++20 -O0 Floor_Sum.cpp -o fFloor_Sum.exe
 f2D_Prefix_Sum.exe: 
 	g++ --std=c++20 -O0 2D_Prefix_Sum.cpp -o f2D_Prefix_Sum.exe
+fDEsopo_Pape.exe: 
+	g++ --std=c++20 -O0 DEsopo_Pape.cpp -o fDEsopo_Pape.exe
 fFlood_fill.exe: 
 	g++ --std=c++20 -O0 Flood_fill.cpp -o fFlood_fill.exe
 fBFS.exe: 
@@ -219,7 +224,7 @@ fBinomial_Coefficient.exe:
 fPriority_Queue.exe: 
 	g++ --std=c++20 -O0 Priority_Queue.cpp -o fPriority_Queue.exe
 
-asm: MEX.s  Sieve_of_Eratosthenes.s  Kosaraju.s  Binomial_Theorem.s  Merge_Sort.s  Counting_Sort.s  Euler_s_totient.s  Difference_Array.s  TEMPLATE.s  Tarjan_find_articulation.s  KMP.s  Edmond_Karp_MaxFlow.s  Binary_Exponentiation.s  Z_function.s  Binary_Lifting.s  Max_Heap.s  FenwickTree.s  Min_Heap.s  Ternary_Search.s  CRT.s  DFS.s  Segment_Tree_RMQ.s  Dijkstra.s  SCC.s  Factorize.s  Tarjan_find_bridges.s  Segment_Tree_Range_Sum.s  Floor_Sum.s  2D_Prefix_Sum.s  Flood_fill.s  BFS.s  Simple_Dijkstra.s  Euclid_GCD_LCM.s  Kadane_s_Algorithm.s  Bellman_Ford_Shortest_Path.s  Extended_Euclid_s_Algorithm.s  Sparse_Table.s  Disjoint_Set_Union.s  Binary_Search.s  Floyd_Warshall.s  Tree_diameter.s  Binomial_Coefficient.s  Priority_Queue.s 
+asm: MEX.s  Sieve_of_Eratosthenes.s  Kosaraju.s  Binomial_Theorem.s  Merge_Sort.s  Counting_Sort.s  Euler_s_totient.s  Difference_Array.s  TEMPLATE.s  Tarjan_find_articulation.s  KMP.s  Edmond_Karp_MaxFlow.s  Binary_Exponentiation.s  Z_function.s  Binary_Lifting.s  Max_Heap.s  FenwickTree.s  Min_Heap.s  Ternary_Search.s  CRT.s  DFS.s  Segment_Tree_RMQ.s  Dijkstra.s  SCC.s  Factorize.s  Tarjan_find_bridges.s  Segment_Tree_Range_Sum.s  Floor_Sum.s  2D_Prefix_Sum.s  DEsopo_Pape.s  Flood_fill.s  BFS.s  Simple_Dijkstra.s  Euclid_GCD_LCM.s  Kadane_s_Algorithm.s  Bellman_Ford_Shortest_Path.s  Extended_Euclid_s_Algorithm.s  Sparse_Table.s  Disjoint_Set_Union.s  Binary_Search.s  Floyd_Warshall.s  Tree_diameter.s  Binomial_Coefficient.s  Priority_Queue.s 
 MEX.s: 
 	oa.sh MEX
 Sieve_of_Eratosthenes.s: 
@@ -278,6 +283,8 @@ Floor_Sum.s:
 	oa.sh Floor_Sum
 2D_Prefix_Sum.s: 
 	oa.sh 2D_Prefix_Sum
+DEsopo_Pape.s: 
+	oa.sh DEsopo_Pape
 Flood_fill.s: 
 	oa.sh Flood_fill
 BFS.s: 
@@ -307,7 +314,7 @@ Binomial_Coefficient.s:
 Priority_Queue.s: 
 	oa.sh Priority_Queue
 
-asmf: asmfMEX.s  asmfSieve_of_Eratosthenes.s  asmfKosaraju.s  asmfBinomial_Theorem.s  asmfMerge_Sort.s  asmfCounting_Sort.s  asmfEuler_s_totient.s  asmfDifference_Array.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfKMP.s  asmfEdmond_Karp_MaxFlow.s  asmfBinary_Exponentiation.s  asmfZ_function.s  asmfBinary_Lifting.s  asmfMax_Heap.s  asmfFenwickTree.s  asmfMin_Heap.s  asmfTernary_Search.s  asmfCRT.s  asmfDFS.s  asmfSegment_Tree_RMQ.s  asmfDijkstra.s  asmfSCC.s  asmfFactorize.s  asmfTarjan_find_bridges.s  asmfSegment_Tree_Range_Sum.s  asmfFloor_Sum.s  asmf2D_Prefix_Sum.s  asmfFlood_fill.s  asmfBFS.s  asmfSimple_Dijkstra.s  asmfEuclid_GCD_LCM.s  asmfKadane_s_Algorithm.s  asmfBellman_Ford_Shortest_Path.s  asmfExtended_Euclid_s_Algorithm.s  asmfSparse_Table.s  asmfDisjoint_Set_Union.s  asmfBinary_Search.s  asmfFloyd_Warshall.s  asmfTree_diameter.s  asmfBinomial_Coefficient.s  asmfPriority_Queue.s 
+asmf: asmfMEX.s  asmfSieve_of_Eratosthenes.s  asmfKosaraju.s  asmfBinomial_Theorem.s  asmfMerge_Sort.s  asmfCounting_Sort.s  asmfEuler_s_totient.s  asmfDifference_Array.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfKMP.s  asmfEdmond_Karp_MaxFlow.s  asmfBinary_Exponentiation.s  asmfZ_function.s  asmfBinary_Lifting.s  asmfMax_Heap.s  asmfFenwickTree.s  asmfMin_Heap.s  asmfTernary_Search.s  asmfCRT.s  asmfDFS.s  asmfSegment_Tree_RMQ.s  asmfDijkstra.s  asmfSCC.s  asmfFactorize.s  asmfTarjan_find_bridges.s  asmfSegment_Tree_Range_Sum.s  asmfFloor_Sum.s  asmf2D_Prefix_Sum.s  asmfDEsopo_Pape.s  asmfFlood_fill.s  asmfBFS.s  asmfSimple_Dijkstra.s  asmfEuclid_GCD_LCM.s  asmfKadane_s_Algorithm.s  asmfBellman_Ford_Shortest_Path.s  asmfExtended_Euclid_s_Algorithm.s  asmfSparse_Table.s  asmfDisjoint_Set_Union.s  asmfBinary_Search.s  asmfFloyd_Warshall.s  asmfTree_diameter.s  asmfBinomial_Coefficient.s  asmfPriority_Queue.s 
 asmfMEX.s: 
 	ofa.sh MEX
 asmfSieve_of_Eratosthenes.s: 
@@ -366,6 +373,8 @@ asmfFloor_Sum.s:
 	ofa.sh Floor_Sum
 asmf2D_Prefix_Sum.s: 
 	ofa.sh 2D_Prefix_Sum
+asmfDEsopo_Pape.s: 
+	ofa.sh DEsopo_Pape
 asmfFlood_fill.s: 
 	ofa.sh Flood_fill
 asmfBFS.s: 

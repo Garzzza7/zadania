@@ -307,6 +307,16 @@ else
     printf "${red}$(cat 2D_Prefix_Sum.test)${normal}\n"
 fi
 
+if [ "$(./DEsopo_Pape.exe < DEsopo_Pape.txt)" == "$(cat DEsopo_Pape.test)" ]; then
+    printf "${green}DEsopo_Pape Passed.${normal}\n"
+else
+    printf "${red}DEsopo_Pape Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./DEsopo_Pape.exe < DEsopo_Pape.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat DEsopo_Pape.test)${normal}\n"
+fi
+
 if [ "$(./Flood_fill.exe < Flood_fill.txt)" == "$(cat Flood_fill.test)" ]; then
     printf "${green}Flood_fill Passed.${normal}\n"
 else
