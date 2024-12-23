@@ -12,12 +12,11 @@ class tarjan_find_articulation {
     int edge_id;
 
     tarjan_find_articulation(int n) {
-	n = n + 1;
-	adj = std::vector<std::vector<int>>(n, std::vector<int>());
-	visited = std::vector<bool>(n);
-	is_art_point = std::vector<bool>(n);
-	entry_time = std::vector<int>(n);
-	low = std::vector<int>(n);
+	adj = std::vector<std::vector<int>>(n + 1, std::vector<int>());
+	visited = std::vector<bool>(n + 1, 0);
+	is_art_point = std::vector<bool>(n + 1, 0);
+	entry_time = std::vector<int>(n + 1);
+	low = std::vector<int>(n + 1);
 	visit_time = 0;
     }
 
@@ -34,11 +33,11 @@ class tarjan_find_articulation {
 	if (visited[v]) {
 	    return;
 	}
-	int child = 0;
 	visited[v] = 1;
-	low[v] = visit_time;
 	entry_time[v] = visit_time;
+	low[v] = visit_time;
 	visit_time++;
+	int decs = 0;
 	for (auto&& e : adj[v]) {
 	    if (e == p) {
 		continue;
@@ -46,31 +45,26 @@ class tarjan_find_articulation {
 	    if (visited[e]) {
 		low[v] = std::min(low[v], entry_time[e]);
 	    } else {
+		decs++;
 		dfs(v, e);
 		low[v] = std::min(low[v], low[e]);
-		if (low[e] >= entry_time[v] && p != -1) {
-		    is_art_point[e] = 1;
-		} else {
-		    is_art_point[e] = 0;
+		if (low[e] >= entry_time[v] && p != -123) {
+		    is_art_point[v] = 1;
 		}
-		child++;
 	    }
 	}
-	if (p == -1 && child > 1) {
+	if (p == -123 && decs > 1) {
 	    is_art_point[v] = 1;
-	} else {
-	    is_art_point[v] = 0;
 	}
     }
 
     void run() {
-	for (int i = 0; i < (int) adj.size(); i++) {
+	for (int i = 0; i < (int) visited.size(); i++) {
 	    if (!visited[i]) {
-		dfs(-1, i);
+		dfs(-123, i);
 	    }
 	}
     }
-
     void print() {
 	for (auto&& ee : adj) {
 	    for (auto&& e : ee) {
@@ -100,5 +94,6 @@ int main() {
 	    std::cout << i << " is an articulation point.\n";
 	}
     }
+
     return 0;
 }
