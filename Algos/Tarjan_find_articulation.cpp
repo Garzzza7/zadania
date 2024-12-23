@@ -30,7 +30,10 @@ class tarjan_find_articulation {
 	adj[v].push_back(p);
     }
 
-    int dfs(int p, int v) {
+    void dfs(int p, int v) {
+	if (visited[v]) {
+	    return;
+	}
 	int child = 0;
 	visited[v] = 1;
 	low[v] = visit_time;
@@ -43,21 +46,27 @@ class tarjan_find_articulation {
 	    if (visited[e]) {
 		low[v] = std::min(low[v], entry_time[e]);
 	    } else {
-		child++;
 		dfs(v, e);
 		low[v] = std::min(low[v], low[e]);
-		if (low[e] >= entry_time[v]) {
+		if (low[e] >= entry_time[v] && p != -1) {
 		    is_art_point[e] = 1;
+		} else {
+		    is_art_point[e] = 0;
 		}
+		child++;
 	    }
 	}
-	return child;
+	if (p == -1 && child > 1) {
+	    is_art_point[v] = 1;
+	} else {
+	    is_art_point[v] = 0;
+	}
     }
 
     void run() {
-	for (int i = 1; i < (int) adj.size(); i++) {
+	for (int i = 0; i < (int) adj.size(); i++) {
 	    if (!visited[i]) {
-		is_art_point[i] = dfs(i, i) >= 2;
+		dfs(-1, i);
 	    }
 	}
     }

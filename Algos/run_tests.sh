@@ -107,6 +107,16 @@ else
     printf "${red}$(cat TEMPLATE.test)${normal}\n"
 fi
 
+if [ "$(./Tarjan_find_articulation.exe < Tarjan_find_articulation.txt)" == "$(cat Tarjan_find_articulation.test)" ]; then
+    printf "${green}Tarjan_find_articulation Passed.${normal}\n"
+else
+    printf "${red}Tarjan_find_articulation Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Tarjan_find_articulation.exe < Tarjan_find_articulation.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Tarjan_find_articulation.test)${normal}\n"
+fi
+
 if [ "$(./KMP.exe < KMP.txt)" == "$(cat KMP.test)" ]; then
     printf "${green}KMP Passed.${normal}\n"
 else
@@ -255,6 +265,16 @@ else
     printf "${red}$(./Factorize.exe < Factorize.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Factorize.test)${normal}\n"
+fi
+
+if [ "$(./Tarjan_find_bridges.exe < Tarjan_find_bridges.txt)" == "$(cat Tarjan_find_bridges.test)" ]; then
+    printf "${green}Tarjan_find_bridges Passed.${normal}\n"
+else
+    printf "${red}Tarjan_find_bridges Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Tarjan_find_bridges.exe < Tarjan_find_bridges.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Tarjan_find_bridges.test)${normal}\n"
 fi
 
 if [ "$(./Segment_Tree_Range_Sum.exe < Segment_Tree_Range_Sum.txt)" == "$(cat Segment_Tree_Range_Sum.test)" ]; then
