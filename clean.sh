@@ -5,7 +5,7 @@ do
     rm $path
 done
 
-for path in `find ./ -name '*.exe'`
+for path in `find ./ -name '*.sol'`
 do
     echo $path
     rm $path
@@ -24,6 +24,12 @@ do
 done
 
 for path in `find ./ -name '*.o'`
+do
+    echo $path
+    rm $path
+done
+
+for path in `find ./ -name '*.ll'`
 do
     echo $path
     rm $path

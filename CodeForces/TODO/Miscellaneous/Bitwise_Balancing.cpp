@@ -8,15 +8,15 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#define print_rvalues(vec)                                                     \
-    for (auto &&a : (vec)) {                                                   \
-	std::cout << a << ' ';                                                 \
-    }                                                                          \
+#define print_rvalues(vec)     \
+    for (auto &&a : (vec)) {   \
+	std::cout << a << ' '; \
+    }                          \
     std::cout << '\n';
-#define print_lvalues(vec)                                                     \
-    for (const auto &a : (vec)) {                                              \
-	std::cout << a << ' ';                                                 \
-    }                                                                          \
+#define print_lvalues(vec)        \
+    for (const auto &a : (vec)) { \
+	std::cout << a << ' ';    \
+    }                             \
     std::cout << '\n';
 #define help std::ios::sync_with_stdio(false)
 #define me std::cin.tie(0)
@@ -24,25 +24,25 @@
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())
 #define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second < right.second;                                     \
+#define sortpairascS(vec)                                           \
+    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
+	return left.second < right.second;                          \
     })
-#define sortpairdesS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second > right.second;                                     \
+#define sortpairdesS(vec)                                           \
+    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
+	return left.second > right.second;                          \
     })
-#define sortpairascF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first < right.first;                                       \
+#define sortpairascF(vec)                                           \
+    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
+	return left.first < right.first;                            \
     })
-#define sortpairdesF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first > right.first;                                       \
+#define sortpairdesF(vec)                                           \
+    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
+	return left.first > right.first;                            \
     })
-#define swpint(a, b)                                                           \
-    a ^= b;                                                                    \
-    b ^= a;                                                                    \
+#define swpint(a, b) \
+    a ^= b;          \
+    b ^= a;          \
     a ^= b;
 #define LSB(a) a & -a
 #define MOD 1000000007
@@ -63,20 +63,23 @@ typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, std::less<int>,
 // order_of_key(n) -> index of value n
 
 namespace std {
-template <class Fun> class y_combinator_result {
+template <class Fun>
+class y_combinator_result {
     Fun fun_;
 
-  public:
+   public:
     template <class T>
     explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {
     }
 
-    template <class... Args> decltype(auto) operator()(Args &&...args) {
+    template <class... Args>
+    decltype(auto) operator()(Args &&...args) {
 	return fun_(std::ref(*this), std::forward<Args>(args)...);
     }
 };
 
-template <class Fun> decltype(auto) y_combinator(Fun &&fun) {
+template <class Fun>
+decltype(auto) y_combinator(Fun &&fun) {
     return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));
 }
 } // namespace std

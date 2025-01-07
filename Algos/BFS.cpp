@@ -11,7 +11,7 @@ void iterative_bfs(int vertex, std::vector<std::vector<int>> &adj,
 	int current = que.front();
 	std::cout << current << " ";
 	que.pop();
-	for (auto &&v : adj[current]) {
+	for (const auto &v : adj[current]) {
 	    if (!visited[v]) {
 		visited[v] = 1;
 		que.push(v);
@@ -27,7 +27,7 @@ void bfs(int vertex, std::vector<std::vector<int>> &adj,
     }
     visited[vertex] = 1;
     std::cout << vertex << " ";
-    for (auto &&v : adj[vertex]) {
+    for (const auto &v : adj[vertex]) {
 	que.push(v);
     }
     while (!que.empty()) {

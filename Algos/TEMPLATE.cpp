@@ -43,7 +43,6 @@
 #include <unordered_set>
 #include <utility>
 #include <valarray>
-#include <vector>
 
 #define print_rvalues(vec)     \
     for (auto &&a : (vec)) {   \
@@ -57,6 +56,7 @@
     std::cout << '\n';
 #define help std::ios_base::sync_with_stdio(false);
 #define me std::cin.tie(nullptr);
+#define pls std::cout.tie(nullptr);
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())
@@ -225,6 +225,7 @@ int main() {
 #if FAST
     help;
     me;
+    pls;
 #endif
 
     int T;

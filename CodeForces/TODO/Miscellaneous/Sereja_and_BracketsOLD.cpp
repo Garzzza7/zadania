@@ -3,7 +3,7 @@
 #include <stdlib.h>
 using namespace std;
 class Substring {
-  public:
+   public:
     int sum = 0;
     int opening = 0;
     int closing = 0;
