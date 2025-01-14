@@ -35,24 +35,20 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    for (auto&& v : vec) {
-	std::cin >> v;
+    int t;
+    std::cin >> t;
+    while (t--) {
+	int n;
+	std::cin >> n;
+	std::vector<int> vec(n);
+	for (auto&& v : vec) {
+	    std::cin >> v;
+	}
+	quick_sort(vec, 0, n - 1);
+	auto test = vec;
+	std::sort(test.begin(), test.end());
+	std::cout << (test == vec) << "\n";
     }
-    for (const auto& v : vec) {
-	std::cout << v << " ";
-    }
-    std::cout << "\n";
-    quick_sort(vec, 0, n - 1);
-    for (const auto& v : vec) {
-	std::cout << v << " ";
-    }
-    std::cout << "\n";
-    auto test = vec;
-    std::sort(test.begin(), test.end());
-    std::cout << (test == vec) << "\n";
 
     return 0;
 }
