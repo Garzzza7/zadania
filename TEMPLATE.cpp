@@ -237,7 +237,6 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
-	std::cout << random_l_to_r(0, 1000) << "\n";
     }
 
 #if TIME
