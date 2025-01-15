@@ -20,7 +20,7 @@ int kth_order_stat(std::vector<int>& vec, int l, int r, int k) {
 	    l_limit++;
 	}
     }
-    for (int i = r; i >= l; i--) {
+    for (int i = r; i >= l_limit; i--) {
 	if (vec[i] > x) {
 	    std::swap(vec[i], vec[r_limit]);
 	    r_limit--;

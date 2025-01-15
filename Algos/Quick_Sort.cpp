@@ -20,7 +20,7 @@ void quick_sort(std::vector<int>& vec, int l, int r) {
 	    l_iter++;
 	}
     }
-    for (int i = r; i >= l; i--) {
+    for (int i = r; i >= l_iter; i--) {
 	if (vec[i] > x) {
 	    std::swap(vec[i], vec[r_iter]);
 	    r_iter--;
