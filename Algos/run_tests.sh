@@ -337,6 +337,16 @@ else
     printf "${red}$(cat Kadane_s_Algorithm.test)${normal}\n"
 fi
 
+if [ "$(./Kth_Order_Statics.sol < Kth_Order_Statics.txt)" == "$(cat Kth_Order_Statics.test)" ]; then
+    printf "${green}Kth_Order_Statics Passed.${normal}\n"
+else
+    printf "${red}Kth_Order_Statics Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Kth_Order_Statics.sol < Kth_Order_Statics.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Kth_Order_Statics.test)${normal}\n"
+fi
+
 if [ "$(./KMP.sol < KMP.txt)" == "$(cat KMP.test)" ]; then
     printf "${green}KMP Passed.${normal}\n"
 else
