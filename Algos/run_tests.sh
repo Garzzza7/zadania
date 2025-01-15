@@ -77,6 +77,16 @@ else
     printf "${red}$(cat SCC.test)${normal}\n"
 fi
 
+if [ "$(./Kth_Order_Statistics.sol < Kth_Order_Statistics.txt)" == "$(cat Kth_Order_Statistics.test)" ]; then
+    printf "${green}Kth_Order_Statistics Passed.${normal}\n"
+else
+    printf "${red}Kth_Order_Statistics Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Kth_Order_Statistics.sol < Kth_Order_Statistics.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Kth_Order_Statistics.test)${normal}\n"
+fi
+
 if [ "$(./TEMPLATE.sol < TEMPLATE.txt)" == "$(cat TEMPLATE.test)" ]; then
     printf "${green}TEMPLATE Passed.${normal}\n"
 else
@@ -125,6 +135,16 @@ else
     printf "${red}$(./Floyd_Warshall.sol < Floyd_Warshall.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Floyd_Warshall.test)${normal}\n"
+fi
+
+if [ "$(./Bitonic_Sort.sol < Bitonic_Sort.txt)" == "$(cat Bitonic_Sort.test)" ]; then
+    printf "${green}Bitonic_Sort Passed.${normal}\n"
+else
+    printf "${red}Bitonic_Sort Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Bitonic_Sort.sol < Bitonic_Sort.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Bitonic_Sort.test)${normal}\n"
 fi
 
 if [ "$(./Flood_fill.sol < Flood_fill.txt)" == "$(cat Flood_fill.test)" ]; then
@@ -335,16 +355,6 @@ else
     printf "${red}$(./Kadane_s_Algorithm.sol < Kadane_s_Algorithm.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Kadane_s_Algorithm.test)${normal}\n"
-fi
-
-if [ "$(./Kth_Order_Statics.sol < Kth_Order_Statics.txt)" == "$(cat Kth_Order_Statics.test)" ]; then
-    printf "${green}Kth_Order_Statics Passed.${normal}\n"
-else
-    printf "${red}Kth_Order_Statics Failed.\n"
-    printf "${red} Got:\n"
-    printf "${red}$(./Kth_Order_Statics.sol < Kth_Order_Statics.txt)\n"
-    printf "${red} Should be:\n"
-    printf "${red}$(cat Kth_Order_Statics.test)${normal}\n"
 fi
 
 if [ "$(./KMP.sol < KMP.txt)" == "$(cat KMP.test)" ]; then

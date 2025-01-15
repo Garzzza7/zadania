@@ -1,7 +1,7 @@
 #include <algorithm>
+#include <chrono>
 #include <iostream>
 #include <random>
-#include <chrono>
 #include <vector>
 
 int kth_order_stat(std::vector<int>& vec, int l, int r, int k) {
