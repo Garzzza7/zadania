@@ -91,7 +91,7 @@
 #define FAST 1
 #define TIME 0
 
-int random_l_to_r(int l, int r) {
+int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
     std::mt19937 rng(
