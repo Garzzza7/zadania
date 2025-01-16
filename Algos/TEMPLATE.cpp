@@ -94,6 +94,10 @@
 std::mt19937 rng(
     (uint32_t) std::chrono::steady_clock::now().time_since_epoch().count());
 
+void rm_whitespace(std::string &s) {
+    s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
+}
+
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
