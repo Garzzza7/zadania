@@ -91,7 +91,7 @@
 #define FAST 1
 #define TIME 0
 
-int random_l_to_r(int l, int r) {
+int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
     std::mt19937 rng(
@@ -100,10 +100,9 @@ int random_l_to_r(int l, int r) {
     return dist(rng);
 }
 
-void rm_whitespace(std::string &s) {
+void rm_ws(std::string &s) {
     s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
 }
-
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
