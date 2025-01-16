@@ -91,7 +91,7 @@
 #define FAST 1
 #define TIME 0
 
-int random_l_to_r(const int &l, const int &r) {
+[[__nodiscard__]] int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
     std::mt19937 rng(
@@ -134,15 +134,15 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
-bool is_on(T a, T b) {
+[[__nodiscard__]] bool is_on(T a, T b) {
     return a & ((T) 1 << b);
 }
 
-bool cmp(const int &x, const int &y) {
+[[__nodiscard__]] bool cmp(const int &x, const int &y) {
     return x > y;
 }
 
-bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
+[[__nodiscard__]] bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
     if (x.second < y.second) {
 	return x.second < y.second;
     } else {
@@ -150,17 +150,17 @@ bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
     }
 }
 
-long long ce(long long x, long long y) {
+[[__nodiscard__]] long long ce(long long x, long long y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-long long fl(long long x, long long y) {
+[[__nodiscard__]] long long fl(long long x, long long y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
 // modify to work with 64bit ints
 template <typename T>
-constexpr T flog2(T x) {
+[[__nodiscard__]] constexpr T flog2(T x) {
     return x == (T) 0 ? (T) 0 : (T) 31 - __builtin_clz(x);
 }
 
