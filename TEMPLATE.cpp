@@ -91,8 +91,14 @@
 #define FAST 1
 #define TIME 0
 
-std::mt19937 rng(
-    (uint32_t) std::chrono::steady_clock::now().time_since_epoch().count());
+int random_l_to_r(int l, int r) {
+    /*std::random_device rd;*/
+    /*std::mt19937 rng(rd());*/
+    std::mt19937 rng(
+	(uint32_t) std::chrono::steady_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<> dist(l, r);
+    return dist(rng);
+}
 
 void rm_ws(std::string &s) {
     s.erase(std::remove(s.begin(), s.end(), ' '), s.end());

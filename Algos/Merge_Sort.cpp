@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdint>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -36,29 +39,23 @@ void merge_sort(std::vector<int> &vec, int p, int r) {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) {
-	std::cin >> vec[i];
+    int t;
+    std::cin >> t;
+    while (t--) {
+	int n;
+	std::cin >> n;
+	std::vector<int> vec(n);
+	for (int i = 0; i < n; i++) {
+	    std::cin >> vec[i];
+	}
+	auto test = vec;
+	std::sort(test.begin(), test.end());
+	merge_sort(vec, 0, n - 1);
+	std::cout << (test == vec) << "\n";
     }
-
-    for (auto &&v : vec) {
-	std::cout << v << " ";
-    }
-    std::cout << "\n";
-
-    std::cout << "//////////////////////\n";
-
-    merge_sort(vec, 0, n - 1);
-
-    for (auto &&v : vec) {
-	std::cout << v << " ";
-    }
-    std::cout << "\n";
-
     return 0;
 }
