@@ -43,6 +43,7 @@
 #include <unordered_set>
 #include <utility>
 #include <valarray>
+#include <vector>
 
 #define print_rvalues(vec)     \
     for (auto &&a : (vec)) {   \
@@ -115,7 +116,7 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
-    for (auto &&xi : x) {
+    for (const auto &xi : x) {
 	s += ", " + to_debug(xi);
     }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
@@ -142,7 +143,8 @@ template <typename T>
     return x > y;
 }
 
-[[__nodiscard__]] bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
+[[__nodiscard__]] bool pair_cmp(const std::pair<int, int> &x,
+				const std::pair<int, int> &y) {
     if (x.second < y.second) {
 	return x.second < y.second;
     } else {
