@@ -3,6 +3,7 @@
 
 using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
+// https://codeforces.com/problemset/problem/427/C
 
 int n, m;
 
@@ -17,7 +18,7 @@ std::map<int, std::vector<int>> total;
 
 void dfs_1(int v) {
     visited[v] = true;
-    for (auto &&vv : adj[v]) {
+    for (const auto& vv : adj[v]) {
 	if (!visited[vv]) {
 	    dfs_1(vv);
 	}
@@ -28,7 +29,7 @@ void dfs_1(int v) {
 void dfs_2(int v) {
     total[cntComponents].push_back(v);
     visited[v] = true;
-    for (auto &&vv : rev_adj[v]) {
+    for (const auto& vv : rev_adj[v]) {
 	if (!visited[vv]) {
 	    dfs_2(vv);
 	}
@@ -65,9 +66,9 @@ int main() {
 
     Kosaraju();
     std::cout << total.size() << "\n";
-    for (auto &&a : total) {
+    for (auto&& a : total) {
 	std::cout << a.second.size() << " ";
-	for (auto &&aa : a.second) {
+	for (auto&& aa : a.second) {
 	    std::cout << aa << " ";
 	}
 	std::cout << "\n";

@@ -43,6 +43,7 @@
 #include <unordered_set>
 #include <utility>
 #include <valarray>
+#include <vector>
 
 #define print_rvalues(vec)     \
     for (auto &&a : (vec)) {   \
@@ -91,7 +92,7 @@
 #define FAST 1
 #define TIME 0
 
-int random_l_to_r(int l, int r) {
+[[__nodiscard__]] int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
     std::mt19937 rng(
@@ -100,6 +101,9 @@ int random_l_to_r(int l, int r) {
     return dist(rng);
 }
 
+void rm_ws(std::string &s) {
+    s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
+}
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
@@ -112,7 +116,7 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
-    for (auto &&xi : x) {
+    for (const auto &xi : x) {
 	s += ", " + to_debug(xi);
     }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
@@ -131,15 +135,16 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
-bool is_on(T a, T b) {
+[[__nodiscard__]] bool is_on(T a, T b) {
     return a & ((T) 1 << b);
 }
 
-bool cmp(const int &x, const int &y) {
+[[__nodiscard__]] bool cmp(const int &x, const int &y) {
     return x > y;
 }
 
-bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
+[[__nodiscard__]] bool pair_cmp(const std::pair<int, int> &x,
+				const std::pair<int, int> &y) {
     if (x.second < y.second) {
 	return x.second < y.second;
     } else {
@@ -147,17 +152,17 @@ bool pair_cmp(const std::pair<int, int> &x, const std::pair<int, int> &y) {
     }
 }
 
-long long ce(long long x, long long y) {
+[[__nodiscard__]] long long ce(long long x, long long y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-long long fl(long long x, long long y) {
+[[__nodiscard__]] long long fl(long long x, long long y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
 // modify to work with 64bit ints
 template <typename T>
-constexpr T flog2(T x) {
+[[__nodiscard__]] constexpr T flog2(T x) {
     return x == (T) 0 ? (T) 0 : (T) 31 - __builtin_clz(x);
 }
 

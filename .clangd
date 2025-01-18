@@ -5,3 +5,5 @@ Formatting:
     BlockEnd: false
 Index:
   StandardLibrary: No
+CompileFlags:
+  Add: -ferror-limit=0

@@ -13,7 +13,7 @@ void dfs(int vertex, std::vector<std::vector<int>> &adj,
     // if (adj[vertex].size() == 0) {
     //  std::cout << vertex << " ";
     // }
-    for (auto &&v : adj[vertex]) {
+    for (const auto &v : adj[vertex]) {
 	dfs(v, adj, visited);
     }
 }
