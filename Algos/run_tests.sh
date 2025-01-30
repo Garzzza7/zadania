@@ -217,6 +217,16 @@ else
     printf "${red}$(cat Extended_Euclid_s_Algorithm.test)${normal}\n"
 fi
 
+if [ "$(./Levenshtein_distance.sol < Levenshtein_distance.txt)" == "$(cat Levenshtein_distance.test)" ]; then
+    printf "${green}Levenshtein_distance Passed.${normal}\n"
+else
+    printf "${red}Levenshtein_distance Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Levenshtein_distance.sol < Levenshtein_distance.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Levenshtein_distance.test)${normal}\n"
+fi
+
 if [ "$(./FenwickTree.sol < FenwickTree.txt)" == "$(cat FenwickTree.test)" ]; then
     printf "${green}FenwickTree Passed.${normal}\n"
 else
