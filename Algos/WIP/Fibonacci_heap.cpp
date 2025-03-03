@@ -1,9 +1,11 @@
-#include <bits/stdc++.h>
 #include <stdlib.h>
 
 #include <cmath>
-using namespace std;
+#include <iostream>
+#include <vector>
+
 const long long mod = 1000000007;
+
 // Struct used for each Fibonacci heap node
 class FibonacciNode {
    public:
@@ -21,8 +23,8 @@ class FibonacciHeap {
    public:
     FibonacciNode *minNode;
     int numNodes;
-    vector<FibonacciNode *> degTable;
-    vector<FibonacciNode *> nodePtrs;
+    std::vector<FibonacciNode *> degTable;
+    std::vector<FibonacciNode *> nodePtrs;
 
     FibonacciHeap(int n) {
 	// Constructor function
@@ -229,7 +231,7 @@ class FibonacciHeap {
 		    } else {
 			currDeg = this->degTable[deg];
 			if (currConsolNode->key > currDeg->key) {
-			    swap(currConsolNode, currDeg);
+			    std::swap(currConsolNode, currDeg);
 			}
 			if (currDeg == currConsolNode)
 			    break;
@@ -250,8 +252,9 @@ class FibonacciHeap {
 };
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
     // TO FINISH
     return 0;
 }

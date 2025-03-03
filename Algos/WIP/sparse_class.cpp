@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 const int MAX_N = 100'005;
 const int LOG = 17;
@@ -45,13 +44,13 @@ class sparse_table {
 	return sum;
     }
 };
-vector<int> a(MAX_N, 0);
-vector<vector<int>> m(MAX_N, vector<int>(LOG, 0));
-vector<int> bin_log;
+std::vector<int> a(MAX_N, 0);
+std::vector<std::vector<int>> m(MAX_N, std::vector<int>(LOG, 0));
+std::vector<int> bin_log;
 
 int queryMin(int L, int R) {
     int i = bin_log[R - L + 1];
-    int minimum = min(m[i][L], m[i][R - (1 << i) + 1]);
+    int minimum = std::min(m[i][L], m[i][R - (1 << i) + 1]);
     return minimum;
 }
 
@@ -67,21 +66,25 @@ long long querySum(int L, int R) {
 }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n;
-    cin >> n;
+    std::cin >> n;
     bin_log.push_back(0);
     bin_log.push_back(0);
     for (int i = 2; i <= n; i++) {
 	bin_log.push_back(bin_log[i / 2] + 1);
     }
     for (int i = 0; i < n; i++) {
-	cin >> a[i];
+	std::cin >> a[i];
 	m[0][i] = a[i];
     }
     /*2) preprocessing for min, O(N*log(N))*/
     for (int i = 1; i <= LOG; i++) {
 	for (int j = 0; j + (1 << i) <= n; j++) {
-	    m[i][j] = min(m[i - 1][j], m[i - 1][j + (1 << (i - 1))]);
+	    m[i][j] = std::min(m[i - 1][j], m[i - 1][j + (1 << (i - 1))]);
 	}
     }
     /*   for (int i = 1; i <= LOG; i++) {*/
@@ -102,8 +105,8 @@ int main() {
     for (int i = 0; i < n; i++) {
 	dp.rminq[0][i] = i;
     }
-    for (auto&& aa : dp.rminq) {
-	for (auto&& a : aa) {
+    for (const auto& aa : dp.rminq) {
+	for (const auto& a : aa) {
 	    std::cout << a << " ";
 	}
     }

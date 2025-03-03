@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
 #include <stdlib.h>
 
-#include <cmath>
-using namespace std;
+#include <iostream>
+
 const long long mod = 1000000007;
 
 class Node {
@@ -34,8 +33,8 @@ Node *rightRotate(Node *y) {
     Node *T2 = x->right;
     x->right = y;
     y->left = T2;
-    y->height = max(height(y->left), height(y->right)) + 1;
-    x->height = max(height(x->left), height(x->right)) + 1;
+    y->height = std::max(height(y->left), height(y->right)) + 1;
+    x->height = std::max(height(x->left), height(x->right)) + 1;
     return x;
 }
 
@@ -44,8 +43,8 @@ Node *leftRotate(Node *x) {
     Node *T2 = y->left;
     y->left = x;
     x->right = T2;
-    x->height = max(height(x->left), height(x->right)) + 1;
-    y->height = max(height(y->left), height(y->right)) + 1;
+    x->height = std::max(height(x->left), height(x->right)) + 1;
+    y->height = std::max(height(y->left), height(y->right)) + 1;
     return y;
 }
 
@@ -67,7 +66,7 @@ Node *insertNode(Node *node, int key) {
     } else {
 	return node;
     }
-    node->height = 1 + max(height(node->left), height(node->right));
+    node->height = 1 + std::max(height(node->left), height(node->right));
     int balanceFactor = getBalanceFactor(node);
     if (balanceFactor > 1) {
 	if (key < node->left->key) {
@@ -123,7 +122,7 @@ Node *deleteNode(Node *root, int key) {
     if (root == NULL) {
 	return root;
     }
-    root->height = 1 + max(height(root->left), height(root->right));
+    root->height = 1 + std::max(height(root->left), height(root->right));
     int balanceFactor = getBalanceFactor(root);
     if (balanceFactor > 1) {
 	if (getBalanceFactor(root->left) >= 0) {
@@ -144,20 +143,20 @@ Node *deleteNode(Node *root, int key) {
     return root;
 }
 // TODO
-void printTree(Node *root, string &indent, string &indent2, bool last,
+void printTree(Node *root, std::string &indent, std::string &indent2, bool last,
 	       bool isRoot) {
     if (root != NULL) {
 	if (isRoot) {
-	    cout << indent << root->key << "\n";
+	    std::cout << indent << root->key << "\n";
 	    for (int i = 0; i < (int) indent.size() / 2; i++) {
 		indent.pop_back();
 	    }
 	} else if (last == false) {
-	    string half = indent.substr(0, indent.length() / 2);
-	    cout << half << root->key;
+	    std::string half = indent.substr(0, indent.length() / 2);
+	    std::cout << half << root->key;
 	} else {
-	    // string half = indent.substr(0, indent.length() / 2);
-	    cout << indent2 << root->key << "\n";
+	    // std::string half = indent.substr(0, indent.length() / 2);
+	    std::cout << indent2 << root->key << "\n";
 	    for (int i = 0; i < (int) indent.size() / 2; i++) {
 		indent.pop_back();
 	    }
@@ -169,13 +168,13 @@ void printTree(Node *root, string &indent, string &indent2, bool last,
     // {
     //     if (last == false)
     //     {
-    //         string half = indent.substr(0, indent.length() / 2);
-    //         cout << half << "NIL";
+    //         std::string half = indent.substr(0, indent.length() / 2);
+    //         std::cout << half << "NIL";
     //         // printTree(root->right, indent, true, false);
     //     }
     //     else
     //     {
-    //         cout << indent << "NIL\n";
+    //         std::cout << indent << "NIL\n";
     //         for (int i = 0; i < indent.size() / 2; i++)
     //         {
     //             indent.pop_back();
@@ -185,25 +184,28 @@ void printTree(Node *root, string &indent, string &indent2, bool last,
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
+    std::cin.tie(0);
     int n;
-    cin >> n;
+    std::cin >> n;
     Node *root = NULL;
     for (int i = 0; i < n; i++) {
 	int a;
-	cin >> a;
+	std::cin >> a;
 	root = insertNode(root, a);
     }
-    // string indent = "                                              ";
-    // string indent2 = indent;
-    // string half = indent.substr(0, indent.length() / 2);
+    // std::string indent = "                                              ";
+    // std::string indent2 = indent;
+    // std::string half = indent.substr(0, indent.length() / 2);
     // indent2 += half;
     // printTree(root, indent, indent2,false, true);
-    cin >> n;
+    std::cin >> n;
     for (int i = 0; i < n; i++) {
 	int a;
-	cin >> a;
+	std::cin >> a;
 	root = deleteNode(root, a);
     }
     return 0;

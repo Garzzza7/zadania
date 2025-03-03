@@ -1,13 +1,14 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <chrono>
+#include <iostream>
+#include <random>
+#include <vector>
 
 const long long mod = 1000000007;
 
 class Treap {
    public:
     int data, priority;
-    vector<Treap *> children;
+    std::vector<Treap *> children;
     int subtreeSize, sum, toPropagate;
     Treap(int data);
 };
@@ -28,13 +29,14 @@ void recalc(Treap *node) {
 	if (t != NULL)
 	    node->sum += t->sum + t->toPropagate * size(t);
 }
+
 Treap::Treap(int data) {
     children = {NULL, NULL};
     this->data = data;
-    random_device dev;
-    mt19937 rand(
+    std::random_device dev;
+    std::mt19937 rand(
 	std::chrono::high_resolution_clock::now().time_since_epoch().count());
-    uniform_int_distribution<int> dist(1, mod);
+    std::uniform_int_distribution<int> dist(1, mod);
     this->priority = dist(rand);
     recalc(this);
 }
@@ -76,19 +78,19 @@ Treap *merge(Treap *l, Treap *r) {
     }
 }
 
-vector<Treap *> split(Treap *node, int nInLeft) {
+std::vector<Treap *> split(Treap *node, int nInLeft) {
     if (node == NULL) {
 	return {NULL, NULL};
     }
     propagate(node);
     if (size(node->children[0]) >= nInLeft) {
-	vector<Treap *> leftRes = split(node->children[0], nInLeft);
+	std::vector<Treap *> leftRes = split(node->children[0], nInLeft);
 	node->children[0] = leftRes[1];
 	recalc(node);
 	return {leftRes[0], node};
     } else {
 	nInLeft = nInLeft - size(node->children[0]) - 1;
-	vector<Treap *> rightRes = split(node->children[1], nInLeft);
+	std::vector<Treap *> rightRes = split(node->children[1], nInLeft);
 	node->children[1] = rightRes[0];
 	recalc(node);
 	return {node, rightRes[1]};
@@ -97,15 +99,16 @@ vector<Treap *> split(Treap *node, int nInLeft) {
 }
 
 Treap *rangeAdd(Treap *t, int l, int r, int toAdd) {
-    vector<Treap *> a = split(t, l);
-    vector<Treap *> b = split(a[1], r - l + 1);
+    std::vector<Treap *> a = split(t, l);
+    std::vector<Treap *> b = split(a[1], r - l + 1);
     b[0]->toPropagate += toAdd;
     return merge(a[0], merge(b[0], b[1]));
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
     // TODO FINISH
     return 0;
 }

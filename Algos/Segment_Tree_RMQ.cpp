@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
 class SegmentTree {
    private:
     std::vector<int> st, A;

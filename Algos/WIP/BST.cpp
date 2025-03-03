@@ -1,9 +1,9 @@
-#include <bits/stdc++.h>
 #include <stdlib.h>
 
-#include <cmath>
-using namespace std;
+#include <iostream>
+
 const long long mod = 1000000007;
+
 class Node {
    public:
     int value;
@@ -15,6 +15,7 @@ class Node {
 	this->left = NULL;
     }
 };
+
 Node *search(Node *root, int key) {
     if (root == NULL || root->value == key)
 	return root;
@@ -22,6 +23,7 @@ Node *search(Node *root, int key) {
 	return search(root->right, key);
     return search(root->left, key);
 }
+
 Node *insert(Node *root, int value) {
     if (root == NULL) {
 	return new Node(value);
@@ -37,6 +39,7 @@ Node *insert(Node *root, int value) {
 	return root;
     }
 }
+
 Node *deletenode(Node *root, int k) {
     if (root == NULL)
 	return root;
@@ -77,13 +80,13 @@ Node *deletenode(Node *root, int k) {
 void inorder(Node *root) {
     if (root != NULL) {
 	inorder(root->left);
-	cout << root->value << " ";
+	std::cout << root->value << " ";
 	inorder(root->right);
     }
 }
 void preorder(Node *root) {
     if (root != NULL) {
-	cout << root->value << " ";
+	std::cout << root->value << " ";
 	preorder(root->left);
 	preorder(root->right);
     }
@@ -92,47 +95,49 @@ void postorder(Node *root) {
     if (root != NULL) {
 	postorder(root->left);
 	postorder(root->right);
-	cout << root->value << " ";
+	std::cout << root->value << " ";
     }
 }
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n;
-    cin >> n;
+    std::cin >> n;
     Node *root = NULL;
     for (int i = 0; i < n; i++) {
 	int a;
-	cin >> a;
+	std::cin >> a;
 	root = insert(root, a);
     }
 
-    cout << "PREORDER\n";
+    std::cout << "PREORDER\n";
     preorder(root);
-    cout << "\n";
-    cout << "INORDER\n";
+    std::cout << "\n";
+    std::cout << "INORDER\n";
     inorder(root);
-    cout << "\n";
-    cout << "POSTORDER\n";
+    std::cout << "\n";
+    std::cout << "POSTORDER\n";
     postorder(root);
-    cout << "\n";
+    std::cout << "\n";
 
     int a;
-    cin >> a;
+    std::cin >> a;
     Node *findkey = search(root, a);
-    cout << findkey->value << "\n";
+    std::cout << findkey->value << "\n";
     int aa;
-    cin >> aa;
+    std::cin >> aa;
     Node *deleted = deletenode(root, aa);
-    cout << "/////////////////////////////////////////////////\n";
-    cout << "PREORDER\n";
+    std::cout << "/////////////////////////////////////////////////\n";
+    std::cout << "PREORDER\n";
     preorder(root);
-    cout << "\n";
-    cout << "INORDER\n";
+    std::cout << "\n";
+    std::cout << "INORDER\n";
     inorder(root);
-    cout << "\n";
-    cout << "POSTORDER\n";
+    std::cout << "\n";
+    std::cout << "POSTORDER\n";
     postorder(root);
-    cout << "\n";
+    std::cout << "\n";
     return 0;
 }

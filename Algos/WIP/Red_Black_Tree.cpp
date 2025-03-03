@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
 
 class Vertex {
    public:
@@ -18,8 +16,9 @@ void rightRotate() {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
     // TODO FINISH
     return 0;
 }
