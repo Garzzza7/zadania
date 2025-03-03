@@ -1,6 +1,16 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
+long long binpow(long long a, long long b) {
+    long long res = 1;
+    while (b > 0) {
+	if (b & 1)
+	    res = res * a;
+	a = a * a;
+	b >>= 1;
+    }
+    return res;
+}
 
 long long recursive_binomial_coefficient(long long n, long long k) {
     if (k == 1) {
@@ -14,7 +24,7 @@ long long recursive_binomial_coefficient(long long n, long long k) {
 
 long long multiplicative_binomial_coefficient(long long n, long long k) {
     long long res = 1;
-    long long kk = min(k, n - k);
+    long long kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
 	res *= n + 1 - i;
 	res /= i;
@@ -26,15 +36,14 @@ long long calculate(int x, char c, int y, int n) {
     long long res = 0;
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
-	    res +=
-		(long long) (recursive_binomial_coefficient(n, i) *
-			     (long long) pow(x, i) * (long long) pow(y, n - i));
+	    res += (long long) (recursive_binomial_coefficient(n, i) *
+				binpow(x, i) * binpow(y, n - i));
 	}
     } else {
 	long long flip = -1;
 	for (int i = 0; i <= n; i++) {
 	    res += flip * ((recursive_binomial_coefficient(n, i) *
-			    (long long) pow(x, i) * (long long) pow(y, n - i)));
+			    binpow(x, i) * binpow(y, n - i)));
 	    flip *= -1ll;
 	}
     }
@@ -67,8 +76,9 @@ void show_calculation(int x, char c, int y, int n) {
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int x, y, n;
     char c;

@@ -1,14 +1,14 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 const int INF = 1000007;
 int n, m;
 
 template <typename T>
-vector<vector<T>> floyd_warshall(vector<vector<T>> &adj_matrix,
-				 vector<vector<T>> &paths) {
-    vector<vector<T>> dp(n + 1, vector<T>(n + 1, 0));
+std::vector<std::vector<T>> floyd_warshall(
+    std::vector<std::vector<T>> &adj_matrix,
+    std::vector<std::vector<T>> &paths) {
+    std::vector<std::vector<T>> dp(n + 1, std::vector<T>(n + 1, 0));
     for (int i = 1; i <= n; i++) {
 	for (int j = 1; j <= n; j++) {
 	    dp[i][j] = adj_matrix[i][j];
@@ -23,7 +23,7 @@ vector<vector<T>> floyd_warshall(vector<vector<T>> &adj_matrix,
 	    for (int j = 1; j <= n; j++) {
 		if (dp[i][k] + dp[k][j] < dp[i][j]) {
 		    dp[i][j] = dp[i][k] + dp[k][j];
-		    /*cout << paths[i][j] << " " << paths[i][k] << "\n";*/
+		    /*std::cout << paths[i][j] << " " << paths[i][k] << "\n";*/
 		    /*paths[i][j] = paths[i][k];*/
 		}
 	    }
@@ -45,11 +45,11 @@ vector<vector<T>> floyd_warshall(vector<vector<T>> &adj_matrix,
 }
 
 template <typename T>
-void shortest_path(T start, T target, vector<vector<T>> &dp,
-		   vector<vector<T>> &paths) {
-    vector<T> sp;
+void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
+		   std::vector<std::vector<T>> &paths) {
+    std::vector<T> sp;
     if (dp[start][target] == INF) {
-	cout << "No path\n";
+	std::cout << "No path\n";
 	return;
     }
 
@@ -62,40 +62,42 @@ void shortest_path(T start, T target, vector<vector<T>> &dp,
     }
 
     if (paths[i][target] == -1) {
-	cout << "No path\n";
+	std::cout << "No path\n";
 	return;
     }
     sp.push_back(target);
 
-    cout << "Path from " << start << " to " << target << ": ";
+    std::cout << "Path from " << start << " to " << target << ": ";
     for (int i = 0; i < (int) sp.size(); i++) {
-	cout << sp[i] << (i < (int) sp.size() - 1 ? " -> " : "\n");
+	std::cout << sp[i] << (i < (int) sp.size() - 1 ? " -> " : "\n");
     }
-    cout << "\n";
+    std::cout << "\n";
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    cin >> n >> m;
-    vector<vector<int>> adj_matrix(n + 1, vector<int>(n + 1, INF));
+    std::cin >> n >> m;
+    std::vector<std::vector<int>> adj_matrix(n + 1,
+					     std::vector<int>(n + 1, INF));
     for (int i = 0; i < m; i++) {
 	int a, b, w;
-	cin >> a >> b >> w;
+	std::cin >> a >> b >> w;
 	adj_matrix[a][b] = w;
 	adj_matrix[a][a] = 0;
 	adj_matrix[b][b] = 0;
     }
-    vector<vector<int>> paths(n + 1, vector<int>(n + 1));
-    vector<vector<int>> dp = floyd_warshall(adj_matrix, paths);
+    std::vector<std::vector<int>> paths(n + 1, std::vector<int>(n + 1));
+    std::vector<std::vector<int>> dp = floyd_warshall(adj_matrix, paths);
     /*shortest_path(1, 3, dp, paths);*/
 
     for (int i = 1; i <= n; i++) {
 	for (int j = 1; j <= n; j++) {
-	    cout << dp[i][j] << " ";
+	    std::cout << dp[i][j] << " ";
 	}
-	cout << "\n";
+	std::cout << "\n";
     }
     return 0;
 }

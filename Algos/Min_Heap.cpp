@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 void heapify(std::vector<int> &vec, int i) {
     int largest = i;
@@ -18,6 +17,7 @@ void heapify(std::vector<int> &vec, int i) {
 	heapify(vec, largest);
     }
 }
+
 void insert(std::vector<int> &vec, int newNum) {
     if ((int) vec.size() == 0) {
 	vec.push_back(newNum);
@@ -28,6 +28,7 @@ void insert(std::vector<int> &vec, int newNum) {
 	}
     }
 }
+
 void deleteNode(std::vector<int> &vec, int num) {
     int i;
     for (i = 0; i < (int) vec.size(); i++) {
@@ -44,8 +45,10 @@ void deleteNode(std::vector<int> &vec, int num) {
     }
 }
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n;
     std::cin >> n;
     std::vector<int> vec;
@@ -60,23 +63,23 @@ int main() {
     // insert(vec, 1000);
     // insert(vec, 10000);
 
-    for (auto &&a : vec) {
+    for (const auto &a : vec) {
 	std::cout << a << " ";
     }
     std::cout << "\n";
 
     deleteNode(vec, 0);
-    for (auto &&a : vec) {
+    for (const auto &a : vec) {
 	std::cout << a << " ";
     }
     std::cout << "\n";
     deleteNode(vec, 1);
-    for (auto &&a : vec) {
+    for (const auto &a : vec) {
 	std::cout << a << " ";
     }
     std::cout << "\n";
     deleteNode(vec, 2);
-    for (auto &&a : vec) {
+    for (const auto &a : vec) {
 	std::cout << a << " ";
     }
     std::cout << "\n";

@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 void query(int x1, int y1, int x2, int y2,
 	   std::vector<std::vector<int>> &prefsum) {
@@ -10,8 +9,9 @@ void query(int x1, int y1, int x2, int y2,
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n, m;
     std::cin >> n >> m;

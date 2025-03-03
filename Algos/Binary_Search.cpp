@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
-
-long long iterative_bin_search(long long target, vector<long long> &vec) {
+long long iterative_bin_search(long long target, std::vector<long long> &vec) {
     long long l = 0;
     long long r = (int) vec.size() - 1;
     long long mid = 0;
@@ -19,7 +18,7 @@ long long iterative_bin_search(long long target, vector<long long> &vec) {
     return mid - 1;
 }
 
-long long leftmost_bin_search(long long target, vector<long long> &vec) {
+long long leftmost_bin_search(long long target, std::vector<long long> &vec) {
     long long l = 0;
     long long r = (int) vec.size() - 1;
     while (l < r) {
@@ -33,7 +32,7 @@ long long leftmost_bin_search(long long target, vector<long long> &vec) {
     return l;
 }
 
-long long rightmost_bin_search(long long target, vector<long long> &vec) {
+long long rightmost_bin_search(long long target, std::vector<long long> &vec) {
     long long l = 0;
     long long r = (int) vec.size() - 1;
     while (l < r) {
@@ -48,7 +47,7 @@ long long rightmost_bin_search(long long target, vector<long long> &vec) {
 }
 
 long long recursive_bin_search(long long f, long long e, long long target,
-			       vector<long long> &vec) {
+			       std::vector<long long> &vec) {
     if (e < f) {
 	return -1;
     }
@@ -68,28 +67,30 @@ long long recursive_bin_search(long long f, long long e, long long target,
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
-    cin >> n;
-    vector<long long> vec(n);
+    std::cin >> n;
+    std::vector<long long> vec(n);
     for (int i = 0; i < n; i++) {
-	cin >> vec[i];
+	std::cin >> vec[i];
     }
-    cout << "Iterative:\n " << "Index: " << iterative_bin_search(6, vec)
-	 << " Value: " << vec[iterative_bin_search(6, vec)] << "\n";
+    std::cout << "Iterative:\n " << "Index: " << iterative_bin_search(6, vec)
+	      << " Value: " << vec[iterative_bin_search(6, vec)] << "\n";
 
-    cout << "Recursive:\n "
-	 << "Index: " << recursive_bin_search(0, n - 1, 6, vec) << " Value: "
-	 << vec[recursive_bin_search((long long) 0, (long long) (n - 1),
-				     (long long) 6, vec)]
-	 << "\n";
+    std::cout << "Recursive:\n "
+	      << "Index: " << recursive_bin_search(0, n - 1, 6, vec)
+	      << " Value: "
+	      << vec[recursive_bin_search((long long) 0, (long long) (n - 1),
+					  (long long) 6, vec)]
+	      << "\n";
 
-    cout << "Leftmost:\n " << "Index: " << leftmost_bin_search(5, vec)
-	 << " Value: " << vec[leftmost_bin_search(5, vec)] << "\n";
+    std::cout << "Leftmost:\n " << "Index: " << leftmost_bin_search(5, vec)
+	      << " Value: " << vec[leftmost_bin_search(5, vec)] << "\n";
 
-    cout << "Rightmost:\n " << "Index: " << rightmost_bin_search(5, vec)
-	 << " Value: " << vec[rightmost_bin_search(5, vec)] << "\n";
+    std::cout << "Rightmost:\n " << "Index: " << rightmost_bin_search(5, vec)
+	      << " Value: " << vec[rightmost_bin_search(5, vec)] << "\n";
     return 0;
 }

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 void merge(std::vector<int> &vec, int p, int q, int r) {
     int size1 = q - p + 1;
     int size2 = r - q;

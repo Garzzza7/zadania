@@ -1,15 +1,27 @@
+#include <alloca.h>
+#include <assert.h>
 #include <bits/stdc++.h>
+#include <errno.h>
+#include <float.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <sys/mman.h>
+#include <unistd.h>
 
 #include <algorithm>
 #include <array>
 #include <atomic>
 #include <bitset>
 #include <chrono>
+#include <cinttypes>
+#include <climits>
 #include <cmath>
 #include <complex>
 #include <cstdint>
 #include <cstdio>
+#include <cstdlib>
 #include <deque>
 #include <exception>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -36,6 +48,7 @@
 #include <sstream>
 #include <stack>
 #include <stdexcept>
+#include <stdfloat>
 #include <streambuf>
 #include <string>
 #include <typeinfo>
@@ -88,7 +101,6 @@
 #define off(a, b) (a) &= ~(1 << (b))
 #define flip(a, b) (a) ^= (1 << (b))
 #define MOD 1000000007
-#define DEBUG 0
 #define FAST 1
 #define TIME 0
 
@@ -104,6 +116,7 @@
 void rm_ws(std::string &s) {
     s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
 }
+
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
@@ -228,8 +241,9 @@ using namespace __gnu_pbds;
 
 int main() {
 #if TIME
-    chrono::time_point<std::chrono::system_clock,
-		       std::chrono::duration<long, ratio<1, 1000000000>>>
+    std::chrono::time_point<
+	std::chrono::system_clock,
+	std::chrono::duration<long, std::ratio<1, 1000000000>>>
 	start = std::chrono::high_resolution_clock::now();
 #endif
 
@@ -245,10 +259,11 @@ int main() {
     }
 
 #if TIME
-    chrono::time_point<std::chrono::system_clock,
-		       std::chrono::duration<long, ratio<1, 1000000000>>>
+    std::chrono::time_point<
+	std::chrono::system_clock,
+	std::chrono::duration<long, std::ratio<1, 1000000000>>>
 	finish = std::chrono::high_resolution_clock::now();
-    std::cout << setprecision(4) << std::fixed;
+    std::cout << std::setprecision(4) << std::fixed;
     std::cout << "Execution time: "
 	      << std::chrono::duration_cast<std::chrono::duration<double>>(
 		     finish - start)

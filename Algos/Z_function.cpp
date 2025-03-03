@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <string>
+#include <vector>
 
 std::vector<int> zfunction(std::string &s) {
     int n = (int) s.size();
@@ -8,7 +8,7 @@ std::vector<int> zfunction(std::string &s) {
     int l = 0, r = 0;
     for (int i = 1; i < n; i++) {
 	if (i < r) {
-	    z[i] = min(r - i, z[i - l]);
+	    z[i] = std::min(r - i, z[i - l]);
 	}
 	while (i + z[i] < n && s[z[i]] == s[i + z[i]]) {
 	    z[i]++;
@@ -22,8 +22,9 @@ std::vector<int> zfunction(std::string &s) {
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int t;
     std::cin >> t;

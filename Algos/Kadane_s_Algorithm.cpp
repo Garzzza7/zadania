@@ -1,45 +1,45 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
-    cin >> n;
-    vector<int> vec(n);
+    std::cin >> n;
+    std::vector<int> vec(n);
     for (int i = 0; i < n; i++) {
-	cin >> vec[i];
+	std::cin >> vec[i];
     }
-    vector<int> b = {0};
-    vector<int> s = {0};
+    std::vector<int> b = {0};
+    std::vector<int> s = {0};
     int best = 0, sum = 0;
     for (int k = 0; k < n; k++) {
-	sum = max(vec[k], sum + vec[k]);
-	best = max(best, sum);
+	sum = std::max(vec[k], sum + vec[k]);
+	best = std::max(best, sum);
 	s.push_back(sum);
 	b.push_back(best);
     }
-    cout << best << '\n';
+    std::cout << best << '\n';
 
-    cout << "vec: ";
-    for (auto &&v : vec) {
-	cout << v << " ";
+    std::cout << "vec: ";
+    for (const auto &v : vec) {
+	std::cout << v << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 
-    cout << "sums: ";
-    for (auto &&v : s) {
-	cout << v << " ";
+    std::cout << "sums: ";
+    for (const auto &v : s) {
+	std::cout << v << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 
-    cout << "bests: ";
-    for (auto &&v : b) {
-	cout << v << " ";
+    std::cout << "bests: ";
+    for (const auto &v : b) {
+	std::cout << v << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 
     return 0;
 }

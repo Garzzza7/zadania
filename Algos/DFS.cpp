@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 void dfs(int vertex, std::vector<std::vector<int>> &adj,
 	 std::vector<bool> &visited) {
@@ -19,8 +18,9 @@ void dfs(int vertex, std::vector<std::vector<int>> &adj,
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int vertices;
     std::cin >> vertices;

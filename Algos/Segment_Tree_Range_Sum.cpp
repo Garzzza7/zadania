@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
-
-vector<long long> tree;
+std::vector<long long> tree;
 int tree_size;
 long long sum_query(long long start_node, long long node_left,
 		    long long node_right, long long query_left,
@@ -44,14 +43,15 @@ void iterative_update(long long index, long long value) {
     }
 }
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    cin >> tree_size;
-    vector<long long> initial_array;
+    std::cin >> tree_size;
+    std::vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {
 	int a;
-	cin >> a;
+	std::cin >> a;
 	initial_array.push_back(a);
     }
     while (__builtin_popcount(tree_size) != 1) {
@@ -66,16 +66,16 @@ int main() {
 	tree[i] = tree[2 * i] + tree[2 * i + 1];
     }
 
-    for (auto &&a : tree) {
-	cout << a << " ";
+    for (const auto &a : tree) {
+	std::cout << a << " ";
     }
-    // cout << sum_query(1, 0, tree_size - 1, 0, 7) << "\n";
+    // std::cout << sum_query(1, 0, tree_size - 1, 0, 7) << "\n";
 
-    // cout << "\n";
+    // std::cout << "\n";
     // // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
     // iterative_update(5, 100);
     // for (auto &&a : tree) {
-    //   cout << a << " ";
+    //   std::cout << a << " ";
     // }
     return 0;
 }

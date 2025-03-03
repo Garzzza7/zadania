@@ -1,10 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
-
-int mex(vector<int> &vec) {
-    vector<bool> f(vec.size() + 1, false);
-    for (auto &&i : vec) {
+int mex(std::vector<int> &vec) {
+    std::vector<bool> f(vec.size() + 1, false);
+    for (const auto &i : vec) {
 	if (i <= (int) vec.size()) {
 	    f[i] = true;
 	}
@@ -17,15 +16,16 @@ int mex(vector<int> &vec) {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
-    cin >> n;
-    vector<int> vec(n);
+    std::cin >> n;
+    std::vector<int> vec(n);
     for (int i = 0; i < n; i++) {
-	cin >> vec[i];
+	std::cin >> vec[i];
     }
-    cout << mex(vec) << "\n";
+    std::cout << mex(vec) << "\n";
     return 0;
 }

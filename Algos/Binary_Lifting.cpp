@@ -16,12 +16,13 @@ void dfs(int parent, int vertex, std::vector<std::vector<int>>& adj,
     for (int i = 1; i < limit; i++) {
 	ancestors[vertex][i] = ancestors[ancestors[vertex][i - 1]][i - 1];
     }
-    for (auto&& ver : adj[vertex]) {
+    for (const auto& ver : adj[vertex]) {
 	if (vertex != ver) {
 	    dfs(vertex, ver, adj, ancestors, depth, limit);
 	}
     }
 }
+
 int query(int vertex, int kth, std::vector<int>& depth,
 	  std::vector<std::vector<int>>& ancestors, int& limit) {
     int ancestor = vertex;
@@ -39,6 +40,7 @@ int query(int vertex, int kth, std::vector<int>& depth,
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n, m;
     std::cin >> n >> m;

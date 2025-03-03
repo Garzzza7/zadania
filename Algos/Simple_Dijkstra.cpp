@@ -1,9 +1,8 @@
-#include <bits/stdc++.h>
-
+#include <cstdint>
 #include <functional>
+#include <iostream>
 #include <queue>
-
-using namespace std;
+#include <vector>
 
 template <typename T>
 void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
@@ -49,8 +48,9 @@ void shortest_path(T start, T target, std::vector<T> &path) {
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n, m;
     std::cin >> n >> m;

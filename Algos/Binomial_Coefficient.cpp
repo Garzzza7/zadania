@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 long long recursive_binomial_coefficient(int n, int k) {
     if (k == 1) {
@@ -14,7 +13,7 @@ long long recursive_binomial_coefficient(int n, int k) {
 
 long long multiplicative_binomial_coefficient(int n, int k) {
     long long res = 1;
-    int kk = min(k, n - k);
+    int kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
 	res *= n + 1 - i;
 	res /= i;
@@ -23,15 +22,16 @@ long long multiplicative_binomial_coefficient(int n, int k) {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     long long n, k;
-    cin >> n >> k;
+    std::cin >> n >> k;
     int a = multiplicative_binomial_coefficient(n, k);
-    cout << "Multiplicative:\n" << a << "\n";
+    std::cout << "Multiplicative:\n" << a << "\n";
     int b = recursive_binomial_coefficient(n, k);
-    cout << "Recursive:\n" << b << "\n";
+    std::cout << "Recursive:\n" << b << "\n";
 
     return 0;
 }

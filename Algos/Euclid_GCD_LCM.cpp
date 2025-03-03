@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
 
 template <typename T>
 T gcd(T a, T b) {
@@ -16,8 +14,10 @@ T lcm(T a, T b) {
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int T;
     std::cin >> T;
     while (T--) {

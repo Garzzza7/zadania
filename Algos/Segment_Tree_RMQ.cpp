@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
 
 class SegmentTree {
    private:
@@ -109,8 +109,9 @@ void iterative_update(long long index, long long value) {
     }
 }
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     std::cin >> tree_size;
     std::vector<long long> initial_array;

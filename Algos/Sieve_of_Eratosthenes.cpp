@@ -1,10 +1,10 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
     std::cin >> n;
@@ -19,7 +19,7 @@ int main() {
     }
     // 0 -> prime
     // !0 -> one of factors
-    for (auto &&a : sieve) {
+    for (const auto &a : sieve) {
 	std::cout << a << " ";
     }
     return 0;

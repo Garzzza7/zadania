@@ -1,6 +1,9 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <algorithm>
+#include <cstdint>
+#include <iostream>
+#include <queue>
+#include <set>
+#include <vector>
 
 void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
 	      std::vector<int> &path, std::vector<int> &cost) {
@@ -9,7 +12,7 @@ void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
     cost[source] = 0;
     int current = source;
     while (iter--) {
-	int currentMinimum = INT_MAX;
+	int currentMinimum = INT32_MAX;
 	for (int i = 0; i < (int) known.size(); i++) {
 	    if (known[i] == false && cost[i] < currentMinimum) {
 		currentMinimum = cost[i];
@@ -17,7 +20,7 @@ void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
 	    }
 	}
 	known[current] = true;
-	for (auto &&b : adj[current]) {
+	for (const auto &b : adj[current]) {
 	    if (cost[current] + b.second < cost[b.first]) {
 		cost[b.first] = cost[current] + b.second;
 		path[b.first] = current;
@@ -82,12 +85,13 @@ std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
 	current = path[current];
     }
     res.push_back(source);
-    reverse(res.begin(), res.end());
+    std::reverse(res.begin(), res.end());
     return res;
 }
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n, m;
     std::cin >> n >> m;
@@ -108,23 +112,23 @@ int main() {
     std::cin >> source >> target;
 
     std::vector<int> path(n, -1);
-    std::vector<int> cost(n, INT_MAX);
+    std::vector<int> cost(n, INT32_MAX);
     // dijkstra(0, adj, path, cost);
     dijkstraWithSet(0, adj, path, cost);
     // dijkstraWithPrioQueue(0, adj, path, cost);
     std::cout << "PATH\n";
     int i = 0;
-    for (auto &&a : path) {
+    for (const auto &a : path) {
 	std::cout << i++ << " -> " << a << "\n";
     }
     std::cout << "COST\n";
     i = 0;
-    for (auto &&a : cost) {
+    for (const auto &a : cost) {
 	std::cout << i++ << " -> " << a << "\n";
     }
     std::cout << "SHORTEST PATH\n";
     std::vector<int> shortpath = shortestPath(source, target, path);
-    for (auto &&a : shortpath) {
+    for (const auto &a : shortpath) {
 	std::cout << a << " ";
     }
     return 0;

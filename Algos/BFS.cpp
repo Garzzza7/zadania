@@ -1,9 +1,9 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <queue>
+#include <vector>
 
 void iterative_bfs(int vertex, std::vector<std::vector<int>> &adj,
-		   std::vector<bool> &visited) {
+	std::vector<bool> &visited) {
     std::fill(visited.begin(), visited.end(), 0);
     std::queue<int> que;
     que.push(vertex);
@@ -21,7 +21,7 @@ void iterative_bfs(int vertex, std::vector<std::vector<int>> &adj,
 }
 
 void bfs(int vertex, std::vector<std::vector<int>> &adj,
-	 std::vector<bool> &visited, std::queue<int> que) {
+	std::vector<bool> &visited, std::queue<int> que) {
     if (visited[vertex]) {
 	return;
     }
@@ -39,6 +39,8 @@ void bfs(int vertex, std::vector<std::vector<int>> &adj,
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int vertices;
     std::cin >> vertices;
     std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());

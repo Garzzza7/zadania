@@ -1,6 +1,7 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <cstdint>
+#include <iostream>
+#include <queue>
+#include <vector>
 
 template <typename T>
 T bfs(T source, T target, std::vector<std::vector<T>> &adj,
@@ -19,7 +20,7 @@ T bfs(T source, T target, std::vector<std::vector<T>> &adj,
 	for (auto &&next : adj[curr]) {
 	    if (path[next] == -1 && capacities[curr][next]) {
 		path[next] = curr;
-		T bottleneck = min(flow, capacities[curr][next]);
+		T bottleneck = std::min(flow, capacities[curr][next]);
 		if (next == target) {
 		    return bottleneck;
 		}
@@ -51,8 +52,10 @@ T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n, m;
     std::cin >> n >> m;
     std::vector<std::vector<int>> adj(n, std::vector<int>());

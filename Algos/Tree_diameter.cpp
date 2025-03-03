@@ -1,11 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
-using namespace std;
-
-long long maxi = 0;
-long long at = 0;
-void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
-	 long long cnt) {
+long long maxi = 0ll;
+long long at = 0ll;
+void dfs(long long v, std::vector<std::vector<long long>> &adj,
+	 std::vector<bool> &visited, long long cnt) {
     if (visited[v]) {
 	return;
     }
@@ -14,7 +13,7 @@ void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
 	at = v;
     }
     visited[v] = 1;
-    for (auto &&vv : adj[v]) {
+    for (const auto &vv : adj[v]) {
 	if (!visited[vv]) {
 	    dfs(vv, adj, visited, cnt + 1);
 	}
@@ -22,22 +21,24 @@ void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     long long n;
-    cin >> n;
-    vector<vector<long long>> adj(n + 1, vector<long long>());
+    std::cin >> n;
+    std::vector<std::vector<long long>> adj(n + 1, std::vector<long long>());
     for (long long i = 0; i < n - 1; i++) {
 	long long aa, bb;
-	cin >> aa >> bb;
+	std::cin >> aa >> bb;
 	adj[aa].push_back(bb);
 	adj[bb].push_back(aa);
     }
-    vector<bool> visited(300005, 0);
+    std::vector<bool> visited(300005, 0);
     dfs(1, adj, visited, 0ll);
     maxi ^= maxi;
-    visited = vector<bool>(300005, 0);
+    visited = std::vector<bool>(300005, 0);
     dfs(at, adj, visited, 0ll);
-    cout << maxi << "\n";
+    std::cout << maxi << "\n";
     return 0;
 }

@@ -1,7 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
+#include <stack>
+#include <vector>
+
 #define MAX_N 500001
 
-using namespace std;
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 // https://codeforces.com/problemset/problem/427/C
 
@@ -56,6 +59,10 @@ void Kosaraju() {
 }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     std::cin >> n >> m;
     while (m--) {
 	int a, b;
@@ -66,9 +73,9 @@ int main() {
 
     Kosaraju();
     std::cout << total.size() << "\n";
-    for (auto&& a : total) {
+    for (const auto& a : total) {
 	std::cout << a.second.size() << " ";
-	for (auto&& aa : a.second) {
+	for (const auto& aa : a.second) {
 	    std::cout << aa << " ";
 	}
 	std::cout << "\n";

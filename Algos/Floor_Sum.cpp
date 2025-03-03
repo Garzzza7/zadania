@@ -1,7 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
+#include <iostream>
 // https://atcoder.jp/contests/practice2/tasks/practice2_c
 
 long long calc(long long a, long long b, long long c, long long n) {
@@ -17,14 +14,17 @@ long long calc(long long a, long long b, long long c, long long n) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int T;
-    cin >> T;
+    std::cin >> T;
     while (T--) {
 	long long n, m, a, b;
-	cin >> n >> m >> a >> b;
-	cout << calc(a, b, m, n - 1) << "\n";
+	std::cin >> n >> m >> a >> b;
+	std::cout << calc(a, b, m, n - 1) << "\n";
     }
+
     return 0;
 }

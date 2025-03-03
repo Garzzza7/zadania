@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <string>
+#include <vector>
 
 bool hasSubstring(std::string s, std::string pattern) {
     int i = 0;
@@ -21,6 +21,7 @@ bool hasSubstring(std::string s, std::string pattern) {
     }
     return false;
 }
+
 std::vector<int> computeBuffer(std::string pattern) {
     std::vector<int> lps((int) pattern.size());
     int index = 0;
@@ -40,6 +41,7 @@ std::vector<int> computeBuffer(std::string pattern) {
     }
     return lps;
 }
+
 bool KMP(std::string s, std::string pattern) {
     std::vector<int> lps = computeBuffer(pattern);
     int j = 0;
@@ -61,9 +63,11 @@ bool KMP(std::string s, std::string pattern) {
     }
     return false;
 }
+
 int main() {
-    ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     std::string s, pattern;
     std::cin >> s;

@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
 
 long long binpow(long long a, long long b) {
     long long res = 1;
@@ -14,8 +12,9 @@ long long binpow(long long a, long long b) {
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     long long a, b;
     std::cin >> a >> b;

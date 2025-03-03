@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <numeric>
+#include <vector>
 
 template <typename T>
 long long crt(std::vector<std::pair<T, T>> &vec) {
@@ -24,8 +24,10 @@ long long crt(std::vector<std::pair<T, T>> &vec) {
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n;
     std::cin >> n;
     std::vector<std::pair<int, int>> vec(n);

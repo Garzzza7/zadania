@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <cstdint>
+#include <iostream>
+#include <vector>
 
 template <typename T>
 void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
@@ -9,7 +9,7 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
     distances[start] = 0;
     for (int i = 1; i <= (int) distances.size() - 1; i++) {
 	bool done = 0;
-	for (auto &&edge : edges) {
+	for (const auto &edge : edges) {
 	    T a = std::get<0>(edge);
 	    T b = std::get<1>(edge);
 	    T w = std::get<2>(edge);
@@ -58,8 +58,9 @@ void shortest_path(T start, T target, std::vector<T> &paths) {
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int T;
     std::cin >> T;

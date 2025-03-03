@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 int ternary_search(std::vector<int> &vec, int l, int r, int x) {
     if (r >= l) {
@@ -26,8 +25,9 @@ int ternary_search(std::vector<int> &vec, int l, int r, int x) {
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
     std::cin >> n;

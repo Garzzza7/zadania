@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
 
 template <typename T>
 T fl(T x, T y) {
@@ -17,17 +16,19 @@ std::vector<T> extended_euclid(T a, T b) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int T;
-    cin >> T;
+    std::cin >> T;
     while (T--) {
 	int a, b;
-	cin >> a >> b;
-	vector<int> euclid = extended_euclid(a, b);
-	cout << "d = " << euclid[0] << "\n";
-	cout << "x = " << euclid[1] << "\n";
-	cout << "y = " << euclid[2] << "\n";
+	std::cin >> a >> b;
+	std::vector<int> euclid = extended_euclid(a, b);
+	std::cout << "d = " << euclid[0] << "\n";
+	std::cout << "x = " << euclid[1] << "\n";
+	std::cout << "y = " << euclid[2] << "\n";
     }
     return 0;
 }

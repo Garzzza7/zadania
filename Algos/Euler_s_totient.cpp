@@ -1,8 +1,5 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
 #include <vector>
-
-using namespace std;
 
 template <typename T>
 std::vector<T> phi_1_to_n(T n) {
@@ -21,13 +18,14 @@ std::vector<T> phi_1_to_n(T n) {
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(0);
-    std::cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
     std::cin >> n;
     std::vector<int> res = phi_1_to_n(n);
-    for (auto&& a : res) {
+    for (const auto& a : res) {
 	std::cout << a << " ";
     }
     std::cout << "\n";
