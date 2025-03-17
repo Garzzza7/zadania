@@ -17,7 +17,7 @@ T bfs(T source, T target, std::vector<std::vector<T>> &adj,
 	T curr = q.front().first;
 	T flow = q.front().second;
 	q.pop();
-	for (auto &&next : adj[curr]) {
+	for (const auto &next : adj[curr]) {
 	    if (path[next] == -1 && capacities[curr][next]) {
 		path[next] = curr;
 		T bottleneck = std::min(flow, capacities[curr][next]);

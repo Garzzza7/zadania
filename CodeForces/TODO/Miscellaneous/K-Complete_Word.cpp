@@ -12,8 +12,13 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
+	int n, k;
+	std::cin >> n >> k;
 	std::string s;
 	std::cin >> s;
+	for(){
+
+	}
     }
     return 0;
 }
