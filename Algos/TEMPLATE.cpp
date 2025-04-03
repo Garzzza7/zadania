@@ -113,8 +113,8 @@
     return dist(rng);
 }
 
-void rm_ws(std::string &s) {
-    s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
+void rm_char(std::string &s, const char &c) {
+    s.erase(std::remove(s.begin(), s.end(), c), s.end());
 }
 
 // https://github.com/Heltion/debug.h/blob/main/README.md

@@ -1,7 +1,20 @@
 [
-	{
-		"directory": "/home/pc/zadania/build",
-		"command": "/usr/bin/c++   -std=gnu++20 -o CMakeFiles/cpp.dir/TEMPLATE.cpp.o -c /home/pc/zadania/TEMPLATE.cpp",
-		"file": "/home/pc/zadania/TEMPLATE.cpp"
-	}
+{
+  "directory": "/home/pc/zadania/asd",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/template.sol.dir/TEMPLATE.cpp.o -c /home/pc/zadania/TEMPLATE.cpp",
+  "file": "/home/pc/zadania/TEMPLATE.cpp",
+  "output": "CMakeFiles/template.sol.dir/TEMPLATE.cpp.o"
+},
+{
+  "directory": "/home/pc/zadania/asd",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o -c /home/pc/zadania/MINTEMPLATE.cpp",
+  "file": "/home/pc/zadania/MINTEMPLATE.cpp",
+  "output": "CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o"
+},
+{
+  "directory": "/home/pc/zadania/asd",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o -c /home/pc/zadania/DEBMINTEMPLATE.cpp",
+  "file": "/home/pc/zadania/DEBMINTEMPLATE.cpp",
+  "output": "CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o"
+}
 ]
