@@ -407,6 +407,16 @@ else
     printf "${red}$(cat Binomial_Coefficient.test)${normal}\n"
 fi
 
+if [ "$(./Endian.sol < Endian.txt)" == "$(cat Endian.test)" ]; then
+    printf "${green}Endian Passed.${normal}\n"
+else
+    printf "${red}Endian Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Endian.sol < Endian.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Endian.test)${normal}\n"
+fi
+
 if [ "$(./Binary_Search.sol < Binary_Search.txt)" == "$(cat Binary_Search.test)" ]; then
     printf "${green}Binary_Search Passed.${normal}\n"
 else

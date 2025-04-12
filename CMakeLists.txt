@@ -1,9 +1,10 @@
-# emergence generation of complie_commands.json
-# file for clangd to parse every used file properly
-# cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+# for emergency generation of complie_commands.json file for
+# clangd to parse every used file properly run
+# cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 # the file should be detected from the build directory,
 # in case it is not read this https://clangd.llvm.org/installation
-# also you might want to check here /usr/lib/gcc/x86_64-linux-gnu/
+# also you might want to check for colliding versions here
+# /usr/lib/gcc/x86_64-linux-gnu/
 cmake_minimum_required(VERSION 3.22)
 project(template.sol)
 project(debminitemplate.sol)
