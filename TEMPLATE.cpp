@@ -166,6 +166,16 @@ template <typename T>
     }
 }
 
+template <typename T>
+[[__nodiscard__]] T bin_min(const T &x, const T &y) {
+    return y ^ ((x ^ y) & -(x < y));
+}
+
+template <typename T>
+[[__nodiscard__]] T bin_max(const T &x, const T &y) {
+    return y ^ ((x ^ y) & -(x > y));
+}
+
 [[__nodiscard__]] long long ce(long long x, long long y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
