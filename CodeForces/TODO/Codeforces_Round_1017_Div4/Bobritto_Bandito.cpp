@@ -13,6 +13,14 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
+	int n, m, l, r;
+	std::cin >> n >> m >> l >> r;
+	int diff = n - m;
+	if (diff & 1) {
+	    std::cout << l - diff / 2 << " " << r - diff / 2 << "\n";
+	} else {
+	    std::cout << l - diff / 2 - 1 << " " << r - diff / 2 << "\n";
+	}
     }
 
     return 0;

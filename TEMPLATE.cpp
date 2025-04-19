@@ -176,11 +176,11 @@ template <typename T>
     return y ^ ((x ^ y) & -(x > y));
 }
 
-[[__nodiscard__]] long long ce(long long x, long long y) {
+[[__nodiscard__]] long long bin_ce(long long x, long long y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-[[__nodiscard__]] long long fl(long long x, long long y) {
+[[__nodiscard__]] long long bin_fl(long long x, long long y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
