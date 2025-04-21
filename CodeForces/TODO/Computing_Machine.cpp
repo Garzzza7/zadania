@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
+#include <stdlib.h>
+
 #include <cmath>
 #include <cstdio>
-#include <stdlib.h>
 #define printarr(arr)        \
     for (auto &&a : (arr)) { \
 	cout << a << " ";    \

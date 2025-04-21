@@ -1,5 +1,7 @@
-#include <algorithm>
 #include <bits/stdc++.h>
+#include <stdlib.h>
+
+#include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <cstdint>
@@ -12,7 +14,6 @@
 #include <queue>
 #include <random>
 #include <stack>
-#include <stdlib.h>
 #include <string>
 #include <utility>
 #include <vector>
