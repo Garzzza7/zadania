@@ -1,84 +1,46 @@
-#include <bits/stdc++.h>
+#include <algorithm>
 #include <cmath>
 #include <cstdint>
-#include <stdlib.h>
-#define print_rvalues(vec)   \
-    for (auto &&a : (vec)) { \
-	cout << a << " ";    \
-    }                        \
-    cout << "\n";
-#define print_lvalues(vec)        \
-    for (const auto &a : (vec)) { \
-	cout << a << " ";         \
-    }                             \
-    cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second < right.second;                          \
-    })
-#define sortpairdecS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second > right.second;                          \
-    })
-#define sortpairascF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first < right.first;                            \
-    })
-#define sortpairdecF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first > right.first;                            \
-    })
-#define swpint(a, b) \
-    a ^= b;          \
-    b ^= a;          \
-    a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
-
-using namespace std;
+#include <iostream>
+#include <string>
+#include <vector>
 
 int main() {
-#if TIME
-    auto begin = std::chrono::high_resolution_clock::now();
-#endif
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(nullptr);
+	std::cout.tie(nullptr);
 
-#if FAST
-    help;
-    me;
-#endif
-
-    int t;
-    cin >> t;
-    while (t--) {
-	int n;
-	cin >> n;
-	int maximum = INT32_MIN;
-	vector<int> a(n);
-	for (int i = 0; i < n; i++) {
-	    cin >> a[i];
+	int T;
+	std::cin >> T;
+	while (T--) {
+		long long n;
+		std::cin>>n;
+		std::vector<long long> vec(n);
+		for(auto && v : vec){
+			std::cin>>v;
+		}
+		int i;
+		long long sum = 0ll;
+		for (i = 0 ; i < n ; i++) {
+			if (vec[i] < 0){
+				long long maxi = -INT32_MAX;
+				while(vec[i] < 0 && i < n){
+					maxi = std::max(maxi , vec[i]);
+					i++;
+				}
+				i--;
+				sum += maxi;
+			}else {
+				long long maxi = -INT32_MAX;
+				while(vec[i] > 0 && i < n){
+					maxi = std::max(maxi , vec[i]);
+					i++;
+				}
+				i--;
+				sum += maxi;
+			}
+		}
+		std::cout << sum << "\n";
 	}
-	for (int i = 0; i < n; i++) {
-	    maximum = max(maximum, a[i]);
-	}
-    }
-
-#if TIME
-    auto end = std::chrono::high_resolution_clock::now();
-    cout << setprecision(4) << fixed;
-    cout << "Execution time: "
-	 << std::chrono::duration_cast<std::chrono::duration<double>>(end -
-								      begin)
-		.count()
-	 << " seconds\n";
-#endif
-    return 0;
+	return 0;
 }
