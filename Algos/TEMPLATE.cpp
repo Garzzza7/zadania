@@ -149,6 +149,11 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
+[[__nodiscard__]] inline T bin_xor(T a, T b) {
+    return (~(a & b)) & (a | b);
+}
+
+template <typename T>
 [[__nodiscard__]] inline bool is_on(T a, T b) {
     return a & ((T) 1 << b);
 }
