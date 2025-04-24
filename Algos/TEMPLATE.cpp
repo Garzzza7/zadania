@@ -22,6 +22,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <deque>
 #include <exception>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -148,7 +149,7 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
-[[__nodiscard__]] bool is_on(T a, T b) {
+[[__nodiscard__]] inline bool is_on(T a, T b) {
     return a & ((T) 1 << b);
 }
 
@@ -165,11 +166,23 @@ template <typename T>
     }
 }
 
-[[__nodiscard__]] long long ce(long long x, long long y) {
+template <typename T>
+[[__nodiscard__]] inline T bin_min(const T &x, const T &y) {
+    return y ^ ((x ^ y) & -(x < y));
+}
+
+template <typename T>
+[[__nodiscard__]] inline T bin_max(const T &x, const T &y) {
+    return y ^ ((x ^ y) & -(x > y));
+}
+
+template <typename T>
+[[__nodiscard__]] inline T bin_ce(T x, T y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-[[__nodiscard__]] long long fl(long long x, long long y) {
+template <typename T>
+[[__nodiscard__]] inline T bin_fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 

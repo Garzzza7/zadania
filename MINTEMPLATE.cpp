@@ -6,14 +6,14 @@
 #include <vector>
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(nullptr);
+	std::cout.tie(nullptr);
 
-    int T;
-    std::cin >> T;
-    while (T--) {
-    }
+	int T;
+	std::cin >> T;
+	while (T--) {
+	}
 
-    return 0;
+	return 0;
 }
