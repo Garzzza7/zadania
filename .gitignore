@@ -10,7 +10,9 @@
 *.so
 *.idx
 .idea
+.vscode
 .cache
+.venv
 build/*
 *log
 *.swp
