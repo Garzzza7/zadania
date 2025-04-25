@@ -6,6 +6,7 @@
 #include <vector>
 
 #define ll long long
+#define sz(vec) (int) (vec).size()
 
 int main() {
 	std::ios_base::sync_with_stdio(false);
