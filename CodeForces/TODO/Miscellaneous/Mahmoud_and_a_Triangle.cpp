@@ -15,10 +15,25 @@ int main() {
 	std::cin.tie(nullptr);
 	std::cout.tie(nullptr);
 
-	int T;
-	std::cin >> T;
-	while (T--) {
+	int n;
+	std::cin >> n;
+	std::vector<int> vec(n);
+	for (auto&& v : vec) {
+		std::cin >> v;
 	}
+	std::sort(vec.begin() , vec.end());
+	bool git = 0;
+	for (int i = 1 ; i < n-1 ; i++) { 
+		if (vec[i-1] + vec[i] > vec[i+1]) {
+			git = 1;
+			break;
+		}
 
+	}
+	if (git) {
+		std::cout << "YES\n";
+	} else {
+		std::cout << "NO\n";
+	}
 	return 0;
 }

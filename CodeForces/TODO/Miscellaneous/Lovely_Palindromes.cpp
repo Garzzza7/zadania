@@ -15,10 +15,11 @@ int main() {
 	std::cin.tie(nullptr);
 	std::cout.tie(nullptr);
 
-	int T;
-	std::cin >> T;
-	while (T--) {
-	}
+	std::string res;
+	std::cin >> res;
+	std::string s = res;
+	std::reverse(res.begin() , res.end());
+	std::cout << s + res << "\n";
 
 	return 0;
 }
