@@ -6,9 +6,15 @@ cpp_files = [file for file in os.listdir(current_directory) if file.endswith(".c
 
 exe_files = [file for file in os.listdir(current_directory) if file.endswith(".sol")]
 
-compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -O2 -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
+compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -0fast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
 fast_compiler_flags = "	g++ --std=c++20 -O0 "
 makefile = open("Makefile", "w")
+
+makefile.write(
+    "###############################################################################\n"
+    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.\n#"
+    + "#############################################################################\n"
+)
 
 makefile.write("all:")
 for cpp_file in cpp_files:
@@ -101,6 +107,11 @@ makefile.close()
 
 testfile = open("run_tests.sh", "w")
 testfile.write("#!/bin/bash\n")
+testfile.write(
+    "###############################################################################\n"
+    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.\n#"
+    + "#############################################################################\n"
+)
 testfile.write(
     "grey=$(tput setaf 7)\n"
     + "vividblue=$(tput setaf 20)\n"
