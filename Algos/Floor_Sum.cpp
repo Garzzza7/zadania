@@ -1,16 +1,17 @@
 #include <iostream>
 // https://atcoder.jp/contests/practice2/tasks/practice2_c
 
-long long calc(long long a, long long b, long long c, long long n) {
+template <typename T>
+T floor_sum(T a, T b, T c, T n) {
     if (a == 0) {
 	return (b / c) * (n + 1);
     }
     if (a >= c or b >= c) {
 	return ((n * (n + 1)) / 2) * (a / c) + (n + 1) * (b / c) +
-	       calc(a % c, b % c, c, n);
+	       floor_sum(a % c, b % c, c, n);
     }
     long long m = (a * n + b) / c;
-    return m * n - calc(c, c - b - 1, a, m - 1);
+    return m * n - floor_sum(c, c - b - 1, a, m - 1);
 }
 
 int main() {
@@ -23,7 +24,7 @@ int main() {
     while (T--) {
 	long long n, m, a, b;
 	std::cin >> n >> m >> a >> b;
-	std::cout << calc(a, b, m, n - 1) << "\n";
+	std::cout << floor_sum(a, b, m, n - 1) << "\n";
     }
 
     return 0;

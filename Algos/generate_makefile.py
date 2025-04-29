@@ -6,7 +6,7 @@ cpp_files = [file for file in os.listdir(current_directory) if file.endswith(".c
 
 exe_files = [file for file in os.listdir(current_directory) if file.endswith(".sol")]
 
-compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -0fast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
+compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
 fast_compiler_flags = "	g++ --std=c++20 -O0 "
 makefile = open("Makefile", "w")
 

@@ -1,17 +1,24 @@
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <iostream>
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
-int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
-    int T;
-    std::cin >> T;
-    while (T--) {
-    }
-    return 0;
+int main() {
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(nullptr);
+	std::cout.tie(nullptr);
+
+	int T;
+	std::cin >> T;
+	while (T--) {
+	}
+
+	return 0;
 }
