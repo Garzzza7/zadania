@@ -1,98 +1,42 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <chrono>
 #include <cmath>
-#include <stdlib.h>
-#define print_rvalues(vec)   \
-    for (auto &&a : (vec)) { \
-	cout << a << " ";    \
-    }                        \
-    cout << "\n";
-#define print_lvalues(vec)        \
-    for (const auto &a : (vec)) { \
-	cout << a << " ";         \
-    }                             \
-    cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second < right.second;                          \
-    })
-#define sortpairdecS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second > right.second;                          \
-    })
-#define sortpairascF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first < right.first;                            \
-    })
-#define sortpairdecF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first > right.first;                            \
-    })
-#define swpint(a, b) \
-    a ^= b;          \
-    b ^= a;          \
-    a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <random>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
 int main() {
-#if TIME
-    auto begin = std::chrono::high_resolution_clock::now();
-#endif
-
-#if FAST
-    help;
-    me;
-#endif
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n, k;
-    cin >> n >> k;
-    vector<int> vec;
-    for (int i = 0; i < n; i++) {
-	int aac;
-	cin >> aac;
-	vec.push_back(aac);
+    std::cin >> n >> k;
+    k--;
+    std::vector<int> vec(n);
+    for (auto&& v : vec) {
+	std::cin >> v;
     }
-    sortasc(vec);
-    // print_rvalues(vec);
-    if (k == n) {
-	cout << vec[n - 1];
-    } else if (vec[k - 1] == vec[k]) {
-	cout << vec[k - 1];
+    std::sort(vec.begin(), vec.end());
+    if (k == -1) {
+	if (vec[0] == 1) {
+	    std::cout << -1 << "\n";
+	    return 0;
+	} else {
+	    std::cout << vec[0] - 1 << "\n";
+	    return 0;
+	}
+    }
+    if ((vec[k] != vec[k + 1] || k + 1 == n)) {
+	std::cout << vec[k] << "\n";
     } else {
-	cout << vec[k - 1] + 1;
+	std::cout << -1 << "\n";
     }
-
-    // vec.push_back(0);
-    // if (k == 0) {
-    //   int res = vec[0] == 1 ? -1 : vec[0] - 1;
-    //   cout << res;
-    // } else {
-    //   if (vec[k - 1] == vec[k]) {
-    //     cout << "-1";
-    //   } else {
-    //     cout << vec[k - 1] + 1;
-    //   }
-    // }
-
-#if TIME
-    auto end = std::chrono::high_resolution_clock::now();
-    cout << setprecision(4) << fixed;
-    cout << "Execution time: "
-	 << std::chrono::duration_cast<std::chrono::duration<double>>(end -
-								      begin)
-		.count()
-	 << " seconds\n";
-#endif
-    return 0;
 }

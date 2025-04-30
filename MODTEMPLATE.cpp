@@ -1,6 +1,15 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
 template <typename T, T MOD, T RT>
 struct mint {
@@ -51,15 +60,17 @@ struct mint {
 };
 
 using mi = mint<int, (int) 1e9 + 7, 5>;
-using vmi = vector<mi>;
+using vmi = std::vector<mi>;
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int T;
-    cin >> T;
+    std::cin >> T;
     while (T--) {
     }
+
     return 0;
 }
