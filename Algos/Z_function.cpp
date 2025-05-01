@@ -2,9 +2,10 @@
 #include <string>
 #include <vector>
 
-std::vector<int> zfunction(std::string &s) {
+std::vector<int> zfunction(const std::string &s) {
     int n = (int) s.size();
     std::vector<int> z(n);
+    z[0] = n;
     int l = 0, r = 0;
     for (int i = 1; i < n; i++) {
 	if (i < r) {
@@ -32,7 +33,7 @@ int main() {
 	std::string s;
 	std::cin >> s;
 	std::vector<int> res = zfunction(s);
-	for (auto &&a : res) {
+	for (const auto &a : res) {
 	    std::cout << a << " ";
 	}
 	std::cout << "\n";
