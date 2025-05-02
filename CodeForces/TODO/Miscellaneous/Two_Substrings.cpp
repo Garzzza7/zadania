@@ -1,60 +1,46 @@
 #include <algorithm>
-#include <bits/stdc++.h>
+#include <cmath>
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    string s;
-    cin >> s;
-    s = "asd" + s + "asd";
-    int indexl = 0;
-    for (int i = 0; i < (int) s.size() - 1; i++) {
+    std::string s;
+    std::cin >> s;
+
+    for (int i = 0; i < sz(s) - 1; i++) {
 	if (s[i] == 'A' && s[i + 1] == 'B') {
-	    indexl = i + 1;
-	    break;
+	    for (int j = i + 2; j < sz(s) - 1; j++) {
+		if (s[j] == 'B' && s[j + 1] == 'A') {
+		    std::cout << "YES\n";
+		    return 0;
+		}
+	    }
 	}
     }
 
-    int indexr = 0;
-    for (int i = (int) s.size() - 1; i >= 0; i--) {
-	if (s[i] == 'A' && s[i - 1] == 'B') {
-	    indexr = i - 1;
-	    break;
+    for (int i = sz(s); i > 0; i--) {
+	if (s[i - 1] == 'A' && s[i] == 'B') {
+	    for (int j = i - 2; j > 0; j--) {
+		if (s[j - 1] == 'B' && s[j] == 'A') {
+		    std::cout << "YES\n";
+		    return 0;
+		}
+	    }
 	}
     }
 
-    reverse(s.begin(), s.end());
-    int indexl2 = 0;
-    for (int i = 0; i < (int) s.size() - 1; i++) {
-	if (s[i] == 'A' && s[i + 1] == 'B') {
-	    indexl2 = i + 1;
-	    break;
-	}
-    }
+    std::cout << "NO\n";
 
-    int indexr2 = 0;
-    for (int i = (int) s.size() - 1; i >= 0; i--) {
-	if (s[i] == 'A' && s[i - 1] == 'B') {
-	    indexr2 = i - 1;
-	    break;
-	}
-    }
-    set<int> set;
-    set.insert(indexl);
-
-    set.insert(indexr);
-
-    set.insert(indexl2);
-
-    set.insert(indexr2);
-    if ((int) set.size() == 4 && indexr > 0 && indexl > 0 && indexr2 > 0 &&
-	indexl2 > 0) {
-	cout << "YES\n";
-    } else {
-	cout << "NO\n";
-    }
     return 0;
 }

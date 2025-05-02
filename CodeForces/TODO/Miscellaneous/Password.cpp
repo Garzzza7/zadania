@@ -1,61 +1,76 @@
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
 #include <iostream>
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
+
+#define ll long long
+#define sz(vec) ((int) (vec).size())
+
+const std::string gg = "Just a legend\n";
+
+std::vector<int> z_function(const std::string& s) {
+    int n = (int) s.size();
+    std::vector<int> z(n);
+    z[0] = n;
+    int l = 0;
+    int r = 0;
+    for (int i = 1; i < n; i++) {
+	if (i < r) {
+	    z[i] = std::min(r - i, z[i - l]);
+	}
+	while (i + z[i] < n && s[z[i]] == s[i + z[i]]) {
+	    z[i]++;
+	}
+	if (i + z[i] > r) {
+	    l = i;
+	    r = i + z[i];
+	}
+    }
+    return z;
+}
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    /*const long long PRIME = 33333331;*/
-    const long long PRIME = 1000000007;
-    const int SIZE = 1000001;
+    std::cout.tie(nullptr);
 
     std::string s;
     std::cin >> s;
-    s = "$" + s;
-    std::cout << s << "\n";
-    int n = (int) s.size();
-    std::string res = "Just a legend\n";
-    std::vector<long long> prefhash(SIZE);
-    std::vector<long long> powers(SIZE);
-    powers[0] = 1;
-    for (int i = 1; i <= n + 3; i++) {
-	powers[i] = PRIME * powers[i - 1];
+    auto vec = z_function(s);
+    for (const auto& v : vec) {
+	std::cout << v << " ";
     }
-    for (int i = 1; i <= n; i++) {
-	prefhash[i + 1] = prefhash[i] * PRIME + s[i];
-    }
-    auto query = [&](int l, int r) -> long long {
-	return prefhash[r] - prefhash[l - 1] * powers[r - l + 1];
-    };
+    std::cout << "\n";
 
-    auto bin_search = [&](int start) {
-	int l = start;
-	int r = n - start;
-	int mid;
-	while (l < r) {
-	    mid = (r - l) / 2 + l;
-	    if (query(1, start) == query(n - start, n)) {
-		l = mid + 1;
-	    } else {
-		r = mid - 1;
-	    }
+    std::vector<int> cnt(sz(s), 0);
+
+    for (int i = 1; i < sz(s); i++) {
+	if (vec[i] + i == sz(s)) {
+	    cnt[std::min(i, vec[i])]++;
 	}
-	return r;
-    };
+    }
 
-    /*   std::cout << "POWERS: ";*/
-    /*   for (int i = 0; i < n; i++) {*/
-    /*std::cout << powers[i] << " ";*/
-    /*   }*/
-    /*   std::cout << "\n";*/
-    /*   std::cout << "HASH: ";*/
-    /*   for (int i = 1; i <= n; i++) {*/
-    /*std::cout << prefhash[i] << " ";*/
-    /*   }*/
-    /*   std::cout << "\n";*/
-    /*   for (int i = 1; i <= n; i++) {*/
-    /*std::cout << i << ": " << query(1, i) << " " << query(n - i, n) << "\n";*/
-    /*   }*/
+    for (const auto& v : cnt) {
+	std::cout << v << " ";
+    }
+    std::cout << "\n";
+
+    int limit = 0;
+    for (int i = sz(s) - 1; i >= 0; i--) {
+	if (cnt[i] > 0) {
+	    for (int iter = 0; iter < i; iter++) {
+		std::cout << s[iter];
+	    }
+	    return 0;
+	}
+	limit++;
+    }
+
+    std::cout << gg;
 
     return 0;
 }

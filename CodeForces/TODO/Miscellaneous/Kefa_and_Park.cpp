@@ -1,49 +1,64 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
-vector<int> has_cat(100000 + 1, 0);
-vector<int> cnt_cats(100000 + 1, 0);
+int n;
+int m;
 int res = 0;
 
-void dfs(int vertex, int from, vector<vector<int>> &adj, int cnt, int limit) {
-    if (cnt > limit) {
+void dfs(const int &vertex, const std::vector<std::vector<int>> &adj,
+	 std::vector<bool> &visited, const std::vector<int> &has_cat,
+	 std::vector<int> &dp) {
+    visited[vertex] = 1;
+    if (dp[vertex] > m) {
 	return;
     }
-    /*cout << vertex << " -> " << cnt << "\n";*/
-    for (auto &&v : adj[vertex]) {
-	dfs(v, vertex, adj, cnt * has_cat[v] + has_cat[v], limit);
+    int cnt = 0;
+    for (const auto &v : adj[vertex]) {
+	if (!visited[v]) {
+	    dp[v] = (dp[vertex] + has_cat[v]) * has_cat[v];
+	    dfs(v, adj, visited, has_cat, dp);
+	    cnt++;
+	}
     }
-    if ((int) adj[vertex].size() == 1 && adj[vertex][0] == from) {
-	/*maxi = max(maxi, cnt);*/
-	/*cout << "maxi : " << maxi << "\n";*/
-	/*res += (maxi <= limit);*/
+    if (cnt == 0) {
 	res++;
     }
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    int n, m;
-    cin >> n >> m;
-    vector<vector<int>> adj(n + 1, vector<int>());
+    std::cin >> n >> m;
+    std::vector<int> has_cat(n + 1);
     for (int i = 1; i <= n; i++) {
-	int aa;
-	cin >> aa;
-	has_cat[i] = aa;
+	int a;
+	std::cin >> a;
+	has_cat[i] = a;
     }
-
+    std::vector<std::vector<int>> adj(n + 1);
     for (int i = 0; i < n - 1; i++) {
-	int aa, bb;
-	cin >> aa >> bb;
-	adj[aa].push_back(bb);
-	adj[bb].push_back(aa);
+	int x, y;
+	std::cin >> x >> y;
+	adj[x].push_back(y);
+	adj[y].push_back(x);
     }
-    vector<bool> visited(n + 1, 0);
-    dfs(1, 0, adj, has_cat[1], m);
-    cout << res << "\n";
+    std::vector<bool> visited(n + 1, 0);
+    std::vector<int> dp(n + 1, 0);
+    dp[1] = has_cat[1];
+    dfs(1, adj, visited, has_cat, dp);
+    std::cout << res << "\n";
 
     return 0;
 }

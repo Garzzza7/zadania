@@ -39,15 +39,29 @@ int main() {
     std::cin >> s;
     zfunction(s);
     z[0] = sz(s);
+    for (int i = 0; i < sz(s); i++) {
+	std::cout << z[i] << " ";
+    }
+    std::cout << "\n";
     std::vector<std::pair<int, int>> res;
 
     for (int i = 0; i < sz(s); i++) {
 	cnt[z[i]]++;
     }
 
+    for (int i = 0; i < sz(s); i++) {
+	std::cout << cnt[i] << " ";
+    }
+    std::cout << "\n";
+
     for (int i = sz(s); i > 0; i--) {
 	cnt[i - 1] += cnt[i];
     }
+
+    for (int i = 0; i < sz(s); i++) {
+	std::cout << cnt[i] << " ";
+    }
+    std::cout << "\n";
 
     for (int i = 1; i <= sz(s); i++) {
 	if (z[sz(s) - i] == i) {

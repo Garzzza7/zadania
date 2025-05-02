@@ -10,6 +10,11 @@
 #define ll long long
 #define sz(vec) ((int) (vec).size())
 
+template <typename T>
+[[__nodiscard__]] inline T bin_fl(T x, T y) {
+    return x / y - ((x ^ y) < 0 && x % y);
+}
+
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -24,15 +29,19 @@ int main() {
 	for (auto&& v : vec) {
 	    std::cin >> v;
 	}
-	int cnt = 0;
-	for (int i = 0; i < n; i++) {
-	    for (int j = i + 1; j < n; j++) {
-		if (vec[i] * vec[j] <= 2 * n) {
-		    cnt++;
+	int res = 0;
+	res += (vec[0] == 1);
+	for (int i = 1; i < n; i++) {
+	    if (vec[i] != 0) {
+		int iter = 0;
+		while (i + iter < n && vec[i + iter] == 1) {
+		    iter++;
 		}
+		i += iter - 1;
+		res += bin_fl(iter, 3);
 	    }
 	}
-	std::cout << cnt << "\n";
+	std::cout << res << "\n";
     }
 
     return 0;

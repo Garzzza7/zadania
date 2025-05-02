@@ -1,30 +1,47 @@
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
 #include <iostream>
-#include <string>
-#include <unordered_set>
 #include <map>
+#include <set>
+#include <string>
 #include <vector>
+
+#define ll long long
+#define sz(vec) ((int) (vec).size())
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int n;
     std::cin >> n;
-    std::map<std::string, long long> m;
-    std::map<long long, std::string> res;
-    long long maxi = -100ll;
+    std::map<std::string, int> m;
+    std::vector<std::string> name(1001);
+    std::vector<int> score(1001);
     for (int i = 0; i < n; i++) {
-	std::string s;
-	long long num;
-	std::cin >> s;
-	std::cin >> num;
-	m[s] += num;
-	if (res[m[s]].size() == 0) {
-	    res[m[s]] = s;
-	}
-	maxi = std::max(maxi, m[s]);
+	std::cin >> name[i] >> score[i];
+	m[name[i]] += score[i];
     }
-    std::cout << res[maxi] << "\n";
+    int maxi = INT32_MIN;
+    for (const auto& v : m) {
+	maxi = std::max(maxi, v.second);
+    }
+    std::set<std::string> set;
 
+    for (const auto& v : m) {
+	if (v.second == maxi) {
+	    set.insert(v.first);
+	}
+    }
+    m.clear();
+    for (int i = 0; i < n; i++) {
+	m[name[i]] += score[i];
+	if (set.find(name[i]) != set.end() && m[name[i]] >= maxi) {
+	    std::cout << name[i] << "\n";
+	    return 0;
+	}
+    }
     return 0;
 }
