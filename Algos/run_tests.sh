@@ -360,6 +360,16 @@ else
     printf "${red}$(cat Tree_diameter.test)${normal}\n"
 fi
 
+if [ "$(./Hash.sol < Hash.txt)" == "$(cat Hash.test)" ]; then
+    printf "${green}Hash Passed.${normal}\n"
+else
+    printf "${red}Hash Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Hash.sol < Hash.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Hash.test)${normal}\n"
+fi
+
 if [ "$(./Edmond_Karp_MaxFlow.sol < Edmond_Karp_MaxFlow.txt)" == "$(cat Edmond_Karp_MaxFlow.test)" ]; then
     printf "${green}Edmond_Karp_MaxFlow Passed.${normal}\n"
 else
