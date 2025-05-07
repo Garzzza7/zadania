@@ -2,10 +2,14 @@
 #include <string>
 #include <vector>
 // original prime from Rabin-Karp
-// const int prime = 16777619;
+// const long long prime = 16777619;
 
-long long binpow(long long a, long long b,
-		 const long long& mod = 1'000'000'007) {
+// 7919 is the biggest prime from wikipedia
+
+const long long mod = 1'000'000'007;
+const long long prime = 7919;
+
+long long mod_binpow(long long a, long long b) {
     long long res = 1;
     while (b > 0) {
 	if (b & 1) {
@@ -18,14 +22,11 @@ long long binpow(long long a, long long b,
 }
 
 long long query_hash(const std::vector<long long>& hash, const int& l,
-		     const int& r, const long long& prime = 7919,
-		     const long long& mod = 1'000'000'007) {
-    return ((hash[r] - hash[l] * binpow(prime, r - l)) % mod + mod) % mod;
+		     const int& r) {
+    return ((hash[r] - hash[l] * mod_binpow(prime, r - l)) % mod + mod) % mod;
 }
 
-std::vector<long long> rolling_hash(const std::string& s,
-				    const long long& prime = 7919,
-				    const long long& mod = 1'000'000'007) {
+std::vector<long long> rolling_hash(const std::string& s) {
     int n = (int) s.size();
     std::vector<long long> res(n, 0);
     long long h = 0;
