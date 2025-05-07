@@ -21,7 +21,7 @@ void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
 	    continue;
 	}
 	visited[a] = 1;
-	for (auto &&v : adj[a]) {
+	for (const auto &v : adj[a]) {
 	    T b = v.first;
 	    T w = v.second;
 	    if (distances[a] + w < distances[b]) {

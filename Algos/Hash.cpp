@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <vector>
+// original prime from Rabin-Karp
+// const int prime = 16777619;
+
+long long binpow(long long a, long long b,
+		 const long long& mod = 1'000'000'007) {
+    long long res = 1;
+    while (b > 0) {
+	if (b & 1) {
+	    res = (res * a) % mod;
+	}
+	a = (a * a) % mod;
+	b >>= 1;
+    }
+    return res;
+}
+
+long long query_hash(const std::vector<long long>& hash, const int& l,
+		     const int& r, const long long& prime = 7919,
+		     const long long& mod = 1'000'000'007) {
+    return ((hash[r] - hash[l] * binpow(prime, r - l)) % mod + mod) % mod;
+}
+
+std::vector<long long> rolling_hash(const std::string& s,
+				    const long long& prime = 7919,
+				    const long long& mod = 1'000'000'007) {
+    int n = (int) s.size();
+    std::vector<long long> res(n, 0);
+    long long h = 0;
+    for (int i = 0; i < n; i++) {
+	h = (h * prime) % mod + (s[i] - 'a' + 1);
+	res[i] = h;
+    }
+    return res;
+}
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
+    std::string s;
+    std::cin >> s;
+    auto hashed = rolling_hash(s);
+    for (const auto& h : hashed) {
+	std::cout << h << " ";
+    }
+    std::cout << "\n";
+    std::cout << "Hash of " << s << " = " << *(hashed.end() - 1) << "\n";
+    std::cout << query_hash(hashed, 0, 2) << "\n";
+    std::cout << query_hash(hashed, 3, 5) << "\n";
+    std::cout << query_hash(hashed, 6, 8) << "\n";
+    std::cout << query_hash(hashed, 9, 11) << "\n";
+    return 0;
+}
