@@ -13,13 +13,13 @@ int n, m;
 std::vector<std::vector<int>> adj(MAX_N, std::vector<int>());
 std::vector<std::vector<int>> rev_adj(MAX_N, std::vector<int>());
 std::stack<int> Stack;
-std::vector<bool> visited(MAX_N, 0);
+std::vector<bool> visited(MAX_N, false);
 
 int cntComponents = 0;
 
 std::map<int, std::vector<int>> total;
 
-void dfs_1(int v) {
+void dfs_1(const int v) {
     visited[v] = true;
     for (const auto& vv : adj[v]) {
 	if (!visited[vv]) {
@@ -29,7 +29,7 @@ void dfs_1(int v) {
     Stack.push(v);
 }
 
-void dfs_2(int v) {
+void dfs_2(const int v) {
     total[cntComponents].push_back(v);
     visited[v] = true;
     for (const auto& vv : rev_adj[v]) {
@@ -73,9 +73,9 @@ int main() {
 
     Kosaraju();
     std::cout << total.size() << "\n";
-    for (const auto& a : total) {
-	std::cout << a.second.size() << " ";
-	for (const auto& aa : a.second) {
+    for (const auto& [fst, snd] : total) {
+	std::cout << snd.size() << " ";
+	for (const auto& aa : snd) {
 	    std::cout << aa << " ";
 	}
 	std::cout << "\n";

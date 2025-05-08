@@ -5,9 +5,9 @@ void heapify(std::vector<int> &vec, int i) {
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
-    if (l < (int) vec.size() && vec[l] > vec[largest])
+    if (l < static_cast<int>(vec.size()) && vec[l] > vec[largest])
 	largest = l;
-    if (r < (int) vec.size() && vec[r] > vec[largest])
+    if (r < static_cast<int>(vec.size()) && vec[r] > vec[largest])
 	largest = r;
 
     if (largest != i) {

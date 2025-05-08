@@ -7,7 +7,7 @@ class desopo_pape {
        public:
 	int vertex;
 	int weight;
-	edge(int vv, int ww) {
+	edge(const int vv, const int ww) {
 	    vertex = vv;
 	    weight = ww;
 	}
@@ -20,7 +20,7 @@ class desopo_pape {
     std::vector<int> distance;
     std::vector<int> type; // 0 - calculated , 1 - currently calculated
 			   // 2 - yet to be calculated
-    desopo_pape(int n) {
+    desopo_pape(const int n) {
 	adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
 	queue = std::deque<int>();
 	path = std::vector<int>(n + 1, -123);
@@ -58,17 +58,17 @@ class desopo_pape {
 	    }
 	}
     }
-    int get_cost(int v) {
+    int get_cost(int v) const {
 	return distance[v];
     }
-    void get_path(int start, int target) {
+    void get_path(int start, int target) const {
 	std::vector<int> sp;
 	for (int i = target; i != -123; i = path[i]) {
 	    sp.push_back(i);
 	}
 
 	std::cout << "Path from " << start << " to " << target << ": ";
-	for (int i = (int) sp.size() - 1; i >= 0; i--) {
+	for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
 	    std::cout << sp[i] << (i != 0 ? " -> " : "\n");
 	}
 	std::cout << "\n";
@@ -89,7 +89,7 @@ int main() {
 	graph.add_edge(p, v, w);
     }
     graph.run(1);
-    for (int i = 1; i < (int) graph.distance.size(); i++) {
+    for (int i = 1; i < static_cast<int>(graph.distance.size()); i++) {
 	std::cout << i << ": " << graph.get_cost(i) << "\n";
     }
     graph.get_path(1, 3);

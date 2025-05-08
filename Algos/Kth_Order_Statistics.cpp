@@ -4,14 +4,15 @@
 #include <random>
 #include <vector>
 
-int kth_order_stat(std::vector<int>& vec, int l, int r, int k) {
+int kth_order_stat(std::vector<int>& vec, const int l, const int r,
+		   const int k) {
     if (r - l <= 1) {
 	return vec[k];
     }
-    std::mt19937 rng(
-	(uint32_t) std::chrono::steady_clock::now().time_since_epoch().count());
+    std::mt19937 rng(static_cast<uint32_t>(
+	std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
-    int x = vec[dist(rng)];
+    const int x = vec[dist(rng)];
     int l_limit = l;
     int r_limit = r;
     for (int i = l; i <= r; i++) {
@@ -47,7 +48,7 @@ int main() {
 	for (auto&& v : vec) {
 	    std::cin >> v;
 	}
-	int kth = kth_order_stat(vec, 0, n - 1, 9);
+	const int kth = kth_order_stat(vec, 0, n - 1, 9);
 	std::nth_element(vec.begin(), vec.begin() + 9, vec.end());
 	std::cout << (kth == vec[9]) << "\n";
     }

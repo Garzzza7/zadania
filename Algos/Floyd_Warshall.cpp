@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-const int INF = 1000007;
+constexpr int INF = 1000007;
 int n, m;
 
 template <typename T>
@@ -68,8 +68,9 @@ void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
     sp.push_back(target);
 
     std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = 0; i < (int) sp.size(); i++) {
-	std::cout << sp[i] << (i < (int) sp.size() - 1 ? " -> " : "\n");
+    for (int i = 0; i < static_cast<int>(sp.size()); i++) {
+	std::cout << sp[i]
+		  << (i < static_cast<int>(sp.size()) - 1 ? " -> " : "\n");
     }
     std::cout << "\n";
 }
@@ -90,7 +91,7 @@ int main() {
 	adj_matrix[b][b] = 0;
     }
     std::vector<std::vector<int>> paths(n + 1, std::vector<int>(n + 1));
-    std::vector<std::vector<int>> dp = floyd_warshall(adj_matrix, paths);
+    const std::vector<std::vector<int>> dp = floyd_warshall(adj_matrix, paths);
     /*shortest_path(1, 3, dp, paths);*/
 
     for (int i = 1; i <= n; i++) {

@@ -4,8 +4,8 @@
 #include <vector>
 
 void merge(std::vector<int> &vec, int p, int q, int r) {
-    int size1 = q - p + 1;
-    int size2 = r - q;
+    const int size1 = q - p + 1;
+    const int size2 = r - q;
     std::vector<int> L(size1 + 1, INT32_MAX);
     std::vector<int> R(size2 + 1, INT32_MAX);
     for (int i = 0; i < size1; i++) {

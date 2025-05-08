@@ -7,8 +7,8 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 		   std::vector<T> &distances, std::vector<T> &paths) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
-    for (int i = 1; i <= (int) distances.size() - 1; i++) {
-	bool done = 0;
+    for (int i = 1; i <= static_cast<int>(distances.size()) - 1; i++) {
+	bool done = false;
 	for (const auto &edge : edges) {
 	    T a = std::get<0>(edge);
 	    T b = std::get<1>(edge);
@@ -16,7 +16,7 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 	    if (distances[a] < INT32_MAX) {
 		if (distances[b] > distances[a] + w) {
 		    distances[b] = distances[a] + w;
-		    done = 1;
+		    done = true;
 		    paths[b] = a;
 		}
 	    }
@@ -26,7 +26,7 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 	}
     }
 
-    bool negative_cycle = 0;
+    bool negative_cycle = false;
     for (auto &&edge : edges) {
 	T a = std::get<0>(edge);
 	T b = std::get<1>(edge);
@@ -51,7 +51,7 @@ void shortest_path(T start, T target, std::vector<T> &paths) {
     }
 
     std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = (int) sp.size() - 1; i >= 0; i--) {
+    for (int i = static_cast<int>(sp.size()) - 1; i >= 0; --i) {
 	std::cout << sp[i] << (i != 0 ? " -> " : "\n");
     }
     std::cout << "\n";

@@ -2,7 +2,7 @@
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
-const long long mod = 1000000007;
+constexpr long long mod = 1000000007;
 // int vec[2000001];
 
 // OOP VERSION OF UFDS

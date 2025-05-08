@@ -1,17 +1,16 @@
 #include <algorithm>
 #include <iostream>
 #include <random>
-#include <utility>
 #include <vector>
 
-void quick_sort(std::vector<int>& vec, int l, int r) {
+void quick_sort(std::vector<int>& vec, const int l, const int r) {
     if (r - l <= 1) {
 	return;
     }
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(l, r);
-    int x = vec[distrib(gen)];
+    const int x = vec[distrib(gen)];
     int l_iter = l;
     int r_iter = r;
     for (int i = l; i <= r; i++) {

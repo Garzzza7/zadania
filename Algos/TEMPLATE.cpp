@@ -96,7 +96,7 @@
     b ^= a;       \
     a ^= b;
 // bits
-#define LSB(a) (a) & -(a)
+#define LSB(a) ((a) & -(a))
 #define cntbits(a) __builtin_popcount(a)
 #define on(a, b) (a) |= (1 << (b))
 #define off(a, b) (a) &= ~(1 << (b))
@@ -108,18 +108,19 @@
 [[__nodiscard__]] int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
-    std::mt19937 rng(
-	(uint32_t) std::chrono::steady_clock::now().time_since_epoch().count());
+    std::mt19937 rng(static_cast<uint32_t>(
+	std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
     return dist(rng);
 }
 
 void rm_char(std::string &s, const char &c) {
+    // std::erase(s, c);
     s.erase(std::remove(s.begin(), s.end(), c), s.end());
 }
 
 // https://github.com/Heltion/debug.h/blob/main/README.md
-template <class T, size_t size = std::tuple_size<T>::value>
+template <class T, size_t size = std::tuple_size_v<T>>
 std::string to_debug(T, std::string s = "")
     requires(not std::ranges::range<T>);
 std::string to_debug(auto x)
@@ -155,7 +156,7 @@ template <typename T>
 
 template <typename T>
 [[__nodiscard__]] inline bool is_on(T a, T b) {
-    return a & ((T) 1 << b);
+    return a & (static_cast<T>(1) << b);
 }
 
 [[__nodiscard__]] bool cmp(const int &x, const int &y) {
@@ -194,7 +195,8 @@ template <typename T>
 // modify to work with 64bit ints
 template <typename T>
 [[__nodiscard__]] constexpr T flog2(T x) {
-    return x == (T) 0 ? (T) 0 : (T) 31 - __builtin_clz(x);
+    return x == static_cast<T>(0) ? static_cast<T>(0)
+				  : static_cast<T>(31) - __builtin_clz(x);
 }
 
 // descending set
@@ -242,12 +244,13 @@ decltype(auto) y_combinator(Fun &&fun) {
 } // namespace std
 
 template <typename T_vector>
-void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
+void printarr(const T_vector &v, const bool inc = false, int begin = -1,
+	      int end = -1) {
     if (begin < 0) {
 	begin ^= begin;
     }
     if (end < 0) {
-	end = (int) (v.size());
+	end = static_cast<int>(v.size());
     }
     for (int i = begin; i < end; i++) {
 	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
@@ -259,7 +262,7 @@ using namespace __gnu_pbds;
 
 int main() {
 #if TIME
-    std::chrono::time_point<
+    const std::chrono::time_point<
 	std::chrono::system_clock,
 	std::chrono::duration<long, std::ratio<1, 1000000000>>>
 	start = std::chrono::high_resolution_clock::now();
@@ -277,7 +280,7 @@ int main() {
     }
 
 #if TIME
-    std::chrono::time_point<
+    const std::chrono::time_point<
 	std::chrono::system_clock,
 	std::chrono::duration<long, std::ratio<1, 1000000000>>>
 	finish = std::chrono::high_resolution_clock::now();

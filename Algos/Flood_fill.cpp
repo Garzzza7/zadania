@@ -24,7 +24,7 @@ int m;
 long long sum = 0;
 
 void floodfill(std::vector<std::vector<int>> &vec,
-	       std::vector<std::vector<bool>> &visited, int i, int j) {
+	       std::vector<std::vector<bool>> &visited, const int i, int j) {
     if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0 ||
 	visited[i][j]) {
 	return;

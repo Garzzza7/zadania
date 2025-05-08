@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
 
-int ternary_search(std::vector<int> &vec, int l, int r, int x) {
+int ternary_search(std::vector<int> &vec, const int l, const int r,
+		   const int x) {
     if (r >= l) {
-	int mid1 = l + (r - l) / 3;
-	int mid2 = r - (r - l) / 3;
+	const int mid1 = l + (r - l) / 3;
+	const int mid2 = r - (r - l) / 3;
 	if (vec[mid1] == x) {
 	    return mid1;
 	}

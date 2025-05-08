@@ -3,7 +3,7 @@
 #include <vector>
 
 std::vector<int> z_function(const std::string &s) {
-    int n = (int) s.size();
+    const int n = static_cast<int>(s.size());
     std::vector<int> z(n);
     z[0] = n;
     int l = 0;

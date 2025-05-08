@@ -6,7 +6,7 @@ template <typename T>
 long long crt(std::vector<std::pair<T, T>> &vec) {
     T mod = vec[0].second;
     T buff = vec[0].first;
-    for (int i = 0; i < (int) vec.size() - 1; i++) {
+    for (int i = 0; i < static_cast<int>(vec.size()) - 1; i++) {
 	int check = buff % vec[i + 1].second;
 	int cnt = 0;
 	while (buff % vec[i + 1].second != vec[i + 1].first) {
@@ -20,7 +20,7 @@ long long crt(std::vector<std::pair<T, T>> &vec) {
 	}
 	mod = std::lcm(mod, vec[i + 1].second);
     }
-    return (long long) buff;
+    return static_cast<long long>(buff);
 }
 
 int main() {

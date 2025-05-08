@@ -6,8 +6,8 @@
 
 // 7919 is the biggest prime from wikipedia
 
-const long long mod = 1'000'000'007;
-const long long prime = 7919;
+constexpr long long mod = 1'000'000'007;
+constexpr long long prime = 7919;
 
 long long mod_binpow(long long a, long long b) {
     long long res = 1;
@@ -27,7 +27,7 @@ long long query_hash(const std::vector<long long>& hash, const int& l,
 }
 
 std::vector<long long> rolling_hash(const std::string& s) {
-    int n = (int) s.size();
+    const int n = static_cast<int>(s.size());
     std::vector<long long> res(n, 0);
     long long h = 0;
     for (int i = 0; i < n; i++) {

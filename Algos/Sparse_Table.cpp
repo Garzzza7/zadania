@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 
-const int MAX_N = 100'005;
-const int LOG = 17;
+constexpr int MAX_N = 100'005;
+constexpr int LOG = 17;
 std::vector<int> a(MAX_N, 0);
 std::vector<std::vector<int>> m(MAX_N, std::vector<int>(LOG, 0));
 std::vector<int> bin_log;

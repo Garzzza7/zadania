@@ -19,7 +19,7 @@ int main() {
 
     long long a, b;
     std::cin >> a >> b;
-    long long res = binpow(a, b);
+    const long long res = binpow(a, b);
     std::cout << res << "\n";
 
     return 0;

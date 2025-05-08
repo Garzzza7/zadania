@@ -24,7 +24,7 @@ int main() {
 
     int n;
     std::cin >> n;
-    std::vector<int> res = phi_1_to_n(n);
+    const std::vector<int> res = phi_1_to_n(n);
     for (const auto& a : res) {
 	std::cout << a << " ";
     }

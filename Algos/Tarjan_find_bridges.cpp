@@ -6,7 +6,7 @@ class tarjan_find_bridges {
        public:
 	int vertex;
 	int id;
-	edge(int vv, int idd) {
+	edge(const int vv, const int idd) {
 	    vertex = vv;
 	    id = idd;
 	}
@@ -48,11 +48,11 @@ class tarjan_find_bridges {
 	edge_id++;
     }
 
-    void dfs(int p, int v) {
+    void dfs(const int p, const int v) {
 	if (visited[v]) {
 	    return;
 	}
-	visited[v] = 1;
+	visited[v] = true;
 	low[v] = visit_time;
 	entry_time[v] = visit_time;
 	visit_time++;
@@ -66,14 +66,14 @@ class tarjan_find_bridges {
 		dfs(v, e.vertex);
 		low[v] = std::min(low[v], low[e.vertex]);
 		if (low[e.vertex] > entry_time[v]) {
-		    is_bridge[e.id] = 1;
+		    is_bridge[e.id] = true;
 		}
 	    }
 	}
     }
 
     void run() {
-	for (int i = 1; i < (int) adj.size(); i++) {
+	for (int i = 1; i < static_cast<int>(adj.size()); i++) {
 	    if (!visited[i]) {
 		dfs(i, i);
 	    }
@@ -104,7 +104,7 @@ int main() {
 	graph.add_bi_edge(p, v);
     }
     graph.run();
-    for (int i = 0; i < (int) graph.is_bridge.size(); i++) {
+    for (int i = 0; i < static_cast<int>(graph.is_bridge.size()); i++) {
 	if (graph.is_bridge[i]) {
 	    std::cout << "edge " << graph.edges[i].first << " to "
 		      << graph.edges[i].second << " is a bridge.\n";

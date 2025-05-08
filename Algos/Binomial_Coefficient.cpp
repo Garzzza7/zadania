@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-long long recursive_binomial_coefficient(long long n, long long k) {
+long long recursive_binomial_coefficient(const long long n, const long long k) {
     if (k == 1) {
 	return n;
     } else if (n == k || k == 0) {
@@ -11,9 +11,10 @@ long long recursive_binomial_coefficient(long long n, long long k) {
 	   recursive_binomial_coefficient(n - 1, k);
 }
 
-long long multiplicative_binomial_coefficient(long long n, long long k) {
+long long multiplicative_binomial_coefficient(const long long n,
+					      const long long k) {
     long long res = 1;
-    long long kk = std::min(k, n - k);
+    const long long kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
 	res *= n + 1 - i;
 	res /= i;
@@ -28,9 +29,9 @@ int main() {
 
     long long n, k;
     std::cin >> n >> k;
-    long long a = multiplicative_binomial_coefficient(n, k);
+    const long long a = multiplicative_binomial_coefficient(n, k);
     std::cout << "Multiplicative:\n" << a << "\n";
-    long long b = recursive_binomial_coefficient(n, k);
+    const long long b = recursive_binomial_coefficient(n, k);
     std::cout << "Recursive:\n" << b << "\n";
 
     return 0;

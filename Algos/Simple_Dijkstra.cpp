@@ -41,7 +41,7 @@ void shortest_path(T start, T target, std::vector<T> &path) {
     }
 
     std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = (int) sp.size() - 1; i >= 0; i--) {
+    for (int i = static_cast<int>(sp.size()) - 1; i >= 0; --i) {
 	std::cout << sp[i] << (i != 0 ? " -> " : "\n");
     }
     std::cout << "\n";

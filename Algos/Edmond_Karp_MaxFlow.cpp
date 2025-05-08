@@ -35,7 +35,7 @@ template <typename T>
 T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
 	  std::vector<std::vector<T>> &capacities) {
     T maxflow = 0;
-    std::vector<T> path((int) adj.size());
+    std::vector<T> path(static_cast<int>(adj.size()));
     T bottleneck = 0;
 
     while ((bottleneck = bfs(source, target, adj, capacities, path))) {
@@ -68,7 +68,7 @@ int main() {
 	capacities[from][to] = cap;
 	capacities[to][from] = 0;
     }
-    int res = maxflow(0, n - 1, adj, capacities);
+    const int res = maxflow(0, n - 1, adj, capacities);
     std::cout << res << "\n";
 
     return 0;

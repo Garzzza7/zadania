@@ -2,12 +2,13 @@
 #include <vector>
 
 template <typename T_vector>
-void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
+void printarr(const T_vector &v, bool inc = false, int begin = -1,
+	      int end = -1) {
     if (begin < 0) {
 	begin ^= begin;
     }
     if (end < 0) {
-	end = (int) (v.size());
+	end = static_cast<int>(v.size());
     }
     for (int i = begin; i < end; i++) {
 	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');

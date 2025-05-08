@@ -2,30 +2,30 @@
 #include <queue>
 #include <vector>
 
-void iterative_bfs(int vertex, std::vector<std::vector<int>> &adj,
+void iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj,
 		   std::vector<bool> &visited) {
     std::fill(visited.begin(), visited.end(), 0);
     std::queue<int> que;
     que.push(vertex);
     while (!que.empty()) {
-	int current = que.front();
+	const int current = que.front();
 	std::cout << current << " ";
 	que.pop();
 	for (const auto &v : adj[current]) {
 	    if (!visited[v]) {
-		visited[v] = 1;
+		visited[v] = true;
 		que.push(v);
 	    }
 	}
     }
 }
 
-void bfs(int vertex, std::vector<std::vector<int>> &adj,
+void bfs(const int vertex, std::vector<std::vector<int>> &adj,
 	 std::vector<bool> &visited, std::queue<int> que) {
     if (visited[vertex]) {
 	return;
     }
-    visited[vertex] = 1;
+    visited[vertex] = true;
     std::cout << vertex << " ";
     for (const auto &v : adj[vertex]) {
 	que.push(v);
@@ -44,7 +44,7 @@ int main() {
     int vertices;
     std::cin >> vertices;
     std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
-    std::vector<bool> visited(vertices + 1, 0);
+    std::vector<bool> visited(vertices + 1, false);
     int edges;
     std::cin >> edges;
     for (int i = 0; i < edges; i++) {

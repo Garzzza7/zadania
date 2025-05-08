@@ -6,7 +6,7 @@ void dfs(int vertex, std::vector<std::vector<int>> &adj,
     if (visited[vertex]) {
 	return;
     }
-    visited[vertex] = 1;
+    visited[vertex] = true;
     std::cout << vertex << " ";
     // leafs
     // if (adj[vertex].size() == 0) {
@@ -24,7 +24,7 @@ int main() {
 
     int vertices;
     std::cin >> vertices;
-    std::vector<bool> visited(vertices + 1, 0);
+    std::vector<bool> visited(vertices + 1, false);
     std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
     int edges;
     std::cin >> edges;

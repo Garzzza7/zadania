@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 
-int mex(std::vector<int> &vec) {
+int mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
     for (const auto &i : vec) {
-	if (i <= (int) vec.size()) {
+	if (i <= static_cast<int>(vec.size())) {
 	    f[i] = true;
 	}
     }

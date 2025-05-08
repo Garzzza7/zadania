@@ -3,10 +3,10 @@
 
 template <typename T>
 bool is_on(T a, T b) {
-    return a & ((T) 1 << b);
+    return a & (static_cast<T>(1) << b);
 }
 
-void dfs(int parent, int vertex, std::vector<std::vector<int>>& adj,
+void dfs(const int parent, const int vertex, std::vector<std::vector<int>>& adj,
 	 std::vector<std::vector<int>>& ancestors, std::vector<int>& depth,
 	 int& limit) {
     if (parent != vertex) {
@@ -23,8 +23,8 @@ void dfs(int parent, int vertex, std::vector<std::vector<int>>& adj,
     }
 }
 
-int query(int vertex, int kth, std::vector<int>& depth,
-	  std::vector<std::vector<int>>& ancestors, int& limit) {
+int query(const int vertex, const int kth, const std::vector<int>& depth,
+	  const std::vector<std::vector<int>>& ancestors, const int& limit) {
     int ancestor = vertex;
     if (depth[vertex] < kth || kth < 0) {
 	return -123;
