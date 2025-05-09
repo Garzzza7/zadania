@@ -21,7 +21,7 @@ and array[xx][yy]==oldv: array[xx][yy] = new_value stack.append((xx, yy - 1))
  */
 int n;
 int m;
-long long sum = 0;
+long long sum{0ll};
 
 void floodfill(std::vector<std::vector<int>> &vec,
 	       std::vector<std::vector<bool>> &visited, const int i, int j) {

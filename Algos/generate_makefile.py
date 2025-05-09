@@ -8,7 +8,16 @@ executable_files = [
     file for file in os.listdir(current_directory) if file.endswith(".sol")
 ]
 
-compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
+cpp_files.sort()
+executable_files.sort()
+
+compiler = "g++"
+
+compiler_flags = (
+    "	"
+    + compiler
+    + " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
+)
 fast_compiler_flags = "	g++ --std=c++20 -O0 "
 makefile = open("Makefile", "w")
 
@@ -23,7 +32,7 @@ makefile.write(".PHONY: standard all force fast asm asmf llvm clean\n\n")
 makefile.write("standard:")
 for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".sol ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 makefile.write("all:")
 for cpp_file in cpp_files:
@@ -36,7 +45,7 @@ for cpp_file in cpp_files:
     makefile.write(" asmf" + cpp_file[:-4] + ".s ")
 for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".ll ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(
@@ -60,7 +69,7 @@ for cpp_file in cpp_files:
 makefile.write("\nfast:")
 for cpp_file in cpp_files:
     makefile.write(" f" + cpp_file[:-4] + ".sol ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(
@@ -82,7 +91,7 @@ for cpp_file in cpp_files:
 makefile.write("\nasm:")
 for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".s ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(cpp_file[:-4] + ".s" + ": \n" + "	oa.sh " + cpp_file[:-4] + "\n")
@@ -91,7 +100,7 @@ for cpp_file in cpp_files:
 makefile.write("\nasmf:")
 for cpp_file in cpp_files:
     makefile.write(" asmf" + cpp_file[:-4] + ".s ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(
@@ -101,7 +110,7 @@ for cpp_file in cpp_files:
 makefile.write("\nllvm:")
 for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".ll ")
-makefile.write("\n")
+makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(cpp_file[:-4] + ".ll" + ": \n" + "	ollvm.sh " + cpp_file[:-4] + "\n")

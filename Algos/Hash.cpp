@@ -31,7 +31,7 @@ std::vector<long long> rolling_hash(const std::string& s) {
     std::vector<long long> res(n, 0);
     long long h = 0;
     for (int i = 0; i < n; i++) {
-	h = (h * prime) % mod + (s[i] - 'a' + 1);
+	h = h * prime % mod + (s[i] - 'a' + 1);
 	res[i] = h;
     }
     return res;
