@@ -3,25 +3,25 @@
 
 std::vector<long long> tree;
 int tree_size;
-long long sum_query(long long start_node, long long node_left,
-		    long long node_right, long long query_left,
-		    long long query_right) {
+long long sum_query(const long long start_node, const long long node_left,
+		    const long long node_right, const long long query_left,
+		    const long long query_right) {
     if (node_left >= query_left && node_right <= query_right) {
 	return tree[start_node];
     }
     if (node_right < query_left || node_left > query_right) {
 	return 0;
     }
-    long long mid = (node_left + node_right) / 2;
-    long long sum =
+    const long long mid = (node_left + node_right) / 2;
+    const long long sum =
 	sum_query(2 * start_node, node_left, mid, query_left, query_right) +
 	sum_query(2 * start_node + 1, mid + 1, node_right, query_left,
 		  query_right);
     return sum;
 }
-void recursive_update(long long start_node, long long node_left,
-		      long long node_right, long long query_left,
-		      long long query_right, long long value) {
+void recursive_update(const long long start_node, const long long node_left,
+		      const long long node_right, const long long query_left,
+		      const long long query_right, const long long value) {
     if (node_left >= query_left && node_right <= query_right) {
 	tree[start_node] = value;
 	return;
@@ -29,14 +29,14 @@ void recursive_update(long long start_node, long long node_left,
     if (node_right < query_left || node_left > query_right) {
 	return;
     }
-    long long mid = (node_left + node_right) / 2;
+    const long long mid = (node_left + node_right) / 2;
     recursive_update(2 * start_node, node_left, mid, query_left, query_right,
 		     value);
     recursive_update(2 * start_node + 1, mid + 1, node_right, query_left,
 		     query_right, value);
     tree[start_node] = tree[start_node * 2] + tree[start_node * 2 + 1];
 }
-void iterative_update(long long index, long long value) {
+void iterative_update(const long long index, const long long value) {
     tree[tree_size + index] = value;
     for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
 	tree[i] = tree[i * 2] + tree[i * 2 + 1];

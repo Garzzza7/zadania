@@ -20,27 +20,27 @@ class desopo_pape {
     std::vector<int> distance;
     std::vector<int> type; // 0 - calculated , 1 - currently calculated
 			   // 2 - yet to be calculated
-    desopo_pape(const int n) {
+    explicit desopo_pape(const int n) {
 	adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
 	queue = std::deque<int>();
 	path = std::vector<int>(n + 1, -123);
 	distance = std::vector<int>(n + 1, 1000000);
 	type = std::vector<int>(n + 1, 2);
     }
-    void add_edge(int p, int v, int w) {
+    void add_edge(const int p, const int v, const int w) {
 	adj[p].push_back(edge(v, w));
     }
 
-    void add_bi_edge(int p, int v, int w) {
+    void add_bi_edge(const int p, const int v, const int w) {
 	adj[p].push_back(edge(v, w));
 	adj[v].push_back(edge(p, w));
     }
 
-    void run(int start) {
+    void run(const int start) {
 	distance[start] = 0;
 	queue.push_back(start);
 	while (!queue.empty()) {
-	    int curr = queue.front();
+	    const int curr = queue.front();
 	    queue.pop_front();
 	    type[curr] = 0;
 	    for (const auto& e : adj[curr]) {
@@ -58,10 +58,10 @@ class desopo_pape {
 	    }
 	}
     }
-    int get_cost(int v) const {
+    int get_cost(const int v) const {
 	return distance[v];
     }
-    void get_path(int start, int target) const {
+    void get_path(const int start, const int target) const {
 	std::vector<int> sp;
 	for (int i = target; i != -123; i = path[i]) {
 	    sp.push_back(i);

@@ -7,13 +7,13 @@ std::vector<int> a(MAX_N, 0);
 std::vector<std::vector<int>> m(MAX_N, std::vector<int>(LOG, 0));
 std::vector<int> bin_log;
 
-int queryMin(int L, int R) {
-    int i = bin_log[R - L + 1];
-    int minimum = std::min(m[i][L], m[i][R - (1 << i) + 1]);
+int queryMin(const int L, const int R) {
+    const int i = bin_log[R - L + 1];
+    const int minimum = std::min(m[i][L], m[i][R - (1 << i) + 1]);
     return minimum;
 }
 
-long long querySum(int L, int R) {
+long long querySum(int L, const int R) {
     long long sum = 0;
     for (int i = LOG; i >= 0; i--) {
 	if ((1 << i) <= R - L + 1) {

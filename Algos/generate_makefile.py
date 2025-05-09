@@ -4,7 +4,9 @@ current_directory = os.getcwd()
 
 cpp_files = [file for file in os.listdir(current_directory) if file.endswith(".cpp")]
 
-exe_files = [file for file in os.listdir(current_directory) if file.endswith(".sol")]
+executable_files = [
+    file for file in os.listdir(current_directory) if file.endswith(".sol")
+]
 
 compiler_flags = "	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
 fast_compiler_flags = "	g++ --std=c++20 -O0 "
@@ -15,6 +17,13 @@ makefile.write(
     + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.\n#"
     + "#############################################################################\n"
 )
+
+makefile.write(".PHONY: standard all force fast asm asmf llvm clean\n\n")
+
+makefile.write("standard:")
+for cpp_file in cpp_files:
+    makefile.write(" " + cpp_file[:-4] + ".sol ")
+makefile.write("\n")
 
 makefile.write("all:")
 for cpp_file in cpp_files:
@@ -29,17 +38,13 @@ for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".ll ")
 makefile.write("\n")
 
-
-makefile.write("standard:")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".sol ")
-makefile.write("\n")
-
 for cpp_file in cpp_files:
     makefile.write(
         cpp_file[:-4]
         + ".sol"
-        + ": \n"
+        + ": "
+        + cpp_file
+        + "\n"
         + compiler_flags
         + cpp_file
         + " -o "
@@ -62,7 +67,9 @@ for cpp_file in cpp_files:
         "f"
         + cpp_file[:-4]
         + ".sol"
-        + ": \n"
+        + ": "
+        + cpp_file
+        + "\n"
         + fast_compiler_flags
         + cpp_file
         + " -o "

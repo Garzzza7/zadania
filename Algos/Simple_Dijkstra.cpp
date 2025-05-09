@@ -61,7 +61,7 @@ int main() {
 	std::cin >> a >> b >> w;
 	adj[a].push_back({b, w});
     }
-    std::vector<bool> visited(n + 1, 0);
+    std::vector<bool> visited(n + 1, false);
     std::vector<int> distances(n + 1, 1);
     std::vector<int> path(n + 1, -1);
     djikstra(1, adj, distances, visited, path);

@@ -32,7 +32,7 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 	T b = std::get<1>(edge);
 	T w = std::get<2>(edge);
 	if ((distances[a] + w) < distances[b]) {
-	    negative_cycle = 1;
+	    negative_cycle = true;
 	    break;
 	}
     }

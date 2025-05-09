@@ -22,7 +22,7 @@ int main() {
 
     int n;
     std::cin >> n;
-    auto siev = sieve(n);
+    const auto siev = sieve(n);
     // 0 -> prime
     // !0 -> one of factors
     for (const auto& a : siev) {

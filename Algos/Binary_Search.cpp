@@ -19,12 +19,12 @@ long long iterative_bin_search(const long long target,
     return mid - 1;
 }
 
-long long leftmost_bin_search(long long target, std::vector<long long> &vec) {
+long long leftmost_bin_search(const long long target,
+			      const std::vector<long long> &vec) {
     long long l = 0;
     long long r = static_cast<int>(vec.size()) - 1;
     while (l < r) {
-	long long mid = (r - l) / 2 + l;
-	if (vec[mid] < target) {
+	if (const long long mid = (r - l) / 2 + l; vec[mid] < target) {
 	    l = mid + 1;
 	} else {
 	    r = mid;
@@ -48,7 +48,8 @@ long long rightmost_bin_search(const long long target,
     return r - 1;
 }
 
-long long recursive_bin_search(long long f, long long e, long long target,
+long long recursive_bin_search(const long long f, const long long e,
+			       const long long target,
 			       std::vector<long long> &vec) {
     if (e < f) {
 	return -1;

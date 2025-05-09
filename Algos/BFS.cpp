@@ -2,9 +2,8 @@
 #include <queue>
 #include <vector>
 
-void iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj,
-		   std::vector<bool> &visited) {
-    std::fill(visited.begin(), visited.end(), 0);
+void iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj) {
+    std::vector<bool> visited(adj.size(), false);
     std::queue<int> que;
     que.push(vertex);
     while (!que.empty()) {
@@ -56,6 +55,6 @@ int main() {
     std::queue<int> que;
     bfs(1, adj, visited, que);
     std::cout << "\n";
-    iterative_bfs(1, adj, visited);
+    iterative_bfs(1, adj);
     return 0;
 }
