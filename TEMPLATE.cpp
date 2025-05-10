@@ -119,6 +119,10 @@ void rm_char(std::string &s, const char &c) {
     s.erase(std::remove(s.begin(), s.end(), c), s.end());
 }
 
+[[__nodiscard__]] double deg_to_rad(const int &d) {
+    return static_cast<double>(d * 0.1745);
+}
+
 // https://github.com/Heltion/debug.h/blob/main/README.md
 template <class T, size_t size = std::tuple_size_v<T>>
 std::string to_debug(T, std::string s = "")
@@ -259,6 +263,9 @@ void printarr(const T_vector &v, const bool inc = false, int begin = -1,
 
 using namespace std;
 using namespace __gnu_pbds;
+
+// constants
+[[maybe_unused]] constexpr int prime{7919};
 
 int main() {
 #if TIME

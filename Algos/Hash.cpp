@@ -6,8 +6,8 @@
 
 // 7919 is the biggest prime from wikipedia
 
-constexpr long long mod = 1'000'000'007;
-constexpr long long prime = 7919;
+constexpr long long mod{1'000'000'007};
+constexpr long long prime{7919};
 
 long long mod_binpow(long long a, long long b) {
     long long res = 1;

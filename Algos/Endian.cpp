@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-// while using g++ sometimes it fails, idk why
+// while using g++ sometimes it fails, idk why. UB?
 
 std::string find_little_endian(const std::string &word) {
     const size_t word_len = word.size();
