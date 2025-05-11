@@ -250,6 +250,16 @@ else
     printf "${red}$(cat FenwickTree.test)${normal}\n"
 fi
 
+if [ "$(./Find_Cycles_Undirected.sol < Find_Cycles_Undirected.txt)" == "$(cat Find_Cycles_Undirected.test)" ]; then
+    printf "${green}Find_Cycles_Undirected Passed.${normal}\n"
+else
+    printf "${red}Find_Cycles_Undirected Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Find_Cycles_Undirected.sol < Find_Cycles_Undirected.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Find_Cycles_Undirected.test)${normal}\n"
+fi
+
 if [ "$(./Flood_fill.sol < Flood_fill.txt)" == "$(cat Flood_fill.test)" ]; then
     printf "${green}Flood_fill Passed.${normal}\n"
 else
