@@ -14,17 +14,17 @@
 constexpr ll mod = 1000000007;
 
 int main() {
-	std::ios_base::sync_with_stdio(false);
-	std::cin.tie(nullptr);
-	std::cout.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-	int n;
-	std::cin >> n;
-	ll res = 1ll;
-	for(int i = 1; i <= n ; i++){
-		res = (res*2)%mod;
-	}
-	std::cout << res << "\n";
+    int n;
+    std::cin >> n;
+    ll res = 1ll;
+    for (int i = 1; i <= n; i++) {
+	res = (res * 2) % mod;
+    }
+    std::cout << res << "\n";
 
-	return 0;
+    return 0;
 }
