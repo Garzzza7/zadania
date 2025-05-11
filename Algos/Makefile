@@ -275,323 +275,323 @@ fZ_function.sol: Z_function.cpp
 
 asm: 2D_Prefix_Sum.s  BFS.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  CRT.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  Hash.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Priority_Queue.s  Quick_Sort.s  SCC.s  Segment_Tree_RMQ.s  Segment_Tree_Range_Sum.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Z_function.s 
 
-2D_Prefix_Sum.s: 
+2D_Prefix_Sum.s:
 	oa.sh 2D_Prefix_Sum
-BFS.s: 
+BFS.s:
 	oa.sh BFS
-Bellman_Ford_Shortest_Path.s: 
+Bellman_Ford_Shortest_Path.s:
 	oa.sh Bellman_Ford_Shortest_Path
-Binary_Exponentiation.s: 
+Binary_Exponentiation.s:
 	oa.sh Binary_Exponentiation
-Binary_Lifting.s: 
+Binary_Lifting.s:
 	oa.sh Binary_Lifting
-Binary_Search.s: 
+Binary_Search.s:
 	oa.sh Binary_Search
-Binomial_Coefficient.s: 
+Binomial_Coefficient.s:
 	oa.sh Binomial_Coefficient
-Binomial_Theorem.s: 
+Binomial_Theorem.s:
 	oa.sh Binomial_Theorem
-Bitonic_Sort.s: 
+Bitonic_Sort.s:
 	oa.sh Bitonic_Sort
-CRT.s: 
+CRT.s:
 	oa.sh CRT
-Counting_Sort.s: 
+Counting_Sort.s:
 	oa.sh Counting_Sort
-DEsopo_Pape.s: 
+DEsopo_Pape.s:
 	oa.sh DEsopo_Pape
-DFS.s: 
+DFS.s:
 	oa.sh DFS
-Difference_Array.s: 
+Difference_Array.s:
 	oa.sh Difference_Array
-Dijkstra.s: 
+Dijkstra.s:
 	oa.sh Dijkstra
-Disjoint_Set_Union.s: 
+Disjoint_Set_Union.s:
 	oa.sh Disjoint_Set_Union
-Edmond_Karp_MaxFlow.s: 
+Edmond_Karp_MaxFlow.s:
 	oa.sh Edmond_Karp_MaxFlow
-Endian.s: 
+Endian.s:
 	oa.sh Endian
-Euclid_GCD_LCM.s: 
+Euclid_GCD_LCM.s:
 	oa.sh Euclid_GCD_LCM
-Euler_s_totient.s: 
+Euler_s_totient.s:
 	oa.sh Euler_s_totient
-Extended_Euclid_s_Algorithm.s: 
+Extended_Euclid_s_Algorithm.s:
 	oa.sh Extended_Euclid_s_Algorithm
-Factorize.s: 
+Factorize.s:
 	oa.sh Factorize
-FenwickTree.s: 
+FenwickTree.s:
 	oa.sh FenwickTree
-Find_Cycles_Undirected.s: 
+Find_Cycles_Undirected.s:
 	oa.sh Find_Cycles_Undirected
-Flood_fill.s: 
+Flood_fill.s:
 	oa.sh Flood_fill
-Floor_Sum.s: 
+Floor_Sum.s:
 	oa.sh Floor_Sum
-Floyd_Warshall.s: 
+Floyd_Warshall.s:
 	oa.sh Floyd_Warshall
-Hash.s: 
+Hash.s:
 	oa.sh Hash
-KMP.s: 
+KMP.s:
 	oa.sh KMP
-Kadane_s_Algorithm.s: 
+Kadane_s_Algorithm.s:
 	oa.sh Kadane_s_Algorithm
-Kosaraju.s: 
+Kosaraju.s:
 	oa.sh Kosaraju
-Kth_Order_Statistics.s: 
+Kth_Order_Statistics.s:
 	oa.sh Kth_Order_Statistics
-Levenshtein_distance.s: 
+Levenshtein_distance.s:
 	oa.sh Levenshtein_distance
-MEX.s: 
+MEX.s:
 	oa.sh MEX
-MINTEMPLATE.s: 
+MINTEMPLATE.s:
 	oa.sh MINTEMPLATE
-Max_Heap.s: 
+Max_Heap.s:
 	oa.sh Max_Heap
-Merge_Sort.s: 
+Merge_Sort.s:
 	oa.sh Merge_Sort
-Min_Heap.s: 
+Min_Heap.s:
 	oa.sh Min_Heap
-Priority_Queue.s: 
+Priority_Queue.s:
 	oa.sh Priority_Queue
-Quick_Sort.s: 
+Quick_Sort.s:
 	oa.sh Quick_Sort
-SCC.s: 
+SCC.s:
 	oa.sh SCC
-Segment_Tree_RMQ.s: 
+Segment_Tree_RMQ.s:
 	oa.sh Segment_Tree_RMQ
-Segment_Tree_Range_Sum.s: 
+Segment_Tree_Range_Sum.s:
 	oa.sh Segment_Tree_Range_Sum
-Sieve_of_Eratosthenes.s: 
+Sieve_of_Eratosthenes.s:
 	oa.sh Sieve_of_Eratosthenes
-Simple_Dijkstra.s: 
+Simple_Dijkstra.s:
 	oa.sh Simple_Dijkstra
-Sparse_Table.s: 
+Sparse_Table.s:
 	oa.sh Sparse_Table
-TEMPLATE.s: 
+TEMPLATE.s:
 	oa.sh TEMPLATE
-Tarjan_find_articulation.s: 
+Tarjan_find_articulation.s:
 	oa.sh Tarjan_find_articulation
-Tarjan_find_bridges.s: 
+Tarjan_find_bridges.s:
 	oa.sh Tarjan_find_bridges
-Ternary_Search.s: 
+Ternary_Search.s:
 	oa.sh Ternary_Search
-Tree_diameter.s: 
+Tree_diameter.s:
 	oa.sh Tree_diameter
-Z_function.s: 
+Z_function.s:
 	oa.sh Z_function
 
 asmf: asmf2D_Prefix_Sum.s  asmfBFS.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfCRT.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfHash.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfSCC.s  asmfSegment_Tree_RMQ.s  asmfSegment_Tree_Range_Sum.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfZ_function.s 
 
-asmf2D_Prefix_Sum.s: 
+asmf2D_Prefix_Sum.s:
 	ofa.sh 2D_Prefix_Sum
-asmfBFS.s: 
+asmfBFS.s:
 	ofa.sh BFS
-asmfBellman_Ford_Shortest_Path.s: 
+asmfBellman_Ford_Shortest_Path.s:
 	ofa.sh Bellman_Ford_Shortest_Path
-asmfBinary_Exponentiation.s: 
+asmfBinary_Exponentiation.s:
 	ofa.sh Binary_Exponentiation
-asmfBinary_Lifting.s: 
+asmfBinary_Lifting.s:
 	ofa.sh Binary_Lifting
-asmfBinary_Search.s: 
+asmfBinary_Search.s:
 	ofa.sh Binary_Search
-asmfBinomial_Coefficient.s: 
+asmfBinomial_Coefficient.s:
 	ofa.sh Binomial_Coefficient
-asmfBinomial_Theorem.s: 
+asmfBinomial_Theorem.s:
 	ofa.sh Binomial_Theorem
-asmfBitonic_Sort.s: 
+asmfBitonic_Sort.s:
 	ofa.sh Bitonic_Sort
-asmfCRT.s: 
+asmfCRT.s:
 	ofa.sh CRT
-asmfCounting_Sort.s: 
+asmfCounting_Sort.s:
 	ofa.sh Counting_Sort
-asmfDEsopo_Pape.s: 
+asmfDEsopo_Pape.s:
 	ofa.sh DEsopo_Pape
-asmfDFS.s: 
+asmfDFS.s:
 	ofa.sh DFS
-asmfDifference_Array.s: 
+asmfDifference_Array.s:
 	ofa.sh Difference_Array
-asmfDijkstra.s: 
+asmfDijkstra.s:
 	ofa.sh Dijkstra
-asmfDisjoint_Set_Union.s: 
+asmfDisjoint_Set_Union.s:
 	ofa.sh Disjoint_Set_Union
-asmfEdmond_Karp_MaxFlow.s: 
+asmfEdmond_Karp_MaxFlow.s:
 	ofa.sh Edmond_Karp_MaxFlow
-asmfEndian.s: 
+asmfEndian.s:
 	ofa.sh Endian
-asmfEuclid_GCD_LCM.s: 
+asmfEuclid_GCD_LCM.s:
 	ofa.sh Euclid_GCD_LCM
-asmfEuler_s_totient.s: 
+asmfEuler_s_totient.s:
 	ofa.sh Euler_s_totient
-asmfExtended_Euclid_s_Algorithm.s: 
+asmfExtended_Euclid_s_Algorithm.s:
 	ofa.sh Extended_Euclid_s_Algorithm
-asmfFactorize.s: 
+asmfFactorize.s:
 	ofa.sh Factorize
-asmfFenwickTree.s: 
+asmfFenwickTree.s:
 	ofa.sh FenwickTree
-asmfFind_Cycles_Undirected.s: 
+asmfFind_Cycles_Undirected.s:
 	ofa.sh Find_Cycles_Undirected
-asmfFlood_fill.s: 
+asmfFlood_fill.s:
 	ofa.sh Flood_fill
-asmfFloor_Sum.s: 
+asmfFloor_Sum.s:
 	ofa.sh Floor_Sum
-asmfFloyd_Warshall.s: 
+asmfFloyd_Warshall.s:
 	ofa.sh Floyd_Warshall
-asmfHash.s: 
+asmfHash.s:
 	ofa.sh Hash
-asmfKMP.s: 
+asmfKMP.s:
 	ofa.sh KMP
-asmfKadane_s_Algorithm.s: 
+asmfKadane_s_Algorithm.s:
 	ofa.sh Kadane_s_Algorithm
-asmfKosaraju.s: 
+asmfKosaraju.s:
 	ofa.sh Kosaraju
-asmfKth_Order_Statistics.s: 
+asmfKth_Order_Statistics.s:
 	ofa.sh Kth_Order_Statistics
-asmfLevenshtein_distance.s: 
+asmfLevenshtein_distance.s:
 	ofa.sh Levenshtein_distance
-asmfMEX.s: 
+asmfMEX.s:
 	ofa.sh MEX
-asmfMINTEMPLATE.s: 
+asmfMINTEMPLATE.s:
 	ofa.sh MINTEMPLATE
-asmfMax_Heap.s: 
+asmfMax_Heap.s:
 	ofa.sh Max_Heap
-asmfMerge_Sort.s: 
+asmfMerge_Sort.s:
 	ofa.sh Merge_Sort
-asmfMin_Heap.s: 
+asmfMin_Heap.s:
 	ofa.sh Min_Heap
-asmfPriority_Queue.s: 
+asmfPriority_Queue.s:
 	ofa.sh Priority_Queue
-asmfQuick_Sort.s: 
+asmfQuick_Sort.s:
 	ofa.sh Quick_Sort
-asmfSCC.s: 
+asmfSCC.s:
 	ofa.sh SCC
-asmfSegment_Tree_RMQ.s: 
+asmfSegment_Tree_RMQ.s:
 	ofa.sh Segment_Tree_RMQ
-asmfSegment_Tree_Range_Sum.s: 
+asmfSegment_Tree_Range_Sum.s:
 	ofa.sh Segment_Tree_Range_Sum
-asmfSieve_of_Eratosthenes.s: 
+asmfSieve_of_Eratosthenes.s:
 	ofa.sh Sieve_of_Eratosthenes
-asmfSimple_Dijkstra.s: 
+asmfSimple_Dijkstra.s:
 	ofa.sh Simple_Dijkstra
-asmfSparse_Table.s: 
+asmfSparse_Table.s:
 	ofa.sh Sparse_Table
-asmfTEMPLATE.s: 
+asmfTEMPLATE.s:
 	ofa.sh TEMPLATE
-asmfTarjan_find_articulation.s: 
+asmfTarjan_find_articulation.s:
 	ofa.sh Tarjan_find_articulation
-asmfTarjan_find_bridges.s: 
+asmfTarjan_find_bridges.s:
 	ofa.sh Tarjan_find_bridges
-asmfTernary_Search.s: 
+asmfTernary_Search.s:
 	ofa.sh Ternary_Search
-asmfTree_diameter.s: 
+asmfTree_diameter.s:
 	ofa.sh Tree_diameter
-asmfZ_function.s: 
+asmfZ_function.s:
 	ofa.sh Z_function
 
 llvm: 2D_Prefix_Sum.ll  BFS.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  CRT.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  Hash.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Priority_Queue.ll  Quick_Sort.ll  SCC.ll  Segment_Tree_RMQ.ll  Segment_Tree_Range_Sum.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Z_function.ll 
 
-2D_Prefix_Sum.ll: 
+2D_Prefix_Sum.ll:
 	ollvm.sh 2D_Prefix_Sum
-BFS.ll: 
+BFS.ll:
 	ollvm.sh BFS
-Bellman_Ford_Shortest_Path.ll: 
+Bellman_Ford_Shortest_Path.ll:
 	ollvm.sh Bellman_Ford_Shortest_Path
-Binary_Exponentiation.ll: 
+Binary_Exponentiation.ll:
 	ollvm.sh Binary_Exponentiation
-Binary_Lifting.ll: 
+Binary_Lifting.ll:
 	ollvm.sh Binary_Lifting
-Binary_Search.ll: 
+Binary_Search.ll:
 	ollvm.sh Binary_Search
-Binomial_Coefficient.ll: 
+Binomial_Coefficient.ll:
 	ollvm.sh Binomial_Coefficient
-Binomial_Theorem.ll: 
+Binomial_Theorem.ll:
 	ollvm.sh Binomial_Theorem
-Bitonic_Sort.ll: 
+Bitonic_Sort.ll:
 	ollvm.sh Bitonic_Sort
-CRT.ll: 
+CRT.ll:
 	ollvm.sh CRT
-Counting_Sort.ll: 
+Counting_Sort.ll:
 	ollvm.sh Counting_Sort
-DEsopo_Pape.ll: 
+DEsopo_Pape.ll:
 	ollvm.sh DEsopo_Pape
-DFS.ll: 
+DFS.ll:
 	ollvm.sh DFS
-Difference_Array.ll: 
+Difference_Array.ll:
 	ollvm.sh Difference_Array
-Dijkstra.ll: 
+Dijkstra.ll:
 	ollvm.sh Dijkstra
-Disjoint_Set_Union.ll: 
+Disjoint_Set_Union.ll:
 	ollvm.sh Disjoint_Set_Union
-Edmond_Karp_MaxFlow.ll: 
+Edmond_Karp_MaxFlow.ll:
 	ollvm.sh Edmond_Karp_MaxFlow
-Endian.ll: 
+Endian.ll:
 	ollvm.sh Endian
-Euclid_GCD_LCM.ll: 
+Euclid_GCD_LCM.ll:
 	ollvm.sh Euclid_GCD_LCM
-Euler_s_totient.ll: 
+Euler_s_totient.ll:
 	ollvm.sh Euler_s_totient
-Extended_Euclid_s_Algorithm.ll: 
+Extended_Euclid_s_Algorithm.ll:
 	ollvm.sh Extended_Euclid_s_Algorithm
-Factorize.ll: 
+Factorize.ll:
 	ollvm.sh Factorize
-FenwickTree.ll: 
+FenwickTree.ll:
 	ollvm.sh FenwickTree
-Find_Cycles_Undirected.ll: 
+Find_Cycles_Undirected.ll:
 	ollvm.sh Find_Cycles_Undirected
-Flood_fill.ll: 
+Flood_fill.ll:
 	ollvm.sh Flood_fill
-Floor_Sum.ll: 
+Floor_Sum.ll:
 	ollvm.sh Floor_Sum
-Floyd_Warshall.ll: 
+Floyd_Warshall.ll:
 	ollvm.sh Floyd_Warshall
-Hash.ll: 
+Hash.ll:
 	ollvm.sh Hash
-KMP.ll: 
+KMP.ll:
 	ollvm.sh KMP
-Kadane_s_Algorithm.ll: 
+Kadane_s_Algorithm.ll:
 	ollvm.sh Kadane_s_Algorithm
-Kosaraju.ll: 
+Kosaraju.ll:
 	ollvm.sh Kosaraju
-Kth_Order_Statistics.ll: 
+Kth_Order_Statistics.ll:
 	ollvm.sh Kth_Order_Statistics
-Levenshtein_distance.ll: 
+Levenshtein_distance.ll:
 	ollvm.sh Levenshtein_distance
-MEX.ll: 
+MEX.ll:
 	ollvm.sh MEX
-MINTEMPLATE.ll: 
+MINTEMPLATE.ll:
 	ollvm.sh MINTEMPLATE
-Max_Heap.ll: 
+Max_Heap.ll:
 	ollvm.sh Max_Heap
-Merge_Sort.ll: 
+Merge_Sort.ll:
 	ollvm.sh Merge_Sort
-Min_Heap.ll: 
+Min_Heap.ll:
 	ollvm.sh Min_Heap
-Priority_Queue.ll: 
+Priority_Queue.ll:
 	ollvm.sh Priority_Queue
-Quick_Sort.ll: 
+Quick_Sort.ll:
 	ollvm.sh Quick_Sort
-SCC.ll: 
+SCC.ll:
 	ollvm.sh SCC
-Segment_Tree_RMQ.ll: 
+Segment_Tree_RMQ.ll:
 	ollvm.sh Segment_Tree_RMQ
-Segment_Tree_Range_Sum.ll: 
+Segment_Tree_Range_Sum.ll:
 	ollvm.sh Segment_Tree_Range_Sum
-Sieve_of_Eratosthenes.ll: 
+Sieve_of_Eratosthenes.ll:
 	ollvm.sh Sieve_of_Eratosthenes
-Simple_Dijkstra.ll: 
+Simple_Dijkstra.ll:
 	ollvm.sh Simple_Dijkstra
-Sparse_Table.ll: 
+Sparse_Table.ll:
 	ollvm.sh Sparse_Table
-TEMPLATE.ll: 
+TEMPLATE.ll:
 	ollvm.sh TEMPLATE
-Tarjan_find_articulation.ll: 
+Tarjan_find_articulation.ll:
 	ollvm.sh Tarjan_find_articulation
-Tarjan_find_bridges.ll: 
+Tarjan_find_bridges.ll:
 	ollvm.sh Tarjan_find_bridges
-Ternary_Search.ll: 
+Ternary_Search.ll:
 	ollvm.sh Ternary_Search
-Tree_diameter.ll: 
+Tree_diameter.ll:
 	ollvm.sh Tree_diameter
-Z_function.ll: 
+Z_function.ll:
 	ollvm.sh Z_function
 
 clean:

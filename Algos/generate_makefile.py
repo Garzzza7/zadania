@@ -94,7 +94,7 @@ for cpp_file in cpp_files:
 makefile.write("\n\n")
 
 for cpp_file in cpp_files:
-    makefile.write(cpp_file[:-4] + ".s" + ": \n" + "	oa.sh " + cpp_file[:-4] + "\n")
+    makefile.write(cpp_file[:-4] + ".s" + ":\n" + "	oa.sh " + cpp_file[:-4] + "\n")
 
 
 makefile.write("\nasmf:")
@@ -104,7 +104,7 @@ makefile.write("\n\n")
 
 for cpp_file in cpp_files:
     makefile.write(
-        "asmf" + cpp_file[:-4] + ".s" + ": \n" + "	ofa.sh " + cpp_file[:-4] + "\n"
+        "asmf" + cpp_file[:-4] + ".s" + ":\n" + "	ofa.sh " + cpp_file[:-4] + "\n"
     )
 
 makefile.write("\nllvm:")
@@ -113,7 +113,7 @@ for cpp_file in cpp_files:
 makefile.write("\n\n")
 
 for cpp_file in cpp_files:
-    makefile.write(cpp_file[:-4] + ".ll" + ": \n" + "	ollvm.sh " + cpp_file[:-4] + "\n")
+    makefile.write(cpp_file[:-4] + ".ll" + ":\n" + "	ollvm.sh " + cpp_file[:-4] + "\n")
 
 makefile.write("\nclean:\n")
 makefile.write("	rm *.sol\n")
