@@ -290,16 +290,6 @@ else
     printf "${red}$(cat Floyd_Warshall.test)${normal}\n"
 fi
 
-if [ "$(./Hash.sol < Hash.txt)" == "$(cat Hash.test)" ]; then
-    printf "${green}Hash Passed.${normal}\n"
-else
-    printf "${red}Hash Failed.\n"
-    printf "${red} Got:\n"
-    printf "${red}$(./Hash.sol < Hash.txt)\n"
-    printf "${red} Should be:\n"
-    printf "${red}$(cat Hash.test)${normal}\n"
-fi
-
 if [ "$(./KMP.sol < KMP.txt)" == "$(cat KMP.test)" ]; then
     printf "${green}KMP Passed.${normal}\n"
 else
@@ -418,6 +408,16 @@ else
     printf "${red}$(./Quick_Sort.sol < Quick_Sort.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Quick_Sort.test)${normal}\n"
+fi
+
+if [ "$(./Rolling_Hash.sol < Rolling_Hash.txt)" == "$(cat Rolling_Hash.test)" ]; then
+    printf "${green}Rolling_Hash Passed.${normal}\n"
+else
+    printf "${red}Rolling_Hash Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Rolling_Hash.sol < Rolling_Hash.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Rolling_Hash.test)${normal}\n"
 fi
 
 if [ "$(./SCC.sol < SCC.txt)" == "$(cat SCC.test)" ]; then
