@@ -1,9 +1,5 @@
 #include <cmath>
-#include <cstdint>
 #include <iostream>
-#include <map>
-#include <numeric>
-#include <set>
 #include <string>
 #include <vector>
 // BASED ON: https://cses.fi/problemset/task/1753/
@@ -11,15 +7,15 @@
 std::vector<int> rabin_karp(std::string const& text,
 			    std::string const& pattern) {
     constexpr long long mod{1000000007};
-    constexpr long long prime{16777619};
 
-    int text_size = static_cast<int>(text.size());
-    int pattern_size = static_cast<int>(pattern.size());
+    const int text_size = static_cast<int>(text.size());
+    const int pattern_size = static_cast<int>(pattern.size());
 
     std::vector<long long> precalc_powers(std::max(pattern_size, text_size));
     precalc_powers[0] = 1;
     for (int i = 1; i < static_cast<int>(precalc_powers.size()); i++) {
-	precalc_powers[i] = (precalc_powers[i - 1] * prime) % mod;
+	constexpr long long prime{16777619};
+	precalc_powers[i] = precalc_powers[i - 1] * prime % mod;
     }
 
     std::vector<long long> text_hash(text_size + 1, 0);
@@ -36,7 +32,7 @@ std::vector<int> rabin_karp(std::string const& text,
 
     std::vector<int> cnt;
     for (int i = 0; i + pattern_size - 1 < text_size; i++) {
-	long long curr =
+	const long long curr =
 	    (text_hash[i + pattern_size] - text_hash[i] + mod) % mod;
 	if (curr == patter_hash * precalc_powers[i] % mod) {
 	    cnt.push_back(i);
