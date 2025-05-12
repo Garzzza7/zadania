@@ -410,6 +410,16 @@ else
     printf "${red}$(cat Quick_Sort.test)${normal}\n"
 fi
 
+if [ "$(./Rabin_Karp.sol < Rabin_Karp.txt)" == "$(cat Rabin_Karp.test)" ]; then
+    printf "${green}Rabin_Karp Passed.${normal}\n"
+else
+    printf "${red}Rabin_Karp Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Rabin_Karp.sol < Rabin_Karp.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Rabin_Karp.test)${normal}\n"
+fi
+
 if [ "$(./Rolling_Hash.sol < Rolling_Hash.txt)" == "$(cat Rolling_Hash.test)" ]; then
     printf "${green}Rolling_Hash Passed.${normal}\n"
 else
