@@ -1,4 +1,11 @@
 #!/bin/bash
+
+for path in `find ./ -name '*.swp'`
+do
+    echo $path
+    rm $path
+done
+
 for path in `find ./ -name '*.out'`
 do
     echo $path

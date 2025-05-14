@@ -21,7 +21,7 @@ void bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 		}
 	    }
 	}
-	if (done) {
+	if (!done) {
 	    break;
 	}
     }
