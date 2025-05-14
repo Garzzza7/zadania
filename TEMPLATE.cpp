@@ -98,9 +98,9 @@
 // bits
 #define LSB(a) ((a) & -(a))
 #define cntbits(a) __builtin_popcount(a)
-#define on(a, b) (a) |= (1 << (b))
-#define off(a, b) (a) &= ~(1 << (b))
-#define flip(a, b) (a) ^= (1 << (b))
+#define on(a, b) ((a) |= (1 << (b)))
+#define off(a, b) ((a) &= ~(1 << (b)))
+#define flip(a, b) ((a) ^= (1 << (b)))
 #define MOD 1000000007
 #define FAST 1
 #define TIME 0
@@ -196,11 +196,16 @@ template <typename T>
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
-// modify to work with 64bit ints
-template <typename T>
-[[__nodiscard__]] constexpr T flog2(T x) {
-    return x == static_cast<T>(0) ? static_cast<T>(0)
-				  : static_cast<T>(31) - __builtin_clz(x);
+[[__nodiscard__]] constexpr unsigned int bin_log(const unsigned int &x) {
+    return x == static_cast<unsigned int>(0)
+	       ? static_cast<unsigned int>(0)
+	       : static_cast<unsigned int>(31) - __builtin_clz(x);
+}
+
+[[__nodiscard__]] constexpr unsigned long bin_llog(const unsigned long &x) {
+    return x == static_cast<unsigned long>(0)
+	       ? static_cast<unsigned long>(0)
+	       : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
 // descending set

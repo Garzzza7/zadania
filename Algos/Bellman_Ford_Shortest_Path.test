@@ -13,3 +13,4 @@ No Negative Cycle
 4: -2
 Path from 1 to 4: 1 -> 3 -> 4
 
+Negative Cycle
