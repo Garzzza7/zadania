@@ -2,14 +2,15 @@
 #include <string>
 #include <vector>
 
-template <int CHAR_SIZE, int BASE>
+// size of alphabet , ASCII for 'a' (65 for 'A')
+template <int CHAR_SIZE = 26, int BASE = 97>
 struct Trie {
     struct Node {
 	std::vector<int> next;
 	std::vector<int> accepting;
 	int c;
 	int cnt_shares;
-	Node(int c_) : c(c_), cnt_shares(0) {
+	explicit Node(const int c_) : c(c_), cnt_shares(0) {
 	    next.assign(CHAR_SIZE, -1);
 	}
     };
@@ -50,7 +51,7 @@ struct Trie {
 	    }
 	    node_id = next_id;
 	}
-	return (prefix) ? true : nodes[node_id].accepting.size() > 0;
+	return prefix ? true : !nodes[node_id].accepting.empty();
     }
 
     bool start_with_pref(const std::string &prefix) {
@@ -58,11 +59,11 @@ struct Trie {
     }
 
     int count() const {
-	return (nodes[0].cnt_shares);
+	return nodes[0].cnt_shares;
     }
 
     int size() const {
-	return (static_cast<int>(nodes.size()));
+	return static_cast<int>(nodes.size());
     }
 };
 
