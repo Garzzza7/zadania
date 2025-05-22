@@ -1,7 +1,7 @@
 #!/bin/bash
-###############################################################################
-# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.
-##############################################################################
+##################################################################################
+# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#
+##################################################################################
 grey=$(tput setaf 7)
 vividblue=$(tput setaf 20)
 darkblue=$(tput setaf 17)
@@ -538,6 +538,16 @@ else
     printf "${red}$(./Tree_diameter.sol < Tree_diameter.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Tree_diameter.test)${normal}\n"
+fi
+
+if [ "$(./Trie.sol < Trie.txt)" == "$(cat Trie.test)" ]; then
+    printf "${green}Trie Passed.${normal}\n"
+else
+    printf "${red}Trie Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Trie.sol < Trie.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Trie.test)${normal}\n"
 fi
 
 if [ "$(./Z_function.sol < Z_function.txt)" == "$(cat Z_function.test)" ]; then

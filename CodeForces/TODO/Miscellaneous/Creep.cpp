@@ -1,4 +1,3 @@
-#pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -20,6 +19,28 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
+	int a, b;
+	std::cin >> a >> b;
+	int n = a + b;
+	for (int i = 1; i <= n; i++) {
+	    if ((i & 1) == 1 && a > 0) {
+		std::cout << "0";
+		a--;
+	    } else if (b > 0) {
+		std::cout << "1";
+		b--;
+	    }
+	}
+	while (a > 0) {
+	    std::cout << "0";
+	    a--;
+	}
+
+	while (b > 0) {
+	    std::cout << "1";
+	    b--;
+	}
+	std::cout << "\n";
     }
 
     return 0;

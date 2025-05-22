@@ -1,3 +1,4 @@
+#pragma GCC optimize("Ofast")
 #include <alloca.h>
 #include <assert.h>
 #include <bits/stdc++.h>
@@ -271,6 +272,7 @@ using namespace __gnu_pbds;
 
 // constants
 [[maybe_unused]] constexpr int prime{7919};
+[[maybe_unused]] constexpr double pi{3.14159};
 
 int main() {
 #if TIME

@@ -1,4 +1,3 @@
-#pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -17,9 +16,21 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
-    std::cin >> T;
-    while (T--) {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<int> ord = {0};
+    for (int i = 1; i <= n; i++) {
+	int a, b;
+	std::cin >> a >> b;
+	ord.push_back(a * b + ord.back());
+    }
+
+    auto l = ord.begin();
+    while (m--) {
+	int a;
+	std::cin >> a;
+	std::cout << std::lower_bound(l, ord.end(), a) - l << "\n";
+	// l = std::lower_bound(l, ord.end(), a);
     }
 
     return 0;

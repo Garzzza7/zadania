@@ -17,10 +17,21 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
-    std::cin >> T;
-    while (T--) {
+    int n, d;
+    std::cin >> n >> d;
+    std::vector<int> vec(n);
+    for (auto&& v : vec) {
+	std::cin >> v;
     }
+    int cnt{0};
+    for (int i = 1; i < n; i++) {
+	if (std::abs(vec[i] - vec[i - 1]) == d) {
+	    cnt++;
+	    vec[i - 1] = 1e8;
+	}
+    }
+
+    std::cout << cnt << "\n";
 
     return 0;
 }

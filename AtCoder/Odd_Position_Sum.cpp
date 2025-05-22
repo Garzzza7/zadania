@@ -17,10 +17,17 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
-    std::cin >> T;
-    while (T--) {
+    int n;
+    std::cin >> n;
+    ll sum{0};
+    for (int i = 1; i <= n; i++) {
+	int a;
+	std::cin >> a;
+	if (i & 1) {
+	    sum += a;
+	}
     }
+    std::cout << sum << "\n";
 
     return 0;
 }

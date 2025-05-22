@@ -18,13 +18,13 @@ compiler_flags = (
     + compiler
     + " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op "
 )
-fast_compiler_flags = "	g++ --std=c++20 -O0 "
+fast_compiler_flags = "	" + compiler + " --std=c++20 -O0 "
 makefile = open("Makefile", "w")
 
 makefile.write(
-    "###############################################################################\n"
-    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.\n#"
-    + "#############################################################################\n"
+    "##################################################################################\n"
+    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
+    + "##################################################################################\n"
 )
 
 makefile.write(".PHONY: standard all force fast asm asmf llvm clean\n\n")
@@ -124,9 +124,9 @@ makefile.close()
 testfile = open("run_tests.sh", "w")
 testfile.write("#!/bin/bash\n")
 testfile.write(
-    "###############################################################################\n"
-    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DONT EDIT IT.\n#"
-    + "#############################################################################\n"
+    "##################################################################################\n"
+    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
+    + "##################################################################################\n"
 )
 testfile.write(
     "grey=$(tput setaf 7)\n"

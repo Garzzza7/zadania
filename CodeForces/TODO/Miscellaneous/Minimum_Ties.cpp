@@ -1,4 +1,3 @@
-#pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -20,6 +19,9 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
+	int n;
+	std::cin >> n;
+
     }
 
     return 0;

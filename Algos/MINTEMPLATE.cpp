@@ -1,3 +1,4 @@
+#pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
