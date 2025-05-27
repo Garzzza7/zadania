@@ -150,6 +150,16 @@ else
     printf "${red}$(cat DFS.test)${normal}\n"
 fi
 
+if [ "$(./Derangement.sol < Derangement.txt)" == "$(cat Derangement.test)" ]; then
+    printf "${green}Derangement Passed.${normal}\n"
+else
+    printf "${red}Derangement Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Derangement.sol < Derangement.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Derangement.test)${normal}\n"
+fi
+
 if [ "$(./Difference_Array.sol < Difference_Array.txt)" == "$(cat Difference_Array.test)" ]; then
     printf "${green}Difference_Array Passed.${normal}\n"
 else

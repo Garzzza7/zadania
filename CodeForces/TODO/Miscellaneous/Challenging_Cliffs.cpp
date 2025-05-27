@@ -11,21 +11,6 @@
 #define ll long long
 #define sz(vec) (static_cast<int>((vec).size()))
 
-int check(std::vector<int> vec, int s){
-	int cnt = 0;
-	for(int i = 0 ; i < sz(vec) ; i++){
-		for(int j = i + 1 ; j < sz(vec); j++){
-			if(vec[i] + vec[j] == s){
-				vec[j] = -1e9;
-				vec[i] = -1e9;
-				cnt++;
-			}
-		}
-	}
-	return cnt;
-}
-
-
 int main() {
 	std::ios_base::sync_with_stdio(false);
 	std::cin.tie(nullptr);
@@ -34,20 +19,33 @@ int main() {
 	int T;
 	std::cin >> T;
 	while (T--) {
-		int n;
+		ll n;
 		std::cin >> n;
-		std::vector<int> vec(n);
+		std::vector<ll> vec(n);
 		for(auto&& v : vec){
 			std::cin >> v;
 		}
-		int res = -1;
-		for(int s = 2 ; s <= 100 ; s++){
-			int cnt = check(vec ,s);
-			if(cnt > res){
-				res = cnt;
+		std::sort(vec.begin() , vec.end());
+		if(n==2){
+			std::cout << vec[0] << " " << vec[1] << "\n";
+			continue;
+		}
+
+		ll mini = 0;
+		ll gap = INT64_MAX;
+		for(ll i = 1 ; i < n ; i++){
+			if(vec[i] - vec[i-1] < gap){
+				gap = vec[i] - vec[i-1];
+				mini = i;
 			}
 		}
-		std::cout << res << "\n";
+		for(ll i = mini ; i < n ; i++){
+			std::cout << vec[i] << " ";
+		}
+		for(ll i = 0 ; i < mini ; i++){
+			std::cout << vec[i] << " ";
+		}
+		std::cout << "\n";
 	}
 
 	return 0;

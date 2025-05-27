@@ -1,39 +1,41 @@
+#pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <bits/stdc++.h>
+#include <cmath>
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define ll long long
+#define sz(vec) (static_cast<int>((vec).size()))
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     int n, m;
-    cin >> n >> m;
-    vector<int> a(n);
-    vector<int> b(m);
-    for (int i = 0; i < n; i++) {
-	int aa;
-	cin >> aa;
-	a[i] = aa;
+    std::cin >> n >> m;
+    std::vector<ll> c(n);
+    std::vector<ll> ct(m);
+    for (auto&& v : c) {
+	std::cin >> v;
     }
-    for (int i = 0; i < m; i++) {
-	int aa;
-	cin >> aa;
-	b[i] = aa;
+    for (auto&& v : ct) {
+	std::cin >> v;
     }
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-	int buff = INT32_MAX;
-	auto r = lower_bound(b.begin(), b.end(), a[i]);
-	auto l = r - 1;
-	/*cout << a[i] << ": " << *l << " " << *r << "\n";*/
-	if (*r != *b.end()) {
-	    buff = min(buff, *r - a[i]);
-	}
-	if (l + 1 != b.begin()) {
-	    buff = min(buff, a[i] - *l);
-	}
-	res = max(res, buff);
+    ct.push_back(INT64_MAX);
+    ll res = INT64_MIN;
+    for (const auto& v : c) {
+	ll r = std::lower_bound(ct.begin(), ct.end(), v) - ct.begin();
+	ll l = std::max(r - 1, 0ll);
+	ll maxi = std::min(std::abs(ct[r] - v), std::abs(ct[l] - v));
+	res = std::max(res, maxi);
     }
-    cout << res << "\n";
+    std::cout << res << "\n";
+
     return 0;
 }
