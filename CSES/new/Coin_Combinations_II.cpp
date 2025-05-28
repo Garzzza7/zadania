@@ -19,26 +19,24 @@ int main() {
 
     constexpr ll mod = 1e9 + 7;
 
-    ll n, x;
+    int n, x;
     std::cin >> n >> x;
-    std::vector<ll> vec(n);
-    std::vector<ll> dp(x + 10, 0);
-    for (ll i = 0; i < n; i++) {
-	ll a;
-	std::cin >> a;
-	vec[i] = a;
+    std::vector<int> vec(n);
+    std::vector<int> dp(x + 10, 0);
+    for (auto&& v : vec) {
+	std::cin >> v;
     }
 
     dp[0] = 1;
-    for (ll i = 0; i <= x; i++) {
-	for (const auto& c : vec) {
-	    if (i - c >= 0) {
-		dp[i] += dp[i - c];
+    for (const auto& v : vec) {
+	for (int i = 0; i <= x; i += 1) {
+	    if (i - v >= 0) {
+		dp[i] += dp[i - v];
 		dp[i] %= mod;
 	    }
 	}
     }
-    std::cout << dp[x] % mod << "\n";
 
+    std::cout << dp[x] % mod << "\n";
     return 0;
 }
