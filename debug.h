@@ -1,6 +1,7 @@
+#pragma once
 #include <bits/stdc++.h>
 // https://github.om/Heltion/debug.h
-template <class T, size_t size = std::tuple_size<T>::value>
+template <class T, size_t size = std::tuple_size_v<T>>
 std::string to_debug(T, std::string s = "")
     requires(not std::ranges::range<T>);
 std::string to_debug(auto x)

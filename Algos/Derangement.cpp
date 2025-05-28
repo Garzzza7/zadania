@@ -1,13 +1,27 @@
 #include <iostream>
 #include <vector>
 
-#define ll long long
+const std::vector<unsigned long long> derangements = {1,
+						      0,
+						      1,
+						      2,
+						      9,
+						      44,
+						      265,
+						      1'854,
+						      14'833,
+						      133'496,
+						      1'334'961,
+						      14'684'570,
+						      176'214'841,
+						      2'290'792'932,
+						      32'071'101'049,
+						      481'066'515'734,
+						      7'697'064'251'745,
+						      130'850'092'279'664,
+						      2'355'301'661'033'953};
 
-const std::vector<long long> derangements = {
-    1,	   0,	   1,	    2,	       9,	   44,		265,
-    1'854, 14'833, 133'496, 1'334'961, 14'684'570, 176'214'841, 2'290'792'932};
-
-long long derangement(long long n) {
+unsigned long long derangement(const unsigned long long n) {
     if (n == 1ll) {
 	return 0ll;
     }
@@ -15,10 +29,10 @@ long long derangement(long long n) {
 	return 1ll;
     }
 
-    long long prev1{1ll};
-    long long prev2{0ll};
+    unsigned long long prev1{1ll};
+    unsigned long long prev2{0ll};
     for (int i = 3; i <= n; i++) {
-	auto curr = (i - 1) * (prev1 + prev2);
+	const auto curr = (i - 1) * (prev1 + prev2);
 	prev2 = prev1;
 	prev1 = curr;
     }
@@ -34,7 +48,7 @@ int main() {
     int T;
     std::cin >> T;
     while (T--) {
-	long long a;
+	unsigned long long a;
 	std::cin >> a;
 	std::cout << derangement(a) << "\n";
     }

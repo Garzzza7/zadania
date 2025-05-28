@@ -1,3 +1,4 @@
+#pragma once
 #pragma GCC target("avx")
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("inline")

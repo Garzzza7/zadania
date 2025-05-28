@@ -121,7 +121,7 @@ void rm_char(std::string &s, const char &c) {
 }
 
 [[__nodiscard__]] double deg_to_rad(const int &d) {
-    return static_cast<double>(d * 0.1745);
+    return d * 0.1745;
 }
 
 // https://github.com/Heltion/debug.h/blob/main/README.md
@@ -155,12 +155,12 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
-[[__nodiscard__]] inline T bin_xor(T a, T b) {
-    return (~(a & b)) & (a | b);
+[[__nodiscard__]] T bin_xor(T a, T b) {
+    return ~(a & b) & (a | b);
 }
 
 template <typename T>
-[[__nodiscard__]] inline bool is_on(T a, T b) {
+[[__nodiscard__]] bool is_on(T a, T b) {
     return a & (static_cast<T>(1) << b);
 }
 
@@ -172,28 +172,27 @@ template <typename T>
 				const std::pair<int, int> &y) {
     if (x.second < y.second) {
 	return x.second < y.second;
-    } else {
-	return x.first < y.first;
     }
+    return x.first < y.first;
 }
 
 template <typename T>
-[[__nodiscard__]] inline T bin_min(const T &x, const T &y) {
-    return y ^ ((x ^ y) & -(x < y));
+[[__nodiscard__]] T bin_min(const T &x, const T &y) {
+    return y ^ (x ^ y) & -(x < y);
 }
 
 template <typename T>
-[[__nodiscard__]] inline T bin_max(const T &x, const T &y) {
-    return y ^ ((x ^ y) & -(x > y));
+[[__nodiscard__]] T bin_max(const T &x, const T &y) {
+    return y ^ (x ^ y) & -(x > y);
 }
 
 template <typename T>
-[[__nodiscard__]] inline T bin_ce(T x, T y) {
+[[__nodiscard__]] T bin_ce(T x, T y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
 template <typename T>
-[[__nodiscard__]] inline T bin_fl(T x, T y) {
+[[__nodiscard__]] T bin_fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
