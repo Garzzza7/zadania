@@ -150,6 +150,16 @@ else
     printf "${red}$(cat DFS.test)${normal}\n"
 fi
 
+if [ "$(./DP_Regex.sol < DP_Regex.txt)" == "$(cat DP_Regex.test)" ]; then
+    printf "${green}DP_Regex Passed.${normal}\n"
+else
+    printf "${red}DP_Regex Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./DP_Regex.sol < DP_Regex.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat DP_Regex.test)${normal}\n"
+fi
+
 if [ "$(./Derangement.sol < Derangement.txt)" == "$(cat Derangement.test)" ]; then
     printf "${green}Derangement Passed.${normal}\n"
 else
