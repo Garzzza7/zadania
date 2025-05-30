@@ -3,18 +3,16 @@
 #include <vector>
 
 bool dp_regex(const std::string& s1, const std::string& s2) {
-    auto word = " " + s1;
-    auto pattern = " " + s2;
-    int n1 = static_cast<int>(word.size());
-    int n2 = static_cast<int>(pattern.size());
+    const auto word = " " + s1;
+    const auto pattern = " " + s2;
+    const int n1 = static_cast<int>(word.size());
+    const int n2 = static_cast<int>(pattern.size());
     std::vector dp(n1, std::vector<bool>(n2, false));
 
     dp[0][0] = true;
 
-    for (int i = 0; i < n2; i++) {
-	if (pattern[i] == '*') {
-	    dp[0][i] = dp[0][i - 2];
-	}
+    for (int i = 2; i < n2; i++) {
+	dp[0][i] = (dp[0][i - 2]) && (pattern[i] == '*');
     }
 
     for (int i = 1; i < n1; i++) {
