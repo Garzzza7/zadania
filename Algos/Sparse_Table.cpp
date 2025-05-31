@@ -8,18 +8,15 @@ struct Sparse_table {
     std::vector<long long> bin_log;
 
     Sparse_table() = default;
-    Sparse_table(std::vector<long long> init) {
+    explicit Sparse_table(const std::vector<long long> &init) {
 	N = static_cast<int>(init.size());
 	bin_log.push_back(0);
 	bin_log.push_back(0);
 	for (int i = 2; i <= N; i++) {
 	    bin_log.push_back(bin_log[i / 2] + 1);
 	}
-	LOG = static_cast<int>(0)
-		  ? static_cast<int>(0)
-		  : static_cast<int>(63) - __builtin_clzl(N) + 1;
-	matrix = std::vector<std::vector<long long>>(
-	    LOG, std::vector<long long>(N, 0ll));
+	LOG = 63 - __builtin_clzl(N) + 1;
+	matrix = std::vector(LOG, std::vector(N, 0ll));
 	matrix[0] = init;
     }
 
@@ -50,24 +47,24 @@ struct Sparse_table {
 	}
     }
 
-    long long query_min(const int L, const int R) {
+    long long query_min(const int L, const int R) const {
 	const long long i = bin_log[R - L + 1];
 	const long long minimum =
 	    std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    long long query_max(const int L, const int R) {
+    long long query_max(const int L, const int R) const {
 	const long long i = bin_log[R - L + 1];
 	const long long minimum =
 	    std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    long long query_sum(int L, int R) {
+    long long query_sum(int L, const int R) const {
 	long long sum = 0;
 	for (int i = LOG; i >= 0; i--) {
-	    if ((1 << i) <= R - L + 1) {
+	    if (1 << i <= R - L + 1) {
 		sum += matrix[i][L];
 		L += 1 << i;
 	    }
