@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 
-struct Sparce_table {
+struct Sparse_table {
     long long N;
     int LOG;
     std::vector<std::vector<long long>> matrix;
     std::vector<long long> bin_log;
 
-    Sparce_table() = default;
-    Sparce_table(std::vector<long long> init) {
+    Sparse_table() = default;
+    Sparse_table(std::vector<long long> init) {
 	N = static_cast<int>(init.size());
 	bin_log.push_back(0);
 	bin_log.push_back(0);
@@ -88,9 +88,9 @@ int main() {
 	std::cin >> vec[i];
     }
 
-    Sparce_table st_min(vec);
-    Sparce_table st_sum(vec);
-    Sparce_table st_max(vec);
+    Sparse_table st_min(vec);
+    Sparse_table st_sum(vec);
+    Sparse_table st_max(vec);
 
     st_min.process_min();
     st_sum.process_sum();
