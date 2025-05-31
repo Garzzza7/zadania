@@ -1,12 +1,25 @@
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
 #include <iostream>
+#include <map>
+#include <numeric>
+#include <set>
+#include <string>
 #include <vector>
 
+#define ll long long
+#define sz(vec) (static_cast<int>((vec).size()))
+
 struct Sparce_table {
+   private:
     long long N;
     int LOG;
     std::vector<std::vector<long long>> matrix;
     std::vector<long long> bin_log;
 
+   public:
     Sparce_table() = default;
     Sparce_table(std::vector<long long> init) {
 	N = static_cast<int>(init.size());
@@ -19,7 +32,7 @@ struct Sparce_table {
 		  ? static_cast<int>(0)
 		  : static_cast<int>(63) - __builtin_clzl(N) + 1;
 	matrix = std::vector<std::vector<long long>>(
-	    LOG, std::vector<long long>(N, 0ll));
+	    LOG, std::vector<long long>(N + 1, 0ll));
 	matrix[0] = init;
     }
 
@@ -31,16 +44,6 @@ struct Sparce_table {
 	    }
 	}
     }
-
-    void process_max() {
-	for (int i = 1; i <= LOG; i++) {
-	    for (int j = 0; j + (1 << i) <= N; j++) {
-		matrix[i][j] = std::max(matrix[i - 1][j],
-					matrix[i - 1][j + (1 << (i - 1))]);
-	    }
-	}
-    }
-
     void process_sum() {
 	for (int i = 1; i <= LOG; i++) {
 	    for (int j = 0; j + (1 << i) <= N; j++) {
@@ -54,13 +57,6 @@ struct Sparce_table {
 	const long long i = bin_log[R - L + 1];
 	const long long minimum =
 	    std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
-	return minimum;
-    }
-
-    long long query_max(const int L, const int R) {
-	const long long i = bin_log[R - L + 1];
-	const long long minimum =
-	    std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
@@ -81,29 +77,21 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n;
-    std::cin >> n;
-    std::vector<long long> vec(n);
-    for (int i = 0; i < n; i++) {
+    ll n, q;
+    std::cin >> n >> q;
+    std::vector<ll> vec(n);
+    for (ll i = 0ll; i < n; i++) {
 	std::cin >> vec[i];
     }
+    Sparce_table st(vec);
+    st.process_min();
 
-    Sparce_table st_min(vec);
-    Sparce_table st_sum(vec);
-    Sparce_table st_max(vec);
-
-    st_min.process_min();
-    st_sum.process_sum();
-    st_max.process_max();
-
-    int q;
-    std::cin >> q;
     while (q--) {
 	int L, R;
 	std::cin >> L >> R;
-	std::cout << st_min.query_min(L, R) << "\n";
-	std::cout << st_sum.query_sum(L, R) << "\n";
-	std::cout << st_max.query_max(L, R) << "\n";
+	L--;
+	R--;
+	std::cout << st.query_min(L, R) << "\n";
     }
     return 0;
 }
