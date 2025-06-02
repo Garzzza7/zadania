@@ -21,17 +21,28 @@ int main() {
     std::cin >> T;
     while (T--) {
 	int n;
-	std::cin >> n;
-	std::vector<int> vec(n);
-	std::iota(vec.begin(), vec.end(), 1);
-	std::sort(vec.begin(), vec.end(), std::greater<>());
-	if (n & 1) {
-	    std::swap(vec[0], vec[n / 2]);
+	char c;
+	std::cin >> n >> c;
+	std::string s;
+	std::cin >> s;
+	int id = 0;
+	int cnt = 0;
+	for (int i = 0; i < n; i++) {
+	    if (s[i] == c) {
+		id = i;
+		cnt++;
+	    } else {
+	    }
 	}
-	for (const auto& v : vec) {
-	    std::cout << v << " ";
+	if (cnt == n) {
+	    std::cout << 0 << "\n";
+	} else if (cnt == n - 1) {
+	    std::cout << 1 << "\n";
+	    std::cout << id + 1 << "\n";
+	} else {
+	    std::cout << 2 << "\n";
+	    std::cout << n << " " << n - 1 << "\n";
 	}
-	std::cout << "\n";
     }
 
     return 0;

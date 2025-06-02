@@ -17,19 +17,14 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int a, b;
-    std::cin >> a >> b;
-    int goal = 3 * a - b;
-    std::vector<int> res = {b};
-    if (goal >= 0) {
-	res.push_back(goal + 10000);
-	res.push_back(-10000);
-    } else {
-	res.push_back(goal - 10000);
-	res.push_back(10000);
+    int T;
+    std::cin >> T;
+    while (T--) {
+	int n;
+	std::cin >> n;
+	std::string s;
+	std::cin >> s;
     }
-    std::cout << 3 << "\n";
-    std::cout << res[0] << " " << res[1] << " " << res[2] << "\n";
 
     return 0;
 }
