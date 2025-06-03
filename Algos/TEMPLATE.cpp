@@ -1,7 +1,7 @@
+// #include <bits/stdc++.h>
 #pragma GCC optimize("Ofast")
 #include <alloca.h>
 #include <assert.h>
-#include <bits/stdc++.h>
 #include <errno.h>
 #include <float.h>
 #include <stdbool.h>

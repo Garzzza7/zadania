@@ -1,6 +1,10 @@
-2 3
-aaaaa
-acacaca
-aabaa
-ccacacc
-caaac
+5 4
+ab
+cacab
+cbabc
+acc
+cacab
+abc
+aa
+acbca
+cb

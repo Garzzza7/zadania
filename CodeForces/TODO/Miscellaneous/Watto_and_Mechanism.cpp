@@ -1,22 +1,27 @@
 #pragma GCC optimize("Ofast")
-#include <algorithm>
-#include <cmath>
-#include <cstdint>
 #include <iostream>
-#include <map>
-#include <numeric>
 #include <set>
 #include <string>
 #include <vector>
 
-#define ll long long
 #define sz(vec) (static_cast<int>((vec).size()))
 
-constexpr long long mod{1000000007};
+constexpr long long mod{static_cast<long long>(1e15 + 37)};
+
 constexpr long long prime{7919};
 
+std::vector<long long> powers(8 * 1e5 + 5, 0ll);
+
+void preprocess() {
+    int n = static_cast<int>(powers.size());
+    powers[0] = 1ll;
+    for (int i = 1; i < n; i++) {
+	powers[i] = (powers[i - 1] * prime) % mod;
+    }
+}
+
 long long mod_binpow(long long a, long long b) {
-    long long res = 1;
+    long long res{1ll};
     while (b > 0) {
 	if (b & 1) {
 	    res = res * a % mod;
@@ -27,25 +32,13 @@ long long mod_binpow(long long a, long long b) {
     return res;
 }
 
-long long query_hash(const std::vector<long long>& hash, const int& l,
-		     const int& r) {
-    return ((hash[r] - hash[l] * mod_binpow(prime, r - l)) % mod + mod) % mod;
-}
-
 long long hash(const std::string& s) {
     const int n = static_cast<int>(s.size());
-    long long res = 0ll;
+    long long res{0ll};
     for (int i = 0; i < n; i++) {
-	res = res * prime % mod + (s[i] - 'a');
-    }
-    return res;
-}
-
-std::vector<long long> rolling_hash(const std::string& s) {
-    const int n = static_cast<int>(s.size());
-    std::vector<long long> res(n + 1, 0);
-    for (int i = 0; i < n; i++) {
-	res[i + 1] = res[i] * prime % mod + (s[i] - 'a' + 1);
+	res = (res + powers[i] * (long long) (s[i] - 'a' + 1)) % mod;
+	// res = (res + mod_binpow(prime, i) * (s[i] - 'a' + 1)) % mod;
+	// res = (res * prime % mod + (s[i] - 'a' + 1)) % mod;
     }
     return res;
 }
@@ -57,38 +50,50 @@ int main() {
 
     int n, m;
     std::cin >> n >> m;
+
     std::set<long long> set;
+    std::vector<char> chars = {'a', 'b', 'c'};
+
+    preprocess();
+
     for (int i = 0; i < n; i++) {
 	std::string s;
 	std::cin >> s;
 	set.insert(hash(s));
     }
-    for (int i = 0; i < m; i++) {
+
+    while (m--) {
 	std::string s;
 	std::cin >> s;
-	auto h = hash(s);
+	long long h = hash(s);
 	bool git = 0;
-	// std::cout << "H = " << h << "\n";
 
-	if (set.find(h) != set.end()) {
-	    git = 1;
-	    std::cout << "YES\n";
-	    continue;
-	}
 	for (int i = 0; i < sz(s); i++) {
-	    for (int j = 'a'; j < 'd'; j++) {
-		if (s[i] != j) {
-		    auto nh = (h - s[i] * mod_binpow(prime, sz(s) - 1 - i) +
-			       j * mod_binpow(prime, sz(s) - 1 - i)) %
-			      mod;
-		    // std::cout << "nh = " << nh << "\n";
-		    if (set.find(nh) != set.end()) {
+	    for (const auto& c : chars) {
+		if (s[i] != c) {
+		    long long new_h =
+			(h - ((long long) (s[i] - 'a' + 1) * powers[i]) +
+			 ((long long) (c - 'a' + 1) * powers[i]));
+
+		    //    long long new_h =
+		    // (h -
+		    //  ((s[i] - 'a' + 1) * mod_binpow(prime, sz(s) - i - 1)) +
+		    //  ((c - 'a' + 1) * mod_binpow(prime, sz(s) - i - 1)));
+
+		    while (new_h < 0ll) {
+			new_h += mod;
+		    }
+
+		    new_h %= mod;
+
+		    if (set.find(new_h) != set.end()) {
 			git = 1;
 			break;
 		    }
 		}
 	    }
 	}
+
 	if (git) {
 	    std::cout << "YES\n";
 	} else {

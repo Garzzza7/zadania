@@ -10,14 +10,17 @@ struct Trie {
 	std::vector<int> accepting;
 	int c;
 	int cnt_shares;
-	explicit Node(const int c_) : c(c_), cnt_shares(0) {
+	explicit Node(const int c_) {
+	    c = c_;
+	    cnt_shares = 0;
 	    next.assign(CHAR_SIZE, -1);
 	}
     };
 
     std::vector<Node> nodes;
     int root;
-    Trie() : root(0) {
+    Trie() {
+	root = 0;
 	nodes.push_back(Node(root));
     }
 
@@ -54,7 +57,7 @@ struct Trie {
 	return prefix ? true : !nodes[node_id].accepting.empty();
     }
 
-    bool start_with_pref(const std::string &prefix) {
+    bool starts_with_pref(const std::string &prefix) {
 	return search(prefix, true);
     }
 
@@ -99,7 +102,7 @@ int main() {
 	    std::string s;
 	    std::cin >> s;
 
-	    if (trie.start_with_pref(s)) {
+	    if (trie.starts_with_pref(s)) {
 		std::cout << s << " found as prefix.\n";
 	    } else {
 		std::cout << s << " not found as prefix.\n";
