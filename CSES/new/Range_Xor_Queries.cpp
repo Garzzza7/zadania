@@ -1,15 +1,25 @@
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
 #include <iostream>
+#include <map>
+#include <numeric>
+#include <set>
+#include <string>
 #include <vector>
 
-template <typename T>
+#define ll long long
+#define sz(vec) (static_cast<int>((vec).size()))
+
 struct Sparse_table {
-    T N;
+    long long N;
     int LOG;
-    std::vector<std::vector<T>> matrix;
-    std::vector<T> bin_log;
+    std::vector<std::vector<long long>> matrix;
+    std::vector<long long> bin_log;
 
     Sparse_table() = default;
-    explicit Sparse_table(const std::vector<T> &init) {
+    explicit Sparse_table(const std::vector<long long>& init) {
 	N = static_cast<int>(init.size());
 	bin_log.push_back(0);
 	bin_log.push_back(0);
@@ -57,20 +67,22 @@ struct Sparse_table {
 	}
     }
 
-    T query_min(const int L, const int R) const {
-	const T i = bin_log[R - L + 1];
-	const T minimum = std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
+    long long query_min(const int L, const int R) const {
+	const long long i = bin_log[R - L + 1];
+	const long long minimum =
+	    std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    T query_max(const int L, const int R) const {
-	const T i = bin_log[R - L + 1];
-	const T minimum = std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
+    long long query_max(const int L, const int R) const {
+	const long long i = bin_log[R - L + 1];
+	const long long minimum =
+	    std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    T query_sum(int L, const int R) const {
-	T sum = 0;
+    long long query_sum(int L, const int R) const {
+	long long sum = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
 		sum += matrix[i][L];
@@ -80,8 +92,8 @@ struct Sparse_table {
 	return sum;
     }
 
-    T query_xor(int L, const int R) const {
-	T res = 0;
+    long long query_xor(int L, const int R) const {
+	long long res = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
 		res ^= matrix[i][L];
@@ -97,32 +109,24 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n;
-    std::cin >> n;
+    int n, q;
+    std::cin >> n >> q;
     std::vector<long long> vec(n);
-    for (int i = 0; i < n; i++) {
-	std::cin >> vec[i];
+
+    for (auto&& v : vec) {
+	std::cin >> v;
     }
 
-    Sparse_table<long long> st_min(vec);
-    Sparse_table<long long> st_sum(vec);
-    Sparse_table<long long> st_max(vec);
-    Sparse_table<long long> st_xor(vec);
+    Sparse_table st(vec);
+    st.process_xor();
 
-    st_min.process_min();
-    st_sum.process_sum();
-    st_max.process_max();
-    st_xor.process_xor();
-
-    int q;
-    std::cin >> q;
     while (q--) {
-	int L, R;
-	std::cin >> L >> R;
-	std::cout << st_min.query_min(L, R) << "\n";
-	std::cout << st_sum.query_sum(L, R) << "\n";
-	std::cout << st_max.query_max(L, R) << "\n";
-	std::cout << st_xor.query_xor(L, R) << "\n";
+	int l, r;
+	std::cin >> l >> r;
+	l--;
+	r--;
+	std::cout << st.query_xor(l, r) << "\n";
     }
+
     return 0;
 }
