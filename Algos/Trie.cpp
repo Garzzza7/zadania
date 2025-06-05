@@ -44,7 +44,7 @@ struct Trie {
 	insert(word, nodes[0].cnt_shares);
     }
 
-    bool search(const std::string &word, bool prefix = false) {
+    bool search(const std::string &word, bool check_prefix = false) {
 	int node_id{0};
 	for (int i = 0; i < static_cast<int>(word.size()); i++) {
 	    int c = word[i] - BASE;
@@ -54,7 +54,7 @@ struct Trie {
 	    }
 	    node_id = next_id;
 	}
-	return prefix ? true : !nodes[node_id].accepting.empty();
+	return check_prefix ? true : !nodes[node_id].accepting.empty();
     }
 
     bool starts_with_pref(const std::string &prefix) {
@@ -103,9 +103,9 @@ int main() {
 	    std::cin >> s;
 
 	    if (trie.starts_with_pref(s)) {
-		std::cout << s << " found as prefix.\n";
+		std::cout << s << " found as a prefix.\n";
 	    } else {
-		std::cout << s << " not found as prefix.\n";
+		std::cout << s << " not found as a prefix.\n";
 	    }
 	}
     }

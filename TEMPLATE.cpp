@@ -60,16 +60,6 @@
 #include <valarray>
 #include <vector>
 
-#define print_rvalues(vec)     \
-    for (auto &&a : (vec)) {   \
-	std::cout << a << ' '; \
-    }                          \
-    std::cout << '\n';
-#define print_lvalues(vec)        \
-    for (const auto &a : (vec)) { \
-	std::cout << a << ' ';    \
-    }                             \
-    std::cout << '\n';
 #define help std::ios_base::sync_with_stdio(false);
 #define me std::cin.tie(nullptr);
 #define pls std::cout.tie(nullptr);
@@ -102,9 +92,6 @@
 #define on(a, b) ((a) |= (1 << (b)))
 #define off(a, b) ((a) &= ~(1 << (b)))
 #define flip(a, b) ((a) ^= (1 << (b)))
-#define MOD 1000000007
-#define FAST 1
-#define TIME 0
 
 [[__nodiscard__]] int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
@@ -272,9 +259,10 @@ using namespace __gnu_pbds;
 // constants
 [[maybe_unused]] constexpr int prime{7919};
 [[maybe_unused]] constexpr double pi{3.14159};
+[[maybe_unused]] constexpr int mod{1000000007};
 
 int main() {
-#if TIME
+#ifdef TIME
     const std::chrono::time_point<
 	std::chrono::system_clock,
 	std::chrono::duration<long, std::ratio<1, 1000000000>>>
@@ -292,7 +280,7 @@ int main() {
     while (T--) {
     }
 
-#if TIME
+#ifdef TIME
     const std::chrono::time_point<
 	std::chrono::system_clock,
 	std::chrono::duration<long, std::ratio<1, 1000000000>>>
