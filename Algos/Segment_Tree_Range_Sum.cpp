@@ -38,7 +38,7 @@ void recursive_update(const long long start_node, const long long node_left,
 }
 void iterative_update(const long long index, const long long value) {
     tree[tree_size + index] = value;
-    for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
+    for (long long i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
 	tree[i] = tree[i * 2] + tree[i * 2 + 1];
     }
 }

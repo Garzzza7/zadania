@@ -14,7 +14,7 @@ std::string find_little_endian(const std::string &word) {
     }
 
     little_endian[2 * word_len] = '\0';
-    std::string res(std::move(little_endian));
+    std::string res(little_endian);
     return res;
 }
 
@@ -29,7 +29,7 @@ std::string find_big_endian(const std::string &word) {
     }
 
     big_endian[2 * length] = '\0';
-    std::string res(std::move(big_endian));
+    std::string res(big_endian);
     return res;
 }
 

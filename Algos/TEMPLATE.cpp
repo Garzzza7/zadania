@@ -1,13 +1,6 @@
 // #include <bits/stdc++.h>
 #pragma GCC optimize("Ofast")
 #include <alloca.h>
-#include <assert.h>
-#include <errno.h>
-#include <float.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <sys/mman.h>
 #include <unistd.h>
 
@@ -15,6 +8,9 @@
 #include <array>
 #include <atomic>
 #include <bitset>
+#include <cassert>
+#include <cerrno>
+#include <cfloat>
 #include <chrono>
 #include <cinttypes>
 #include <climits>
@@ -42,6 +38,7 @@
 #include <memory>
 #include <mutex>
 #include <new>
+#include <numbers>
 #include <numeric>
 #include <ostream>
 #include <queue>
@@ -104,11 +101,13 @@
 
 void rm_char(std::string &s, const char &c) {
     // std::erase(s, c);
-    s.erase(std::remove(s.begin(), s.end(), c), s.end());
+    // s.erase(std::ranges::remove(s.begin(), s.end(), c), s.end());
+    std::ranges::remove(s.begin(), s.end(), c);
 }
 
 [[__nodiscard__]] double deg_to_rad(const int &d) {
-    return d * 0.1745;
+    const double ratio = 0.1745;
+    return d * ratio;
 }
 
 // https://github.com/Heltion/debug.h/blob/main/README.md
@@ -165,12 +164,12 @@ template <typename T>
 
 template <typename T>
 [[__nodiscard__]] T bin_min(const T &x, const T &y) {
-    return y ^ (x ^ y) & -(x < y);
+    return y ^ ((x ^ y) & -(x < y));
 }
 
 template <typename T>
 [[__nodiscard__]] T bin_max(const T &x, const T &y) {
-    return y ^ (x ^ y) & -(x > y);
+    return y ^ ((x ^ y) & -(x > y));
 }
 
 template <typename T>
@@ -258,7 +257,7 @@ using namespace __gnu_pbds;
 
 // constants
 [[maybe_unused]] constexpr int prime{7919};
-[[maybe_unused]] constexpr double pi{3.14159};
+[[maybe_unused]] constexpr double pi{std::numbers::pi};
 [[maybe_unused]] constexpr int mod{1000000007};
 
 int main() {
@@ -275,7 +274,7 @@ int main() {
     pls;
 #endif
 
-    int T;
+    int T{1};
     std::cin >> T;
     while (T--) {
     }

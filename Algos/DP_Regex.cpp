@@ -23,7 +23,7 @@ bool dp_regex(const std::string& s1, const std::string& s2) {
 	    } else if (pattern[j] == '*') {
 		// dp[i][j-2] -> case when star returns nothing
 		// dp[i-1][j] -> case when star returns 1 or more
-		dp[i][j] = dp[i][j - 2] | dp[i - 1][j];
+		dp[i][j] = dp[i][j - 2] || dp[i - 1][j];
 	    }
 	}
     }

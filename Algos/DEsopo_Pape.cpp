@@ -7,9 +7,7 @@ class desopo_pape {
        public:
 	int vertex;
 	int weight;
-	edge(const int vv, const int ww) {
-	    vertex = vv;
-	    weight = ww;
+	edge(const int vv, const int ww) : vertex(vv), weight(ww) {
 	}
     };
 
@@ -28,12 +26,12 @@ class desopo_pape {
 	type = std::vector<int>(n + 1, 2);
     }
     void add_edge(const int p, const int v, const int w) {
-	adj[p].push_back(edge(v, w));
+	adj[p].emplace_back(v, w);
     }
 
     void add_bi_edge(const int p, const int v, const int w) {
-	adj[p].push_back(edge(v, w));
-	adj[v].push_back(edge(p, w));
+	adj[p].emplace_back(v, w);
+	adj[v].emplace_back(p, w);
     }
 
     void run(const int start) {
@@ -58,7 +56,7 @@ class desopo_pape {
 	    }
 	}
     }
-    int get_cost(const int v) const {
+    [[nodiscard]] int get_cost(const int v) const {
 	return distance[v];
     }
     void get_path(const int start, const int target) const {

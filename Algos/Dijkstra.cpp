@@ -54,9 +54,9 @@ void dijkstraWithPrioQueue(int source,
 			   std::vector<std::vector<std::pair<int, int>>> &adj,
 			   std::vector<int> &path, std::vector<int> &cost) {
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
-			std::greater<std::pair<int, int>>>
+			std::greater<>>
 	queue;
-    queue.push({source, 0});
+    queue.emplace(source, 0);
     cost[source] = 0;
     int currentNode;
     int currentCost;
@@ -71,7 +71,7 @@ void dijkstraWithPrioQueue(int source,
 	    if (cost[currentNode] + b.second < cost[b.first]) {
 		cost[b.first] = cost[currentNode] + b.second;
 		path[b.first] = currentNode;
-		queue.push({b.first, cost[b.first]});
+		queue.emplace(b.first, cost[b.first]);
 	    }
 	}
     }
@@ -85,7 +85,7 @@ std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
 	current = path[current];
     }
     res.push_back(source);
-    std::reverse(res.begin(), res.end());
+    std::ranges::reverse(res.begin(), res.end());
     return res;
 }
 int main() {

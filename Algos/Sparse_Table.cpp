@@ -4,13 +4,18 @@
 template <typename T>
 struct Sparse_table {
     T N;
-    int LOG;
+    int LOG{};
     std::vector<std::vector<T>> matrix;
     std::vector<T> bin_log;
 
     Sparse_table() = default;
-    explicit Sparse_table(const std::vector<T> &init) {
-	N = static_cast<int>(init.size());
+    ~Sparse_table() = default;
+    Sparse_table(const Sparse_table &) = delete;
+    Sparse_table(Sparse_table &&) = delete;
+    Sparse_table &operator=(const Sparse_table &) = delete;
+    Sparse_table &operator=(Sparse_table &&) = delete;
+    explicit Sparse_table(const std::vector<T> &init)
+	: N(static_cast<int>(init.size())) {
 	bin_log.push_back(0);
 	bin_log.push_back(0);
 	for (int i = 2; i <= N; i++) {
@@ -57,19 +62,19 @@ struct Sparse_table {
 	}
     }
 
-    T query_min(const int L, const int R) const {
+    [[nodiscard]] T query_min(const int L, const int R) const {
 	const T i = bin_log[R - L + 1];
 	const T minimum = std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    T query_max(const int L, const int R) const {
+    [[nodiscard]] T query_max(const int L, const int R) const {
 	const T i = bin_log[R - L + 1];
 	const T minimum = std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    T query_sum(int L, const int R) const {
+    [[nodiscard]] T query_sum(int L, const int R) const {
 	T sum = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
@@ -80,7 +85,7 @@ struct Sparse_table {
 	return sum;
     }
 
-    T query_xor(int L, const int R) const {
+    [[nodiscard]] T query_xor(int L, const int R) const {
 	T res = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {

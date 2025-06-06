@@ -30,7 +30,7 @@ void dfs(ll ver, ll par) {
 	}
 	exit(0);
     }
-    visited[ver] = 1;
+    visited[ver] = true;
     path.push_back(ver);
     for (auto v : adj[ver]) {
 	if (v != par) {

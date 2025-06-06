@@ -8,7 +8,7 @@ class tarjan_find_articulation {
     std::vector<bool> is_art_point;
     std::vector<int> entry_time;
     std::vector<int> low;
-    int visit_time;
+    int visit_time{0};
 
     explicit tarjan_find_articulation(const int n) {
 	adj = std::vector<std::vector<int>>(n + 1, std::vector<int>());
@@ -16,7 +16,6 @@ class tarjan_find_articulation {
 	is_art_point = std::vector<bool>(n + 1, false);
 	entry_time = std::vector<int>(n + 1);
 	low = std::vector<int>(n + 1);
-	visit_time = 0;
     }
 
     void add_edge(const int p, const int v) {

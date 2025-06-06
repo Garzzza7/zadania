@@ -17,9 +17,9 @@ int levenshtein_distance(const std::string& s1, const std::string& s2) {
 	    if (s1[i - 1] == s2[j - 1]) {
 		dp[i][j] = dp[i - 1][j - 1];
 	    } else {
-		dp[i][j] = std::min(std::min(dp[i - 1][j - 1], dp[i][j - 1]),
-				    dp[i - 1][j]) +
-			   1;
+		dp[i][j] =
+		    std::min({dp[i - 1][j - 1], dp[i][j - 1], dp[i - 1][j]}) +
+		    1;
 	    }
 	}
     }

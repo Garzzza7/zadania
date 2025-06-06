@@ -9,25 +9,22 @@ struct Trie {
 	std::vector<int> next;
 	std::vector<int> accepting;
 	int c;
-	int cnt_shares;
-	explicit Node(const int c_) {
-	    c = c_;
-	    cnt_shares = 0;
+	int cnt_shares{0};
+	explicit Node(const int c_) : c(c_) {
 	    next.assign(CHAR_SIZE, -1);
 	}
     };
 
     std::vector<Node> nodes;
-    int root;
+    int root{0};
     Trie() {
-	root = 0;
 	nodes.push_back(Node(root));
     }
 
     void insert(const std::string &word, int word_id) {
 	int node_id{0};
-	for (int i = 0; i < static_cast<int>(word.size()); i++) {
-	    int c = word[i] - BASE;
+	for (auto &&i : word) {
+	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
 	    if (next_id == -1) {
 		next_id = static_cast<int>(nodes.size());
@@ -46,8 +43,8 @@ struct Trie {
 
     bool search(const std::string &word, bool check_prefix = false) {
 	int node_id{0};
-	for (int i = 0; i < static_cast<int>(word.size()); i++) {
-	    int c = word[i] - BASE;
+	for (auto &&i : word) {
+	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
 	    if (next_id == -1) {
 		return false;
@@ -61,11 +58,11 @@ struct Trie {
 	return search(prefix, true);
     }
 
-    int count() const {
+    [[nodiscard]] int count() const {
 	return nodes[0].cnt_shares;
     }
 
-    int size() const {
+    [[nodiscard]] int size() const {
 	return static_cast<int>(nodes.size());
     }
 };

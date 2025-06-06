@@ -11,7 +11,7 @@ void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
     std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>,
-			std::greater<std::pair<T, T>>>
+			std::greater<>>
 	pq;
     pq.push({0, start});
     while (!pq.empty()) {
@@ -59,7 +59,7 @@ int main() {
     for (int i = 0; i < m; i++) {
 	int a, b, w;
 	std::cin >> a >> b >> w;
-	adj[a].push_back({b, w});
+	adj[a].emplace_back(b, w);
     }
     std::vector<bool> visited(n + 1, false);
     std::vector<int> distances(n + 1, 1);

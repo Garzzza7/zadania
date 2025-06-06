@@ -6,9 +6,7 @@ class tarjan_find_bridges {
        public:
 	int vertex;
 	int id;
-	edge(const int vv, const int idd) {
-	    vertex = vv;
-	    id = idd;
+	edge(const int vv, const int idd) : vertex(vv), id(idd) {
 	}
     };
 
@@ -19,8 +17,8 @@ class tarjan_find_bridges {
     std::vector<std::pair<int, int>> edges;
     std::vector<int> entry_time;
     std::vector<int> low;
-    int visit_time;
-    int edge_id;
+    int visit_time{0};
+    int edge_id{0};
 
     tarjan_find_bridges(int n, int m) {
 	n++;
@@ -31,19 +29,17 @@ class tarjan_find_bridges {
 	entry_time = std::vector<int>(n);
 	low = std::vector<int>(n);
 	edges = std::vector<std::pair<int, int>>(m);
-	visit_time = 0;
-	edge_id = 0;
     }
 
     void add_edge(int p, int v) {
-	adj[p].push_back(edge(v, edge_id));
+	adj[p].emplace_back(v, edge_id);
 	edges[edge_id] = {p, v};
 	edge_id++;
     }
 
     void add_bi_edge(int p, int v) {
-	adj[p].push_back(edge(v, edge_id));
-	adj[v].push_back(edge(p, edge_id));
+	adj[p].emplace_back(v, edge_id);
+	adj[v].emplace_back(p, edge_id);
 	edges[edge_id] = {p, v};
 	edge_id++;
     }

@@ -47,9 +47,7 @@ class SegmentTree {
     }
 
    public:
-    SegmentTree(const std::vector<int> &_A) {
-	A = _A;
-	n = (int) A.size();
+    SegmentTree(const std::vector<int> &_A) : A(_A), n((int) A.size()) {
 	st.assign(4 * n, 0);
 	build(1, 0, n - 1);
     }
