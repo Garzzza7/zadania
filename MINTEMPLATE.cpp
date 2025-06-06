@@ -17,7 +17,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
+    int T{1};
     std::cin >> T;
     while (T--) {
     }

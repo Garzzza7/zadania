@@ -1,10 +1,17 @@
 Diagnostics:
-  UnusedIncludes: None 
+  UnusedIncludes: None #Strict
   # Suppress: '*'
+  ClangTidy:
+    Add: [modernize* , performance* , cppcoreguidelines*]
+    Remove: [modernize-use-trailing-return-type , readability-magic-numbers , cppcoreguidelines-init-variables , cppcoreguidelines-avoid-magic-numbers]
+    FastCheckFilter: Strict
 Formatting:
   InlayHints:
     BlockEnd: false
 Index:
-  StandardLibrary: No
+  StandardLibrary: Yes
+  Background: Build
 CompileFlags:
-  Add: -ferror-limit=0
+  Add: [--std=c++20 , -Wall]
+  Remove: [-W*]
+  Compiler: g++
