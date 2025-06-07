@@ -101,8 +101,8 @@
 
 void rm_char(std::string &s, const char &c) {
     // std::erase(s, c);
-    // s.erase(std::ranges::remove(s.begin(), s.end(), c), s.end());
-    std::ranges::remove(s.begin(), s.end(), c);
+    s.erase(std::remove(s.begin(), s.end(), c), s.end());
+    // std::ranges::remove(s.begin(), s.end(), c);
 }
 
 [[__nodiscard__]] double deg_to_rad(const int &d) {

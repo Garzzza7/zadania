@@ -30,10 +30,10 @@ struct Trie {
 		next_id = static_cast<int>(nodes.size());
 		nodes.push_back(Node(c));
 	    }
-	    ++nodes[node_id].cnt_shares;
+	    nodes[node_id].cnt_shares++;
 	    node_id = next_id;
 	}
-	++nodes[node_id].cnt_shares;
+	nodes[node_id].cnt_shares++;
 	nodes[node_id].accepting.push_back(word_id);
     }
 
