@@ -16,7 +16,7 @@ compiler = "g++"
 compiler_flags = (
     "	"
     + compiler
-    + " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME "
+    + " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas "
 )
 fast_compiler_flags = "	" + compiler + " --std=c++20 -O0 "
 makefile = open("Makefile", "w")
