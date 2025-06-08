@@ -1,5 +1,6 @@
 import os
 
+# file stuff
 current_directory = os.getcwd()
 
 cpp_files = [file for file in os.listdir(current_directory) if file.endswith(".cpp")]
@@ -10,24 +11,38 @@ executable_files = [
 
 cpp_files.sort()
 executable_files.sort()
+# end of  file stuff
 
+# variables
 compiler = "g++"
 
-compiler_flags = (
-    "	"
-    + compiler
-    + " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas "
-)
-fast_compiler_flags = "	" + compiler + " --std=c++20 -O0 "
-makefile = open("Makefile", "w")
-
-makefile.write(
+warning = (
     "##################################################################################\n"
     + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
-    + "##################################################################################\n"
+    + "##################################################################################\n\n"
 )
 
+flags = " -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -Wshadow "
+
+flags_var = " $(FLAGS) "
+
+fast_flags = " --std=c++20 -O0 "
+
+fast_flags_var = " $(FAST_FLAGS) "
+
+compiler_flags = "	" + compiler + flags_var
+
+fast_compiler_flags = "	" + compiler + fast_flags_var
+# end of variables
+
+# Makefile
+makefile = open("Makefile", "w")
+
+makefile.write(warning)
+
 makefile.write(".PHONY: standard all force fast asm asmf llvm clean\n\n")
+makefile.write("FLAGS = " + flags + "\n\n")
+makefile.write("FAST_FLAGS = " + fast_flags + "\n\n")
 
 makefile.write("standard:")
 for cpp_file in cpp_files:
@@ -117,17 +132,19 @@ for cpp_file in cpp_files:
 
 makefile.write("\nclean:\n")
 makefile.write("	rm *.sol\n")
-makefile.write("	rm *.s\n")
-makefile.write("	rm *.ll\n")
+# makefile.write("	rm *.s\n")
+# makefile.write("	rm *.ll\n")
 makefile.close()
+
+# end of Makefile
+
+# run_tests.sh
 
 testfile = open("run_tests.sh", "w")
 testfile.write("#!/bin/bash\n")
-testfile.write(
-    "##################################################################################\n"
-    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
-    + "##################################################################################\n"
-)
+
+testfile.write(warning)
+
 testfile.write(
     "grey=$(tput setaf 7)\n"
     + "vividblue=$(tput setaf 20)\n"
@@ -179,22 +196,4 @@ for cpp_file in cpp_files:
     )
 testfile.close()
 os.system("chmod +x run_tests.sh")
-
-# genfile = open("gen_tests.sh", "w")
-# genfile.write("#!/bin/bash\n")
-#
-# for.sol_file in.sol_files:
-#     # genfile.write("touch" +.sol_file[:-4] + ".test")
-#     genfile.write(
-#         "./"
-#         +.sol_file
-#         + " < "
-#         +.sol_file[:-4]
-#         + ".txt"
-#         + " > "
-#         +.sol_file[:-4]
-#         + ".test\n"
-#     )
-#
-#
-# genfile.close()
+# end of run_tests.sh

@@ -1,297 +1,302 @@
 ##################################################################################
 # THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#
 ##################################################################################
+
 .PHONY: standard all force fast asm asmf llvm clean
+
+FLAGS =  -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -Wshadow 
+
+FAST_FLAGS =  --std=c++20 -O0 
 
 standard: 2D_Prefix_Sum.sol  BFS.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  CRT.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  SCC.sol  Segment_Tree_RMQ.sol  Segment_Tree_Range_Sum.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol 
 
 all: 2D_Prefix_Sum.sol  BFS.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  CRT.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  SCC.sol  Segment_Tree_RMQ.sol  Segment_Tree_Range_Sum.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol  f2D_Prefix_Sum.sol  fBFS.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fCRT.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSCC.sol  fSegment_Tree_RMQ.sol  fSegment_Tree_Range_Sum.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol  2D_Prefix_Sum.s  BFS.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  CRT.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  SCC.s  Segment_Tree_RMQ.s  Segment_Tree_Range_Sum.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s  asmf2D_Prefix_Sum.s  asmfBFS.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfCRT.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDP_Regex.s  asmfDerangement.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfRabin_Karp.s  asmfRolling_Hash.s  asmfSCC.s  asmfSegment_Tree_RMQ.s  asmfSegment_Tree_Range_Sum.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfTrie.s  asmfZ_function.s  2D_Prefix_Sum.ll  BFS.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  CRT.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  DP_Regex.ll  Derangement.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Priority_Queue.ll  Quick_Sort.ll  Rabin_Karp.ll  Rolling_Hash.ll  SCC.ll  Segment_Tree_RMQ.ll  Segment_Tree_Range_Sum.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Trie.ll  Z_function.ll 
 
 2D_Prefix_Sum.sol: 2D_Prefix_Sum.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
+	g++ $(FLAGS) 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
 BFS.sol: BFS.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas BFS.cpp -o BFS.sol
+	g++ $(FLAGS) BFS.cpp -o BFS.sol
 Bellman_Ford_Shortest_Path.sol: Bellman_Ford_Shortest_Path.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.sol
+	g++ $(FLAGS) Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.sol
 Binary_Exponentiation.sol: Binary_Exponentiation.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Exponentiation.cpp -o Binary_Exponentiation.sol
+	g++ $(FLAGS) Binary_Exponentiation.cpp -o Binary_Exponentiation.sol
 Binary_Lifting.sol: Binary_Lifting.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Lifting.cpp -o Binary_Lifting.sol
+	g++ $(FLAGS) Binary_Lifting.cpp -o Binary_Lifting.sol
 Binary_Search.sol: Binary_Search.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Search.cpp -o Binary_Search.sol
+	g++ $(FLAGS) Binary_Search.cpp -o Binary_Search.sol
 Binomial_Coefficient.sol: Binomial_Coefficient.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binomial_Coefficient.cpp -o Binomial_Coefficient.sol
+	g++ $(FLAGS) Binomial_Coefficient.cpp -o Binomial_Coefficient.sol
 Binomial_Theorem.sol: Binomial_Theorem.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binomial_Theorem.cpp -o Binomial_Theorem.sol
+	g++ $(FLAGS) Binomial_Theorem.cpp -o Binomial_Theorem.sol
 Bitonic_Sort.sol: Bitonic_Sort.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Bitonic_Sort.cpp -o Bitonic_Sort.sol
+	g++ $(FLAGS) Bitonic_Sort.cpp -o Bitonic_Sort.sol
 CRT.sol: CRT.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas CRT.cpp -o CRT.sol
+	g++ $(FLAGS) CRT.cpp -o CRT.sol
 Counting_Sort.sol: Counting_Sort.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Counting_Sort.cpp -o Counting_Sort.sol
+	g++ $(FLAGS) Counting_Sort.cpp -o Counting_Sort.sol
 DEsopo_Pape.sol: DEsopo_Pape.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DEsopo_Pape.cpp -o DEsopo_Pape.sol
+	g++ $(FLAGS) DEsopo_Pape.cpp -o DEsopo_Pape.sol
 DFS.sol: DFS.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DFS.cpp -o DFS.sol
+	g++ $(FLAGS) DFS.cpp -o DFS.sol
 DP_Regex.sol: DP_Regex.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DP_Regex.cpp -o DP_Regex.sol
+	g++ $(FLAGS) DP_Regex.cpp -o DP_Regex.sol
 Derangement.sol: Derangement.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Derangement.cpp -o Derangement.sol
+	g++ $(FLAGS) Derangement.cpp -o Derangement.sol
 Difference_Array.sol: Difference_Array.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Difference_Array.cpp -o Difference_Array.sol
+	g++ $(FLAGS) Difference_Array.cpp -o Difference_Array.sol
 Dijkstra.sol: Dijkstra.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Dijkstra.cpp -o Dijkstra.sol
+	g++ $(FLAGS) Dijkstra.cpp -o Dijkstra.sol
 Disjoint_Set_Union.sol: Disjoint_Set_Union.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Disjoint_Set_Union.cpp -o Disjoint_Set_Union.sol
+	g++ $(FLAGS) Disjoint_Set_Union.cpp -o Disjoint_Set_Union.sol
 Edmond_Karp_MaxFlow.sol: Edmond_Karp_MaxFlow.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.sol
+	g++ $(FLAGS) Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.sol
 Endian.sol: Endian.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Endian.cpp -o Endian.sol
+	g++ $(FLAGS) Endian.cpp -o Endian.sol
 Euclid_GCD_LCM.sol: Euclid_GCD_LCM.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Euclid_GCD_LCM.cpp -o Euclid_GCD_LCM.sol
+	g++ $(FLAGS) Euclid_GCD_LCM.cpp -o Euclid_GCD_LCM.sol
 Euler_s_totient.sol: Euler_s_totient.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Euler_s_totient.cpp -o Euler_s_totient.sol
+	g++ $(FLAGS) Euler_s_totient.cpp -o Euler_s_totient.sol
 Extended_Euclid_s_Algorithm.sol: Extended_Euclid_s_Algorithm.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.sol
+	g++ $(FLAGS) Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.sol
 Factorize.sol: Factorize.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Factorize.cpp -o Factorize.sol
+	g++ $(FLAGS) Factorize.cpp -o Factorize.sol
 FenwickTree.sol: FenwickTree.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas FenwickTree.cpp -o FenwickTree.sol
+	g++ $(FLAGS) FenwickTree.cpp -o FenwickTree.sol
 Find_Cycles_Undirected.sol: Find_Cycles_Undirected.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Find_Cycles_Undirected.cpp -o Find_Cycles_Undirected.sol
+	g++ $(FLAGS) Find_Cycles_Undirected.cpp -o Find_Cycles_Undirected.sol
 Flood_fill.sol: Flood_fill.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Flood_fill.cpp -o Flood_fill.sol
+	g++ $(FLAGS) Flood_fill.cpp -o Flood_fill.sol
 Floor_Sum.sol: Floor_Sum.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Floor_Sum.cpp -o Floor_Sum.sol
+	g++ $(FLAGS) Floor_Sum.cpp -o Floor_Sum.sol
 Floyd_Warshall.sol: Floyd_Warshall.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Floyd_Warshall.cpp -o Floyd_Warshall.sol
+	g++ $(FLAGS) Floyd_Warshall.cpp -o Floyd_Warshall.sol
 KMP.sol: KMP.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas KMP.cpp -o KMP.sol
+	g++ $(FLAGS) KMP.cpp -o KMP.sol
 Kadane_s_Algorithm.sol: Kadane_s_Algorithm.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.sol
+	g++ $(FLAGS) Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.sol
 Kosaraju.sol: Kosaraju.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kosaraju.cpp -o Kosaraju.sol
+	g++ $(FLAGS) Kosaraju.cpp -o Kosaraju.sol
 Kth_Order_Statistics.sol: Kth_Order_Statistics.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kth_Order_Statistics.cpp -o Kth_Order_Statistics.sol
+	g++ $(FLAGS) Kth_Order_Statistics.cpp -o Kth_Order_Statistics.sol
 Levenshtein_distance.sol: Levenshtein_distance.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Levenshtein_distance.cpp -o Levenshtein_distance.sol
+	g++ $(FLAGS) Levenshtein_distance.cpp -o Levenshtein_distance.sol
 MEX.sol: MEX.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas MEX.cpp -o MEX.sol
+	g++ $(FLAGS) MEX.cpp -o MEX.sol
 MINTEMPLATE.sol: MINTEMPLATE.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas MINTEMPLATE.cpp -o MINTEMPLATE.sol
+	g++ $(FLAGS) MINTEMPLATE.cpp -o MINTEMPLATE.sol
 Max_Heap.sol: Max_Heap.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Max_Heap.cpp -o Max_Heap.sol
+	g++ $(FLAGS) Max_Heap.cpp -o Max_Heap.sol
 Merge_Sort.sol: Merge_Sort.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Merge_Sort.cpp -o Merge_Sort.sol
+	g++ $(FLAGS) Merge_Sort.cpp -o Merge_Sort.sol
 Min_Heap.sol: Min_Heap.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Min_Heap.cpp -o Min_Heap.sol
+	g++ $(FLAGS) Min_Heap.cpp -o Min_Heap.sol
 Priority_Queue.sol: Priority_Queue.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Priority_Queue.cpp -o Priority_Queue.sol
+	g++ $(FLAGS) Priority_Queue.cpp -o Priority_Queue.sol
 Quick_Sort.sol: Quick_Sort.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Quick_Sort.cpp -o Quick_Sort.sol
+	g++ $(FLAGS) Quick_Sort.cpp -o Quick_Sort.sol
 Rabin_Karp.sol: Rabin_Karp.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Rabin_Karp.cpp -o Rabin_Karp.sol
+	g++ $(FLAGS) Rabin_Karp.cpp -o Rabin_Karp.sol
 Rolling_Hash.sol: Rolling_Hash.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Rolling_Hash.cpp -o Rolling_Hash.sol
+	g++ $(FLAGS) Rolling_Hash.cpp -o Rolling_Hash.sol
 SCC.sol: SCC.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas SCC.cpp -o SCC.sol
+	g++ $(FLAGS) SCC.cpp -o SCC.sol
 Segment_Tree_RMQ.sol: Segment_Tree_RMQ.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Segment_Tree_RMQ.cpp -o Segment_Tree_RMQ.sol
+	g++ $(FLAGS) Segment_Tree_RMQ.cpp -o Segment_Tree_RMQ.sol
 Segment_Tree_Range_Sum.sol: Segment_Tree_Range_Sum.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Segment_Tree_Range_Sum.cpp -o Segment_Tree_Range_Sum.sol
+	g++ $(FLAGS) Segment_Tree_Range_Sum.cpp -o Segment_Tree_Range_Sum.sol
 Sieve_of_Eratosthenes.sol: Sieve_of_Eratosthenes.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Sieve_of_Eratosthenes.cpp -o Sieve_of_Eratosthenes.sol
+	g++ $(FLAGS) Sieve_of_Eratosthenes.cpp -o Sieve_of_Eratosthenes.sol
 Simple_Dijkstra.sol: Simple_Dijkstra.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Simple_Dijkstra.cpp -o Simple_Dijkstra.sol
+	g++ $(FLAGS) Simple_Dijkstra.cpp -o Simple_Dijkstra.sol
 Sparse_Table.sol: Sparse_Table.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Sparse_Table.cpp -o Sparse_Table.sol
+	g++ $(FLAGS) Sparse_Table.cpp -o Sparse_Table.sol
 TEMPLATE.sol: TEMPLATE.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas TEMPLATE.cpp -o TEMPLATE.sol
+	g++ $(FLAGS) TEMPLATE.cpp -o TEMPLATE.sol
 Tarjan_find_articulation.sol: Tarjan_find_articulation.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tarjan_find_articulation.cpp -o Tarjan_find_articulation.sol
+	g++ $(FLAGS) Tarjan_find_articulation.cpp -o Tarjan_find_articulation.sol
 Tarjan_find_bridges.sol: Tarjan_find_bridges.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tarjan_find_bridges.cpp -o Tarjan_find_bridges.sol
+	g++ $(FLAGS) Tarjan_find_bridges.cpp -o Tarjan_find_bridges.sol
 Ternary_Search.sol: Ternary_Search.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Ternary_Search.cpp -o Ternary_Search.sol
+	g++ $(FLAGS) Ternary_Search.cpp -o Ternary_Search.sol
 Tree_diameter.sol: Tree_diameter.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tree_diameter.cpp -o Tree_diameter.sol
+	g++ $(FLAGS) Tree_diameter.cpp -o Tree_diameter.sol
 Trie.sol: Trie.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Trie.cpp -o Trie.sol
+	g++ $(FLAGS) Trie.cpp -o Trie.sol
 Z_function.sol: Z_function.cpp
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Z_function.cpp -o Z_function.sol
+	g++ $(FLAGS) Z_function.cpp -o Z_function.sol
 
 force:
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas BFS.cpp -o BFS.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Exponentiation.cpp -o Binary_Exponentiation.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Lifting.cpp -o Binary_Lifting.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binary_Search.cpp -o Binary_Search.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binomial_Coefficient.cpp -o Binomial_Coefficient.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Binomial_Theorem.cpp -o Binomial_Theorem.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Bitonic_Sort.cpp -o Bitonic_Sort.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas CRT.cpp -o CRT.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Counting_Sort.cpp -o Counting_Sort.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DEsopo_Pape.cpp -o DEsopo_Pape.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DFS.cpp -o DFS.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas DP_Regex.cpp -o DP_Regex.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Derangement.cpp -o Derangement.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Difference_Array.cpp -o Difference_Array.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Dijkstra.cpp -o Dijkstra.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Disjoint_Set_Union.cpp -o Disjoint_Set_Union.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Endian.cpp -o Endian.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Euclid_GCD_LCM.cpp -o Euclid_GCD_LCM.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Euler_s_totient.cpp -o Euler_s_totient.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Factorize.cpp -o Factorize.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas FenwickTree.cpp -o FenwickTree.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Find_Cycles_Undirected.cpp -o Find_Cycles_Undirected.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Flood_fill.cpp -o Flood_fill.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Floor_Sum.cpp -o Floor_Sum.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Floyd_Warshall.cpp -o Floyd_Warshall.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas KMP.cpp -o KMP.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kosaraju.cpp -o Kosaraju.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Kth_Order_Statistics.cpp -o Kth_Order_Statistics.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Levenshtein_distance.cpp -o Levenshtein_distance.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas MEX.cpp -o MEX.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas MINTEMPLATE.cpp -o MINTEMPLATE.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Max_Heap.cpp -o Max_Heap.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Merge_Sort.cpp -o Merge_Sort.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Min_Heap.cpp -o Min_Heap.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Priority_Queue.cpp -o Priority_Queue.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Quick_Sort.cpp -o Quick_Sort.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Rabin_Karp.cpp -o Rabin_Karp.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Rolling_Hash.cpp -o Rolling_Hash.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas SCC.cpp -o SCC.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Segment_Tree_RMQ.cpp -o Segment_Tree_RMQ.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Segment_Tree_Range_Sum.cpp -o Segment_Tree_Range_Sum.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Sieve_of_Eratosthenes.cpp -o Sieve_of_Eratosthenes.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Simple_Dijkstra.cpp -o Simple_Dijkstra.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Sparse_Table.cpp -o Sparse_Table.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas TEMPLATE.cpp -o TEMPLATE.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tarjan_find_articulation.cpp -o Tarjan_find_articulation.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tarjan_find_bridges.cpp -o Tarjan_find_bridges.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Ternary_Search.cpp -o Ternary_Search.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Tree_diameter.cpp -o Tree_diameter.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Trie.cpp -o Trie.sol
-	g++ -Wall -g --std=c++20 -static -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas Z_function.cpp -o Z_function.sol
+	g++ $(FLAGS) 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
+	g++ $(FLAGS) BFS.cpp -o BFS.sol
+	g++ $(FLAGS) Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.sol
+	g++ $(FLAGS) Binary_Exponentiation.cpp -o Binary_Exponentiation.sol
+	g++ $(FLAGS) Binary_Lifting.cpp -o Binary_Lifting.sol
+	g++ $(FLAGS) Binary_Search.cpp -o Binary_Search.sol
+	g++ $(FLAGS) Binomial_Coefficient.cpp -o Binomial_Coefficient.sol
+	g++ $(FLAGS) Binomial_Theorem.cpp -o Binomial_Theorem.sol
+	g++ $(FLAGS) Bitonic_Sort.cpp -o Bitonic_Sort.sol
+	g++ $(FLAGS) CRT.cpp -o CRT.sol
+	g++ $(FLAGS) Counting_Sort.cpp -o Counting_Sort.sol
+	g++ $(FLAGS) DEsopo_Pape.cpp -o DEsopo_Pape.sol
+	g++ $(FLAGS) DFS.cpp -o DFS.sol
+	g++ $(FLAGS) DP_Regex.cpp -o DP_Regex.sol
+	g++ $(FLAGS) Derangement.cpp -o Derangement.sol
+	g++ $(FLAGS) Difference_Array.cpp -o Difference_Array.sol
+	g++ $(FLAGS) Dijkstra.cpp -o Dijkstra.sol
+	g++ $(FLAGS) Disjoint_Set_Union.cpp -o Disjoint_Set_Union.sol
+	g++ $(FLAGS) Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.sol
+	g++ $(FLAGS) Endian.cpp -o Endian.sol
+	g++ $(FLAGS) Euclid_GCD_LCM.cpp -o Euclid_GCD_LCM.sol
+	g++ $(FLAGS) Euler_s_totient.cpp -o Euler_s_totient.sol
+	g++ $(FLAGS) Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.sol
+	g++ $(FLAGS) Factorize.cpp -o Factorize.sol
+	g++ $(FLAGS) FenwickTree.cpp -o FenwickTree.sol
+	g++ $(FLAGS) Find_Cycles_Undirected.cpp -o Find_Cycles_Undirected.sol
+	g++ $(FLAGS) Flood_fill.cpp -o Flood_fill.sol
+	g++ $(FLAGS) Floor_Sum.cpp -o Floor_Sum.sol
+	g++ $(FLAGS) Floyd_Warshall.cpp -o Floyd_Warshall.sol
+	g++ $(FLAGS) KMP.cpp -o KMP.sol
+	g++ $(FLAGS) Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.sol
+	g++ $(FLAGS) Kosaraju.cpp -o Kosaraju.sol
+	g++ $(FLAGS) Kth_Order_Statistics.cpp -o Kth_Order_Statistics.sol
+	g++ $(FLAGS) Levenshtein_distance.cpp -o Levenshtein_distance.sol
+	g++ $(FLAGS) MEX.cpp -o MEX.sol
+	g++ $(FLAGS) MINTEMPLATE.cpp -o MINTEMPLATE.sol
+	g++ $(FLAGS) Max_Heap.cpp -o Max_Heap.sol
+	g++ $(FLAGS) Merge_Sort.cpp -o Merge_Sort.sol
+	g++ $(FLAGS) Min_Heap.cpp -o Min_Heap.sol
+	g++ $(FLAGS) Priority_Queue.cpp -o Priority_Queue.sol
+	g++ $(FLAGS) Quick_Sort.cpp -o Quick_Sort.sol
+	g++ $(FLAGS) Rabin_Karp.cpp -o Rabin_Karp.sol
+	g++ $(FLAGS) Rolling_Hash.cpp -o Rolling_Hash.sol
+	g++ $(FLAGS) SCC.cpp -o SCC.sol
+	g++ $(FLAGS) Segment_Tree_RMQ.cpp -o Segment_Tree_RMQ.sol
+	g++ $(FLAGS) Segment_Tree_Range_Sum.cpp -o Segment_Tree_Range_Sum.sol
+	g++ $(FLAGS) Sieve_of_Eratosthenes.cpp -o Sieve_of_Eratosthenes.sol
+	g++ $(FLAGS) Simple_Dijkstra.cpp -o Simple_Dijkstra.sol
+	g++ $(FLAGS) Sparse_Table.cpp -o Sparse_Table.sol
+	g++ $(FLAGS) TEMPLATE.cpp -o TEMPLATE.sol
+	g++ $(FLAGS) Tarjan_find_articulation.cpp -o Tarjan_find_articulation.sol
+	g++ $(FLAGS) Tarjan_find_bridges.cpp -o Tarjan_find_bridges.sol
+	g++ $(FLAGS) Ternary_Search.cpp -o Ternary_Search.sol
+	g++ $(FLAGS) Tree_diameter.cpp -o Tree_diameter.sol
+	g++ $(FLAGS) Trie.cpp -o Trie.sol
+	g++ $(FLAGS) Z_function.cpp -o Z_function.sol
 
 fast: f2D_Prefix_Sum.sol  fBFS.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fCRT.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSCC.sol  fSegment_Tree_RMQ.sol  fSegment_Tree_Range_Sum.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol 
 
 f2D_Prefix_Sum.sol: 2D_Prefix_Sum.cpp
-	g++ --std=c++20 -O0 2D_Prefix_Sum.cpp -o f2D_Prefix_Sum.sol
+	g++ $(FAST_FLAGS) 2D_Prefix_Sum.cpp -o f2D_Prefix_Sum.sol
 fBFS.sol: BFS.cpp
-	g++ --std=c++20 -O0 BFS.cpp -o fBFS.sol
+	g++ $(FAST_FLAGS) BFS.cpp -o fBFS.sol
 fBellman_Ford_Shortest_Path.sol: Bellman_Ford_Shortest_Path.cpp
-	g++ --std=c++20 -O0 Bellman_Ford_Shortest_Path.cpp -o fBellman_Ford_Shortest_Path.sol
+	g++ $(FAST_FLAGS) Bellman_Ford_Shortest_Path.cpp -o fBellman_Ford_Shortest_Path.sol
 fBinary_Exponentiation.sol: Binary_Exponentiation.cpp
-	g++ --std=c++20 -O0 Binary_Exponentiation.cpp -o fBinary_Exponentiation.sol
+	g++ $(FAST_FLAGS) Binary_Exponentiation.cpp -o fBinary_Exponentiation.sol
 fBinary_Lifting.sol: Binary_Lifting.cpp
-	g++ --std=c++20 -O0 Binary_Lifting.cpp -o fBinary_Lifting.sol
+	g++ $(FAST_FLAGS) Binary_Lifting.cpp -o fBinary_Lifting.sol
 fBinary_Search.sol: Binary_Search.cpp
-	g++ --std=c++20 -O0 Binary_Search.cpp -o fBinary_Search.sol
+	g++ $(FAST_FLAGS) Binary_Search.cpp -o fBinary_Search.sol
 fBinomial_Coefficient.sol: Binomial_Coefficient.cpp
-	g++ --std=c++20 -O0 Binomial_Coefficient.cpp -o fBinomial_Coefficient.sol
+	g++ $(FAST_FLAGS) Binomial_Coefficient.cpp -o fBinomial_Coefficient.sol
 fBinomial_Theorem.sol: Binomial_Theorem.cpp
-	g++ --std=c++20 -O0 Binomial_Theorem.cpp -o fBinomial_Theorem.sol
+	g++ $(FAST_FLAGS) Binomial_Theorem.cpp -o fBinomial_Theorem.sol
 fBitonic_Sort.sol: Bitonic_Sort.cpp
-	g++ --std=c++20 -O0 Bitonic_Sort.cpp -o fBitonic_Sort.sol
+	g++ $(FAST_FLAGS) Bitonic_Sort.cpp -o fBitonic_Sort.sol
 fCRT.sol: CRT.cpp
-	g++ --std=c++20 -O0 CRT.cpp -o fCRT.sol
+	g++ $(FAST_FLAGS) CRT.cpp -o fCRT.sol
 fCounting_Sort.sol: Counting_Sort.cpp
-	g++ --std=c++20 -O0 Counting_Sort.cpp -o fCounting_Sort.sol
+	g++ $(FAST_FLAGS) Counting_Sort.cpp -o fCounting_Sort.sol
 fDEsopo_Pape.sol: DEsopo_Pape.cpp
-	g++ --std=c++20 -O0 DEsopo_Pape.cpp -o fDEsopo_Pape.sol
+	g++ $(FAST_FLAGS) DEsopo_Pape.cpp -o fDEsopo_Pape.sol
 fDFS.sol: DFS.cpp
-	g++ --std=c++20 -O0 DFS.cpp -o fDFS.sol
+	g++ $(FAST_FLAGS) DFS.cpp -o fDFS.sol
 fDP_Regex.sol: DP_Regex.cpp
-	g++ --std=c++20 -O0 DP_Regex.cpp -o fDP_Regex.sol
+	g++ $(FAST_FLAGS) DP_Regex.cpp -o fDP_Regex.sol
 fDerangement.sol: Derangement.cpp
-	g++ --std=c++20 -O0 Derangement.cpp -o fDerangement.sol
+	g++ $(FAST_FLAGS) Derangement.cpp -o fDerangement.sol
 fDifference_Array.sol: Difference_Array.cpp
-	g++ --std=c++20 -O0 Difference_Array.cpp -o fDifference_Array.sol
+	g++ $(FAST_FLAGS) Difference_Array.cpp -o fDifference_Array.sol
 fDijkstra.sol: Dijkstra.cpp
-	g++ --std=c++20 -O0 Dijkstra.cpp -o fDijkstra.sol
+	g++ $(FAST_FLAGS) Dijkstra.cpp -o fDijkstra.sol
 fDisjoint_Set_Union.sol: Disjoint_Set_Union.cpp
-	g++ --std=c++20 -O0 Disjoint_Set_Union.cpp -o fDisjoint_Set_Union.sol
+	g++ $(FAST_FLAGS) Disjoint_Set_Union.cpp -o fDisjoint_Set_Union.sol
 fEdmond_Karp_MaxFlow.sol: Edmond_Karp_MaxFlow.cpp
-	g++ --std=c++20 -O0 Edmond_Karp_MaxFlow.cpp -o fEdmond_Karp_MaxFlow.sol
+	g++ $(FAST_FLAGS) Edmond_Karp_MaxFlow.cpp -o fEdmond_Karp_MaxFlow.sol
 fEndian.sol: Endian.cpp
-	g++ --std=c++20 -O0 Endian.cpp -o fEndian.sol
+	g++ $(FAST_FLAGS) Endian.cpp -o fEndian.sol
 fEuclid_GCD_LCM.sol: Euclid_GCD_LCM.cpp
-	g++ --std=c++20 -O0 Euclid_GCD_LCM.cpp -o fEuclid_GCD_LCM.sol
+	g++ $(FAST_FLAGS) Euclid_GCD_LCM.cpp -o fEuclid_GCD_LCM.sol
 fEuler_s_totient.sol: Euler_s_totient.cpp
-	g++ --std=c++20 -O0 Euler_s_totient.cpp -o fEuler_s_totient.sol
+	g++ $(FAST_FLAGS) Euler_s_totient.cpp -o fEuler_s_totient.sol
 fExtended_Euclid_s_Algorithm.sol: Extended_Euclid_s_Algorithm.cpp
-	g++ --std=c++20 -O0 Extended_Euclid_s_Algorithm.cpp -o fExtended_Euclid_s_Algorithm.sol
+	g++ $(FAST_FLAGS) Extended_Euclid_s_Algorithm.cpp -o fExtended_Euclid_s_Algorithm.sol
 fFactorize.sol: Factorize.cpp
-	g++ --std=c++20 -O0 Factorize.cpp -o fFactorize.sol
+	g++ $(FAST_FLAGS) Factorize.cpp -o fFactorize.sol
 fFenwickTree.sol: FenwickTree.cpp
-	g++ --std=c++20 -O0 FenwickTree.cpp -o fFenwickTree.sol
+	g++ $(FAST_FLAGS) FenwickTree.cpp -o fFenwickTree.sol
 fFind_Cycles_Undirected.sol: Find_Cycles_Undirected.cpp
-	g++ --std=c++20 -O0 Find_Cycles_Undirected.cpp -o fFind_Cycles_Undirected.sol
+	g++ $(FAST_FLAGS) Find_Cycles_Undirected.cpp -o fFind_Cycles_Undirected.sol
 fFlood_fill.sol: Flood_fill.cpp
-	g++ --std=c++20 -O0 Flood_fill.cpp -o fFlood_fill.sol
+	g++ $(FAST_FLAGS) Flood_fill.cpp -o fFlood_fill.sol
 fFloor_Sum.sol: Floor_Sum.cpp
-	g++ --std=c++20 -O0 Floor_Sum.cpp -o fFloor_Sum.sol
+	g++ $(FAST_FLAGS) Floor_Sum.cpp -o fFloor_Sum.sol
 fFloyd_Warshall.sol: Floyd_Warshall.cpp
-	g++ --std=c++20 -O0 Floyd_Warshall.cpp -o fFloyd_Warshall.sol
+	g++ $(FAST_FLAGS) Floyd_Warshall.cpp -o fFloyd_Warshall.sol
 fKMP.sol: KMP.cpp
-	g++ --std=c++20 -O0 KMP.cpp -o fKMP.sol
+	g++ $(FAST_FLAGS) KMP.cpp -o fKMP.sol
 fKadane_s_Algorithm.sol: Kadane_s_Algorithm.cpp
-	g++ --std=c++20 -O0 Kadane_s_Algorithm.cpp -o fKadane_s_Algorithm.sol
+	g++ $(FAST_FLAGS) Kadane_s_Algorithm.cpp -o fKadane_s_Algorithm.sol
 fKosaraju.sol: Kosaraju.cpp
-	g++ --std=c++20 -O0 Kosaraju.cpp -o fKosaraju.sol
+	g++ $(FAST_FLAGS) Kosaraju.cpp -o fKosaraju.sol
 fKth_Order_Statistics.sol: Kth_Order_Statistics.cpp
-	g++ --std=c++20 -O0 Kth_Order_Statistics.cpp -o fKth_Order_Statistics.sol
+	g++ $(FAST_FLAGS) Kth_Order_Statistics.cpp -o fKth_Order_Statistics.sol
 fLevenshtein_distance.sol: Levenshtein_distance.cpp
-	g++ --std=c++20 -O0 Levenshtein_distance.cpp -o fLevenshtein_distance.sol
+	g++ $(FAST_FLAGS) Levenshtein_distance.cpp -o fLevenshtein_distance.sol
 fMEX.sol: MEX.cpp
-	g++ --std=c++20 -O0 MEX.cpp -o fMEX.sol
+	g++ $(FAST_FLAGS) MEX.cpp -o fMEX.sol
 fMINTEMPLATE.sol: MINTEMPLATE.cpp
-	g++ --std=c++20 -O0 MINTEMPLATE.cpp -o fMINTEMPLATE.sol
+	g++ $(FAST_FLAGS) MINTEMPLATE.cpp -o fMINTEMPLATE.sol
 fMax_Heap.sol: Max_Heap.cpp
-	g++ --std=c++20 -O0 Max_Heap.cpp -o fMax_Heap.sol
+	g++ $(FAST_FLAGS) Max_Heap.cpp -o fMax_Heap.sol
 fMerge_Sort.sol: Merge_Sort.cpp
-	g++ --std=c++20 -O0 Merge_Sort.cpp -o fMerge_Sort.sol
+	g++ $(FAST_FLAGS) Merge_Sort.cpp -o fMerge_Sort.sol
 fMin_Heap.sol: Min_Heap.cpp
-	g++ --std=c++20 -O0 Min_Heap.cpp -o fMin_Heap.sol
+	g++ $(FAST_FLAGS) Min_Heap.cpp -o fMin_Heap.sol
 fPriority_Queue.sol: Priority_Queue.cpp
-	g++ --std=c++20 -O0 Priority_Queue.cpp -o fPriority_Queue.sol
+	g++ $(FAST_FLAGS) Priority_Queue.cpp -o fPriority_Queue.sol
 fQuick_Sort.sol: Quick_Sort.cpp
-	g++ --std=c++20 -O0 Quick_Sort.cpp -o fQuick_Sort.sol
+	g++ $(FAST_FLAGS) Quick_Sort.cpp -o fQuick_Sort.sol
 fRabin_Karp.sol: Rabin_Karp.cpp
-	g++ --std=c++20 -O0 Rabin_Karp.cpp -o fRabin_Karp.sol
+	g++ $(FAST_FLAGS) Rabin_Karp.cpp -o fRabin_Karp.sol
 fRolling_Hash.sol: Rolling_Hash.cpp
-	g++ --std=c++20 -O0 Rolling_Hash.cpp -o fRolling_Hash.sol
+	g++ $(FAST_FLAGS) Rolling_Hash.cpp -o fRolling_Hash.sol
 fSCC.sol: SCC.cpp
-	g++ --std=c++20 -O0 SCC.cpp -o fSCC.sol
+	g++ $(FAST_FLAGS) SCC.cpp -o fSCC.sol
 fSegment_Tree_RMQ.sol: Segment_Tree_RMQ.cpp
-	g++ --std=c++20 -O0 Segment_Tree_RMQ.cpp -o fSegment_Tree_RMQ.sol
+	g++ $(FAST_FLAGS) Segment_Tree_RMQ.cpp -o fSegment_Tree_RMQ.sol
 fSegment_Tree_Range_Sum.sol: Segment_Tree_Range_Sum.cpp
-	g++ --std=c++20 -O0 Segment_Tree_Range_Sum.cpp -o fSegment_Tree_Range_Sum.sol
+	g++ $(FAST_FLAGS) Segment_Tree_Range_Sum.cpp -o fSegment_Tree_Range_Sum.sol
 fSieve_of_Eratosthenes.sol: Sieve_of_Eratosthenes.cpp
-	g++ --std=c++20 -O0 Sieve_of_Eratosthenes.cpp -o fSieve_of_Eratosthenes.sol
+	g++ $(FAST_FLAGS) Sieve_of_Eratosthenes.cpp -o fSieve_of_Eratosthenes.sol
 fSimple_Dijkstra.sol: Simple_Dijkstra.cpp
-	g++ --std=c++20 -O0 Simple_Dijkstra.cpp -o fSimple_Dijkstra.sol
+	g++ $(FAST_FLAGS) Simple_Dijkstra.cpp -o fSimple_Dijkstra.sol
 fSparse_Table.sol: Sparse_Table.cpp
-	g++ --std=c++20 -O0 Sparse_Table.cpp -o fSparse_Table.sol
+	g++ $(FAST_FLAGS) Sparse_Table.cpp -o fSparse_Table.sol
 fTEMPLATE.sol: TEMPLATE.cpp
-	g++ --std=c++20 -O0 TEMPLATE.cpp -o fTEMPLATE.sol
+	g++ $(FAST_FLAGS) TEMPLATE.cpp -o fTEMPLATE.sol
 fTarjan_find_articulation.sol: Tarjan_find_articulation.cpp
-	g++ --std=c++20 -O0 Tarjan_find_articulation.cpp -o fTarjan_find_articulation.sol
+	g++ $(FAST_FLAGS) Tarjan_find_articulation.cpp -o fTarjan_find_articulation.sol
 fTarjan_find_bridges.sol: Tarjan_find_bridges.cpp
-	g++ --std=c++20 -O0 Tarjan_find_bridges.cpp -o fTarjan_find_bridges.sol
+	g++ $(FAST_FLAGS) Tarjan_find_bridges.cpp -o fTarjan_find_bridges.sol
 fTernary_Search.sol: Ternary_Search.cpp
-	g++ --std=c++20 -O0 Ternary_Search.cpp -o fTernary_Search.sol
+	g++ $(FAST_FLAGS) Ternary_Search.cpp -o fTernary_Search.sol
 fTree_diameter.sol: Tree_diameter.cpp
-	g++ --std=c++20 -O0 Tree_diameter.cpp -o fTree_diameter.sol
+	g++ $(FAST_FLAGS) Tree_diameter.cpp -o fTree_diameter.sol
 fTrie.sol: Trie.cpp
-	g++ --std=c++20 -O0 Trie.cpp -o fTrie.sol
+	g++ $(FAST_FLAGS) Trie.cpp -o fTrie.sol
 fZ_function.sol: Z_function.cpp
-	g++ --std=c++20 -O0 Z_function.cpp -o fZ_function.sol
+	g++ $(FAST_FLAGS) Z_function.cpp -o fZ_function.sol
 
 asm: 2D_Prefix_Sum.s  BFS.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  CRT.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  SCC.s  Segment_Tree_RMQ.s  Segment_Tree_Range_Sum.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s 
 
@@ -640,5 +645,3 @@ Z_function.ll:
 
 clean:
 	rm *.sol
-	rm *.s
-	rm *.ll

@@ -2,6 +2,7 @@
 ##################################################################################
 # THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#
 ##################################################################################
+
 grey=$(tput setaf 7)
 vividblue=$(tput setaf 20)
 darkblue=$(tput setaf 17)

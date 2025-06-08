@@ -53,15 +53,15 @@ void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
 	return;
     }
 
-    T i = start;
-    for (i = start; i != target; i = paths[i][target]) {
-	if (i == -1) {
+    T iter = start;
+    for (iter = start; iter != target; iter = paths[iter][target]) {
+	if (iter == -1) {
 	    return;
 	}
-	sp.push_back(i);
+	sp.push_back(iter);
     }
 
-    if (paths[i][target] == -1) {
+    if (paths[iter][target] == -1) {
 	std::cout << "No path\n";
 	return;
     }

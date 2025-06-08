@@ -36,8 +36,8 @@ long long calculate(int x, char c, int y, int n) {
     long long res = 0;
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
-	    res += (long long) (recursive_binomial_coefficient(n, i) *
-				binpow(x, i) * binpow(y, n - i));
+	    res += (recursive_binomial_coefficient(n, i) * binpow(x, i) *
+		    binpow(y, n - i));
 	}
     } else {
 	long long flip = -1;
@@ -51,6 +51,8 @@ long long calculate(int x, char c, int y, int n) {
 }
 
 void show_calculation(int x, char c, int y, int n) {
+    (void) x;
+    (void) y;
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
 	    std::cout << recursive_binomial_coefficient(n, i) << " x^" << i
@@ -68,7 +70,7 @@ void show_calculation(int x, char c, int y, int n) {
 	    if (i != n) {
 		std::cout << " " << c << " ";
 	    }
-	    c += move;
+	    c += static_cast<char>(move);
 	    move *= -1;
 	}
 	std::cout << "\n";

@@ -1,5 +1,19 @@
 #include <iostream>
 
+constexpr long long mod{1000000007};
+
+long long mod_binpow(long long a, long long b) {
+    long long res = 1;
+    while (b > 0) {
+	if (b & 1) {
+	    res = res * a % mod;
+	}
+	a = a * a % mod;
+	b >>= 1;
+    }
+    return res;
+}
+
 long long binpow(long long a, long long b) {
     long long res = 1;
     while (b > 0) {
@@ -20,7 +34,9 @@ int main() {
     long long a, b;
     std::cin >> a >> b;
     const long long res = binpow(a, b);
+    const long long mod_res = mod_binpow(a, b);
     std::cout << res << "\n";
+    std::cout << mod_res << "\n";
 
     return 0;
 }
