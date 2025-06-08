@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <iostream>
+#include <stack>
 #include <vector>
 
 void dfs(int vertex, std::vector<std::vector<int>> &adj,
@@ -8,12 +10,29 @@ void dfs(int vertex, std::vector<std::vector<int>> &adj,
     }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    // leafs
-    // if (adj[vertex].size() == 0) {
-    //  std::cout << vertex << " ";
-    // }
     for (const auto &v : adj[vertex]) {
 	dfs(v, adj, visited);
+    }
+}
+
+void iterative_dfs(int vertex, std::vector<std::vector<int>> &adj,
+		   std::vector<bool> &visited) {
+    std::fill(visited.begin(), visited.end(), false);
+    std::stack<int> stack;
+    visited[vertex] = true;
+    stack.push(vertex);
+
+    while (!stack.empty()) {
+	int curr = stack.top();
+	std::cout << curr << " ";
+	stack.pop();
+	for (int i = (int) adj[curr].size() - 1; i >= 0; i--) {
+	    auto &v = adj[curr][i];
+	    if (!visited[v]) {
+		visited[v] = true;
+		stack.push(v);
+	    }
+	}
     }
 }
 
@@ -36,5 +55,8 @@ int main() {
 	// adj[y].push_back(x);
     }
     dfs(1, adj, visited);
+    std::cout << "\n";
+    iterative_dfs(1, adj, visited);
+
     return 0;
 }
