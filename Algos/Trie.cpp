@@ -11,7 +11,7 @@ struct Trie {
 	int c;
 	int cnt_shares{0};
 	explicit Node(const int c_) : c(c_) {
-	    next.assign(CHAR_SIZE, -1);
+	    next = std::vector<int>(CHAR_SIZE, -1);
 	}
     };
 
