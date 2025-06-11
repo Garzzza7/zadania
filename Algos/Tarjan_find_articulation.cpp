@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class tarjan_find_articulation {
-   public:
+struct tarjan_find_articulation {
     std::vector<std::vector<int>> adj;
     std::vector<bool> visited;
     std::vector<bool> is_art_point;
@@ -10,6 +9,12 @@ class tarjan_find_articulation {
     std::vector<int> low;
     int visit_time{0};
 
+    ~tarjan_find_articulation() = default;
+    tarjan_find_articulation(const tarjan_find_articulation&) = default;
+    tarjan_find_articulation(tarjan_find_articulation&&) = delete;
+    tarjan_find_articulation& operator=(const tarjan_find_articulation&) =
+	default;
+    tarjan_find_articulation& operator=(tarjan_find_articulation&&) = delete;
     explicit tarjan_find_articulation(const int n) {
 	adj = std::vector<std::vector<int>>(n + 1, std::vector<int>());
 	visited = std::vector<bool>(n + 1, false);

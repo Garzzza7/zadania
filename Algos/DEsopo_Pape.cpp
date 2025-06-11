@@ -2,22 +2,25 @@
 #include <iostream>
 #include <vector>
 
-class desopo_pape {
-    class edge {
-       public:
+struct desopo_pape {
+    struct edge {
 	int vertex;
 	int weight;
 	edge(const int vv, const int ww) : vertex(vv), weight(ww) {
 	}
     };
 
-   public:
     std::vector<std::vector<edge>> adj;
     std::deque<int> queue;
     std::vector<int> path;
     std::vector<int> distance;
     std::vector<int> type; // 0 - calculated , 1 - currently calculated
-			   // 2 - yet to be calculated
+    // 2 - yet to be calculated
+    ~desopo_pape() = default;
+    desopo_pape(const desopo_pape &) = default;
+    desopo_pape(desopo_pape &&) = delete;
+    desopo_pape &operator=(const desopo_pape &) = default;
+    desopo_pape &operator=(desopo_pape &&) = delete;
     explicit desopo_pape(const int n) {
 	adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
 	queue = std::deque<int>();
@@ -25,6 +28,7 @@ class desopo_pape {
 	distance = std::vector<int>(n + 1, 1000000);
 	type = std::vector<int>(n + 1, 2);
     }
+
     void add_edge(const int p, const int v, const int w) {
 	adj[p].emplace_back(v, w);
     }
@@ -41,7 +45,7 @@ class desopo_pape {
 	    const int curr = queue.front();
 	    queue.pop_front();
 	    type[curr] = 0;
-	    for (const auto& e : adj[curr]) {
+	    for (const auto &e : adj[curr]) {
 		if (distance[e.vertex] > distance[curr] + e.weight) {
 		    distance[e.vertex] = distance[curr] + e.weight;
 		    path[e.vertex] = curr;
@@ -56,9 +60,11 @@ class desopo_pape {
 	    }
 	}
     }
+
     [[nodiscard]] int get_cost(const int v) const {
 	return distance[v];
     }
+
     void get_path(const int start, const int target) const {
 	std::vector<int> sp;
 	for (int i = target; i != -123; i = path[i]) {

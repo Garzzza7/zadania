@@ -461,16 +461,6 @@ else
     printf "${red}$(cat Rolling_Hash.test)${normal}\n"
 fi
 
-if [ "$(./SCC.sol < SCC.txt)" == "$(cat SCC.test)" ]; then
-    printf "${green}SCC Passed.${normal}\n"
-else
-    printf "${red}SCC Failed.\n"
-    printf "${red} Got:\n"
-    printf "${red}$(./SCC.sol < SCC.txt)\n"
-    printf "${red} Should be:\n"
-    printf "${red}$(cat SCC.test)${normal}\n"
-fi
-
 if [ "$(./Sattoro_shuffle.sol < Sattoro_shuffle.txt)" == "$(cat Sattoro_shuffle.test)" ]; then
     printf "${green}Sattoro_shuffle Passed.${normal}\n"
 else

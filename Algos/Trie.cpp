@@ -17,7 +17,13 @@ struct Trie {
 
     std::vector<Node> nodes;
     int root{0};
-    Trie() {
+
+    ~Trie() = default;
+    Trie(const Trie &) = delete;
+    Trie(Trie &&) = delete;
+    Trie &operator=(const Trie &) = delete;
+    Trie &operator=(Trie &&) = delete;
+    explicit Trie() {
 	nodes.push_back(Node(root));
     }
 

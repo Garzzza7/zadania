@@ -73,7 +73,7 @@ int main() {
 	for (int i = 0; i < m; i++) {
 	    int a, b, w;
 	    std::cin >> a >> b >> w;
-	    edges.push_back({a, b, w});
+	    edges.emplace_back(a, b, w);
 	}
 	std::vector<int> distances(n + 1);
 	std::vector<int> paths(n + 1, -1);

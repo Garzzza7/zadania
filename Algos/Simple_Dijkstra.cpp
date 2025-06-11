@@ -7,7 +7,7 @@
 template <typename T>
 void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
 	      std::vector<T> &distances, std::vector<bool> &visited,
-	      std::vector<T> &path) {
+	      std::vector<T> &path = {}) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
     std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>,

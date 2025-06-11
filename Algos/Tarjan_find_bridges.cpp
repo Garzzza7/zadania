@@ -1,16 +1,14 @@
 #include <iostream>
 #include <vector>
 
-class tarjan_find_bridges {
-    class edge {
-       public:
+struct tarjan_find_bridges {
+    struct edge {
 	int vertex;
 	int id;
 	edge(const int vv, const int idd) : vertex(vv), id(idd) {
 	}
     };
 
-   public:
     std::vector<std::vector<edge>> adj;
     std::vector<bool> visited;
     std::vector<bool> is_bridge;
@@ -20,7 +18,12 @@ class tarjan_find_bridges {
     int visit_time{0};
     int edge_id{0};
 
-    tarjan_find_bridges(int n, int m) {
+    ~tarjan_find_bridges() = default;
+    tarjan_find_bridges(const tarjan_find_bridges&) = default;
+    tarjan_find_bridges(tarjan_find_bridges&&) = delete;
+    tarjan_find_bridges& operator=(const tarjan_find_bridges&) = default;
+    tarjan_find_bridges& operator=(tarjan_find_bridges&&) = delete;
+    explicit tarjan_find_bridges(int n, int m) {
 	n++;
 	m++;
 	adj = std::vector<std::vector<edge>>(n, std::vector<edge>());

@@ -3,77 +3,96 @@
 #include <stack>
 #include <vector>
 
-#define MAX_N 500001
-
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 // https://codeforces.com/problemset/problem/427/C
 
-int n, m;
+template <typename T>
+struct Kosaraju {
+    T n;
 
-std::vector<std::vector<int>> adj(MAX_N, std::vector<int>());
-std::vector<std::vector<int>> rev_adj(MAX_N, std::vector<int>());
-std::stack<int> Stack;
-std::vector<bool> visited(MAX_N, false);
+    std::vector<std::vector<T>> adj;
+    std::vector<std::vector<T>> rev_adj;
+    std::stack<T> stack;
+    std::vector<bool> visited;
 
-int cntComponents = 0;
+    T cnt_Components{0};
 
-std::map<int, std::vector<int>> total;
+    std::map<T, std::vector<T>> total;
 
-void dfs_1(const int v) {
-    visited[v] = true;
-    for (const auto& vv : adj[v]) {
-	if (!visited[vv]) {
-	    dfs_1(vv);
+    ~Kosaraju() = default;
+    Kosaraju(const Kosaraju&) = delete;
+    Kosaraju(Kosaraju&&) = delete;
+    Kosaraju& operator=(const Kosaraju&) = delete;
+    Kosaraju& operator=(Kosaraju&&) = delete;
+    explicit Kosaraju(const T _n)
+	: n(_n),
+	  adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
+	  rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
+	visited = std::vector<bool>(_n, false);
+    }
+
+    void push(const T a, const T b) {
+	adj[a].push_back(b);
+	rev_adj[b].push_back(a);
+    }
+
+    void scc() {
+	for (int i = 0; i < n; i++) {
+	    if (!visited[i]) {
+		dfs_1(i);
+	    }
+	}
+	for (int i = 0; i < n; i++) {
+	    visited[i] = false;
+	}
+	while (!stack.empty()) {
+	    int v = stack.top();
+	    stack.pop();
+	    if (!visited[v]) {
+		dfs_2(v);
+		cnt_Components++;
+	    }
 	}
     }
-    Stack.push(v);
-}
 
-void dfs_2(const int v) {
-    total[cntComponents].push_back(v);
-    visited[v] = true;
-    for (const auto& vv : rev_adj[v]) {
-	if (!visited[vv]) {
-	    dfs_2(vv);
+    void dfs_1(const T v) {
+	visited[v] = true;
+	for (const auto& vv : adj[v]) {
+	    if (!visited[vv]) {
+		dfs_1(vv);
+	    }
 	}
+	stack.push(v);
     }
-}
 
-void Kosaraju() {
-    for (int i = 0; i < n; i++) {
-	if (!visited[i]) {
-	    dfs_1(i);
+    void dfs_2(const T v) {
+	total[cnt_Components].push_back(v);
+	visited[v] = true;
+	for (const auto& vv : rev_adj[v]) {
+	    if (!visited[vv]) {
+		dfs_2(vv);
+	    }
 	}
     }
-    for (int i = 0; i < n; i++) {
-	visited[i] = false;
-    }
-    while (!Stack.empty()) {
-	int v = Stack.top();
-	Stack.pop();
-	if (!visited[v]) {
-	    dfs_2(v);
-	    cntComponents++;
-	}
-    }
-}
+};
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
+    int n, m;
     std::cin >> n >> m;
+
+    Kosaraju<int> kosaraju(n);
     while (m--) {
 	int a, b;
 	std::cin >> a >> b;
-	adj[a].push_back(b);
-	rev_adj[b].push_back(a);
+	kosaraju.push(a, b);
     }
-
-    Kosaraju();
-    std::cout << total.size() << "\n";
-    for (const auto& [fst, snd] : total) {
+    kosaraju.scc();
+    std::cout << kosaraju.total.size() << "\n";
+    for (const auto& [fst, snd] : kosaraju.total) {
 	std::cout << snd.size() << " ";
 	for (const auto& aa : snd) {
 	    std::cout << aa << " ";
