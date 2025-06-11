@@ -1,21 +1,23 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 struct Sparse_table {
     T N;
     int LOG{};
     std::vector<std::vector<T>> matrix;
     std::vector<T> bin_log;
 
-    Sparse_table() = default;
+    Sparse_table() = delete;
     ~Sparse_table() = default;
     Sparse_table(const Sparse_table &) = delete;
     Sparse_table(Sparse_table &&) = delete;
     Sparse_table &operator=(const Sparse_table &) = delete;
     Sparse_table &operator=(Sparse_table &&) = delete;
-    explicit Sparse_table(const std::vector<T> &init)
-	: N(static_cast<int>(init.size())) {
+
+    explicit Sparse_table(const std::vector<T> &_init)
+	: N(static_cast<int>(_init.size())) {
 	bin_log.push_back(0);
 	bin_log.push_back(0);
 	for (int i = 2; i <= N; i++) {
@@ -23,7 +25,7 @@ struct Sparse_table {
 	}
 	LOG = 63 - __builtin_clzl(N) + 1;
 	matrix = std::vector(LOG, std::vector(N, 0ll));
-	matrix[0] = init;
+	matrix[0] = _init;
     }
 
     void process_min() {

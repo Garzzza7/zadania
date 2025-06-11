@@ -1,103 +1,108 @@
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
-constexpr long long mod = 1000000007;
-// int vec[2000001];
 
-// OOP VERSION OF UFDS
-class UnionFind {
-   private:
-    std::vector<int> p, rank;
+template <typename T = int>
+struct DSU {
+    std::vector<T> parent;
+    std::vector<T> size;
+    std::vector<T> rank;
 
-   public:
-    UnionFind(int N) {
-	rank.assign(N, 0);
-	p.assign(N, 0);
-	for (int i = 0; i < N; i++)
-	    p[i] = i;
+    ~DSU() = default;
+    DSU(const DSU &) = delete;
+    DSU(DSU &&) = delete;
+    DSU &operator=(const DSU &) = delete;
+    DSU &operator=(DSU &&) = delete;
+    DSU() = delete;
+
+    explicit DSU(T _n)
+	: parent(std::vector<T>(_n, 0)),
+	  size(std::vector<T>(_n, 1)),
+	  rank(std::vector<T>(_n, 0)) {
+	std::iota(parent.begin(), parent.end(), 0);
     }
-    int findSet(int i) {
-	return (p[i] == i) ? i : (p[i] = findSet(p[i]));
+
+    explicit DSU(std::vector<T> _parent, std::vector<T> _size,
+		 std::vector<T> _rank)
+	: parent(std::move(_parent)),
+	  size(std::move(_size)),
+	  rank(std::move(_rank)) {
     }
-    bool isSameSet(int i, int j) {
-	return findSet(i) == findSet(j);
+
+    void make_set(T v) {
+	parent[v] = v;
+	size[v] = 1;
+	rank[v] = 0;
     }
-    void unionSet(int i, int j) {
-	if (!isSameSet(i, j)) {
-	    // if from different set
-	    int x = findSet(i), y = findSet(j);
-	    if (rank[x] > rank[y])
-		p[y] = x;
-	    // rank keeps the tree short
-	    else {
-		p[x] = y;
-		if (rank[x] == rank[y])
-		    rank[y]++;
+
+    [[__nodiscard__]] T find_set(T v) {
+	if (v == parent[v]) {
+	    return v;
+	}
+	return parent[v] = find_set(parent[v]);
+    }
+
+    void union_sets_by_size(T a, T b) {
+	a = find_set(a);
+	b = find_set(b);
+	if (a != b) {
+	    if (size[a] < size[b]) {
+		std::swap(a, b);
+	    }
+	    parent[b] = a;
+	    size[a] += size[b];
+	}
+    }
+
+    void union_sets_by_rank(T a, T b) {
+	a = find_set(a);
+	b = find_set(b);
+	if (a != b) {
+	    if (rank[a] < rank[b]) {
+		std::swap(a, b);
+	    }
+	    parent[b] = a;
+	    if (rank[a] == rank[b]) {
+		rank[a]++;
 	    }
 	}
     }
-};
 
-long long find_set(long long v, std::vector<long long> &vec) {
-    if (vec[v] == v) {
-	return v;
+    [[__nodiscard__]] bool is_same_set(const T i, const T j) {
+	return find_set(i) == find_set(j);
     }
-    return vec[v] = find_set(vec[v], vec);
-    // return vec[v];
-}
+};
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    long long n, q;
+    long long n;
+    int q;
     std::cin >> n >> q;
-    std::vector<long long> vec(n + 1, 0);
-    std::vector<long long> size(n + 1, 0);
-    std::vector<long long> rank(n + 1, 0);
-    for (long long i = 0; i < n; i++) {
-	vec[i] = i;
-	size[i] = 1;
-	rank[i] = 0;
-    }
-    // std::vector<std::vector<int>> vec(n+1,std::vector<int>());
-    for (long long i = 0; i < q; i++) {
+
+    DSU<long long> dsu(n + 1);
+
+    while (q--) {
 	long long a, b, c;
 	std::cin >> a >> b >> c;
 	if (a == 0) {
-	    // int bb = find_set(b,vec);
-	    // int cc = find_set(c,vec);
-	    // if(bb!=cc){
-	    //     vec[c] = b;
-	    // }
-	    long long bb = find_set(b, vec);
-	    long long cc = find_set(c, vec);
-	    if (bb != cc) {
-		if (rank[bb] < rank[cc]) {
-		    std::swap(bb, cc);
-		}
-		vec[cc] = bb;
-		if (rank[bb] == rank[cc]) {
-		    rank[bb]++;
-		}
-	    }
+	    long long bb = dsu.find_set(b);
+	    long long cc = dsu.find_set(c);
+	    dsu.union_sets_by_rank(bb, cc);
 	} else {
-	    long long res1 = find_set(b, vec);
-	    long long res2 = find_set(c, vec);
-	    // std::cout<<"RES1 = "<<res1<<" RES2 = "<<res2<<'\n';
+	    long long res1 = dsu.find_set(b);
+	    long long res2 = dsu.find_set(c);
 	    if (res1 == res2) {
 		std::cout << '1';
 	    } else {
 		std::cout << '0';
 	    }
-	    std::cout << '\n';
+	    std::cout << "\n";
 	}
     }
-    // for (long long i = 0; i < n; i++)
-    // {
-    //     std::cout << i << " - " << vec[i] << " " << rank[i] << '\n';
-    // }
     return 0;
 }

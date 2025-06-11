@@ -16,11 +16,13 @@ struct desopo_pape {
     std::vector<int> distance;
     std::vector<int> type; // 0 - calculated , 1 - currently calculated
     // 2 - yet to be calculated
+    desopo_pape() = delete;
     ~desopo_pape() = default;
-    desopo_pape(const desopo_pape &) = default;
+    desopo_pape(const desopo_pape &) = delete;
     desopo_pape(desopo_pape &&) = delete;
-    desopo_pape &operator=(const desopo_pape &) = default;
+    desopo_pape &operator=(const desopo_pape &) = delete;
     desopo_pape &operator=(desopo_pape &&) = delete;
+
     explicit desopo_pape(const int n) {
 	adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
 	queue = std::deque<int>();

@@ -19,9 +19,9 @@ struct tarjan_find_bridges {
     int edge_id{0};
 
     ~tarjan_find_bridges() = default;
-    tarjan_find_bridges(const tarjan_find_bridges&) = default;
+    tarjan_find_bridges(const tarjan_find_bridges&) = delete;
     tarjan_find_bridges(tarjan_find_bridges&&) = delete;
-    tarjan_find_bridges& operator=(const tarjan_find_bridges&) = default;
+    tarjan_find_bridges& operator=(const tarjan_find_bridges&) = delete;
     tarjan_find_bridges& operator=(tarjan_find_bridges&&) = delete;
     explicit tarjan_find_bridges(int n, int m) {
 	n++;

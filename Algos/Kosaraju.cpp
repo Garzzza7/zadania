@@ -6,7 +6,7 @@
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 // https://codeforces.com/problemset/problem/427/C
 
-template <typename T>
+template <typename T = int>
 struct Kosaraju {
     T n;
 
