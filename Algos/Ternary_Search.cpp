@@ -1,7 +1,8 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
-int ternary_search(std::vector<int> &vec, const int l, const int r,
+int ternary_search(std::vector<int>& vec, const int l, const int r,
 		   const int x) {
     if (r >= l) {
 	const int mid1 = l + (r - l) / 3;
@@ -19,8 +20,6 @@ int ternary_search(std::vector<int> &vec, const int l, const int r,
 	} else {
 	    return ternary_search(vec, mid1 + 1, mid2 - 1, x);
 	}
-    } else {
-	std::cout << "r<l\n";
     }
     return -1;
 }
@@ -33,9 +32,13 @@ int main() {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) {
-	std::cin >> vec[i];
+    for (auto&& v : vec) {
+	std::cin >> v;
     }
+    std::ranges::sort(vec.begin(), vec.end());
     std::cout << ternary_search(vec, 0, n - 1, 14) << "\n";
+    std::cout << ternary_search(vec, 0, n - 1, 2) << "\n";
+    std::cout << ternary_search(vec, 0, n - 1, 100) << "\n";
+    std::cout << ternary_search(vec, 0, n - 1, 1) << "\n";
     return 0;
 }

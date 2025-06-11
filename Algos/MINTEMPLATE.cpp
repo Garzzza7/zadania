@@ -1,10 +1,9 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <map>
-#include <numeric>
+#include <queue>
 #include <set>
 #include <string>
 #include <vector>
@@ -17,7 +16,7 @@ int main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
+    int T{1};
     std::cin >> T;
     while (T--) {
     }

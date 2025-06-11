@@ -1,4 +1,8 @@
+rec gcd = 1
 gcd = 1
+bit gcd = 1
 lcm = 888
+rec gcd = 12
 gcd = 12
+bit gcd = 12
 lcm = 72

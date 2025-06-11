@@ -281,6 +281,16 @@ else
     printf "${red}$(cat Find_Cycles_Undirected.test)${normal}\n"
 fi
 
+if [ "$(./Fisher_Yates.sol < Fisher_Yates.txt)" == "$(cat Fisher_Yates.test)" ]; then
+    printf "${green}Fisher_Yates Passed.${normal}\n"
+else
+    printf "${red}Fisher_Yates Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Fisher_Yates.sol < Fisher_Yates.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Fisher_Yates.test)${normal}\n"
+fi
+
 if [ "$(./Flood_fill.sol < Flood_fill.txt)" == "$(cat Flood_fill.test)" ]; then
     printf "${green}Flood_fill Passed.${normal}\n"
 else
@@ -459,6 +469,16 @@ else
     printf "${red}$(./SCC.sol < SCC.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat SCC.test)${normal}\n"
+fi
+
+if [ "$(./Sattoro_shuffle.sol < Sattoro_shuffle.txt)" == "$(cat Sattoro_shuffle.test)" ]; then
+    printf "${green}Sattoro_shuffle Passed.${normal}\n"
+else
+    printf "${red}Sattoro_shuffle Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Sattoro_shuffle.sol < Sattoro_shuffle.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Sattoro_shuffle.test)${normal}\n"
 fi
 
 if [ "$(./Segment_Tree_RMQ.sol < Segment_Tree_RMQ.txt)" == "$(cat Segment_Tree_RMQ.test)" ]; then

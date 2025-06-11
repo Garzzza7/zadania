@@ -252,15 +252,23 @@ void printarr(const T_vector &v, const bool inc = false, int begin = -1,
     }
 }
 
+template <typename T>
+inline constexpr int sz(std::vector<T> vec) {
+    return (static_cast<int>((vec).size()));
+}
+
 using namespace std;
 using namespace __gnu_pbds;
 
 // constants
-[[maybe_unused]] constexpr int prime{7919};
-[[maybe_unused]] constexpr double pi{std::numbers::pi};
-[[maybe_unused]] constexpr int mod{1000000007};
+[[maybe_unused]] static constexpr int prime{7919};
+[[maybe_unused]] static constexpr double pi{std::numbers::pi};
+[[maybe_unused]] static constexpr int mod{1000000007};
+
+#define ll long long
 
 int main() {
+    std::cout << std::setprecision(10);
 #ifdef TIME
     const std::chrono::time_point<
 	std::chrono::system_clock,
