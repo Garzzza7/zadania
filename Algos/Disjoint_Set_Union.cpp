@@ -17,7 +17,7 @@ struct DSU {
     DSU &operator=(DSU &&) = delete;
     DSU() = delete;
 
-    explicit DSU(T _n)
+    explicit DSU(const T _n)
 	: parent(std::vector<T>(_n, 0)),
 	  size(std::vector<T>(_n, 1)),
 	  rank(std::vector<T>(_n, 0)) {
@@ -31,13 +31,13 @@ struct DSU {
 	  rank(std::move(_rank)) {
     }
 
-    void make_set(T v) {
+    void make_set(const T v) {
 	parent[v] = v;
 	size[v] = 1;
 	rank[v] = 0;
     }
 
-    [[__nodiscard__]] T find_set(T v) {
+    [[__nodiscard__]] T find_set(const T v) {
 	if (v == parent[v]) {
 	    return v;
 	}
@@ -70,8 +70,8 @@ struct DSU {
 	}
     }
 
-    [[__nodiscard__]] bool is_same_set(const T i, const T j) {
-	return find_set(i) == find_set(j);
+    [[__nodiscard__]] bool is_same_set(const T a, const T b) {
+	return find_set(a) == find_set(b);
     }
 };
 
