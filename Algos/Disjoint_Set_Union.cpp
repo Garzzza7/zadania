@@ -44,7 +44,7 @@ struct DSU {
 	return parent[v] = find_set(parent[v]);
     }
 
-    void union_sets_by_size(T a, T b) {
+    void merge_by_size(T a, T b) {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
@@ -56,7 +56,7 @@ struct DSU {
 	}
     }
 
-    void union_sets_by_rank(T a, T b) {
+    void merge_by_rank(T a, T b) {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
@@ -92,7 +92,7 @@ int main() {
 	if (a == 0) {
 	    long long bb = dsu.find_set(b);
 	    long long cc = dsu.find_set(c);
-	    dsu.union_sets_by_rank(bb, cc);
+	    dsu.merge_by_rank(bb, cc);
 	} else {
 	    long long res1 = dsu.find_set(b);
 	    long long res2 = dsu.find_set(c);
