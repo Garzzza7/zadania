@@ -64,19 +64,19 @@ struct Sparse_table {
 	}
     }
 
-    [[nodiscard]] T query_min(const int L, const int R) const {
+    [[__nodiscard__]] T query_min(const int L, const int R) const {
 	const T i = bin_log[R - L + 1];
 	const T minimum = std::min(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    [[nodiscard]] T query_max(const int L, const int R) const {
+    [[__nodiscard__]] T query_max(const int L, const int R) const {
 	const T i = bin_log[R - L + 1];
 	const T minimum = std::max(matrix[i][L], matrix[i][R - (1 << i) + 1]);
 	return minimum;
     }
 
-    [[nodiscard]] T query_sum(int L, const int R) const {
+    [[__nodiscard__]] T query_sum(int L, const int R) const {
 	T sum = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
@@ -87,7 +87,7 @@ struct Sparse_table {
 	return sum;
     }
 
-    [[nodiscard]] T query_xor(int L, const int R) const {
+    [[__nodiscard__]] T query_xor(int L, const int R) const {
 	T res = 0;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
