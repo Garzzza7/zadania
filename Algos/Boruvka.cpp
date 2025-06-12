@@ -1,16 +1,19 @@
 #include <iostream>
+#include <limits>
 #include <numeric>
 #include <vector>
 
+template <typename T = int>
 struct edge {
     int u;
     int v;
-    double weight;
+    T weight;
 };
 
+template <typename T = int>
 struct boruvka {
     int n;
-    std::vector<edge> edges;
+    std::vector<edge<T>> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
@@ -20,7 +23,7 @@ struct boruvka {
 	rank.assign(n, 0);
     }
 
-    void add_edge(const edge& edge) {
+    void add_edge(const edge<T>& edge) {
 	edges.emplace_back(edge);
     }
 
@@ -46,15 +49,16 @@ struct boruvka {
 	}
     }
 
-    std::vector<edge> mst() {
-	std::vector<edge> mst;
-	std::vector<edge> cheapest(n, edge(-1, -1, 10000000.0));
+    std::vector<edge<T>> mst() {
+	std::vector<edge<T>> mst;
+	std::vector<edge<T>> cheapest(
+	    n, edge(-1, -1, std::numeric_limits<T>::max()));
 
 	int tree_count = n;
-	double mst_weight{0.0};
+	T mst_weight{0};
 
 	while (tree_count > 1) {
-	    for (const edge& e : edges) {
+	    for (const edge<T>& e : edges) {
 		const auto& u = e.u;
 		const auto& v = e.v;
 		const auto& weight = e.weight;
@@ -63,11 +67,11 @@ struct boruvka {
 		const auto id2 = find(v);
 
 		if (id1 != id2) {
-		    if (cheapest[id1].weight == 10000000.0 ||
+		    if (cheapest[id1].weight == std::numeric_limits<T>::max() ||
 			cheapest[id1].weight > weight) {
 			cheapest[id1] = edge(u, v, weight);
 		    }
-		    if (cheapest[id2].weight == 10000000.0 ||
+		    if (cheapest[id2].weight == std::numeric_limits<T>::max() ||
 			cheapest[id2].weight > weight) {
 			cheapest[id2] = edge(u, v, weight);
 		    }
@@ -75,7 +79,7 @@ struct boruvka {
 	    }
 
 	    for (int ver = 0; ver < n; ver++) {
-		if (cheapest[ver].weight != 10000000.0) {
+		if (cheapest[ver].weight != std::numeric_limits<T>::max()) {
 		    const auto& u = cheapest[ver].u;
 		    const auto& v = cheapest[ver].v;
 		    const auto& weight = cheapest[ver].weight;
@@ -104,12 +108,12 @@ int main() {
     int n, m;
     std::cin >> n >> m;
 
-    boruvka graph(n);
+    boruvka<int> graph(n);
     while (m--) {
 	int u, v;
-	double w;
+	int w;
 	std::cin >> u >> v >> w;
-	graph.add_edge(edge(u, v, w));
+	graph.add_edge(edge<int>(u, v, w));
     }
 
     auto res = graph.mst();
