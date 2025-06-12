@@ -10,13 +10,6 @@ struct DSU {
     std::vector<T> size;
     std::vector<T> rank;
 
-    ~DSU() = default;
-    DSU(const DSU &) = delete;
-    DSU(DSU &&) = delete;
-    DSU &operator=(const DSU &) = delete;
-    DSU &operator=(DSU &&) = delete;
-    DSU() = delete;
-
     explicit DSU(const T _n)
 	: parent(std::vector<T>(_n, 0)),
 	  size(std::vector<T>(_n, 1)),

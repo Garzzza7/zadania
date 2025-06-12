@@ -8,13 +8,6 @@ struct ram_seg_tree {
     const T NEUTRAL_ELEMENT{0};
     std::vector<T> vec;
 
-    ~ram_seg_tree() = default;
-    ram_seg_tree(const ram_seg_tree&) = delete;
-    ram_seg_tree(ram_seg_tree&&) = delete;
-    ram_seg_tree& operator=(const ram_seg_tree&) = delete;
-    ram_seg_tree& operator=(ram_seg_tree&&) = delete;
-    ram_seg_tree() = delete;
-
     explicit ram_seg_tree(const int _n) {
 	while (size < _n) {
 	    size <<= 1;
@@ -71,8 +64,8 @@ struct ram_seg_tree {
 	}
 	const int mid = (rx - lx) / 2 + lx;
 	const T p1 = calc(l, r, 2 * x + 1, lx, mid);
-	const T p2 = calc(l, r, 2 * x + 2, mid, rx);
-	return operation(p1, p2);
+	const T s2 = calc(l, r, 2 * x + 2, mid, rx);
+	return operation(p1, s2);
     }
 
     T calc(const int l, const int r) {

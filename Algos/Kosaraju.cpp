@@ -19,11 +19,6 @@ struct Kosaraju {
 
     std::map<T, std::vector<T>> total;
 
-    ~Kosaraju() = default;
-    Kosaraju(const Kosaraju&) = delete;
-    Kosaraju(Kosaraju&&) = delete;
-    Kosaraju& operator=(const Kosaraju&) = delete;
-    Kosaraju& operator=(Kosaraju&&) = delete;
     explicit Kosaraju(const T _n)
 	: n(_n),
 	  adj(std::vector<std::vector<T>>(_n, std::vector<T>())),

@@ -11,13 +11,6 @@ struct Sparse_table {
     std::vector<std::vector<T>> matrix;
     std::vector<T> bin_log;
 
-    Sparse_table() = delete;
-    ~Sparse_table() = default;
-    Sparse_table(const Sparse_table &) = delete;
-    Sparse_table(Sparse_table &&) = delete;
-    Sparse_table &operator=(const Sparse_table &) = delete;
-    Sparse_table &operator=(Sparse_table &&) = delete;
-
     explicit Sparse_table(const std::vector<T> &_init)
 	: size(static_cast<int>(_init.size())) {
 	bin_log.push_back(0);
