@@ -48,7 +48,7 @@ struct boruvka {
 
     std::vector<edge> mst() {
 	std::vector<edge> mst;
-	std::vector<edge> cheapest(n, edge(-1, -1, -1.0));
+	std::vector<edge> cheapest(n, edge(-1, -1, 10000000.0));
 
 	int tree_count = n;
 	double mst_weight{0.0};
@@ -63,11 +63,11 @@ struct boruvka {
 		const auto id2 = find(v);
 
 		if (id1 != id2) {
-		    if (cheapest[id1].weight == -1.0 ||
+		    if (cheapest[id1].weight == 10000000.0 ||
 			cheapest[id1].weight > weight) {
 			cheapest[id1] = edge(u, v, weight);
 		    }
-		    if (cheapest[id2].weight == -1.0 ||
+		    if (cheapest[id2].weight == 10000000.0 ||
 			cheapest[id2].weight > weight) {
 			cheapest[id2] = edge(u, v, weight);
 		    }
@@ -75,7 +75,7 @@ struct boruvka {
 	    }
 
 	    for (int ver = 0; ver < n; ver++) {
-		if (cheapest[ver].weight != -1.0) {
+		if (cheapest[ver].weight != 10000000.0) {
 		    const auto& u = cheapest[ver].u;
 		    const auto& v = cheapest[ver].v;
 		    const auto& weight = cheapest[ver].weight;
@@ -117,4 +117,5 @@ int main() {
 	std::cout << v.u << " -> " << v.v << " with weight " << v.weight
 		  << "\n";
     }
+    return 0;
 }
