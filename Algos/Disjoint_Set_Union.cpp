@@ -65,7 +65,7 @@ struct DSU {
 	    }
 	    parent[b] = a;
 	    if (rank[a] == rank[b]) {
-		rank[a]++;
+		++rank[a];
 	    }
 	}
     }

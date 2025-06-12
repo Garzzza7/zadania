@@ -50,7 +50,7 @@ struct Kosaraju {
 	    stack.pop();
 	    if (!visited[v]) {
 		dfs_2(v);
-		cnt_Components++;
+		++cnt_Components;
 	    }
 	}
     }

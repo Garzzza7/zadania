@@ -7,16 +7,24 @@ struct ram_sum_seg_tree {
     int size{1};
     std::vector<long long> sums;
 
-    ram_sum_seg_tree(int _n) {
+    ~ram_sum_seg_tree() = default;
+    ram_sum_seg_tree(const ram_sum_seg_tree&) = delete;
+    ram_sum_seg_tree(ram_sum_seg_tree&&) = delete;
+    ram_sum_seg_tree& operator=(const ram_sum_seg_tree&) = delete;
+    ram_sum_seg_tree& operator=(ram_sum_seg_tree&&) = delete;
+    ram_sum_seg_tree() = delete;
+
+    explicit ram_sum_seg_tree(const int _n) {
 	while (size < _n) {
 	    size <<= 1;
 	}
 	sums.assign(2 * size, 0ll);
     }
 
-    void build(std::vector<int>& vec, int x, int lx, int rx) {
+    void build(const std::vector<int>& vec, const int x, const int lx,
+	       const int rx) {
 	if (rx - lx == 1) {
-	    if (lx < (int) vec.size()) {
+	    if (lx < static_cast<int>(vec.size())) {
 		sums[x] = vec[lx];
 	    }
 	    return;
@@ -27,11 +35,12 @@ struct ram_sum_seg_tree {
 	sums[x] = sums[2 * x + 1] + sums[2 * x + 2];
     }
 
-    void build(std::vector<int>& vec) {
+    void build(const std::vector<int>& vec) {
 	build(vec, 0, 0, size);
     }
 
-    void set(int i, int v, int x, int lx, int rx) {
+    void set(const int i, const int v, const int x, const int lx,
+	     const int rx) {
 	if (rx - lx == 1) {
 	    sums[x] = v;
 	    return;
@@ -45,24 +54,25 @@ struct ram_sum_seg_tree {
 	sums[x] = sums[2 * x + 1] + sums[2 * x + 2];
     }
 
-    void set(int i, int v) {
+    void set(const int i, const int v) {
 	set(i, v, 0, 0, size);
     }
 
-    long long sum(int l, int r, int x, int lx, int rx) {
+    long long sum(const int l, const int r, const int x, const int lx,
+		  const int rx) {
 	if (lx >= r || l >= rx) {
 	    return 0ll;
 	}
-	if (lx >= r && rx <= r) {
+	if (lx >= l && rx <= r) {
 	    return sums[x];
 	}
 	const int mid = (lx + rx) / 2;
-	long long s1 = sum(l, r, 2 * x + 1, lx, mid);
-	long long s2 = sum(l, r, 2 * x + 2, mid, rx);
+	const long long s1 = sum(l, r, 2 * x + 1, lx, mid);
+	const long long s2 = sum(l, r, 2 * x + 2, mid, rx);
 	return s1 + s2;
     }
 
-    long long sum(int l, int r) {
+    long long sum(const int l, const int r) {
 	return sum(l, r, 0, 0, size);
     }
 };
@@ -72,16 +82,24 @@ struct ram_max_seg_tree {
     int size{1};
     std::vector<long long> maxs;
 
-    ram_max_seg_tree(int _n) {
+    ~ram_max_seg_tree() = default;
+    ram_max_seg_tree(const ram_max_seg_tree&) = delete;
+    ram_max_seg_tree(ram_max_seg_tree&&) = delete;
+    ram_max_seg_tree& operator=(const ram_max_seg_tree&) = delete;
+    ram_max_seg_tree& operator=(ram_max_seg_tree&&) = delete;
+    ram_max_seg_tree() = delete;
+
+    explicit ram_max_seg_tree(const int _n) {
 	while (size < _n) {
 	    size <<= 1;
 	}
 	maxs.assign(2 * size, 0ll);
     }
 
-    void build(std::vector<int>& vec, int x, int lx, int rx) {
+    void build(const std::vector<int>& vec, const int x, const int lx,
+	       const int rx) {
 	if (rx - lx == 1) {
-	    if (lx < (int) vec.size()) {
+	    if (lx < static_cast<int>(vec.size())) {
 		maxs[x] = vec[lx];
 	    }
 	    return;
@@ -92,11 +110,12 @@ struct ram_max_seg_tree {
 	maxs[x] = std::max(maxs[2 * x + 1], maxs[2 * x + 2]);
     }
 
-    void build(std::vector<int>& vec) {
+    void build(const std::vector<int>& vec) {
 	build(vec, 0, 0, size);
     }
 
-    void set(int i, int v, int x, int lx, int rx) {
+    void set(const int i, const int v, const int x, const int lx,
+	     const int rx) {
 	if (rx - lx == 1) {
 	    maxs[x] = v;
 	    return;
@@ -110,24 +129,24 @@ struct ram_max_seg_tree {
 	maxs[x] = std::max(maxs[2 * x + 1], maxs[2 * x + 2]);
     }
 
-    void set(int i, int v) {
+    void set(const int i, const int v) {
 	set(i, v, 0, 0, size);
     }
 
-    int max(int l, int r, int x, int lx, int rx) {
+    int max(const int l, const int r, const int x, const int lx, const int rx) {
 	if (lx >= r || l >= rx) {
 	    return INT32_MIN;
 	}
-	if (lx >= r && rx <= r) {
+	if (lx >= l && rx <= r) {
 	    return maxs[x];
 	}
 	const int mid = (lx + rx) / 2;
-	int max1 = max(l, r, 2 * x + 1, lx, mid);
-	int max2 = max(l, r, 2 * x + 2, mid, rx);
+	const int max1 = max(l, r, 2 * x + 1, lx, mid);
+	const int max2 = max(l, r, 2 * x + 2, mid, rx);
 	return std::max(max1, max2);
     }
 
-    int max(int l, int r) {
+    int max(const int l, const int r) {
 	return max(l, r, 0, 0, size);
     }
 };
@@ -137,16 +156,24 @@ struct ram_min_seg_tree {
     int size{1};
     std::vector<long long> mins;
 
-    ram_min_seg_tree(int _n) {
+    ~ram_min_seg_tree() = default;
+    ram_min_seg_tree(const ram_min_seg_tree&) = delete;
+    ram_min_seg_tree(ram_min_seg_tree&&) = delete;
+    ram_min_seg_tree& operator=(const ram_min_seg_tree&) = delete;
+    ram_min_seg_tree& operator=(ram_min_seg_tree&&) = delete;
+    ram_min_seg_tree() = delete;
+
+    explicit ram_min_seg_tree(const int _n) {
 	while (size < _n) {
 	    size <<= 1;
 	}
 	mins.assign(2 * size, 0ll);
     }
 
-    void build(std::vector<int>& vec, int x, int lx, int rx) {
+    void build(const std::vector<int>& vec, const int x, const int lx,
+	       const int rx) {
 	if (rx - lx == 1) {
-	    if (lx < (int) vec.size()) {
+	    if (lx < static_cast<int>(vec.size())) {
 		mins[x] = vec[lx];
 	    }
 	    return;
@@ -157,11 +184,12 @@ struct ram_min_seg_tree {
 	mins[x] = std::min(mins[2 * x + 1], mins[2 * x + 2]);
     }
 
-    void build(std::vector<int>& vec) {
+    void build(const std::vector<int>& vec) {
 	build(vec, 0, 0, size);
     }
 
-    void set(int i, int v, int x, int lx, int rx) {
+    void set(const int i, const int v, const int x, const int lx,
+	     const int rx) {
 	if (rx - lx == 1) {
 	    mins[x] = v;
 	    return;
@@ -175,24 +203,24 @@ struct ram_min_seg_tree {
 	mins[x] = std::min(mins[2 * x + 1], mins[2 * x + 2]);
     }
 
-    void set(int i, int v) {
+    void set(const int i, const int v) {
 	set(i, v, 0, 0, size);
     }
 
-    int min(int l, int r, int x, int lx, int rx) {
+    int min(const int l, const int r, const int x, const int lx, const int rx) {
 	if (lx >= r || l >= rx) {
 	    return INT32_MAX;
 	}
-	if (lx >= r && rx <= r) {
+	if (lx >= l && rx <= r) {
 	    return mins[x];
 	}
 	const int mid = (lx + rx) / 2;
-	int min1 = min(l, r, 2 * x + 1, lx, mid);
-	int min2 = min(l, r, 2 * x + 2, mid, rx);
+	const int min1 = min(l, r, 2 * x + 1, lx, mid);
+	const int min2 = min(l, r, 2 * x + 2, mid, rx);
 	return std::min(min1, min2);
     }
 
-    int min(int l, int r) {
+    int min(const int l, const int r) {
 	return min(l, r, 0, 0, size);
     }
 };

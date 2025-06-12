@@ -19,7 +19,7 @@ T gcd(T a, T b) {
 
 template <typename T>
 T lcm(T a, T b) {
-    return (a) / gcd(a, b) * b;
+    return a / gcd(a, b) * b;
 }
 
 template <typename T>

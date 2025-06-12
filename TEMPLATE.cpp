@@ -102,11 +102,12 @@
 void rm_char(std::string &s, const char &c) {
     // std::erase(s, c);
     s.erase(std::remove(s.begin(), s.end(), c), s.end());
+    // s.erase(std::ranges::remove(s, c).begin(), s.end());
     // std::ranges::remove(s.begin(), s.end(), c);
 }
 
 [[__nodiscard__]] double deg_to_rad(const int &d) {
-    const double ratio = 0.1745;
+    constexpr double ratio = 0.1745;
     return d * ratio;
 }
 
@@ -253,8 +254,8 @@ void printarr(const T_vector &v, const bool inc = false, int begin = -1,
 }
 
 template <typename T>
-inline constexpr int sz(std::vector<T> vec) {
-    return (static_cast<int>((vec).size()));
+constexpr int sz(std::vector<T> vec) {
+    return static_cast<int>(vec.size());
 }
 
 using namespace std;
@@ -270,10 +271,8 @@ using namespace __gnu_pbds;
 int main() {
     std::cout << std::setprecision(10);
 #ifdef TIME
-    const std::chrono::time_point<
-	std::chrono::system_clock,
-	std::chrono::duration<long, std::ratio<1, 1000000000>>>
-	start = std::chrono::high_resolution_clock::now();
+    const std::chrono::time_point<std::chrono::system_clock> start =
+	std::chrono::high_resolution_clock::now();
 #endif
 
 #if FAST
@@ -288,10 +287,8 @@ int main() {
     }
 
 #ifdef TIME
-    const std::chrono::time_point<
-	std::chrono::system_clock,
-	std::chrono::duration<long, std::ratio<1, 1000000000>>>
-	finish = std::chrono::high_resolution_clock::now();
+    const std::chrono::time_point<std::chrono::system_clock> finish =
+	std::chrono::high_resolution_clock::now();
     std::cout << std::setprecision(4) << std::fixed;
     std::cout << "Execution time: "
 	      << std::chrono::duration_cast<std::chrono::duration<double>>(

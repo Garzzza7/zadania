@@ -23,10 +23,11 @@ struct tarjan_find_bridges {
     tarjan_find_bridges(tarjan_find_bridges&&) = delete;
     tarjan_find_bridges& operator=(const tarjan_find_bridges&) = delete;
     tarjan_find_bridges& operator=(tarjan_find_bridges&&) = delete;
+
     explicit tarjan_find_bridges(int n, int m) {
 	n++;
 	m++;
-	adj = std::vector<std::vector<edge>>(n, std::vector<edge>());
+	adj = std::vector(n, std::vector<edge>());
 	visited = std::vector<bool>(n);
 	is_bridge = std::vector<bool>(m);
 	entry_time = std::vector<int>(n);
@@ -79,7 +80,7 @@ struct tarjan_find_bridges {
 	}
     }
 
-    void print() {
+    void print() const {
 	for (auto&& ee : adj) {
 	    for (auto&& e : ee) {
 		std::cout << e.vertex << " ";

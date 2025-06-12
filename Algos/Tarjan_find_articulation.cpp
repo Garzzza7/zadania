@@ -17,9 +17,9 @@ struct tarjan_find_articulation {
     tarjan_find_articulation& operator=(tarjan_find_articulation&&) = delete;
 
     explicit tarjan_find_articulation(const int n) {
-	adj = std::vector<std::vector<int>>(n + 1, std::vector<int>());
-	visited = std::vector<bool>(n + 1, false);
-	is_art_point = std::vector<bool>(n + 1, false);
+	adj = std::vector(n + 1, std::vector<int>());
+	visited = std::vector(n + 1, false);
+	is_art_point = std::vector(n + 1, false);
 	entry_time = std::vector<int>(n + 1);
 	low = std::vector<int>(n + 1);
     }

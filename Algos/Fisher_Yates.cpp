@@ -5,7 +5,7 @@
 
 template <typename T>
 void fisher_yates_shuffle(std::vector<T>& array) {
-    for (int i = static_cast<int>(array.size()) - 1; i >= 1; i--) {
+    for (int i = static_cast<int>(array.size()) - 1; i >= 1; --i) {
 	std::mt19937 rng(static_cast<uint32_t>(
 	    std::chrono::steady_clock::now().time_since_epoch().count()));
 	std::uniform_int_distribution<> dist(0, i);
@@ -25,7 +25,7 @@ int main() {
     for (auto&& v : vec) {
 	std::cin >> v;
     }
-    auto og = vec;
+    const auto og = vec;
     fisher_yates_shuffle(vec);
     std::cout << (og != vec) << "\n";
 
