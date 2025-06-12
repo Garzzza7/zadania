@@ -111,6 +111,16 @@ else
     printf "${red}$(cat Bitonic_Sort.test)${normal}\n"
 fi
 
+if [ "$(./Boruvka.sol < Boruvka.txt)" == "$(cat Boruvka.test)" ]; then
+    printf "${green}Boruvka Passed.${normal}\n"
+else
+    printf "${red}Boruvka Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Boruvka.sol < Boruvka.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Boruvka.test)${normal}\n"
+fi
+
 if [ "$(./CRT.sol < CRT.txt)" == "$(cat CRT.test)" ]; then
     printf "${green}CRT Passed.${normal}\n"
 else

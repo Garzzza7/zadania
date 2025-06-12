@@ -90,7 +90,7 @@
 #define off(a, b) ((a) &= ~(1 << (b)))
 #define flip(a, b) ((a) ^= (1 << (b)))
 
-[[__nodiscard__]] int random_l_to_r(const int &l, const int &r) {
+[[nodiscard]] int random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
     std::mt19937 rng(static_cast<uint32_t>(
@@ -106,7 +106,7 @@ void rm_char(std::string &s, const char &c) {
     // std::ranges::remove(s.begin(), s.end(), c);
 }
 
-[[__nodiscard__]] double deg_to_rad(const int &d) {
+[[nodiscard]] double deg_to_rad(const int &d) {
     constexpr double ratio = 0.1745;
     return d * ratio;
 }
@@ -142,21 +142,21 @@ std::string to_debug(T x, std::string s)
 	      << "\n"
 
 template <typename T>
-[[__nodiscard__]] T bin_xor(T a, T b) {
+[[nodiscard]] T bin_xor(T a, T b) {
     return ~(a & b) & (a | b);
 }
 
 template <typename T>
-[[__nodiscard__]] bool is_on(T a, T b) {
+[[nodiscard]] bool is_on(T a, T b) {
     return a & (static_cast<T>(1) << b);
 }
 
-[[__nodiscard__]] bool cmp(const int &x, const int &y) {
+[[nodiscard]] bool cmp(const int &x, const int &y) {
     return x > y;
 }
 
-[[__nodiscard__]] bool pair_cmp(const std::pair<int, int> &x,
-				const std::pair<int, int> &y) {
+[[nodiscard]] bool pair_cmp(const std::pair<int, int> &x,
+			    const std::pair<int, int> &y) {
     if (x.second < y.second) {
 	return x.second < y.second;
     }
@@ -164,32 +164,32 @@ template <typename T>
 }
 
 template <typename T>
-[[__nodiscard__]] T bin_min(const T &x, const T &y) {
+[[nodiscard]] T bin_min(const T &x, const T &y) {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 template <typename T>
-[[__nodiscard__]] T bin_max(const T &x, const T &y) {
+[[nodiscard]] T bin_max(const T &x, const T &y) {
     return y ^ ((x ^ y) & -(x > y));
 }
 
 template <typename T>
-[[__nodiscard__]] T bin_ce(T x, T y) {
+[[nodiscard]] T bin_ce(T x, T y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
 template <typename T>
-[[__nodiscard__]] T bin_fl(T x, T y) {
+[[nodiscard]] T bin_fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
-[[__nodiscard__]] constexpr unsigned int bin_log(const unsigned int &x) {
+[[nodiscard]] constexpr unsigned int bin_log(const unsigned int &x) {
     return x == static_cast<unsigned int>(0)
 	       ? static_cast<unsigned int>(0)
 	       : static_cast<unsigned int>(31) - __builtin_clz(x);
 }
 
-[[__nodiscard__]] constexpr unsigned long bin_llog(const unsigned long &x) {
+[[nodiscard]] constexpr unsigned long bin_llog(const unsigned long &x) {
     return x == static_cast<unsigned long>(0)
 	       ? static_cast<unsigned long>(0)
 	       : static_cast<unsigned long>(63) - __builtin_clzl(x);
