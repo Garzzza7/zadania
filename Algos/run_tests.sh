@@ -471,24 +471,14 @@ else
     printf "${red}$(cat Sattoro_shuffle.test)${normal}\n"
 fi
 
-if [ "$(./Segment_Tree_RMQ.sol < Segment_Tree_RMQ.txt)" == "$(cat Segment_Tree_RMQ.test)" ]; then
-    printf "${green}Segment_Tree_RMQ Passed.${normal}\n"
+if [ "$(./Segment_Tree.sol < Segment_Tree.txt)" == "$(cat Segment_Tree.test)" ]; then
+    printf "${green}Segment_Tree Passed.${normal}\n"
 else
-    printf "${red}Segment_Tree_RMQ Failed.\n"
+    printf "${red}Segment_Tree Failed.\n"
     printf "${red} Got:\n"
-    printf "${red}$(./Segment_Tree_RMQ.sol < Segment_Tree_RMQ.txt)\n"
+    printf "${red}$(./Segment_Tree.sol < Segment_Tree.txt)\n"
     printf "${red} Should be:\n"
-    printf "${red}$(cat Segment_Tree_RMQ.test)${normal}\n"
-fi
-
-if [ "$(./Segment_Tree_Range_Sum.sol < Segment_Tree_Range_Sum.txt)" == "$(cat Segment_Tree_Range_Sum.test)" ]; then
-    printf "${green}Segment_Tree_Range_Sum Passed.${normal}\n"
-else
-    printf "${red}Segment_Tree_Range_Sum Failed.\n"
-    printf "${red} Got:\n"
-    printf "${red}$(./Segment_Tree_Range_Sum.sol < Segment_Tree_Range_Sum.txt)\n"
-    printf "${red} Should be:\n"
-    printf "${red}$(cat Segment_Tree_Range_Sum.test)${normal}\n"
+    printf "${red}$(cat Segment_Tree.test)${normal}\n"
 fi
 
 if [ "$(./Sieve_of_Eratosthenes.sol < Sieve_of_Eratosthenes.txt)" == "$(cat Sieve_of_Eratosthenes.test)" ]; then
