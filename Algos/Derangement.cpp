@@ -21,7 +21,8 @@ const std::vector<unsigned long long> derangements = {1,
 						      130'850'092'279'664,
 						      2'355'301'661'033'953};
 
-unsigned long long derangement(const unsigned long long n) {
+unsigned long long
+derangement(const unsigned long long n) {
     if (n == 1ll) {
 	return 0ll;
     }
@@ -40,7 +41,8 @@ unsigned long long derangement(const unsigned long long n) {
     return prev1;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

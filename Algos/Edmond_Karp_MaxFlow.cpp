@@ -4,8 +4,9 @@
 #include <vector>
 
 template <typename T>
-T bfs(T source, T target, std::vector<std::vector<T>> &adj,
-      std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
+T
+bfs(T source, T target, std::vector<std::vector<T>> &adj,
+    std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
     for (auto &&a : path) {
 	a = -1;
     }
@@ -32,8 +33,9 @@ T bfs(T source, T target, std::vector<std::vector<T>> &adj,
 }
 
 template <typename T>
-T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
-	  std::vector<std::vector<T>> &capacities) {
+T
+maxflow(T source, T target, std::vector<std::vector<T>> &adj,
+	std::vector<std::vector<T>> &capacities) {
     T maxflow = 0;
     std::vector<T> path(static_cast<int>(adj.size()));
     T bottleneck = 0;
@@ -51,7 +53,8 @@ T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
     return maxflow;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

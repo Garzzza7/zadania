@@ -5,9 +5,10 @@
 #include <vector>
 
 template <typename T>
-void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
-	      std::vector<T> &distances, std::vector<bool> &visited,
-	      std::vector<T> &path = {}) {
+void
+djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
+	 std::vector<T> &distances, std::vector<bool> &visited,
+	 std::vector<T> &path = {}) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
     std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>,
@@ -34,7 +35,8 @@ void djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
 }
 
 template <typename T>
-void shortest_path(T start, T target, std::vector<T> &path) {
+void
+shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;
     for (int i = target; i != -1; i = path[i]) {
 	sp.push_back(i);
@@ -47,7 +49,8 @@ void shortest_path(T start, T target, std::vector<T> &path) {
     std::cout << "\n";
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

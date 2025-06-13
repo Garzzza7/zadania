@@ -3,7 +3,8 @@
 #include <iostream>
 #include <vector>
 
-void merge(std::vector<int> &vec, int p, int q, int r) {
+void
+merge(std::vector<int> &vec, int p, int q, int r) {
     const int size1 = q - p + 1;
     const int size2 = r - q;
     std::vector<int> L(size1 + 1, INT32_MAX);
@@ -27,7 +28,8 @@ void merge(std::vector<int> &vec, int p, int q, int r) {
     }
 }
 
-void merge_sort(std::vector<int> &vec, int p, int r) {
+void
+merge_sort(std::vector<int> &vec, int p, int r) {
     if (p < r) {
 	int q = (p + r) / 2;
 	merge_sort(vec, p, q);
@@ -36,7 +38,8 @@ void merge_sort(std::vector<int> &vec, int p, int r) {
     }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -23,10 +23,11 @@ int n;
 int m;
 long long sum{0ll};
 
-void floodfill(std::vector<std::vector<int>> &vec,
-	       std::vector<std::vector<bool>> &visited, const int i, int j) {
-    if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0 ||
-	visited[i][j]) {
+void
+floodfill(std::vector<std::vector<int>> &vec,
+	  std::vector<std::vector<bool>> &visited, const int i, int j) {
+    if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0
+	|| visited[i][j]) {
 	return;
     }
 
@@ -38,7 +39,8 @@ void floodfill(std::vector<std::vector<int>> &vec,
     floodfill(vec, visited, i + 1, j);
 }
 // BASED ON THIS: https://codeforces.com/contest/1829/problem/E
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

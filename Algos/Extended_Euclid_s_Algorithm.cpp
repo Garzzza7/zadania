@@ -2,12 +2,14 @@
 #include <vector>
 
 template <typename T>
-T fl(T x, T y) {
+T
+fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
 template <typename T>
-std::vector<T> extended_euclid(T a, T b) {
+std::vector<T>
+extended_euclid(T a, T b) {
     if (b == 0) {
 	return std::vector({a, 1, 0});
     }
@@ -15,7 +17,8 @@ std::vector<T> extended_euclid(T a, T b) {
     return std::vector({res[0], res[2], res[1] - fl(a, b) * res[2]});
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

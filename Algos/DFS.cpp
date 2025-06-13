@@ -3,8 +3,9 @@
 #include <stack>
 #include <vector>
 
-void dfs(int vertex, std::vector<std::vector<int>> &adj,
-	 std::vector<bool> &visited) {
+void
+dfs(int vertex, std::vector<std::vector<int>> &adj,
+    std::vector<bool> &visited) {
     if (visited[vertex]) {
 	return;
     }
@@ -15,8 +16,9 @@ void dfs(int vertex, std::vector<std::vector<int>> &adj,
     }
 }
 
-void iterative_dfs(int vertex, std::vector<std::vector<int>> &adj,
-		   std::vector<bool> &visited) {
+void
+iterative_dfs(int vertex, std::vector<std::vector<int>> &adj,
+	      std::vector<bool> &visited) {
     std::fill(visited.begin(), visited.end(), false);
     std::stack<int> stack;
     visited[vertex] = true;
@@ -36,7 +38,8 @@ void iterative_dfs(int vertex, std::vector<std::vector<int>> &adj,
     }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

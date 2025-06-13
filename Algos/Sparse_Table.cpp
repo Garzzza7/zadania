@@ -3,8 +3,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int>
-struct Sparse_table {
+template <typename T = int> struct Sparse_table {
     int size;
     int LOG{};
     const T NEUTRAL_ELEMENT{0};
@@ -23,11 +22,13 @@ struct Sparse_table {
 	matrix[0] = _init;
     }
 
-    T operation(const T &a, const T &b) {
+    T
+    operation(const T &a, const T &b) {
 	return a + b;
     }
 
-    void process() {
+    void
+    process() {
 	for (int i = 1; i <= LOG; i++) {
 	    for (int j = 0; j + (1 << i) <= size; j++) {
 		matrix[i][j] = operation(matrix[i - 1][j],
@@ -36,7 +37,8 @@ struct Sparse_table {
 	}
     }
 
-    T query(int L, const int R) {
+    T
+    query(int L, const int R) {
 	T res = NEUTRAL_ELEMENT;
 	for (int i = LOG; i >= 0; i--) {
 	    if (1 << i <= R - L + 1) {
@@ -48,7 +50,8 @@ struct Sparse_table {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

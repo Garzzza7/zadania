@@ -3,7 +3,8 @@
 #include <vector>
 
 template <typename T>
-long long crt(std::vector<std::pair<T, T>> &vec) {
+long long
+crt(std::vector<std::pair<T, T>> &vec) {
     T mod = vec[0].second;
     T buff = vec[0].first;
     for (int i = 0; i < static_cast<int>(vec.size()) - 1; i++) {
@@ -23,7 +24,8 @@ long long crt(std::vector<std::pair<T, T>> &vec) {
     return static_cast<long long>(buff);
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

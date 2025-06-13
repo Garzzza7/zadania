@@ -3,8 +3,7 @@
 #include <vector>
 
 // size of alphabet , ASCII for 'a' (65 for 'A')
-template <int CHAR_SIZE = 26, int BASE = 97>
-struct Trie {
+template <int CHAR_SIZE = 26, int BASE = 97> struct Trie {
     struct Node {
 	std::vector<int> next;
 	std::vector<int> accepting;
@@ -22,7 +21,8 @@ struct Trie {
 	nodes.push_back(Node(root));
     }
 
-    void insert(const std::string &word, int word_id) {
+    void
+    insert(const std::string &word, int word_id) {
 	int node_id{0};
 	for (auto &&i : word) {
 	    int c = i - BASE;
@@ -38,11 +38,13 @@ struct Trie {
 	nodes[node_id].accepting.push_back(word_id);
     }
 
-    void insert(const std::string &word) {
+    void
+    insert(const std::string &word) {
 	insert(word, nodes[0].cnt_shares);
     }
 
-    bool search(const std::string &word, bool check_prefix = false) {
+    bool
+    search(const std::string &word, bool check_prefix = false) {
 	int node_id{0};
 	for (auto &&i : word) {
 	    int c = i - BASE;
@@ -55,20 +57,24 @@ struct Trie {
 	return check_prefix ? true : !nodes[node_id].accepting.empty();
     }
 
-    bool starts_with_pref(const std::string &prefix) {
+    bool
+    starts_with_pref(const std::string &prefix) {
 	return search(prefix, true);
     }
 
-    [[nodiscard]] int count() const {
+    int
+    count() {
 	return nodes[0].cnt_shares;
     }
 
-    [[nodiscard]] int size() const {
+    int
+    size() {
 	return static_cast<int>(nodes.size());
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

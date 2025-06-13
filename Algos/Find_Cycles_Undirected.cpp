@@ -15,7 +15,8 @@ std::vector<ll> path;
 std::vector<bool> visited(100000, false);
 std::vector<std::vector<ll>> adj(100000, std::vector<ll>());
 
-void dfs(ll ver, ll par) {
+void
+dfs(ll ver, ll par) {
     if (visited[ver]) {
 	std::vector<ll> res = {ver};
 	for (int i = sz(path) - 1; i >= 0; i--) {
@@ -25,7 +26,7 @@ void dfs(ll ver, ll par) {
 	    }
 	}
 	std::cout << sz(res) << "\n";
-	for (const auto& v : res) {
+	for (const auto &v : res) {
 	    std::cout << v << " ";
 	}
 	exit(0);
@@ -40,7 +41,8 @@ void dfs(ll ver, ll par) {
     path.pop_back();
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

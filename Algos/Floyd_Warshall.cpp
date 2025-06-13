@@ -5,9 +5,9 @@ constexpr int INF = 1000007;
 int n, m;
 
 template <typename T>
-std::vector<std::vector<T>> floyd_warshall(
-    std::vector<std::vector<T>> &adj_matrix,
-    std::vector<std::vector<T>> &paths) {
+std::vector<std::vector<T>>
+floyd_warshall(std::vector<std::vector<T>> &adj_matrix,
+	       std::vector<std::vector<T>> &paths) {
     std::vector<std::vector<T>> dp(n + 1, std::vector<T>(n + 1, 0));
     for (int i = 1; i <= n; i++) {
 	for (int j = 1; j <= n; j++) {
@@ -45,8 +45,9 @@ std::vector<std::vector<T>> floyd_warshall(
 }
 
 template <typename T>
-void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
-		   std::vector<std::vector<T>> &paths) {
+void
+shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
+	      std::vector<std::vector<T>> &paths) {
     std::vector<T> sp;
     if (dp[start][target] == INF) {
 	std::cout << "No path\n";
@@ -75,7 +76,8 @@ void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
     std::cout << "\n";
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

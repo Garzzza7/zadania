@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 
-long long binpow(long long a, long long b) {
+long long
+binpow(long long a, long long b) {
     long long res = 1;
     while (b > 0) {
 	if (b & 1)
@@ -12,17 +13,19 @@ long long binpow(long long a, long long b) {
     return res;
 }
 
-long long recursive_binomial_coefficient(long long n, long long k) {
+long long
+recursive_binomial_coefficient(long long n, long long k) {
     if (k == 1) {
 	return n;
     } else if (n == k || k == 0) {
 	return 1;
     }
-    return recursive_binomial_coefficient(n - 1, k - 1) +
-	   recursive_binomial_coefficient(n - 1, k);
+    return recursive_binomial_coefficient(n - 1, k - 1)
+	   + recursive_binomial_coefficient(n - 1, k);
 }
 
-long long multiplicative_binomial_coefficient(long long n, long long k) {
+long long
+multiplicative_binomial_coefficient(long long n, long long k) {
     long long res = 1;
     long long kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
@@ -32,25 +35,28 @@ long long multiplicative_binomial_coefficient(long long n, long long k) {
     return res;
 }
 
-long long calculate(int x, char c, int y, int n) {
+long long
+calculate(int x, char c, int y, int n) {
     long long res = 0;
     if (c == '+') {
 	for (int i = 0; i <= n; i++) {
-	    res += (recursive_binomial_coefficient(n, i) * binpow(x, i) *
-		    binpow(y, n - i));
+	    res += (recursive_binomial_coefficient(n, i) * binpow(x, i)
+		    * binpow(y, n - i));
 	}
     } else {
 	long long flip = -1;
 	for (int i = 0; i <= n; i++) {
-	    res += flip * ((recursive_binomial_coefficient(n, i) *
-			    binpow(x, i) * binpow(y, n - i)));
+	    res += flip
+		   * ((recursive_binomial_coefficient(n, i) * binpow(x, i)
+		       * binpow(y, n - i)));
 	    flip *= -1ll;
 	}
     }
     return res;
 }
 
-void show_calculation(int x, char c, int y, int n) {
+void
+show_calculation(int x, char c, int y, int n) {
     (void) x;
     (void) y;
     if (c == '+') {
@@ -77,7 +83,8 @@ void show_calculation(int x, char c, int y, int n) {
     }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

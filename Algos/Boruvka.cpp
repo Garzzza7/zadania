@@ -2,21 +2,19 @@
 #include <limits>
 #include <vector>
 
-template <typename T = int>
-struct edge {
+template <typename T = int> struct edge {
     int u;
     int v;
     T weight;
 };
 
-template <typename T = int>
-struct boruvka {
+template <typename T = int> struct boruvka {
     int n;
     std::vector<edge<T>> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
-    boruvka(const int& _n) : n(_n) {
+    boruvka(const int &_n) : n(_n) {
 	parent.assign(n, 0);
 	for (int i = 0; i < n; i++) {
 	    parent[i] = i;
@@ -24,18 +22,21 @@ struct boruvka {
 	rank.assign(n, 0);
     }
 
-    void add_edge(const edge<T>& edge) {
+    void
+    add_edge(const edge<T> &edge) {
 	edges.emplace_back(edge);
     }
 
-    int find(const int& vertex) {
+    int
+    find(const int &vertex) {
 	if (parent[vertex] == vertex) {
 	    return parent[vertex];
 	}
 	return parent[vertex] = find(parent[vertex]);
     }
 
-    void union_by_rank(const int& u, const int& v) {
+    void
+    union_by_rank(const int &u, const int &v) {
 	auto u_leader = find(u);
 	auto v_leader = find(v);
 	if (u_leader != v_leader) {
@@ -50,7 +51,8 @@ struct boruvka {
 	}
     }
 
-    std::vector<edge<T>> mst() {
+    std::vector<edge<T>>
+    mst() {
 	std::vector<edge<T>> mst;
 	std::vector<edge<T>> cheapest(
 	    n, edge(-1, -1, std::numeric_limits<T>::max()));
@@ -59,21 +61,21 @@ struct boruvka {
 	T mst_weight{0};
 
 	while (tree_count > 1) {
-	    for (const edge<T>& e : edges) {
-		const auto& u = e.u;
-		const auto& v = e.v;
-		const auto& weight = e.weight;
+	    for (const edge<T> &e : edges) {
+		const auto &u = e.u;
+		const auto &v = e.v;
+		const auto &weight = e.weight;
 
 		const auto id1 = find(u);
 		const auto id2 = find(v);
 
 		if (id1 != id2) {
-		    if (cheapest[id1].weight == std::numeric_limits<T>::max() ||
-			cheapest[id1].weight > weight) {
+		    if (cheapest[id1].weight == std::numeric_limits<T>::max()
+			|| cheapest[id1].weight > weight) {
 			cheapest[id1] = edge(u, v, weight);
 		    }
-		    if (cheapest[id2].weight == std::numeric_limits<T>::max() ||
-			cheapest[id2].weight > weight) {
+		    if (cheapest[id2].weight == std::numeric_limits<T>::max()
+			|| cheapest[id2].weight > weight) {
 			cheapest[id2] = edge(u, v, weight);
 		    }
 		}
@@ -81,9 +83,9 @@ struct boruvka {
 
 	    for (int ver = 0; ver < n; ver++) {
 		if (cheapest[ver].weight != std::numeric_limits<T>::max()) {
-		    const auto& u = cheapest[ver].u;
-		    const auto& v = cheapest[ver].v;
-		    const auto& weight = cheapest[ver].weight;
+		    const auto &u = cheapest[ver].u;
+		    const auto &v = cheapest[ver].v;
+		    const auto &weight = cheapest[ver].weight;
 
 		    const int id1 = find(u);
 		    const int id2 = find(v);
@@ -101,7 +103,8 @@ struct boruvka {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -118,7 +121,7 @@ int main() {
     }
 
     auto res = graph.mst();
-    for (const auto& v : res) {
+    for (const auto &v : res) {
 	std::cout << v.u << " -> " << v.v << " with weight " << v.weight
 		  << "\n";
     }

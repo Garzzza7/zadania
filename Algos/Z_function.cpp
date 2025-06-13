@@ -2,7 +2,8 @@
 #include <string>
 #include <vector>
 
-std::vector<int> z_function(const std::string &s) {
+std::vector<int>
+z_function(const std::string &s) {
     const int n = static_cast<int>(s.size());
     std::vector<int> z(n);
     z[0] = n;
@@ -23,7 +24,8 @@ std::vector<int> z_function(const std::string &s) {
     return z;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

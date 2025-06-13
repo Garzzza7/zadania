@@ -2,14 +2,16 @@
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_b
-void update(std::vector<long long> &vec, const long long val, long long index) {
+void
+update(std::vector<long long> &vec, const long long val, long long index) {
     while (index < static_cast<int>(vec.size())) {
 	vec[index] += val;
 	index += ((index) & (-index));
     }
 }
 
-long long sum(const std::vector<long long> &vec, long long index) {
+long long
+sum(const std::vector<long long> &vec, long long index) {
     index += 1;
     long long sum = 0;
     while (index) {
@@ -19,12 +21,14 @@ long long sum(const std::vector<long long> &vec, long long index) {
     return sum;
 }
 
-long long rangeSum(const std::vector<long long> &vec, const long long l,
-		   const long long r) {
+long long
+rangeSum(const std::vector<long long> &vec, const long long l,
+	 const long long r) {
     return sum(vec, r) - sum(vec, l - 1);
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

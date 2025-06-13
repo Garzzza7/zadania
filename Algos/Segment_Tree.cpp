@@ -2,8 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int>
-struct ram_seg_tree {
+template <typename T = int> struct ram_seg_tree {
     int size{1};
     const T NEUTRAL_ELEMENT{0};
     std::vector<T> vec;
@@ -15,12 +14,13 @@ struct ram_seg_tree {
 	vec.assign(2 * size, NEUTRAL_ELEMENT);
     }
 
-    T operation(const T& a, const T& b) {
+    T
+    operation(const T &a, const T &b) {
 	return a + b;
     }
 
-    void build(const std::vector<T>& arr, const int x, const int lx,
-	       const int rx) {
+    void
+    build(const std::vector<T> &arr, const int x, const int lx, const int rx) {
 	if (rx - lx == 1) {
 	    if (lx < static_cast<int>(arr.size())) {
 		vec[x] = arr[lx];
@@ -33,11 +33,13 @@ struct ram_seg_tree {
 	vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
-    void build(const std::vector<T>& arr) {
+    void
+    build(const std::vector<T> &arr) {
 	build(arr, 0, 0, size);
     }
 
-    void set(const int i, const T v, const int x, const int lx, const int rx) {
+    void
+    set(const int i, const T v, const int x, const int lx, const int rx) {
 	if (rx - lx == 1) {
 	    vec[x] = v;
 	    return;
@@ -51,11 +53,13 @@ struct ram_seg_tree {
 	vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
-    void set(const int i, const T v) {
+    void
+    set(const int i, const T v) {
 	set(i, v, 0, 0, size);
     }
 
-    T calc(const int l, const int r, const int x, const int lx, const int rx) {
+    T
+    calc(const int l, const int r, const int x, const int lx, const int rx) {
 	if (lx >= r || l >= rx) {
 	    return NEUTRAL_ELEMENT;
 	}
@@ -68,13 +72,15 @@ struct ram_seg_tree {
 	return operation(p1, s2);
     }
 
-    T calc(const int l, const int r) {
+    T
+    calc(const int l, const int r) {
 	// [l , r)
 	return calc(l, r, 0, 0, size);
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -87,7 +93,7 @@ int main() {
 	std::cin >> init[i];
     }
     st.build(init);
-    for (const auto& a : st.vec) {
+    for (const auto &a : st.vec) {
 	std::cout << a << " ";
     }
     std::cout << "\n";

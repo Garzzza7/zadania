@@ -3,7 +3,8 @@
 #include <random>
 #include <vector>
 
-void Bitonic_Sort(std::vector<int>& a) {
+void
+Bitonic_Sort(std::vector<int> &a) {
     const int n = static_cast<int>(a.size());
     for (int k = 2; k <= n; k = 2 * k) {
 	for (int j = k >> 1; j > 0; j = j >> 1) {
@@ -22,7 +23,8 @@ void Bitonic_Sort(std::vector<int>& a) {
     }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -33,7 +35,7 @@ int main() {
 	int n;
 	std::cin >> n;
 	std::vector<int> vec(n);
-	for (auto&& v : vec) {
+	for (auto &&v : vec) {
 	    std::cin >> v;
 	}
 	auto test = vec;

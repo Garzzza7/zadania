@@ -29,20 +29,23 @@ struct tarjan_find_bridges {
 	edges = std::vector<std::pair<int, int>>(m);
     }
 
-    void add_edge(int p, int v) {
+    void
+    add_edge(int p, int v) {
 	adj[p].emplace_back(v, edge_id);
 	edges[edge_id] = {p, v};
 	edge_id++;
     }
 
-    void add_bi_edge(int p, int v) {
+    void
+    add_bi_edge(int p, int v) {
 	adj[p].emplace_back(v, edge_id);
 	adj[v].emplace_back(p, edge_id);
 	edges[edge_id] = {p, v};
 	edge_id++;
     }
 
-    void dfs(const int p, const int v) {
+    void
+    dfs(const int p, const int v) {
 	if (visited[v]) {
 	    return;
 	}
@@ -50,7 +53,7 @@ struct tarjan_find_bridges {
 	low[v] = visit_time;
 	entry_time[v] = visit_time;
 	visit_time++;
-	for (auto&& e : adj[v]) {
+	for (auto &&e : adj[v]) {
 	    if (e.vertex == p) {
 		continue;
 	    }
@@ -66,7 +69,8 @@ struct tarjan_find_bridges {
 	}
     }
 
-    void run() {
+    void
+    run() {
 	for (int i = 1; i < static_cast<int>(adj.size()); i++) {
 	    if (!visited[i]) {
 		dfs(i, i);
@@ -74,9 +78,10 @@ struct tarjan_find_bridges {
 	}
     }
 
-    void print() const {
-	for (auto&& ee : adj) {
-	    for (auto&& e : ee) {
+    void
+    print() const {
+	for (auto &&ee : adj) {
+	    for (auto &&e : ee) {
 		std::cout << e.vertex << " ";
 	    }
 	    std::cout << "\n";
@@ -84,7 +89,8 @@ struct tarjan_find_bridges {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

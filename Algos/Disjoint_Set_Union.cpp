@@ -1,43 +1,44 @@
 #include <iostream>
-#include <numeric>
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 
-template <typename T = int>
-struct DSU {
+template <typename T = int> struct DSU {
     std::vector<T> parent;
     std::vector<T> size;
     std::vector<T> rank;
 
     explicit DSU(const T _n)
-	: parent(std::vector<T>(_n, 0)),
-	  size(std::vector<T>(_n, 1)),
+	: parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)),
 	  rank(std::vector<T>(_n, 0)) {
-	std::iota(parent.begin(), parent.end(), 0);
+	for (T i = 0; i < _n; i++) {
+	    parent[i] = i;
+	}
     }
 
     explicit DSU(std::vector<T> _parent, std::vector<T> _size,
 		 std::vector<T> _rank)
-	: parent(std::move(_parent)),
-	  size(std::move(_size)),
+	: parent(std::move(_parent)), size(std::move(_size)),
 	  rank(std::move(_rank)) {
     }
 
-    void make_set(const T v) {
+    void
+    make_set(const T v) {
 	parent[v] = v;
 	size[v] = 1;
 	rank[v] = 0;
     }
 
-    [[__nodiscard__]] T find_set(const T v) {
+    T
+    find_set(const T v) {
 	if (v == parent[v]) {
 	    return v;
 	}
 	return parent[v] = find_set(parent[v]);
     }
 
-    void merge_by_size(T a, T b) {
+    void
+    merge_by_size(T a, T b) {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
@@ -49,7 +50,8 @@ struct DSU {
 	}
     }
 
-    void merge_by_rank(T a, T b) {
+    void
+    merge_by_rank(T a, T b) {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
@@ -63,12 +65,14 @@ struct DSU {
 	}
     }
 
-    [[__nodiscard__]] bool is_same_set(const T a, const T b) {
+    bool
+    is_same_set(const T a, const T b) {
 	return find_set(a) == find_set(b);
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

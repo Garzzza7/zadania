@@ -2,7 +2,8 @@
 #include <string>
 #include <vector>
 
-bool dp_regex(const std::string& s1, const std::string& s2) {
+bool
+dp_regex(const std::string &s1, const std::string &s2) {
     const auto word = " " + s1;
     const auto pattern = " " + s2;
     const int n1 = static_cast<int>(word.size());
@@ -30,7 +31,8 @@ bool dp_regex(const std::string& s1, const std::string& s2) {
     return dp[n1 - 1][n2 - 1];
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

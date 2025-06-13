@@ -4,8 +4,9 @@
 
 // find neg cycle
 template <typename T>
-bool bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
-		   std::vector<T> &distances, std::vector<T> &paths) {
+bool
+bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
+	      std::vector<T> &distances, std::vector<T> &paths) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
     for (int i = 1; i <= static_cast<int>(distances.size()) - 1; i++) {
@@ -46,7 +47,8 @@ bool bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
 }
 
 template <typename T>
-void shortest_path(T start, T target, std::vector<T> &paths) {
+void
+shortest_path(T start, T target, std::vector<T> &paths) {
     std::vector<T> sp;
     for (int cur = target; cur != -1; cur = paths[cur]) {
 	sp.push_back(cur);
@@ -59,7 +61,8 @@ void shortest_path(T start, T target, std::vector<T> &paths) {
     std::cout << "\n";
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

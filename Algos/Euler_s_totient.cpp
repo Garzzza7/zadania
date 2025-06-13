@@ -2,7 +2,8 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> phi_1_to_n(T n) {
+std::vector<T>
+phi_1_to_n(T n) {
     std::vector<T> phi(n + 1);
     for (int i = 0; i <= n; i++) {
 	phi[i] = i;
@@ -17,7 +18,8 @@ std::vector<T> phi_1_to_n(T n) {
     return phi;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -25,7 +27,7 @@ int main() {
     int n;
     std::cin >> n;
     const std::vector<int> res = phi_1_to_n(n);
-    for (const auto& a : res) {
+    for (const auto &a : res) {
 	std::cout << a << " ";
     }
     std::cout << "\n";

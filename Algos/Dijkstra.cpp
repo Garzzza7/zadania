@@ -5,8 +5,9 @@
 #include <set>
 #include <vector>
 
-void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
-	      std::vector<int> &path, std::vector<int> &cost) {
+void
+dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
+	 std::vector<int> &path, std::vector<int> &cost) {
     int iter = (int) adj.size();
     std::vector<bool> known((int) adj.size(), false);
     cost[source] = 0;
@@ -29,9 +30,9 @@ void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
     }
 }
 
-void dijkstraWithSet(int source,
-		     std::vector<std::vector<std::pair<int, int>>> &adj,
-		     std::vector<int> &path, std::vector<int> &cost) {
+void
+dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
+		std::vector<int> &path, std::vector<int> &cost) {
     std::set<std::pair<int, int>> set;
     set.insert({source, 0});
     cost[source] = 0;
@@ -50,9 +51,10 @@ void dijkstraWithSet(int source,
     }
 }
 
-void dijkstraWithPrioQueue(int source,
-			   std::vector<std::vector<std::pair<int, int>>> &adj,
-			   std::vector<int> &path, std::vector<int> &cost) {
+void
+dijkstraWithPrioQueue(int source,
+		      std::vector<std::vector<std::pair<int, int>>> &adj,
+		      std::vector<int> &path, std::vector<int> &cost) {
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 			std::greater<>>
 	queue;
@@ -77,7 +79,8 @@ void dijkstraWithPrioQueue(int source,
     }
 }
 
-std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
+std::vector<int>
+shortestPath(int source, int target, std::vector<int> &path) {
     std::vector<int> res;
     int current = target;
     while (current != source) {
@@ -88,7 +91,8 @@ std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
     std::ranges::reverse(res.begin(), res.end());
     return res;
 }
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

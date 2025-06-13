@@ -2,13 +2,15 @@
 #include <vector>
 
 template <typename T>
-bool is_on(T a, T b) {
+bool
+is_on(T a, T b) {
     return a & (static_cast<T>(1) << b);
 }
 
-void dfs(const int parent, const int vertex, std::vector<std::vector<int>>& adj,
-	 std::vector<std::vector<int>>& ancestors, std::vector<int>& depth,
-	 int& limit) {
+void
+dfs(const int parent, const int vertex, std::vector<std::vector<int>> &adj,
+    std::vector<std::vector<int>> &ancestors, std::vector<int> &depth,
+    int &limit) {
     if (parent != vertex) {
 	depth[vertex] = depth[parent] + 1;
 	ancestors[vertex][0] = parent;
@@ -16,15 +18,16 @@ void dfs(const int parent, const int vertex, std::vector<std::vector<int>>& adj,
     for (int i = 1; i < limit; i++) {
 	ancestors[vertex][i] = ancestors[ancestors[vertex][i - 1]][i - 1];
     }
-    for (const auto& ver : adj[vertex]) {
+    for (const auto &ver : adj[vertex]) {
 	if (vertex != ver) {
 	    dfs(vertex, ver, adj, ancestors, depth, limit);
 	}
     }
 }
 
-int query(const int vertex, const int kth, const std::vector<int>& depth,
-	  const std::vector<std::vector<int>>& ancestors, const int& limit) {
+int
+query(const int vertex, const int kth, const std::vector<int> &depth,
+      const std::vector<std::vector<int>> &ancestors, const int &limit) {
     int ancestor = vertex;
     if (depth[vertex] < kth || kth < 0) {
 	return -123;
@@ -37,7 +40,8 @@ int query(const int vertex, const int kth, const std::vector<int>& depth,
     return ancestor;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

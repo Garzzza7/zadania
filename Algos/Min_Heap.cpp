@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 
-void heapify(std::vector<int> &vec, int i) {
+void
+heapify(std::vector<int> &vec, int i) {
     int largest = i;
     int l = 2 * i + 1;
     int r = 2 * i + 2;
@@ -18,7 +19,8 @@ void heapify(std::vector<int> &vec, int i) {
     }
 }
 
-void insert(std::vector<int> &vec, int newNum) {
+void
+insert(std::vector<int> &vec, int newNum) {
     if ((int) vec.size() == 0) {
 	vec.push_back(newNum);
     } else {
@@ -29,7 +31,8 @@ void insert(std::vector<int> &vec, int newNum) {
     }
 }
 
-void deleteNode(std::vector<int> &vec, int num) {
+void
+deleteNode(std::vector<int> &vec, int num) {
     int i;
     for (i = 0; i < (int) vec.size(); i++) {
 	if (num == vec[i])
@@ -44,7 +47,8 @@ void deleteNode(std::vector<int> &vec, int num) {
 	heapify(vec, i);
     }
 }
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

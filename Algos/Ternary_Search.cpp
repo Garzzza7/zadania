@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 
-int ternary_search(std::vector<int>& vec, const int l, const int r,
-		   const int x) {
+int
+ternary_search(std::vector<int> &vec, const int l, const int r, const int x) {
     if (r >= l) {
 	const int mid1 = l + (r - l) / 3;
 	const int mid2 = r - (r - l) / 3;
@@ -24,7 +24,8 @@ int ternary_search(std::vector<int>& vec, const int l, const int r,
     return -1;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -32,7 +33,7 @@ int main() {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto&& v : vec) {
+    for (auto &&v : vec) {
 	std::cin >> v;
     }
     std::ranges::sort(vec.begin(), vec.end());

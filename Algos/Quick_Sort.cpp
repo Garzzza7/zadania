@@ -3,7 +3,8 @@
 #include <random>
 #include <vector>
 
-void quick_sort(std::vector<int>& vec, const int l, const int r) {
+void
+quick_sort(std::vector<int> &vec, const int l, const int r) {
     if (r - l <= 1) {
 	return;
     }
@@ -29,7 +30,8 @@ void quick_sort(std::vector<int>& vec, const int l, const int r) {
     quick_sort(vec, r_iter, r);
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -40,7 +42,7 @@ int main() {
 	int n;
 	std::cin >> n;
 	std::vector<int> vec(n);
-	for (auto&& v : vec) {
+	for (auto &&v : vec) {
 	    std::cin >> v;
 	}
 	quick_sort(vec, 0, n - 1);

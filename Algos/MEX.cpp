@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 
-int mex(const std::vector<int> &vec) {
+int
+mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
     for (const auto &i : vec) {
 	if (i <= static_cast<int>(vec.size())) {
@@ -15,7 +16,8 @@ int mex(const std::vector<int> &vec) {
     return res;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

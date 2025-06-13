@@ -4,8 +4,8 @@
 #include <random>
 #include <vector>
 
-int kth_order_stat(std::vector<int>& vec, const int l, const int r,
-		   const int k) {
+int
+kth_order_stat(std::vector<int> &vec, const int l, const int r, const int k) {
     if (r - l <= 1) {
 	return vec[k];
     }
@@ -34,7 +34,8 @@ int kth_order_stat(std::vector<int>& vec, const int l, const int r,
     }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -45,7 +46,7 @@ int main() {
 	int n;
 	std::cin >> n;
 	std::vector<int> vec(n);
-	for (auto&& v : vec) {
+	for (auto &&v : vec) {
 	    std::cin >> v;
 	}
 	const int kth = kth_order_stat(vec, 0, n - 1, 9);

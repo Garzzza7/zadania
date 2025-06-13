@@ -17,16 +17,19 @@ struct tarjan_find_articulation {
 	low = std::vector<int>(n + 1);
     }
 
-    void add_edge(const int p, const int v) {
+    void
+    add_edge(const int p, const int v) {
 	adj[p].push_back(v);
     }
 
-    void add_bi_edge(const int p, const int v) {
+    void
+    add_bi_edge(const int p, const int v) {
 	adj[p].push_back(v);
 	adj[v].push_back(p);
     }
 
-    void dfs(const int p, const int v) {
+    void
+    dfs(const int p, const int v) {
 	if (visited[v]) {
 	    return;
 	}
@@ -35,7 +38,7 @@ struct tarjan_find_articulation {
 	low[v] = visit_time;
 	visit_time++;
 	int decs = 0;
-	for (const auto& e : adj[v]) {
+	for (const auto &e : adj[v]) {
 	    if (e == p) {
 		continue;
 	    }
@@ -55,16 +58,18 @@ struct tarjan_find_articulation {
 	}
     }
 
-    void run() {
+    void
+    run() {
 	for (int i = 0; i < static_cast<int>(visited.size()); i++) {
 	    if (!visited[i]) {
 		dfs(-123, i);
 	    }
 	}
     }
-    void print() const {
-	for (const auto& ee : adj) {
-	    for (const auto& e : ee) {
+    void
+    print() const {
+	for (const auto &ee : adj) {
+	    for (const auto &e : ee) {
 		std::cout << e << " ";
 	    }
 	    std::cout << "\n";
@@ -72,7 +77,8 @@ struct tarjan_find_articulation {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

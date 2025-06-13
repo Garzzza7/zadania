@@ -1,20 +1,20 @@
 #include <iostream>
 #include <vector>
 
-long long recursive_binomial_coefficient(const long long& n,
-					 const long long& k) {
+long long
+recursive_binomial_coefficient(const long long &n, const long long &k) {
     if (k == 1) {
 	return n;
     }
     if (n == k || k == 0) {
 	return 1;
     }
-    return recursive_binomial_coefficient(n - 1, k - 1) +
-	   recursive_binomial_coefficient(n - 1, k);
+    return recursive_binomial_coefficient(n - 1, k - 1)
+	   + recursive_binomial_coefficient(n - 1, k);
 }
 
-long long multiplicative_binomial_coefficient(const long long& n,
-					      const long long& k) {
+long long
+multiplicative_binomial_coefficient(const long long &n, const long long &k) {
     long long res = 1;
     const long long kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
@@ -24,8 +24,8 @@ long long multiplicative_binomial_coefficient(const long long& n,
     return res;
 }
 
-std::vector<std::vector<long long>> mod_bin_coeff(const long long& n,
-						  const long long& mod) {
+std::vector<std::vector<long long>>
+mod_bin_coeff(const long long &n, const long long &mod) {
     std::vector binom(n + 1, std::vector<long long>(n + 1));
     binom[0][0] = 1;
     for (int i = 1; i <= n; i++) {
@@ -36,7 +36,8 @@ std::vector<std::vector<long long>> mod_bin_coeff(const long long& n,
     return binom;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

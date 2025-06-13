@@ -25,16 +25,19 @@ struct desopo_pape {
 	type = std::vector<int>(n + 1, 2);
     }
 
-    void add_edge(const int p, const int v, const int w) {
+    void
+    add_edge(const int p, const int v, const int w) {
 	adj[p].emplace_back(v, w);
     }
 
-    void add_bi_edge(const int p, const int v, const int w) {
+    void
+    add_bi_edge(const int p, const int v, const int w) {
 	adj[p].emplace_back(v, w);
 	adj[v].emplace_back(p, w);
     }
 
-    void run(const int start) {
+    void
+    run(const int start) {
 	distance[start] = 0;
 	queue.push_back(start);
 	while (!queue.empty()) {
@@ -57,11 +60,13 @@ struct desopo_pape {
 	}
     }
 
-    [[nodiscard]] int get_cost(const int v) const {
+    int
+    get_cost(const int v) {
 	return distance[v];
     }
 
-    void get_path(const int start, const int target) const {
+    void
+    get_path(const int start, const int target) const {
 	std::vector<int> sp;
 	for (int i = target; i != -123; i = path[i]) {
 	    sp.push_back(i);
@@ -75,7 +80,8 @@ struct desopo_pape {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

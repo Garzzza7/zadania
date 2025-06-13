@@ -2,8 +2,8 @@
 #include <vector>
 
 template <typename T_vector>
-void printarr(const T_vector &v, bool inc = false, int begin = -1,
-	      int end = -1) {
+void
+printarr(const T_vector &v, bool inc = false, int begin = -1, int end = -1) {
     if (begin < 0) {
 	begin ^= begin;
     }
@@ -15,7 +15,8 @@ void printarr(const T_vector &v, bool inc = false, int begin = -1,
     }
 }
 
-std::vector<int> factorize(int n) {
+std::vector<int>
+factorize(int n) {
     std::vector<int> factor;
     for (int i = 2; i * i <= n; i++) {
 	while (n % i == 0) {
@@ -29,7 +30,8 @@ std::vector<int> factorize(int n) {
     return factor;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

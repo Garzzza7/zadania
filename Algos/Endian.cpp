@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 
-std::string find_little_endian(const std::string &word) {
+std::string
+find_little_endian(const std::string &word) {
     std::ostringstream oss;
     for (size_t i = word.size() - 1; i > 0; i--) {
 	oss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex
@@ -11,7 +12,8 @@ std::string find_little_endian(const std::string &word) {
     return oss.str();
 }
 
-std::string find_big_endian(const std::string &word) {
+std::string
+find_big_endian(const std::string &word) {
     std::ostringstream oss;
     for (auto &&i : word) {
 	oss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex
@@ -20,7 +22,8 @@ std::string find_big_endian(const std::string &word) {
     return oss.str();
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
