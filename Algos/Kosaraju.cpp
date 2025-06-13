@@ -6,7 +6,7 @@
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 // https://codeforces.com/problemset/problem/427/C
 
-template <typename T = int> struct Kosaraju {
+template <typename T = int> struct kosaraju {
     T n;
 
     std::vector<std::vector<T>> adj;
@@ -14,11 +14,11 @@ template <typename T = int> struct Kosaraju {
     std::stack<T> stack;
     std::vector<bool> visited;
 
-    T cnt_Components{0};
+    int cnt_Components{0};
 
     std::map<T, std::vector<T>> total;
 
-    explicit Kosaraju(const T _n)
+    explicit kosaraju(const T _n)
 	: n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
 	  rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
 	visited = std::vector<bool>(_n, false);
@@ -45,7 +45,7 @@ template <typename T = int> struct Kosaraju {
 	    stack.pop();
 	    if (!visited[v]) {
 		dfs_2(v);
-		++cnt_Components;
+		cnt_Components++;
 	    }
 	}
     }
@@ -82,7 +82,7 @@ main() {
     int n, m;
     std::cin >> n >> m;
 
-    Kosaraju<int> kosaraju(n);
+    kosaraju<int> kosaraju(n);
     while (m--) {
 	int a, b;
 	std::cin >> a >> b;

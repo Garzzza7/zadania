@@ -3,14 +3,14 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct Sparse_table {
+template <typename T = int> struct sparse_table {
     int size;
     int LOG{};
     const T NEUTRAL_ELEMENT{0};
     std::vector<std::vector<T>> matrix;
     std::vector<T> bin_log;
 
-    explicit Sparse_table(const std::vector<T> &_init)
+    explicit sparse_table(const std::vector<T> &_init)
 	: size(static_cast<int>(_init.size())) {
 	bin_log.push_back(0);
 	bin_log.push_back(0);
@@ -63,7 +63,7 @@ main() {
 	std::cin >> vec[i];
     }
 
-    Sparse_table<long long> st_sum(vec);
+    sparse_table<long long> st_sum(vec);
 
     st_sum.process();
 

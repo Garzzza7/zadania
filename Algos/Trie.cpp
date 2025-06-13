@@ -3,22 +3,22 @@
 #include <vector>
 
 // size of alphabet , ASCII for 'a' (65 for 'A')
-template <int CHAR_SIZE = 26, int BASE = 97> struct Trie {
-    struct Node {
+template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
+    struct node {
 	std::vector<int> next;
 	std::vector<int> accepting;
 	int c;
 	int cnt_shares{0};
-	explicit Node(const int c_) : c(c_) {
+	explicit node(const int c_) : c(c_) {
 	    next = std::vector<int>(CHAR_SIZE, -1);
 	}
     };
 
-    std::vector<Node> nodes;
+    std::vector<node> nodes;
     int root{0};
 
-    explicit Trie() {
-	nodes.push_back(Node(root));
+    explicit trie() {
+	nodes.push_back(node(root));
     }
 
     void
@@ -29,7 +29,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct Trie {
 	    auto &next_id = nodes[node_id].next[c];
 	    if (next_id == -1) {
 		next_id = static_cast<int>(nodes.size());
-		nodes.push_back(Node(c));
+		nodes.push_back(node(c));
 	    }
 	    nodes[node_id].cnt_shares++;
 	    node_id = next_id;
@@ -79,7 +79,7 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    Trie<26, 'a'> trie;
+    trie<26, 'a'> trie;
 
     int q;
     std::cin >> q;
