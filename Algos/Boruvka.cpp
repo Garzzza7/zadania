@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits>
-#include <numeric>
 #include <vector>
 
 template <typename T = int>
@@ -19,7 +18,9 @@ struct boruvka {
 
     boruvka(const int& _n) : n(_n) {
 	parent.assign(n, 0);
-	std::iota(parent.begin(), parent.end(), 0);
+	for (int i = 0; i < n; i++) {
+	    parent[i] = i;
+	}
 	rank.assign(n, 0);
     }
 
