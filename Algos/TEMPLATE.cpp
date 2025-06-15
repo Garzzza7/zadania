@@ -288,7 +288,7 @@ using namespace __gnu_pbds;
 
 int
 main() {
-    std::cout << std::setprecision(10);
+    std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
     const std::chrono::time_point<std::chrono::system_clock> start
 	= std::chrono::high_resolution_clock::now();
