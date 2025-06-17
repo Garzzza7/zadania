@@ -431,6 +431,16 @@ else
     printf "${red}$(cat Min_Heap.test)${normal}\n"
 fi
 
+if [ "$(./Next_permutation.sol < Next_permutation.txt)" == "$(cat Next_permutation.test)" ]; then
+    printf "${green}Next_permutation Passed.${normal}\n"
+else
+    printf "${red}Next_permutation Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Next_permutation.sol < Next_permutation.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Next_permutation.test)${normal}\n"
+fi
+
 if [ "$(./Priority_Queue.sol < Priority_Queue.txt)" == "$(cat Priority_Queue.test)" ]; then
     printf "${green}Priority_Queue Passed.${normal}\n"
 else
