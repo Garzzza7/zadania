@@ -1,24 +1,29 @@
-#include <algorithm>
+#include <cassert>
 #include <cstdint>
 #include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <string>
-#include <vector>
 
-template <typename T = int64_t, T MOD = 1e9 + 7> struct modint {
-    T value;
+template <int MOD = 1e9 + 7> struct modint {
+
+    int value;
+
+    int
+    barrett(uint64_t a) {
+	uint64_t BARREintint_M = (uint64_t(-1) / MOD);
+	auto q = uint32_t(
+	    a - uint64_t((__uint128_t(BARREintint_M) * a) >> 64) * MOD);
+	auto res = int32_t(q - MOD);
+	return (res < 0) ? res + MOD : res;
+    }
 
     explicit modint() : value(0) {
     }
 
-    explicit modint(T _value)
-	: value((-MOD < _value && _value < MOD) ? _value : _value % MOD) {
-	while (value < 0) {
-	    value += MOD;
-	}
-    };
+    explicit modint(uint64_t _value) : value(barrett(_value)) {};
+
+    explicit
+    operator int() const {
+	return value;
+    }
 
     friend bool
     operator==(const modint &a, const modint &b) {
@@ -51,34 +56,32 @@ template <typename T = int64_t, T MOD = 1e9 + 7> struct modint {
     }
 
     modint &
-    operator+=(modint o) {
-	if ((value += o.value) >= MOD) {
-	    value -= MOD;
-	}
+    operator+=(const modint &o) {
+	value -= MOD - o.value;
+	value = (value < 0) ? value + MOD : value;
 	return *this;
     }
 
     modint &
-    operator-=(modint o) {
-	if ((value -= o.value) < 0) {
-	    value += MOD;
-	}
+    operator-=(const modint &o) {
+	value -= o.value;
+	value = (value < 0) ? value + MOD : value;
 	return *this;
     }
 
     modint &
     operator*=(const modint &o) {
-	value = value * o.value % MOD;
+	value = barrett(int64_t(value) * int64_t(o.value));
 	return *this;
     }
 
     modint &
     operator/=(const modint &o) {
-	return (*this) *= inv(o);
+	return *this *= inv(o);
     }
 
     friend modint
-    pow(modint a, T b) {
+    pow(modint a, int b) {
 	modint res(1);
 	while (b > 0) {
 	    if (b & 1) {
@@ -103,32 +106,40 @@ template <typename T = int64_t, T MOD = 1e9 + 7> struct modint {
 
     modint &
     operator++() {
-	return *this += 1;
+	value++;
+	if (value == MOD) {
+	    value ^= value;
+	}
+	return *this;
     }
 
     modint &
     operator--() {
-	return *this -= 1;
+	if (value == 0) {
+	    value = MOD;
+	}
+	value--;
+	return *this;
     }
 
     friend modint
-    operator+(modint a, const modint &b) {
-	return a += b;
+    operator+(const modint &a, const modint &b) {
+	return modint(a) += b;
     }
 
     friend modint
-    operator-(modint a, const modint &b) {
-	return a -= b;
+    operator-(const modint &a, const modint &b) {
+	return modint(a) -= b;
     }
 
     friend modint
-    operator*(modint a, const modint &b) {
-	return a *= b;
+    operator*(const modint &a, const modint &b) {
+	return modint(a) *= b;
     }
 
     friend modint
-    operator/(modint a, const modint &b) {
-	return a /= b;
+    operator/(const modint &a, const modint &b) {
+	return modint(a) /= b;
     }
 
     friend std::ostream &
@@ -138,7 +149,7 @@ template <typename T = int64_t, T MOD = 1e9 + 7> struct modint {
 
     friend std::istream &
     operator>>(std::istream &in, modint &n) {
-	T v_;
+	int64_t v_;
 	in >> v_;
 	n = modint(v_);
 	return in;
@@ -218,12 +229,12 @@ template <typename T = int64_t, T MOD = 1e9 + 7> struct modint {
     }
 
     friend modint
-    operator&&(modint a, const modint &b) {
+    operator&&(const modint &a, const modint &b) {
 	return a.value && b.value;
     }
 
     friend modint
-    operator||(modint a, const modint &b) {
+    operator||(const modint &a, const modint &b) {
 	return a.value || b.value;
     }
 };
