@@ -431,6 +431,16 @@ else
     printf "${red}$(cat Min_Heap.test)${normal}\n"
 fi
 
+if [ "$(./Modular_Arithmetic.sol < Modular_Arithmetic.txt)" == "$(cat Modular_Arithmetic.test)" ]; then
+    printf "${green}Modular_Arithmetic Passed.${normal}\n"
+else
+    printf "${red}Modular_Arithmetic Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Modular_Arithmetic.sol < Modular_Arithmetic.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Modular_Arithmetic.test)${normal}\n"
+fi
+
 if [ "$(./Next_permutation.sol < Next_permutation.txt)" == "$(cat Next_permutation.test)" ]; then
     printf "${green}Next_permutation Passed.${normal}\n"
 else

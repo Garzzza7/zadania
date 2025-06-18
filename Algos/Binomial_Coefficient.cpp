@@ -25,7 +25,7 @@ mult_bin_coeff(const long long &n, const long long &k) {
 }
 
 long long
-bod_mult_bin_coeff(const long long &n, const long long &k,
+mod_mult_bin_coeff(const long long &n, const long long &k,
 		   const long long &mod) {
     long long res{1ll};
     const long long kk = std::min(k, n - k);
@@ -75,7 +75,7 @@ main() {
     std::cout << "Recursive:\n" << b << "\n";
     const auto c = mod_bin_coeff(n, 7919);
     std::cout << "Binomial Coefficient modulo 7919:\n" << c[n][k] << "\n";
-    const auto d = bod_mult_bin_coeff(n, k, 7919);
+    const auto d = mod_mult_bin_coeff(n, k, 7919);
     std::cout << "Multiplicative modulo 7919:\n" << d << "\n";
 
     return 0;
