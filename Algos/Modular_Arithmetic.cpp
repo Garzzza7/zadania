@@ -2,23 +2,63 @@
 #include <cstdint>
 #include <iostream>
 
-template <int MOD = 1e9 + 7> struct modint {
-
+struct modint {
+#if __cpp_inline_variables >= 201606
+    inline static int MOD{1};
+    inline static uint64_t BARRETT_M{1};
+#else
+    static int MOD;
+    static uint64_t BARRETT_M;
+#endif
     int value;
 
-    int
+    void
+    init_mod(int mod) {
+	MOD = mod;
+	BARRETT_M = (uint64_t(-1) / MOD);
+    }
+
+    static int
     barrett(uint64_t a) {
-	uint64_t BARREintint_M = (uint64_t(-1) / MOD);
-	auto q = uint32_t(
-	    a - uint64_t((__uint128_t(BARREintint_M) * a) >> 64) * MOD);
+	auto q
+	    = uint32_t(a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * MOD);
 	auto res = int32_t(q - MOD);
 	return (res < 0) ? res + MOD : res;
     }
 
+    //    static modint
+    //    modint_barrett(modint a) {
+    // uint64_t aa = a.value;
+    // auto q = uint32_t(
+    //     aa - uint64_t((__uint128_t(BARRETT_M) * aa) >> 64) * MOD);
+    // modint res(int32_t(q - MOD));
+    // return res;
+    //    }
+
     explicit modint() : value(0) {
     }
 
-    explicit modint(uint64_t _value) : value(barrett(_value)) {};
+    //    explicit modint(int mod) : value(0) {
+    // assert(mod > 0);
+    // MOD = mod;
+    // BARRETT_M = (uint64_t(-1) / MOD);
+    //    }
+
+    //    explicit modint(uint64_t _value, int mod) {
+    // assert(mod > 0);
+    // MOD = mod;
+    // BARRETT_M = (uint64_t(-1) / MOD);
+    // value = barrett(_value);
+    // if (value < 0) {
+    //     value += MOD;
+    // }
+    //    };
+
+    explicit modint(uint64_t _value) : value(int(_value % MOD)) {
+	if (value < 0) {
+	    value += MOD;
+	}
+    };
 
     explicit
     operator int() const {
@@ -77,7 +117,33 @@ template <int MOD = 1e9 + 7> struct modint {
 
     modint &
     operator/=(const modint &o) {
-	return *this *= inv(o);
+	return *this *= mod_inverse(o);
+    }
+
+    modint &
+    operator%=(const modint &o) {
+	if ((value %= o.value) > MOD) {
+	    value -= MOD;
+	}
+	return *this;
+    }
+
+    //    friend modint
+    //    operator%(modint a, const modint &b) {
+    // return a.value %= b.value;
+    //    }
+
+    modint &
+    operator%=(const int &o) {
+	if ((value %= o) > MOD) {
+	    value -= MOD;
+	}
+	return *this;
+    }
+
+    friend modint
+    operator%(modint a, const int &b) {
+	return modint(a.value %= b);
     }
 
     friend modint
@@ -85,17 +151,16 @@ template <int MOD = 1e9 + 7> struct modint {
 	modint res(1);
 	while (b > 0) {
 	    if (b & 1) {
-		res = res * a % MOD;
+		res.value = barrett(res.value * a.value);
 	    }
-	    a = a * a % MOD;
+	    a.value = barrett(a.value * a.value);
 	    b >>= 1;
 	}
 	return res;
     }
 
     friend modint
-    inv(const modint &a) {
-	assert(a.value != 0);
+    mod_inverse(const modint &a) {
 	return pow(a, MOD - 2);
     }
 
@@ -174,69 +239,6 @@ template <int MOD = 1e9 + 7> struct modint {
 	}
 	return *this;
     }
-
-    modint &
-    operator%=(const modint &o) {
-	if ((value %= o.value) > MOD) {
-	    value -= MOD;
-	}
-	return *this;
-    }
-
-    friend modint
-    operator|(modint a, const modint &b) {
-	return a.value |= b.value;
-    }
-
-    friend modint &
-    operator&=(modint a, const modint &b) {
-	return (a.value & b.value) % MOD;
-    }
-
-    friend modint
-    operator&(modint a, const modint &b) {
-	return a.value &= b.value;
-    }
-
-    friend modint
-    operator^=(modint a, const modint &b) {
-	return a.value ^ b.value;
-    }
-
-    friend modint
-    operator^(modint a, const modint &b) {
-	return a.value ^= b.value;
-    }
-
-    friend modint
-    operator<<=(modint a, const modint &b) {
-	return (a.value << b.value) % MOD;
-    }
-
-    friend modint
-    operator<<(modint a, const modint &b) {
-	return a.value <<= b.value;
-    }
-
-    friend modint
-    operator>>=(modint a, const modint &b) {
-	return a.value >> b.value;
-    }
-
-    friend modint
-    operator>>(modint a, const modint &b) {
-	return a.value >>= b.value;
-    }
-
-    friend modint
-    operator&&(const modint &a, const modint &b) {
-	return a.value && b.value;
-    }
-
-    friend modint
-    operator||(const modint &a, const modint &b) {
-	return a.value || b.value;
-    }
 };
 
 int
@@ -244,6 +246,55 @@ main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+
+    while (true) {
+	int n;
+	int t;
+	std::cin >> n >> t;
+	if (n == 0 && t == 0) {
+	    return 0;
+	}
+	while (t--) {
+	    int64_t x, y;
+	    char op;
+	    std::cin >> x >> op >> y;
+	    if (op == '+') {
+		modint xx(x);
+		modint yy(y);
+		xx.init_mod(n);
+		yy.init_mod(n);
+		std::cout << xx + yy << "\n";
+	    } else if (op == '-') {
+
+		modint xx(x);
+		modint yy(y);
+
+		xx.init_mod(n);
+		yy.init_mod(n);
+
+		std::cout << xx - yy << "\n";
+
+	    } else if (op == '*') {
+
+		modint xx(x);
+		modint yy(y);
+
+		xx.init_mod(n);
+		yy.init_mod(n);
+		std::cout << xx * yy << "\n";
+
+	    } else if (op == '/') {
+
+		modint xx(x);
+		modint yy(y);
+
+		xx.init_mod(n);
+		yy.init_mod(n);
+
+		std::cout << xx / yy << "\n";
+	    }
+	}
+    }
 
     return 0;
 }
