@@ -27,16 +27,27 @@ template <typename T> class Modular {
     template <typename U> Modular(const U &x) : value(normalize(x)) {
     }
 
+    static int
+    barrett(uint64_t a) {
+	auto BARRETT_M = (uint64_t(-1) / mod());
+	auto q = uint32_t(
+	    a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * mod());
+	auto res = int32_t(q - mod());
+	return (res < 0) ? res + mod() : res;
+    }
+
     template <typename U>
     static Type
     normalize(const U &x) {
 	Type v;
-	if (-mod() <= x && x < mod())
+	if (-mod() <= x && x < mod()) {
 	    v = static_cast<Type>(x);
-	else
-	    v = static_cast<Type>(x % mod());
-	if (v < 0)
+	} else {
+	    v = static_cast<Type>(barrett(x));
+	}
+	if (v < 0) {
 	    v += mod();
+	}
 	return v;
     }
 
@@ -281,14 +292,12 @@ to_string(const Modular<T> &number) {
     return to_string(number());
 }
 
-// U == std::ostream? but done this way because of fastoutput
 template <typename U, typename T>
 U &
 operator<<(U &stream, const Modular<T> &number) {
     return stream << number();
 }
 
-// U == std::istream? but done this way because of fastinput
 template <typename U, typename T>
 U &
 operator>>(U &stream, Modular<T> &number) {
@@ -298,19 +307,12 @@ operator>>(U &stream, Modular<T> &number) {
     return stream;
 }
 
-// using ModType = int;
-
-// struct VarMod { static ModType value; };
-// ModType VarMod::value;
-// ModType& md = VarMod::value;
-// using Mint = Modular<VarMod>;
-
 constexpr int MOD = 7919;
 using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
 
 // end of tourist's template
 
-// my
+// my , still WIP
 struct modint {
 #if __cpp_inline_variables >= 201606
     inline static int MOD{1};
@@ -533,6 +535,13 @@ main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+
+    Mint x = 10000000000;
+    Mint y = 512321321;
+    std::cout << x + y << "\n";
+    std::cout << x - y << "\n";
+    std::cout << x * y << "\n";
+    std::cout << x / y << "\n";
 
     return 0;
 }
