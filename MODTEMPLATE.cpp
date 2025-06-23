@@ -11,28 +11,28 @@
 #define ll long long
 #define sz(vec) ((int) (vec).size())
 
-template <typename T>
-T
-inverse(T a, T m) {
-    T u = 0, v = 1;
-    while (a != 0) {
-	T t = m / a;
-	m -= t * a;
-	std::swap(a, m);
-	u -= t * v;
-	std::swap(u, v);
-    }
-    assert(m == 1);
-    return u;
-}
-
-template <typename T> class Modular {
-  public:
+template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
     constexpr Modular() : value() {
     }
     template <typename U> Modular(const U &x) : value(normalize(x)) {
+    }
+
+    template <typename TT>
+    TT
+    inverse(TT a, TT m) {
+	TT u{0};
+	TT v{1};
+	while (a) {
+	    TT t = m / a;
+	    m -= t * a;
+	    std::swap(a, m);
+	    u -= t * v;
+	    std::swap(u, v);
+	}
+	assert(m == 1);
+	return u;
     }
 
     static int
@@ -74,6 +74,27 @@ template <typename T> class Modular {
     }
 
     Modular &
+    operator|=(const Modular &other) {
+	value |= other.value;
+	value -= (value >= mod()) * mod();
+	return *this;
+    }
+
+    Modular &
+    operator&=(const Modular &other) {
+	value |= other.value;
+	value -= (value >= mod()) * mod();
+	return *this;
+    }
+
+    Modular &
+    operator^=(const Modular &other) {
+	value |= other.value;
+	value -= (value >= mod()) * mod();
+	return *this;
+    }
+
+    Modular &
     operator+=(const Modular &other) {
 	value += other.value;
 	value -= (value >= mod()) * mod();
@@ -84,6 +105,24 @@ template <typename T> class Modular {
 	value -= other.value;
 	value += (value < 0) * mod();
 	return *this;
+    }
+
+    template <typename U>
+    Modular &
+    operator&=(const U &other) {
+	return *this |= Modular(other);
+    }
+
+    template <typename U>
+    Modular &
+    operator^=(const U &other) {
+	return *this |= Modular(other);
+    }
+
+    template <typename U>
+    Modular &
+    operator|=(const U &other) {
+	return *this |= Modular(other);
     }
     template <typename U>
     Modular &
@@ -166,16 +205,9 @@ template <typename T> class Modular {
 
     template <typename V, typename U>
     friend V &operator>>(V &stream, Modular<U> &number);
-
-  private:
     Type value;
 };
 
-template <typename T>
-bool
-operator==(const Modular<T> &lhs, const Modular<T> &rhs) {
-    return lhs.value == rhs.value;
-}
 template <typename T, typename U>
 bool
 operator==(const Modular<T> &lhs, U rhs) {
@@ -207,6 +239,57 @@ template <typename T>
 bool
 operator<(const Modular<T> &lhs, const Modular<T> &rhs) {
     return lhs.value < rhs.value;
+}
+
+template <typename T>
+Modular<T>
+operator^(const Modular<T> &lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+
+template <typename T, typename U>
+Modular<T>
+operator^(const Modular<T> &lhs, U rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+template <typename T, typename U>
+Modular<T>
+operator^(U lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+
+template <typename T>
+Modular<T>
+operator&(const Modular<T> &lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+
+template <typename T, typename U>
+Modular<T>
+operator&(const Modular<T> &lhs, U rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+template <typename T, typename U>
+Modular<T>
+operator&(U lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+
+template <typename T>
+Modular<T>
+operator|(const Modular<T> &lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+
+template <typename T, typename U>
+Modular<T>
+operator|(const Modular<T> &lhs, U rhs) {
+    return Modular<T>(lhs) |= rhs;
+}
+template <typename T, typename U>
+Modular<T>
+operator|(U lhs, const Modular<T> &rhs) {
+    return Modular<T>(lhs) |= rhs;
 }
 
 template <typename T>
@@ -280,8 +363,9 @@ power(const Modular<T> &a, const U &b) {
     Modular<T> x = a, res = 1;
     U p = b;
     while (p > 0) {
-	if (p & 1)
+	if (p & 1) {
 	    res *= x;
+	}
 	x *= x;
 	p >>= 1;
     }
