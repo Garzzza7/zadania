@@ -31,6 +31,16 @@ else
     printf "${red}$(cat 2D_Prefix_Sum.test)${normal}\n"
 fi
 
+if [ "$(./Aho_Corasick.sol < Aho_Corasick.txt)" == "$(cat Aho_Corasick.test)" ]; then
+    printf "${green}Aho_Corasick Passed.${normal}\n"
+else
+    printf "${red}Aho_Corasick Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Aho_Corasick.sol < Aho_Corasick.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Aho_Corasick.test)${normal}\n"
+fi
+
 if [ "$(./BFS.sol < BFS.txt)" == "$(cat BFS.test)" ]; then
     printf "${green}BFS Passed.${normal}\n"
 else

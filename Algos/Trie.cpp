@@ -10,7 +10,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
 	int c;
 	int cnt_shares{0};
 	explicit node(const int c_) : c(c_) {
-	    next = std::vector<int>(CHAR_SIZE, -1);
+	    next = std::vector<int>(CHAR_SIZE + 1, -1);
 	}
     };
 
@@ -18,18 +18,18 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
     int root{0};
 
     explicit trie() {
-	nodes.push_back(node(root));
+	nodes.emplace_back(node(root));
     }
 
     void
     insert(const std::string &word, int word_id) {
 	int node_id{0};
-	for (auto &&i : word) {
+	for (const auto &i : word) {
 	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
 	    if (next_id == -1) {
 		next_id = static_cast<int>(nodes.size());
-		nodes.push_back(node(c));
+		nodes.emplace_back(node(c));
 	    }
 	    nodes[node_id].cnt_shares++;
 	    node_id = next_id;
@@ -46,7 +46,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
     bool
     search(const std::string &word, bool check_prefix = false) {
 	int node_id{0};
-	for (auto &&i : word) {
+	for (const auto &i : word) {
 	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
 	    if (next_id == -1) {
