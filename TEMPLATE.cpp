@@ -284,7 +284,7 @@ using namespace __gnu_pbds;
 [[maybe_unused]] static constexpr double pi{std::numbers::pi};
 [[maybe_unused]] static constexpr int mod{1000000007};
 
-#define ll long long
+using ll = long long;
 
 int
 main() {

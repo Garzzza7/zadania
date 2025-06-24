@@ -8,8 +8,9 @@
 #include <string>
 #include <vector>
 
-#define ll long long
 #define sz(vec) (static_cast<int>((vec).size()))
+
+using ll = long long;
 
 int
 main() {
