@@ -139,10 +139,11 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 		node_id = nodes[node_id].next[c];
 	    }
 
-	    for (int t = node_id; t != -1; t = nodes[t].output_link) {
-		for (int id : nodes[t].accepting) {
-		    std::cout << patterns[id] << " found at "
-			      << (i - patterns[id].size() + 1) << "\n";
+	    for (int iter = node_id; iter != -1;
+		 iter = nodes[iter].output_link) {
+		for (const auto &p : nodes[iter].accepting) {
+		    std::cout << patterns[p] << " found at "
+			      << (i - patterns[p].size() + 1) << "\n";
 		}
 	    }
 	}
