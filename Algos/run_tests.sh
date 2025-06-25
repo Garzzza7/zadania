@@ -141,6 +141,16 @@ else
     printf "${red}$(cat CRT.test)${normal}\n"
 fi
 
+if [ "$(./Cartesian_tree.sol < Cartesian_tree.txt)" == "$(cat Cartesian_tree.test)" ]; then
+    printf "${green}Cartesian_tree Passed.${normal}\n"
+else
+    printf "${red}Cartesian_tree Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Cartesian_tree.sol < Cartesian_tree.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Cartesian_tree.test)${normal}\n"
+fi
+
 if [ "$(./Counting_Sort.sol < Counting_Sort.txt)" == "$(cat Counting_Sort.test)" ]; then
     printf "${green}Counting_Sort Passed.${normal}\n"
 else
