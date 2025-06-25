@@ -1,4 +1,3 @@
-#include <cstdint>
 #include <iostream>
 #include <vector>
 
@@ -14,7 +13,7 @@ template <typename T = int> struct ram_seg_tree {
 	vec.assign(2 * size, NEUTRAL_ELEMENT);
     }
 
-    T
+    static T
     operation(const T &a, const T &b) {
 	return a + b;
     }

@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <cstdint>
 #include <iostream>
 #include <vector>
 
@@ -22,7 +20,7 @@ template <typename T = int> struct sparse_table {
 	matrix[0] = _init;
     }
 
-    T
+    static T
     operation(const T &a, const T &b) {
 	return a + b;
     }

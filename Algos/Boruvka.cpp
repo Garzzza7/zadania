@@ -15,7 +15,8 @@ template <typename T = int> struct boruvka {
     std::vector<int> parent;
     std::vector<int> rank;
 
-    boruvka(const int &_n) : n(_n), MAX(std::numeric_limits<T>::max()) {
+    explicit boruvka(const int &_n)
+	: n(_n), MAX(std::numeric_limits<T>::max()) {
 	parent.assign(n, 0);
 	for (int i = 0; i < n; i++) {
 	    parent[i] = i;
@@ -117,13 +118,11 @@ main() {
 	int u, v;
 	int w;
 	std::cin >> u >> v >> w;
-	graph.add_edge(edge<int>(u, v, w));
+	graph.add_edge(edge(u, v, w));
     }
 
-    auto res = graph.mst();
-    for (const auto &v : res) {
-	std::cout << v.u << " -> " << v.v << " with weight " << v.weight
-		  << "\n";
+    for (const auto res = graph.mst(); const auto &[u, v, weight] : res) {
+	std::cout << u << " -> " << v << " with weight " << weight << "\n";
     }
     return 0;
 }

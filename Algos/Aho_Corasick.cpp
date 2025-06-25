@@ -13,7 +13,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	int c;
 	int cnt_shares{0};
 	explicit node(const int c_) : c(c_) {
-	    next = std::vector<int>(CHAR_SIZE, -1);
+	    next.assign(CHAR_SIZE, -1);
 	}
     };
 
@@ -53,7 +53,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     build_suffix_links() {
 	std::queue<int> q;
 
-	for (int i = 0; i < (int) nodes[0].next.size(); i++) {
+	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
 	    int child = nodes[0].next[i];
 	    if (child != -1) {
 		nodes[child].suffix_link = 0;
@@ -65,7 +65,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	    int id = q.front();
 	    q.pop();
 
-	    for (int i = 0; i < (int) nodes[id].next.size(); ++i) {
+	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); ++i) {
 		int child = nodes[id].next[i];
 		if (child == -1) {
 		    continue;
@@ -91,9 +91,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     build_output_links() {
 	std::queue<int> q;
 
-	for (int i = 0; i < (int) nodes[0].next.size(); ++i) {
-	    int child = nodes[0].next[i];
-	    if (child != -1) {
+	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); ++i) {
+	    if (int child = nodes[0].next[i]; child != -1) {
 		q.push(child);
 	    }
 	}
@@ -109,7 +108,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 		nodes[id].output_link = nodes[u].output_link;
 	    }
 
-	    for (int i = 0; i < (int) nodes[id].next.size(); i++) {
+	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
 		int child = nodes[id].next[i];
 		if (child == -1) {
 		    continue;
@@ -128,7 +127,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     void
     search(const std::string &word) {
 	int node_id{0};
-	for (int i = 0; i < (int) word.size(); i++) {
+	for (int i = 0; i < static_cast<int>(word.size()); i++) {
 	    int c = word[i] - BASE;
 
 	    while (node_id != 0 && nodes[node_id].next[c] == -1) {

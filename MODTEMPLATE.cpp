@@ -16,7 +16,7 @@ template <typename T> struct Modular {
 
     constexpr Modular() : value() {
     }
-    template <typename U> Modular(const U &x) : value(normalize(x)) {
+    template <typename U> explicit Modular(const U &x) : value(normalize(x)) {
     }
 
     template <typename TT>
@@ -37,10 +37,13 @@ template <typename T> struct Modular {
 
     static int
     barrett(uint64_t a) {
-	auto BARRETT_M = (uint64_t(-1) / mod());
-	auto q = uint32_t(
-	    a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * mod());
-	auto res = int32_t(q - mod());
+	auto BARRETT_M = (static_cast<uint64_t>(-1) / mod());
+	auto q = static_cast<uint32_t>(
+	    a
+	    - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a)
+				    >> 64)
+		  * mod());
+	auto res = static_cast<int32_t>(q - mod());
 	return (res < 0) ? res + mod() : res;
     }
 
@@ -173,8 +176,8 @@ template <typename T> struct Modular {
     operator*=(const Modular &rhs)
 	requires std::is_same_v<typename Modular<U>::Type, int64_t>
     {
-	int64_t q
-	    = int64_t(static_cast<long double>(value) * rhs.value / mod());
+	int64_t q = static_cast<int64_t>(static_cast<long double>(value)
+					 * rhs.value / mod());
 	value = normalize(value * rhs.value - q * mod());
 	return *this;
     }
