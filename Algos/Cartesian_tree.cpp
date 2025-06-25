@@ -25,6 +25,7 @@ cartesian_tree(const std::vector<int> &vec) {
 }
 
 // still wip , asimptotically slower than ^
+// return structure of the tree in an array as in bin heap
 struct cartesian_tree {
     template <typename T = int> struct sparse_table {
 	int size;
@@ -81,7 +82,7 @@ struct cartesian_tree {
     std::vector<int> c_tree;
     std::vector<int> base;
     cartesian_tree(const std::vector<int> &arr) : base(arr) {
-	c_tree.assign(base.size() * 2 + 1, -1);
+	c_tree.assign(base.size() * 3, -1);
     }
 
     void
@@ -124,6 +125,13 @@ main() {
 	    std::cout << ((ct[i] == -1) ? i : ct[i]) << " ";
 	}
 	std::cout << "\n";
+
+	// struct cartesian_tree ct2(vec);
+	// ct2.build();
+	// for (const auto &v : ct2.c_tree) {
+	//     std::cout << v << " ";
+	// }
+	// std::cout << "\n";
     }
     return 0;
 }
