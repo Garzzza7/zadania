@@ -72,11 +72,12 @@ struct lca {
     std::vector<int> ids;
     sparse_table<> st;
 
-    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
+    explicit lca(const std::vector<std::vector<int>> &_adj)
+	: n((int) _adj.size()) {
 	ids.resize(n);
-	std::vector<bool> visited(n, false);
+	std::vector visited(n, false);
 
-	auto dfs = [&](const auto &self, int v, int h = 0) -> void {
+	auto dfs = [&](const auto &self, const int v, const int h = 0) -> void {
 	    visited[v] = true;
 	    heights.push_back(h);
 	    ids[v] = (int) euler.size();
@@ -99,9 +100,9 @@ struct lca {
     }
 
     int
-    query(int l, int r) {
-	int lq = ids[l];
-	int rq = ids[r];
+    query(const int l, const int r) {
+	const int lq = ids[l];
+	const int rq = ids[r];
 	return st.query(std::min(lq, rq), std::max(lq, rq));
     }
 };
