@@ -391,6 +391,16 @@ else
     printf "${red}$(cat Kth_Order_Statistics.test)${normal}\n"
 fi
 
+if [ "$(./LCA.sol < LCA.txt)" == "$(cat LCA.test)" ]; then
+    printf "${green}LCA Passed.${normal}\n"
+else
+    printf "${red}LCA Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./LCA.sol < LCA.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat LCA.test)${normal}\n"
+fi
+
 if [ "$(./Levenshtein_distance.sol < Levenshtein_distance.txt)" == "$(cat Levenshtein_distance.test)" ]; then
     printf "${green}Levenshtein_distance Passed.${normal}\n"
 else
