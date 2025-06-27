@@ -1,9 +1,7 @@
-#include <cassert>
 #include <cstdint>
 #include <iostream>
+#include <vector>
 
-// modified tourist's template
-// AND OR XOR are untested
 template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
@@ -395,228 +393,39 @@ operator>>(U &stream, Modular<T> &number) {
     return stream;
 }
 
-constexpr int MOD = 7919;
+constexpr int MOD = 998'244'353;
 using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
 
-// end of modified tourist's template
-
-// mine , still WIP
-struct modint {
-#if __cpp_inline_variables >= 201606
-    inline static int MOD{1};
-    inline static uint64_t BARRETT_M{1};
-#else
-    static int MOD;
-    static uint64_t BARRETT_M;
-#endif
-    int value;
-
-    void
-    init_mod(int mod) {
-	MOD = mod;
-	BARRETT_M = (uint64_t(-1) / MOD);
-    }
-
-    static int
-    barrett(uint64_t a) {
-	auto q
-	    = uint32_t(a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * MOD);
-	auto res = int32_t(q - MOD);
-	return (res < 0) ? res + MOD : res;
-    }
-
-    explicit modint() : value(0) {
-    }
-
-    explicit modint(uint64_t _value) : value(int(_value % MOD)) {
-	if (value < 0) {
-	    value += MOD;
+std::vector<Mint>
+mint_conv(const std::vector<Mint> &a, const std::vector<Mint> &b) {
+    const int n = (int) a.size();
+    const int m = (int) b.size();
+    std::vector<Mint> c(n + m - 1);
+    for (int i = 0; i < n; i++) {
+	for (int j = 0; j < m; j++) {
+	    c[i + j] += a[i] * b[j];
 	}
-    };
-
-    explicit
-    operator int() const {
-	return value;
     }
+    return c;
+}
 
-    friend bool
-    operator==(const modint &a, const modint &b) {
-	return a.value == b.value;
-    }
-
-    friend bool
-    operator!=(const modint &a, const modint &b) {
-	return a.value != b.value;
-    }
-
-    friend bool
-    operator<(const modint &a, const modint &b) {
-	return a.value < b.value;
-    }
-
-    friend bool
-    operator>(const modint &a, const modint &b) {
-	return b < a;
-    }
-
-    friend bool
-    operator<=(const modint &a, const modint &b) {
-	return !(a > b);
-    }
-
-    friend bool
-    operator>=(const modint &a, const modint &b) {
-	return !(a < b);
-    }
-
-    modint &
-    operator+=(const modint &o) {
-	value -= MOD - o.value;
-	value = (value < 0) ? value + MOD : value;
-	return *this;
-    }
-
-    modint &
-    operator-=(const modint &o) {
-	value -= o.value;
-	value = (value < 0) ? value + MOD : value;
-	return *this;
-    }
-
-    modint &
-    operator*=(const modint &o) {
-	value = barrett(int64_t(value) * int64_t(o.value));
-	return *this;
-    }
-
-    modint &
-    operator/=(const modint &o) {
-	return *this *= mod_inverse(o);
-    }
-
-    modint &
-    operator%=(const modint &o) {
-	if ((value %= o.value) > MOD) {
-	    value -= MOD;
+template <typename T>
+std::vector<T>
+conv(const std::vector<int> &a, const std::vector<int> &b) {
+    constexpr int MOD = 998'244'353;
+    const int n = (int) a.size();
+    const int m = (int) b.size();
+    std::vector<T> c(n + m - 1);
+    for (int i = 0; i < n; i++) {
+	for (int j = 0; j < m; j++) {
+	    c[i + j] += (T) a[i] * b[j] % MOD;
 	}
-	return *this;
     }
-
-    //    friend modint
-    //    operator%(modint a, const modint &b) {
-    // return a.value %= b.value;
-    //    }
-
-    modint &
-    operator%=(const int &o) {
-	if ((value %= o) > MOD) {
-	    value -= MOD;
-	}
-	return *this;
+    for (auto &&k : c) {
+	k %= MOD;
     }
-
-    friend modint
-    operator%(modint a, const int &b) {
-	return modint(a.value %= b);
-    }
-
-    friend modint
-    pow(modint a, int b) {
-	assert(b >= 0);
-	modint res(1);
-	while (b > 0) {
-	    if (b & 1) {
-		res *= a;
-	    }
-	    a *= a;
-	    b >>= 1;
-	}
-	return res;
-    }
-
-    friend modint
-    mod_inverse(const modint &a) {
-	return pow(a, MOD - 2);
-    }
-
-    modint
-    operator-() const {
-	return modint(-value);
-    }
-
-    modint &
-    operator++() {
-	value++;
-	if (value == MOD) {
-	    value ^= value;
-	}
-	return *this;
-    }
-
-    modint &
-    operator--() {
-	if (value == 0) {
-	    value = MOD;
-	}
-	value--;
-	return *this;
-    }
-
-    friend modint
-    operator+(const modint &a, const modint &b) {
-	return modint(a) += b;
-    }
-
-    friend modint
-    operator-(const modint &a, const modint &b) {
-	return modint(a) -= b;
-    }
-
-    friend modint
-    operator*(const modint &a, const modint &b) {
-	return modint(a) *= b;
-    }
-
-    friend modint
-    operator/(const modint &a, const modint &b) {
-	return modint(a) /= b;
-    }
-
-    friend std::ostream &
-    operator<<(std::ostream &out, const modint &f) {
-	return out << f.value;
-    }
-
-    friend std::istream &
-    operator>>(std::istream &in, modint &n) {
-	int64_t v_;
-	in >> v_;
-	n = modint(v_);
-	return in;
-    }
-
-    modint &
-    operator|=(const modint &o) {
-	value |= o.value;
-	return *this;
-    }
-
-    modint &
-    operator&=(const modint &o) {
-	value &= o.value;
-	return *this;
-    }
-
-    modint &
-    operator^=(const modint &o) {
-	if ((value ^= o.value) > MOD) {
-	    value -= MOD;
-	}
-	return *this;
-    }
-};
-
-// end of mine
+    return c;
+}
 
 int
 main() {
@@ -624,12 +433,36 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    Mint x = 10000000000;
-    Mint y = 512321321;
-    std::cout << x + y << "\n";
-    std::cout << x - y << "\n";
-    std::cout << x * y << "\n";
-    std::cout << x / y << "\n";
+    int n;
+    std::cin >> n;
+    std::vector<int> a(n);
+    std::vector<int> b(n);
+    std::vector<Mint> aa(n);
+    std::vector<Mint> bb(n);
+    for (int i = 0; i < n; i++) {
+	int v;
+	std::cin >> v;
+	a[i] = v;
+	aa[i] = v;
+    }
+
+    for (int i = 0; i < n; i++) {
+	int v;
+	std::cin >> v;
+	b[i] = v;
+	bb[i] = v;
+    }
+    auto c = conv<int>(a, b);
+    auto cc = mint_conv(aa, bb);
+    for (const auto &v : c) {
+	std::cout << v << " ";
+    }
+    std::cout << "\n";
+
+    for (const auto &v : cc) {
+	std::cout << v << " ";
+    }
+    std::cout << "\n";
 
     return 0;
 }

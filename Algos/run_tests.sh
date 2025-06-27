@@ -151,6 +151,16 @@ else
     printf "${red}$(cat Cartesian_tree.test)${normal}\n"
 fi
 
+if [ "$(./Convolution.sol < Convolution.txt)" == "$(cat Convolution.test)" ]; then
+    printf "${green}Convolution Passed.${normal}\n"
+else
+    printf "${red}Convolution Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Convolution.sol < Convolution.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Convolution.test)${normal}\n"
+fi
+
 if [ "$(./Counting_Sort.sol < Counting_Sort.txt)" == "$(cat Counting_Sort.test)" ]; then
     printf "${green}Counting_Sort Passed.${normal}\n"
 else
