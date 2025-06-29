@@ -13,6 +13,7 @@ def bfs(ver, adj, visited, q):
 
 def iter_bfs(ver, adj, visited):
     q = []
+    visited = [False] * len(visited)
     q.append(ver)
     while len(q) > 0:
         curr = q[0]
@@ -34,8 +35,6 @@ for i in range(edges):
     y = int(inp[1])
     adj[x].append(y)
 
-q = []
-bfs(1, adj, visited, q)
+bfs(1, adj, visited, [])
 print()
-visited = [False] * (v + 1)
 iter_bfs(1, adj, visited)
