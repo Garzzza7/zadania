@@ -9,25 +9,19 @@ struct lca {
 	int LOG{};
 	const T NEUTRAL_ELEMENT{INT32_MAX};
 	std::vector<std::vector<std::pair<T, T>>> matrix;
-	std::vector<T> bin_log;
 	explicit sparse_table() = default;
 	sparse_table &
 	operator=(sparse_table &&rhs) noexcept {
 	    size = rhs.size;
 	    LOG = rhs.LOG;
 	    matrix = std::move(rhs.matrix);
-	    bin_log = std::move(rhs.bin_log);
 	    return *this;
 	}
 	explicit sparse_table(const std::vector<T> &_init,
 			      const std::vector<T> &_euler)
-	    : size(static_cast<int>(_init.size())) {
-	    bin_log.push_back(0);
-	    bin_log.push_back(0);
-	    for (int i = 2; i <= size; i++) {
-		bin_log.push_back(bin_log[i / 2] + 1);
-	    }
-	    LOG = 63 - __builtin_clzl(size) + 1;
+	    : size(static_cast<int>(_init.size())),
+	      LOG(63 - __builtin_clzl(size) + 1) {
+
 	    matrix.assign(
 		LOG, std::vector(size, std::pair<T, T>(NEUTRAL_ELEMENT, 0)));
 	    for (int i = 0; i < size; i++) {

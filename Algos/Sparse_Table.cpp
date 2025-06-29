@@ -6,17 +6,11 @@ template <typename T = int> struct sparse_table {
     int LOG{};
     const T NEUTRAL_ELEMENT{0};
     std::vector<std::vector<T>> matrix;
-    std::vector<T> bin_log;
-
     explicit sparse_table(const std::vector<T> &_init)
-	: size(static_cast<int>(_init.size())) {
-	bin_log.push_back(0);
-	bin_log.push_back(0);
-	for (int i = 2; i <= size; i++) {
-	    bin_log.push_back(bin_log[i / 2] + 1);
-	}
-	LOG = 63 - __builtin_clzl(size) + 1;
-	matrix = std::vector(LOG, std::vector(size, NEUTRAL_ELEMENT));
+	: size(static_cast<int>(_init.size())),
+	  LOG(63 - __builtin_clzl(size) + 1),
+	  matrix(std::vector(LOG, std::vector(size, NEUTRAL_ELEMENT))) {
+
 	matrix[0] = _init;
     }
 

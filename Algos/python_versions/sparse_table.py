@@ -2,12 +2,7 @@ class sparse_table:
     def __init__(self, _init):
         self.size = len(_init)
         self.NEUTRAL_ELEMENT = 0
-        self.bin_log = [0, 0]
-        for i in range(2, self.size + 1):
-            self.bin_log.append(self.bin_log[i // 2] + 1)
-
         self.LOG = self.size.bit_length()
-
         self.matrix = [
             [self.NEUTRAL_ELEMENT for _ in range(self.size)] for _ in range(self.LOG)
         ]
