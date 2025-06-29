@@ -79,9 +79,9 @@ struct tarjan_find_bridges {
     }
 
     void
-    print() const {
-	for (auto &&ee : adj) {
-	    for (auto &&e : ee) {
+    print() {
+	for (const auto &ee : adj) {
+	    for (const auto &e : ee) {
 		std::cout << e.vertex << " ";
 	    }
 	    std::cout << "\n";

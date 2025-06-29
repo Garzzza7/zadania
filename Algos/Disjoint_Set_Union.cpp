@@ -3,12 +3,12 @@
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 
-template <typename T = int> struct DSU {
+template <typename T = int> struct dsu {
     std::vector<T> parent;
     std::vector<T> size;
     std::vector<T> rank;
 
-    explicit DSU(const T _n)
+    explicit dsu(const T _n)
 	: parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)),
 	  rank(std::vector<T>(_n, 0)) {
 	for (T i = 0; i < _n; i++) {
@@ -16,10 +16,16 @@ template <typename T = int> struct DSU {
 	}
     }
 
-    explicit DSU(std::vector<T> _parent, std::vector<T> _size,
+    // This constructor moves input arrays.
+    // explicit dsu(std::vector<T> _parent, std::vector<T> _size,
+    //		 std::vector<T> _rank)
+    //	: parent(std::move(_parent)), size(std::move(_size)),
+    //	  rank(std::move(_rank)) {
+    // }
+
+    explicit dsu(std::vector<T> _parent, std::vector<T> _size,
 		 std::vector<T> _rank)
-	: parent(std::move(_parent)), size(std::move(_size)),
-	  rank(std::move(_rank)) {
+	: parent(_parent), size(_size), rank(_rank) {
     }
 
     void
@@ -81,7 +87,7 @@ main() {
     int q;
     std::cin >> n >> q;
 
-    DSU<long long> dsu(n + 1);
+    dsu<long long> dsu(n + 1);
 
     while (q--) {
 	long long a, b, c;

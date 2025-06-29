@@ -9,7 +9,6 @@ rec_bin_coeff(const long long &n, const long long &k) {
     if (n == k || k == 0) {
 	return 1;
     }
-
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 

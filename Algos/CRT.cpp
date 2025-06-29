@@ -4,7 +4,7 @@
 
 template <typename T>
 long long
-crt(std::vector<std::pair<T, T>> &vec) {
+crt(const std::vector<std::pair<T, T>> &vec) {
     T mod = vec[0].second;
     T buff = vec[0].first;
     for (int i = 0; i < static_cast<int>(vec.size()) - 1; i++) {

@@ -53,7 +53,6 @@ main() {
 	int x, y;
 	std::cin >> x >> y;
 	adj[x].push_back(y);
-	// adj[y].push_back(x);
     }
     std::queue<int> que;
     bfs(1, adj, visited, que);

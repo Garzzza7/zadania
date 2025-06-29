@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// >= 19 might be sus , rest is verified
 const std::vector<unsigned long long> derangements = {1,
 						      0,
 						      1,
@@ -19,19 +20,21 @@ const std::vector<unsigned long long> derangements = {1,
 						      481'066'515'734,
 						      7'697'064'251'745,
 						      130'850'092'279'664,
-						      2'355'301'661'033'953};
+						      2'355'301'661'033'953,
+						      44'750'731'559'645'100,
+						      895'014'631'192'902'100};
 
 unsigned long long
 derangement(const unsigned long long n) {
-    if (n == 1ll) {
-	return 0ll;
+    if (n == 1ull) {
+	return 0ull;
     }
-    if (n == 2ll) {
-	return 1ll;
+    if (n == 2ull) {
+	return 1ull;
     }
 
-    unsigned long long prev1{1ll};
-    unsigned long long prev2{0ll};
+    unsigned long long prev1{1ull};
+    unsigned long long prev2{0ull};
     for (unsigned long long i = 3; i <= n; i++) {
 	const auto curr = (i - 1) * (prev1 + prev2);
 	prev2 = prev1;

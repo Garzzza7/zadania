@@ -1,6 +1,5 @@
 #include <cstdint>
 #include <iostream>
-#include <stack>
 #include <vector>
 
 std::vector<int>

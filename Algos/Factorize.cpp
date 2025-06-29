@@ -15,9 +15,10 @@ printarr(const T_vector &v, bool inc = false, int begin = -1, int end = -1) {
     }
 }
 
-std::vector<int>
-factorize(int n) {
-    std::vector<int> factor;
+template <typename T>
+std::vector<T>
+factorize(T n) {
+    std::vector<T> factor;
     for (int i = 2; i * i <= n; i++) {
 	while (n % i == 0) {
 	    factor.push_back(i);

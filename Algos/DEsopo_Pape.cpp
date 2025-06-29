@@ -66,7 +66,7 @@ struct desopo_pape {
     }
 
     void
-    get_path(const int start, const int target) const {
+    get_path(const int start, const int target) {
 	std::vector<int> sp;
 	for (int i = target; i != -123; i = path[i]) {
 	    sp.push_back(i);

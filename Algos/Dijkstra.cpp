@@ -41,7 +41,7 @@ dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
 	if (current.value().second != cost[current.value().first]) {
 	    continue;
 	}
-	for (auto &&b : adj[current.value().first]) {
+	for (const auto &b : adj[current.value().first]) {
 	    if (cost[current.value().first] + b.second < cost[b.first]) {
 		cost[b.first] = cost[current.value().first] + b.second;
 		path[b.first] = current.value().first;
@@ -69,7 +69,7 @@ dijkstraWithPrioQueue(int source,
 	if (currentCost != cost[currentNode]) {
 	    continue;
 	}
-	for (auto &&b : adj[currentNode]) {
+	for (const auto &b : adj[currentNode]) {
 	    if (cost[currentNode] + b.second < cost[b.first]) {
 		cost[b.first] = cost[currentNode] + b.second;
 		path[b.first] = currentNode;

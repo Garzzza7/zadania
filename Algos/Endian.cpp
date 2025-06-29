@@ -15,9 +15,9 @@ find_little_endian(const std::string &word) {
 std::string
 find_big_endian(const std::string &word) {
     std::ostringstream oss;
-    for (auto &&i : word) {
+    for (const auto &c : word) {
 	oss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex
-	    << static_cast<unsigned int>(i);
+	    << static_cast<unsigned int>(c);
     }
     return oss.str();
 }

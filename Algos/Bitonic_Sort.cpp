@@ -1,10 +1,9 @@
 #include <algorithm>
 #include <iostream>
-#include <random>
 #include <vector>
 
 void
-Bitonic_Sort(std::vector<int> &a) {
+bitonic_sort(std::vector<int> &a) {
     const int n = static_cast<int>(a.size());
     for (int k = 2; k <= n; k = 2 * k) {
 	for (int j = k >> 1; j > 0; j = j >> 1) {
@@ -39,7 +38,7 @@ main() {
 	    std::cin >> v;
 	}
 	auto test = vec;
-	Bitonic_Sort(vec);
+	bitonic_sort(vec);
 	std::ranges::sort(test.begin(), test.end());
 	std::cout << (vec == test) << "\n";
     }

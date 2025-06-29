@@ -6,6 +6,9 @@ template <typename T = int> struct edge {
     int u;
     int v;
     T weight;
+    edge(const int &_u, const int &_v, const T &_weight)
+	: u(_u), v(_v), weight(_weight) {
+    }
 };
 
 template <typename T = int> struct boruvka {

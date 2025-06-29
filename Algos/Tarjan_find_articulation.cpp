@@ -67,7 +67,7 @@ struct tarjan_find_articulation {
 	}
     }
     void
-    print() const {
+    print() {
 	for (const auto &ee : adj) {
 	    for (const auto &e : ee) {
 		std::cout << e << " ";

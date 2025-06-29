@@ -6,7 +6,7 @@ template <typename T = int> struct ram_seg_tree {
     const T NEUTRAL_ELEMENT{0};
     std::vector<T> vec;
 
-    explicit ram_seg_tree(const int _n) {
+    explicit ram_seg_tree(const int &_n) {
 	while (size < _n) {
 	    size <<= 1;
 	}

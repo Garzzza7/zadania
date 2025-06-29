@@ -1,6 +1,6 @@
 #include <iostream>
 
-constexpr long long mod{1000000007};
+constexpr long long mod{1'000'000'007};
 
 long long
 mod_binpow(long long a, long long b) {
