@@ -1,7 +1,6 @@
 def z_funtion(s):
     n = len(s)
-    z = []
-    z = [0 for i in range(n)]
+    z = [0] * n
     z[0] = n
     l = 0
     r = 0
