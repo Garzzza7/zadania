@@ -11,8 +11,8 @@ for i in range(1, n + 1):
     for j in range(1, m + 1):
         pref[i][j] += vec[i - 1][j - 1]
         pref[i][j] += pref[i - 1][j]
-        pref[i][j] -= pref[i - 1][j - 1]
         pref[i][j] += pref[i][j - 1]
+        pref[i][j] -= pref[i - 1][j - 1]
 q = int(input())
 for _ in range(q):
     x1, y1, x2, y2 = map(int, input().split())
