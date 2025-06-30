@@ -8,6 +8,7 @@ def dfs(ver, adj, visited):
 
 def iter_dfs(ver, adj, visited):
     stack = []
+    visited = [False] * (len(visited) + 1)
     stack.append(ver)
     visited[ver] = True
     while len(stack) > 0:
@@ -31,5 +32,4 @@ for i in range(edges):
     adj[x].append(y)
 dfs(1, adj, visited)
 print()
-visited = [False] * (v + 1)
 iter_dfs(1, adj, visited)
