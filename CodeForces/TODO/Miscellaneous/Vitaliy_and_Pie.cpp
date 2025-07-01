@@ -12,32 +12,31 @@
 #define ll long long
 #define sz(vec) (static_cast<int>((vec).size()))
 
-constexpr int mod = 1e9 + 7;
-
-long long mod_binpow(long long a, long long b) {
-    long long res = 1;
-    while (b > 0) {
-	if (b & 1) {
-	    res = res * a % mod;
-	}
-	a = a * a % mod;
-	b >>= 1;
-    }
-    return res;
-}
-
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    ll n;
+    int n;
     std::cin >> n;
-    // D -> 3 possibilities -> 3
-    ll pow = mod_binpow(3ll, n - 1);
-    std::cout << pow << "\n";
-    ll res = pow * 2ll / 3ll;
-    std::cout << res % mod << "\n";
+    std::string s;
+    std::cin >> s;
+    std::vector<int> keys(200001, 0);
+    int res{0};
+    for (int i = 1; i <= 2 * n - 2; i++) {
+	int num = s[i - 1] - 'a';
+	if (i & 1) {
+	    keys[num]++;
+	} else {
+	    char c = std::tolower(s[i - 1], std::locale());
+	    if (keys[c - 'a'] > 0) {
+		keys[c - 'a']--;
+	    } else {
+		res++;
+	    }
+	}
+    }
+    std::cout << res << "\n";
 
     return 0;
 }
