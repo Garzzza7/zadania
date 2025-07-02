@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 
+// return parent of each node , O(n)
 std::vector<int>
 cartesian_tree(const std::vector<int> &vec) {
     const int n = (int) vec.size();
@@ -23,8 +24,8 @@ cartesian_tree(const std::vector<int> &vec) {
     return parent;
 }
 
-// still wip , asimptotically slower than ^
-// return structure of the tree in an array as in bin heap
+// O(nlogn) due to sparse table, asymptotically slower than ^
+// return structure of the tree in an array as in bin heap , segtree etc.
 struct cartesian_tree {
     template <typename T = int> struct sparse_table {
 	int size;
