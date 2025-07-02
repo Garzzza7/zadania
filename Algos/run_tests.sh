@@ -51,6 +51,16 @@ else
     printf "${red}$(cat BFS.test)${normal}\n"
 fi
 
+if [ "$(./Base_conversion.sol < Base_conversion.txt)" == "$(cat Base_conversion.test)" ]; then
+    printf "${green}Base_conversion Passed.${normal}\n"
+else
+    printf "${red}Base_conversion Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Base_conversion.sol < Base_conversion.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Base_conversion.test)${normal}\n"
+fi
+
 if [ "$(./Bellman_Ford_Shortest_Path.sol < Bellman_Ford_Shortest_Path.txt)" == "$(cat Bellman_Ford_Shortest_Path.test)" ]; then
     printf "${green}Bellman_Ford_Shortest_Path Passed.${normal}\n"
 else
