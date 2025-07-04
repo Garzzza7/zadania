@@ -50,7 +50,7 @@ class trie:
 
 s = trie()
 q = int(input())
-while q > 0:
+for _ in range(q):
     inp = input().split()
     type = int(inp[0])
     word = inp[1]
@@ -66,4 +66,3 @@ while q > 0:
             print(word, "was found as a prefix")
         else:
             print(word, "was not found as a prefix")
-    q -= 1

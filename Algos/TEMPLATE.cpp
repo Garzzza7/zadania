@@ -90,6 +90,8 @@
 #define off(a, b) ((a) &= ~(1 << (b)))
 #define flip(a, b) ((a) ^= (1 << (b)))
 
+#define FAST 1
+
 [[nodiscard]] int
 random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
