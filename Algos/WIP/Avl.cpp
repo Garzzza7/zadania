@@ -5,21 +5,23 @@
 const long long mod = 1000000007;
 
 class Node {
-   public:
+  public:
     int key;
     Node *left;
     Node *right;
     int height;
 };
 
-int height(Node *N) {
+int
+height(Node *N) {
     if (N == NULL) {
 	return 0;
     }
     return N->height;
 }
 
-Node *newNode(int key) {
+Node *
+newNode(int key) {
     Node *node = new Node();
     node->key = key;
     node->left = NULL;
@@ -28,7 +30,8 @@ Node *newNode(int key) {
     return (node);
 }
 
-Node *rightRotate(Node *y) {
+Node *
+rightRotate(Node *y) {
     Node *x = y->left;
     Node *T2 = x->right;
     x->right = y;
@@ -38,7 +41,8 @@ Node *rightRotate(Node *y) {
     return x;
 }
 
-Node *leftRotate(Node *x) {
+Node *
+leftRotate(Node *x) {
     Node *y = x->right;
     Node *T2 = y->left;
     y->left = x;
@@ -48,14 +52,16 @@ Node *leftRotate(Node *x) {
     return y;
 }
 
-int getBalanceFactor(Node *N) {
+int
+getBalanceFactor(Node *N) {
     if (N == NULL) {
 	return 0;
     }
     return height(N->left) - height(N->right);
 }
 
-Node *insertNode(Node *node, int key) {
+Node *
+insertNode(Node *node, int key) {
     if (node == NULL) {
 	return (newNode(key));
     }
@@ -87,7 +93,8 @@ Node *insertNode(Node *node, int key) {
     return node;
 }
 
-Node *nodeWithMimumValue(Node *node) {
+Node *
+nodeWithMimumValue(Node *node) {
     Node *current = node;
     while (current->left != NULL) {
 	current = current->left;
@@ -95,7 +102,8 @@ Node *nodeWithMimumValue(Node *node) {
     return current;
 }
 
-Node *deleteNode(Node *root, int key) {
+Node *
+deleteNode(Node *root, int key) {
     if (root == NULL) {
 	return root;
     }
@@ -143,8 +151,9 @@ Node *deleteNode(Node *root, int key) {
     return root;
 }
 // TODO
-void printTree(Node *root, std::string &indent, std::string &indent2, bool last,
-	       bool isRoot) {
+void
+printTree(Node *root, std::string &indent, std::string &indent2, bool last,
+	  bool isRoot) {
     if (root != NULL) {
 	if (isRoot) {
 	    std::cout << indent << root->key << "\n";
@@ -183,7 +192,8 @@ void printTree(Node *root, std::string &indent, std::string &indent2, bool last,
     // }
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

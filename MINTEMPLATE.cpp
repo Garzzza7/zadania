@@ -11,7 +11,7 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 
 using ll = long long;
-using u64 = __uint128_t;
+using u128 = __uint128_t;
 
 int
 main() {

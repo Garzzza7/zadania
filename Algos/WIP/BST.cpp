@@ -5,7 +5,7 @@
 const long long mod = 1000000007;
 
 class Node {
-   public:
+  public:
     int value;
     Node *right;
     Node *left;
@@ -16,7 +16,8 @@ class Node {
     }
 };
 
-Node *search(Node *root, int key) {
+Node *
+search(Node *root, int key) {
     if (root == NULL || root->value == key)
 	return root;
     if (root->value < key)
@@ -24,7 +25,8 @@ Node *search(Node *root, int key) {
     return search(root->left, key);
 }
 
-Node *insert(Node *root, int value) {
+Node *
+insert(Node *root, int value) {
     if (root == NULL) {
 	return new Node(value);
     } else {
@@ -40,7 +42,8 @@ Node *insert(Node *root, int value) {
     }
 }
 
-Node *deletenode(Node *root, int k) {
+Node *
+deletenode(Node *root, int k) {
     if (root == NULL)
 	return root;
     if (root->value > k) {
@@ -77,28 +80,32 @@ Node *deletenode(Node *root, int k) {
 	return root;
     }
 }
-void inorder(Node *root) {
+void
+inorder(Node *root) {
     if (root != NULL) {
 	inorder(root->left);
 	std::cout << root->value << " ";
 	inorder(root->right);
     }
 }
-void preorder(Node *root) {
+void
+preorder(Node *root) {
     if (root != NULL) {
 	std::cout << root->value << " ";
 	preorder(root->left);
 	preorder(root->right);
     }
 }
-void postorder(Node *root) {
+void
+postorder(Node *root) {
     if (root != NULL) {
 	postorder(root->left);
 	postorder(root->right);
 	std::cout << root->value << " ";
     }
 }
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

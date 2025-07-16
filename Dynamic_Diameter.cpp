@@ -5,8 +5,9 @@ long long maxi = 0;
 long long at = 0;
 vector<bool> is_leaf(30005, 0);
 vector<long long> dist(30005, 0);
-void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
-	 long long cnt) {
+void
+dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
+    long long cnt) {
     if (visited[v]) {
 	return;
     }
@@ -23,7 +24,8 @@ void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
     }
 }
 
-int main() {
+int
+main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     long long n;

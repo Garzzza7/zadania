@@ -6,18 +6,20 @@
 const long long mod = 1000000007;
 
 class Treap {
-   public:
+  public:
     int data, priority;
     std::vector<Treap *> children;
     int subtreeSize, sum, toPropagate;
     Treap(int data);
 };
 
-int size(Treap *node) {
+int
+size(Treap *node) {
     return node == NULL ? 0 : node->subtreeSize;
 }
 
-void recalc(Treap *node) {
+void
+recalc(Treap *node) {
     if (node == NULL)
 	return;
     node->subtreeSize = 1;
@@ -41,7 +43,8 @@ Treap::Treap(int data) {
     recalc(this);
 }
 
-void propagate(Treap *node) {
+void
+propagate(Treap *node) {
     if (node == NULL) {
 	return;
     }
@@ -58,7 +61,8 @@ void propagate(Treap *node) {
     recalc(node);
 }
 
-Treap *merge(Treap *l, Treap *r) {
+Treap *
+merge(Treap *l, Treap *r) {
     if (l == NULL) {
 	return r;
     }
@@ -78,7 +82,8 @@ Treap *merge(Treap *l, Treap *r) {
     }
 }
 
-std::vector<Treap *> split(Treap *node, int nInLeft) {
+std::vector<Treap *>
+split(Treap *node, int nInLeft) {
     if (node == NULL) {
 	return {NULL, NULL};
     }
@@ -98,14 +103,16 @@ std::vector<Treap *> split(Treap *node, int nInLeft) {
     return {NULL, NULL};
 }
 
-Treap *rangeAdd(Treap *t, int l, int r, int toAdd) {
+Treap *
+rangeAdd(Treap *t, int l, int r, int toAdd) {
     std::vector<Treap *> a = split(t, l);
     std::vector<Treap *> b = split(a[1], r - l + 1);
     b[0]->toPropagate += toAdd;
     return merge(a[0], merge(b[0], b[1]));
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

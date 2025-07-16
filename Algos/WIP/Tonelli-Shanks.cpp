@@ -3,11 +3,13 @@
 #include <cmath>
 #include <iostream>
 
-[[__nodiscard__]] long long fl(long long x, long long y) {
+[[__nodiscard__]] long long
+fl(long long x, long long y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
-long long mod_bin_pow(long long base, long long exp, long long mod) {
+long long
+mod_bin_pow(long long base, long long exp, long long mod) {
     long long res = 1ll;
     base = base % mod;
     while (exp > 0) {
@@ -20,11 +22,13 @@ long long mod_bin_pow(long long base, long long exp, long long mod) {
     return res;
 }
 
-int legendre(long long a, long long p) {
+int
+legendre(long long a, long long p) {
     return mod_bin_pow(a, fl((p - 1), 2ll), p);
 }
 
-long long tonelli(long long a, long long p) {
+long long
+tonelli(long long a, long long p) {
     long long q = p - 1;
     int s = 0;
 
@@ -69,7 +73,8 @@ long long tonelli(long long a, long long p) {
     return r;
 }
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

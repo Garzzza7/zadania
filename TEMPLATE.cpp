@@ -287,13 +287,13 @@ using namespace __gnu_pbds;
 [[maybe_unused]] static constexpr int mod{1000000007};
 
 using ll = long long;
+using u128 = __uint128_t;
 
 int
 main() {
     std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
-    const std::chrono::time_point<std::chrono::system_clock> start
-	= std::chrono::high_resolution_clock::now();
+    const auto start = std::chrono::high_resolution_clock::now();
 #endif
 
 #if FAST
@@ -308,8 +308,7 @@ main() {
     }
 
 #ifdef TIME
-    const std::chrono::time_point<std::chrono::system_clock> finish
-	= std::chrono::high_resolution_clock::now();
+    const auto finish = std::chrono::high_resolution_clock::now();
     std::cout << std::setprecision(4) << std::fixed;
     std::cout << "Execution time: "
 	      << std::chrono::duration_cast<std::chrono::duration<double>>(

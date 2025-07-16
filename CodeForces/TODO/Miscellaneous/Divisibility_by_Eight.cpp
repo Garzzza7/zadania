@@ -1,47 +1,64 @@
-#include <bits/stdc++.h>
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <cstdint>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define sz(vec) (static_cast<int>((vec).size()))
 
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+using ll = long long;
+using u128 = __uint128_t;
 
-    string n;
-    cin >> n;
+int
+main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    for (int i = 0; i < (int) n.size(); i++) {
-	if ((n[i] - '0') % 8 == 0) {
-	    cout << "YES\n";
-	    cout << n[i] << "\n";
+    std::string s;
+    std::cin >> s;
+
+    int n = sz(s);
+
+    for (int i = 0; i < n; i++) {
+	if (s[i] == '8' || s[i] == '0') {
+	    std::cout << "YES\n";
+	    std::cout << s[i] << "\n";
 	    return 0;
 	}
-    }
-
-    for (int i = 0; i < (int) n.size(); i++) {
-	for (int j = i + 1; j < (int) n.size(); j++) {
-	    int num = (n[j] - '0') + (n[i] - '0') * 10;
-	    if (num % 8 == 0) {
-		cout << "YES\n";
-		cout << num << "\n";
-		return 0;
-	    }
-	}
-    }
-
-    for (int i = 0; i < (int) n.size(); i++) {
-	for (int j = i + 1; j < (int) n.size(); j++) {
-	    for (int z = j + 1; z < (int) n.size(); z++) {
-		int num = (n[z] - '0') + (n[j] - '0') * 10 + (n[i] - '0') * 100;
-		if (num % 8 == 0) {
-		    cout << "YES\n";
-		    cout << num << "\n";
+	for (int j = i + 1; j < n; j++) {
+	    for (int k = j + 1; k < n; k++) {
+		const auto ii = s[i] - '0';
+		const auto jj = s[j] - '0';
+		const auto kk = s[k] - '0';
+		if ((jj * 10 + kk) % 8 == 0) {
+		    std::cout << "YES\n";
+		    std::cout << (jj * 10 + kk) << "\n";
+		    return 0;
+		}
+		if ((ii * 10 + jj) % 8 == 0) {
+		    std::cout << "YES\n";
+		    std::cout << (ii * 10 + jj) << "\n";
+		    return 0;
+		}
+		if ((ii * 10 + kk) % 8 == 0) {
+		    std::cout << "YES\n";
+		    std::cout << (ii * 10 + kk) << "\n";
+		    return 0;
+		}
+		if ((ii * 100 + jj * 10 + kk) % 8 == 0) {
+		    std::cout << "YES\n";
+		    std::cout << (ii * 100 + jj * 10 + kk) << "\n";
 		    return 0;
 		}
 	    }
 	}
     }
-
-    cout << "NO\n";
+    std::cout << "NO\n";
 
     return 0;
 }

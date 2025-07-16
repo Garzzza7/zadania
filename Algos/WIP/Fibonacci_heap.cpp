@@ -8,7 +8,7 @@ const long long mod = 1000000007;
 
 // Struct used for each Fibonacci heap node
 class FibonacciNode {
-   public:
+  public:
     int degree;
     FibonacciNode *parent;
     FibonacciNode *child;
@@ -20,7 +20,7 @@ class FibonacciNode {
 };
 // Fibonacci heap class
 class FibonacciHeap {
-   public:
+  public:
     FibonacciNode *minNode;
     int numNodes;
     std::vector<FibonacciNode *> degTable;
@@ -42,12 +42,14 @@ class FibonacciHeap {
 	this->nodePtrs.clear();
     }
 
-    int size() {
+    int
+    size() {
 	// Number of nodes in the heap
 	return this->numNodes;
     }
 
-    bool empty() {
+    bool
+    empty() {
 	// Is the heap empty?
 	if (this->numNodes > 0)
 	    return false;
@@ -55,7 +57,8 @@ class FibonacciHeap {
 	    return true;
     }
 
-    void insert(int u, int key) {
+    void
+    insert(int u, int key) {
 	// Insert the vertex u with the specified key (value for L(u)) into the
 	// Fibonacci heap. O(1) operation
 	this->nodePtrs[u] = new FibonacciNode;
@@ -82,7 +85,8 @@ class FibonacciHeap {
 	this->numNodes++;
     }
 
-    FibonacciNode *extractMin() {
+    FibonacciNode *
+    extractMin() {
 	// Extract the node with the minimum key from the heap. O(log n)
 	// operation, where n is the number of nodes in the heap
 	FibonacciNode *minN = this->minNode;
@@ -110,7 +114,8 @@ class FibonacciHeap {
 	return minN;
     }
 
-    void decreaseKey(int u, int newKey) {
+    void
+    decreaseKey(int u, int newKey) {
 	// Decrease the key of the node in the Fibonacci heap that has index u.
 	// O(1) operation
 	FibonacciNode *node = this->nodePtrs[u];
@@ -130,7 +135,8 @@ class FibonacciHeap {
     }
 
     // The following are private functions used by the public methods above
-    void _existingToRoot(FibonacciNode *newNode) {
+    void
+    _existingToRoot(FibonacciNode *newNode) {
 	FibonacciNode *minN = this->minNode;
 	newNode->parent = NULL;
 	newNode->mark = false;
@@ -150,7 +156,8 @@ class FibonacciHeap {
 	}
     }
 
-    void _removeNodeFromRoot(FibonacciNode *node) {
+    void
+    _removeNodeFromRoot(FibonacciNode *node) {
 	if (node->right != node) {
 	    node->right->left = node->left;
 	    node->left->right = node->right;
@@ -165,12 +172,14 @@ class FibonacciHeap {
 	}
     }
 
-    void _cut(FibonacciNode *node) {
+    void
+    _cut(FibonacciNode *node) {
 	_removeNodeFromRoot(node);
 	_existingToRoot(node);
     }
 
-    void _addChild(FibonacciNode *parentNode, FibonacciNode *newChildNode) {
+    void
+    _addChild(FibonacciNode *parentNode, FibonacciNode *newChildNode) {
 	if (parentNode->degree == 0) {
 	    parentNode->child = newChildNode;
 	    newChildNode->right = newChildNode;
@@ -188,7 +197,8 @@ class FibonacciHeap {
 	parentNode->degree++;
     }
 
-    void _cascadingCut(FibonacciNode *node) {
+    void
+    _cascadingCut(FibonacciNode *node) {
 	FibonacciNode *parentNode = node->parent;
 	if (parentNode != NULL) {
 	    if (node->mark == false) {
@@ -200,13 +210,15 @@ class FibonacciHeap {
 	}
     }
 
-    void _link(FibonacciNode *highNode, FibonacciNode *lowNode) {
+    void
+    _link(FibonacciNode *highNode, FibonacciNode *lowNode) {
 	_removeNodeFromRoot(highNode);
 	_addChild(lowNode, highNode);
 	highNode->mark = false;
     }
 
-    void _consolidate() {
+    void
+    _consolidate() {
 	int deg, rootCnt = 0;
 	if (this->numNodes > 1) {
 	    this->degTable.clear();
@@ -251,7 +263,8 @@ class FibonacciHeap {
     }
 };
 
-int main() {
+int
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
