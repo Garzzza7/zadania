@@ -274,7 +274,7 @@ printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) {
 
 template <typename T>
 constexpr int
-sz(std::vector<T> vec) {
+sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
 
