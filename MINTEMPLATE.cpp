@@ -13,6 +13,10 @@
 using ll = long long;
 using u128 = __uint128_t;
 
+void
+solve() {
+}
+
 int
 main() {
     std::ios_base::sync_with_stdio(false);
@@ -21,8 +25,8 @@ main() {
 
     int T{1};
     std::cin >> T;
-    while (T--) {
-    }
+    while (T--)
+	solve();
 
     return 0;
 }

@@ -112,11 +112,9 @@ template <typename T> struct matrix {
 
     void
     print() {
-	const auto n = static_cast<int>(this->mat.size());
-	const auto m = static_cast<int>(this->mat[0].size());
-	for (int i = 0; i < n; i++) {
-	    for (int j = 0; j < m; j++) {
-		std::cout << this->mat[i][j] << " ";
+	for (const auto &vv : this->mat) {
+	    for (const auto &v : vv) {
+		std::cout << v << " ";
 	    }
 	    std::cout << "\n";
 	}
