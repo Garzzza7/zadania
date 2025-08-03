@@ -451,6 +451,16 @@ else
     printf "${red}$(cat MINTEMPLATE.test)${normal}\n"
 fi
 
+if [ "$(./Matrix.sol < Matrix.txt)" == "$(cat Matrix.test)" ]; then
+    printf "${green}Matrix Passed.${normal}\n"
+else
+    printf "${red}Matrix Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Matrix.sol < Matrix.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Matrix.test)${normal}\n"
+fi
+
 if [ "$(./Max_Heap.sol < Max_Heap.txt)" == "$(cat Max_Heap.test)" ]; then
     printf "${green}Max_Heap Passed.${normal}\n"
 else
@@ -499,6 +509,16 @@ else
     printf "${red}$(./Next_permutation.sol < Next_permutation.txt)\n"
     printf "${red} Should be:\n"
     printf "${red}$(cat Next_permutation.test)${normal}\n"
+fi
+
+if [ "$(./Optimzed_Matrix.sol < Optimzed_Matrix.txt)" == "$(cat Optimzed_Matrix.test)" ]; then
+    printf "${green}Optimzed_Matrix Passed.${normal}\n"
+else
+    printf "${red}Optimzed_Matrix Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Optimzed_Matrix.sol < Optimzed_Matrix.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Optimzed_Matrix.test)${normal}\n"
 fi
 
 if [ "$(./Priority_Queue.sol < Priority_Queue.txt)" == "$(cat Priority_Queue.test)" ]; then

@@ -8,9 +8,9 @@ FLAGS =  -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equa
 
 FAST_FLAGS =  --std=c++20 -O0 
 
-standard: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  Base_conversion.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  Boruvka.sol  CRT.sol  Cartesian_tree.sol  Convolution.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Fisher_Yates.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  LCA.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Modular_Arithmetic.sol  Next_permutation.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  Sattoro_shuffle.sol  Segment_Tree.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol 
+standard: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  Base_conversion.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  Boruvka.sol  CRT.sol  Cartesian_tree.sol  Convolution.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Fisher_Yates.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  LCA.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Matrix.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Modular_Arithmetic.sol  Next_permutation.sol  Optimzed_Matrix.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  Sattoro_shuffle.sol  Segment_Tree.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol 
 
-all: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  Base_conversion.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  Boruvka.sol  CRT.sol  Cartesian_tree.sol  Convolution.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Fisher_Yates.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  LCA.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Modular_Arithmetic.sol  Next_permutation.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  Sattoro_shuffle.sol  Segment_Tree.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol  f2D_Prefix_Sum.sol  fAho_Corasick.sol  fBFS.sol  fBase_conversion.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fBoruvka.sol  fCRT.sol  fCartesian_tree.sol  fConvolution.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFisher_Yates.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLCA.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fModular_Arithmetic.sol  fNext_permutation.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSattoro_shuffle.sol  fSegment_Tree.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol  2D_Prefix_Sum.s  Aho_Corasick.s  BFS.s  Base_conversion.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  Boruvka.s  CRT.s  Cartesian_tree.s  Convolution.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Fisher_Yates.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  LCA.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Modular_Arithmetic.s  Next_permutation.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  Sattoro_shuffle.s  Segment_Tree.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s  asmf2D_Prefix_Sum.s  asmfAho_Corasick.s  asmfBFS.s  asmfBase_conversion.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfBoruvka.s  asmfCRT.s  asmfCartesian_tree.s  asmfConvolution.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDP_Regex.s  asmfDerangement.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFisher_Yates.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLCA.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfModular_Arithmetic.s  asmfNext_permutation.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfRabin_Karp.s  asmfRolling_Hash.s  asmfSattoro_shuffle.s  asmfSegment_Tree.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfTrie.s  asmfZ_function.s  2D_Prefix_Sum.ll  Aho_Corasick.ll  BFS.ll  Base_conversion.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  Boruvka.ll  CRT.ll  Cartesian_tree.ll  Convolution.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  DP_Regex.ll  Derangement.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Fisher_Yates.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  LCA.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Modular_Arithmetic.ll  Next_permutation.ll  Priority_Queue.ll  Quick_Sort.ll  Rabin_Karp.ll  Rolling_Hash.ll  Sattoro_shuffle.ll  Segment_Tree.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Trie.ll  Z_function.ll 
+all: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  Base_conversion.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  Boruvka.sol  CRT.sol  Cartesian_tree.sol  Convolution.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Fisher_Yates.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  LCA.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Matrix.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Modular_Arithmetic.sol  Next_permutation.sol  Optimzed_Matrix.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  Sattoro_shuffle.sol  Segment_Tree.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol  f2D_Prefix_Sum.sol  fAho_Corasick.sol  fBFS.sol  fBase_conversion.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fBoruvka.sol  fCRT.sol  fCartesian_tree.sol  fConvolution.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFisher_Yates.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLCA.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMatrix.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fModular_Arithmetic.sol  fNext_permutation.sol  fOptimzed_Matrix.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSattoro_shuffle.sol  fSegment_Tree.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol  2D_Prefix_Sum.s  Aho_Corasick.s  BFS.s  Base_conversion.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  Boruvka.s  CRT.s  Cartesian_tree.s  Convolution.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Fisher_Yates.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  LCA.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Matrix.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Modular_Arithmetic.s  Next_permutation.s  Optimzed_Matrix.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  Sattoro_shuffle.s  Segment_Tree.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s  asmf2D_Prefix_Sum.s  asmfAho_Corasick.s  asmfBFS.s  asmfBase_conversion.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfBoruvka.s  asmfCRT.s  asmfCartesian_tree.s  asmfConvolution.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDP_Regex.s  asmfDerangement.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFisher_Yates.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLCA.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMatrix.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfModular_Arithmetic.s  asmfNext_permutation.s  asmfOptimzed_Matrix.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfRabin_Karp.s  asmfRolling_Hash.s  asmfSattoro_shuffle.s  asmfSegment_Tree.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfTrie.s  asmfZ_function.s  2D_Prefix_Sum.ll  Aho_Corasick.ll  BFS.ll  Base_conversion.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  Boruvka.ll  CRT.ll  Cartesian_tree.ll  Convolution.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  DP_Regex.ll  Derangement.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Fisher_Yates.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  LCA.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Matrix.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Modular_Arithmetic.ll  Next_permutation.ll  Optimzed_Matrix.ll  Priority_Queue.ll  Quick_Sort.ll  Rabin_Karp.ll  Rolling_Hash.ll  Sattoro_shuffle.ll  Segment_Tree.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Trie.ll  Z_function.ll 
 
 2D_Prefix_Sum.sol: 2D_Prefix_Sum.cpp
 	g++ $(FLAGS) 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
@@ -98,6 +98,8 @@ MEX.sol: MEX.cpp
 	g++ $(FLAGS) MEX.cpp -o MEX.sol
 MINTEMPLATE.sol: MINTEMPLATE.cpp
 	g++ $(FLAGS) MINTEMPLATE.cpp -o MINTEMPLATE.sol
+Matrix.sol: Matrix.cpp
+	g++ $(FLAGS) Matrix.cpp -o Matrix.sol
 Max_Heap.sol: Max_Heap.cpp
 	g++ $(FLAGS) Max_Heap.cpp -o Max_Heap.sol
 Merge_Sort.sol: Merge_Sort.cpp
@@ -108,6 +110,8 @@ Modular_Arithmetic.sol: Modular_Arithmetic.cpp
 	g++ $(FLAGS) Modular_Arithmetic.cpp -o Modular_Arithmetic.sol
 Next_permutation.sol: Next_permutation.cpp
 	g++ $(FLAGS) Next_permutation.cpp -o Next_permutation.sol
+Optimzed_Matrix.sol: Optimzed_Matrix.cpp
+	g++ $(FLAGS) Optimzed_Matrix.cpp -o Optimzed_Matrix.sol
 Priority_Queue.sol: Priority_Queue.cpp
 	g++ $(FLAGS) Priority_Queue.cpp -o Priority_Queue.sol
 Quick_Sort.sol: Quick_Sort.cpp
@@ -185,11 +189,13 @@ force:
 	g++ $(FLAGS) Levenshtein_distance.cpp -o Levenshtein_distance.sol
 	g++ $(FLAGS) MEX.cpp -o MEX.sol
 	g++ $(FLAGS) MINTEMPLATE.cpp -o MINTEMPLATE.sol
+	g++ $(FLAGS) Matrix.cpp -o Matrix.sol
 	g++ $(FLAGS) Max_Heap.cpp -o Max_Heap.sol
 	g++ $(FLAGS) Merge_Sort.cpp -o Merge_Sort.sol
 	g++ $(FLAGS) Min_Heap.cpp -o Min_Heap.sol
 	g++ $(FLAGS) Modular_Arithmetic.cpp -o Modular_Arithmetic.sol
 	g++ $(FLAGS) Next_permutation.cpp -o Next_permutation.sol
+	g++ $(FLAGS) Optimzed_Matrix.cpp -o Optimzed_Matrix.sol
 	g++ $(FLAGS) Priority_Queue.cpp -o Priority_Queue.sol
 	g++ $(FLAGS) Quick_Sort.cpp -o Quick_Sort.sol
 	g++ $(FLAGS) Rabin_Karp.cpp -o Rabin_Karp.sol
@@ -207,7 +213,7 @@ force:
 	g++ $(FLAGS) Trie.cpp -o Trie.sol
 	g++ $(FLAGS) Z_function.cpp -o Z_function.sol
 
-fast: f2D_Prefix_Sum.sol  fAho_Corasick.sol  fBFS.sol  fBase_conversion.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fBoruvka.sol  fCRT.sol  fCartesian_tree.sol  fConvolution.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFisher_Yates.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLCA.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fModular_Arithmetic.sol  fNext_permutation.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSattoro_shuffle.sol  fSegment_Tree.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol 
+fast: f2D_Prefix_Sum.sol  fAho_Corasick.sol  fBFS.sol  fBase_conversion.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fBoruvka.sol  fCRT.sol  fCartesian_tree.sol  fConvolution.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFisher_Yates.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fLCA.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMatrix.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fModular_Arithmetic.sol  fNext_permutation.sol  fOptimzed_Matrix.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSattoro_shuffle.sol  fSegment_Tree.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol 
 
 f2D_Prefix_Sum.sol: 2D_Prefix_Sum.cpp
 	g++ $(FAST_FLAGS) 2D_Prefix_Sum.cpp -o f2D_Prefix_Sum.sol
@@ -295,6 +301,8 @@ fMEX.sol: MEX.cpp
 	g++ $(FAST_FLAGS) MEX.cpp -o fMEX.sol
 fMINTEMPLATE.sol: MINTEMPLATE.cpp
 	g++ $(FAST_FLAGS) MINTEMPLATE.cpp -o fMINTEMPLATE.sol
+fMatrix.sol: Matrix.cpp
+	g++ $(FAST_FLAGS) Matrix.cpp -o fMatrix.sol
 fMax_Heap.sol: Max_Heap.cpp
 	g++ $(FAST_FLAGS) Max_Heap.cpp -o fMax_Heap.sol
 fMerge_Sort.sol: Merge_Sort.cpp
@@ -305,6 +313,8 @@ fModular_Arithmetic.sol: Modular_Arithmetic.cpp
 	g++ $(FAST_FLAGS) Modular_Arithmetic.cpp -o fModular_Arithmetic.sol
 fNext_permutation.sol: Next_permutation.cpp
 	g++ $(FAST_FLAGS) Next_permutation.cpp -o fNext_permutation.sol
+fOptimzed_Matrix.sol: Optimzed_Matrix.cpp
+	g++ $(FAST_FLAGS) Optimzed_Matrix.cpp -o fOptimzed_Matrix.sol
 fPriority_Queue.sol: Priority_Queue.cpp
 	g++ $(FAST_FLAGS) Priority_Queue.cpp -o fPriority_Queue.sol
 fQuick_Sort.sol: Quick_Sort.cpp
@@ -338,7 +348,7 @@ fTrie.sol: Trie.cpp
 fZ_function.sol: Z_function.cpp
 	g++ $(FAST_FLAGS) Z_function.cpp -o fZ_function.sol
 
-asm: 2D_Prefix_Sum.s  Aho_Corasick.s  BFS.s  Base_conversion.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  Boruvka.s  CRT.s  Cartesian_tree.s  Convolution.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Fisher_Yates.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  LCA.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Modular_Arithmetic.s  Next_permutation.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  Sattoro_shuffle.s  Segment_Tree.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s 
+asm: 2D_Prefix_Sum.s  Aho_Corasick.s  BFS.s  Base_conversion.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  Boruvka.s  CRT.s  Cartesian_tree.s  Convolution.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Undirected.s  Fisher_Yates.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  KMP.s  Kadane_s_Algorithm.s  Kosaraju.s  Kth_Order_Statistics.s  LCA.s  Levenshtein_distance.s  MEX.s  MINTEMPLATE.s  Matrix.s  Max_Heap.s  Merge_Sort.s  Min_Heap.s  Modular_Arithmetic.s  Next_permutation.s  Optimzed_Matrix.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  Sattoro_shuffle.s  Segment_Tree.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Tree_diameter.s  Trie.s  Z_function.s 
 
 2D_Prefix_Sum.s:
 	oa.sh 2D_Prefix_Sum
@@ -426,6 +436,8 @@ MEX.s:
 	oa.sh MEX
 MINTEMPLATE.s:
 	oa.sh MINTEMPLATE
+Matrix.s:
+	oa.sh Matrix
 Max_Heap.s:
 	oa.sh Max_Heap
 Merge_Sort.s:
@@ -436,6 +448,8 @@ Modular_Arithmetic.s:
 	oa.sh Modular_Arithmetic
 Next_permutation.s:
 	oa.sh Next_permutation
+Optimzed_Matrix.s:
+	oa.sh Optimzed_Matrix
 Priority_Queue.s:
 	oa.sh Priority_Queue
 Quick_Sort.s:
@@ -469,7 +483,7 @@ Trie.s:
 Z_function.s:
 	oa.sh Z_function
 
-asmf: asmf2D_Prefix_Sum.s  asmfAho_Corasick.s  asmfBFS.s  asmfBase_conversion.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfBoruvka.s  asmfCRT.s  asmfCartesian_tree.s  asmfConvolution.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDP_Regex.s  asmfDerangement.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFisher_Yates.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLCA.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfModular_Arithmetic.s  asmfNext_permutation.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfRabin_Karp.s  asmfRolling_Hash.s  asmfSattoro_shuffle.s  asmfSegment_Tree.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfTrie.s  asmfZ_function.s 
+asmf: asmf2D_Prefix_Sum.s  asmfAho_Corasick.s  asmfBFS.s  asmfBase_conversion.s  asmfBellman_Ford_Shortest_Path.s  asmfBinary_Exponentiation.s  asmfBinary_Lifting.s  asmfBinary_Search.s  asmfBinomial_Coefficient.s  asmfBinomial_Theorem.s  asmfBitonic_Sort.s  asmfBoruvka.s  asmfCRT.s  asmfCartesian_tree.s  asmfConvolution.s  asmfCounting_Sort.s  asmfDEsopo_Pape.s  asmfDFS.s  asmfDP_Regex.s  asmfDerangement.s  asmfDifference_Array.s  asmfDijkstra.s  asmfDisjoint_Set_Union.s  asmfEdmond_Karp_MaxFlow.s  asmfEndian.s  asmfEuclid_GCD_LCM.s  asmfEuler_s_totient.s  asmfExtended_Euclid_s_Algorithm.s  asmfFactorize.s  asmfFenwickTree.s  asmfFind_Cycles_Undirected.s  asmfFisher_Yates.s  asmfFlood_fill.s  asmfFloor_Sum.s  asmfFloyd_Warshall.s  asmfKMP.s  asmfKadane_s_Algorithm.s  asmfKosaraju.s  asmfKth_Order_Statistics.s  asmfLCA.s  asmfLevenshtein_distance.s  asmfMEX.s  asmfMINTEMPLATE.s  asmfMatrix.s  asmfMax_Heap.s  asmfMerge_Sort.s  asmfMin_Heap.s  asmfModular_Arithmetic.s  asmfNext_permutation.s  asmfOptimzed_Matrix.s  asmfPriority_Queue.s  asmfQuick_Sort.s  asmfRabin_Karp.s  asmfRolling_Hash.s  asmfSattoro_shuffle.s  asmfSegment_Tree.s  asmfSieve_of_Eratosthenes.s  asmfSimple_Dijkstra.s  asmfSparse_Table.s  asmfTEMPLATE.s  asmfTarjan_find_articulation.s  asmfTarjan_find_bridges.s  asmfTernary_Search.s  asmfTree_diameter.s  asmfTrie.s  asmfZ_function.s 
 
 asmf2D_Prefix_Sum.s:
 	ofa.sh 2D_Prefix_Sum
@@ -557,6 +571,8 @@ asmfMEX.s:
 	ofa.sh MEX
 asmfMINTEMPLATE.s:
 	ofa.sh MINTEMPLATE
+asmfMatrix.s:
+	ofa.sh Matrix
 asmfMax_Heap.s:
 	ofa.sh Max_Heap
 asmfMerge_Sort.s:
@@ -567,6 +583,8 @@ asmfModular_Arithmetic.s:
 	ofa.sh Modular_Arithmetic
 asmfNext_permutation.s:
 	ofa.sh Next_permutation
+asmfOptimzed_Matrix.s:
+	ofa.sh Optimzed_Matrix
 asmfPriority_Queue.s:
 	ofa.sh Priority_Queue
 asmfQuick_Sort.s:
@@ -600,7 +618,7 @@ asmfTrie.s:
 asmfZ_function.s:
 	ofa.sh Z_function
 
-llvm: 2D_Prefix_Sum.ll  Aho_Corasick.ll  BFS.ll  Base_conversion.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  Boruvka.ll  CRT.ll  Cartesian_tree.ll  Convolution.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  DP_Regex.ll  Derangement.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Fisher_Yates.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  LCA.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Modular_Arithmetic.ll  Next_permutation.ll  Priority_Queue.ll  Quick_Sort.ll  Rabin_Karp.ll  Rolling_Hash.ll  Sattoro_shuffle.ll  Segment_Tree.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Trie.ll  Z_function.ll 
+llvm: 2D_Prefix_Sum.ll  Aho_Corasick.ll  BFS.ll  Base_conversion.ll  Bellman_Ford_Shortest_Path.ll  Binary_Exponentiation.ll  Binary_Lifting.ll  Binary_Search.ll  Binomial_Coefficient.ll  Binomial_Theorem.ll  Bitonic_Sort.ll  Boruvka.ll  CRT.ll  Cartesian_tree.ll  Convolution.ll  Counting_Sort.ll  DEsopo_Pape.ll  DFS.ll  DP_Regex.ll  Derangement.ll  Difference_Array.ll  Dijkstra.ll  Disjoint_Set_Union.ll  Edmond_Karp_MaxFlow.ll  Endian.ll  Euclid_GCD_LCM.ll  Euler_s_totient.ll  Extended_Euclid_s_Algorithm.ll  Factorize.ll  FenwickTree.ll  Find_Cycles_Undirected.ll  Fisher_Yates.ll  Flood_fill.ll  Floor_Sum.ll  Floyd_Warshall.ll  KMP.ll  Kadane_s_Algorithm.ll  Kosaraju.ll  Kth_Order_Statistics.ll  LCA.ll  Levenshtein_distance.ll  MEX.ll  MINTEMPLATE.ll  Matrix.ll  Max_Heap.ll  Merge_Sort.ll  Min_Heap.ll  Modular_Arithmetic.ll  Next_permutation.ll  Optimzed_Matrix.ll  Priority_Queue.ll  Quick_Sort.ll  Rabin_Karp.ll  Rolling_Hash.ll  Sattoro_shuffle.ll  Segment_Tree.ll  Sieve_of_Eratosthenes.ll  Simple_Dijkstra.ll  Sparse_Table.ll  TEMPLATE.ll  Tarjan_find_articulation.ll  Tarjan_find_bridges.ll  Ternary_Search.ll  Tree_diameter.ll  Trie.ll  Z_function.ll 
 
 2D_Prefix_Sum.ll:
 	ollvm.sh 2D_Prefix_Sum
@@ -688,6 +706,8 @@ MEX.ll:
 	ollvm.sh MEX
 MINTEMPLATE.ll:
 	ollvm.sh MINTEMPLATE
+Matrix.ll:
+	ollvm.sh Matrix
 Max_Heap.ll:
 	ollvm.sh Max_Heap
 Merge_Sort.ll:
@@ -698,6 +718,8 @@ Modular_Arithmetic.ll:
 	ollvm.sh Modular_Arithmetic
 Next_permutation.ll:
 	ollvm.sh Next_permutation
+Optimzed_Matrix.ll:
+	ollvm.sh Optimzed_Matrix
 Priority_Queue.ll:
 	ollvm.sh Priority_Queue
 Quick_Sort.ll:
