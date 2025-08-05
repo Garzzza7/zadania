@@ -28,8 +28,8 @@ template <typename T> struct matrix {
     operator+(const matrix &lhs, const matrix &rhs) {
 	assert(lhs.n == rhs.n);
 	assert(lhs.m == rhs.m);
-	const auto m = lhs.m;
-	const auto n = lhs.n;
+	const auto &m = lhs.m;
+	const auto &n = lhs.n;
 	matrix ret(m, n);
 	if (lhs.is_transposed && rhs.is_transposed) {
 	    for (int i = 0; i < m; i++) {
@@ -63,8 +63,8 @@ template <typename T> struct matrix {
     operator+=(const matrix &rhs) {
 	assert(this->n == rhs.n);
 	assert(this->m == rhs.m);
-	const auto m = this->m;
-	const auto n = this->n;
+	const auto &m = this->m;
+	const auto &n = this->n;
 	if (this->is_transposed && rhs.is_transposed) {
 	    for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
@@ -96,8 +96,8 @@ template <typename T> struct matrix {
     friend matrix
     operator*(const matrix &lhs, const matrix &rhs) {
 	assert(lhs.n == rhs.m);
-	const auto m = lhs.m;
-	const auto n = rhs.n;
+	const auto &m = lhs.m;
+	const auto &n = rhs.n;
 	matrix ret(m, n);
 	if (lhs.is_transposed && rhs.is_transposed) {
 	    for (int i = 0; i < m; i++) {
@@ -138,8 +138,8 @@ template <typename T> struct matrix {
     matrix &
     operator*=(const matrix &rhs) {
 	assert(this->n == rhs.m);
-	const auto m = this->m;
-	const auto n = rhs.n;
+	const auto &m = this->m;
+	const auto &n = rhs.n;
 	matrix ret(m, n);
 	if (this->is_transposed && rhs.is_transposed) {
 	    for (int i = 0; i < m; i++) {
@@ -226,7 +226,8 @@ template <typename T> struct matrix {
     T
     trace() {
 	T sum{0};
-	const auto n = std::min(this->m, this->n);
+	// const auto n = std::min(this->m, this->n);
+	const auto n = this->m ^ ((this->n ^ this->m) & -(this->n < this->m));
 	for (int i = 0; i < n; i++) {
 	    sum += this->mat[i][i];
 	}
