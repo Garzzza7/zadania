@@ -2,9 +2,11 @@
 #include <iostream>
 #include <vector>
 
-// TODO: FINISH THIS
+// TODO: test this, add more test cases
 template <typename T> struct matrix {
     int is_transposed = 0;
+    int m;
+    int n;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;
@@ -12,84 +14,245 @@ template <typename T> struct matrix {
     matrix &operator=(matrix &&) = default;
     ~matrix() = default;
 
-    explicit matrix(const std::vector<std::vector<T>> &in) : mat(in) {
+    explicit matrix(const std::vector<std::vector<T>> &in)
+	: m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())),
+	  mat(in) {
     }
 
-    explicit matrix(const int n, const int m)
-	: mat(std::vector<std::vector<T>>(n, std::vector<T>(m, 0))) {
+    explicit matrix(const int m, const int n)
+	: m(m), n(n),
+	  mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix
-    operator+(const matrix &a, const matrix &b) {
-	if (a.is_transposed && b.is_transposed) {
-	    assert(a.mat.size() == b.mat.size());
-	    assert(a.mat[0].size() == b.mat[0].size());
-	    const auto n = static_cast<int>(b.mat.size());
-	    const auto m = static_cast<int>(b.mat[0].size());
-	    matrix ret(n, m);
-	    for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-		    ret.mat[i][j] += a.mat[j][i] + b.mat[j][i];
+    operator+(const matrix &lhs, const matrix &rhs) {
+	assert(lhs.n == rhs.n);
+	assert(lhs.m == rhs.m);
+	if (lhs.is_transposed && rhs.is_transposed) {
+	    assert(lhs.mat.size() == rhs.mat.size());
+	    assert(lhs.mat[0].size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(rhs.mat[0].size());
+	    const auto n = static_cast<int>(rhs.mat.size());
+	    matrix ret(m, n);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
 		}
 	    }
 	    return ret;
-	} else if (a.is_transposed) {
-
-	} else if (b.is_transposed) {
-
+	} else if (lhs.is_transposed) {
+	    assert(lhs.mat[0].size() == rhs.mat.size());
+	    assert(lhs.mat.size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(rhs.mat.size());
+	    const auto n = static_cast<int>(rhs.mat[0].size());
+	    matrix ret(m, n);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j];
+		}
+	    }
+	    return ret;
+	} else if (rhs.is_transposed) {
+	    assert(rhs.mat[0].size() == lhs.mat.size());
+	    assert(rhs.mat.size() == lhs.mat[0].size());
+	    const auto m = static_cast<int>(lhs.mat.size());
+	    const auto n = static_cast<int>(lhs.mat[0].size());
+	    matrix ret(m, n);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i];
+		}
+	    }
+	    return ret;
 	} else {
+	    assert(lhs.mat.size() == rhs.mat.size());
+	    assert(lhs.mat[0].size() == rhs.mat[0].size());
+	    const auto n = static_cast<int>(rhs.mat.size());
+	    const auto m = static_cast<int>(rhs.mat[0].size());
+	    matrix ret(n, m);
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+		    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
+		}
+	    }
+	    return ret;
 	}
-	matrix ret(3, 3);
-	return ret;
     }
 
     matrix &
-    operator+=(const matrix &b) {
-	// assert(this->mat.size() == b.mat.size());
-	// assert(this->mat[0].size() == b.mat[0].size());
-	// const auto n = static_cast<int>(b.mat.size());
-	// const auto m = static_cast<int>(b.mat[0].size());
-	// for (int i = 0; i < n; i++) {
-	//     for (int j = 0; j < m; j++) {
-	// 	this->mat[i][j] += b.mat[i][j];
-	//     }
-	// }
+    operator+=(const matrix &rhs) {
+	assert(this->n == rhs.n);
+	assert(this->m == rhs.m);
+	if (this->is_transposed && rhs.is_transposed) {
+	    assert(this->mat.size() == rhs.mat.size());
+	    assert(this->mat[0].size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(this->mat[0].size());
+	    const auto n = static_cast<int>(this->mat.size());
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    this->mat[i][j] += rhs.mat[i][j];
+		}
+	    }
+	} else if (this->is_transposed) {
+	    assert(this->mat[0].size() == rhs.mat.size());
+	    assert(this->mat.size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(this->mat.size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    this->mat[j][i] += rhs.mat[i][j];
+		}
+	    }
+	} else if (rhs.is_transposed) {
+	    assert(rhs.mat[0].size() == this->mat.size());
+	    assert(rhs.mat.size() == this->mat[0].size());
+	    const auto m = static_cast<int>(this->mat.size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    this->mat[i][j] += rhs.mat[j][i];
+		}
+	    }
+	} else {
+	    assert(this->mat.size() == rhs.mat.size());
+	    assert(this->mat[0].size() == rhs.mat[0].size());
+	    const auto n = static_cast<int>(rhs.mat.size());
+	    const auto m = static_cast<int>(rhs.mat[0].size());
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+		    this->mat[i][j] += rhs.mat[i][j];
+		}
+	    }
+	}
 	return *this;
     }
 
     friend matrix
-    operator*(const matrix &a, const matrix &b) {
-	matrix ret(3, 3);
-	return ret;
+    operator*(const matrix &lhs, const matrix &rhs) {
+	assert(lhs.n == rhs.m);
+	if (lhs.is_transposed && rhs.is_transposed) {
+	    assert(lhs.mat.size() == rhs.mat[0].size());
+	    const auto n = static_cast<int>(lhs.mat[0].size());
+	    matrix ret(n, n);
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    return ret;
+	} else if (lhs.is_transposed) {
+	    assert(lhs.mat.size() == rhs.mat.size());
+	    const auto p = static_cast<int>(lhs.mat[0].size());
+	    const auto n = static_cast<int>(lhs.mat[0].size());
+	    matrix ret(n, p);
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < p; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    return ret;
+	} else if (rhs.is_transposed) {
+	    assert(lhs.mat[0].size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(lhs.mat.size());
+	    const auto n = static_cast<int>(lhs.mat[0].size());
+	    matrix ret(m, n);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k];
+		    }
+		}
+	    }
+	    return ret;
+	} else {
+	    assert(lhs.mat[0].size() == rhs.mat.size());
+	    const auto m = static_cast<int>(lhs.mat.size());
+	    const auto p = static_cast<int>(rhs.mat[0].size());
+	    const auto n = static_cast<int>(lhs.mat[0].size());
+	    matrix ret(m, p);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < p; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    return ret;
+	}
     }
 
     matrix &
-    operator*=(const matrix &b) {
-	// assert(this->mat[0].size() == b.mat.size());
-	// const auto m = static_cast<int>(this->mat.size());
-	// const auto p = static_cast<int>(b.mat[0].size());
-	// const auto n = static_cast<int>(this->mat[0].size());
-	// matrix tmp(m, p);
-	// for (int i = 0; i < m; i++) {
-	//     for (int j = 0; j < p; j++) {
-	// 	for (int k = 0; k < n; k++) {
-	// 	    tmp.mat[i][j] += this->mat[i][k] * b.mat[k][j];
-	// 	}
-	//     }
-	// }
-	// *this = tmp;
+    operator*=(const matrix &rhs) {
+	assert(this->n == rhs.m);
+	if (this->is_transposed && rhs.is_transposed) {
+	    assert(this->mat.size() == rhs.mat[0].size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    matrix ret(n, n);
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[j][i] += this->mat[i][k] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    *this = ret;
+	} else if (this->is_transposed) {
+	    assert(this->mat.size() == rhs.mat.size());
+	    const auto p = static_cast<int>(this->mat[0].size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    matrix ret(n, p);
+	    for (int i = 0; i < n; i++) {
+		for (int j = 0; j < p; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += this->mat[k][i] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    *this = ret;
+	} else if (rhs.is_transposed) {
+	    assert(this->mat[0].size() == rhs.mat[0].size());
+	    const auto m = static_cast<int>(this->mat.size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    matrix ret(m, n);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += this->mat[i][k] * rhs.mat[j][k];
+		    }
+		}
+	    }
+	    *this = ret;
+	} else {
+	    assert(this->mat[0].size() == rhs.mat.size());
+	    const auto m = static_cast<int>(this->mat.size());
+	    const auto p = static_cast<int>(rhs.mat[0].size());
+	    const auto n = static_cast<int>(this->mat[0].size());
+	    matrix ret(m, p);
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < p; j++) {
+		    for (int k = 0; k < n; k++) {
+			ret.mat[i][j] += this->mat[i][k] * rhs.mat[k][j];
+		    }
+		}
+	    }
+	    *this = ret;
+	}
 	return *this;
     }
 
     matrix &
     operator*=(const T &scalar) {
-	// const auto n = static_cast<int>(this->mat.size());
-	// const auto m = static_cast<int>(this->mat[0].size());
-	// for (int i = 0; i < n; i++) {
-	//     for (int j = 0; j < m; j++) {
-	// 	this->mat[i][j] *= scalar;
-	//     }
-	// }
+	const auto n = static_cast<int>(this->mat.size());
+	const auto m = static_cast<int>(this->mat[0].size());
+	for (int i = 0; i < n; i++) {
+	    for (int j = 0; j < m; j++) {
+		this->mat[i][j] *= scalar;
+	    }
+	}
 	return *this;
     }
 
@@ -122,6 +285,7 @@ template <typename T> struct matrix {
 
     void
     transpose() {
+	std::swap(this->m, this->n);
 	this->is_transposed ^= 1;
     }
 };
@@ -131,6 +295,7 @@ main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+
     std::vector<std::vector<int>> vec1 = {
 	{1, 1, 1},
 	{1, 1, 1},
@@ -152,13 +317,13 @@ main() {
 	{2, 3, 1},
 	{4, 2, 2},
     };
-
     std::vector<std::vector<int>> vec5 = {
 	{0, 0, 0},
 	{0, 0, 0},
 	{0, 0, 0},
 	{0, 0, 0},
     };
+
     matrix m1(vec1);
     matrix m2(vec2);
     matrix m3(vec3);
@@ -177,8 +342,14 @@ main() {
     m3.print();
     std::cout << "-----------------------\n";
     m5.print();
-    m5.transpose();
+    m1.transpose();
+    m2.transpose();
     std::cout << "-----------------------\n";
-    m5.print();
+    m1.print();
+    m1 = m1 * m2;
+    std::cout << "-----------------------\n";
+    m2.print();
+    std::cout << "-----------------------\n";
+    m1.print();
     return 0;
 }

@@ -4,6 +4,8 @@
 
 template <typename T> struct matrix {
     int is_transposed = 0;
+    int m;
+    int n;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;
@@ -11,53 +13,56 @@ template <typename T> struct matrix {
     matrix &operator=(matrix &&) = default;
     ~matrix() = default;
 
-    explicit matrix(const std::vector<std::vector<T>> &in) : mat(in) {
+    explicit matrix(const std::vector<std::vector<T>> &in)
+	: m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())),
+	  mat(in) {
     }
 
-    explicit matrix(const int n, const int m)
-	: mat(std::vector<std::vector<T>>(n, std::vector<T>(m, 0))) {
+    explicit matrix(const int m, const int n)
+	: m(m), n(n),
+	  mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix
-    operator+(const matrix &a, const matrix &b) {
-	assert(a.mat.size() == b.mat.size());
-	assert(a.mat[0].size() == b.mat[0].size());
-	const auto n = static_cast<int>(b.mat.size());
-	const auto m = static_cast<int>(b.mat[0].size());
+    operator+(const matrix &lhs, const matrix &rhs) {
+	assert(lhs.mat.size() == rhs.mat.size());
+	assert(lhs.mat[0].size() == rhs.mat[0].size());
+	const auto n = static_cast<int>(rhs.mat.size());
+	const auto m = static_cast<int>(rhs.mat[0].size());
 	matrix ret(n, m);
 	for (int i = 0; i < n; i++) {
 	    for (int j = 0; j < m; j++) {
-		ret.mat[i][j] += a.mat[i][j] + b.mat[i][j];
+		ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
 	    }
 	}
 	return ret;
     }
 
     matrix &
-    operator+=(const matrix &b) {
-	assert(this->mat.size() == b.mat.size());
-	assert(this->mat[0].size() == b.mat[0].size());
-	const auto n = static_cast<int>(b.mat.size());
-	const auto m = static_cast<int>(b.mat[0].size());
+    operator+=(const matrix &rhs) {
+	assert(this->mat.size() == rhs.mat.size());
+	assert(this->mat[0].size() == rhs.mat[0].size());
+	const auto n = static_cast<int>(rhs.mat.size());
+	const auto m = static_cast<int>(rhs.mat[0].size());
 	for (int i = 0; i < n; i++) {
 	    for (int j = 0; j < m; j++) {
-		this->mat[i][j] += b.mat[i][j];
+		this->mat[i][j] += rhs.mat[i][j];
 	    }
 	}
 	return *this;
     }
 
     friend matrix
-    operator*(const matrix &a, const matrix &b) {
-	assert(a.mat[0].size() == b.mat.size());
-	const auto m = static_cast<int>(a.mat.size());
-	const auto p = static_cast<int>(b.mat[0].size());
-	const auto n = static_cast<int>(a.mat[0].size());
+    operator*(const matrix &lhs, const matrix &rhs) {
+	assert(lhs.mat[0].size() == rhs.mat.size());
+	const auto m = static_cast<int>(lhs.mat.size());
+	const auto p = static_cast<int>(rhs.mat[0].size());
+	const auto n = static_cast<int>(lhs.mat[0].size());
 	matrix ret(m, p);
 	for (int i = 0; i < m; i++) {
 	    for (int j = 0; j < p; j++) {
 		for (int k = 0; k < n; k++) {
-		    ret.mat[i][j] += a.mat[i][k] * b.mat[k][j];
+		    ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
 		}
 	    }
 	}
@@ -65,16 +70,16 @@ template <typename T> struct matrix {
     }
 
     matrix &
-    operator*=(const matrix &b) {
-	assert(this->mat[0].size() == b.mat.size());
+    operator*=(const matrix &rhs) {
+	assert(this->mat[0].size() == rhs.mat.size());
 	const auto m = static_cast<int>(this->mat.size());
-	const auto p = static_cast<int>(b.mat[0].size());
+	const auto p = static_cast<int>(rhs.mat[0].size());
 	const auto n = static_cast<int>(this->mat[0].size());
 	matrix tmp(m, p);
 	for (int i = 0; i < m; i++) {
 	    for (int j = 0; j < p; j++) {
 		for (int k = 0; k < n; k++) {
-		    tmp.mat[i][j] += this->mat[i][k] * b.mat[k][j];
+		    tmp.mat[i][j] += this->mat[i][k] * rhs.mat[k][j];
 		}
 	    }
 	}
@@ -132,6 +137,7 @@ template <typename T> struct matrix {
 	    }
 	}
 	*this = std::move(tmp);
+	std::swap(this->m, this->n);
 	this->is_transposed ^= 1;
     }
 };
@@ -141,6 +147,7 @@ main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+
     std::vector<std::vector<int>> vec1 = {
 	{1, 1, 1},
 	{1, 1, 1},
@@ -162,13 +169,13 @@ main() {
 	{2, 3, 1},
 	{4, 2, 2},
     };
-
     std::vector<std::vector<int>> vec5 = {
 	{0, 0, 0},
 	{0, 0, 0},
 	{0, 0, 0},
 	{0, 0, 0},
     };
+
     matrix m1(vec1);
     matrix m2(vec2);
     matrix m3(vec3);
