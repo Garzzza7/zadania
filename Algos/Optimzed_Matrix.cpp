@@ -233,6 +233,34 @@ template <typename T> struct matrix {
 	}
 	return sum;
     }
+
+    // TODO: FIX
+    matrix
+    bareiss() {
+	assert(this->is_square());
+	const auto n = (int) this->mat.size();
+	matrix cp(this->mat);
+	for (int k = 0; k < n - 1; k++) {
+	    for (int i = k + 1; i < n; i++) {
+		if (cp.mat[k][k] == 0) {
+		    return matrix(n, n);
+		}
+		for (int j = k + 1; j < n; j++) {
+		    cp.mat[i][j] = cp.mat[i][j] * cp.mat[k][k]
+				   - cp.mat[i][k] * cp.mat[k][j];
+		    cp.mat[i][j] /= cp.mat[k - 1][k - 1];
+		}
+	    }
+	}
+	cp.print();
+	return cp;
+    }
+
+    T
+    det() {
+	assert(this->is_square());
+	return this->bareiss().mat[this->n - 1][this->n - 1];
+    }
 };
 
 int
@@ -269,6 +297,11 @@ main() {
 	{0, 0, 0},
     };
 
+    std::vector<std::vector<int>> vec6 = {
+	{3, 7},
+	{1, -4},
+    };
+
     matrix m1(vec1);
     matrix m2(vec2);
     matrix m3(vec3);
@@ -296,5 +329,7 @@ main() {
     m2.print();
     std::cout << "-----------------------\n";
     m1.print();
+    matrix m6(vec6);
+    std::cout << m6.det() << "\n";
     return 0;
 }
