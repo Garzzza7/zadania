@@ -1,3 +1,6 @@
+5 1
+BGGBG
+
 4 1
 GGGB
 

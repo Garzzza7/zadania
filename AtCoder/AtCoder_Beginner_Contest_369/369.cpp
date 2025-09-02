@@ -15,6 +15,15 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    int a, b;
+    std::cin >> a >> b;
+    if (a == b) {
+	std::cout << 1 << "\n";
+    } else if (std::abs(a - b) % 2 == 0) {
+	std::cout << 3 << "\n";
+    } else {
+	std::cout << 2 << "\n";
+    }
 }
 
 int
@@ -23,10 +32,10 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int _{1};
-    std::cin >> _;
-    while (_--)
-	solve();
+    // int T{1};
+    // std::cin >> T;
+    // while (T--)
+    solve();
 
     return 0;
 }

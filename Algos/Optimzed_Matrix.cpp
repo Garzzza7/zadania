@@ -191,9 +191,9 @@ template <typename T> struct matrix {
     operator=(const matrix &rhs) {
 	assert(this->m == rhs.m);
 	assert(this->n == rhs.n);
-	if (this == &rhs) {
+	if (this == &rhs) 
 	    return *this;
-	}
+
 	for (int i = 0; i < this->m; i++) {
 	    for (int j = 0; j < this->n; j++) {
 		this->mat[i][j] = rhs.mat[i][j];
@@ -205,9 +205,9 @@ template <typename T> struct matrix {
     void
     print() {
 	for (const auto &vv : this->mat) {
-	    for (const auto &v : vv) {
-		std::cout << v << " ";
-	    }
+                for (const auto &v : vv) {
+                        std::cout << v << " ";
+                }
 	    std::cout << "\n";
 	}
     }
@@ -242,9 +242,9 @@ template <typename T> struct matrix {
 	matrix cp(this->mat);
 	for (int k = 0; k < n - 1; k++) {
 	    for (int i = k + 1; i < n; i++) {
-		if (cp.mat[k][k] == 0) {
+		if (cp.mat[k][k] == 0) 
 		    return matrix(n, n);
-		}
+
 		for (int j = k + 1; j < n; j++) {
 		    cp.mat[i][j] = cp.mat[i][j] * cp.mat[k][k]
 				   - cp.mat[i][k] * cp.mat[k][j];

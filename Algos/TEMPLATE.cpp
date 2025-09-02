@@ -179,13 +179,13 @@ pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) {
 template <typename T>
 [[nodiscard]] T
 bin_min(const T &x, const T &y) {
-    return y ^ (x ^ y) & -(x < y);
+    return y ^ ((x ^ y) & -(x < y));
 }
 
 template <typename T>
 [[nodiscard]] T
 bin_max(const T &x, const T &y) {
-    return y ^ (x ^ y) & -(x > y);
+    return y ^ ((x ^ y) & -(x > y));
 }
 
 template <typename T>

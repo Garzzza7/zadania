@@ -15,6 +15,16 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    int n, m, k;
+    std::cin >> n >> m >> k;
+    int w;
+    std::cin >> w;
+    std::vector<int> vec(w);
+    for (auto &&v : vec)
+	std::cin >> v;
+    auto calc = [&](const int &x, const int &y) -> int {
+
+    };
 }
 
 int

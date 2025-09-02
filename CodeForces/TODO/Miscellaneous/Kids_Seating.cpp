@@ -15,6 +15,16 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    int n;
+    std::cin >> n;
+    std::set<int> res;
+
+    for (int i = 4 * n; i > 2 * n; i -= 2)
+	res.insert(i);
+
+    for (const auto &v : res)
+	std::cout << v << " ";
+    std::cout << "\n";
 }
 
 int

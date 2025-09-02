@@ -501,6 +501,16 @@ else
     printf "${red}$(cat Modular_Arithmetic.test)${normal}\n"
 fi
 
+if [ "$(./Monotone_chain.sol < Monotone_chain.txt)" == "$(cat Monotone_chain.test)" ]; then
+    printf "${green}Monotone_chain Passed.${normal}\n"
+else
+    printf "${red}Monotone_chain Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Monotone_chain.sol < Monotone_chain.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Monotone_chain.test)${normal}\n"
+fi
+
 if [ "$(./Next_permutation.sol < Next_permutation.txt)" == "$(cat Next_permutation.test)" ]; then
     printf "${green}Next_permutation Passed.${normal}\n"
 else

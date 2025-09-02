@@ -24,7 +24,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
 	solve();
 
