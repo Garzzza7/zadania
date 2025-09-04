@@ -44,11 +44,10 @@ main() {
     while (m--) {
 	long long a, b, c;
 	std::cin >> a >> b >> c;
-	if (a == 1) {
+	if (a == 1)
 	    std::cout << rangeSum(vec, b, c - 1) << "\n";
-	} else {
+	else
 	    update(vec, c, b + 1);
-	}
     }
 
     return 0;

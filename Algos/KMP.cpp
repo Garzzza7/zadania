@@ -18,9 +18,8 @@ hasSubstring(const std::string &s, const std::string &pattern) {
 	    i = k;
 	}
     }
-    if (j == (int) pattern.size()) {
+    if (j == (int) pattern.size())
 	return true;
-    }
     return false;
 }
 
@@ -63,9 +62,8 @@ KMP(const std::string &s, const std::string &pattern) {
 	    }
 	}
     }
-    if (j == static_cast<int>(pattern.size())) {
+    if (j == static_cast<int>(pattern.size()))
 	return true;
-    }
     return false;
 }
 

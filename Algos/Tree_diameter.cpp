@@ -3,22 +3,20 @@
 
 long long maxi{0ll};
 long long at{0ll};
+
 void
 dfs(const long long v, std::vector<std::vector<long long>> &adj,
     std::vector<bool> &visited, const long long cnt) {
-    if (visited[v]) {
+    if (visited[v])
 	return;
-    }
     if (cnt > maxi) {
 	maxi = cnt;
 	at = v;
     }
     visited[v] = true;
-    for (const auto &vv : adj[v]) {
-	if (!visited[vv]) {
+    for (const auto &vv : adj[v])
+	if (!visited[vv])
 	    dfs(vv, adj, visited, cnt + 1);
-	}
-    }
 }
 
 int

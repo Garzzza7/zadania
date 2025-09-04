@@ -34,18 +34,16 @@ insert(std::vector<int> &vec, int newNum) {
 void
 deleteNode(std::vector<int> &vec, int num) {
     int i;
-    for (i = 0; i < (int) vec.size(); i++) {
+    for (i = 0; i < (int) vec.size(); i++)
 	if (num == vec[i])
 	    break;
-    }
     vec[i] ^= vec[(int) vec.size() - 1];
     vec[(int) vec.size() - 1] ^= vec[i];
     vec[i] ^= vec[(int) vec.size() - 1];
 
     vec.pop_back();
-    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) {
+    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--)
 	heapify(vec, i);
-    }
 }
 int
 main() {
@@ -67,25 +65,21 @@ main() {
     // insert(vec, 1000);
     // insert(vec, 10000);
 
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
 
     deleteNode(vec, 0);
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     deleteNode(vec, 1);
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     deleteNode(vec, 2);
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     return 0;
 }

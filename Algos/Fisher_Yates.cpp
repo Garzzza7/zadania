@@ -24,9 +24,8 @@ main() {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) {
+    for (auto &&v : vec)
 	std::cin >> v;
-    }
     const auto og = vec;
     fisher_yates_shuffle(vec);
     std::cout << (og != vec) << "\n";

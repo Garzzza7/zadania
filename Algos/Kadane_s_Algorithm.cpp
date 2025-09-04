@@ -10,9 +10,8 @@ main() {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
 	std::cin >> vec[i];
-    }
     std::vector<int> b = {0};
     std::vector<int> s = {0};
     int best = 0, sum = 0;
@@ -25,21 +24,18 @@ main() {
     std::cout << best << '\n';
 
     std::cout << "vec: ";
-    for (const auto &v : vec) {
+    for (const auto &v : vec)
 	std::cout << v << " ";
-    }
     std::cout << "\n";
 
     std::cout << "sums: ";
-    for (const auto &v : s) {
+    for (const auto &v : s)
 	std::cout << v << " ";
-    }
     std::cout << "\n";
 
     std::cout << "bests: ";
-    for (const auto &v : b) {
+    for (const auto &v : b)
 	std::cout << v << " ";
-    }
     std::cout << "\n";
 
     return 0;

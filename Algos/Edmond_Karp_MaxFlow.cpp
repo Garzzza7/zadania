@@ -7,9 +7,8 @@ template <typename T>
 T
 bfs(T source, T target, std::vector<std::vector<T>> &adj,
     std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
-    for (auto &&a : path) {
+    for (auto &&a : path)
 	a = -1;
-    }
     path[source] = -2137;
     std::queue<std::pair<T, T>> q;
     q.push({source, INT32_MAX});
@@ -18,16 +17,14 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj,
 	T curr = q.front().first;
 	T flow = q.front().second;
 	q.pop();
-	for (const auto &next : adj[curr]) {
+	for (const auto &next : adj[curr])
 	    if (path[next] == -1 && capacities[curr][next]) {
 		path[next] = curr;
 		T bottleneck = std::min(flow, capacities[curr][next]);
-		if (next == target) {
+		if (next == target)
 		    return bottleneck;
-		}
 		q.push({next, bottleneck});
 	    }
-	}
     }
     return 0;
 }

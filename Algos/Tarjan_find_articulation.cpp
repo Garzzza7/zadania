@@ -30,18 +30,16 @@ struct tarjan_find_articulation {
 
     void
     dfs(const int p, const int v) {
-	if (visited[v]) {
+	if (visited[v])
 	    return;
-	}
 	visited[v] = true;
 	entry_time[v] = visit_time;
 	low[v] = visit_time;
 	visit_time++;
 	int decs = 0;
 	for (const auto &e : adj[v]) {
-	    if (e == p) {
+	    if (e == p)
 		continue;
-	    }
 	    if (visited[e]) {
 		low[v] = std::min(low[v], entry_time[e]);
 	    } else {
@@ -53,25 +51,21 @@ struct tarjan_find_articulation {
 		}
 	    }
 	}
-	if (p == -123 && decs > 1) {
+	if (p == -123 && decs > 1)
 	    is_art_point[v] = true;
-	}
     }
 
     void
     run() {
-	for (int i = 0; i < static_cast<int>(visited.size()); i++) {
-	    if (!visited[i]) {
+	for (int i = 0; i < static_cast<int>(visited.size()); i++)
+	    if (!visited[i])
 		dfs(-123, i);
-	    }
-	}
     }
     void
     print() {
 	for (const auto &ee : adj) {
-	    for (const auto &e : ee) {
+	    for (const auto &e : ee)
 		std::cout << e << " ";
-	    }
 	    std::cout << "\n";
 	}
     }
@@ -93,11 +87,9 @@ main() {
     }
     graph.run();
 
-    for (int i = 0; i < static_cast<int>(graph.is_art_point.size()); i++) {
-	if (graph.is_art_point[i]) {
+    for (int i = 0; i < static_cast<int>(graph.is_art_point.size()); i++)
+	if (graph.is_art_point[i])
 	    std::cout << i << " is an articulation point.\n";
-	}
-    }
 
     return 0;
 }

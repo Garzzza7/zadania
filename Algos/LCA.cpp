@@ -24,38 +24,33 @@ struct lca {
 
 	    matrix.assign(
 		LOG, std::vector(size, std::pair<T, T>(NEUTRAL_ELEMENT, 0)));
-	    for (int i = 0; i < size; i++) {
+	    for (int i = 0; i < size; i++)
 		matrix[0][i] = {_init[i], _euler[i]};
-	    }
 	}
 
 	static std::pair<T, T>
 	operation(const std::pair<T, T> &a, const std::pair<T, T> &b) {
-	    if (a.first < b.first) {
+	    if (a.first < b.first)
 		return a;
-	    }
 	    return b;
 	}
 
 	void
 	process() {
-	    for (int i = 1; i <= LOG; i++) {
-		for (int j = 0; j + (1 << i) <= size; j++) {
+	    for (int i = 1; i <= LOG; i++)
+		for (int j = 0; j + (1 << i) <= size; j++)
 		    matrix[i][j] = operation(matrix[i - 1][j],
 					     matrix[i - 1][j + (1 << (i - 1))]);
-		}
-	    }
 	}
 
 	T
 	query(int L, const int R) {
 	    std::pair<T, T> res = {NEUTRAL_ELEMENT, 0};
-	    for (int i = LOG; i >= 0; i--) {
+	    for (int i = LOG; i >= 0; i--)
 		if (1 << i <= R - L + 1) {
 		    res = operation(res, matrix[i][L]);
 		    L += 1 << i;
 		}
-	    }
 	    return res.second;
 	}
     };
@@ -76,13 +71,12 @@ struct lca {
 	    heights.push_back(h);
 	    ids[v] = (int) euler.size();
 	    euler.push_back(v);
-	    for (const auto &ver : _adj[v]) {
+	    for (const auto &ver : _adj[v])
 		if (!visited[ver]) {
 		    self(self, ver, h + 1);
 		    euler.push_back(v);
 		    heights.push_back(h);
 		}
-	    }
 	};
 	dfs(dfs, 0);
     }

@@ -9,26 +9,20 @@ std::vector<std::vector<T>>
 floyd_warshall(std::vector<std::vector<T>> &adj_matrix,
 	       std::vector<std::vector<T>> &paths) {
     std::vector<std::vector<T>> dp(n + 1, std::vector<T>(n + 1, 0));
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++)
 	for (int j = 1; j <= n; j++) {
 	    dp[i][j] = adj_matrix[i][j];
-	    if (adj_matrix[i][j] == INF) {
+	    if (adj_matrix[i][j] == INF)
 		paths[i][j] = j;
-	    }
 	}
-    }
 
-    for (int k = 1; k <= n; k++) {
-	for (int i = 1; i <= n; i++) {
-	    for (int j = 1; j <= n; j++) {
-		if (dp[i][k] + dp[k][j] < dp[i][j]) {
+    for (int k = 1; k <= n; k++)
+	for (int i = 1; i <= n; i++)
+	    for (int j = 1; j <= n; j++)
+		if (dp[i][k] + dp[k][j] < dp[i][j])
 		    dp[i][j] = dp[i][k] + dp[k][j];
-		    /*std::cout << paths[i][j] << " " << paths[i][k] << "\n";*/
-		    /*paths[i][j] = paths[i][k];*/
-		}
-	    }
-	}
-    }
+    /*std::cout << paths[i][j] << " " << paths[i][k] << "\n";*/
+    /*paths[i][j] = paths[i][k];*/
 
     /*   for (int k = 1; k <= n; k++) {*/
     /*for (int i = 1; i <= n; i++) {*/
@@ -56,9 +50,8 @@ shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
 
     T iter = start;
     for (iter = start; iter != target; iter = paths[iter][target]) {
-	if (iter == -1) {
+	if (iter == -1)
 	    return;
-	}
 	sp.push_back(iter);
     }
 
@@ -69,10 +62,9 @@ shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
     sp.push_back(target);
 
     std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = 0; i < static_cast<int>(sp.size()); i++) {
+    for (int i = 0; i < static_cast<int>(sp.size()); i++)
 	std::cout << sp[i]
 		  << (i < static_cast<int>(sp.size()) - 1 ? " -> " : "\n");
-    }
     std::cout << "\n";
 }
 
@@ -97,9 +89,8 @@ main() {
     /*shortest_path(1, 3, dp, paths);*/
 
     for (int i = 1; i <= n; i++) {
-	for (int j = 1; j <= n; j++) {
+	for (int j = 1; j <= n; j++)
 	    std::cout << dp[i][j] << " ";
-	}
 	std::cout << "\n";
     }
     return 0;

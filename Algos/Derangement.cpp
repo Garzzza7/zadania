@@ -26,13 +26,10 @@ const std::vector<unsigned long long> derangements = {1,
 
 unsigned long long
 derangement(const unsigned long long n) {
-    if (n == 1ull) {
+    if (n == 1ull)
 	return 0ull;
-    }
-    if (n == 2ull) {
+    if (n == 2ull)
 	return 1ull;
-    }
-
     unsigned long long prev1{1ull};
     unsigned long long prev2{0ull};
     for (unsigned long long i = 3; i <= n; i++) {

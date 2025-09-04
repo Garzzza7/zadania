@@ -3,9 +3,8 @@
 template <typename T>
 T
 rec_gcd(T a, T b) {
-    if (b == 0) {
+    if (b == 0)
 	return a;
-    }
     return rec_gcd(b, a % b);
 }
 
@@ -28,16 +27,14 @@ lcm(T a, T b) {
 template <typename T>
 T
 bit_gcd(T a, T b) {
-    if (!a || !b) {
+    if (!a || !b)
 	return a | b;
-    }
     unsigned shift = __builtin_ctz(a | b);
     a >>= __builtin_ctz(a);
     do {
 	b >>= __builtin_ctz(b);
-	if (a > b) {
+	if (a > b)
 	    std::swap(a, b);
-	}
 	b -= a;
     } while (b);
     return a << shift;

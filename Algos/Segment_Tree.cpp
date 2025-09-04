@@ -7,9 +7,8 @@ template <typename T = int> struct ram_seg_tree {
     std::vector<T> vec;
 
     explicit ram_seg_tree(const int &_n) {
-	while (size < _n) {
+	while (size < _n)
 	    size <<= 1;
-	}
 	vec.assign(2 * size, NEUTRAL_ELEMENT);
     }
 
@@ -21,9 +20,8 @@ template <typename T = int> struct ram_seg_tree {
     void
     build(const std::vector<T> &arr, const int x, const int lx, const int rx) {
 	if (rx - lx == 1) {
-	    if (lx < static_cast<int>(arr.size())) {
+	    if (lx < static_cast<int>(arr.size()))
 		vec[x] = arr[lx];
-	    }
 	    return;
 	}
 	const int mid = (rx - lx) / 2 + lx;
@@ -44,11 +42,10 @@ template <typename T = int> struct ram_seg_tree {
 	    return;
 	}
 	const int mid = (rx - lx) / 2 + lx;
-	if (i < mid) {
+	if (i < mid)
 	    set(i, v, 2 * x + 1, lx, mid);
-	} else {
+	else
 	    set(i, v, 2 * x + 2, mid, rx);
-	}
 	vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
@@ -59,12 +56,10 @@ template <typename T = int> struct ram_seg_tree {
 
     T
     calc(const int l, const int r, const int x, const int lx, const int rx) {
-	if (lx >= r || l >= rx) {
+	if (lx >= r || l >= rx)
 	    return NEUTRAL_ELEMENT;
-	}
-	if (lx >= l && rx <= r) {
+	if (lx >= l && rx <= r)
 	    return vec[x];
-	}
 	const int mid = (rx - lx) / 2 + lx;
 	const T p1 = calc(l, r, 2 * x + 1, lx, mid);
 	const T s2 = calc(l, r, 2 * x + 2, mid, rx);
@@ -88,13 +83,11 @@ main() {
     std::cin >> n;
     std::vector<long long> init(n);
     ram_seg_tree<long long> st(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
 	std::cin >> init[i];
-    }
     st.build(init);
-    for (const auto &a : st.vec) {
+    for (const auto &a : st.vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     std::cout << st.calc(1, 5) << "\n";
     return 0;

@@ -6,14 +6,12 @@
 void
 dfs(int vertex, std::vector<std::vector<int>> &adj,
     std::vector<bool> &visited) {
-    if (visited[vertex]) {
+    if (visited[vertex])
 	return;
-    }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    for (const auto &v : adj[vertex]) {
+    for (const auto &v : adj[vertex])
 	dfs(v, adj, visited);
-    }
 }
 
 void

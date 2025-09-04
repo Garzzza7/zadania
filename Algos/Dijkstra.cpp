@@ -14,19 +14,17 @@ dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
     int current = source;
     while (iter--) {
 	int currentMinimum = INT32_MAX;
-	for (int i = 0; i < (int) known.size(); i++) {
+	for (int i = 0; i < (int) known.size(); i++)
 	    if (known[i] == false && cost[i] < currentMinimum) {
 		currentMinimum = cost[i];
 		current = i;
 	    }
-	}
 	known[current] = true;
-	for (const auto &b : adj[current]) {
+	for (const auto &b : adj[current])
 	    if (cost[current] + b.second < cost[b.first]) {
 		cost[b.first] = cost[current] + b.second;
 		path[b.first] = current;
 	    }
-	}
     }
 }
 
@@ -38,16 +36,14 @@ dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
     cost[source] = 0;
     while (set.empty() == false) {
 	auto current = set.extract(set.begin());
-	if (current.value().second != cost[current.value().first]) {
+	if (current.value().second != cost[current.value().first])
 	    continue;
-	}
-	for (const auto &b : adj[current.value().first]) {
+	for (const auto &b : adj[current.value().first])
 	    if (cost[current.value().first] + b.second < cost[b.first]) {
 		cost[b.first] = cost[current.value().first] + b.second;
 		path[b.first] = current.value().first;
 		set.insert({b.first, cost[b.first]});
 	    }
-	}
     }
 }
 
@@ -66,16 +62,14 @@ dijkstraWithPrioQueue(int source,
 	currentNode = queue.top().first;
 	currentCost = queue.top().second;
 	queue.pop();
-	if (currentCost != cost[currentNode]) {
+	if (currentCost != cost[currentNode])
 	    continue;
-	}
-	for (const auto &b : adj[currentNode]) {
+	for (const auto &b : adj[currentNode])
 	    if (cost[currentNode] + b.second < cost[b.first]) {
 		cost[b.first] = cost[currentNode] + b.second;
 		path[b.first] = currentNode;
 		queue.emplace(b.first, cost[b.first]);
 	    }
-	}
     }
 }
 
@@ -122,9 +116,8 @@ main() {
     // dijkstraWithPrioQueue(0, adj, path, cost);
     std::cout << "PATH\n";
     int i = 0;
-    for (const auto &a : path) {
+    for (const auto &a : path)
 	std::cout << i++ << " -> " << a << "\n";
-    }
     std::cout << "COST\n";
     i = 0;
     for (const auto &a : cost) {
@@ -132,8 +125,7 @@ main() {
     }
     std::cout << "SHORTEST PATH\n";
     std::vector<int> shortpath = shortestPath(source, target, path);
-    for (const auto &a : shortpath) {
+    for (const auto &a : shortpath)
 	std::cout << a << " ";
-    }
     return 0;
 }

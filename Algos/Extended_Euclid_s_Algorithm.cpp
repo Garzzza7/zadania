@@ -10,9 +10,8 @@ fl(T x, T y) {
 template <typename T>
 std::vector<T>
 extended_euclid(T a, T b) {
-    if (b == 0) {
+    if (b == 0)
 	return std::vector({a, 1, 0});
-    }
     std::vector<T> res = extended_euclid(b, a % b);
     return std::vector({res[0], res[2], res[1] - fl(a, b) * res[2]});
 }

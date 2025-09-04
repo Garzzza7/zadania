@@ -27,9 +27,8 @@ main() {
     std::cin >> n;
     std::vector<char> vec(n);
     const auto og = vec;
-    for (auto &&v : vec) {
+    for (auto &&v : vec)
 	std::cin >> v;
-    }
     sattoro_cyclic_shuffle(vec);
     std::cout << (og != vec) << "\n";
 

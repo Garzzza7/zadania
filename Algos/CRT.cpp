@@ -13,9 +13,8 @@ crt(const std::vector<std::pair<T, T>> &vec) {
 	while (buff % vec[i + 1].second != vec[i + 1].first) {
 	    if (buff % vec[i + 1].second == check) {
 		cnt++;
-		if (cnt == 2) {
+		if (cnt == 2)
 		    return -1;
-		}
 	    }
 	    buff += mod;
 	}

@@ -4,15 +4,12 @@
 int
 mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-	if (i <= static_cast<int>(vec.size())) {
+    for (const auto &i : vec)
+	if (i <= static_cast<int>(vec.size()))
 	    f[i] = true;
-	}
-    }
     int res = 0;
-    while (f[res]) {
+    while (f[res])
 	++res;
-    }
     return res;
 }
 
@@ -25,9 +22,8 @@ main() {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
 	std::cin >> vec[i];
-    }
     std::cout << mex(vec) << "\n";
     return 0;
 }

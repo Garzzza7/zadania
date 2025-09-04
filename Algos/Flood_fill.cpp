@@ -26,10 +26,8 @@ long long sum{0ll};
 void
 floodfill(std::vector<std::vector<int>> &vec,
 	  std::vector<std::vector<bool>> &visited, const int i, int j) {
-    if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0
-	|| visited[i][j]) {
+    if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0 || visited[i][j])
 	return;
-    }
 
     visited[i][j] = true;
     sum += vec[i][j];
@@ -51,23 +49,20 @@ main() {
 	std::cin >> n >> m;
 	std::vector<std::vector<int>> vec(n, std::vector<int>(m));
 	std::vector<std::vector<bool>> visited(n, std::vector<bool>(m));
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 	    for (int j = 0; j < m; j++) {
 		int aa;
 		std::cin >> aa;
 		vec[i][j] = aa;
 	    }
-	}
 	long long res = 0;
-	for (int i = 0; i < n; i++) {
-	    for (int j = 0; j < m; j++) {
+	for (int i = 0; i < n; i++)
+	    for (int j = 0; j < m; j++)
 		if (!visited[i][j]) {
 		    floodfill(vec, visited, i, j);
 		    res = std::max(res, sum);
 		    sum ^= sum;
 		}
-	    }
-	}
 	std::cout << res << "\n";
     }
 

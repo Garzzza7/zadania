@@ -11,9 +11,8 @@ template <typename T = int> struct dsu {
     explicit dsu(const T _n)
 	: parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)),
 	  rank(std::vector<T>(_n, 0)) {
-	for (T i = 0; i < _n; i++) {
+	for (T i = 0; i < _n; i++)
 	    parent[i] = i;
-	}
     }
 
     // This constructor moves input arrays.
@@ -37,9 +36,8 @@ template <typename T = int> struct dsu {
 
     T
     find_set(const T v) {
-	if (v == parent[v]) {
+	if (v == parent[v])
 	    return v;
-	}
 	return parent[v] = find_set(parent[v]);
     }
 
@@ -48,9 +46,8 @@ template <typename T = int> struct dsu {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
-	    if (size[a] < size[b]) {
+	    if (size[a] < size[b])
 		std::swap(a, b);
-	    }
 	    parent[b] = a;
 	    size[a] += size[b];
 	}
@@ -61,13 +58,11 @@ template <typename T = int> struct dsu {
 	a = find_set(a);
 	b = find_set(b);
 	if (a != b) {
-	    if (rank[a] < rank[b]) {
+	    if (rank[a] < rank[b])
 		std::swap(a, b);
-	    }
 	    parent[b] = a;
-	    if (rank[a] == rank[b]) {
+	    if (rank[a] == rank[b])
 		++rank[a];
-	    }
 	}
     }
 
@@ -99,11 +94,10 @@ main() {
 	} else {
 	    long long res1 = dsu.find_set(b);
 	    long long res2 = dsu.find_set(c);
-	    if (res1 == res2) {
+	    if (res1 == res2)
 		std::cout << '1';
-	    } else {
+	    else
 		std::cout << '0';
-	    }
 	    std::cout << "\n";
 	}
     }

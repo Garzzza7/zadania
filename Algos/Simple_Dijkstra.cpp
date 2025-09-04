@@ -18,9 +18,8 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
     while (!pq.empty()) {
 	T a = pq.top().second;
 	pq.pop();
-	if (visited[a]) {
+	if (visited[a])
 	    continue;
-	}
 	visited[a] = 1;
 	for (const auto &v : adj[a]) {
 	    T b = v.first;
@@ -38,14 +37,12 @@ template <typename T>
 void
 shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;
-    for (int i = target; i != -1; i = path[i]) {
+    for (int i = target; i != -1; i = path[i])
 	sp.push_back(i);
-    }
 
     std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = static_cast<int>(sp.size()) - 1; i >= 0; --i) {
+    for (int i = static_cast<int>(sp.size()) - 1; i >= 0; --i)
 	std::cout << sp[i] << (i != 0 ? " -> " : "\n");
-    }
     std::cout << "\n";
 }
 
@@ -68,9 +65,8 @@ main() {
     std::vector<int> distances(n + 1, 1);
     std::vector<int> path(n + 1, -1);
     djikstra(1, adj, distances, visited, path);
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++)
 	std::cout << i << ": " << distances[i] << "\n";
-    }
     shortest_path(1, 3, path);
 
     return 0;

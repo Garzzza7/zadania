@@ -67,20 +67,17 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 
 	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); ++i) {
 		int child = nodes[id].next[i];
-		if (child == -1) {
+		if (child == -1)
 		    continue;
-		}
 
 		int j = nodes[id].suffix_link;
-		while (j != -1 && nodes[j].next[i] == -1) {
+		while (j != -1 && nodes[j].next[i] == -1)
 		    j = nodes[j].suffix_link;
-		}
 
-		if (j == -1) {
+		if (j == -1)
 		    nodes[child].suffix_link = 0;
-		} else {
+		else
 		    nodes[child].suffix_link = nodes[j].next[i];
-		}
 
 		q.push(child);
 	    }
@@ -91,28 +88,24 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     build_output_links() {
 	std::queue<int> q;
 
-	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); ++i) {
-	    if (int child = nodes[0].next[i]; child != -1) {
+	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); ++i)
+	    if (int child = nodes[0].next[i]; child != -1)
 		q.push(child);
-	    }
-	}
 
 	while (!q.empty()) {
 	    int id = q.front();
 	    q.pop();
 
 	    int u = nodes[id].suffix_link;
-	    if (nodes[u].is_accept) {
+	    if (nodes[u].is_accept)
 		nodes[id].output_link = u;
-	    } else {
+	    else
 		nodes[id].output_link = nodes[u].output_link;
-	    }
 
 	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
 		int child = nodes[id].next[i];
-		if (child == -1) {
+		if (child == -1)
 		    continue;
-		}
 		q.push(child);
 	    }
 	}
@@ -130,20 +123,17 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	for (int i = 0; i < static_cast<int>(word.size()); i++) {
 	    int c = word[i] - BASE;
 
-	    while (node_id != 0 && nodes[node_id].next[c] == -1) {
+	    while (node_id != 0 && nodes[node_id].next[c] == -1)
 		node_id = nodes[node_id].suffix_link;
-	    }
 
-	    if (nodes[node_id].next[c] != -1) {
+	    if (nodes[node_id].next[c] != -1)
 		node_id = nodes[node_id].next[c];
-	    }
 
 	    for (int iter = node_id; iter != -1;
 		 iter = nodes[iter].output_link) {
-		for (const auto &p : nodes[iter].accepting) {
+		for (const auto &p : nodes[iter].accepting)
 		    std::cout << patterns[p] << " found at "
 			      << (i - patterns[p].size() + 1) << "\n";
-		}
 	    }
 	}
     }

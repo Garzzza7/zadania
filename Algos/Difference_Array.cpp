@@ -27,9 +27,8 @@ main() {
 	overlapping_segments[i] = total;
     }
 
-    for (const auto &seg : overlapping_segments) {
+    for (const auto &seg : overlapping_segments)
 	std::cout << seg << " ";
-    }
     std::cout << "\n";
 
     return 0;

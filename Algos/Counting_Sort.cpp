@@ -17,10 +17,8 @@ main() {
 	vec.insert({aa, 0});
 	vec[aa]++;
     }
-    for (auto const &[key, val] : vec) {
-	for (int i = 0; i < val; i++) {
+    for (auto const &[key, val] : vec)
+	for (int i = 0; i < val; i++)
 	    std::cout << key << " ";
-	}
-    }
     return 0;
 }

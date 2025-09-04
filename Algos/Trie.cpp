@@ -9,7 +9,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
 	std::vector<int> accepting;
 	int c;
 	int cnt_shares{0};
-	explicit node(const int c_) : c(c_) {
+	explicit node(const int _c) : c(_c) {
 	    next = std::vector<int>(CHAR_SIZE + 1, -1);
 	}
     };
@@ -49,9 +49,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
 	for (const auto &i : word) {
 	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
-	    if (next_id == -1) {
+	    if (next_id == -1)
 		return false;
-	    }
 	    node_id = next_id;
 	}
 	return check_prefix ? true : !nodes[node_id].accepting.empty();
@@ -96,7 +95,6 @@ main() {
 	} else if (type == 2) {
 	    std::string s;
 	    std::cin >> s;
-
 	    if (trie.search(s)) {
 		std::cout << s << " found.\n";
 	    } else {
@@ -105,7 +103,6 @@ main() {
 	} else {
 	    std::string s;
 	    std::cin >> s;
-
 	    if (trie.starts_with_pref(s)) {
 		std::cout << s << " found as a prefix.\n";
 	    } else {

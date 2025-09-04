@@ -3,12 +3,10 @@
 
 long long
 rec_bin_coeff(const long long &n, const long long &k) {
-    if (k == 1) {
+    if (k == 1)
 	return n;
-    }
-    if (n == k || k == 0) {
+    if (n == k || k == 0)
 	return 1;
-    }
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 
@@ -31,9 +29,8 @@ mod_mult_bin_coeff(const long long &n, const long long &k,
     auto mod_binpow = [&](long long a, long long b) -> long long {
 	long long tot = 1ll;
 	while (b > 0) {
-	    if (b & 1) {
+	    if (b & 1)
 		tot = tot * a % mod;
-	    }
 	    a = a * a % mod;
 	    b >>= 1;
 	}

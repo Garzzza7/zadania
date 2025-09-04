@@ -15,28 +15,22 @@ dfs(const int parent, const int vertex, std::vector<std::vector<int>> &adj,
 	depth[vertex] = depth[parent] + 1;
 	ancestors[vertex][0] = parent;
     }
-    for (int i = 1; i < limit; i++) {
+    for (int i = 1; i < limit; i++)
 	ancestors[vertex][i] = ancestors[ancestors[vertex][i - 1]][i - 1];
-    }
-    for (const auto &ver : adj[vertex]) {
-	if (vertex != ver) {
+    for (const auto &ver : adj[vertex])
+	if (vertex != ver)
 	    dfs(vertex, ver, adj, ancestors, depth, limit);
-	}
-    }
 }
 
 int
 query(const int vertex, const int kth, const std::vector<int> &depth,
       const std::vector<std::vector<int>> &ancestors, const int &limit) {
     int ancestor = vertex;
-    if (depth[vertex] < kth || kth < 0) {
+    if (depth[vertex] < kth || kth < 0)
 	return -123;
-    }
-    for (int comb = 0; comb < limit; comb++) {
-	if (is_on(kth, comb)) {
+    for (int comb = 0; comb < limit; comb++)
+	if (is_on(kth, comb))
 	    ancestor = ancestors[ancestor][comb];
-	}
-    }
     return ancestor;
 }
 
@@ -50,17 +44,15 @@ main() {
     std::cin >> n >> m;
     int limit = 0;
     std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
-    while ((1 << limit) <= n) {
+    while ((1 << limit) <= n)
 	limit++;
-    }
     int root = -1;
     for (int i = 0; i < m; i++) {
 	int p, v;
 	std::cin >> p >> v;
 	adj[p].push_back(v);
-	if (root == -1) {
+	if (root == -1)
 	    root = p;
-	}
     }
     std::vector<std::vector<int>> ancestors(n + 1, std::vector<int>(limit));
     std::vector<int> depth(n + 1, 0);

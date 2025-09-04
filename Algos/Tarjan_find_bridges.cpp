@@ -46,44 +46,38 @@ struct tarjan_find_bridges {
 
     void
     dfs(const int p, const int v) {
-	if (visited[v]) {
+	if (visited[v])
 	    return;
-	}
 	visited[v] = true;
 	low[v] = visit_time;
 	entry_time[v] = visit_time;
 	visit_time++;
 	for (auto &&e : adj[v]) {
-	    if (e.vertex == p) {
+	    if (e.vertex == p)
 		continue;
-	    }
 	    if (visited[e.vertex]) {
 		low[v] = std::min(low[v], entry_time[e.vertex]);
 	    } else {
 		dfs(v, e.vertex);
 		low[v] = std::min(low[v], low[e.vertex]);
-		if (low[e.vertex] > entry_time[v]) {
+		if (low[e.vertex] > entry_time[v])
 		    is_bridge[e.id] = true;
-		}
 	    }
 	}
     }
 
     void
     run() {
-	for (int i = 1; i < static_cast<int>(adj.size()); i++) {
-	    if (!visited[i]) {
+	for (int i = 1; i < static_cast<int>(adj.size()); i++)
+	    if (!visited[i])
 		dfs(i, i);
-	    }
-	}
     }
 
     void
     print() {
 	for (const auto &ee : adj) {
-	    for (const auto &e : ee) {
+	    for (const auto &e : ee)
 		std::cout << e.vertex << " ";
-	    }
 	    std::cout << "\n";
 	}
     }
@@ -104,12 +98,10 @@ main() {
 	graph.add_bi_edge(p, v);
     }
     graph.run();
-    for (int i = 0; i < static_cast<int>(graph.is_bridge.size()); i++) {
-	if (graph.is_bridge[i]) {
+    for (int i = 0; i < static_cast<int>(graph.is_bridge.size()); i++)
+	if (graph.is_bridge[i])
 	    std::cout << "edge " << graph.edges[i].first << " to "
 		      << graph.edges[i].second << " is a bridge.\n";
-	}
-    }
 
     return 0;
 }

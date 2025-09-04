@@ -18,13 +18,12 @@ heapify(std::vector<int> &vec, int i) {
 
 void
 insert(std::vector<int> &vec, int newNum) {
-    if ((int) vec.size() == 0) {
+    if ((int) vec.size() == 0)
 	vec.push_back(newNum);
-    } else {
+    else {
 	vec.push_back(newNum);
-	for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) {
+	for (int i = (int) vec.size() / 2 - 1; i >= 0; i--)
 	    heapify(vec, i);
-	}
     }
 }
 
@@ -38,9 +37,8 @@ deleteNode(std::vector<int> &vec, int num) {
     std::swap(vec[i], vec[(int) vec.size() - 1]);
 
     vec.pop_back();
-    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) {
+    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--)
 	heapify(vec, i);
-    }
 }
 
 int
@@ -57,19 +55,16 @@ main() {
 	std::cin >> a;
 	insert(vec, a);
     }
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     deleteNode(vec, 9);
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     deleteNode(vec, 7);
-    for (const auto &a : vec) {
+    for (const auto &a : vec)
 	std::cout << a << " ";
-    }
     std::cout << "\n";
     return 0;
 }

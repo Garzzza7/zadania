@@ -9,12 +9,10 @@ merge(std::vector<int> &vec, int p, int q, int r) {
     const int size2 = r - q;
     std::vector<int> L(size1 + 1, INT32_MAX);
     std::vector<int> R(size2 + 1, INT32_MAX);
-    for (int i = 0; i < size1; i++) {
+    for (int i = 0; i < size1; i++)
 	L[i] = vec[p + i];
-    }
-    for (int i = 0; i < size2; i++) {
+    for (int i = 0; i < size2; i++)
 	R[i] = vec[q + i + 1];
-    }
     int i = 0;
     int j = 0;
     for (int k = p; k <= r; k++) {
@@ -50,9 +48,8 @@ main() {
 	int n;
 	std::cin >> n;
 	std::vector<int> vec(n);
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 	    std::cin >> vec[i];
-	}
 	auto test = vec;
 	std::ranges::sort(test.begin(), test.end());
 	merge_sort(vec, 0, n - 1);

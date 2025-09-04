@@ -21,9 +21,8 @@ template <typename T = int> struct boruvka {
     explicit boruvka(const int &_n)
 	: n(_n), MAX(std::numeric_limits<T>::max()) {
 	parent.assign(n, 0);
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 	    parent[i] = i;
-	}
 	rank.assign(n, 0);
     }
 
@@ -34,9 +33,8 @@ template <typename T = int> struct boruvka {
 
     int
     find(const int &vertex) {
-	if (parent[vertex] == vertex) {
+	if (parent[vertex] == vertex)
 	    return parent[vertex];
-	}
 	return parent[vertex] = find(parent[vertex]);
     }
 
@@ -45,14 +43,11 @@ template <typename T = int> struct boruvka {
 	auto u_leader = find(u);
 	auto v_leader = find(v);
 	if (u_leader != v_leader) {
-	    if (rank[u_leader] < rank[v_leader]) {
+	    if (rank[u_leader] < rank[v_leader])
 		std::swap(u_leader, v_leader);
-	    }
 	    parent[v_leader] = u_leader;
-
-	    if (rank[u_leader] == rank[v_leader]) {
+	    if (rank[u_leader] == rank[v_leader])
 		rank[u_leader]++;
-	    }
 	}
     }
 
@@ -75,17 +70,15 @@ template <typename T = int> struct boruvka {
 
 		if (id1 != id2) {
 		    if (cheapest[id1].weight == MAX
-			|| cheapest[id1].weight > weight) {
+			|| cheapest[id1].weight > weight)
 			cheapest[id1] = edge(u, v, weight);
-		    }
 		    if (cheapest[id2].weight == MAX
-			|| cheapest[id2].weight > weight) {
+			|| cheapest[id2].weight > weight)
 			cheapest[id2] = edge(u, v, weight);
-		    }
 		}
 	    }
 
-	    for (int ver = 0; ver < n; ver++) {
+	    for (int ver = 0; ver < n; ver++)
 		if (cheapest[ver].weight != MAX) {
 		    const auto &u = cheapest[ver].u;
 		    const auto &v = cheapest[ver].v;
@@ -101,7 +94,6 @@ template <typename T = int> struct boruvka {
 			tree_count--;
 		    }
 		}
-	    }
 	}
 	return mst;
     }
@@ -124,8 +116,7 @@ main() {
 	graph.add_edge(edge(u, v, w));
     }
 
-    for (const auto res = graph.mst(); const auto &[u, v, weight] : res) {
+    for (const auto res = graph.mst(); const auto &[u, v, weight] : res)
 	std::cout << u << " -> " << v << " with weight " << weight << "\n";
-    }
     return 0;
 }

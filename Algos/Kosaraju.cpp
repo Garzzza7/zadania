@@ -32,14 +32,11 @@ template <typename T = int> struct kosaraju {
 
     void
     scc() {
-	for (int i = 0; i < n; i++) {
-	    if (!visited[i]) {
+	for (int i = 0; i < n; i++)
+	    if (!visited[i])
 		dfs_1(i);
-	    }
-	}
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++)
 	    visited[i] = false;
-	}
 	while (!stack.empty()) {
 	    int v = stack.top();
 	    stack.pop();
@@ -53,11 +50,9 @@ template <typename T = int> struct kosaraju {
     void
     dfs_1(const T v) {
 	visited[v] = true;
-	for (const auto &vv : adj[v]) {
-	    if (!visited[vv]) {
+	for (const auto &vv : adj[v])
+	    if (!visited[vv])
 		dfs_1(vv);
-	    }
-	}
 	stack.push(v);
     }
 
@@ -65,11 +60,9 @@ template <typename T = int> struct kosaraju {
     dfs_2(const T v) {
 	total[cnt_Components].push_back(v);
 	visited[v] = true;
-	for (const auto &vv : rev_adj[v]) {
-	    if (!visited[vv]) {
+	for (const auto &vv : rev_adj[v])
+	    if (!visited[vv])
 		dfs_2(vv);
-	    }
-	}
     }
 };
 
@@ -92,9 +85,8 @@ main() {
     std::cout << kosaraju.total.size() << "\n";
     for (const auto &[fst, snd] : kosaraju.total) {
 	std::cout << snd.size() << " ";
-	for (const auto &aa : snd) {
+	for (const auto &aa : snd)
 	    std::cout << aa << " ";
-	}
 	std::cout << "\n";
     }
 
