@@ -2,7 +2,7 @@
 #include <vector>
 
 void
-query(const int x1, const int y1, const int x2, const int y2,
+query(const int &x1, const int &y1, const int &x2, const int &y2,
       const std::vector<std::vector<int>> &prefsum) {
     std::cout << prefsum[x2][y2] - prefsum[x1 - 1][y2] - prefsum[x2][y1 - 1]
 		     + prefsum[x1 - 1][y1 - 1]
