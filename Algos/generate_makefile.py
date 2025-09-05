@@ -176,20 +176,20 @@ for cpp_file in cpp_files:
         + ")"
         + '" == "$(cat '
         + cpp_file[:-4]
-        + '.test)" ]; then\n    printf "${green}'
+        + '.test)" ]; then\n            printf "${green}'
         + cpp_file[:-4]
-        + ' Passed.${normal}\\n"\nelse\n    printf "${red}'
+        + ' Passed.${normal}\\n"\nelse\n            printf "${red}'
         + cpp_file[:-4]
         + ' Failed.\\n"\n'
-        + '    printf "${red} Got:\\n"\n'
-        + '    printf "${red}$(./'
+        + '            printf "${red} Got:\\n"\n'
+        + '            printf "${red}$(./'
         + cpp_file[:-4]
         + ".sol < "
         + cpp_file[:-4]
         + ".txt"
         + ')\\n"\n'
-        + '    printf "${red} Should be:\\n"\n'
-        + '    printf "${red}$(cat '
+        + '            printf "${red} Should be:\\n"\n'
+        + '            printf "${red}$(cat '
         + cpp_file[:-4]
         + '.test)${normal}\\n"'
         + "\nfi\n\n"
