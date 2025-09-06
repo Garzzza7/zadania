@@ -1,7 +1,8 @@
-// WIP
 #include <iostream>
 #include <string>
 #include <vector>
+
+// TODO: finish this
 
 struct ukonnen {
     struct edge {
@@ -11,8 +12,14 @@ struct ukonnen {
 	int active_edge;
 	int active_length;
 	int remainder;
+	void
+	edge() {
+	}
     };
     std::vector<edge> nodes;
+    void
+    ukonnen() {
+    }
 };
 
 int

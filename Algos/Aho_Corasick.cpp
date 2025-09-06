@@ -62,7 +62,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	}
 
 	while (!q.empty()) {
-	    int id = q.front();
+	    const int id = q.front();
 	    q.pop();
 
 	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {

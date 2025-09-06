@@ -571,6 +571,16 @@ else
             printf "${red}$(cat Rolling_Hash.test)${normal}\n"
 fi
 
+if [ "$(./SPFA.sol < SPFA.txt)" == "$(cat SPFA.test)" ]; then
+            printf "${green}SPFA Passed.${normal}\n"
+else
+            printf "${red}SPFA Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./SPFA.sol < SPFA.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat SPFA.test)${normal}\n"
+fi
+
 if [ "$(./Sattoro_shuffle.sol < Sattoro_shuffle.txt)" == "$(cat Sattoro_shuffle.test)" ]; then
             printf "${green}Sattoro_shuffle Passed.${normal}\n"
 else
@@ -689,6 +699,16 @@ else
             printf "${red}$(./Trie.sol < Trie.txt)\n"
             printf "${red} Should be:\n"
             printf "${red}$(cat Trie.test)${normal}\n"
+fi
+
+if [ "$(./Ukonnen.sol < Ukonnen.txt)" == "$(cat Ukonnen.test)" ]; then
+            printf "${green}Ukonnen Passed.${normal}\n"
+else
+            printf "${red}Ukonnen Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Ukonnen.sol < Ukonnen.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Ukonnen.test)${normal}\n"
 fi
 
 if [ "$(./Z_function.sol < Z_function.txt)" == "$(cat Z_function.test)" ]; then
