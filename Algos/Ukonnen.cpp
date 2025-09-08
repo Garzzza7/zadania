@@ -6,20 +6,16 @@
 
 struct ukonnen {
     struct edge {
-	int from;
-	int to;
-	int active_node;
-	int active_edge;
-	int active_length;
-	int remainder;
-	void
-	edge() {
-	}
+	int from{};
+	int to{};
+	int active_node{};
+	int active_edge{};
+	int active_length{};
+	int remainder{};
+	edge() = default;
     };
     std::vector<edge> nodes;
-    void
-    ukonnen() {
-    }
+    ukonnen() = default;
 };
 
 int

@@ -21,8 +21,8 @@ spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj,
 	qed[start] = false;
 
 	for (const auto &e : adj[curr]) {
-	    const auto t = e.first;
-	    const auto w = e.second;
+	    const auto &t = e.first;
+	    const auto &w = e.second;
 	    if (distances[curr] + w < distances[t]) {
 		distances[t] = distances[curr] + w;
 		if (!qed[t]) {
