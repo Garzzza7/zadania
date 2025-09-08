@@ -641,6 +641,16 @@ else
             printf "${red}$(cat Sparse_Table.test)${normal}\n"
 fi
 
+if [ "$(./Subsets.sol < Subsets.txt)" == "$(cat Subsets.test)" ]; then
+            printf "${green}Subsets Passed.${normal}\n"
+else
+            printf "${red}Subsets Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Subsets.sol < Subsets.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Subsets.test)${normal}\n"
+fi
+
 if [ "$(./TEMPLATE.sol < TEMPLATE.txt)" == "$(cat TEMPLATE.test)" ]; then
             printf "${green}TEMPLATE Passed.${normal}\n"
 else

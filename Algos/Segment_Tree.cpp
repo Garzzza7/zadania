@@ -83,8 +83,8 @@ main() {
     std::cin >> n;
     std::vector<long long> init(n);
     ram_seg_tree<long long> st(n);
-    for (int i = 0; i < n; i++)
-	std::cin >> init[i];
+    for (auto &&v : init)
+	std::cin >> v;
     st.build(init);
     for (const auto &a : st.vec)
 	std::cout << a << " ";
