@@ -1,4 +1,3 @@
-// FIXME: fix this bs
 use std::io::{self};
 
 fn z_function(s: &str) -> Vec<usize> {
@@ -26,13 +25,7 @@ fn main() {
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
 
-    let t: usize = match input.trim().parse() {
-        Ok(val) => val,
-        Err(_) => {
-            eprintln!("ERROR");
-            return;
-        }
-    };
+    let t: usize = input.trim().parse().unwrap();
 
     for _ in 0..t {
         input.clear();

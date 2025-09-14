@@ -9,13 +9,22 @@
 #include <vector>
 
 #define sz(vec) (static_cast<int>((vec).size()))
-#define all(vec) vec.begin(), vec.end()
+#define all(vec) (vec.begin(), vec.end())
 
 using ll = long long;
 using u128 = __uint128_t;
 
 void
 solve() {
+    int n, m, x, y;
+    std::cin >> n >> m >> x >> y;
+    std::vector<int> h(n);
+    std::vector<int> v(m);
+    for (auto &&vv : h)
+	std::cin >> vv;
+    for (auto &&vv : v)
+	std::cin >> vv;
+    std::cout << n + m << "\n";
 }
 
 int

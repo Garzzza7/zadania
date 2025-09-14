@@ -16,6 +16,17 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    std::string s;
+    std::cin >> s;
+    char last = ' ';
+    for (const auto &c : s) {
+	if (c == last) {
+	    std::cout << 1 << "\n";
+	    return;
+	}
+	last = c;
+    }
+    std::cout << sz(s) << "\n";
 }
 
 int

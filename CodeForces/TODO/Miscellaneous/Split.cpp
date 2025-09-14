@@ -16,6 +16,11 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    int n, k;
+    std::cin >> n >> k;
+    std::vector<int> vec(n);
+    for (auto &&v : vec)
+	std::cin >> v;
 }
 
 int

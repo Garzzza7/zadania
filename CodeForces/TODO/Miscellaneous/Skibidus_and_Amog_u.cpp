@@ -16,6 +16,12 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    std::string w;
+    std::cin >> w;
+    const int n = sz(w);
+    for (int i = 0; i < n - 2; i++)
+	std::cout << w[i];
+    std::cout << "i\n";
 }
 
 int
