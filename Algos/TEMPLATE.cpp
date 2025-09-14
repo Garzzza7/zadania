@@ -273,7 +273,7 @@ printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) {
 }
 
 template <typename T>
-constexpr int
+inline constexpr int
 sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
@@ -289,6 +289,10 @@ using namespace __gnu_pbds;
 using ll = long long;
 using u128 = __uint128_t;
 
+void
+solve() {
+}
+
 int
 main() {
     std::cout << std::setprecision(10) << std::fixed;
@@ -302,10 +306,10 @@ main() {
     pls;
 #endif
 
-    int T{1};
-    std::cin >> T;
-    while (T--) {
-    }
+    int _{1};
+    std::cin >> _;
+    while (_--)
+	solve();
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();
