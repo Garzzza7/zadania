@@ -24,7 +24,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     std::vector<std::string> patterns;
     int root{'$' - BASE};
 
-    explicit aho_corasick() {
+    aho_corasick() {
 	nodes.emplace_back(node(root));
     }
 
