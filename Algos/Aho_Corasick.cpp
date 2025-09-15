@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+// tested on: https://judge.yosupo.jp/problem/aho_corasick
+
 template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     struct node {
 	std::vector<int> next;
@@ -12,6 +14,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	int output_link{-1};
 	int c;
 	int cnt_shares{0};
+	int parent{0};
 	explicit node(const int c_) : c(c_) {
 	    next.assign(CHAR_SIZE, -1);
 	}
@@ -37,6 +40,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 		nodes.emplace_back(node(c));
 	    }
 	    nodes[node_id].cnt_shares++;
+	    nodes[next_id].parent = node_id;
 	    node_id = next_id;
 	}
 	nodes[node_id].cnt_shares++;
@@ -64,21 +68,17 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	while (!q.empty()) {
 	    const int id = q.front();
 	    q.pop();
-
 	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
 		int child = nodes[id].next[i];
 		if (child == -1)
 		    continue;
-
 		int j = nodes[id].suffix_link;
 		while (j != -1 && nodes[j].next[i] == -1)
 		    j = nodes[j].suffix_link;
-
 		if (j == -1)
 		    nodes[child].suffix_link = 0;
 		else
 		    nodes[child].suffix_link = nodes[j].next[i];
-
 		q.push(child);
 	    }
 	}
@@ -87,11 +87,9 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     void
     build_output_links() {
 	std::queue<int> q;
-
 	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++)
 	    if (int child = nodes[0].next[i]; child != -1)
 		q.push(child);
-
 	while (!q.empty()) {
 	    int id = q.front();
 	    q.pop();
@@ -118,7 +116,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     }
 
     void
-    search(const std::string &word) {
+    search_connections(const std::string &word) {
 	int node_id{0};
 	for (int i = 0; i < static_cast<int>(word.size()); i++) {
 	    int c = word[i] - BASE;
@@ -129,13 +127,24 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	    if (nodes[node_id].next[c] != -1)
 		node_id = nodes[node_id].next[c];
 
-	    for (int iter = node_id; iter != -1;
-		 iter = nodes[iter].output_link) {
+	    for (int iter = node_id; iter != -1; iter = nodes[iter].output_link)
 		for (const auto &p : nodes[iter].accepting)
 		    std::cout << patterns[p] << " found at "
 			      << (i - patterns[p].size() + 1) << "\n";
-	    }
 	}
+    }
+
+    void
+    search_node(const std::string &word) {
+	int node_id{0};
+	for (char i : word) {
+	    int c = i - BASE;
+	    while (node_id != 0 && nodes[node_id].next[c] == -1)
+		node_id = nodes[node_id].suffix_link;
+	    if (nodes[node_id].next[c] != -1)
+		node_id = nodes[node_id].next[c];
+	}
+	std::cout << node_id << " ";
     }
 };
 
@@ -145,25 +154,30 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int T;
-    std::cin >> T;
-    while (T--) {
-	int n;
-	std::cin >> n;
+    int n;
+    std::cin >> n;
+    aho_corasick<26, 'a'> AC;
+    std::vector<std::string> strings(n);
 
-	aho_corasick<26, 'a'> AC;
-
-	for (int i = 0; i < n; i++) {
-	    std::string s;
-	    std::cin >> s;
-	    AC.insert(s);
-	}
-
-	std::string word;
-	std::cin >> word;
-	AC.build();
-	AC.search(word);
-	std::cout << "________________\n";
+    for (int i = 0; i < n; i++) {
+	std::string s;
+	std::cin >> s;
+	strings[i] = s;
+	AC.insert(s);
     }
+
+    std::string word;
+    std::cin >> word;
+    AC.build();
+
+    std::cout << AC.nodes.size() << "\n";
+    for (int i = 1; i < (int) AC.nodes.size(); i++)
+	std::cout << AC.nodes[i].parent << " " << AC.nodes[i].suffix_link
+		  << "\n";
+
+    for (const auto &c : strings)
+	AC.search_node(c);
+    std::cout << "\n";
+
     return 0;
 }
