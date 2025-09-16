@@ -92,16 +92,6 @@
 
 #define FAST 1
 
-[[nodiscard]] int
-random_l_to_r(const int &l, const int &r) {
-    /*std::random_device rd;*/
-    /*std::mt19937 rng(rd());*/
-    std::mt19937 rng(static_cast<uint32_t>(
-	std::chrono::steady_clock::now().time_since_epoch().count()));
-    std::uniform_int_distribution<> dist(l, r);
-    return dist(rng);
-}
-
 void
 rm_char(std::string &s, const char &c) {
     // std::erase(s, c);
@@ -261,15 +251,12 @@ y_combinator(Fun &&fun) {
 template <typename T>
 void
 printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) {
-    if (begin < 0) {
+    if (begin < 0)
 	begin ^= begin;
-    }
-    if (end < 0) {
+    if (end < 0)
 	end = static_cast<int>(v.size());
-    }
-    for (int i = begin; i < end; i++) {
+    for (int i = begin; i < end; i++)
 	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
-    }
 }
 
 template <typename T>
@@ -277,6 +264,35 @@ inline constexpr int
 sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
+
+// random number functions
+// https://codeforces.com/blog/entry/60442
+uint32_t
+rdrand32() {
+    uint32_t ret{0};
+    assert(__builtin_ia32_rdtscp(&ret));
+    return ret;
+}
+
+// asm version
+uint32_t
+rd() {
+    uint32_t ret{0};
+    asm volatile("rdrand %0" : "=a"(ret)::"cc");
+    return ret;
+}
+
+[[nodiscard]] int
+random_l_to_r(const int &l, const int &r) {
+    /*std::random_device rd;*/
+    /*std::mt19937 rng(rd());*/
+    std::mt19937 rng(static_cast<uint32_t>(
+	std::chrono::steady_clock::now().time_since_epoch().count()));
+    std::uniform_int_distribution<> dist(l, r);
+    return dist(rng);
+}
+
+// end of random number functions
 
 using namespace std;
 using namespace __gnu_pbds;
