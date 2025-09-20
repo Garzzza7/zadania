@@ -15,7 +15,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	int c;
 	int cnt_shares{0};
 	int parent{0};
-	explicit node(const int c_) : c(c_) {
+	node(const int c_) : c(c_) {
 	    next.assign(CHAR_SIZE, -1);
 	}
     };
@@ -93,13 +93,11 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	while (!q.empty()) {
 	    int id = q.front();
 	    q.pop();
-
 	    int u = nodes[id].suffix_link;
 	    if (nodes[u].is_accept)
 		nodes[id].output_link = u;
 	    else
 		nodes[id].output_link = nodes[u].output_link;
-
 	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
 		int child = nodes[id].next[i];
 		if (child == -1)
@@ -120,13 +118,10 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	int node_id{0};
 	for (int i = 0; i < static_cast<int>(word.size()); i++) {
 	    int c = word[i] - BASE;
-
 	    while (node_id != 0 && nodes[node_id].next[c] == -1)
 		node_id = nodes[node_id].suffix_link;
-
 	    if (nodes[node_id].next[c] != -1)
 		node_id = nodes[node_id].next[c];
-
 	    for (int iter = node_id; iter != -1; iter = nodes[iter].output_link)
 		for (const auto &p : nodes[iter].accepting)
 		    std::cout << patterns[p] << " found at "
@@ -137,7 +132,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     void
     search_node(const std::string &word) {
 	int node_id{0};
-	for (char i : word) {
+	for (const auto &i : word) {
 	    int c = i - BASE;
 	    while (node_id != 0 && nodes[node_id].next[c] == -1)
 		node_id = nodes[node_id].suffix_link;

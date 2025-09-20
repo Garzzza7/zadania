@@ -1,6 +1,7 @@
 *.out
 *.exe
 *.o
+*.hi
 *.app
 *.slo
 *.lo
