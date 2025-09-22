@@ -1,4 +1,4 @@
-use std::io::{self};
+use std::io;
 
 fn z_function(s: &str) -> Vec<usize> {
     let n = s.len();
