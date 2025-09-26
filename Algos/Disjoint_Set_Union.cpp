@@ -8,7 +8,7 @@ template <typename T = int> struct dsu {
     std::vector<T> size;
     std::vector<T> rank;
 
-    explicit dsu(const T _n)
+    dsu(const T _n)
 	: parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)),
 	  rank(std::vector<T>(_n, 0)) {
 	for (T i = 0; i < _n; i++)
@@ -16,14 +16,14 @@ template <typename T = int> struct dsu {
     }
 
     // This constructor moves input arrays.
-    // explicit dsu(std::vector<T> _parent, std::vector<T> _size,
-    //		 std::vector<T> _rank)
-    //	: parent(std::move(_parent)), size(std::move(_size)),
-    //	  rank(std::move(_rank)) {
-    // }
+    /*
+    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank)
+	: parent(std::move(_parent)), size(std::move(_size)),
+	  rank(std::move(_rank)) {
+    }
+    */
 
-    explicit dsu(std::vector<T> _parent, std::vector<T> _size,
-		 std::vector<T> _rank)
+    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank)
 	: parent(_parent), size(_size), rank(_rank) {
     }
 

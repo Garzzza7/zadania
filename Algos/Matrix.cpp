@@ -13,12 +13,12 @@ template <typename T> struct matrix {
     matrix &operator=(matrix &&) = default;
     ~matrix() = default;
 
-    explicit matrix(const std::vector<std::vector<T>> &in)
+    matrix(const std::vector<std::vector<T>> &in)
 	: m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())),
 	  mat(in) {
     }
 
-    explicit matrix(const int m, const int n)
+    matrix(const int m, const int n)
 	: m(m), n(n),
 	  mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
@@ -119,9 +119,8 @@ template <typename T> struct matrix {
     void
     print() {
 	for (const auto &vv : this->mat) {
-	    for (const auto &v : vv) {
+	    for (const auto &v : vv)
 		std::cout << v << " ";
-	    }
 	    std::cout << "\n";
 	}
     }

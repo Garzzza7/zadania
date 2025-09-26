@@ -32,7 +32,7 @@ struct cartesian_tree {
 	const T NEUTRAL_ELEMENT{INT32_MAX};
 	std::vector<std::vector<std::pair<T, T>>> matrix;
 	std::vector<T> bin_log;
-	explicit sparse_table(const std::vector<T> &_init)
+	sparse_table(const std::vector<T> &_init)
 	    : size(static_cast<int>(_init.size())) {
 	    bin_log.push_back(0);
 	    bin_log.push_back(0);

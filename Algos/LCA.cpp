@@ -9,7 +9,8 @@ struct lca {
 	int LOG{};
 	const T NEUTRAL_ELEMENT{INT32_MAX};
 	std::vector<std::vector<std::pair<T, T>>> matrix;
-	explicit sparse_table() = default;
+	sparse_table() = default;
+
 	sparse_table &
 	operator=(sparse_table &&rhs) noexcept {
 	    size = rhs.size;
@@ -17,8 +18,7 @@ struct lca {
 	    matrix = std::move(rhs.matrix);
 	    return *this;
 	}
-	explicit sparse_table(const std::vector<T> &_init,
-			      const std::vector<T> &_euler)
+	sparse_table(const std::vector<T> &_init, const std::vector<T> &_euler)
 	    : size(static_cast<int>(_init.size())),
 	      LOG(63 - __builtin_clzl(size) + 1) {
 
@@ -61,8 +61,7 @@ struct lca {
     std::vector<int> ids;
     sparse_table<> st;
 
-    explicit lca(const std::vector<std::vector<int>> &_adj)
-	: n((int) _adj.size()) {
+    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
 	ids.resize(n);
 	std::vector visited(n, false);
 

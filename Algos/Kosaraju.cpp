@@ -18,7 +18,7 @@ template <typename T = int> struct kosaraju {
 
     std::map<T, std::vector<T>> total;
 
-    explicit kosaraju(const T _n)
+    kosaraju(const T _n)
 	: n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
 	  rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
 	visited = std::vector<bool>(_n, false);

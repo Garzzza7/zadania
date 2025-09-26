@@ -18,7 +18,7 @@ struct tarjan_find_bridges {
     int visit_time{0};
     int edge_id{0};
 
-    explicit tarjan_find_bridges(int n, int m) {
+    tarjan_find_bridges(int n, int m) {
 	n++;
 	m++;
 	adj = std::vector(n, std::vector<edge>());

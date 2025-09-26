@@ -18,8 +18,7 @@ template <typename T = int> struct boruvka {
     std::vector<int> parent;
     std::vector<int> rank;
 
-    explicit boruvka(const int &_n)
-	: n(_n), MAX(std::numeric_limits<T>::max()) {
+    boruvka(const int &_n) : n(_n), MAX(std::numeric_limits<T>::max()) {
 	parent.assign(n, 0);
 	for (int i = 0; i < n; i++)
 	    parent[i] = i;

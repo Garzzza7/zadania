@@ -15,9 +15,9 @@ struct desopo_pape {
     std::vector<int> path;
     std::vector<int> distance;
     std::vector<int> type; // 0 - calculated , 1 - currently calculated
-    // 2 - yet to be calculated
+			   // 2 - yet to be calculated
 
-    explicit desopo_pape(const int n) {
+    desopo_pape(const int &n) {
 	adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
 	queue = std::deque<int>();
 	path = std::vector<int>(n + 1, -123);
@@ -37,7 +37,7 @@ struct desopo_pape {
     }
 
     void
-    run(const int start) {
+    run(const int &start) {
 	distance[start] = 0;
 	queue.push_back(start);
 	while (!queue.empty()) {
