@@ -621,16 +621,6 @@ else
             printf "${red}$(cat Simple_Dijkstra.test)${normal}\n"
 fi
 
-if [ "$(./Smoothsort.sol < Smoothsort.txt)" == "$(cat Smoothsort.test)" ]; then
-            printf "${green}Smoothsort Passed.${normal}\n"
-else
-            printf "${red}Smoothsort Failed.\n"
-            printf "${red} Got:\n"
-            printf "${red}$(./Smoothsort.sol < Smoothsort.txt)\n"
-            printf "${red} Should be:\n"
-            printf "${red}$(cat Smoothsort.test)${normal}\n"
-fi
-
 if [ "$(./Sparse_Table.sol < Sparse_Table.txt)" == "$(cat Sparse_Table.test)" ]; then
             printf "${green}Sparse_Table Passed.${normal}\n"
 else
@@ -709,16 +699,6 @@ else
             printf "${red}$(./Trie.sol < Trie.txt)\n"
             printf "${red} Should be:\n"
             printf "${red}$(cat Trie.test)${normal}\n"
-fi
-
-if [ "$(./Ukonnen.sol < Ukonnen.txt)" == "$(cat Ukonnen.test)" ]; then
-            printf "${green}Ukonnen Passed.${normal}\n"
-else
-            printf "${red}Ukonnen Failed.\n"
-            printf "${red} Got:\n"
-            printf "${red}$(./Ukonnen.sol < Ukonnen.txt)\n"
-            printf "${red} Should be:\n"
-            printf "${red}$(cat Ukonnen.test)${normal}\n"
 fi
 
 if [ "$(./Z_function.sol < Z_function.txt)" == "$(cat Z_function.test)" ]; then

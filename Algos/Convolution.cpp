@@ -421,9 +421,8 @@ conv(const std::vector<int> &a, const std::vector<int> &b) {
 	    c[i + j] += (T) a[i] * b[j] % MOD;
 	}
     }
-    for (auto &&k : c) {
+    for (auto &&k : c)
 	k %= MOD;
-    }
     return c;
 }
 
