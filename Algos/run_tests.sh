@@ -411,6 +411,16 @@ else
             printf "${red}$(cat Kth_Order_Statistics.test)${normal}\n"
 fi
 
+if [ "$(./Kuhn-Munkres.sol < Kuhn-Munkres.txt)" == "$(cat Kuhn-Munkres.test)" ]; then
+            printf "${green}Kuhn-Munkres Passed.${normal}\n"
+else
+            printf "${red}Kuhn-Munkres Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Kuhn-Munkres.sol < Kuhn-Munkres.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Kuhn-Munkres.test)${normal}\n"
+fi
+
 if [ "$(./LCA.sol < LCA.txt)" == "$(cat LCA.test)" ]; then
             printf "${green}LCA Passed.${normal}\n"
 else
