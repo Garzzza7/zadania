@@ -1,12 +1,23 @@
 #include <iostream>
 #include <vector>
 
+// https://codeforces.com/contest/1722/problem/E
+
 void
 query(const int &x1, const int &y1, const int &x2, const int &y2,
       const std::vector<std::vector<int>> &prefsum) {
     std::cout << prefsum[x2][y2] - prefsum[x1 - 1][y2] - prefsum[x2][y1 - 1]
 		     + prefsum[x1 - 1][y1 - 1]
 	      << "\n";
+}
+
+void
+build(const int &n, const int &m, std::vector<std::vector<int>> &prefsum,
+      const std::vector<std::vector<int>> &vec) {
+    for (int i = 1; i <= n; i++)
+	for (int j = 1; j <= m; j++)
+	    prefsum[i][j] += vec[i][j] + prefsum[i - 1][j] + prefsum[i][j - 1]
+			     - prefsum[i - 1][j - 1];
 }
 
 int
@@ -27,11 +38,7 @@ main() {
 	}
     }
 
-    for (int i = 1; i <= n; i++) {
-	for (int j = 1; j <= m; j++)
-	    prefsum[i][j] += vec[i][j] + prefsum[i - 1][j] + prefsum[i][j - 1]
-			     - prefsum[i - 1][j - 1];
-    }
+    build(n, m, prefsum, vec);
 
     int q;
     std::cin >> q;
