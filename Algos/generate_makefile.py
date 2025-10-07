@@ -40,7 +40,7 @@ makefile = open("Makefile", "w")
 
 makefile.write(warning)
 
-makefile.write(".PHONY: standard all force fast asm asmf llvm clean\n\n")
+makefile.write(".PHONY: standard all fast asm asmf llvm clean\n\n")
 makefile.write("FLAGS = " + flags + "\n\n")
 makefile.write("FAST_FLAGS = " + fast_flags + "\n\n")
 
@@ -76,10 +76,6 @@ for cpp_file in cpp_files:
         + ".sol"
         + "\n"
     )
-
-makefile.write("\nforce:\n")
-for cpp_file in cpp_files:
-    makefile.write(compiler_flags + cpp_file + " -o " + cpp_file[:-4] + ".sol" + "\n")
 
 makefile.write("\nfast:")
 for cpp_file in cpp_files:

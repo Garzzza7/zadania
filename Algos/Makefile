@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#
 ##################################################################################
 
-.PHONY: standard all force fast asm asmf llvm clean
+.PHONY: standard all fast asm asmf llvm clean
 
 FLAGS =  -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2
 
@@ -151,78 +151,6 @@ Tree_diameter.sol: Tree_diameter.cpp
 Trie.sol: Trie.cpp
 	g++ $(FLAGS) Trie.cpp -o Trie.sol
 Z_function.sol: Z_function.cpp
-	g++ $(FLAGS) Z_function.cpp -o Z_function.sol
-
-force:
-	g++ $(FLAGS) 2D_Prefix_Sum.cpp -o 2D_Prefix_Sum.sol
-	g++ $(FLAGS) Aho_Corasick.cpp -o Aho_Corasick.sol
-	g++ $(FLAGS) BFS.cpp -o BFS.sol
-	g++ $(FLAGS) Base_conversion.cpp -o Base_conversion.sol
-	g++ $(FLAGS) Bellman_Ford_Shortest_Path.cpp -o Bellman_Ford_Shortest_Path.sol
-	g++ $(FLAGS) Binary_Exponentiation.cpp -o Binary_Exponentiation.sol
-	g++ $(FLAGS) Binary_Lifting.cpp -o Binary_Lifting.sol
-	g++ $(FLAGS) Binary_Search.cpp -o Binary_Search.sol
-	g++ $(FLAGS) Binomial_Coefficient.cpp -o Binomial_Coefficient.sol
-	g++ $(FLAGS) Binomial_Theorem.cpp -o Binomial_Theorem.sol
-	g++ $(FLAGS) Bitonic_Sort.cpp -o Bitonic_Sort.sol
-	g++ $(FLAGS) Boruvka.cpp -o Boruvka.sol
-	g++ $(FLAGS) CRT.cpp -o CRT.sol
-	g++ $(FLAGS) Cartesian_tree.cpp -o Cartesian_tree.sol
-	g++ $(FLAGS) Convolution.cpp -o Convolution.sol
-	g++ $(FLAGS) Counting_Sort.cpp -o Counting_Sort.sol
-	g++ $(FLAGS) DEsopo_Pape.cpp -o DEsopo_Pape.sol
-	g++ $(FLAGS) DFS.cpp -o DFS.sol
-	g++ $(FLAGS) DP_Regex.cpp -o DP_Regex.sol
-	g++ $(FLAGS) Derangement.cpp -o Derangement.sol
-	g++ $(FLAGS) Difference_Array.cpp -o Difference_Array.sol
-	g++ $(FLAGS) Dijkstra.cpp -o Dijkstra.sol
-	g++ $(FLAGS) Disjoint_Set_Union.cpp -o Disjoint_Set_Union.sol
-	g++ $(FLAGS) Edmond_Karp_MaxFlow.cpp -o Edmond_Karp_MaxFlow.sol
-	g++ $(FLAGS) Endian.cpp -o Endian.sol
-	g++ $(FLAGS) Euclid_GCD_LCM.cpp -o Euclid_GCD_LCM.sol
-	g++ $(FLAGS) Euler_s_totient.cpp -o Euler_s_totient.sol
-	g++ $(FLAGS) Extended_Euclid_s_Algorithm.cpp -o Extended_Euclid_s_Algorithm.sol
-	g++ $(FLAGS) Factorize.cpp -o Factorize.sol
-	g++ $(FLAGS) FenwickTree.cpp -o FenwickTree.sol
-	g++ $(FLAGS) Find_Cycles_Undirected.cpp -o Find_Cycles_Undirected.sol
-	g++ $(FLAGS) Fisher_Yates.cpp -o Fisher_Yates.sol
-	g++ $(FLAGS) Flood_fill.cpp -o Flood_fill.sol
-	g++ $(FLAGS) Floor_Sum.cpp -o Floor_Sum.sol
-	g++ $(FLAGS) Floyd_Warshall.cpp -o Floyd_Warshall.sol
-	g++ $(FLAGS) KMP.cpp -o KMP.sol
-	g++ $(FLAGS) Kadane_s_Algorithm.cpp -o Kadane_s_Algorithm.sol
-	g++ $(FLAGS) Kosaraju.cpp -o Kosaraju.sol
-	g++ $(FLAGS) Kth_Order_Statistics.cpp -o Kth_Order_Statistics.sol
-	g++ $(FLAGS) Kuhn-Munkres.cpp -o Kuhn-Munkres.sol
-	g++ $(FLAGS) LCA.cpp -o LCA.sol
-	g++ $(FLAGS) Levenshtein_distance.cpp -o Levenshtein_distance.sol
-	g++ $(FLAGS) MEX.cpp -o MEX.sol
-	g++ $(FLAGS) MINTEMPLATE.cpp -o MINTEMPLATE.sol
-	g++ $(FLAGS) Matrix.cpp -o Matrix.sol
-	g++ $(FLAGS) Max_Heap.cpp -o Max_Heap.sol
-	g++ $(FLAGS) Merge_Sort.cpp -o Merge_Sort.sol
-	g++ $(FLAGS) Min_Heap.cpp -o Min_Heap.sol
-	g++ $(FLAGS) Modular_Arithmetic.cpp -o Modular_Arithmetic.sol
-	g++ $(FLAGS) Monotone_chain.cpp -o Monotone_chain.sol
-	g++ $(FLAGS) Next_permutation.cpp -o Next_permutation.sol
-	g++ $(FLAGS) Optimzed_Matrix.cpp -o Optimzed_Matrix.sol
-	g++ $(FLAGS) Priority_Queue.cpp -o Priority_Queue.sol
-	g++ $(FLAGS) Quick_Sort.cpp -o Quick_Sort.sol
-	g++ $(FLAGS) Rabin_Karp.cpp -o Rabin_Karp.sol
-	g++ $(FLAGS) Rolling_Hash.cpp -o Rolling_Hash.sol
-	g++ $(FLAGS) SPFA.cpp -o SPFA.sol
-	g++ $(FLAGS) Sattoro_shuffle.cpp -o Sattoro_shuffle.sol
-	g++ $(FLAGS) Segment_Tree.cpp -o Segment_Tree.sol
-	g++ $(FLAGS) Sieve_of_Eratosthenes.cpp -o Sieve_of_Eratosthenes.sol
-	g++ $(FLAGS) Simple_Dijkstra.cpp -o Simple_Dijkstra.sol
-	g++ $(FLAGS) Sparse_Table.cpp -o Sparse_Table.sol
-	g++ $(FLAGS) Subsets.cpp -o Subsets.sol
-	g++ $(FLAGS) TEMPLATE.cpp -o TEMPLATE.sol
-	g++ $(FLAGS) Tarjan_find_articulation.cpp -o Tarjan_find_articulation.sol
-	g++ $(FLAGS) Tarjan_find_bridges.cpp -o Tarjan_find_bridges.sol
-	g++ $(FLAGS) Ternary_Search.cpp -o Ternary_Search.sol
-	g++ $(FLAGS) Tree_diameter.cpp -o Tree_diameter.sol
-	g++ $(FLAGS) Trie.cpp -o Trie.sol
 	g++ $(FLAGS) Z_function.cpp -o Z_function.sol
 
 fast: f2D_Prefix_Sum.sol  fAho_Corasick.sol  fBFS.sol  fBase_conversion.sol  fBellman_Ford_Shortest_Path.sol  fBinary_Exponentiation.sol  fBinary_Lifting.sol  fBinary_Search.sol  fBinomial_Coefficient.sol  fBinomial_Theorem.sol  fBitonic_Sort.sol  fBoruvka.sol  fCRT.sol  fCartesian_tree.sol  fConvolution.sol  fCounting_Sort.sol  fDEsopo_Pape.sol  fDFS.sol  fDP_Regex.sol  fDerangement.sol  fDifference_Array.sol  fDijkstra.sol  fDisjoint_Set_Union.sol  fEdmond_Karp_MaxFlow.sol  fEndian.sol  fEuclid_GCD_LCM.sol  fEuler_s_totient.sol  fExtended_Euclid_s_Algorithm.sol  fFactorize.sol  fFenwickTree.sol  fFind_Cycles_Undirected.sol  fFisher_Yates.sol  fFlood_fill.sol  fFloor_Sum.sol  fFloyd_Warshall.sol  fKMP.sol  fKadane_s_Algorithm.sol  fKosaraju.sol  fKth_Order_Statistics.sol  fKuhn-Munkres.sol  fLCA.sol  fLevenshtein_distance.sol  fMEX.sol  fMINTEMPLATE.sol  fMatrix.sol  fMax_Heap.sol  fMerge_Sort.sol  fMin_Heap.sol  fModular_Arithmetic.sol  fMonotone_chain.sol  fNext_permutation.sol  fOptimzed_Matrix.sol  fPriority_Queue.sol  fQuick_Sort.sol  fRabin_Karp.sol  fRolling_Hash.sol  fSPFA.sol  fSattoro_shuffle.sol  fSegment_Tree.sol  fSieve_of_Eratosthenes.sol  fSimple_Dijkstra.sol  fSparse_Table.sol  fSubsets.sol  fTEMPLATE.sol  fTarjan_find_articulation.sol  fTarjan_find_bridges.sol  fTernary_Search.sol  fTree_diameter.sol  fTrie.sol  fZ_function.sol 

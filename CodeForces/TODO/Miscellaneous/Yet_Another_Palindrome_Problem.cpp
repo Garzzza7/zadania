@@ -16,21 +16,27 @@ using u128 = __uint128_t;
 
 void
 solve() {
-    std::string s;
-    std::cin >> s;
-    s = "R" + s + "R";
-    const int n = sz(s);
-    int maxi{-1};
-    int last{-1};
-    for (int i = 0; i < n; i++)
-	if (s[i] == 'R') {
-	    if (last == -1)
-		last = i;
-	    else
-		maxi = std::max(maxi, i - last);
-	    last = i;
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    std::vector<int> cnt(123123, 0);
+    std::vector<int> last(123123, -1);
+    for (int i = 0; i < n; i++) {
+	int v;
+	std::cin >> v;
+	cnt[v]++;
+	vec[i] = v;
+	if (cnt[v] == 3) {
+	    std::cout << "YES\n";
+	    return;
 	}
-    std::cout << maxi << "\n";
+	if (last[v] != -1 && last[v] != i - 1) {
+	    std::cout << "YES\n";
+	    return;
+	}
+	last[v] = i;
+    }
+    std::cout << "NO\n";
 }
 
 int
