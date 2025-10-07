@@ -9,6 +9,8 @@ stdenv.mkDerivation rec {
 		gnumake
 		cmake
 		gdb
+		black
+		clang-tools
 	  ];
   shellHook = ''
     echo "Time to practice you idiot."
