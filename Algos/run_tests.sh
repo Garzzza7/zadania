@@ -371,6 +371,16 @@ else
             printf "${red}$(cat Floyd_Warshall.test)${normal}\n"
 fi
 
+if [ "$(./Hashmap.sol < Hashmap.txt)" == "$(cat Hashmap.test)" ]; then
+            printf "${green}Hashmap Passed.${normal}\n"
+else
+            printf "${red}Hashmap Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Hashmap.sol < Hashmap.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Hashmap.test)${normal}\n"
+fi
+
 if [ "$(./KMP.sol < KMP.txt)" == "$(cat KMP.test)" ]; then
             printf "${green}KMP Passed.${normal}\n"
 else
