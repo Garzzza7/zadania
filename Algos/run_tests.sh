@@ -151,6 +151,16 @@ else
             printf "${red}$(cat CRT.test)${normal}\n"
 fi
 
+if [ "$(./Carmichael_function.sol < Carmichael_function.txt)" == "$(cat Carmichael_function.test)" ]; then
+            printf "${green}Carmichael_function Passed.${normal}\n"
+else
+            printf "${red}Carmichael_function Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Carmichael_function.sol < Carmichael_function.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Carmichael_function.test)${normal}\n"
+fi
+
 if [ "$(./Cartesian_tree.sol < Cartesian_tree.txt)" == "$(cat Cartesian_tree.test)" ]; then
             printf "${green}Cartesian_tree Passed.${normal}\n"
 else
