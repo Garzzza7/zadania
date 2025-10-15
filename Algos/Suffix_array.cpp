@@ -59,11 +59,16 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::string s;
-    std::cin >> s;
-    auto sa = suffix_array(s);
-    for (const auto &c : sa)
-	std::cout << c << "\n";
+    int t;
+    std::cin >> t;
+    while (t--) {
+	std::string s;
+	std::cin >> s;
+	auto sa = suffix_array(s);
+	for (const auto &c : sa)
+	    std::cout << c << "\n";
+	std::cout << "\n";
+    }
 
     return 0;
 }
