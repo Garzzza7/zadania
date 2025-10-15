@@ -62,7 +62,7 @@ template <typename T = int> struct dsu {
 		std::swap(a, b);
 	    parent[b] = a;
 	    if (rank[a] == rank[b])
-		++rank[a];
+		rank[a]++;
 	}
     }
 

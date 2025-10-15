@@ -671,6 +671,16 @@ else
             printf "${red}$(cat Subsets.test)${normal}\n"
 fi
 
+if [ "$(./Suffix_array.sol < Suffix_array.txt)" == "$(cat Suffix_array.test)" ]; then
+            printf "${green}Suffix_array Passed.${normal}\n"
+else
+            printf "${red}Suffix_array Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Suffix_array.sol < Suffix_array.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Suffix_array.test)${normal}\n"
+fi
+
 if [ "$(./TEMPLATE.sol < TEMPLATE.txt)" == "$(cat TEMPLATE.test)" ]; then
             printf "${green}TEMPLATE Passed.${normal}\n"
 else

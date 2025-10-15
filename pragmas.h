@@ -1,5 +1,6 @@
 #pragma once
 #pragma GCC target("avx")
+#pragma GCC target("avx2")
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("inline")
 #pragma GCC optimize("-fgcse")

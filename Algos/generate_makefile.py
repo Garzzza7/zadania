@@ -35,7 +35,7 @@ if subp.find("avx2") != -1:
 
 flags_var = " $(FLAGS) "
 
-fast_flags = " --std=c++20 -O0 "
+fast_flags = " --std=c++20 -O0"
 
 fast_flags_var = " $(FAST_FLAGS) "
 
