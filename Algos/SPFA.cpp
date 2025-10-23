@@ -8,7 +8,8 @@ void
 spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj,
      std::vector<int> &distances) {
     const int n = (int) adj.size();
-    std::fill(distances.begin(), distances.end(), 10000);
+    for (auto &&v : distances)
+	v = 10000;
     distances[start] = 0;
     std::queue<T> q;
     std::vector<bool> qed(n, false);

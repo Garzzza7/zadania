@@ -4,7 +4,7 @@
 template <typename T = int> struct sparse_table {
     int size;
     int LOG{};
-    const T NEUTRAL_ELEMENT{0};
+    static const T NEUTRAL_ELEMENT{0};
     std::vector<std::vector<T>> matrix;
     sparse_table(const std::vector<T> &_init)
 	: size(static_cast<int>(_init.size())),

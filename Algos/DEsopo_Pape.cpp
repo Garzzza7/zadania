@@ -14,7 +14,7 @@ struct desopo_pape {
     std::deque<int> queue;
     std::vector<int> path;
     std::vector<int> distance;
-    std::vector<int> type; // 0 - calculated , 1 - currently calculated
+    std::vector<int> type; // 0 - calculated , 1 - currently being calculated
 			   // 2 - yet to be calculated
 
     desopo_pape(const int &n) {

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 // BASED ON: https://cses.fi/problemset/task/1753/
 
 std::vector<int>

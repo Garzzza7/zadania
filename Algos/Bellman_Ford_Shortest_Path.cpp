@@ -12,9 +12,9 @@ bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges,
     for (int i = 1; i <= static_cast<int>(distances.size()) - 1; i++) {
 	bool done = false;
 	for (const auto &edge : edges) {
-	    T a = std::get<0>(edge);
-	    T b = std::get<1>(edge);
-	    T w = std::get<2>(edge);
+	    const auto &a = std::get<0>(edge);
+	    const auto &b = std::get<1>(edge);
+	    const auto &w = std::get<2>(edge);
 	    if (distances[a] < INT32_MAX)
 		if (distances[b] > distances[a] + w) {
 		    distances[b] = distances[a] + w;

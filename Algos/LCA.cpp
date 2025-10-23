@@ -7,7 +7,7 @@ struct lca {
     template <typename T = int> struct sparse_table {
 	int size{};
 	int LOG{};
-	const T NEUTRAL_ELEMENT{INT32_MAX};
+	static const T NEUTRAL_ELEMENT{INT32_MAX};
 	std::vector<std::vector<std::pair<T, T>>> matrix;
 	sparse_table() = default;
 
@@ -65,7 +65,7 @@ struct lca {
 	ids.resize(n);
 	std::vector visited(n, false);
 
-	auto dfs = [&](const auto &self, const int v, const int h = 0) -> void {
+	auto dfs = [&](const auto &self, const int v, const int h) -> void {
 	    visited[v] = true;
 	    heights.push_back(h);
 	    ids[v] = (int) euler.size();
@@ -77,7 +77,7 @@ struct lca {
 		    heights.push_back(h);
 		}
 	};
-	dfs(dfs, 0);
+	dfs(dfs, 0, 0);
     }
 
     void

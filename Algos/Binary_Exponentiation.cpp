@@ -34,8 +34,8 @@ main() {
 
     long long a, b;
     std::cin >> a >> b;
-    const long long res = binpow(a, b);
-    const long long mod_res = mod_binpow(a, b);
+    const auto res = binpow(a, b);
+    const auto mod_res = mod_binpow(a, b);
     std::cout << res << "\n";
     std::cout << mod_res << "\n";
 

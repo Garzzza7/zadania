@@ -85,6 +85,7 @@ shortestPath(int source, int target, std::vector<int> &path) {
     std::ranges::reverse(res.begin(), res.end());
     return res;
 }
+
 int
 main() {
     std::ios_base::sync_with_stdio(false);

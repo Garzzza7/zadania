@@ -22,8 +22,8 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj,
 	    continue;
 	visited[a] = 1;
 	for (const auto &v : adj[a]) {
-	    T b = v.first;
-	    T w = v.second;
+	    const T b = v.first;
+	    const T w = v.second;
 	    if (distances[a] + w < distances[b]) {
 		distances[b] = distances[a] + w;
 		path[b] = a;

@@ -21,19 +21,21 @@ floyd_warshall(std::vector<std::vector<T>> &adj_matrix,
 	    for (int j = 1; j <= n; j++)
 		if (dp[i][k] + dp[k][j] < dp[i][j])
 		    dp[i][j] = dp[i][k] + dp[k][j];
-    /*std::cout << paths[i][j] << " " << paths[i][k] << "\n";*/
-    /*paths[i][j] = paths[i][k];*/
+    /*
+    std::cout << paths[i][j] << " " << paths[i][k] << "\n";
+    paths[i][j] = paths[i][k];
 
-    /*   for (int k = 1; k <= n; k++) {*/
-    /*for (int i = 1; i <= n; i++) {*/
-    /*    for (int j = 1; j <= n; j++) {*/
-    /*	if (dp[i][k] + dp[k][j] < dp[i][j]) {*/
-    /*	    dp[i][j] = -INF;*/
-    /*	    paths[i][j] = -1;*/
-    /*	}*/
-    /*    }*/
-    /*}*/
-    /*   }*/
+    for (int k = 1; k <= n; k++) {
+	for (int i = 1; i <= n; i++) {
+	    for (int j = 1; j <= n; j++) {
+		if (dp[i][k] + dp[k][j] < dp[i][j]) {
+		    dp[i][j] = -INF;
+		    paths[i][j] = -1;
+		}
+	    }
+	}
+    }
+    */
 
     return dp;
 }

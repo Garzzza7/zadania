@@ -12,6 +12,7 @@ template <typename T> struct point {
     point() : x(0), y(0) {
     }
 
+    // just in case of a need of not using lambda
     bool
     operator<(const point &p) const {
 	return x < p.x || (x == p.x && y < p.y);

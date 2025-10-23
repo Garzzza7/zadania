@@ -5,13 +5,13 @@
 
 template <typename T>
 void
-fisher_yates_shuffle(std::vector<T> &array) {
-    for (int i = static_cast<int>(array.size()) - 1; i >= 1; i--) {
+fisher_yates_shuffle(std::vector<T> &vec) {
+    for (int i = static_cast<int>(vec.size()) - 1; i >= 1; i--) {
 	std::mt19937 rng(static_cast<uint32_t>(
 	    std::chrono::steady_clock::now().time_since_epoch().count()));
 	std::uniform_int_distribution<> dist(0, i);
 	const int j = dist(rng);
-	std::swap(array[i], array[j]);
+	std::swap(vec[i], vec[j]);
     }
 }
 

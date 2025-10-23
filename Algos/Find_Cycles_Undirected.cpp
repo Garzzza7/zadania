@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 // BASED ON https://cses.fi/problemset/task/1669/
+// kinda trash
+// TODO: improve
 #define ll long long
 #define sz(vec) (static_cast<int>((vec).size()))
 

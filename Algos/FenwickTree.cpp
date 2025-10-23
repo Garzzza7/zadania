@@ -2,6 +2,7 @@
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_b
+
 void
 update(std::vector<long long> &vec, const long long val, long long index) {
     while (index < static_cast<int>(vec.size())) {

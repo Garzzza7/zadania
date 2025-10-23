@@ -16,7 +16,7 @@ template <typename T = int> struct kosaraju {
 
     int cnt_Components{0};
 
-    std::map<T, std::vector<T>> total;
+    std::map<T, std::vector<T>> scc;
 
     kosaraju(const T _n)
 	: n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
@@ -25,13 +25,13 @@ template <typename T = int> struct kosaraju {
     }
 
     void
-    push(const T a, const T b) {
+    add_edge(const T &a, const T &b) {
 	adj[a].push_back(b);
 	rev_adj[b].push_back(a);
     }
 
     void
-    scc() {
+    calc_scc() {
 	for (int i = 0; i < n; i++)
 	    if (!visited[i])
 		dfs_1(i);
@@ -48,7 +48,7 @@ template <typename T = int> struct kosaraju {
     }
 
     void
-    dfs_1(const T v) {
+    dfs_1(const T &v) {
 	visited[v] = true;
 	for (const auto &vv : adj[v])
 	    if (!visited[vv])
@@ -57,8 +57,8 @@ template <typename T = int> struct kosaraju {
     }
 
     void
-    dfs_2(const T v) {
-	total[cnt_Components].push_back(v);
+    dfs_2(const T &v) {
+	scc[cnt_Components].push_back(v);
 	visited[v] = true;
 	for (const auto &vv : rev_adj[v])
 	    if (!visited[vv])
@@ -79,11 +79,11 @@ main() {
     while (m--) {
 	int a, b;
 	std::cin >> a >> b;
-	kosaraju.push(a, b);
+	kosaraju.add_edge(a, b);
     }
-    kosaraju.scc();
-    std::cout << kosaraju.total.size() << "\n";
-    for (const auto &[fst, snd] : kosaraju.total) {
+    kosaraju.calc_scc();
+    std::cout << kosaraju.scc.size() << "\n";
+    for (const auto &[fst, snd] : kosaraju.scc) {
 	std::cout << snd.size() << " ";
 	for (const auto &aa : snd)
 	    std::cout << aa << " ";

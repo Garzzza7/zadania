@@ -17,7 +17,8 @@ dfs(int vertex, std::vector<std::vector<int>> &adj,
 void
 iterative_dfs(int vertex, std::vector<std::vector<int>> &adj,
 	      std::vector<bool> &visited) {
-    std::fill(visited.begin(), visited.end(), false);
+    for (auto &&v : visited)
+	v = false;
     std::stack<int> stack;
     visited[vertex] = true;
     stack.push(vertex);

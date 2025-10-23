@@ -30,13 +30,13 @@ template <typename T> struct Modular {
 
     static int
     barrett(uint64_t a) {
-	auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
-	auto q = static_cast<uint32_t>(
+	const auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
+	const auto q = static_cast<uint32_t>(
 	    a
 	    - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a)
 				    >> 64)
 		  * mod());
-	auto res = static_cast<int32_t>(q - mod());
+	const auto res = static_cast<int32_t>(q - mod());
 	return res < 0 ? res + mod() : res;
     }
 

@@ -93,7 +93,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 	while (!q.empty()) {
 	    int id = q.front();
 	    q.pop();
-	    int u = nodes[id].suffix_link;
+	    const auto &u = nodes[id].suffix_link;
 	    if (nodes[u].is_accept)
 		nodes[id].output_link = u;
 	    else

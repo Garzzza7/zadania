@@ -6,11 +6,9 @@
 
 template <typename T> struct hashmap {
     std::vector<T> vec;
-    hashmap(const int &_n) {
-	vec = std::vector<T>(_n);
+    hashmap(const int &_n) : vec(std::vector<T>(_n)) {
     }
-    hashmap() {
-    }
+    hashmap() = default;
     void
     insert(const T elem) {
     }

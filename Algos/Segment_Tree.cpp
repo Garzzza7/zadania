@@ -3,7 +3,7 @@
 
 template <typename T = int> struct ram_seg_tree {
     int size{1};
-    const T NEUTRAL_ELEMENT{0};
+    static const T NEUTRAL_ELEMENT{0};
     std::vector<T> vec;
 
     ram_seg_tree(const int &_n) {

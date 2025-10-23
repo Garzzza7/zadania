@@ -5,11 +5,11 @@ int
 mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
     for (const auto &i : vec)
-	if (i <= static_cast<int>(vec.size()))
+	if (i <= (int) (vec.size()))
 	    f[i] = true;
-    int res = 0;
+    int res{0};
     while (f[res])
-	++res;
+	res++;
     return res;
 }
 

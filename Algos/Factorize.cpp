@@ -1,17 +1,6 @@
 #include <iostream>
 #include <vector>
 
-template <typename T_vector>
-void
-printarr(const T_vector &v, bool inc = false, int begin = -1, int end = -1) {
-    if (begin < 0)
-	begin ^= begin;
-    if (end < 0)
-	end = static_cast<int>(v.size());
-    for (int i = begin; i < end; i++)
-	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
-}
-
 template <typename T>
 std::vector<T>
 factorize(T n) {
@@ -35,7 +24,9 @@ main() {
     int n;
     std::cin >> n;
     std::cout << n << ": ";
-    printarr(factorize(n));
+    const auto vec = factorize(n);
+    for (const auto &v : vec)
+	std::cout << v << " ";
 
     return 0;
 }
