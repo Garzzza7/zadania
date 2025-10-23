@@ -1,6 +1,6 @@
 #include <iostream>
 
-// TODO: speed up
+// TODO: speed up , clarify
 
 template <typename T>
 T
@@ -8,10 +8,12 @@ carmichael(const T &n) {
     T k = 1, x, a, b, t, d = 1;
     for (; d;)
 	for (d = x = 0; a = ++x % n; d = t > 1 >= a ? k++ : d) {
-	    for (b = n; t = b; a = t)
+	    for (b = n; t = b; a = t) {
 		b = a % b;
-	    for (t = 1; b++ < k; t = t * x % n)
-		;
+	    }
+	    for (t = 1; b < k; t = t * x % n) {
+		b++;
+	    }
 	}
     return k;
 }
