@@ -1,5 +1,10 @@
-10
-0
-7
-16
-21
+rec = 10
+iter = 10
+rec = 0
+iter = 0
+rec = 7
+iter = 7
+rec = 16
+iter = 16
+rec = 21
+iter = 21

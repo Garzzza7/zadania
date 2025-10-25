@@ -1,32 +1,49 @@
 #include <algorithm>
+#include <cassert>
 #include <iostream>
+#include <stack>
 #include <vector>
-/* iterarive python version I did for codewars
- * TODO: convert this python code to cpp
-def flood_fill(array, x, y, new_value):
-    if y >= 0 and y < len(array[0]) and x >= 0 and x < len(array):
-	oldv = array[x][y]
-	stack = []
-	stack.append((x,y))
-	while(len(stack)>0):
-	    xx = stack[len(stack)-1][0]
-	    yy = stack[len(stack)-1][1]
-	    stack.pop()
-	    if yy >= 0 and yy < len(array[0]) and xx >= 0 and xx < len(array)
-and array[xx][yy]==oldv: array[xx][yy] = new_value stack.append((xx, yy - 1))
-		stack.append((xx - 1, yy))
-		stack.append((xx + 1, yy))
-		stack.append((xx,yy + 1))
-    return array
- */
-int n;
-int m;
+
+long long iter_sum{0ll};
+
+template <typename T>
+void
+iter_floodfill(std::vector<std::vector<T>> &vec,
+	       std::vector<std::vector<bool>> &visited, const int &x,
+	       const int &y) {
+    auto check = [&](const int &x, const int &y) -> bool {
+	return !((x < 0 || x >= (int) vec.size() || y < 0
+		  || y >= (int) vec[0].size())
+		 || vec[x][y] == 0 || visited[x][y]);
+    };
+    if (check(x, y)) {
+	std::stack<std::pair<int, int>> stack;
+	stack.emplace(x, y);
+	while (!stack.empty()) {
+	    const auto xx = stack.top().first;
+	    const auto yy = stack.top().second;
+	    stack.pop();
+	    if (check(xx, yy)) {
+		visited[xx][yy] = true;
+		iter_sum += vec[xx][yy];
+		stack.emplace(xx, yy + 1);
+		stack.emplace(xx, yy - 1);
+		stack.emplace(xx - 1, yy);
+		stack.emplace(xx + 1, yy);
+	    }
+	}
+    }
+}
+
 long long sum{0ll};
 
+template <typename T>
 void
-floodfill(std::vector<std::vector<int>> &vec,
-	  std::vector<std::vector<bool>> &visited, const int i, int j) {
-    if ((i < 0 || i >= n || j < 0 || j >= m) || vec[i][j] == 0 || visited[i][j])
+floodfill(std::vector<std::vector<T>> &vec,
+	  std::vector<std::vector<bool>> &visited, const int &i,
+	  const int &j) {
+    if ((i < 0 || i >= (int) vec.size() || j < 0 || j >= (int) vec[0].size())
+	|| vec[i][j] == 0 || visited[i][j])
 	return;
 
     visited[i][j] = true;
@@ -48,24 +65,39 @@ main() {
     int T;
     std::cin >> T;
     while (T--) {
+	int n, m;
 	std::cin >> n >> m;
 	std::vector<std::vector<int>> vec(n, std::vector<int>(m));
-	std::vector<std::vector<bool>> visited(n, std::vector<bool>(m));
+	std::vector<std::vector<bool>> visited(n, std::vector<bool>(m, false));
 	for (int i = 0; i < n; i++)
-	    for (int j = 0; j < m; j++) {
-		int aa;
-		std::cin >> aa;
-		vec[i][j] = aa;
-	    }
-	long long res = 0;
+	    for (int j = 0; j < m; j++)
+		std::cin >> vec[i][j];
+
+	long long res1{0};
 	for (int i = 0; i < n; i++)
 	    for (int j = 0; j < m; j++)
 		if (!visited[i][j]) {
 		    floodfill(vec, visited, i, j);
-		    res = std::max(res, sum);
+		    res1 = std::max(res1, sum);
 		    sum ^= sum;
 		}
-	std::cout << res << "\n";
+	std::cout << "rec = " << res1 << "\n";
+
+	for (auto &&vv : visited)
+	    for (auto &&v : vv)
+		v = false;
+
+	long long res2{0};
+	for (int i = 0; i < n; i++)
+	    for (int j = 0; j < m; j++)
+		if (!visited[i][j]) {
+		    iter_floodfill(vec, visited, i, j);
+		    res2 = std::max(res2, iter_sum);
+		    iter_sum ^= iter_sum;
+		}
+	std::cout << "iter = " << res2 << "\n";
+
+	assert(res1 == res2);
     }
 
     return 0;
