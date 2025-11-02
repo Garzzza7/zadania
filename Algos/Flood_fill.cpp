@@ -40,8 +40,7 @@ long long sum{0ll};
 template <typename T>
 void
 floodfill(std::vector<std::vector<T>> &vec,
-	  std::vector<std::vector<bool>> &visited, const int &i,
-	  const int &j) {
+	  std::vector<std::vector<bool>> &visited, const int &i, const int &j) {
     if ((i < 0 || i >= (int) vec.size() || j < 0 || j >= (int) vec[0].size())
 	|| vec[i][j] == 0 || visited[i][j])
 	return;

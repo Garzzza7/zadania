@@ -9,7 +9,7 @@ convert_base10_to_base(int num, int base) {
 	res.push_back(num % base);
 	num /= base;
     }
-    std::ranges::reverse(res.begin(), res.end());
+    std::reverse(res.begin(), res.end());
     return res;
 }
 

@@ -34,7 +34,7 @@ main() {
 	    std::cin >> v;
 	auto test = vec;
 	bitonic_sort(vec);
-	std::ranges::sort(test.begin(), test.end());
+	std::sort(test.begin(), test.end());
 	std::cout << (vec == test) << "\n";
     }
     return 0;

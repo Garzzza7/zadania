@@ -51,7 +51,7 @@ main() {
 	for (int i = 0; i < n; i++)
 	    std::cin >> vec[i];
 	auto test = vec;
-	std::ranges::sort(test.begin(), test.end());
+	std::sort(test.begin(), test.end());
 	merge_sort(vec, 0, n - 1);
 	std::cout << (test == vec) << "\n";
     }

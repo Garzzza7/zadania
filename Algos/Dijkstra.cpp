@@ -82,7 +82,7 @@ shortestPath(int source, int target, std::vector<int> &path) {
 	current = path[current];
     }
     res.push_back(source);
-    std::ranges::reverse(res.begin(), res.end());
+    std::reverse(res.begin(), res.end());
     return res;
 }
 

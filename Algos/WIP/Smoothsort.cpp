@@ -27,7 +27,7 @@ main() {
 	    std::cin >> v;
 	smoothsort(vec);
 	auto test = vec;
-	std::ranges::sort(test.begin(), test.end());
+	std::sort(test.begin(), test.end());
 	// std::cout << (test == vec) << "\n";
     }
 

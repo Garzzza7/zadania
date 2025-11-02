@@ -44,7 +44,7 @@ main() {
 	    std::cin >> v;
 	quick_sort(vec, 0, n - 1);
 	auto test = vec;
-	std::ranges::sort(test.begin(), test.end());
+	std::sort(test.begin(), test.end());
 	std::cout << (test == vec) << "\n";
     }
 

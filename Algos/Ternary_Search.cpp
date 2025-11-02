@@ -32,7 +32,7 @@ main() {
     std::vector<int> vec(n);
     for (auto &&v : vec)
 	std::cin >> v;
-    std::ranges::sort(vec.begin(), vec.end());
+    std::sort(vec.begin(), vec.end());
     std::cout << ternary_search(vec, 0, n - 1, 14) << "\n";
     std::cout << ternary_search(vec, 0, n - 1, 2) << "\n";
     std::cout << ternary_search(vec, 0, n - 1, 100) << "\n";

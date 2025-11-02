@@ -11,7 +11,7 @@ next_permutation(std::vector<int> &nums) {
 	    iter = i;
 
     if (iter == -1) {
-	std::ranges::reverse(nums.begin(), nums.end());
+	std::reverse(nums.begin(), nums.end());
 	return;
     }
 
@@ -21,7 +21,7 @@ next_permutation(std::vector<int> &nums) {
 	    iter2 = i;
 
     std::swap(nums[iter], nums[iter2]);
-    std::ranges::reverse(nums.begin() + iter + 1, nums.end());
+    std::reverse(nums.begin() + iter + 1, nums.end());
 }
 
 int
@@ -46,7 +46,7 @@ main() {
     for (const auto &v : vec)
 	std::cout << v << " ";
     std::cout << "\n";
-    std::ranges::next_permutation(og.begin(), og.end());
+    std::next_permutation(og.begin(), og.end());
     std::cout << (og == vec) << "\n";
 
     return 0;

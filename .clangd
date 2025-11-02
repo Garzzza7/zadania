@@ -3,7 +3,7 @@ Diagnostics:
   # Suppress: '*'
   ClangTidy:
     Add: [modernize* , performance* , cppcoreguidelines*]
-    Remove: [modernize-use-trailing-return-type , readability-magic-numbers , cppcoreguidelines-init-variables , cppcoreguidelines-avoid-magic-numbers]
+    Remove: [modernize-use-trailing-return-type , modernize-use-ranges , readability-magic-numbers , cppcoreguidelines-init-variables , cppcoreguidelines-avoid-magic-numbers]
     FastCheckFilter: Strict
 Formatting:
   InlayHints:
