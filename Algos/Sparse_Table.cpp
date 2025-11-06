@@ -27,7 +27,7 @@ template <typename T = int> struct sparse_table {
     }
 
     T
-    query(int L, const int R) {
+    query(int L, const int &R) {
 	T res = NEUTRAL_ELEMENT;
 	for (int i = LOG; i >= 0; i--)
 	    if (1 << i <= R - L + 1) {
