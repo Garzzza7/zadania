@@ -302,6 +302,22 @@ using namespace __gnu_pbds;
 [[maybe_unused]] static constexpr double pi{std::numbers::pi};
 [[maybe_unused]] static constexpr int mod{1000000007};
 
+// concepts
+template <typename T>
+concept LT = requires(T x) { x < x; };
+
+template <typename T>
+concept GT = requires(T x) { x > x; };
+
+template <typename T>
+concept EQ = requires(T x) { x == x; };
+
+template <typename T>
+concept PB = requires(T vec, T::value_type val) { vec.push_back(val); };
+
+template <typename T>
+concept INS = requires(T vec, T::value_type val) { vec.insert(val); };
+
 using ll = long long;
 using u128 = __uint128_t;
 

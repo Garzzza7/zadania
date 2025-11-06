@@ -4,9 +4,9 @@
 
 .PHONY: standard all fast asm asmf llvm clean
 
-FLAGS =  -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs
+FLAGS =  -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2
 
-FAST_FLAGS =  --std=c++20 -O0
+FAST_FLAGS =  -g0 --std=c++20 -O0
 
 standard: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  Base_conversion.sol  Bellman_Ford_Shortest_Path.sol  Binary_Exponentiation.sol  Binary_Lifting.sol  Binary_Search.sol  Binomial_Coefficient.sol  Binomial_Theorem.sol  Bitonic_Sort.sol  Boruvka.sol  CRT.sol  Carmichael_function.sol  Cartesian_tree.sol  Convolution.sol  Counting_Sort.sol  DEsopo_Pape.sol  DFS.sol  DP_Regex.sol  Derangement.sol  Difference_Array.sol  Dijkstra.sol  Disjoint_Set_Union.sol  Edmond_Karp_MaxFlow.sol  Endian.sol  Euclid_GCD_LCM.sol  Euler_s_totient.sol  Extended_Euclid_s_Algorithm.sol  Factorize.sol  FenwickTree.sol  Find_Cycles_Undirected.sol  Fisher_Yates.sol  Flood_fill.sol  Floor_Sum.sol  Floyd_Warshall.sol  Hashmap.sol  KMP.sol  Kadane_s_Algorithm.sol  Kosaraju.sol  Kth_Order_Statistics.sol  Kuhn-Munkres.sol  LCA.sol  Levenshtein_distance.sol  MEX.sol  MINTEMPLATE.sol  Matrix.sol  Max_Heap.sol  Merge_Sort.sol  Min_Heap.sol  Modular_Arithmetic.sol  Monotone_chain.sol  Next_permutation.sol  Optimzed_Matrix.sol  Priority_Queue.sol  Quick_Sort.sol  Rabin_Karp.sol  Rolling_Hash.sol  SPFA.sol  Sattoro_shuffle.sol  Segment_Tree.sol  Sieve_of_Eratosthenes.sol  Simple_Dijkstra.sol  Sparse_Table.sol  Subsets.sol  Suffix_array.sol  TEMPLATE.sol  Tarjan_find_articulation.sol  Tarjan_find_bridges.sol  Ternary_Search.sol  Tree_diameter.sol  Trie.sol  Z_function.sol 
 
