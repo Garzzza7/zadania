@@ -20,45 +20,43 @@ using str = std::string;
 
 void
 solve() {
-    i32 n, s;
-    std::cin >> n >> s;
+    i32 n;
+    std::cin >> n;
     std::vector vec(n, 0);
-    i32 sum{0};
-    for (auto &&v : vec) {
+    for (auto &&v : vec)
 	std::cin >> v;
-	sum += v;
-    }
-    if (sum < s) {
-	std::cout << -1 << "\n";
-	return;
-    }
-    if (sum == s) {
-	std::cout << 0 << "\n";
-	return;
-    }
-    std::vector pref(n, 0);
-    std::vector suff(n, 0);
-    pref[0] = vec[0];
-    suff[0] = vec[n - 1];
-    for (i32 i = 1; i < n; i++) {
-	pref[i] = pref[i - 1] + vec[i];
-	suff[i] = suff[i - 1] + vec[n - 1 - i];
+    i32 res{1};
+    std::vector dp(n, 1);
+    dp[0] = 1;
+    for (i32 i = 1; i < n - 1; i++) {
+	if (vec[i] == vec[i - 1] and vec[i] == vec[i + 1]) {
+	    dp[i] = dp[i - 1];
+	} else if (vec[i] != vec[i - 1]) {
+	    if (dp[i - 1] == 1) {
+		dp[i] = 2;
+	    } else {
+		dp[i] = 1;
+	    }
+	}
+	res = std::max(res, dp[i]);
     }
 
-    i32 res{INT32_MAX};
-
-    i32 diff = sum - s;
-
-    for (i32 l = 0; l < n; l++) {
-	i32 tar = diff - pref[l];
-	if (tar >= 0) {
-	    i32 r = std::lower_bound(suff.begin(), suff.end() - l - 1, tar)
-		    - suff.begin();
-	    res = std::min(res, l + r + 1);
+    if (vec[n - 1] != vec[n - 2] and vec[n - 1] != vec[0]) {
+	dp[n - 1] = 3;
+    } else if (vec[n - 1] != vec[n - 2]) {
+	if (dp[n - 2] == 1) {
+	    dp[n - 1] = 2;
+	} else {
+	    dp[n - 1] = 1;
 	}
     }
 
+    res = std::max(res, dp[n - 1]);
+
     std::cout << res << "\n";
+    for (const auto &v : dp)
+	std::cout << v << " ";
+    std::cout << "\n";
 }
 
 int

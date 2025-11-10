@@ -20,44 +20,28 @@ using str = std::string;
 
 void
 solve() {
-    i32 n, s;
-    std::cin >> n >> s;
+    i32 n, k;
+    std::cin >> n >> k;
     std::vector vec(n, 0);
-    i32 sum{0};
-    for (auto &&v : vec) {
+    std::vector cnt(n, 0);
+    for (auto &&v : vec)
 	std::cin >> v;
-	sum += v;
-    }
-    if (sum < s) {
-	std::cout << -1 << "\n";
-	return;
-    }
-    if (sum == s) {
-	std::cout << 0 << "\n";
-	return;
-    }
-    std::vector pref(n, 0);
-    std::vector suff(n, 0);
-    pref[0] = vec[0];
-    suff[0] = vec[n - 1];
     for (i32 i = 1; i < n; i++) {
-	pref[i] = pref[i - 1] + vec[i];
-	suff[i] = suff[i - 1] + vec[n - 1 - i];
+	cnt[i] = (vec[i] * 2) > vec[i - 1];
     }
+    i32 res{0};
 
-    i32 res{INT32_MAX};
-
-    i32 diff = sum - s;
-
-    for (i32 l = 0; l < n; l++) {
-	i32 tar = diff - pref[l];
-	if (tar >= 0) {
-	    i32 r = std::lower_bound(suff.begin(), suff.end() - l - 1, tar)
-		    - suff.begin();
-	    res = std::min(res, l + r + 1);
-	}
+    i32 curr{0};
+    for (i32 i = 0; i < k; i++) {
+	curr += cnt[i];
     }
-
+    i32 l{0};
+    res += curr == k;
+    for (i32 r = k; r < n; r++) {
+	curr -= cnt[l++];
+	curr += cnt[r];
+	res += curr == k;
+    }
     std::cout << res << "\n";
 }
 
