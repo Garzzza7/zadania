@@ -12,7 +12,6 @@
 #define all(vec) vec.begin(), vec.end()
 
 using ll = long long;
-using u128 = __uint128_t;
 
 void
 solve() {

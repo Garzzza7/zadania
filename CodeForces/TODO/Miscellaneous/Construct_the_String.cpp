@@ -22,6 +22,21 @@ using u8 = char;
 
 void
 solve() {
+    i32 n, a, b;
+    std::cin >> n >> a >> b;
+    str res;
+    str pat(b, 'a');
+    for (i32 i = 0; i < b; i++) {
+	pat[i] = 'a' + i;
+    }
+    while (sz(res) < n) {
+	res += pat;
+    }
+
+    for (i32 i = 0; i < n; i++) {
+	std::cout << res[i];
+    }
+    std::cout << "\n";
 }
 
 int

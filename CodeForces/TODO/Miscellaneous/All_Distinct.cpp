@@ -1,6 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -11,22 +12,28 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
+using u128 = __uint128_t;
+using i64 = long long;
+using u64 = unsigned long long;
+using i32 = int;
+using u32 = unsigned int;
+using str = std::string;
+
 void
 solve() {
-    int n;
+    i32 n;
     std::cin >> n;
-
-    std::string s;
-    std::getline(std::cin, s);
-    std::getline(std::cin, s);
-    int res = 0;
-    auto check = [&](char c) -> bool { return (c >= '0') and (c <= '9'); };
-    for (const auto &c : s) {
-	if (check(c)) {
-	    res += c - '0';
-	}
+    std::set<int> cnt;
+    for (i32 i = 0; i < n; i++) {
+	int v;
+	std::cin >> v;
+	cnt.insert(v);
     }
-    std::cout << res << "\n";
+    if (sz(cnt) % 2 == n % 2) {
+	std::cout << sz(cnt) << "\n";
+    } else {
+	std::cout << sz(cnt) - 1 << "\n";
+    }
 }
 
 int
@@ -36,6 +43,7 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--)
 	solve();
 

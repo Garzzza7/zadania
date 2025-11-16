@@ -18,10 +18,26 @@ using u64 = unsigned long long;
 using i32 = int;
 using u32 = unsigned int;
 using str = std::string;
-using u8 = char;
 
 void
 solve() {
+    i32 n, k;
+    std::cin >> n >> k;
+    std::vector vec(n, 0);
+    std::set<i32> s;
+    for (auto &&v : vec) {
+	std::cin >> v;
+	s.insert(v);
+    }
+    i32 mini{INT32_MAX};
+    for (const auto &v : s) {
+	i32 buff{0};
+	for (const auto &vv : vec) {
+	    buff += std::abs(v - vv);
+	}
+	mini = std::min(mini, buff);
+    }
+    std::cout << mini << "\n";
 }
 
 int
@@ -31,7 +47,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
 	solve();
 

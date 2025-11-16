@@ -11,21 +11,21 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
+using u128 = __uint128_t;
+using i64 = long long;
+using u64 = unsigned long long;
+using i32 = int;
+using u32 = unsigned int;
+using str = std::string;
+
 void
 solve() {
-    int n;
-    std::cin >> n;
-
-    std::string s;
-    std::getline(std::cin, s);
-    std::getline(std::cin, s);
-    int res = 0;
-    auto check = [&](char c) -> bool { return (c >= '0') and (c <= '9'); };
-    for (const auto &c : s) {
-	if (check(c)) {
-	    res += c - '0';
-	}
-    }
+    i32 a, b, c, d;
+    std::cin >> a >> b >> c >> d;
+    int res{0};
+    res += a < b;
+    res += a < c;
+    res += a < d;
     std::cout << res << "\n";
 }
 
@@ -36,6 +36,7 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--)
 	solve();
 

@@ -22,6 +22,19 @@ using u8 = char;
 
 void
 solve() {
+    i32 n;
+    std::cin >> n;
+    std::vector<i32> vec(n);
+    std::vector<i32> cnt(n + 1, 0);
+    std::set<i32> s;
+    for (auto &&v : vec) {
+	std::cin >> v;
+	cnt[v]++;
+	s.insert(v);
+    }
+    i32 maxi = *std::max_element(all(cnt));
+    std::cout << std::max(std::min(maxi, sz(s) - 1), std::min(maxi - 1, sz(s)))
+	      << "\n";
 }
 
 int

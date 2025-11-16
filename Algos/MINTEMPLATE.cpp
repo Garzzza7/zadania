@@ -1,6 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -17,6 +18,7 @@ using u64 = unsigned long long;
 using i32 = int;
 using u32 = unsigned int;
 using str = std::string;
+using u8 = char;
 
 void
 solve() {

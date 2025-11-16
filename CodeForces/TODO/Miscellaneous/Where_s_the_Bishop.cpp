@@ -1,7 +1,6 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
-#include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -18,10 +17,29 @@ using u64 = unsigned long long;
 using i32 = int;
 using u32 = unsigned int;
 using str = std::string;
-using u8 = char;
 
 void
 solve() {
+    std::vector vec(8, std::vector<char>(8));
+    for (i32 i = 0; i < 8; i++) {
+	for (i32 j = 0; j < 8; j++) {
+	    std::cin >> vec[i][j];
+	}
+    }
+
+    for (i32 i = 1; i < 7; i++) {
+	for (i32 j = 1; j < 7; j++) {
+	    if (vec[i][j] == '#') {
+		if (vec[i - 1][j - 1] == '#' and vec[i - 1][j] == '.'
+		    and vec[i - 1][j + 1] == '#' and vec[i][j - 1] == '.'
+		    and vec[i][j + 1] == '.' and vec[i + 1][j - 1] == '#'
+		    and vec[i + 1][j] == '.' and vec[i + 1][j + 1] == '#') {
+		    std::cout << i + 1 << " " << j + 1 << "\n";
+		    return;
+		}
+	    }
+	}
+    }
 }
 
 int
