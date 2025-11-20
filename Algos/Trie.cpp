@@ -49,8 +49,9 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
 	for (const auto &i : word) {
 	    int c = i - BASE;
 	    auto &next_id = nodes[node_id].next[c];
-	    if (next_id == -1)
+	    if (next_id == -1) {
 		return false;
+	    }
 	    node_id = next_id;
 	}
 	return check_prefix ? true : !nodes[node_id].accepting.empty();

@@ -5,7 +5,7 @@ struct tarjan_find_bridges {
     struct edge {
 	int vertex;
 	int id;
-	edge(const int vv, const int idd) : vertex(vv), id(idd) {
+	edge(const int _vv, const int _idd) : vertex(_vv), id(_idd) {
 	}
     };
 
@@ -46,31 +46,36 @@ struct tarjan_find_bridges {
 
     void
     dfs(const int p, const int v) {
-	if (visited[v])
+	if (visited[v]) {
 	    return;
+	}
 	visited[v] = true;
 	low[v] = visit_time;
 	entry_time[v] = visit_time;
 	visit_time++;
-	for (auto &&e : adj[v]) {
-	    if (e.vertex == p)
+	for (const auto &e : adj[v]) {
+	    if (e.vertex == p) {
 		continue;
+	    }
 	    if (visited[e.vertex]) {
 		low[v] = std::min(low[v], entry_time[e.vertex]);
 	    } else {
 		dfs(v, e.vertex);
 		low[v] = std::min(low[v], low[e.vertex]);
-		if (low[e.vertex] > entry_time[v])
+		if (low[e.vertex] > entry_time[v]) {
 		    is_bridge[e.id] = true;
+		}
 	    }
 	}
     }
 
     void
     run() {
-	for (int i = 1; i < static_cast<int>(adj.size()); i++)
-	    if (!visited[i])
+	for (int i = 1; i < static_cast<int>(adj.size()); i++) {
+	    if (!visited[i]) {
 		dfs(i, i);
+	    }
+	}
     }
 
     void

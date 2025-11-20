@@ -1,0 +1,20 @@
+-1 created 0
+-1 created 1
+-1 created 2
+-1 created 3
+Number of branches: 4
+0 1 2 3 
+Number of branches: 4
+0 1 2 3 
+0 created 0
+0 created 1
+0 created 2
+0 1 2 
+0 1 
+Cactus ID: -1 from -1 | Stack: 69 69 69 
+Cactus ID: 0 from -1 | Stack: 69 69 69 69 
+Cactus ID: 0 from 0 | Stack: 234 234 234 234 
+Cactus ID: 1 from 0 | Stack: 567 567 567 567 
+Cactus ID: 1 from -1 | Stack: 1 
+Cactus ID: 2 from -1 | Stack: 1 
+Cactus ID: 3 from -1 | Stack: 123 123 123 123 123 

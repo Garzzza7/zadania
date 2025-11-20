@@ -151,6 +151,16 @@ else
             printf "${red}$(cat CRT.test)${normal}\n"
 fi
 
+if [ "$(./Cactus_Stack.sol < Cactus_Stack.txt)" == "$(cat Cactus_Stack.test)" ]; then
+            printf "${green}Cactus_Stack Passed.${normal}\n"
+else
+            printf "${red}Cactus_Stack Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./Cactus_Stack.sol < Cactus_Stack.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat Cactus_Stack.test)${normal}\n"
+fi
+
 if [ "$(./Carmichael_function.sol < Carmichael_function.txt)" == "$(cat Carmichael_function.test)" ]; then
             printf "${green}Carmichael_function Passed.${normal}\n"
 else

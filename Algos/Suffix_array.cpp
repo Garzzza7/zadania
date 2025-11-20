@@ -7,7 +7,7 @@
 std::vector<int>
 suffix_array(const std::string &str) {
     const std::string s = str + "$";
-    const int n = (int) s.size();
+    const int n{(int) s.size()};
     std::vector<int> p(n);
     std::vector<int> c(n);
     // k = 0 case
@@ -29,7 +29,7 @@ suffix_array(const std::string &str) {
 	}
     }
 
-    int k = 0;
+    int k{0};
     while ((1 << k) < n) {
 	std::vector<std::pair<std::pair<int, int>, int>> a(n);
 	for (int i = 0; i < n; i++) {
