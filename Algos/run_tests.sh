@@ -51,6 +51,16 @@ else
             printf "${red}$(cat BFS.test)${normal}\n"
 fi
 
+if [ "$(./BST.sol < BST.txt)" == "$(cat BST.test)" ]; then
+            printf "${green}BST Passed.${normal}\n"
+else
+            printf "${red}BST Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./BST.sol < BST.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat BST.test)${normal}\n"
+fi
+
 if [ "$(./Base_conversion.sol < Base_conversion.txt)" == "$(cat Base_conversion.test)" ]; then
             printf "${green}Base_conversion Passed.${normal}\n"
 else
