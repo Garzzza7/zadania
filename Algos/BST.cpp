@@ -142,7 +142,7 @@ template <typename T = int> struct bst {
 		    }
 		}
 	    }
-	} else if (n->val <= curr->val) {
+	} else if (n->val < curr->val) {
 	    return remove(n, curr->l);
 	} else {
 	    return remove(n, curr->r);
