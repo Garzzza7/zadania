@@ -4,7 +4,7 @@
 #include <vector>
 
 void
-dfs(int vertex, std::vector<std::vector<int> > &adj, std::vector<bool> &visited) {
+dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited) {
     if (visited[vertex]) {
         return;
     }
@@ -16,7 +16,7 @@ dfs(int vertex, std::vector<std::vector<int> > &adj, std::vector<bool> &visited)
 }
 
 void
-iterative_dfs(int vertex, std::vector<std::vector<int> > &adj, std::vector<bool> &visited) {
+iterative_dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited) {
     for (auto &&v : visited) {
         v = false;
     }
@@ -47,7 +47,7 @@ main() {
     int vertices;
     std::cin >> vertices;
     std::vector<bool> visited(vertices + 1, false);
-    std::vector<std::vector<int> > adj(vertices + 1, std::vector<int>());
+    std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
     int edges;
     std::cin >> edges;
 

@@ -9,18 +9,18 @@
 template <typename T = int> struct kosaraju {
     T n;
 
-    std::vector<std::vector<T> > adj;
-    std::vector<std::vector<T> > rev_adj;
+    std::vector<std::vector<T>> adj;
+    std::vector<std::vector<T>> rev_adj;
     std::stack<T> stack;
     std::vector<bool> visited;
 
     int cnt_Components{0};
 
-    std::map<T, std::vector<T> > scc;
+    std::map<T, std::vector<T>> scc;
 
     kosaraju(const T _n)
-        : n(_n), adj(std::vector<std::vector<T> >(_n, std::vector<T>())),
-          rev_adj(std::vector<std::vector<T> >(_n, std::vector<T>())) {
+        : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
+          rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
         visited = std::vector<bool>(_n, false);
     }
 

@@ -5,7 +5,7 @@
 // find neg cycle
 template <typename T>
 bool
-bellmand_ford(T start, std::vector<std::tuple<T, T, T> > &edges, std::vector<T> &distances, std::vector<T> &paths) {
+bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges, std::vector<T> &distances, std::vector<T> &paths) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
     for (int i = 1; i <= static_cast<int>(distances.size()) - 1; i++) {
@@ -71,7 +71,7 @@ main() {
     while (T--) {
         int n, m;
         std::cin >> n >> m;
-        std::vector<std::tuple<int, int, int> > edges;
+        std::vector<std::tuple<int, int, int>> edges;
         for (int i = 0; i < m; i++) {
             int a, b, w;
             std::cin >> a >> b >> w;

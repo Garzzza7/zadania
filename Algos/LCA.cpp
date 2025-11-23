@@ -8,7 +8,7 @@ struct lca {
         int size{};
         int LOG{};
         static const T NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<T, T> > > matrix;
+        std::vector<std::vector<std::pair<T, T>>> matrix;
         sparse_table() = default;
 
         sparse_table &
@@ -63,7 +63,7 @@ struct lca {
     std::vector<int> ids;
     sparse_table<> st;
 
-    lca(const std::vector<std::vector<int> > &_adj) : n((int) _adj.size()) {
+    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
         ids.resize(n);
         std::vector visited(n, false);
 
@@ -105,7 +105,7 @@ main() {
 
     int n, q;
     std::cin >> n >> q;
-    std::vector<std::vector<int> > adj(n, std::vector<int>());
+    std::vector<std::vector<int>> adj(n, std::vector<int>());
     for (int i = 1; i <= n - 1; i++) {
         int a;
         std::cin >> a;

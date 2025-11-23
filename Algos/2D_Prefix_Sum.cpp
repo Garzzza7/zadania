@@ -4,12 +4,12 @@
 // https://codeforces.com/contest/1722/problem/E
 
 int
-query(const int &x1, const int &y1, const int &x2, const int &y2, const std::vector<std::vector<int> > &prefsum) {
+query(const int &x1, const int &y1, const int &x2, const int &y2, const std::vector<std::vector<int>> &prefsum) {
     return prefsum[x2][y2] - prefsum[x1 - 1][y2] - prefsum[x2][y1 - 1] + prefsum[x1 - 1][y1 - 1];
 }
 
 void
-build(const int &n, const int &m, std::vector<std::vector<int> > &prefsum, const std::vector<std::vector<int> > &vec) {
+build(const int &n, const int &m, std::vector<std::vector<int>> &prefsum, const std::vector<std::vector<int>> &vec) {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
             prefsum[i][j] += vec[i][j] + prefsum[i - 1][j] + prefsum[i][j - 1] - prefsum[i - 1][j - 1];
@@ -25,8 +25,8 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<int> > prefsum(n + 1, std::vector<int>(m + 1));
-    std::vector<std::vector<int> > vec(n + 1, std::vector<int>(m + 1));
+    std::vector<std::vector<int>> prefsum(n + 1, std::vector<int>(m + 1));
+    std::vector<std::vector<int>> vec(n + 1, std::vector<int>(m + 1));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             std::cin >> vec[i + 1][j + 1];

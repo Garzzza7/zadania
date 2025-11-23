@@ -6,11 +6,11 @@
 
 template <typename T>
 void
-djikstra(T start, std::vector<std::vector<std::pair<T, T> > > &adj, std::vector<T> &distances, std::vector<bool> &visited,
+djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &distances, std::vector<bool> &visited,
          std::vector<T> &path = {}) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
-    std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T> >, std::greater<> > pq;
+    std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>, std::greater<>> pq;
     pq.push({0, start});
     while (!pq.empty()) {
         T a = pq.top().second;
@@ -54,7 +54,7 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int> > > adj(n + 1, std::vector<std::pair<int, int> >());
+    std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;

@@ -3,7 +3,7 @@
 #include <vector>
 
 void
-iterative_bfs(const int vertex, const std::vector<std::vector<int> > &adj) {
+iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj) {
     std::vector<bool> visited(adj.size(), false);
     std::queue<int> que;
     que.push(vertex);
@@ -20,7 +20,7 @@ iterative_bfs(const int vertex, const std::vector<std::vector<int> > &adj) {
 }
 
 void
-bfs(const int vertex, std::vector<std::vector<int> > &adj, std::vector<bool> &visited, std::queue<int> que) {
+bfs(const int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited, std::queue<int> que) {
     if (visited[vertex]) {
         return;
     }
@@ -43,7 +43,7 @@ main() {
 
     int vertices;
     std::cin >> vertices;
-    std::vector<std::vector<int> > adj(vertices + 1, std::vector<int>());
+    std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
     std::vector<bool> visited(vertices + 1, false);
     int edges;
     std::cin >> edges;

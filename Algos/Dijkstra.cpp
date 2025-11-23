@@ -6,7 +6,7 @@
 #include <vector>
 
 void
-dijkstra(int source, std::vector<std::vector<std::pair<int, int> > > &adj, std::vector<int> &path, std::vector<int> &cost) {
+dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path, std::vector<int> &cost) {
     int iter = (int) adj.size();
     std::vector<bool> known((int) adj.size(), false);
     cost[source] = 0;
@@ -30,9 +30,8 @@ dijkstra(int source, std::vector<std::vector<std::pair<int, int> > > &adj, std::
 }
 
 void
-dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int> > > &adj, std::vector<int> &path,
-                std::vector<int> &cost) {
-    std::set<std::pair<int, int> > set;
+dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path, std::vector<int> &cost) {
+    std::set<std::pair<int, int>> set;
     set.insert({source, 0});
     cost[source] = 0;
     while (set.empty() == false) {
@@ -51,9 +50,9 @@ dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int> > > &adj
 }
 
 void
-dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int> > > &adj, std::vector<int> &path,
+dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path,
                       std::vector<int> &cost) {
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >, std::greater<> > queue;
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> queue;
     queue.emplace(source, 0);
     cost[source] = 0;
     int currentNode;
@@ -96,7 +95,7 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int> > > adj(n);
+    std::vector<std::vector<std::pair<int, int>>> adj(n);
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;

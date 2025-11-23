@@ -45,7 +45,7 @@ mod_mult_bin_coeff(const long long &n, const long long &k, const long long &mod)
     return res % mod;
 }
 
-std::vector<std::vector<long long> >
+std::vector<std::vector<long long>>
 mod_bin_coeff(const long long &n, const long long &mod) {
     std::vector binom(n + 1, std::vector<long long>(n + 1));
     binom[0][0] = 1;

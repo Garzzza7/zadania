@@ -13,7 +13,7 @@ template <typename T = int> struct edge {
 template <typename T = int> struct boruvka {
     int n;
     T MAX;
-    std::vector<edge<T> > edges;
+    std::vector<edge<T>> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
@@ -53,10 +53,10 @@ template <typename T = int> struct boruvka {
         }
     }
 
-    std::vector<edge<T> >
+    std::vector<edge<T>>
     mst() {
-        std::vector<edge<T> > mst;
-        std::vector<edge<T> > cheapest(n, edge(-1, -1, MAX));
+        std::vector<edge<T>> mst;
+        std::vector<edge<T>> cheapest(n, edge(-1, -1, MAX));
 
         int tree_count = n;
         T mst_weight{0};

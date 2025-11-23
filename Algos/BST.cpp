@@ -40,7 +40,7 @@ template <typename T = int> struct node {
 template <typename T = int> struct bst {
     node<T> *root;
     // node<T> *sentinel;
-    std::vector<node<T> > nodes;
+    std::vector<node<T>> nodes;
 
     bst() {
         root = new node();
