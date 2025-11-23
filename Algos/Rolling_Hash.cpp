@@ -13,7 +13,9 @@ long long
 mod_binpow(long long a, long long b) {
     long long res = 1;
     while (b > 0) {
-        if (b & 1) res = res * a % mod;
+        if (b & 1) {
+            res = res * a % mod;
+        }
         a = a * a % mod;
         b >>= 1;
     }
@@ -29,8 +31,9 @@ std::vector<long long>
 rolling_hash(const std::string &s) {
     const int n = static_cast<int>(s.size());
     std::vector<long long> res(n + 1, 0);
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
         res[i + 1] = res[i] * prime % mod + (s[i] - 'a' + 1);
+    }
     return res;
 }
 

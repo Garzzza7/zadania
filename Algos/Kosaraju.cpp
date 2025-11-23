@@ -9,18 +9,18 @@
 template <typename T = int> struct kosaraju {
     T n;
 
-    std::vector<std::vector<T>> adj;
-    std::vector<std::vector<T>> rev_adj;
+    std::vector<std::vector<T> > adj;
+    std::vector<std::vector<T> > rev_adj;
     std::stack<T> stack;
     std::vector<bool> visited;
 
     int cnt_Components{0};
 
-    std::map<T, std::vector<T>> scc;
+    std::map<T, std::vector<T> > scc;
 
     kosaraju(const T _n)
-        : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
-          rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
+        : n(_n), adj(std::vector<std::vector<T> >(_n, std::vector<T>())),
+          rev_adj(std::vector<std::vector<T> >(_n, std::vector<T>())) {
         visited = std::vector<bool>(_n, false);
     }
 
@@ -32,10 +32,14 @@ template <typename T = int> struct kosaraju {
 
     void
     calc_scc() {
-        for (int i = 0; i < n; i++)
-            if (!visited[i]) dfs_1(i);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs_1(i);
+            }
+        }
+        for (int i = 0; i < n; i++) {
             visited[i] = false;
+        }
         while (!stack.empty()) {
             int v = stack.top();
             stack.pop();
@@ -49,8 +53,11 @@ template <typename T = int> struct kosaraju {
     void
     dfs_1(const T &v) {
         visited[v] = true;
-        for (const auto &vv : adj[v])
-            if (!visited[vv]) dfs_1(vv);
+        for (const auto &vv : adj[v]) {
+            if (!visited[vv]) {
+                dfs_1(vv);
+            }
+        }
         stack.push(v);
     }
 
@@ -58,8 +65,11 @@ template <typename T = int> struct kosaraju {
     dfs_2(const T &v) {
         scc[cnt_Components].push_back(v);
         visited[v] = true;
-        for (const auto &vv : rev_adj[v])
-            if (!visited[vv]) dfs_2(vv);
+        for (const auto &vv : rev_adj[v]) {
+            if (!visited[vv]) {
+                dfs_2(vv);
+            }
+        }
     }
 };
 

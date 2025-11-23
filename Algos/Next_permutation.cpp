@@ -6,8 +6,11 @@ void
 next_permutation(std::vector<int> &nums) {
     const int n = static_cast<int>(nums.size());
     int iter = -1;
-    for (int i = 0; i < n - 1; i++)
-        if (nums[i] < nums[i + 1]) iter = i;
+    for (int i = 0; i < n - 1; i++) {
+        if (nums[i] < nums[i + 1]) {
+            iter = i;
+        }
+    }
 
     if (iter == -1) {
         std::reverse(nums.begin(), nums.end());
@@ -15,8 +18,11 @@ next_permutation(std::vector<int> &nums) {
     }
 
     int iter2 = -1;
-    for (int i = iter + 1; i < n; i++)
-        if (nums[iter] < nums[i]) iter2 = i;
+    for (int i = iter + 1; i < n; i++) {
+        if (nums[iter] < nums[i]) {
+            iter2 = i;
+        }
+    }
 
     std::swap(nums[iter], nums[iter2]);
     std::reverse(nums.begin() + iter + 1, nums.end());

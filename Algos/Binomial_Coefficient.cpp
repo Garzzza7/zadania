@@ -3,8 +3,12 @@
 
 long long
 rec_bin_coeff(const long long &n, const long long &k) {
-    if (k == 1) return n;
-    if (n == k || k == 0) return 1;
+    if (k == 1) {
+        return n;
+    }
+    if (n == k or k == 0) {
+        return 1;
+    }
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 
@@ -41,14 +45,15 @@ mod_mult_bin_coeff(const long long &n, const long long &k, const long long &mod)
     return res % mod;
 }
 
-std::vector<std::vector<long long>>
+std::vector<std::vector<long long> >
 mod_bin_coeff(const long long &n, const long long &mod) {
     std::vector binom(n + 1, std::vector<long long>(n + 1));
     binom[0][0] = 1;
     for (int i = 1; i <= n; i++) {
         binom[i][0] = 1;
-        for (int j = 1; j <= i; j++)
+        for (int j = 1; j <= i; j++) {
             binom[i][j] = (binom[i - 1][j - 1] + binom[i - 1][j]) % mod;
+        }
     }
     return binom;
 }

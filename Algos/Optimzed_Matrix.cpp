@@ -12,17 +12,17 @@ template <typename T> struct matrix {
     int is_transposed = 0;
     int m;
     int n;
-    std::vector<std::vector<T>> mat;
+    std::vector<std::vector<T> > mat;
 
     matrix(const matrix &) = default;
     matrix(matrix &&) = default;
     matrix &operator=(matrix &&) = default;
     ~matrix() = default;
 
-    matrix(const std::vector<std::vector<T>> &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
+    matrix(const std::vector<std::vector<T> > &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
     }
 
-    matrix(const int &m, const int &n) : m(m), n(n), mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
+    matrix(const int &m, const int &n) : m(m), n(n), mat(std::vector<std::vector<T> >(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix
@@ -33,7 +33,7 @@ template <typename T> struct matrix {
         const auto &m = lhs.m;
         const auto &n = lhs.n;
         assert(n % BLOCK == 0);
-        if (lhs.is_transposed == 0 && rhs.is_transposed == 0) {
+        if (lhs.is_transposed == 0 and rhs.is_transposed == 0) {
             matrix ret(m, n);
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n / BLOCK; j++) {
@@ -51,7 +51,7 @@ template <typename T> struct matrix {
         const auto &m = lhs.m;
         const auto &n = lhs.n;
         matrix ret(m, n);
-        if (lhs.is_transposed && rhs.is_transposed) {
+        if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++)
                 for (int j = 0; j < n; j++)
                     ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
@@ -87,7 +87,7 @@ template <typename T> struct matrix {
 #else
         const auto &m = this->m;
         const auto &n = this->n;
-        if (this->is_transposed && rhs.is_transposed) {
+        if (this->is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     this->mat[i][j] += rhs.mat[i][j];
@@ -125,7 +125,7 @@ template <typename T> struct matrix {
         const auto &m = lhs.m;
         const auto &n = rhs.n;
         matrix ret(m, n);
-        if (lhs.is_transposed && rhs.is_transposed) {
+        if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
@@ -171,7 +171,7 @@ template <typename T> struct matrix {
         const auto &m = this->m;
         const auto &n = rhs.n;
         matrix ret(m, n);
-        if (this->is_transposed && rhs.is_transposed) {
+        if (this->is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
@@ -313,35 +313,35 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::vector<std::vector<int>> vec1 = {
+    std::vector<std::vector<int> > vec1 = {
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1},
     };
-    std::vector<std::vector<int>> vec2 = {
+    std::vector<std::vector<int> > vec2 = {
         {2, 2, 2},
         {2, 2, 2},
         {2, 2, 2},
     };
-    std::vector<std::vector<int>> vec3 = {
+    std::vector<std::vector<int> > vec3 = {
         {1, 0, 1},
         {2, 1, 1},
         {0, 1, 1},
         {1, 1, 2},
     };
-    std::vector<std::vector<int>> vec4 = {
+    std::vector<std::vector<int> > vec4 = {
         {1, 2, 1},
         {2, 3, 1},
         {4, 2, 2},
     };
-    std::vector<std::vector<int>> vec5 = {
+    std::vector<std::vector<int> > vec5 = {
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
     };
 
-    std::vector<std::vector<int>> vec6 = {
+    std::vector<std::vector<int> > vec6 = {
         {3, 7},
         {1, -4},
     };

@@ -11,7 +11,7 @@ suffix_array(const std::string &str) {
     std::vector<int> p(n);
     std::vector<int> c(n);
     // k = 0 case
-    std::vector<std::pair<char, int>> a(n);
+    std::vector<std::pair<char, int> > a(n);
     for (int i = 0; i < n; i++) {
         a[i] = {s[i], i};
     }
@@ -31,7 +31,7 @@ suffix_array(const std::string &str) {
 
     int k{0};
     while ((1 << k) < n) {
-        std::vector<std::pair<std::pair<int, int>, int>> a(n);
+        std::vector<std::pair<std::pair<int, int>, int> > a(n);
         for (int i = 0; i < n; i++) {
             a[i] = {{c[i], c[(i + (1 << k)) % n]}, i};
         }

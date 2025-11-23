@@ -74,7 +74,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
                     continue;
                 }
                 int j = nodes[id].suffix_link;
-                while (j != -1 && nodes[j].next[i] == -1) {
+                while (j != -1 and nodes[j].next[i] == -1) {
                     j = nodes[j].suffix_link;
                 }
                 if (j == -1) {
@@ -125,7 +125,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         int node_id{0};
         for (int i = 0; i < static_cast<int>(word.size()); i++) {
             int c = word[i] - BASE;
-            while (node_id != 0 && nodes[node_id].next[c] == -1) {
+            while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }
             if (nodes[node_id].next[c] != -1) {
@@ -144,7 +144,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         int node_id{0};
         for (const auto &i : word) {
             int c = i - BASE;
-            while (node_id != 0 && nodes[node_id].next[c] == -1) {
+            while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }
             if (nodes[node_id].next[c] != -1) {

@@ -7,8 +7,9 @@ template <typename T = int> struct ram_seg_tree {
     std::vector<T> vec;
 
     ram_seg_tree(const int &_n) {
-        while (size < _n)
+        while (size < _n) {
             size <<= 1;
+        }
         vec.assign(2 * size, NEUTRAL_ELEMENT);
     }
 
@@ -20,7 +21,9 @@ template <typename T = int> struct ram_seg_tree {
     void
     build(const std::vector<T> &arr, const int x, const int lx, const int rx) {
         if (rx - lx == 1) {
-            if (lx < static_cast<int>(arr.size())) vec[x] = arr[lx];
+            if (lx < static_cast<int>(arr.size())) {
+                vec[x] = arr[lx];
+            }
             return;
         }
         const int mid = (rx - lx) / 2 + lx;
@@ -41,10 +44,11 @@ template <typename T = int> struct ram_seg_tree {
             return;
         }
         const int mid = (rx - lx) / 2 + lx;
-        if (i < mid)
+        if (i < mid) {
             set(i, v, 2 * x + 1, lx, mid);
-        else
+        } else {
             set(i, v, 2 * x + 2, mid, rx);
+        }
         vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
@@ -54,19 +58,23 @@ template <typename T = int> struct ram_seg_tree {
     }
 
     T
-    calc(const int l, const int r, const int x, const int lx, const int rx) {
-        if (lx >= r || l >= rx) return NEUTRAL_ELEMENT;
-        if (lx >= l && rx <= r) return vec[x];
+    query(const int l, const int r, const int x, const int lx, const int rx) {
+        if (lx >= r or l >= rx) {
+            return NEUTRAL_ELEMENT;
+        }
+        if (lx >= l and rx <= r) {
+            return vec[x];
+        }
         const int mid = (rx - lx) / 2 + lx;
-        const T p1 = calc(l, r, 2 * x + 1, lx, mid);
-        const T s2 = calc(l, r, 2 * x + 2, mid, rx);
+        const T p1 = query(l, r, 2 * x + 1, lx, mid);
+        const T s2 = query(l, r, 2 * x + 2, mid, rx);
         return operation(p1, s2);
     }
 
     T
-    calc(const int l, const int r) {
+    query(const int l, const int r) {
         // [l , r)
-        return calc(l, r, 0, 0, size);
+        return query(l, r, 0, 0, size);
     }
 };
 
@@ -86,6 +94,6 @@ main() {
     for (const auto &a : st.vec)
         std::cout << a << " ";
     std::cout << "\n";
-    std::cout << st.calc(1, 5) << "\n";
+    std::cout << st.query(1, 5) << "\n";
     return 0;
 }

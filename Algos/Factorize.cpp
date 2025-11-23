@@ -5,12 +5,15 @@ template <typename T>
 std::vector<T>
 factorize(T n) {
     std::vector<T> factor;
-    for (int i = 2; i * i <= n; i++)
+    for (int i = 2; i * i <= n; i++) {
         while (n % i == 0) {
             factor.push_back(i);
             n /= i;
         }
-    if (n > 1) factor.push_back(n);
+    }
+    if (n > 1) {
+        factor.push_back(n);
+    }
     return factor;
 }
 

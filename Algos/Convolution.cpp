@@ -38,7 +38,7 @@ template <typename T> struct Modular {
     static Type
     normalize(const U &x) {
         Type v;
-        if (-mod() <= x && x < mod()) {
+        if (-mod() <= x and x < mod()) {
             v = static_cast<Type>(x);
         } else {
             v = static_cast<Type>(barrett(x));

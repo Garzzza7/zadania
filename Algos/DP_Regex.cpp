@@ -12,18 +12,20 @@ dp_regex(const std::string &s1, const std::string &s2) {
 
     dp[0][0] = true;
 
-    for (int i = 2; i < n2; i++)
-        dp[0][i] = (dp[0][i - 2]) && (pattern[i] == '*');
+    for (int i = 2; i < n2; i++) {
+        dp[0][i] = (dp[0][i - 2]) and (pattern[i] == '*');
+    }
 
     for (int i = 1; i < n1; i++) {
         for (int j = 1; j < n2; j++) {
-            if (word[i] == pattern[j] || pattern[j] == '.')
+            if (word[i] == pattern[j] or pattern[j] == '.') {
                 // continue validity of what we came out of
                 dp[i][j] = dp[i - 1][j - 1];
-            else if (pattern[j] == '*')
+            } else if (pattern[j] == '*') {
                 // dp[i][j-2] -> case when star returns nothing
                 // dp[i-1][j] -> case when star returns 1 or more
-                dp[i][j] = dp[i][j - 2] || dp[i - 1][j];
+                dp[i][j] = dp[i][j - 2] or dp[i - 1][j];
+            }
         }
     }
     return dp[n1 - 1][n2 - 1];

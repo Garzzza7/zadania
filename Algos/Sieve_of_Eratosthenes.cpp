@@ -6,9 +6,12 @@ std::vector<T>
 sieve(const T &n) {
     std::vector<int> res(n + 1, 0);
     for (int i = 2; i <= n; i++) {
-        if (res[i]) continue;
-        for (int x = 2 * i; x <= n; x += i)
+        if (res[i]) {
+            continue;
+        }
+        for (int x = 2 * i; x <= n; x += i) {
             res[x] = i;
+        }
     }
     return res;
 }

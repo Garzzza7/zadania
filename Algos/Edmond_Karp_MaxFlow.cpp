@@ -5,11 +5,12 @@
 
 template <typename T>
 T
-bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
-    for (auto &&v : path)
+bfs(T source, T target, std::vector<std::vector<T> > &adj, std::vector<std::vector<T> > &capacities, std::vector<T> &path) {
+    for (auto &&v : path) {
         v = -1;
+    }
     path[source] = -2137;
-    std::queue<std::pair<T, T>> q;
+    std::queue<std::pair<T, T> > q;
     q.push({source, INT32_MAX});
 
     while (!q.empty()) {
@@ -17,10 +18,12 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
         const T flow = q.front().second;
         q.pop();
         for (const auto &next : adj[curr])
-            if (path[next] == -1 && capacities[curr][next]) {
+            if (path[next] == -1 and capacities[curr][next]) {
                 path[next] = curr;
                 T bottleneck = std::min(flow, capacities[curr][next]);
-                if (next == target) return bottleneck;
+                if (next == target) {
+                    return bottleneck;
+                }
                 q.push({next, bottleneck});
             }
     }
@@ -29,7 +32,7 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
 
 template <typename T>
 T
-maxflow(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities) {
+maxflow(T source, T target, std::vector<std::vector<T> > &adj, std::vector<std::vector<T> > &capacities) {
     T maxflow = 0;
     std::vector<T> path(static_cast<int>(adj.size()));
     T bottleneck = 0;
@@ -55,8 +58,8 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<int>> adj(n, std::vector<int>());
-    std::vector<std::vector<int>> capacities(n, std::vector<int>(n, INT32_MIN));
+    std::vector<std::vector<int> > adj(n, std::vector<int>());
+    std::vector<std::vector<int> > capacities(n, std::vector<int>(n, INT32_MIN));
     for (int i = 0; i < m; i++) {
         int from, to, cap;
         std::cin >> from >> to >> cap;

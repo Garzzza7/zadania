@@ -13,7 +13,7 @@ z_function(const std::string &s) {
         if (i < r) {
             z[i] = std::min(r - i, z[i - l]);
         }
-        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) {
+        while (i + z[i] < n and s[z[i]] == s[i + z[i]]) {
             z[i]++;
         }
         if (i + z[i] > r) {

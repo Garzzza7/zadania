@@ -6,7 +6,7 @@ template <typename T>
 T
 carmichael(const T &n) {
     T k = 1, x, a, b, t;
-    for (int d = 1; d > 0;)
+    for (int d = 1; d > 0;) {
         for (d = x = 0; (a = (++x % n)); d = (t > 1) >= a ? k++ : d) {
             for (b = n; (t = b); a = t) {
                 b = a % b;
@@ -15,6 +15,7 @@ carmichael(const T &n) {
                 b++;
             }
         }
+    }
     return k;
 }
 

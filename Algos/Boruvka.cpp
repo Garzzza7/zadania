@@ -13,14 +13,15 @@ template <typename T = int> struct edge {
 template <typename T = int> struct boruvka {
     int n;
     T MAX;
-    std::vector<edge<T>> edges;
+    std::vector<edge<T> > edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
     boruvka(const int &_n) : n(_n), MAX(std::numeric_limits<T>::max()) {
         parent.assign(n, 0);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
+        }
         rank.assign(n, 0);
     }
 
@@ -31,7 +32,9 @@ template <typename T = int> struct boruvka {
 
     int
     find(const int &vertex) {
-        if (parent[vertex] == vertex) return parent[vertex];
+        if (parent[vertex] == vertex) {
+            return parent[vertex];
+        }
         return parent[vertex] = find(parent[vertex]);
     }
 
@@ -40,16 +43,20 @@ template <typename T = int> struct boruvka {
         auto u_leader = find(u);
         auto v_leader = find(v);
         if (u_leader != v_leader) {
-            if (rank[u_leader] < rank[v_leader]) std::swap(u_leader, v_leader);
+            if (rank[u_leader] < rank[v_leader]) {
+                std::swap(u_leader, v_leader);
+            }
             parent[v_leader] = u_leader;
-            if (rank[u_leader] == rank[v_leader]) rank[u_leader]++;
+            if (rank[u_leader] == rank[v_leader]) {
+                rank[u_leader]++;
+            }
         }
     }
 
-    std::vector<edge<T>>
+    std::vector<edge<T> >
     mst() {
-        std::vector<edge<T>> mst;
-        std::vector<edge<T>> cheapest(n, edge(-1, -1, MAX));
+        std::vector<edge<T> > mst;
+        std::vector<edge<T> > cheapest(n, edge(-1, -1, MAX));
 
         int tree_count = n;
         T mst_weight{0};
@@ -64,12 +71,16 @@ template <typename T = int> struct boruvka {
                 const auto id2 = find(v);
 
                 if (id1 != id2) {
-                    if (cheapest[id1].weight == MAX || cheapest[id1].weight > weight) cheapest[id1] = edge(u, v, weight);
-                    if (cheapest[id2].weight == MAX || cheapest[id2].weight > weight) cheapest[id2] = edge(u, v, weight);
+                    if (cheapest[id1].weight == MAX or cheapest[id1].weight > weight) {
+                        cheapest[id1] = edge(u, v, weight);
+                    }
+                    if (cheapest[id2].weight == MAX or cheapest[id2].weight > weight) {
+                        cheapest[id2] = edge(u, v, weight);
+                    }
                 }
             }
 
-            for (int ver = 0; ver < n; ver++)
+            for (int ver = 0; ver < n; ver++) {
                 if (cheapest[ver].weight != MAX) {
                     const auto &u = cheapest[ver].u;
                     const auto &v = cheapest[ver].v;
@@ -85,6 +96,7 @@ template <typename T = int> struct boruvka {
                         tree_count--;
                     }
                 }
+            }
         }
         return mst;
     }

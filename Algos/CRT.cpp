@@ -4,7 +4,7 @@
 
 template <typename T>
 long long
-crt(const std::vector<std::pair<T, T>> &vec) {
+crt(const std::vector<std::pair<T, T> > &vec) {
     T mod{vec[0].second};
     T buff{vec[0].first};
     auto lcm = [](T a, T b) -> T {
@@ -25,7 +25,9 @@ crt(const std::vector<std::pair<T, T>> &vec) {
         while (buff % vec[i + 1].second != vec[i + 1].first) {
             if (buff % vec[i + 1].second == check) {
                 cnt++;
-                if (cnt == 2) return -1;
+                if (cnt == 2) {
+                    return -1;
+                }
             }
             buff += mod;
         }
@@ -42,7 +44,7 @@ main() {
 
     int n;
     std::cin >> n;
-    std::vector<std::pair<int, int>> vec(n);
+    std::vector<std::pair<int, int> > vec(n);
     for (int i = 0; i < n; i++) {
         int aa, bb;
         std::cin >> aa >> bb;

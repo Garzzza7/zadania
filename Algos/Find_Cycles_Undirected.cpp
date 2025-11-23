@@ -8,7 +8,7 @@
 
 std::vector<ll> path;
 std::vector<bool> visited(100000, false);
-std::vector<std::vector<ll>> adj(100000, std::vector<ll>());
+std::vector<std::vector<ll> > adj(100000, std::vector<ll>());
 
 void
 dfs(ll ver, ll par) {
@@ -16,17 +16,23 @@ dfs(ll ver, ll par) {
         std::vector<ll> res = {ver};
         for (int i = sz(path) - 1; i >= 0; i--) {
             res.push_back(path[i]);
-            if (path[i] == ver) break;
+            if (path[i] == ver) {
+                break;
+            }
         }
         std::cout << sz(res) << "\n";
-        for (const auto &v : res)
+        for (const auto &v : res) {
             std::cout << v << " ";
+        }
         exit(0);
     }
     visited[ver] = true;
     path.push_back(ver);
-    for (auto v : adj[ver])
-        if (v != par) dfs(v, ver);
+    for (auto v : adj[ver]) {
+        if (v != par) {
+            dfs(v, ver);
+        }
+    }
     path.pop_back();
 }
 

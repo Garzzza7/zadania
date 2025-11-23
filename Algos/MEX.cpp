@@ -4,11 +4,15 @@
 int
 mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
-    for (const auto &i : vec)
-        if (i <= (int) (vec.size())) f[i] = true;
+    for (const auto &i : vec) {
+        if (i <= (int) (vec.size())) {
+            f[i] = true;
+        }
+    }
     int res{0};
-    while (f[res])
+    while (f[res]) {
         res++;
+    }
     return res;
 }
 
