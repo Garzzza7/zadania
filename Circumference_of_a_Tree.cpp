@@ -4,20 +4,19 @@ using namespace std;
 long long maxi = 0;
 long long at = 0;
 void
-dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited,
-    long long cnt) {
+dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited, long long cnt) {
     if (visited[v]) {
-	return;
+        return;
     }
     if (cnt > maxi) {
-	maxi = cnt;
-	at = v;
+        maxi = cnt;
+        at = v;
     }
     visited[v] = 1;
     for (auto &&vv : adj[v]) {
-	if (!visited[vv]) {
-	    dfs(vv, adj, visited, cnt + 1);
-	}
+        if (!visited[vv]) {
+            dfs(vv, adj, visited, cnt + 1);
+        }
     }
 }
 
@@ -29,10 +28,10 @@ main() {
     cin >> n;
     vector<vector<long long>> adj(n + 1, vector<long long>());
     for (long long i = 0; i < n - 1; i++) {
-	long long aa, bb;
-	cin >> aa >> bb;
-	adj[aa].push_back(bb);
-	adj[bb].push_back(aa);
+        long long aa, bb;
+        cin >> aa >> bb;
+        adj[aa].push_back(bb);
+        adj[bb].push_back(aa);
     }
     vector<bool> visited(300005, 0);
     dfs(1, adj, visited, 0ll);

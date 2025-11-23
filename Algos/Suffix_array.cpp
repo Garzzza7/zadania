@@ -13,42 +13,42 @@ suffix_array(const std::string &str) {
     // k = 0 case
     std::vector<std::pair<char, int>> a(n);
     for (int i = 0; i < n; i++) {
-	a[i] = {s[i], i};
+        a[i] = {s[i], i};
     }
     std::sort(a.begin(), a.end());
 
     for (int i = 0; i < n; i++) {
-	p[i] = a[i].second;
+        p[i] = a[i].second;
     }
     c[p[0]] = 0;
     for (int i = 1; i < n; i++) {
-	if (a[i].first == a[i - 1].first) {
-	    c[p[i]] = c[p[i - 1]];
-	} else {
-	    c[p[i]] = c[p[i - 1]] + 1;
-	}
+        if (a[i].first == a[i - 1].first) {
+            c[p[i]] = c[p[i - 1]];
+        } else {
+            c[p[i]] = c[p[i - 1]] + 1;
+        }
     }
 
     int k{0};
     while ((1 << k) < n) {
-	std::vector<std::pair<std::pair<int, int>, int>> a(n);
-	for (int i = 0; i < n; i++) {
-	    a[i] = {{c[i], c[(i + (1 << k)) % n]}, i};
-	}
-	std::sort(a.begin(), a.end());
+        std::vector<std::pair<std::pair<int, int>, int>> a(n);
+        for (int i = 0; i < n; i++) {
+            a[i] = {{c[i], c[(i + (1 << k)) % n]}, i};
+        }
+        std::sort(a.begin(), a.end());
 
-	for (int i = 0; i < n; i++) {
-	    p[i] = a[i].second;
-	}
-	c[p[0]] = 0;
-	for (int i = 1; i < n; i++) {
-	    if (a[i].first == a[i - 1].first) {
-		c[p[i]] = c[p[i - 1]];
-	    } else {
-		c[p[i]] = c[p[i - 1]] + 1;
-	    }
-	}
-	k++;
+        for (int i = 0; i < n; i++) {
+            p[i] = a[i].second;
+        }
+        c[p[0]] = 0;
+        for (int i = 1; i < n; i++) {
+            if (a[i].first == a[i - 1].first) {
+                c[p[i]] = c[p[i - 1]];
+            } else {
+                c[p[i]] = c[p[i - 1]] + 1;
+            }
+        }
+        k++;
     }
     return p;
 }
@@ -62,12 +62,12 @@ main() {
     int t;
     std::cin >> t;
     while (t--) {
-	std::string s;
-	std::cin >> s;
-	auto sa = suffix_array(s);
-	for (const auto &c : sa)
-	    std::cout << c << "\n";
-	std::cout << "\n";
+        std::string s;
+        std::cin >> s;
+        auto sa = suffix_array(s);
+        for (const auto &c : sa)
+            std::cout << c << "\n";
+        std::cout << "\n";
     }
 
     return 0;

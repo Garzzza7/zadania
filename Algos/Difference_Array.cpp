@@ -13,22 +13,22 @@ main() {
     std::vector<long long> overlapping_segments(n, 0);
 
     for (int i = 0; i < q; i++) {
-	long long l, r;
-	std::cin >> l >> r;
-	l--;
-	r--;
-	difference_array[l]++;
-	difference_array[r + 1]--;
+        long long l, r;
+        std::cin >> l >> r;
+        l--;
+        r--;
+        difference_array[l]++;
+        difference_array[r + 1]--;
     }
 
     long long total{0ll};
     for (int i = 0; i < n; i++) {
-	total += difference_array[i];
-	overlapping_segments[i] = total;
+        total += difference_array[i];
+        overlapping_segments[i] = total;
     }
 
     for (const auto &seg : overlapping_segments)
-	std::cout << seg << " ";
+        std::cout << seg << " ";
     std::cout << "\n";
 
     return 0;

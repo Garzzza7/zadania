@@ -63,25 +63,13 @@
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())
-#define sortpairascS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second < right.second;                                     \
-    })
-#define sortpairdesS(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.second > right.second;                                     \
-    })
-#define sortpairascF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first < right.first;                                       \
-    })
-#define sortpairdesF(vec)                                                      \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) {            \
-	return left.first > right.first;                                       \
-    })
-#define swp(a, b)                                                              \
-    a ^= b;                                                                    \
-    b ^= a;                                                                    \
+#define sortpairascS(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second < right.second; })
+#define sortpairdesS(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second > right.second; })
+#define sortpairascF(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.first < right.first; })
+#define sortpairdesF(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.first > right.first; })
+#define swp(a, b)                                                                                                                \
+    a ^= b;                                                                                                                      \
+    b ^= a;                                                                                                                      \
     a ^= b;
 // bits
 #define LSB(a) ((a) & -(a))
@@ -121,7 +109,7 @@ to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
     for (const auto &xi : x) {
-	s += ", " + to_debug(xi);
+        s += ", " + to_debug(xi);
     }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
 }
@@ -130,14 +118,10 @@ std::string
 to_debug(T x, std::string s)
     requires(not std::ranges::range<T>)
 {
-    [&]<size_t... I>(std::index_sequence<I...>) {
-	((s += ", " + to_debug(get<I>(x))), ...);
-    }(std::make_index_sequence<size>());
+    [&]<size_t... I>(std::index_sequence<I...>) { ((s += ", " + to_debug(get<I>(x))), ...); }(std::make_index_sequence<size>());
     return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
-#define db(...)                                                                \
-    std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__))      \
-	      << "\n"
+#define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
 template <typename T>
 [[nodiscard]] T
@@ -161,7 +145,7 @@ template <typename T>
 [[nodiscard]] bool
 pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) {
     if (x.second < y.second) {
-	return x.second < y.second;
+        return x.second < y.second;
     }
     return x.first < y.first;
 }
@@ -192,37 +176,30 @@ bin_fl(T x, T y) {
 
 [[nodiscard]] constexpr unsigned int
 bin_log(const unsigned int &x) {
-    return x == static_cast<unsigned int>(0)
-	       ? static_cast<unsigned int>(0)
-	       : static_cast<unsigned int>(31) - __builtin_clz(x);
+    return x == static_cast<unsigned int>(0) ? static_cast<unsigned int>(0) : static_cast<unsigned int>(31) - __builtin_clz(x);
 }
 
 [[nodiscard]] constexpr unsigned long
 bin_llog(const unsigned long &x) {
-    return x == static_cast<unsigned long>(0)
-	       ? static_cast<unsigned long>(0)
-	       : static_cast<unsigned long>(63) - __builtin_clzl(x);
+    return x == static_cast<unsigned long>(0) ? static_cast<unsigned long>(0)
+                                              : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
 // descending set
 template <typename T> using dset = std::set<T, std::greater<T>>;
 
 // ascending pq
-template <typename T>
-using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+template <typename T> using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 // asceding pq of pairs
 template <typename FT, typename ST>
-using appq
-    = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST>>,
-			  std::greater<std::pair<FT, ST>>>;
+using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST>>, std::greater<std::pair<FT, ST>>>;
 
 // This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
 template <typename T>
-using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,
-			      __gnu_pbds::rb_tree_tag,
-			      __gnu_pbds::tree_order_statistics_node_update>;
+using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,
+                              __gnu_pbds::tree_order_statistics_node_update>;
 // find_by_order(n) -> value at index n
 // order_of_key(n) -> index of value n
 
@@ -232,13 +209,12 @@ template <class Fun> class y_combinator_result {
     Fun fun_;
 
   public:
-    template <class T>
-    explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {
+    template <class T> explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {
     }
     template <class... Args>
     decltype(auto)
     operator()(Args &&...args) {
-	return fun_(std::ref(*this), std::forward<Args>(args)...);
+        return fun_(std::ref(*this), std::forward<Args>(args)...);
     }
 };
 template <class Fun>
@@ -251,12 +227,10 @@ y_combinator(Fun &&fun) {
 template <typename T>
 void
 printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) {
-    if (begin < 0)
-	begin ^= begin;
-    if (end < 0)
-	end = static_cast<int>(v.size());
+    if (begin < 0) begin ^= begin;
+    if (end < 0) end = static_cast<int>(v.size());
     for (int i = begin; i < end; i++)
-	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
+        std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
 }
 
 template <typename T>
@@ -286,8 +260,7 @@ rd() {
 random_l_to_r(const int &l, const int &r) {
     /*std::random_device rd;*/
     /*std::mt19937 rng(rd());*/
-    std::mt19937 rng(static_cast<uint32_t>(
-	std::chrono::steady_clock::now().time_since_epoch().count()));
+    std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
     return dist(rng);
 }
@@ -341,16 +314,13 @@ main() {
     int _{1};
     std::cin >> _;
     while (_--)
-	solve();
+        solve();
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();
     std::cout << std::setprecision(4) << std::fixed;
-    std::cout << "Execution time: "
-	      << std::chrono::duration_cast<std::chrono::duration<double>>(
-		     finish - start)
-		     .count()
-	      << " seconds\n";
+    std::cout << "Execution time: " << std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count()
+              << " seconds\n";
 #endif
     return 0;
 }

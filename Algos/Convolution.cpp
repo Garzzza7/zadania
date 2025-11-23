@@ -13,192 +13,183 @@ template <typename T> struct Modular {
     template <typename TT>
     TT
     inverse(TT a, TT m) {
-	TT u{0};
-	TT v{1};
-	while (a) {
-	    TT t = m / a;
-	    m -= t * a;
-	    std::swap(a, m);
-	    u -= t * v;
-	    std::swap(u, v);
-	}
-	assert(m == 1);
-	return u;
+        TT u{0};
+        TT v{1};
+        while (a) {
+            TT t = m / a;
+            m -= t * a;
+            std::swap(a, m);
+            u -= t * v;
+            std::swap(u, v);
+        }
+        assert(m == 1);
+        return u;
     }
 
     static int
     barrett(uint64_t a) {
-	auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
-	auto q = static_cast<uint32_t>(
-	    a
-	    - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a)
-				    >> 64)
-		  * mod());
-	auto res = static_cast<int32_t>(q - mod());
-	return res < 0 ? res + mod() : res;
+        auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
+        auto q = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
+        auto res = static_cast<int32_t>(q - mod());
+        return res < 0 ? res + mod() : res;
     }
 
     template <typename U>
     static Type
     normalize(const U &x) {
-	Type v;
-	if (-mod() <= x && x < mod()) {
-	    v = static_cast<Type>(x);
-	} else {
-	    v = static_cast<Type>(barrett(x));
-	}
-	if (v < 0) {
-	    v += mod();
-	}
-	return v;
+        Type v;
+        if (-mod() <= x && x < mod()) {
+            v = static_cast<Type>(x);
+        } else {
+            v = static_cast<Type>(barrett(x));
+        }
+        if (v < 0) {
+            v += mod();
+        }
+        return v;
     }
 
     const Type &
     operator()() const {
-	return value;
+        return value;
     }
     template <typename U>
     explicit
     operator U() const {
-	return static_cast<U>(value);
+        return static_cast<U>(value);
     }
     constexpr static Type
     mod() {
-	return T::value;
+        return T::value;
     }
 
     Modular &
     operator|=(const Modular &other) {
-	value |= other.value;
-	value -= (value >= mod()) * mod();
-	return *this;
+        value |= other.value;
+        value -= (value >= mod()) * mod();
+        return *this;
     }
 
     Modular &
     operator&=(const Modular &other) {
-	value |= other.value;
-	value -= (value >= mod()) * mod();
-	return *this;
+        value |= other.value;
+        value -= (value >= mod()) * mod();
+        return *this;
     }
 
     Modular &
     operator^=(const Modular &other) {
-	value |= other.value;
-	value -= (value >= mod()) * mod();
-	return *this;
+        value |= other.value;
+        value -= (value >= mod()) * mod();
+        return *this;
     }
 
     Modular &
     operator+=(const Modular &other) {
-	value += other.value;
-	value -= (value >= mod()) * mod();
-	return *this;
+        value += other.value;
+        value -= (value >= mod()) * mod();
+        return *this;
     }
     Modular &
     operator-=(const Modular &other) {
-	value -= other.value;
-	value += (value < 0) * mod();
-	return *this;
+        value -= other.value;
+        value += (value < 0) * mod();
+        return *this;
     }
 
     template <typename U>
     Modular &
     operator&=(const U &other) {
-	return *this |= Modular(other);
+        return *this |= Modular(other);
     }
 
     template <typename U>
     Modular &
     operator^=(const U &other) {
-	return *this |= Modular(other);
+        return *this |= Modular(other);
     }
 
     template <typename U>
     Modular &
     operator|=(const U &other) {
-	return *this |= Modular(other);
+        return *this |= Modular(other);
     }
     template <typename U>
     Modular &
     operator+=(const U &other) {
-	return *this += Modular(other);
+        return *this += Modular(other);
     }
     template <typename U>
     Modular &
     operator-=(const U &other) {
-	return *this -= Modular(other);
+        return *this -= Modular(other);
     }
     Modular &
     operator++() {
-	return *this += 1;
+        return *this += 1;
     }
     Modular &
     operator--() {
-	return *this -= 1;
+        return *this -= 1;
     }
     Modular
     operator++(int) {
-	Modular result(*this);
-	*this += 1;
-	return result;
+        Modular result(*this);
+        *this += 1;
+        return result;
     }
     Modular
     operator--(int) {
-	Modular result(*this);
-	*this -= 1;
-	return result;
+        Modular result(*this);
+        *this -= 1;
+        return result;
     }
     Modular
     operator-() const {
-	return Modular(-value);
+        return Modular(-value);
     }
 
     template <typename U = T>
     Modular &
     operator*=(const Modular &rhs)
-	requires std::is_same_v<typename Modular<U>::Type, int>
+        requires std::is_same_v<typename Modular<U>::Type, int>
     {
-	value = normalize(static_cast<int64_t>(value)
-			  * static_cast<int64_t>(rhs.value));
-	return *this;
+        value = normalize(static_cast<int64_t>(value) * static_cast<int64_t>(rhs.value));
+        return *this;
     }
     template <typename U = T>
     Modular &
     operator*=(const Modular &rhs)
-	requires std::is_same_v<typename Modular<U>::Type, int64_t>
+        requires std::is_same_v<typename Modular<U>::Type, int64_t>
     {
-	int64_t q
-	    = int64_t(static_cast<long double>(value) * rhs.value / mod());
-	value = normalize(value * rhs.value - q * mod());
-	return *this;
+        int64_t q = int64_t(static_cast<long double>(value) * rhs.value / mod());
+        value = normalize(value * rhs.value - q * mod());
+        return *this;
     }
     template <typename U = T>
     Modular &
     operator*=(const Modular &rhs)
-	requires(!std::is_integral_v<typename Modular<U>::Type>)
+        requires(!std::is_integral_v<typename Modular<U>::Type>)
     {
-	value = normalize(value * rhs.value);
-	return *this;
+        value = normalize(value * rhs.value);
+        return *this;
     }
 
     Modular &
     operator/=(const Modular &other) {
-	return *this *= Modular(inverse(other.value, mod()));
+        return *this *= Modular(inverse(other.value, mod()));
     }
 
     friend const Type &
     abs(const Modular &x) {
-	return x.value;
+        return x.value;
     }
 
-    template <typename U>
-    friend bool operator==(const Modular<U> &lhs, const Modular<U> &rhs);
+    template <typename U> friend bool operator==(const Modular<U> &lhs, const Modular<U> &rhs);
 
-    template <typename U>
-    friend bool operator<(const Modular<U> &lhs, const Modular<U> &rhs);
+    template <typename U> friend bool operator<(const Modular<U> &lhs, const Modular<U> &rhs);
 
-    template <typename V, typename U>
-    friend V &operator>>(V &stream, Modular<U> &number);
+    template <typename V, typename U> friend V &operator>>(V &stream, Modular<U> &number);
     Type value;
 };
 
@@ -357,11 +348,11 @@ power(const Modular<T> &a, const U &b) {
     Modular<T> x = a, res = 1;
     U p = b;
     while (p > 0) {
-	if (p & 1) {
-	    res *= x;
-	}
-	x *= x;
-	p >>= 1;
+        if (p & 1) {
+            res *= x;
+        }
+        x *= x;
+        p >>= 1;
     }
     return res;
 }
@@ -402,9 +393,9 @@ mint_conv(const std::vector<Mint> &a, const std::vector<Mint> &b) {
     const int m = (int) b.size();
     std::vector<Mint> c(n + m - 1);
     for (int i = 0; i < n; i++) {
-	for (int j = 0; j < m; j++) {
-	    c[i + j] += a[i] * b[j];
-	}
+        for (int j = 0; j < m; j++) {
+            c[i + j] += a[i] * b[j];
+        }
     }
     return c;
 }
@@ -417,12 +408,12 @@ conv(const std::vector<int> &a, const std::vector<int> &b) {
     const int m = (int) b.size();
     std::vector<T> c(n + m - 1);
     for (int i = 0; i < n; i++) {
-	for (int j = 0; j < m; j++) {
-	    c[i + j] += (T) a[i] * b[j] % MOD;
-	}
+        for (int j = 0; j < m; j++) {
+            c[i + j] += (T) a[i] * b[j] % MOD;
+        }
     }
     for (auto &&k : c)
-	k %= MOD;
+        k %= MOD;
     return c;
 }
 
@@ -439,27 +430,27 @@ main() {
     std::vector<Mint> aa(n);
     std::vector<Mint> bb(n);
     for (int i = 0; i < n; i++) {
-	int v;
-	std::cin >> v;
-	a[i] = v;
-	aa[i] = v;
+        int v;
+        std::cin >> v;
+        a[i] = v;
+        aa[i] = v;
     }
 
     for (int i = 0; i < n; i++) {
-	int v;
-	std::cin >> v;
-	b[i] = v;
-	bb[i] = v;
+        int v;
+        std::cin >> v;
+        b[i] = v;
+        bb[i] = v;
     }
     auto c = conv<int>(a, b);
     auto cc = mint_conv(aa, bb);
     for (const auto &v : c) {
-	std::cout << v << " ";
+        std::cout << v << " ";
     }
     std::cout << "\n";
 
     for (const auto &v : cc) {
-	std::cout << v << " ";
+        std::cout << v << " ";
     }
     std::cout << "\n";
 

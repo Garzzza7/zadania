@@ -19,50 +19,47 @@ template <typename T = int> struct kosaraju {
     std::map<T, std::vector<T>> scc;
 
     kosaraju(const T _n)
-	: n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
-	  rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
-	visited = std::vector<bool>(_n, false);
+        : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
+          rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
+        visited = std::vector<bool>(_n, false);
     }
 
     void
     add_edge(const T &a, const T &b) {
-	adj[a].push_back(b);
-	rev_adj[b].push_back(a);
+        adj[a].push_back(b);
+        rev_adj[b].push_back(a);
     }
 
     void
     calc_scc() {
-	for (int i = 0; i < n; i++)
-	    if (!visited[i])
-		dfs_1(i);
-	for (int i = 0; i < n; i++)
-	    visited[i] = false;
-	while (!stack.empty()) {
-	    int v = stack.top();
-	    stack.pop();
-	    if (!visited[v]) {
-		dfs_2(v);
-		cnt_Components++;
-	    }
-	}
+        for (int i = 0; i < n; i++)
+            if (!visited[i]) dfs_1(i);
+        for (int i = 0; i < n; i++)
+            visited[i] = false;
+        while (!stack.empty()) {
+            int v = stack.top();
+            stack.pop();
+            if (!visited[v]) {
+                dfs_2(v);
+                cnt_Components++;
+            }
+        }
     }
 
     void
     dfs_1(const T &v) {
-	visited[v] = true;
-	for (const auto &vv : adj[v])
-	    if (!visited[vv])
-		dfs_1(vv);
-	stack.push(v);
+        visited[v] = true;
+        for (const auto &vv : adj[v])
+            if (!visited[vv]) dfs_1(vv);
+        stack.push(v);
     }
 
     void
     dfs_2(const T &v) {
-	scc[cnt_Components].push_back(v);
-	visited[v] = true;
-	for (const auto &vv : rev_adj[v])
-	    if (!visited[vv])
-		dfs_2(vv);
+        scc[cnt_Components].push_back(v);
+        visited[v] = true;
+        for (const auto &vv : rev_adj[v])
+            if (!visited[vv]) dfs_2(vv);
     }
 };
 
@@ -77,17 +74,17 @@ main() {
 
     kosaraju<int> kosaraju(n);
     while (m--) {
-	int a, b;
-	std::cin >> a >> b;
-	kosaraju.add_edge(a, b);
+        int a, b;
+        std::cin >> a >> b;
+        kosaraju.add_edge(a, b);
     }
     kosaraju.calc_scc();
     std::cout << kosaraju.scc.size() << "\n";
     for (const auto &[fst, snd] : kosaraju.scc) {
-	std::cout << snd.size() << " ";
-	for (const auto &aa : snd)
-	    std::cout << aa << " ";
-	std::cout << "\n";
+        std::cout << snd.size() << " ";
+        for (const auto &aa : snd)
+            std::cout << aa << " ";
+        std::cout << "\n";
     }
 
     return 0;

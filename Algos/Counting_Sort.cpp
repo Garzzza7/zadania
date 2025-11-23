@@ -12,13 +12,13 @@ main() {
     std::cout << n << "\n";
     std::map<int, int> vec;
     for (int i = 0; i < n; i++) {
-	int aa;
-	std::cin >> aa;
-	vec.insert({aa, 0});
-	vec[aa]++;
+        int aa;
+        std::cin >> aa;
+        vec.insert({aa, 0});
+        vec[aa]++;
     }
     for (auto const &[key, val] : vec)
-	for (int i = 0; i < val; i++)
-	    std::cout << key << " ";
+        for (int i = 0; i < val; i++)
+            std::cout << key << " ";
     return 0;
 }

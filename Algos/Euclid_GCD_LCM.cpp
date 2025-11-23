@@ -3,8 +3,7 @@
 template <typename T>
 T
 rec_gcd(T a, T b) {
-    if (b == 0)
-	return a;
+    if (b == 0) return a;
     return rec_gcd(b, a % b);
 }
 
@@ -12,8 +11,8 @@ template <typename T>
 T
 gcd(T a, T b) {
     while (b) {
-	a %= b;
-	std::swap(a, b);
+        a %= b;
+        std::swap(a, b);
     }
     return a;
 }
@@ -27,15 +26,13 @@ lcm(T a, T b) {
 template <typename T>
 T
 bit_gcd(T a, T b) {
-    if (!a || !b)
-	return a | b;
+    if (!a || !b) return a | b;
     unsigned shift = __builtin_ctz(a | b);
     a >>= __builtin_ctz(a);
     do {
-	b >>= __builtin_ctz(b);
-	if (a > b)
-	    std::swap(a, b);
-	b -= a;
+        b >>= __builtin_ctz(b);
+        if (a > b) std::swap(a, b);
+        b -= a;
     } while (b);
     return a << shift;
 }
@@ -49,12 +46,12 @@ main() {
     int T;
     std::cin >> T;
     while (T--) {
-	int a, b;
-	std::cin >> a >> b;
-	std::cout << "rec gcd = " << rec_gcd(a, b) << "\n";
-	std::cout << "gcd = " << gcd(a, b) << "\n";
-	std::cout << "bit gcd = " << bit_gcd(a, b) << "\n";
-	std::cout << "lcm = " << lcm(a, b) << "\n";
+        int a, b;
+        std::cin >> a >> b;
+        std::cout << "rec gcd = " << rec_gcd(a, b) << "\n";
+        std::cout << "gcd = " << gcd(a, b) << "\n";
+        std::cout << "bit gcd = " << bit_gcd(a, b) << "\n";
+        std::cout << "lcm = " << lcm(a, b) << "\n";
     }
     return 0;
 }

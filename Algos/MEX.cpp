@@ -5,11 +5,10 @@ int
 mex(const std::vector<int> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
     for (const auto &i : vec)
-	if (i <= (int) (vec.size()))
-	    f[i] = true;
+        if (i <= (int) (vec.size())) f[i] = true;
     int res{0};
     while (f[res])
-	res++;
+        res++;
     return res;
 }
 
@@ -23,7 +22,7 @@ main() {
     std::cin >> n;
     std::vector<int> vec(n);
     for (int i = 0; i < n; i++)
-	std::cin >> vec[i];
+        std::cin >> vec[i];
     std::cout << mex(vec) << "\n";
     return 0;
 }

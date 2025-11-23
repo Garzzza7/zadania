@@ -13,22 +13,20 @@ std::vector<std::vector<ll>> adj(100000, std::vector<ll>());
 void
 dfs(ll ver, ll par) {
     if (visited[ver]) {
-	std::vector<ll> res = {ver};
-	for (int i = sz(path) - 1; i >= 0; i--) {
-	    res.push_back(path[i]);
-	    if (path[i] == ver)
-		break;
-	}
-	std::cout << sz(res) << "\n";
-	for (const auto &v : res)
-	    std::cout << v << " ";
-	exit(0);
+        std::vector<ll> res = {ver};
+        for (int i = sz(path) - 1; i >= 0; i--) {
+            res.push_back(path[i]);
+            if (path[i] == ver) break;
+        }
+        std::cout << sz(res) << "\n";
+        for (const auto &v : res)
+            std::cout << v << " ";
+        exit(0);
     }
     visited[ver] = true;
     path.push_back(ver);
     for (auto v : adj[ver])
-	if (v != par)
-	    dfs(v, ver);
+        if (v != par) dfs(v, ver);
     path.pop_back();
 }
 
@@ -42,14 +40,13 @@ main() {
     std::cin >> n >> m;
 
     for (ll i = 0; i < m; i++) {
-	ll a, b;
-	std::cin >> a >> b;
-	adj[a].push_back(b);
-	adj[b].push_back(a);
+        ll a, b;
+        std::cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
     for (int i = 1; i <= n; i++)
-	if (!visited[i])
-	    dfs(i, -1);
+        if (!visited[i]) dfs(i, -1);
     std::cout << "IMPOSSIBLE\n";
     return 0;
 }

@@ -7,17 +7,17 @@
 
 template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     struct node {
-	std::vector<int> next;
-	std::vector<int> accepting;
-	bool is_accept{false};
-	int suffix_link{-1};
-	int output_link{-1};
-	int c;
-	int cnt_shares{0};
-	int parent{0};
-	node(const int c_) : c(c_) {
-	    next.assign(CHAR_SIZE, -1);
-	}
+        std::vector<int> next;
+        std::vector<int> accepting;
+        bool is_accept{false};
+        int suffix_link{-1};
+        int output_link{-1};
+        int c;
+        int cnt_shares{0};
+        int parent{0};
+        node(const int c_) : c(c_) {
+            next.assign(CHAR_SIZE, -1);
+        }
     };
 
     std::vector<node> nodes;
@@ -25,135 +25,133 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     int root{'$' - BASE};
 
     aho_corasick() {
-	nodes.emplace_back(node(root));
+        nodes.emplace_back(node(root));
     }
 
     void
     insert(const std::string &word, int word_id) {
-	int node_id{0};
-	patterns.push_back(word);
-	for (const auto &i : word) {
-	    int c = i - BASE;
-	    auto &next_id = nodes[node_id].next[c];
-	    if (next_id == -1) {
-		next_id = static_cast<int>(nodes.size());
-		nodes.emplace_back(node(c));
-	    }
-	    nodes[node_id].cnt_shares++;
-	    nodes[next_id].parent = node_id;
-	    node_id = next_id;
-	}
-	nodes[node_id].cnt_shares++;
-	nodes[node_id].accepting.push_back(word_id);
-	nodes[node_id].is_accept = true;
+        int node_id{0};
+        patterns.push_back(word);
+        for (const auto &i : word) {
+            int c = i - BASE;
+            auto &next_id = nodes[node_id].next[c];
+            if (next_id == -1) {
+                next_id = static_cast<int>(nodes.size());
+                nodes.emplace_back(node(c));
+            }
+            nodes[node_id].cnt_shares++;
+            nodes[next_id].parent = node_id;
+            node_id = next_id;
+        }
+        nodes[node_id].cnt_shares++;
+        nodes[node_id].accepting.push_back(word_id);
+        nodes[node_id].is_accept = true;
     }
 
     void
     insert(const std::string &word) {
-	insert(word, nodes[0].cnt_shares);
+        insert(word, nodes[0].cnt_shares);
     }
 
     void
     build_suffix_links() {
-	std::queue<int> q;
+        std::queue<int> q;
 
-	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-	    int child = nodes[0].next[i];
-	    if (child != -1) {
-		nodes[child].suffix_link = 0;
-		q.push(child);
-	    }
-	}
+        for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
+            int child = nodes[0].next[i];
+            if (child != -1) {
+                nodes[child].suffix_link = 0;
+                q.push(child);
+            }
+        }
 
-	while (!q.empty()) {
-	    const int id = q.front();
-	    q.pop();
-	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-		int child = nodes[id].next[i];
-		if (child == -1) {
-		    continue;
-		}
-		int j = nodes[id].suffix_link;
-		while (j != -1 && nodes[j].next[i] == -1) {
-		    j = nodes[j].suffix_link;
-		}
-		if (j == -1) {
-		    nodes[child].suffix_link = 0;
-		} else {
-		    nodes[child].suffix_link = nodes[j].next[i];
-		}
-		q.push(child);
-	    }
-	}
+        while (!q.empty()) {
+            const int id = q.front();
+            q.pop();
+            for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
+                int child = nodes[id].next[i];
+                if (child == -1) {
+                    continue;
+                }
+                int j = nodes[id].suffix_link;
+                while (j != -1 && nodes[j].next[i] == -1) {
+                    j = nodes[j].suffix_link;
+                }
+                if (j == -1) {
+                    nodes[child].suffix_link = 0;
+                } else {
+                    nodes[child].suffix_link = nodes[j].next[i];
+                }
+                q.push(child);
+            }
+        }
     }
 
     void
     build_output_links() {
-	std::queue<int> q;
-	for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-	    if (int child = nodes[0].next[i]; child != -1) {
-		q.push(child);
-	    }
-	}
-	while (!q.empty()) {
-	    int id = q.front();
-	    q.pop();
-	    const auto &u = nodes[id].suffix_link;
-	    if (nodes[u].is_accept) {
-		nodes[id].output_link = u;
-	    } else {
-		nodes[id].output_link = nodes[u].output_link;
-	    }
-	    for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-		int child = nodes[id].next[i];
-		if (child == -1) {
-		    continue;
-		}
-		q.push(child);
-	    }
-	}
+        std::queue<int> q;
+        for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
+            if (int child = nodes[0].next[i]; child != -1) {
+                q.push(child);
+            }
+        }
+        while (!q.empty()) {
+            int id = q.front();
+            q.pop();
+            const auto &u = nodes[id].suffix_link;
+            if (nodes[u].is_accept) {
+                nodes[id].output_link = u;
+            } else {
+                nodes[id].output_link = nodes[u].output_link;
+            }
+            for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
+                int child = nodes[id].next[i];
+                if (child == -1) {
+                    continue;
+                }
+                q.push(child);
+            }
+        }
     }
 
     void
     build() {
-	build_suffix_links();
-	build_output_links();
+        build_suffix_links();
+        build_output_links();
     }
 
     void
     search_connections(const std::string &word) {
-	int node_id{0};
-	for (int i = 0; i < static_cast<int>(word.size()); i++) {
-	    int c = word[i] - BASE;
-	    while (node_id != 0 && nodes[node_id].next[c] == -1) {
-		node_id = nodes[node_id].suffix_link;
-	    }
-	    if (nodes[node_id].next[c] != -1) {
-		node_id = nodes[node_id].next[c];
-	    }
-	    for (int iter = node_id; iter != -1;
-		 iter = nodes[iter].output_link) {
-		for (const auto &p : nodes[iter].accepting) {
-		    std::cout << patterns[p] << " found at "
-			      << (i - patterns[p].size() + 1) << "\n";
-		}
-	    }
-	}
+        int node_id{0};
+        for (int i = 0; i < static_cast<int>(word.size()); i++) {
+            int c = word[i] - BASE;
+            while (node_id != 0 && nodes[node_id].next[c] == -1) {
+                node_id = nodes[node_id].suffix_link;
+            }
+            if (nodes[node_id].next[c] != -1) {
+                node_id = nodes[node_id].next[c];
+            }
+            for (int iter = node_id; iter != -1; iter = nodes[iter].output_link) {
+                for (const auto &p : nodes[iter].accepting) {
+                    std::cout << patterns[p] << " found at " << (i - patterns[p].size() + 1) << "\n";
+                }
+            }
+        }
     }
 
     void
     search_node(const std::string &word) {
-	int node_id{0};
-	for (const auto &i : word) {
-	    int c = i - BASE;
-	    while (node_id != 0 && nodes[node_id].next[c] == -1) {
-		node_id = nodes[node_id].suffix_link;
-	    }
-	    if (nodes[node_id].next[c] != -1) {
-		node_id = nodes[node_id].next[c];
-	    }
-	}
-	std::cout << node_id << " ";
+        int node_id{0};
+        for (const auto &i : word) {
+            int c = i - BASE;
+            while (node_id != 0 && nodes[node_id].next[c] == -1) {
+                node_id = nodes[node_id].suffix_link;
+            }
+            if (nodes[node_id].next[c] != -1) {
+                node_id = nodes[node_id].next[c];
+            }
+        }
+        std::cout << node_id << " ";
     }
 };
 
@@ -169,10 +167,10 @@ main() {
     std::vector<std::string> strings(n);
 
     for (int i = 0; i < n; i++) {
-	std::string s;
-	std::cin >> s;
-	strings[i] = s;
-	AC.insert(s);
+        std::string s;
+        std::cin >> s;
+        strings[i] = s;
+        AC.insert(s);
     }
 
     std::string word;
@@ -181,12 +179,11 @@ main() {
 
     std::cout << AC.nodes.size() << "\n";
     for (int i = 1; i < (int) AC.nodes.size(); i++) {
-	std::cout << AC.nodes[i].parent << " " << AC.nodes[i].suffix_link
-		  << "\n";
+        std::cout << AC.nodes[i].parent << " " << AC.nodes[i].suffix_link << "\n";
     }
 
     for (const auto &c : strings) {
-	AC.search_node(c);
+        AC.search_node(c);
     }
     std::cout << "\n";
 

@@ -7,19 +7,17 @@ hasSubstring(const std::string &s, const std::string &pattern) {
     int i = 0;
     int j = 0;
     int k = 0;
-    while (i < static_cast<int>(s.size())
-	   && j < static_cast<int>(pattern.size())) {
-	if (s[i] == pattern[j]) {
-	    i++;
-	    j++;
-	} else {
-	    j = 0;
-	    k++;
-	    i = k;
-	}
+    while (i < static_cast<int>(s.size()) && j < static_cast<int>(pattern.size())) {
+        if (s[i] == pattern[j]) {
+            i++;
+            j++;
+        } else {
+            j = 0;
+            k++;
+            i = k;
+        }
     }
-    if (j == (int) pattern.size())
-	return true;
+    if (j == (int) pattern.size()) return true;
     return false;
 }
 
@@ -28,18 +26,18 @@ computeBuffer(std::string pattern) {
     std::vector<int> lps(static_cast<int>(pattern.size()));
     int index = 0;
     for (int i = 1; i < static_cast<int>(pattern.size());) {
-	if ((pattern[i] = pattern[index])) {
-	    lps[i] = index + 1;
-	    index++;
-	    i++;
-	} else {
-	    if (index) {
-		index = lps[index - 1];
-	    } else {
-		lps[i] = 0;
-		i++;
-	    }
-	}
+        if ((pattern[i] = pattern[index])) {
+            lps[i] = index + 1;
+            index++;
+            i++;
+        } else {
+            if (index) {
+                index = lps[index - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
     }
     return lps;
 }
@@ -49,21 +47,19 @@ KMP(const std::string &s, const std::string &pattern) {
     const std::vector<int> lps = computeBuffer(pattern);
     int j = 0;
     int i = 0;
-    while (i < static_cast<int>(s.size())
-	   && j < static_cast<int>(pattern.size())) {
-	if (s[i] == pattern[j]) {
-	    i++;
-	    j++;
-	} else {
-	    if (j) {
-		j = lps[j - 1];
-	    } else {
-		i++;
-	    }
-	}
+    while (i < static_cast<int>(s.size()) && j < static_cast<int>(pattern.size())) {
+        if (s[i] == pattern[j]) {
+            i++;
+            j++;
+        } else {
+            if (j) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
+        }
     }
-    if (j == static_cast<int>(pattern.size()))
-	return true;
+    if (j == static_cast<int>(pattern.size())) return true;
     return false;
 }
 

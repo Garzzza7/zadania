@@ -6,10 +6,9 @@ std::vector<T>
 sieve(const T &n) {
     std::vector<int> res(n + 1, 0);
     for (int i = 2; i <= n; i++) {
-	if (res[i])
-	    continue;
-	for (int x = 2 * i; x <= n; x += i)
-	    res[x] = i;
+        if (res[i]) continue;
+        for (int x = 2 * i; x <= n; x += i)
+            res[x] = i;
     }
     return res;
 }
@@ -26,6 +25,6 @@ main() {
     // 0 -> prime
     // !0 -> one of factors
     for (const auto &a : siev)
-	std::cout << a << " ";
+        std::cout << a << " ";
     return 0;
 }

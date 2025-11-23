@@ -6,8 +6,8 @@ std::vector<int>
 convert_base10_to_base(int num, int base) {
     std::vector<int> res;
     while (num >= 1) {
-	res.push_back(num % base);
-	num /= base;
+        res.push_back(num % base);
+        num /= base;
     }
     std::reverse(res.begin(), res.end());
     return res;
@@ -22,12 +22,12 @@ main() {
     int T;
     std::cin >> T;
     while (T--) {
-	int n, base;
-	std::cin >> n >> base;
-	const auto vec = convert_base10_to_base(n, base);
-	for (const auto &v : vec)
-	    std::cout << v;
-	std::cout << "\n";
+        int n, base;
+        std::cin >> n >> base;
+        const auto vec = convert_base10_to_base(n, base);
+        for (const auto &v : vec)
+            std::cout << v;
+        std::cout << "\n";
     }
 
     return 0;
