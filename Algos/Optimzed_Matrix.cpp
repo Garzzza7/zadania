@@ -250,7 +250,7 @@ template <typename T> struct matrix {
     }
 
     void
-    print() {
+    print() const {
         for (const auto &vv : this->mat) {
             for (const auto &v : vv) {
                 std::cout << v << " ";
