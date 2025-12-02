@@ -63,10 +63,14 @@
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec) std::reverse(vec.begin(), vec.end())
-#define sortpairascS(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second < right.second; })
-#define sortpairdesS(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.second > right.second; })
-#define sortpairascF(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.first < right.first; })
-#define sortpairdesF(vec) std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { return left.first > right.first; })
+#define sortpairascS(vec)                                                                                                        \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.second < right.second; })
+#define sortpairdesS(vec)                                                                                                        \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.second > right.second; })
+#define sortpairascF(vec)                                                                                                        \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.first < right.first; })
+#define sortpairdesF(vec)                                                                                                        \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.first > right.first; })
 #define swp(a, b)                                                                                                                \
     a ^= b;                                                                                                                      \
     b ^= a;                                                                                                                      \
