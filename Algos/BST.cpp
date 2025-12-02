@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 template <typename T = int> struct node {
     T val{0};
@@ -9,7 +8,7 @@ template <typename T = int> struct node {
 
     node() = default;
 
-    node(T v) : val(v) {
+    node(const T &v) : val(v) {
     }
 
     ~node() = default;
@@ -20,6 +19,21 @@ template <typename T = int> struct node {
     }
 
     bool
+    operator<(const node<T> &p) const {
+        return val < p.val;
+    }
+
+    bool
+    operator>=(const node<T> &p) const {
+        return val >= p.val;
+    }
+
+    bool
+    operator>(const node<T> &p) const {
+        return val > p.val;
+    }
+
+    bool
     operator==(const node<T> &p) const {
         return val == p.val;
     }
@@ -27,6 +41,11 @@ template <typename T = int> struct node {
     friend std::ostream &
     operator<<(std::ostream &out, const node<T> &n) {
         return out << n.val;
+    }
+
+    friend std::ostream &
+    operator<<(std::ostream &out, const node<T> *n) {
+        return out << n->val;
     }
 
     friend std::istream &
@@ -40,21 +59,19 @@ template <typename T = int> struct node {
 template <typename T = int> struct bst {
     node<T> *root;
     // node<T> *sentinel;
-    std::vector<node<T>> nodes;
+    // std::vector<node<T>> nodes;
 
-    bst() {
-        root = new node();
+    bst() : root(new node()) {
         // sentinel = new node(-2137);
         // root->p = sentinel;
     }
 
-    bst(T v) {
-        root = new node();
-        nodes.push_back(v);
+    bst(T v) : root(new node()) {
+        // nodes.push_back(v);
     }
 
     ~bst() {
-        auto walk = [&](const auto &self, node<T> *curr) -> void {
+        auto walk = [](const auto &self, node<T> *curr) -> void {
             if (curr == nullptr) {
                 return;
             }
@@ -85,14 +102,14 @@ template <typename T = int> struct bst {
     void
     insert(node<T> *n, node<T> *curr) {
         if (*n <= *curr) {
-            if (curr->l != nullptr) {
+            if (curr->l) {
                 insert(n, curr->l);
             } else {
                 curr->l = n;
                 n->p = curr;
             }
         } else {
-            if (curr->r != nullptr) {
+            if (curr->r) {
                 insert(n, curr->r);
             } else {
                 curr->r = n;
@@ -109,19 +126,19 @@ template <typename T = int> struct bst {
     }
 
     void
-    remove(node<T> *n) {
+    remove(const node<T> *n) {
         remove(n, root);
     }
 
     void
-    remove(node<T> *n, node<T> *curr) {
+    remove(const node<T> *n, node<T> *curr) {
         if (curr == nullptr) {
             return;
         }
-        if (n->val == curr->val) {
-            auto is_left = [](node<T> *n) -> bool {
+        if (*n == *curr) {
+            auto is_left = [](const node<T> *node) -> bool {
                 // true -> l , false -> r
-                if (n->p->l == n) {
+                if (node->p->l == node) {
                     return true;
                 }
                 return false;
@@ -134,7 +151,7 @@ template <typename T = int> struct bst {
                     curr->p->r = nullptr;
                 }
                 delete curr;
-            } else if (curr->l == nullptr and curr->r != nullptr) {
+            } else if (curr->l == nullptr and curr->r) {
                 // has one child r
                 if (is_left(curr)) {
                     curr->p->l = curr->r;
@@ -142,7 +159,7 @@ template <typename T = int> struct bst {
                     curr->p->r = curr->r;
                 }
                 delete curr;
-            } else if (curr->l != nullptr and curr->r == nullptr) {
+            } else if (curr->l and curr->r == nullptr) {
                 // has one child l
                 if (is_left(curr)) {
                     curr->p->l = curr->l;
@@ -153,20 +170,21 @@ template <typename T = int> struct bst {
             } else {
                 // has both children
                 node<T> *succ = find_successor(curr);
-                if (succ != nullptr) {
+                if (succ) {
+                    // TODO: automate transition in case nodes get more attributes
                     T buff = succ->val;
                     remove(succ, curr);
                     curr->val = buff;
                 } else {
                     node<T> *pred = find_predecessor(curr);
-                    if (pred != nullptr) {
+                    if (pred) {
                         T buff = pred->val;
                         remove(pred, curr);
                         curr->val = buff;
                     }
                 }
             }
-        } else if (n->val < curr->val) {
+        } else if (*n < *curr) {
             return remove(n, curr->l);
         } else {
             return remove(n, curr->r);
@@ -183,16 +201,16 @@ template <typename T = int> struct bst {
 
     node<T> *
     find_predecessor(node<T> *n) {
-        if (n->l != nullptr) {
+        if (n->l) {
             node<T> *curr = n->l;
-            while (curr->r != nullptr) {
+            while (curr->r) {
                 curr = curr->r;
             }
             return curr;
         }
         node<T> *curr = n->p;
         node<T> *buff = n;
-        while (curr != nullptr and buff == curr->l) {
+        while (curr and buff == curr->l) {
             buff = curr;
             curr = curr->p;
         }
@@ -209,16 +227,16 @@ template <typename T = int> struct bst {
 
     node<T> *
     find_successor(node<T> *n) {
-        if (n->r != nullptr) {
+        if (n->r) {
             node<T> *curr = n->r;
-            while (curr->l != nullptr) {
+            while (curr->l) {
                 curr = curr->l;
             }
             return curr;
         }
         node<T> *curr = n->p;
         node<T> *buff = n;
-        while (curr != nullptr and buff == curr->r) {
+        while (curr and buff == curr->r) {
             buff = curr;
             curr = curr->p;
         }
@@ -228,13 +246,13 @@ template <typename T = int> struct bst {
     void
     l_rotate(node<T> *n) {
         (void) n;
-        // TODO: finish
+        // TODO: implement
     }
 
     void
     r_rotate(node<T> *n) {
         (void) n;
-        // TODO: finish
+        // TODO: implement
     }
 
     bool
@@ -255,10 +273,10 @@ template <typename T = int> struct bst {
         if (curr == nullptr) {
             return false;
         }
-        if (n->val == curr->val) {
+        if (*n == *curr) {
             return true;
         }
-        if (n->val < curr->val) {
+        if (*n < *curr) {
             return find(n, curr->l);
         }
         return find(n, curr->r);
@@ -278,11 +296,11 @@ template <typename T = int> struct bst {
 
     void
     pre_order(node<T> *n) {
-        std::cout << n->val << "\n";
-        if (n->l != nullptr) {
+        std::cout << n << "\n";
+        if (n->l) {
             pre_order(n->l);
         }
-        if (n->r != nullptr) {
+        if (n->r) {
             pre_order(n->r);
         }
     }
@@ -301,11 +319,11 @@ template <typename T = int> struct bst {
 
     void
     in_order(node<T> *n) {
-        if (n->l != nullptr) {
+        if (n->l) {
             in_order(n->l);
         }
-        std::cout << n->val << "\n";
-        if (n->r != nullptr) {
+        std::cout << n << "\n";
+        if (n->r) {
             in_order(n->r);
         }
     }
@@ -324,24 +342,22 @@ template <typename T = int> struct bst {
 
     void
     post_order(node<T> *n) {
-        if (n->l != nullptr) {
+        if (n->l) {
             post_order(n->l);
         }
-        if (n->r != nullptr) {
+        if (n->r) {
             post_order(n->r);
         }
-        std::cout << n->val << "\n";
+        std::cout << n << "\n";
     }
 
     void
     disp_pred(node<T> *n) const {
-        std::cout << "pred of " << n->val << " = "
-                  << (this->find_predecessor(n) == nullptr ? -69 : this->find_predecessor(n)->val) << "\n";
+        std::cout << "pred of " << n << " = " << (this->find_predecessor(n) == nullptr ? -69 : this->find_predecessor(n)) << "\n";
     }
     void
     disp_succ(node<T> *n) const {
-        std::cout << "succ of " << n->val << " = " << (this->find_successor(n) == nullptr ? -69 : this->find_successor(n)->val)
-                  << "\n";
+        std::cout << "succ of " << n << " = " << (this->find_successor(n) == nullptr ? -69 : this->find_successor(n)) << "\n";
     }
 };
 
