@@ -29,7 +29,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     }
 
     void
-    insert(const std::string &word, int word_id) {
+    insert(const std::string &word, const int &word_id) {
         int node_id{0};
         patterns.push_back(word);
         for (const auto &i : word) {
@@ -58,7 +58,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         std::queue<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            int child = nodes[0].next[i];
+            const int &child = nodes[0].next[i];
             if (child != -1) {
                 nodes[child].suffix_link = 0;
                 q.push(child);
@@ -91,7 +91,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     build_output_links() {
         std::queue<int> q;
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            if (int child = nodes[0].next[i]; child != -1) {
+            const int &child = nodes[0].next[i];
+            if (child != -1) {
                 q.push(child);
             }
         }
