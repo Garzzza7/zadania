@@ -1,6 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -17,24 +18,24 @@ using u64 = unsigned long long;
 using i32 = int;
 using u32 = unsigned int;
 using str = std::string;
+using u8 = char;
 
 void
 solve() {
     i32 n, k;
     std::cin >> n >> k;
-    str s(n, 'a');
-    i32 iter{1};
-    i32 cnt{1};
-    i32 sum{0};
-    while (iter * 2 <= k) {
-	sum += iter - 1;
-	iter <<= 1;
-	cnt++;
+    str res(n, 'a');
+    i32 tot{0};
+    i32 i;
+    for (i = 1; i <= k; i++) {
+        if (tot + i >= k) {
+            break;
+        }
+        tot += i;
     }
-    std::cout << k - iter << "\n";
-    // git
-    s[n - cnt - 1] = 'b';
-    std::cout << s << "\n";
+    res[n - i - 1] = 'b';
+    res[n - k + tot] = 'b';
+    std::cout << res << "\n";
 }
 
 int
@@ -46,7 +47,7 @@ main() {
     int _{1};
     std::cin >> _;
     while (_--)
-	solve();
+        solve();
 
     return 0;
 }

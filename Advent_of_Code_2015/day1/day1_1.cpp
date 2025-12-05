@@ -22,15 +22,17 @@ using u8 = char;
 
 void
 solve() {
-    i32 a, b;
-    std::cin >> a >> b;
-    if (a % b == 0)
-        std::cout << 0 << "\n";
-    else if (a <= b) {
-        std::cout << b - a << "\n";
-    } else {
-        std::cout << (a / b + 1) * b - a << "\n";
+    str s;
+    std::cin >> s;
+    i32 res{0};
+    for (const auto &c : s) {
+        if (c == '(') {
+            res++;
+        } else {
+            res--;
+        }
     }
+    std::cout << res << "\n";
 }
 
 int
@@ -40,7 +42,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -22,41 +22,32 @@ using u8 = char;
 
 void
 solve() {
-    i32 n;
-    std::cin >> n;
     str s;
-    std::cin >> s;
-    str r1(n, '0');
-    str r2(n, '0');
-    r1[0] = '1';
-    r2[0] = '1';
-    bool first = true;
-    for (i32 i = 1; i < n; i++) {
-        if (s[i] == 0) {
-            continue;
+    std::vector<str> vec;
+    while (true) {
+        std::getline(std::cin, s);
+        if (s == "") {
+            break;
         }
-        if (s[i] == '1') {
-            if (first) {
-                first = false;
-                r1[i] = '1';
-                r2[i] = '0';
-            } else {
-                r1[i] = '0';
-                r2[i] = '1';
-            }
-        }
-        if (s[i] == '2') {
-            if (first) {
-                r1[i] = '1';
-                r2[i] = '1';
-            } else {
-                r1[i] = '0';
-                r2[i] = '2';
-            }
-        }
+        s.push_back('x');
+        vec.push_back(s);
     }
-    std::cout << r1 << "\n";
-    std::cout << r2 << "\n";
+    i32 res{0};
+    for (const auto &v : vec) {
+        std::vector<i32> nums;
+        str buff;
+        for (const auto &c : v) {
+            if (c == 'x') {
+                nums.push_back(std::stoi(buff));
+                buff.clear();
+            } else {
+                buff.push_back(c);
+            }
+        }
+        res += 2 * nums[0] * nums[1] + 2 * nums[1] * nums[2] + 2 * nums[2] * nums[0]
+               + std::min({nums[0] * nums[1], nums[1] * nums[2], nums[2] * nums[0]});
+    }
+    std::cout << res << "\n";
 }
 
 int
@@ -66,7 +57,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 
