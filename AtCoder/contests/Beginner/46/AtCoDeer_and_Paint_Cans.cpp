@@ -4,7 +4,6 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include <numeric>
 #include <queue>
 #include <set>
 #include <string>
@@ -23,6 +22,13 @@ using u8 = char;
 
 void
 solve() {
+    i32 a, b, c;
+    std::cin >> a >> b >> c;
+    std::set<i32> s;
+    s.insert(a);
+    s.insert(b);
+    s.insert(c);
+    std::cout << sz(s) << "\n";
 }
 
 int
@@ -32,7 +38,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

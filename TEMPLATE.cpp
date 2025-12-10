@@ -128,25 +128,25 @@ to_debug(T x, std::string s)
 #define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
 template <typename T>
-[[nodiscard]] T
+[[nodiscard]] inline T
 bin_xor(T a, T b) {
     return ~(a & b) & (a | b);
 }
 
 template <typename T>
-[[nodiscard]] bool
+[[nodiscard]] inline bool
 is_on(T a, T b) {
     return a & (static_cast<T>(1) << b);
 }
 
 template <typename T>
-[[nodiscard]] bool
+[[nodiscard]] inline bool
 cmp(const T &x, const T &y) {
     return x > y;
 }
 
 template <typename T>
-[[nodiscard]] bool
+[[nodiscard]] inline bool
 pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) {
     if (x.second < y.second) {
         return x.second < y.second;
@@ -155,25 +155,25 @@ pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) {
 }
 
 template <typename T>
-[[nodiscard]] T
+[[nodiscard]] inline T
 bin_min(const T &x, const T &y) {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 template <typename T>
-[[nodiscard]] T
+[[nodiscard]] inline T
 bin_max(const T &x, const T &y) {
     return y ^ ((x ^ y) & -(x > y));
 }
 
 template <typename T>
-[[nodiscard]] T
+[[nodiscard]] inline T
 bin_ce(T x, T y) {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
 template <typename T>
-[[nodiscard]] T
+[[nodiscard]] inline T
 bin_fl(T x, T y) {
     return x / y - ((x ^ y) < 0 && x % y);
 }

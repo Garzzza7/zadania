@@ -99,9 +99,14 @@ template <typename T = int> struct bst {
         insert(n, root);
     }
 
+    inline bool
+    cmp(const node<T> *n1, const node<T> *n2) const {
+        return *n1 <= *n2;
+    }
+
     void
     insert(node<T> *n, node<T> *curr) {
-        if (*n <= *curr) {
+        if (cmp(n, curr)) {
             if (curr->l) {
                 insert(n, curr->l);
             } else {
@@ -184,7 +189,7 @@ template <typename T = int> struct bst {
                     }
                 }
             }
-        } else if (*n < *curr) {
+        } else if (cmp(n, curr)) {
             return remove(n, curr->l);
         } else {
             return remove(n, curr->r);
@@ -276,11 +281,23 @@ template <typename T = int> struct bst {
         if (*n == *curr) {
             return true;
         }
-        if (*n < *curr) {
+        if (cmp(n, curr)) {
             return find(n, curr->l);
         }
         return find(n, curr->r);
     }
+
+    bool
+    is_root(node<T> *n) {
+        return n->p == nullptr;
+    }
+
+    bool
+    is_leaf(node<T> *n) {
+        return n->l == nullptr and n->r == nullptr;
+    }
+
+    // walking
 
     void
     pre_order(const T &n) {

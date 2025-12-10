@@ -4,7 +4,6 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include <numeric>
 #include <queue>
 #include <set>
 #include <string>
@@ -21,8 +20,26 @@ using u32 = unsigned int;
 using str = std::string;
 using u8 = char;
 
+u64
+binpow(u64 a, u64 b) {
+    u64 res{1ULL};
+    while (b > 0) {
+        if (b & 1) {
+            res = res * a;
+        }
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+
 void
 solve() {
+    u64 n, k;
+    std::cin >> n >> k;
+    u64 res{k};
+    res *= binpow(k - 1, n - 1);
+    std::cout << res << "\n";
 }
 
 int
@@ -32,7 +49,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

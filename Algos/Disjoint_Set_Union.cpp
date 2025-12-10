@@ -1,12 +1,19 @@
 #include <iostream>
+#include <map>
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 
 template <typename T = int> struct dsu {
+    // in case the values are not numbers
+    // std::map<T, T> parent;
+    // std::map<T, int> size;
+    // std::map<T, int> rank;
     std::vector<T> parent;
     std::vector<T> size;
     std::vector<T> rank;
+
+    dsu() = default;
 
     dsu(const T _n) : parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)), rank(std::vector<T>(_n, 0)) {
         for (T i = 0; i < _n; i++) {
@@ -41,7 +48,7 @@ template <typename T = int> struct dsu {
     }
 
     void
-    merge_by_size(T a, T b) {
+    union_by_size(T a, T b) {
         a = find_set(a);
         b = find_set(b);
         if (a != b) {
@@ -54,7 +61,7 @@ template <typename T = int> struct dsu {
     }
 
     void
-    merge_by_rank(T a, T b) {
+    union_by_rank(T a, T b) {
         a = find_set(a);
         b = find_set(b);
         if (a != b) {
@@ -92,14 +99,15 @@ main() {
         if (a == 0) {
             long long bb = dsu.find_set(b);
             long long cc = dsu.find_set(c);
-            dsu.merge_by_rank(bb, cc);
+            dsu.union_by_rank(bb, cc);
         } else {
             long long res1 = dsu.find_set(b);
             long long res2 = dsu.find_set(c);
-            if (res1 == res2)
+            if (res1 == res2) {
                 std::cout << '1';
-            else
+            } else {
                 std::cout << '0';
+            }
             std::cout << "\n";
         }
     }

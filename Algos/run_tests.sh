@@ -411,6 +411,16 @@ else
             printf "${red}$(cat Hashmap.test)${normal}\n"
 fi
 
+if [ "$(./In_Out_Ancestor.sol < In_Out_Ancestor.txt)" == "$(cat In_Out_Ancestor.test)" ]; then
+            printf "${green}In_Out_Ancestor Passed.${normal}\n"
+else
+            printf "${red}In_Out_Ancestor Failed.\n"
+            printf "${red} Got:\n"
+            printf "${red}$(./In_Out_Ancestor.sol < In_Out_Ancestor.txt)\n"
+            printf "${red} Should be:\n"
+            printf "${red}$(cat In_Out_Ancestor.test)${normal}\n"
+fi
+
 if [ "$(./KMP.sol < KMP.txt)" == "$(cat KMP.test)" ]; then
             printf "${green}KMP Passed.${normal}\n"
 else

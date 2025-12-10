@@ -28,6 +28,36 @@ binpow(long long a, long long b) {
     return res;
 }
 
+// generic versions
+
+template <typename T>
+T
+binpow(T a, T b) {
+    T res{1};
+    while (b > 0) {
+        if (b & 1) {
+            res = res * a;
+        }
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+
+template <typename T>
+T
+mod_binpow(T a, T b) {
+    T res{1};
+    while (b > 0) {
+        if (b & 1) {
+            res = res * a % mod;
+        }
+        a = a * a % mod;
+        b >>= 1;
+    }
+    return res;
+}
+
 int
 main() {
     std::ios_base::sync_with_stdio(false);
