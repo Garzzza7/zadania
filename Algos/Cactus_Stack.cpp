@@ -5,7 +5,7 @@
 
 // root should be allocated on the stack, rest on the heap
 // -1 -> root
-
+// TODO: debullshitfy
 template <typename T = int> struct cactus {
     int id{-1};
     std::vector<T> stack;
