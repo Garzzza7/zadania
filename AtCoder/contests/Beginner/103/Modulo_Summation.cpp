@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <functional>
 #include <iostream>
-#include <limits>
 #include <map>
 #include <numeric>
 #include <queue>
@@ -14,16 +13,25 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
+using u128 = __uint128_t;
 using i64 = long long;
 using u64 = unsigned long long;
-using u128 = __uint128_t;
+using i32 = int;
+using u32 = unsigned int;
+using str = std::string;
+using u8 = char;
 
 void
 solve() {
+    i32 n;
+    std::cin >> n;
+    std::vector<i32> vec(n);
+    i32 res{0};
+    for (auto &&v : vec) {
+        std::cin >> v;
+        res += v - 1;
+    }
+    std::cout << res << "\n";
 }
 
 int
@@ -33,7 +41,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

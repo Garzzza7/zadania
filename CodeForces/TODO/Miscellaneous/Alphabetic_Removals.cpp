@@ -24,6 +24,26 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    i32 n, k;
+    std::cin >> n >> k;
+    str s;
+    std::cin >> s;
+    std::vector<i32> cnt(27, 0);
+    std::vector<i32> ncnt(27, 0);
+    for (const auto &v : s) {
+        cnt[v - 'a']++;
+    }
+    for (i32 i = 0; i < sz(cnt); i++) {
+        ncnt[i] = std::min(k, cnt[i]);
+        k -= std::min(k, cnt[i]);
+    }
+    for (const auto &v : s) {
+        if (ncnt[v - 'a'] <= 0) {
+            std::cout << v;
+        } else {
+            ncnt[v - 'a']--;
+        }
+    }
 }
 
 int
@@ -33,7 +53,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

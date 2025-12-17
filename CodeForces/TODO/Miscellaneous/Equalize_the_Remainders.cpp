@@ -24,6 +24,18 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    i32 n, m;
+    std::cin >> n >> m;
+    std::vector<i32> vec(n);
+    std::vector<i32> cnt(m, 0);
+    i32 tar = n / m;
+    for (auto &&v : vec) {
+        std::cin >> v;
+        cnt[v % m]++;
+    }
+    for (const auto &v : cnt) {
+        std::cout << v << " ";
+    }
 }
 
 int
@@ -33,7 +45,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

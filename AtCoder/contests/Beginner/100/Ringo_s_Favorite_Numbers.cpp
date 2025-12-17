@@ -1,9 +1,9 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
-#include <limits>
 #include <map>
 #include <numeric>
 #include <queue>
@@ -14,16 +14,34 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
+using u128 = __uint128_t;
 using i64 = long long;
 using u64 = unsigned long long;
-using u128 = __uint128_t;
+using i32 = int;
+using u32 = unsigned int;
+using str = std::string;
+using u8 = char;
+
+template <typename T>
+T
+binpow(T a, T b) {
+    T res{1};
+    while (b > 0) {
+        if (b & 1) {
+            res = res * a;
+        }
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
 
 void
 solve() {
+    u64 d, n;
+    std::cin >> d >> n;
+    u64 q = std::floor(d / n);
+    std::cout << binpow(100ULL, d) * (n + q) << "\n";
 }
 
 int
@@ -33,7 +51,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

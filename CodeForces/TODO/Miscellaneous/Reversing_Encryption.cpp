@@ -24,6 +24,23 @@ using u128 = __uint128_t;
 
 void
 solve() {
+    i32 n;
+    std::cin >> n;
+    str s;
+    std::cin >> s;
+    for (i32 nn = 1; nn <= n; nn++) {
+        if (n % nn == 0) {
+            str buff;
+            for (i32 i = 0; i < nn; i++) {
+                buff.push_back(s[i]);
+            }
+            std::reverse(all(buff));
+            for (i32 i = 0; i < nn; i++) {
+                s[i] = buff[i];
+            }
+        }
+    }
+    std::cout << s << "\n";
 }
 
 int
@@ -33,7 +50,6 @@ main() {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

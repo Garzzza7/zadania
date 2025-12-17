@@ -189,6 +189,12 @@ bin_llog(const unsigned long &x) {
                                               : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
+template <typename T>
+[[nodiscard]] constexpr T
+bin_tlog(const T &x) {
+    return x == static_cast<T>(0) ? static_cast<T>(0) : static_cast<T>(63) - __builtin_clzl(x);
+}
+
 // descending set
 template <typename T> using dset = std::set<T, std::greater<T>>;
 
