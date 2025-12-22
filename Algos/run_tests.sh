@@ -691,6 +691,16 @@ else
     printf "${red}$(cat Sparse_Table.test)${normal}\n"
 fi
 
+if [ "$(./Submask.sol <Submask.txt)" == "$(cat Submask.test)" ]; then
+    printf "${green}Submask Passed.${normal}\n"
+else
+    printf "${red}Submask Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Submask.sol <Submask.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Submask.test)${normal}\n"
+fi
+
 if [ "$(./Subsets.sol <Subsets.txt)" == "$(cat Subsets.test)" ]; then
     printf "${green}Subsets Passed.${normal}\n"
 else
@@ -790,4 +800,3 @@ else
     printf "${red} Should be:\n"
     printf "${red}$(cat Z_function.test)${normal}\n"
 fi
-
