@@ -1,14 +1,15 @@
 #include <cstdint>
 #include <iostream>
 #include <vector>
+
 // tested on https://judge.yosupo.jp/problem/lca
 
-struct lca {
-    template <typename T = int> struct sparse_table {
+template <typename T = int> struct lca {
+    template <typename TT> struct sparse_table {
         int size{};
         int LOG{};
-        static const T NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<T, T>>> matrix;
+        static const TT NEUTRAL_ELEMENT{INT32_MAX};
+        std::vector<std::vector<std::pair<TT, TT>>> matrix;
         sparse_table() = default;
 
         sparse_table &
@@ -18,17 +19,16 @@ struct lca {
             matrix = std::move(rhs.matrix);
             return *this;
         }
-        sparse_table(const std::vector<T> &_init, const std::vector<T> &_euler)
+        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler)
             : size(static_cast<int>(_init.size())), LOG(63 - __builtin_clzl(size) + 1) {
-
-            matrix.assign(LOG, std::vector(size, std::pair<T, T>(NEUTRAL_ELEMENT, 0)));
+            matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
             for (int i = 0; i < size; i++) {
                 matrix[0][i] = {_init[i], _euler[i]};
             }
         }
 
-        static std::pair<T, T>
-        operation(const std::pair<T, T> &a, const std::pair<T, T> &b) {
+        static std::pair<TT, TT>
+        operation(const std::pair<TT, TT> &a, const std::pair<TT, TT> &b) {
             if (a.first < b.first) {
                 return a;
             }
@@ -44,9 +44,9 @@ struct lca {
             }
         }
 
-        T
+        TT
         query(int L, const int R) {
-            std::pair<T, T> res = {NEUTRAL_ELEMENT, 0};
+            std::pair<TT, TT> res = {NEUTRAL_ELEMENT, 0};
             for (int i = LOG; i >= 0; i--) {
                 if (1 << i <= R - L + 1) {
                     res = operation(res, matrix[i][L]);
@@ -61,7 +61,7 @@ struct lca {
     std::vector<int> heights;
     std::vector<int> euler;
     std::vector<int> ids;
-    sparse_table<> st;
+    sparse_table<T> st;
 
     lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
         ids.resize(n);
@@ -89,7 +89,7 @@ struct lca {
         st.process();
     }
 
-    int
+    T
     query(const int l, const int r) {
         const int lq = ids[l];
         const int rq = ids[r];
@@ -112,7 +112,7 @@ main() {
         adj[i].push_back(a);
         adj[a].push_back(i);
     }
-    lca lca(adj);
+    lca<int> lca(adj);
     lca.build();
     while (q--) {
         int a, b;

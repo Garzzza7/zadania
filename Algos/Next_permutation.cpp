@@ -2,10 +2,11 @@
 #include <iostream>
 #include <vector>
 
+template <typename T>
 void
-next_permutation(std::vector<int> &nums) {
-    const int n = static_cast<int>(nums.size());
-    int iter = -1;
+next_permutation(std::vector<T> &nums) {
+    const int n{static_cast<int>(nums.size())};
+    int iter{-1};
     for (int i = 0; i < n - 1; i++) {
         if (nums[i] < nums[i + 1]) {
             iter = i;
@@ -17,7 +18,7 @@ next_permutation(std::vector<int> &nums) {
         return;
     }
 
-    int iter2 = -1;
+    int iter2{-1};
     for (int i = iter + 1; i < n; i++) {
         if (nums[iter] < nums[i]) {
             iter2 = i;

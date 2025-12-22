@@ -10,24 +10,24 @@ template <typename T = int> struct kosaraju {
     T n;
 
     std::vector<std::vector<T>> adj;
-    std::vector<std::vector<T>> rev_adj;
-    std::stack<T> stack;
+    std::vector<std::vector<T>> transposed_adj;
+    std::stack<T> out;
     std::vector<bool> visited;
 
     int cnt_Components{0};
 
     std::map<T, std::vector<T>> scc;
 
-    kosaraju(const T _n)
+    kosaraju(const T &_n)
         : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
-          rev_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
+          transposed_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
         visited = std::vector<bool>(_n, false);
     }
 
     void
     add_edge(const T &a, const T &b) {
         adj[a].push_back(b);
-        rev_adj[b].push_back(a);
+        transposed_adj[b].push_back(a);
     }
 
     void
@@ -37,12 +37,12 @@ template <typename T = int> struct kosaraju {
                 dfs_1(i);
             }
         }
-        for (int i = 0; i < n; i++) {
-            visited[i] = false;
+        for (auto &&v : visited) {
+            v = false;
         }
-        while (!stack.empty()) {
-            int v = stack.top();
-            stack.pop();
+        while (!out.empty()) {
+            T v = out.top();
+            out.pop();
             if (!visited[v]) {
                 dfs_2(v);
                 cnt_Components++;
@@ -58,14 +58,14 @@ template <typename T = int> struct kosaraju {
                 dfs_1(vv);
             }
         }
-        stack.push(v);
+        out.push(v);
     }
 
     void
     dfs_2(const T &v) {
         scc[cnt_Components].push_back(v);
         visited[v] = true;
-        for (const auto &vv : rev_adj[v]) {
+        for (const auto &vv : transposed_adj[v]) {
             if (!visited[vv]) {
                 dfs_2(vv);
             }

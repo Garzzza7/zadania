@@ -1,12 +1,6 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
-bool
-is_on(T a, T b) {
-    return a & (static_cast<T>(1) << b);
-}
-
 void
 dfs(const int parent, const int vertex, std::vector<std::vector<int>> &adj, std::vector<std::vector<int>> &ancestors,
     std::vector<int> &depth, int &limit) {
@@ -31,6 +25,7 @@ query(const int vertex, const int kth, const std::vector<int> &depth, const std:
     if (depth[vertex] < kth or kth < 0) {
         return -123;
     }
+    auto is_on = [](const int &a, const int &b) -> bool { return a & (1 << b); };
     for (int comb = 0; comb < limit; comb++) {
         if (is_on(kth, comb)) {
             ancestor = ancestors[ancestor][comb];
@@ -49,8 +44,9 @@ main() {
     std::cin >> n >> m;
     int limit = 0;
     std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
-    while ((1 << limit) <= n)
+    while ((1 << limit) <= n) {
         limit++;
+    }
     int root = -1;
     for (int i = 0; i < m; i++) {
         int p, v;
