@@ -191,6 +191,16 @@ else
     printf "${red}$(cat Cartesian_tree.test)${normal}\n"
 fi
 
+if [ "$(./Circle.sol <Circle.txt)" == "$(cat Circle.test)" ]; then
+    printf "${green}Circle Passed.${normal}\n"
+else
+    printf "${red}Circle Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Circle.sol <Circle.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Circle.test)${normal}\n"
+fi
+
 if [ "$(./Convolution.sol <Convolution.txt)" == "$(cat Convolution.test)" ]; then
     printf "${green}Convolution Passed.${normal}\n"
 else
