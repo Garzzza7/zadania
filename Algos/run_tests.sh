@@ -251,6 +251,16 @@ else
     printf "${red}$(cat DP_Regex.test)${normal}\n"
 fi
 
+if [ "$(./Dag_Shortest_Path.sol <Dag_Shortest_Path.txt)" == "$(cat Dag_Shortest_Path.test)" ]; then
+    printf "${green}Dag_Shortest_Path Passed.${normal}\n"
+else
+    printf "${red}Dag_Shortest_Path Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Dag_Shortest_Path.sol <Dag_Shortest_Path.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Dag_Shortest_Path.test)${normal}\n"
+fi
+
 if [ "$(./Derangement.sol <Derangement.txt)" == "$(cat Derangement.test)" ]; then
     printf "${green}Derangement Passed.${normal}\n"
 else
