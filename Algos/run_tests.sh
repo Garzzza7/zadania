@@ -461,6 +461,16 @@ else
     printf "${red}$(cat Kosaraju.test)${normal}\n"
 fi
 
+if [ "$(./Kruskal.sol <Kruskal.txt)" == "$(cat Kruskal.test)" ]; then
+    printf "${green}Kruskal Passed.${normal}\n"
+else
+    printf "${red}Kruskal Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Kruskal.sol <Kruskal.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Kruskal.test)${normal}\n"
+fi
+
 if [ "$(./Kth_Order_Statistics.sol <Kth_Order_Statistics.txt)" == "$(cat Kth_Order_Statistics.test)" ]; then
     printf "${green}Kth_Order_Statistics Passed.${normal}\n"
 else
@@ -810,3 +820,4 @@ else
     printf "${red} Should be:\n"
     printf "${red}$(cat Z_function.test)${normal}\n"
 fi
+

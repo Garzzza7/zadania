@@ -16,7 +16,7 @@ template <typename T = int> struct circle {
     ~circle() = default;
 
     bool
-    kiss(const circle<T> &c) {
+    is_kiss(const circle<T> &c) {
         const T dx = this->x - c.x;
         const T dy = this->y - c.y;
         return ((dx * dx) + (dy * dy)) == (this->r + c.r) * (this->r + c.r);
@@ -48,7 +48,7 @@ main() {
     }
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
-            std::cout << vec[i].kiss(vec[j]) << "\n";
+            std::cout << vec[i].is_kiss(vec[j]) << "\n";
         }
     }
 

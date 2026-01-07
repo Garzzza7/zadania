@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+// #include <map>
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
@@ -33,24 +33,24 @@ template <typename T = int> struct dsu {
     }
 
     void
-    make_set(const T v) {
+    make_set(const T &v) {
         parent[v] = v;
         size[v] = 1;
         rank[v] = 0;
     }
 
     T
-    find_set(const T v) {
-        if (v == parent[v]) {
+    find(const T &v) {
+        if (v == parent[v]) [[likely]] {
             return v;
         }
-        return parent[v] = find_set(parent[v]);
+        return parent[v] = find(parent[v]);
     }
 
     void
     union_by_size(T a, T b) {
-        a = find_set(a);
-        b = find_set(b);
+        a = find(a);
+        b = find(b);
         if (a != b) {
             if (size[a] < size[b]) {
                 std::swap(a, b);
@@ -62,22 +62,20 @@ template <typename T = int> struct dsu {
 
     void
     union_by_rank(T a, T b) {
-        a = find_set(a);
-        b = find_set(b);
+        a = find(a);
+        b = find(b);
         if (a != b) {
             if (rank[a] < rank[b]) {
                 std::swap(a, b);
             }
             parent[b] = a;
-            if (rank[a] == rank[b]) {
-                rank[a]++;
-            }
+            rank[a] += rank[a] == rank[b];
         }
     }
 
     bool
-    is_same_set(const T a, const T b) {
-        return find_set(a) == find_set(b);
+    is_same_set(const T &a, const T &b) {
+        return find(a) == find(b);
     }
 };
 
@@ -97,12 +95,12 @@ main() {
         long long a, b, c;
         std::cin >> a >> b >> c;
         if (a == 0) {
-            long long bb = dsu.find_set(b);
-            long long cc = dsu.find_set(c);
+            long long bb = dsu.find(b);
+            long long cc = dsu.find(c);
             dsu.union_by_rank(bb, cc);
         } else {
-            long long res1 = dsu.find_set(b);
-            long long res2 = dsu.find_set(c);
+            long long res1 = dsu.find(b);
+            long long res2 = dsu.find(c);
             if (res1 == res2) {
                 std::cout << '1';
             } else {
