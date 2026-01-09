@@ -23,6 +23,12 @@ add_definitions(-DTIME)
 add_definitions(-DFAST)
 
 set(CMAKE_EXE_LINKER_FLAGS "-static")
+# https://discourse.nixos.org/t/get-clangd-to-find-standard-headers-in-nix-shell/11268/9
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+  set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES
+      ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+endif()
 
 add_executable(template.sol TEMPLATE.cpp)
 add_executable(minitemplate.sol MINTEMPLATE.cpp)
