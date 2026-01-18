@@ -23,11 +23,33 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    std::vector<i32> vec(3);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    bool res = false;
+    i32 iter = 3;
+    while (iter--) {
+        if (vec[0] == vec[1] + vec[2] or (vec[0] % 2 == 0 and vec[1] == vec[2])) {
+            res = true;
+            break;
+        }
+        std::vector<i32> buff;
+        buff.push_back(vec.back());
+        buff.push_back(vec[0]);
+        buff.push_back(vec[1]);
+        vec = buff;
+    }
+    if (res) {
+        std::cout << "YES\n";
+    } else {
+        std::cout << "NO\n";
+    }
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

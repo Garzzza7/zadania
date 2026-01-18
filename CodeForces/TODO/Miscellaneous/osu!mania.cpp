@@ -23,11 +23,25 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    i32 n;
+    std::cin >> n;
+    std::vector<str> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    for (i32 i = n - 1; i >= 0; i--) {
+        for (i32 j = 0; j < 4; j++) {
+            if (vec[i][j] == '#') {
+                std::cout << j + 1 << " ";
+            }
+        }
+    }
+    std::cout << "\n";
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

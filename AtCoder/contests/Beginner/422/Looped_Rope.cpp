@@ -24,28 +24,29 @@ using u128 = __uint128_t;
 
 void
 solve() {
-    i32 n;
-    std::cin >> n;
-    std::vector<i32> vec(n);
-    i32 mini{INT32_MAX};
-    i32 maxi{INT32_MIN};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        mini = std::min(mini, v);
-        maxi = std::max(maxi, v);
-    }
-    str s;
-    std::cin >> s;
-    bool git = true;
-    for (i32 i = 0; i < n - 1; i++) {
-        if (vec[i] > vec[i + 1] and s[i] == '0') {
-            git = false;
+    i32 h, w;
+    std::cin >> h >> w;
+    std::vector<std::vector<u8>> vec(h + 2, std::vector<u8>(w + 2, '.'));
+    for (i32 i = 1; i <= h; i++) {
+        for (i32 j = 1; j <= w; j++) {
+            std::cin >> vec[i][j];
         }
     }
-    if (git and vec.back() == maxi) {
-        std::cout << "YES\n";
+    bool res = true;
+    for (i32 i = 1; i <= h; i++) {
+        for (i32 j = 1; j <= w; j++) {
+            if (vec[i][j] == '#') {
+                i32 tot = (vec[i - 1][j] == '#') + (vec[i + 1][j] == '#') + (vec[i][j + 1] == '#') + (vec[i][j - 1] == '#');
+                if (tot != 2 and tot != 4) {
+                    res = false;
+                }
+            }
+        }
+    }
+    if (res) {
+        std::cout << "Yes\n";
     } else {
-        std::cout << "NO\n";
+        std::cout << "No\n";
     }
 }
 

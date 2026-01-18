@@ -24,8 +24,34 @@ using u128 = __uint128_t;
 
 void
 solve() {
-    i32 n, k;
-    std::cin >> n >> k;
+    str s;
+    std::cin >> s;
+    const i32 n = sz(s);
+    i32 x;
+    std::cin >> x;
+    std::vector<i32> res(n, 1);
+    for (i32 i = 0; i < n; i++) {
+        if (s[i] == '0') {
+            if (i - x >= 0) {
+                res[i - x] = 0;
+            }
+            if (i + x < n) {
+                res[i + x] = 0;
+            }
+        }
+    }
+    for (i32 i = 0; i < n; i++) {
+        bool left = (i - x) >= 0 and res[i - x] == 1;
+        bool right = (i + x) < n and res[i + x] == 1;
+        if (not(s[i] == (left or right) + '0')) {
+            std::cout << "-1\n";
+            return;
+        }
+    }
+    for (const auto &v : res) {
+        std::cout << v;
+    }
+    std::cout << "\n";
 }
 
 int

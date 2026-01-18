@@ -3,17 +3,18 @@
 #include <random>
 #include <vector>
 
+template <typename T>
 void
-quick_sort(std::vector<int> &vec, const int l, const int r) {
+quick_sort(std::vector<T> &vec, const int l, const int r) {
     if (r - l <= 1) {
         return;
     }
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(l, r);
-    const int x = vec[distrib(gen)];
-    int l_iter = l;
-    int r_iter = r;
+    const int x{vec[distrib(gen)]};
+    int l_iter{l};
+    int r_iter{r};
     for (int i = l; i <= r; i++) {
         if (vec[i] < x) {
             std::swap(vec[i], vec[l_iter]);

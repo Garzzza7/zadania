@@ -23,17 +23,34 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    i32 n, k;
+    std::cin >> n >> k;
+    i32 nn = 1 << n;
+    i32 num = k / nn;
+    i32 rem = k % nn;
+    i32 bad = k - num * nn;
+    if (rem) {
+        std::cout << rem << "\n";
+    } else {
+        std::cout << 0 << "\n";
+    }
+    for (i32 i = 0; i < nn - bad; i++) {
+        std::cout << num << " ";
+    }
+    for (i32 i = 0; i < bad; i++) {
+        std::cout << num + 1 << " ";
+    }
+    std::cout << "\n";
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

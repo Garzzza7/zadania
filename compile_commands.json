@@ -1,26 +1,26 @@
 [
-        {
-                "directory": "/home/pc/zadania/build",
-                "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/template.sol.dir/TEMPLATE.cpp.o -c /home/pc/zadania/TEMPLATE.cpp",
-                "file": "/home/pc/zadania/TEMPLATE.cpp",
-                "output": "CMakeFiles/template.sol.dir/TEMPLATE.cpp.o"
-        },
-        {
-                "directory": "/home/pc/zadania/build",
-                "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o -c /home/pc/zadania/MINTEMPLATE.cpp",
-                "file": "/home/pc/zadania/MINTEMPLATE.cpp",
-                "output": "CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o"
-        },
-        {
-                "directory": "/home/pc/zadania/build",
-                "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o -c /home/pc/zadania/DEBMINTEMPLATE.cpp",
-                "file": "/home/pc/zadania/DEBMINTEMPLATE.cpp",
-                "output": "CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o"
-        },
-        {
-                "directory": "/home/pc/zadania/build",
-                "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/modtemplate.sol.dir/MODTEMPLATE.cpp.o -c /home/pc/zadania/MODTEMPLATE.cpp",
-                "file": "/home/pc/zadania/MODTEMPLATE.cpp",
-                "output": "CMakeFiles/modtemplate.sol.dir/MODTEMPLATE.cpp.o"
-        }
+  {
+    "directory": "$HOME/zadania/build",
+    "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/template.sol.dir/TEMPLATE.cpp.o -c $HOME/zadania/TEMPLATE.cpp",
+    "file": "$HOME/zadania/TEMPLATE.cpp",
+    "output": "CMakeFiles/template.sol.dir/TEMPLATE.cpp.o"
+  },
+  {
+    "directory": "$HOME/zadania/build",
+    "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o -c $HOME/zadania/MINTEMPLATE.cpp",
+    "file": "$HOME/zadania/MINTEMPLATE.cpp",
+    "output": "CMakeFiles/minitemplate.sol.dir/MINTEMPLATE.cpp.o"
+  },
+  {
+    "directory": "$HOME/zadania/build",
+    "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o -c $HOME/zadania/DEBMINTEMPLATE.cpp",
+    "file": "$HOME/zadania/DEBMINTEMPLATE.cpp",
+    "output": "CMakeFiles/debminitemplate.sol.dir/DEBMINTEMPLATE.cpp.o"
+  },
+  {
+    "directory": "$HOME/zadania/build",
+    "command": "/usr/bin/c++ -DFAST -DTIME  -Wfloat-equal -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/modtemplate.sol.dir/MODTEMPLATE.cpp.o -c $HOME/zadania/MODTEMPLATE.cpp",
+    "file": "$HOME/zadania/MODTEMPLATE.cpp",
+    "output": "CMakeFiles/modtemplate.sol.dir/MODTEMPLATE.cpp.o"
+  }
 ]

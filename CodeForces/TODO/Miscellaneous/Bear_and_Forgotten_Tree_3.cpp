@@ -24,28 +24,35 @@ using u128 = __uint128_t;
 
 void
 solve() {
-    i32 n;
-    std::cin >> n;
-    std::vector<i32> vec(n);
-    i32 mini{INT32_MAX};
-    i32 maxi{INT32_MIN};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        mini = std::min(mini, v);
-        maxi = std::max(maxi, v);
+    i32 n, d, h;
+    std::cin >> n >> d >> h;
+    if (d > (h << 1)) {
+        std::cout << -1 << "\n";
+        return;
     }
-    str s;
-    std::cin >> s;
-    bool git = true;
-    for (i32 i = 0; i < n - 1; i++) {
-        if (vec[i] > vec[i + 1] and s[i] == '0') {
-            git = false;
-        }
+    if (n == 2) {
+        std::cout << 1 << " " << 2 << "\n";
+        return;
     }
-    if (git and vec.back() == maxi) {
-        std::cout << "YES\n";
-    } else {
-        std::cout << "NO\n";
+    i32 hh = std::min(d, h);
+    i32 dd = std::max(d, h);
+    i32 i;
+    for (i = 1; i <= hh; i++) {
+        std::cout << i << " " << i + 1 << "\n";
+    }
+    i32 curr = i + 1;
+    i32 iter = 1;
+    for (; i <= dd; i++) {
+        std::cout << iter << " " << curr << "\n";
+        iter = curr++;
+    }
+    i32 r = curr;
+    curr = i + 1;
+    std::cout << 1 << " " << curr << "\n";
+    i++;
+    for (; i <= n - 1; i++) {
+        curr++;
+        std::cout << 1 << " " << curr << "\n";
     }
 }
 

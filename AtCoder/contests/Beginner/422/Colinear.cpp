@@ -23,17 +23,29 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    i32 n;
+    std::cin >> n;
+    std::vector<std::pair<i32, i32>> vec(n);
+    for (i32 i = 0; i < n; i++) {
+        i32 a, b;
+        std::cin >> a >> b;
+        vec[i] = {a, b};
+    }
+    auto dist = [](const auto &a, const auto &b) -> double { return ((b.first - a.first) / (b.second - a.second)); };
+    std::sort(all(vec));
+    for(i32i ){
+
+    }
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -305,11 +305,11 @@ using ll = long long;
 using u128 = __uint128_t;
 
 void
-solve() {
+solve(void) {
 }
 
 int
-main() {
+main(void) {
     std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
     const auto start = std::chrono::high_resolution_clock::now();

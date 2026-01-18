@@ -2,8 +2,9 @@
 #include <iostream>
 #include <vector>
 
-int
-ternary_search(std::vector<int> &vec, const int l, const int r, const int x) {
+template <typename T>
+T
+ternary_search(std::vector<T> &vec, const int l, const int r, const T x) {
     if (r >= l) {
         const int mid1 = l + (r - l) / 3;
         const int mid2 = r - (r - l) / 3;

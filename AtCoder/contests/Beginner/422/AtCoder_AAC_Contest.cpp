@@ -23,11 +23,15 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    i64 a, b, c;
+    std::cin >> a >> b >> c;
+    i64 mini = std::min(a, c);
+    std::cout << std::min(mini, b + (a - mini) + (c - mini)) << "\n";
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

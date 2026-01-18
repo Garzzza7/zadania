@@ -22,40 +22,46 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-i32 cnt{0};
+template <typename T>
+std::vector<T>
+factorize(T n) {
+    std::vector<T> factor;
+    for (int i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            factor.push_back(i);
+            n /= i;
+        }
+    }
+    if (n > 1) {
+        factor.push_back(n);
+    }
+    return factor;
+}
 
-void
-bfs(const int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited, std::queue<int> que, i32 c) {
-    if (visited[vertex]) {
-        return;
-    }
-    visited[vertex] = true;
-    cnt = std::max(cnt, c);
-    for (const auto &v : adj[vertex]) {
-        que.push(v);
-    }
-    while (!que.empty()) {
-        bfs(que.front(), adj, visited, que, c + 1);
-        que.pop();
-    }
+template <typename T>
+[[nodiscard]] inline T
+bin_ce(T x, T y) {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
+template <typename T>
+[[nodiscard]] inline T
+bin_fl(T x, T y) {
+    return x / y - ((x ^ y) < 0 && x % y);
 }
 
 void
 solve() {
     i32 n;
     std::cin >> n;
-    std::vector<i32> vec(n);
-    std::vector adj(n + 1, std::vector<i32>());
-    for (i32 i = 1; i <= n; i++) {
-        i32 v;
-        std::cin >> v;
-        adj[i].push_back(v);
-        adj[v].push_back(i);
+    const auto f = factorize(n);
+    if (f[0] == 2) {
+        std::cout << n / 2 << " " << n / 2 << "\n";
+    } else {
+        auto d = n / f[0] * bin_fl(f[0], 2);
+        auto u = n / f[0] * bin_ce(f[0], 2);
+        std::cout << d << " " << u << "\n";
     }
-    std::vector<bool> visited(n + 1, false);
-    std::queue<i32> q;
-    bfs(2, adj, visited, q, 1);
-    std::cout << cnt << "\n";
 }
 
 int

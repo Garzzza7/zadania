@@ -33,7 +33,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         int node_id{0};
         patterns.push_back(word);
         for (const auto &i : word) {
-            int c = i - BASE;
+            int c{i - BASE};
             auto &next_id = nodes[node_id].next[c];
             if (next_id == -1) {
                 next_id = static_cast<int>(nodes.size());

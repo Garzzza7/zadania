@@ -4,8 +4,9 @@
 long long maxi{0ll};
 long long at{0ll};
 
+template <typename T>
 void
-dfs(const long long v, std::vector<std::vector<long long>> &adj, std::vector<bool> &visited, const long long cnt) {
+dfs(const T v, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, const long long cnt) {
     if (visited[v]) {
         return;
     }
@@ -37,7 +38,7 @@ main() {
         adj[bb].push_back(aa);
     }
     std::vector<bool> visited(300005, false);
-    dfs(1, adj, visited, 0ll);
+    dfs(1LL, adj, visited, 0ll);
     maxi ^= maxi;
     visited = std::vector<bool>(300005, false);
     dfs(at, adj, visited, 0ll);

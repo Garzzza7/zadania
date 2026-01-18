@@ -2,13 +2,14 @@
 #include <iostream>
 #include <vector>
 
+template <typename T>
 void
-bitonic_sort(std::vector<int> &a) {
-    const int n = static_cast<int>(a.size());
+bitonic_sort(std::vector<T> &a) {
+    const int n{static_cast<int>(a.size())};
     for (int k = 2; k <= n; k = 2 * k) {
         for (int j = k >> 1; j > 0; j = j >> 1) {
             for (int i = 0; i < n; i++) {
-                int ij = i ^ j;
+                int ij{i ^ j};
                 if ((ij) > i) {
                     if ((i & k) == 0 and a[i] > a[ij]) {
                         std::swap(a[i], a[ij]);

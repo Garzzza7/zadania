@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct circle {
+template <typename T = double> struct circle {
     [[maybe_unused]] static constexpr double pi{std::numbers::pi};
     T x;
     T y;
@@ -22,12 +22,12 @@ template <typename T = int> struct circle {
         return ((dx * dx) + (dy * dy)) == (this->r + c.r) * (this->r + c.r);
     }
 
-    double
+    T
     circum() {
-        return 2.0 * pi * r;
+        return (T) 2 * pi * r;
     }
 
-    double
+    T
     area() {
         return pi * r * r;
     }

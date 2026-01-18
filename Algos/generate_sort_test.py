@@ -7,8 +7,8 @@ limit = int(sys.argv[2])
 print(iter)
 while iter > 0:
     print(iter, end=" ")
-    print("\n", end="")
+    print(", ", end="")
     for i in range(limit):
-        print(random.randint(0, 10000), end=" ")
+        print(random.randint(0, 10000), end=", ")
     iter = iter - 1
-    print("\n", end="")
+    print(" ", end="")

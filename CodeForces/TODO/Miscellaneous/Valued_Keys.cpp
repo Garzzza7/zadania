@@ -23,17 +23,30 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve(void) {
+solve() {
+    str x, y;
+    std::cin >> x;
+    std::cin >> y;
+    const i32 n = sz(x);
+    str res(n, '$');
+    for (i32 i = 0; i < n; i++) {
+        if (y[i] > x[i]) {
+            std::cout << "-1\n";
+            std::flush(std::cout);
+            return;
+        }
+        res[i] = y[i];
+    }
+    std::cout << res << "\n";
 }
 
 int
-main(void) {
+main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 
