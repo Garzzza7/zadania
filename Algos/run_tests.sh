@@ -621,6 +621,16 @@ else
     printf "${red}$(cat Optimzed_Matrix.test)${normal}\n"
 fi
 
+if [ "$(./Parity_of_Permutation.sol <Parity_of_Permutation.txt)" == "$(cat Parity_of_Permutation.test)" ]; then
+    printf "${green}Parity_of_Permutation Passed.${normal}\n"
+else
+    printf "${red}Parity_of_Permutation Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Parity_of_Permutation.sol <Parity_of_Permutation.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Parity_of_Permutation.test)${normal}\n"
+fi
+
 if [ "$(./Priority_Queue.sol <Priority_Queue.txt)" == "$(cat Priority_Queue.test)" ]; then
     printf "${green}Priority_Queue Passed.${normal}\n"
 else
