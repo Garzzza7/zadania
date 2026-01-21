@@ -17,139 +17,11 @@ executable_files.sort()
 # variables
 compiler = "g++"
 
-warning = (
-    "##################################################################################\n"
-    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
-    + "##################################################################################\n\n"
-)
+automatic = "$(COMPILER) $(CFLAGS) $< -o $@"
 
-# flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
+asm_automatic = "$(COMPILER) $(ASM_CFLAGS) $< -o $@"
 
-flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs"
-
-subp = subprocess.run(["cat", "/proc/cpuinfo"], capture_output=True).stdout.decode()
-
-if subp.find("avx2") != -1:
-    flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
-
-flags_var = " $(FLAGS) "
-
-fast_flags = " -g0 --std=c++20 -O0"
-
-fast_flags_var = " $(FAST_FLAGS) "
-
-compiler_flags = "	" + compiler + flags_var
-
-fast_compiler_flags = "	" + compiler + fast_flags_var
-# end of variables
-
-# Makefile
-makefile = open("Makefile", "w")
-
-makefile.write(warning)
-
-makefile.write(".PHONY: standard all fast asm asmf llvm clean\n\n")
-makefile.write("FLAGS = " + flags + "\n\n")
-makefile.write("FAST_FLAGS = " + fast_flags + "\n\n")
-
-makefile.write("standard:")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".sol ")
-makefile.write("\n\n")
-
-makefile.write("all:")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".sol ")
-for cpp_file in cpp_files:
-    makefile.write(" f" + cpp_file[:-4] + ".sol ")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".s ")
-for cpp_file in cpp_files:
-    makefile.write(" asmf" + cpp_file[:-4] + ".s ")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".ll ")
-makefile.write("\n\n")
-
-for cpp_file in cpp_files:
-    makefile.write(
-        cpp_file[:-4]
-        + ".sol"
-        + ": "
-        + cpp_file
-        + "\n"
-        + compiler_flags
-        + cpp_file
-        + " -o "
-        + cpp_file[:-4]
-        + ".sol"
-        + "\n"
-    )
-
-makefile.write("\nfast:")
-for cpp_file in cpp_files:
-    makefile.write(" f" + cpp_file[:-4] + ".sol ")
-makefile.write("\n\n")
-
-for cpp_file in cpp_files:
-    makefile.write(
-        "f"
-        + cpp_file[:-4]
-        + ".sol"
-        + ": "
-        + cpp_file
-        + "\n"
-        + fast_compiler_flags
-        + cpp_file
-        + " -o "
-        + "f"
-        + cpp_file[:-4]
-        + ".sol"
-        + "\n"
-    )
-
-makefile.write("\nasm:")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".s ")
-makefile.write("\n\n")
-
-for cpp_file in cpp_files:
-    makefile.write(cpp_file[:-4] + ".s" + ":\n" + "	oa.sh " + cpp_file[:-4] + "\n")
-
-
-makefile.write("\nasmf:")
-for cpp_file in cpp_files:
-    makefile.write(" asmf" + cpp_file[:-4] + ".s ")
-makefile.write("\n\n")
-
-for cpp_file in cpp_files:
-    makefile.write(
-        "asmf" + cpp_file[:-4] + ".s" + ":\n" + "	ofa.sh " + cpp_file[:-4] + "\n"
-    )
-
-makefile.write("\nllvm:")
-for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".ll ")
-makefile.write("\n\n")
-
-for cpp_file in cpp_files:
-    makefile.write(cpp_file[:-4] + ".ll" + ":\n" + "	ollvm.sh " + cpp_file[:-4] + "\n")
-
-makefile.write("\nclean:\n")
-makefile.write("	rm *.sol\n")
-# makefile.write("	rm *.s\n")
-# makefile.write("	rm *.ll\n")
-makefile.close()
-
-# end of Makefile
-
-# run_tests.sh
-
-testfile = open("run_tests.sh", "w")
-testfile.write("#!/bin/bash\n")
-
-testfile.write(warning)
-
-testfile.write(
+prologue_colors = (
     "grey=$(tput setaf 7)\n"
     + "vividblue=$(tput setaf 20)\n"
     + "darkblue=$(tput setaf 17)\n"
@@ -169,6 +41,73 @@ testfile.write(
     + "normal=$(tput sgr0)\n"
     + "\n"
 )
+
+warning = (
+    "##################################################################################\n"
+    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
+    + "##################################################################################\n\n"
+)
+
+# flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
+
+flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs"
+
+asm_flags = " -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-dwarf2-cfi-asm -fno-exceptions -S --std=c++20"
+
+subp = subprocess.run(["cat", "/proc/cpuinfo"], capture_output=True).stdout.decode()
+
+if subp.find("avx2") != -1:
+    flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
+
+flags_var = " $(CFLAGS) "
+
+fast_flags = " -g0 --std=c++20 -O0"
+
+compiler_flags = "	" + compiler + flags_var
+
+# end of variables
+
+# Makefile
+makefile = open("Makefile", "w")
+
+makefile.write(warning)
+
+makefile.write(".PHONY: standard all asm clean\n\n")
+makefile.write("CFLAGS = " + flags + "\n\n")
+makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
+makefile.write("COMPILER = " + compiler + "\n\n")
+
+makefile.write("standard:")
+for cpp_file in cpp_files:
+    makefile.write(" " + cpp_file[:-4] + ".sol ")
+makefile.write("\n\n")
+
+makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
+
+makefile.write("asm:")
+for cpp_file in cpp_files:
+    makefile.write(" " + cpp_file[:-4] + ".s ")
+makefile.write("\n\n")
+
+makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n")
+
+makefile.write("\nall: standard asm\n")
+
+makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
+
+
+makefile.close()
+
+# end of Makefile
+
+# run_tests.sh
+
+testfile = open("run_tests.sh", "w")
+testfile.write("#!/bin/bash\n")
+
+testfile.write(warning)
+
+testfile.write(prologue_colors)
 
 for cpp_file in cpp_files:
     testfile.write(
@@ -200,4 +139,5 @@ for cpp_file in cpp_files:
     )
 testfile.close()
 os.system("chmod +x run_tests.sh")
+
 # end of run_tests.sh
