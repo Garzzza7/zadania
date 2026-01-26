@@ -12,7 +12,9 @@ template <typename T = int> struct in_out_ancestor {
     std::vector<T> tout;
     std::vector<bool> visited;
     std::vector<std::vector<T>> adj;
+
     in_out_ancestor() = default;
+
     in_out_ancestor(const int &_n) : n(_n) {
         tin.resize(n);
         tout.resize(n);
@@ -20,6 +22,7 @@ template <typename T = int> struct in_out_ancestor {
         // root is 0 by default
         calc(0);
     }
+
     in_out_ancestor(const std::vector<std::vector<T>> &_adj) : adj(_adj) {
         n = (int) adj.size();
         tin.resize(n);

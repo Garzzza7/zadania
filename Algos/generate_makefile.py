@@ -2,11 +2,13 @@ import os
 import subprocess
 
 # file stuff
-current_directory = os.getcwd()
+current_directory: str = os.getcwd()
 
-cpp_files = [file for file in os.listdir(current_directory) if file.endswith(".cpp")]
+cpp_files: list[str] = [
+    file for file in os.listdir(current_directory) if file.endswith(".cpp")
+]
 
-executable_files = [
+executable_files: list[str] = [
     file for file in os.listdir(current_directory) if file.endswith(".sol")
 ]
 
@@ -15,13 +17,13 @@ executable_files.sort()
 # end of  file stuff
 
 # variables
-compiler = "g++"
+compiler: str = "g++"
 
-automatic = "$(COMPILER) $(CFLAGS) $< -o $@"
+automatic: str = "$(COMPILER) $(CFLAGS) $< -o $@"
 
-asm_automatic = "$(COMPILER) $(ASM_CFLAGS) $< -o $@"
+asm_automatic: str = "$(COMPILER) $(ASM_CFLAGS) $< -o $@"
 
-prologue_colors = (
+prologue_colors: str = (
     "grey=$(tput setaf 7)\n"
     + "vividblue=$(tput setaf 20)\n"
     + "darkblue=$(tput setaf 17)\n"
@@ -42,7 +44,7 @@ prologue_colors = (
     + "\n"
 )
 
-warning = (
+warning: str = (
     "##################################################################################\n"
     + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
     + "##################################################################################\n\n"
@@ -50,20 +52,26 @@ warning = (
 
 # flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
-flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs"
+flags: str = (
+    " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs"
+)
 
-asm_flags = " -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-dwarf2-cfi-asm -fno-exceptions -S --std=c++20"
+asm_flags: str = (
+    " -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-dwarf2-cfi-asm -fno-exceptions -S --std=c++20"
+)
 
-subp = subprocess.run(["cat", "/proc/cpuinfo"], capture_output=True).stdout.decode()
+subp: str = subprocess.run(
+    ["cat", "/proc/cpuinfo"], capture_output=True
+).stdout.decode()
 
 if subp.find("avx2") != -1:
     flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
-flags_var = " $(CFLAGS) "
+flags_var: str = " $(CFLAGS) "
 
-fast_flags = " -g0 --std=c++20 -O0"
+fast_flags: str = " -g0 --std=c++20 -O0"
 
-compiler_flags = "	" + compiler + flags_var
+compiler_flags: str = "	" + compiler + flags_var
 
 # end of variables
 
@@ -137,7 +145,9 @@ for cpp_file in cpp_files:
         + '.test)${normal}\\n"'
         + "\nfi\n\n"
     )
+
 testfile.close()
-os.system("chmod +x run_tests.sh")
+
+subprocess.run(["chmod", "+x", "run_tests.sh"])
 
 # end of run_tests.sh

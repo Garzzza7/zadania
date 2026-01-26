@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 
-long long
-rec_bin_coeff(const long long &n, const long long &k) {
+template <typename T>
+T
+rec_bin_coeff(const T &n, const T &k) {
     if (k == 1) {
         return n;
     }
@@ -12,10 +13,11 @@ rec_bin_coeff(const long long &n, const long long &k) {
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 
-long long
-mult_bin_coeff(const long long &n, const long long &k) {
-    long long res = 1;
-    const long long kk = std::min(k, n - k);
+template <typename T>
+T
+mult_bin_coeff(const T &n, const T &k) {
+    T res = 1;
+    const T kk = std::min(k, n - k);
     for (int i = 1; i <= kk; i++) {
         res *= n + 1 - i;
         res /= i;
@@ -23,12 +25,13 @@ mult_bin_coeff(const long long &n, const long long &k) {
     return res;
 }
 
-long long
-mod_mult_bin_coeff(const long long &n, const long long &k, const long long &mod) {
-    long long res{1ll};
-    const long long kk = std::min(k, n - k);
-    auto mod_binpow = [&](long long a, long long b) -> long long {
-        long long tot = 1ll;
+template <typename T>
+T
+mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
+    T res{1ll};
+    const T kk = std::min(k, n - k);
+    auto mod_binpow = [&](T a, T b) -> T {
+        T tot = 1ll;
         while (b > 0) {
             if (b & 1) tot = tot * a % mod;
             a = a * a % mod;
@@ -45,9 +48,10 @@ mod_mult_bin_coeff(const long long &n, const long long &k, const long long &mod)
     return res % mod;
 }
 
-std::vector<std::vector<long long>>
-mod_bin_coeff(const long long &n, const long long &mod) {
-    std::vector binom(n + 1, std::vector<long long>(n + 1));
+template <typename T>
+std::vector<std::vector<T>>
+mod_bin_coeff(const T &n, const T &mod) {
+    std::vector binom(n + 1, std::vector<T>(n + 1));
     binom[0][0] = 1;
     for (int i = 1; i <= n; i++) {
         binom[i][0] = 1;
@@ -65,14 +69,15 @@ main() {
     std::cout.tie(nullptr);
 
     long long n, k;
+    const long long prime = 7919LL;
     std::cin >> n >> k;
     const long long a = mult_bin_coeff(n, k);
     std::cout << "Multiplicative:\n" << a << "\n";
     const long long b = rec_bin_coeff(n, k);
     std::cout << "Recursive:\n" << b << "\n";
-    const auto c = mod_bin_coeff(n, 7919);
+    const auto c = mod_bin_coeff(n, prime);
     std::cout << "Binomial Coefficient modulo 7919:\n" << c[n][k] << "\n";
-    const auto d = mod_mult_bin_coeff(n, k, 7919);
+    const auto d = mod_mult_bin_coeff(n, k, prime);
     std::cout << "Multiplicative modulo 7919:\n" << d << "\n";
 
     return 0;

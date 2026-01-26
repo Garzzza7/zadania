@@ -3,8 +3,9 @@
 #include <stack>
 #include <vector>
 
+template <typename T>
 void
-dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited) {
+dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited) {
     if (visited[vertex]) {
         return;
     }
@@ -15,17 +16,18 @@ dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited) 
     }
 }
 
+template <typename T>
 void
-iterative_dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited) {
+iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited) {
     for (auto &&v : visited) {
         v = false;
     }
-    std::stack<int> stack;
+    std::stack<T> stack;
     visited[vertex] = true;
     stack.push(vertex);
 
     while (!stack.empty()) {
-        int curr = stack.top();
+        T curr = stack.top();
         std::cout << curr << " ";
         stack.pop();
         for (int i = (int) adj[curr].size() - 1; i >= 0; i--) {

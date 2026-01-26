@@ -1,15 +1,16 @@
 #include <iostream>
 #include <vector>
 
-int
-mex(const std::vector<int> &vec) {
+template <typename T>
+T
+mex(const std::vector<T> &vec) {
     std::vector<bool> f(vec.size() + 1, false);
     for (const auto &i : vec) {
         if (i <= (int) (vec.size())) {
             f[i] = true;
         }
     }
-    int res{0};
+    T res{0};
     while (f[res]) {
         res++;
     }

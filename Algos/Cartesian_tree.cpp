@@ -3,8 +3,9 @@
 #include <vector>
 
 // return parent of each node , O(n)
-std::vector<int>
-cartesian_tree(const std::vector<int> &vec) {
+template <typename T>
+std::vector<T>
+cartesian_tree(const std::vector<T> &vec) {
     const int n = (int) vec.size();
     std::vector<int> parent(n, -1);
     for (int i = 1; i < n; i++) {

@@ -28,3 +28,4 @@ build/*
 *.ll
 *.tmp
 *.ptx
+*.s

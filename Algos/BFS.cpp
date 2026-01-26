@@ -2,13 +2,14 @@
 #include <queue>
 #include <vector>
 
+template <typename T>
 void
-iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj) {
+iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     std::vector<bool> visited(adj.size(), false);
-    std::queue<int> que;
+    std::queue<T> que;
     que.push(vertex);
     while (!que.empty()) {
-        const int current = que.front();
+        const auto current = que.front();
         std::cout << current << " ";
         que.pop();
         for (const auto &v : adj[current])
@@ -19,8 +20,9 @@ iterative_bfs(const int vertex, const std::vector<std::vector<int>> &adj) {
     }
 }
 
+template <typename T>
 void
-bfs(const int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited, std::queue<int> que) {
+bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, std::queue<T> que) {
     if (visited[vertex]) {
         return;
     }

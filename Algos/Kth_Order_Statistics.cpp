@@ -4,14 +4,15 @@
 #include <random>
 #include <vector>
 
-int
-kth_order_stat(std::vector<int> &vec, const int l, const int r, const int k) {
+template <typename T>
+T
+kth_order_stat(std::vector<T> &vec, const int l, const int r, const int k) {
     if (r - l <= 1) {
         return vec[k];
     }
     std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
-    const int x = vec[dist(rng)];
+    const T x = vec[dist(rng)];
     int l_limit = l;
     int r_limit = r;
     for (int i = l; i <= r; i++) {

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+// TODO: add generics?
+
 void
 dfs(const int parent, const int vertex, std::vector<std::vector<int>> &adj, std::vector<std::vector<int>> &ancestors,
     std::vector<int> &depth, int &limit) {
