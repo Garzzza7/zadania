@@ -261,6 +261,16 @@ else
     printf "${red}$(cat Dag_Shortest_Path.test)${normal}\n"
 fi
 
+if [ "$(./De_Bruijn.sol <De_Bruijn.txt)" == "$(cat De_Bruijn.test)" ]; then
+    printf "${green}De_Bruijn Passed.${normal}\n"
+else
+    printf "${red}De_Bruijn Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./De_Bruijn.sol <De_Bruijn.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat De_Bruijn.test)${normal}\n"
+fi
+
 if [ "$(./Derangement.sol <Derangement.txt)" == "$(cat Derangement.test)" ]; then
     printf "${green}Derangement Passed.${normal}\n"
 else
