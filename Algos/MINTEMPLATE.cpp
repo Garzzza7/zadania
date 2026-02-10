@@ -23,19 +23,18 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void
-solve() {
+solve(void) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
     std::cin >> _;
-    while (_--)
-        solve();
+    while (_--) solve();
 
     return 0;
 }

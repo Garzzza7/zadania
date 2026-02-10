@@ -1,3 +1,4 @@
+#include <exception>
 #include <iostream>
 
 template <typename T = int> struct node {
@@ -248,18 +249,6 @@ template <typename T = int> struct bst {
         return curr;
     }
 
-    void
-    l_rotate(node<T> *n) {
-        (void) n;
-        // TODO: implement
-    }
-
-    void
-    r_rotate(node<T> *n) {
-        (void) n;
-        // TODO: implement
-    }
-
     bool
     find(const T &n) {
         node<T> *nn = new node(n);
@@ -376,17 +365,41 @@ template <typename T = int> struct bst {
     disp_succ(node<T> *n) const {
         std::cout << "succ of " << n << " = " << (this->find_successor(n) == nullptr ? -69 : this->find_successor(n)) << "\n";
     }
+
+    void
+    validate() {
+        auto walk = [](const auto &self, node<T> *curr) -> void {
+            if (curr == nullptr) {
+                return;
+            }
+            if (curr->l) {
+                if (curr->l->val > curr->val) {
+                    std::cerr << curr->l->val << " > " << curr->val << "\n";
+                    std::terminate();
+                }
+                self(self, curr->l);
+            }
+            if (curr->r) {
+                if (curr->r->val < curr->val) {
+                    std::cerr << curr->r->val << " < " << curr->val << "\n";
+                    std::terminate();
+                }
+                self(self, curr->r);
+            }
+        };
+        walk(walk, root);
+    }
 };
 
 int
 main() {
     bst<int> t;
-    node<int> *n = new node(-1);
-    node<int> *m = new node(1);
-    node<int> *nn = new node(10);
-    node<int> *mm = new node(-2);
-    node<int> *ll = new node(9);
-    node<int> *rr = new node(11);
+    auto *n = new node(-1);
+    auto *m = new node(1);
+    auto *nn = new node(10);
+    auto *mm = new node(-2);
+    auto *ll = new node(9);
+    auto *rr = new node(11);
 
     t.insert(69);
     t.insert(n);
@@ -399,6 +412,8 @@ main() {
     t.remove(nn);
     t.remove(69);
     t.pre_order();
+
+    t.validate();
 
     return 0;
 }

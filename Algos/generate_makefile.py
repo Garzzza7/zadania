@@ -23,24 +23,26 @@ automatic: str = "$(COMPILER) $(CFLAGS) $< -o $@"
 
 asm_automatic: str = "$(COMPILER) $(ASM_CFLAGS) $< -o $@"
 
+test_runner: str = "run_tests.sh"
+
 prologue_colors: str = (
     "grey=$(tput setaf 7)\n"
-    + "vividblue=$(tput setaf 20)\n"
-    + "darkblue=$(tput setaf 17)\n"
     + "black=$(tput setaf 16)\n"
-    + "white=$(tput setaf 15)\n"
-    + "lightgreen=$(tput setaf 14)\n"
-    + "pink=$(tput setaf 13)\n"
-    + "lightblue=$(tput setaf 12)\n"
-    + "vividred=$(tput setaf 9)\n"
-    + "purple=$(tput setaf 5)\n"
-    + "invincible=$(tput setaf 0)\n"
-    + "ygreen=$(tput setaf 2)\n"
-    + "yellow=$(tput setaf 3)\n"
-    + "red=$(tput setaf 1)\n"
     + "blue=$(tput setaf 4)\n"
+    + "darkblue=$(tput setaf 17)\n"
     + "green=$(tput setaf 6)\n"
+    + "invincible=$(tput setaf 0)\n"
+    + "lightblue=$(tput setaf 12)\n"
+    + "lightgreen=$(tput setaf 14)\n"
     + "normal=$(tput sgr0)\n"
+    + "pink=$(tput setaf 13)\n"
+    + "purple=$(tput setaf 5)\n"
+    + "red=$(tput setaf 1)\n"
+    + "vividblue=$(tput setaf 20)\n"
+    + "vividred=$(tput setaf 9)\n"
+    + "white=$(tput setaf 15)\n"
+    + "yellow=$(tput setaf 3)\n"
+    + "ygreen=$(tput setaf 2)\n"
     + "\n"
 )
 
@@ -97,9 +99,16 @@ for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".s ")
 makefile.write("\n\n")
 
-makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n")
+makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
-makefile.write("\nall: standard asm\n")
+makefile.write("test:")
+for cpp_file in cpp_files:
+    makefile.write(" " + cpp_file[:-4] + ".sol ")
+makefile.write("\n")
+
+makefile.write("	./" + test_runner)
+
+makefile.write("\n\nall: standard asm\n")
 
 makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
 
