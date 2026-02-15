@@ -3,12 +3,12 @@
 // BASED ON https://cses.fi/problemset/task/1669/
 // kinda trash
 // TODO: improve
-#define ll long long
+#define ll      long long
 #define sz(vec) (static_cast<int>((vec).size()))
 
 std::vector<ll> path;
 std::vector<bool> visited(100000, false);
-std::vector<std::vector<ll> > adj(100000, std::vector<ll>());
+std::vector<std::vector<ll>> adj(100000, std::vector<ll>());
 
 void
 dfs(ll ver, ll par) {

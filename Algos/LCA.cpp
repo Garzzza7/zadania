@@ -9,13 +9,13 @@ template <typename T = int> struct lca {
         int size{};
         int LOG{};
         static const TT NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<TT, TT> > > matrix;
+        std::vector<std::vector<std::pair<TT, TT>>> matrix;
         sparse_table() = default;
 
         sparse_table &
         operator=(sparse_table &&rhs) noexcept {
-            size = rhs.size;
-            LOG = rhs.LOG;
+            size   = rhs.size;
+            LOG    = rhs.LOG;
             matrix = std::move(rhs.matrix);
             return *this;
         }
@@ -63,7 +63,7 @@ template <typename T = int> struct lca {
     std::vector<int> ids;
     sparse_table<T> st;
 
-    lca(const std::vector<std::vector<int> > &_adj) : n((int) _adj.size()) {
+    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
         ids.resize(n);
         std::vector visited(n, false);
 
@@ -105,7 +105,7 @@ main() {
 
     int n, q;
     std::cin >> n >> q;
-    std::vector<std::vector<int> > adj(n, std::vector<int>());
+    std::vector<std::vector<int>> adj(n, std::vector<int>());
     for (int i = 1; i <= n - 1; i++) {
         int a;
         std::cin >> a;

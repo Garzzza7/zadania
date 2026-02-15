@@ -11,7 +11,7 @@ constexpr long long prime{7919};
 
 long long
 mod_binpow(long long a, long long b) {
-    long long res = 1;
+    long long res{1};
     while (b > 0) {
         if (b & 1) {
             res = res * a % mod;

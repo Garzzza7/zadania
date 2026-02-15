@@ -5,7 +5,7 @@ static int t{0};
 
 template <typename T>
 std::vector<T>
-topo_sort(const T &s, const std::vector<std::vector<T> > &adj) {
+topo_sort(const T &s, const std::vector<std::vector<T>> &adj) {
     // must be a dag
     const int n{(int) adj.size()};
     std::vector<T> res;
@@ -30,7 +30,7 @@ int
 main() {
     int n;
     std::cin >> n;
-    std::vector<std::vector<int> > adj(n + 1, std::vector<int>());
+    std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
     for (int i = 0; i < n; i++) {
         int a, b;
         std::cin >> a >> b;

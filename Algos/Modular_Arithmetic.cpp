@@ -7,9 +7,7 @@
 template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
-    constexpr
-    Modular()
-        : value() {
+    constexpr Modular() : value() {
     }
     template <typename U> Modular(const U &x) : value(normalize(x)) {
     }
@@ -155,20 +153,26 @@ template <typename T> struct Modular {
 
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs) requires std::is_same_v<typename Modular<U>::Type, int> {
+    operator*=(const Modular &rhs)
+        requires std::is_same_v<typename Modular<U>::Type, int>
+    {
         value = normalize(static_cast<int64_t>(value) * static_cast<int64_t>(rhs.value));
         return *this;
     }
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs) requires std::is_same_v<typename Modular<U>::Type, int64_t> {
+    operator*=(const Modular &rhs)
+        requires std::is_same_v<typename Modular<U>::Type, int64_t>
+    {
         int64_t q = int64_t(static_cast<long double>(value) * rhs.value / mod());
-        value = normalize(value * rhs.value - q * mod());
+        value     = normalize(value * rhs.value - q * mod());
         return *this;
     }
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs) requires(!std::is_integral_v<typename Modular<U>::Type>) {
+    operator*=(const Modular &rhs)
+        requires(!std::is_integral_v<typename Modular<U>::Type>)
+    {
         value = normalize(value * rhs.value);
         return *this;
     }
@@ -383,7 +387,7 @@ operator>>(U &stream, Modular<T> &number) {
 }
 
 constexpr int MOD{7919};
-using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD> >;
+using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
 
 // end of modified tourist's template
 
@@ -400,7 +404,7 @@ struct modint {
 
     void
     init_mod(int mod) {
-        MOD = mod;
+        MOD       = mod;
         BARRETT_M = (uint64_t(-1) / MOD);
     }
 

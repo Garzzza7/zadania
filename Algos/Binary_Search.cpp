@@ -3,8 +3,8 @@
 
 long long
 iterative_bin_search(const long long target, const std::vector<long long> &vec) {
-    long long l = 0;
-    long long r = static_cast<int>(vec.size()) - 1;
+    long long l   = 0;
+    long long r   = static_cast<int>(vec.size()) - 1;
     long long mid = 0;
     while (l <= r) {
         mid = (r - l) / 2 + l;

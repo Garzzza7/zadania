@@ -11,7 +11,7 @@ template <typename T = int> struct in_out_ancestor {
     std::vector<T> tin;
     std::vector<T> tout;
     std::vector<bool> visited;
-    std::vector<std::vector<T> > adj;
+    std::vector<std::vector<T>> adj;
 
     in_out_ancestor() = default;
 
@@ -23,7 +23,7 @@ template <typename T = int> struct in_out_ancestor {
         calc(0);
     }
 
-    in_out_ancestor(const std::vector<std::vector<T> > &_adj) : adj(_adj) {
+    in_out_ancestor(const std::vector<std::vector<T>> &_adj) : adj(_adj) {
         n = (int) adj.size();
         tin.resize(n);
         tout.resize(n);
@@ -33,9 +33,9 @@ template <typename T = int> struct in_out_ancestor {
     }
 
     void
-    dfs(const T &ver, const std::vector<std::vector<T> > &adj, std::vector<bool> &visited, int &time) {
+    dfs(const T &ver, const std::vector<std::vector<T>> &adj, std::vector<bool> &visited, int &time) {
         visited[ver] = true;
-        tin[ver] = time++;
+        tin[ver]     = time++;
         for (const auto &v : adj[ver]) {
             if (not visited[v]) {
                 dfs(v, adj, visited, time);
@@ -64,7 +64,7 @@ main() {
 
     int n;
     std::cin >> n;
-    std::vector<std::vector<int> > adj(n + 1, std::vector<int>());
+    std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
     for (int i = 0; i < n; i++) {
         int a, b;
         std::cin >> a >> b;

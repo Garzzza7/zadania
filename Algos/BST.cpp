@@ -91,7 +91,7 @@ template <typename T = int> struct bst {
 
     void
     insert(const T &n) {
-        node<T> *nn = new node(n);
+        node<T> *nn{new node(n)};
         insert(nn, root);
     }
 
@@ -112,21 +112,21 @@ template <typename T = int> struct bst {
                 insert(n, curr->l);
             } else {
                 curr->l = n;
-                n->p = curr;
+                n->p    = curr;
             }
         } else {
             if (curr->r) {
                 insert(n, curr->r);
             } else {
                 curr->r = n;
-                n->p = curr;
+                n->p    = curr;
             }
         }
     }
 
     void
     remove(const T &n) {
-        node<T> *nn = new node(n);
+        node<T> *nn{new node(n)};
         remove(nn, root);
         delete nn;
     }
@@ -175,14 +175,14 @@ template <typename T = int> struct bst {
                 delete curr;
             } else {
                 // has both children
-                node<T> *succ = find_successor(curr);
+                node<T> *succ{find_successor(curr)};
                 if (succ) {
                     // TODO: automate transition in case nodes get more attributes
                     T buff{succ->val};
                     remove(succ, curr);
                     curr->val = buff;
                 } else {
-                    node<T> *pred = find_predecessor(curr);
+                    node<T> *pred{find_predecessor(curr)};
                     if (pred) {
                         T buff{pred->val};
                         remove(pred, curr);
@@ -199,8 +199,8 @@ template <typename T = int> struct bst {
 
     node<T> *
     find_predecessor(const T &n) {
-        node<T> *nn = new node(n);
-        node<T> *res = find_predecessor(nn);
+        node<T> *nn{new node(n)};
+        node<T> *res{find_predecessor(nn)};
         delete nn;
         return res;
     }
@@ -208,14 +208,14 @@ template <typename T = int> struct bst {
     node<T> *
     find_predecessor(node<T> *n) {
         if (n->l) {
-            node<T> *curr = n->l;
+            node<T> *curr{n->l};
             while (curr->r) {
                 curr = curr->r;
             }
             return curr;
         }
-        node<T> *curr = n->p;
-        node<T> *buff = n;
+        node<T> *curr{n->p};
+        node<T> *buff{n};
         while (curr and buff == curr->l) {
             buff = curr;
             curr = curr->p;
@@ -225,8 +225,8 @@ template <typename T = int> struct bst {
 
     node<T> *
     find_successor(const T &n) {
-        node<T> *nn = new node(n);
-        node<T> *res = find_successor(nn);
+        node<T> *nn{new node(n)};
+        node<T> *res{find_successor(nn)};
         delete nn;
         return res;
     }
@@ -234,14 +234,14 @@ template <typename T = int> struct bst {
     node<T> *
     find_successor(node<T> *n) {
         if (n->r) {
-            node<T> *curr = n->r;
+            node<T> *curr{n->r};
             while (curr->l) {
                 curr = curr->l;
             }
             return curr;
         }
-        node<T> *curr = n->p;
-        node<T> *buff = n;
+        node<T> *curr{n->p};
+        node<T> *buff{n};
         while (curr and buff == curr->r) {
             buff = curr;
             curr = curr->p;
@@ -251,8 +251,8 @@ template <typename T = int> struct bst {
 
     bool
     find(const T &n) {
-        node<T> *nn = new node(n);
-        bool res = find(nn);
+        node<T> *nn{new node(n)};
+        bool res{find(nn)};
         delete nn;
         return res;
     }
@@ -290,7 +290,7 @@ template <typename T = int> struct bst {
 
     void
     pre_order(const T &n) {
-        node<T> *nn = new node(n);
+        node<T> *nn{new node(n)};
         pre_order(nn);
         delete nn;
     }
@@ -313,7 +313,7 @@ template <typename T = int> struct bst {
 
     void
     in_order(const T &n) {
-        node<T> *nn = new node(n);
+        node<T> *nn{new node(n)};
         in_order(nn);
         delete nn;
     }
@@ -336,7 +336,7 @@ template <typename T = int> struct bst {
 
     void
     post_order(const T &n) {
-        node<T> *nn = new node(n);
+        node<T> *nn{new node(n)};
         post_order(nn);
         delete nn;
     }

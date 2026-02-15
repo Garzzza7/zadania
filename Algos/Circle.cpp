@@ -55,7 +55,7 @@ template <typename T = double> struct circle {
         return pi * r * r;
     }
 
-    std::vector<std::pair<T, T> >
+    std::vector<std::pair<T, T>>
     intersections(const circle<T> &c) {
         const auto &c1{*this};
         int manhattan{std::abs(c.x - c1.x) + std::abs(c.y - c1.y)};
@@ -63,7 +63,7 @@ template <typename T = double> struct circle {
             return {};
         } else if (c1.is_kiss(c)) {
         }
-        std::vector<std::pair<T, T> > intersections;
+        std::vector<std::pair<T, T>> intersections;
         return intersections;
     }
 
@@ -74,7 +74,7 @@ int
 main() {
     int n;
     std::cin >> n;
-    std::vector<circle<int> > vec(n);
+    std::vector<circle<int>> vec(n);
     for (auto &&v : vec) {
         int a, b, c;
         std::cin >> a >> b >> c;

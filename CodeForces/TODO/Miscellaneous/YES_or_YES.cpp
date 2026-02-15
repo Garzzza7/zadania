@@ -1,82 +1,51 @@
-#include <bits/stdc++.h>
-#include <cmath>
-#include <stdlib.h>
-#define print_rvalues(vec)   \
-    for (auto &&a : (vec)) { \
-	cout << a << " ";    \
-    }                        \
-    cout << "\n";
-#define print_lvalues(vec)        \
-    for (const auto &a : (vec)) { \
-	cout << a << " ";         \
-    }                             \
-    cout << "\n";
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second < right.second;                          \
-    })
-#define sortpairdecS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second > right.second;                          \
-    })
-#define sortpairascF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first < right.first;                            \
-    })
-#define sortpairdecF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first > right.first;                            \
-    })
-#define swpint(a, b) \
-    a ^= b;          \
-    b ^= a;          \
-    a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <cstdint>
+#include <functional>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <vector>
 
-using namespace std;
+#define sz(vec) (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
 
-int main() {
-#if TIME
-    auto begin = std::chrono::high_resolution_clock::now();
-#endif
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
+using u128 = __uint128_t;
 
-#if FAST
-    help;
-    me;
-#endif
-
-    int t;
-    cin >> t;
-    while (t--) {
-	string data;
-	cin >> data;
-	transform(data.begin(), data.end(), data.begin(),
-		  [](unsigned char c) { return std::tolower(c); });
-	if (data == "yes") {
-	    cout << "YES\n";
-	} else {
-	    cout << "NO\n";
-	}
+void
+solve(void) {
+    str s;
+    std::cin >> s;
+    for(auto&& v : s) {
+        v = std::tolower(v);
     }
+    if(s == "yes") {
+        std::cout << "YES\n";   
+    } else {
+        std::cout << "NO\n";   
+    }
+}
 
-#if TIME
-    auto end = std::chrono::high_resolution_clock::now();
-    cout << setprecision(4) << fixed;
-    cout << "Execution time: "
-	 << std::chrono::duration_cast<std::chrono::duration<double>>(end -
-								      begin)
-		.count()
-	 << " seconds\n";
-#endif
+int
+main(void) {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
+    int _{1};
+    std::cin >> _;
+    while (_--)
+        solve();
+
     return 0;
 }

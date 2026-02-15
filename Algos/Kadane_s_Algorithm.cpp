@@ -16,7 +16,7 @@ main() {
     std::vector<int> s = {0};
     int best = 0, sum = 0;
     for (int k = 0; k < n; k++) {
-        sum = std::max(vec[k], sum + vec[k]);
+        sum  = std::max(vec[k], sum + vec[k]);
         best = std::max(best, sum);
         s.push_back(sum);
         b.push_back(best);

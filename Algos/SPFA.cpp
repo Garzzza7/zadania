@@ -5,7 +5,7 @@
 
 template <typename T>
 void
-spfa(const T &start, const std::vector<std::vector<std::pair<T, T> > > &adj, std::vector<int> &distances) {
+spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<int> &distances) {
     const int n{(int) adj.size()};
     for (auto &&v : distances) {
         v = 10000;
@@ -47,7 +47,7 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int> > > adj(n + 1, std::vector<std::pair<int, int> >());
+    std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;

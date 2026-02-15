@@ -4,11 +4,11 @@
 
 template <typename T>
 long long
-crt(const std::vector<std::pair<T, T> > &vec) {
+crt(const std::vector<std::pair<T, T>> &vec) {
     T mod{vec[0].second};
     T buff{vec[0].first};
-    auto lcm = [](T a, T b) -> T {
-        auto gcd = [](T a, T b) -> T {
+    auto lcm{[](T a, T b) -> T {
+        auto gcd{[](T a, T b) -> T {
             while (b) {
                 a %= b;
                 a ^= b;
@@ -16,9 +16,9 @@ crt(const std::vector<std::pair<T, T> > &vec) {
                 a ^= b;
             }
             return a;
-        };
+        }};
         return a / gcd(a, b) * b;
-    };
+    }};
     for (int i = 0; i < static_cast<int>(vec.size()) - 1; i++) {
         int check{buff % vec[i + 1].second};
         int cnt{0};
@@ -44,7 +44,7 @@ main() {
 
     int n;
     std::cin >> n;
-    std::vector<std::pair<int, int> > vec(n);
+    std::vector<std::pair<int, int>> vec(n);
     for (int i = 0; i < n; i++) {
         int aa, bb;
         std::cin >> aa >> bb;

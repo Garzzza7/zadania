@@ -40,7 +40,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
             }
             nodes[node_id].cnt_shares++;
             nodes[next_id].parent = node_id;
-            node_id = next_id;
+            node_id               = next_id;
         }
         nodes[node_id].cnt_shares++;
         nodes[node_id].accepting.push_back(word_id);

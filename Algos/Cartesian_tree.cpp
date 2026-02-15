@@ -17,8 +17,8 @@ cartesian_tree(const std::vector<T> &vec) {
                 parent[l] = par;
             }
             parent[par] = i;
-            l = par;
-            par = pp;
+            l           = par;
+            par         = pp;
         }
         parent[i] = par;
     }
@@ -32,7 +32,7 @@ struct cartesian_tree {
         int size;
         int LOG{};
         static const T NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<T, T> > > matrix;
+        std::vector<std::vector<std::pair<T, T>>> matrix;
         std::vector<T> bin_log;
         sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
             bin_log.push_back(0);
@@ -66,7 +66,7 @@ struct cartesian_tree {
 
         T
         query(int L, const int R) {
-            std::pair<T, T> res = {NEUTRAL_ELEMENT, 0};
+            std::pair<T, T> res{NEUTRAL_ELEMENT, 0};
             for (int i = LOG; i >= 0; i--) {
                 if (1 << i <= R - L + 1) {
                     res = operation(res, matrix[i][L]);

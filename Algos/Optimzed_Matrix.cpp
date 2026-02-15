@@ -12,17 +12,17 @@ template <typename T> struct matrix {
     int is_transposed{0};
     int m;
     int n;
-    std::vector<std::vector<T> > mat;
+    std::vector<std::vector<T>> mat;
 
-    matrix(const matrix &) = default;
-    matrix(matrix &&) = default;
+    matrix(const matrix &)       = default;
+    matrix(matrix &&)            = default;
     matrix &operator=(matrix &&) = default;
-    ~matrix() = default;
+    ~matrix()                    = default;
 
-    matrix(const std::vector<std::vector<T> > &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
+    matrix(const std::vector<std::vector<T>> &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
     }
 
-    matrix(const int &m, const int &n) : m(m), n(n), mat(std::vector<std::vector<T> >(m, std::vector<T>(n, 0))) {
+    matrix(const int &m, const int &n) : m(m), n(n), mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix
@@ -37,8 +37,8 @@ template <typename T> struct matrix {
             matrix ret(m, n);
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n / BLOCK; j++) {
-                    __m256i a = _mm256_loadu_si256((__m256i *) (lhs.mat[i].data() + BLOCK * j));
-                    __m256i b = _mm256_loadu_si256((__m256i *) (rhs.mat[i].data() + BLOCK * j));
+                    __m256i a   = _mm256_loadu_si256((__m256i *) (lhs.mat[i].data() + BLOCK * j));
+                    __m256i b   = _mm256_loadu_si256((__m256i *) (rhs.mat[i].data() + BLOCK * j));
                     __m256i res = _mm256_add_epi32(a, b);
                     _mm256_storeu_si256((__m256i *) (ret.mat[i].data() + BLOCK * j), res);
                 }
@@ -217,7 +217,7 @@ template <typename T> struct matrix {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n / BLOCK; j++) {
                 __m256i a = _mm256_loadu_si256((__m256i *) (this->mat[i].data() + BLOCK * j));
-                a = _mm256_set1_epi32(scalar);
+                a         = _mm256_set1_epi32(scalar);
                 _mm256_storeu_si256((__m256i *) (this->mat[i].data() + BLOCK * j), a);
             }
         }
@@ -313,35 +313,35 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::vector<std::vector<int> > vec1 = {
+    std::vector<std::vector<int>> vec1 = {
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1},
     };
-    std::vector<std::vector<int> > vec2 = {
+    std::vector<std::vector<int>> vec2 = {
         {2, 2, 2},
         {2, 2, 2},
         {2, 2, 2},
     };
-    std::vector<std::vector<int> > vec3 = {
+    std::vector<std::vector<int>> vec3 = {
         {1, 0, 1},
         {2, 1, 1},
         {0, 1, 1},
         {1, 1, 2},
     };
-    std::vector<std::vector<int> > vec4 = {
+    std::vector<std::vector<int>> vec4 = {
         {1, 2, 1},
         {2, 3, 1},
         {4, 2, 2},
     };
-    std::vector<std::vector<int> > vec5 = {
+    std::vector<std::vector<int>> vec5 = {
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
     };
 
-    std::vector<std::vector<int> > vec6 = {
+    std::vector<std::vector<int>> vec6 = {
         {3, 7},
         {1, -4},
     };

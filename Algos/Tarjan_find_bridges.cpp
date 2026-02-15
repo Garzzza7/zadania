@@ -9,10 +9,10 @@ struct tarjan_find_bridges {
         }
     };
 
-    std::vector<std::vector<edge> > adj;
+    std::vector<std::vector<edge>> adj;
     std::vector<bool> visited;
     std::vector<bool> is_bridge;
-    std::vector<std::pair<int, int> > edges;
+    std::vector<std::pair<int, int>> edges;
     std::vector<int> entry_time;
     std::vector<int> low;
     int visit_time{0};
@@ -21,12 +21,12 @@ struct tarjan_find_bridges {
     tarjan_find_bridges(int n, int m) {
         n++;
         m++;
-        adj = std::vector(n, std::vector<edge>());
-        visited = std::vector<bool>(n);
-        is_bridge = std::vector<bool>(m);
+        adj        = std::vector(n, std::vector<edge>());
+        visited    = std::vector<bool>(n);
+        is_bridge  = std::vector<bool>(m);
         entry_time = std::vector<int>(n);
-        low = std::vector<int>(n);
-        edges = std::vector<std::pair<int, int> >(m);
+        low        = std::vector<int>(n);
+        edges      = std::vector<std::pair<int, int>>(m);
     }
 
     void
@@ -49,8 +49,8 @@ struct tarjan_find_bridges {
         if (visited[v]) {
             return;
         }
-        visited[v] = true;
-        low[v] = visit_time;
+        visited[v]    = true;
+        low[v]        = visit_time;
         entry_time[v] = visit_time;
         visit_time++;
         for (const auto &e : adj[v]) {

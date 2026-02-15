@@ -2,7 +2,7 @@
 using namespace std;
 
 long long maxi = 0;
-long long at = 0;
+long long at   = 0;
 void
 dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited, long long cnt) {
     if (visited[v]) {
@@ -10,7 +10,7 @@ dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited, long lon
     }
     if (cnt > maxi) {
         maxi = cnt;
-        at = v;
+        at   = v;
     }
     visited[v] = 1;
     for (auto &&vv : adj[v]) {

@@ -18,7 +18,7 @@ parity(std::vector<T> vec) {
             while (curr != neutral) {
                 int next{vec[curr]};
                 vec[curr] = neutral;
-                curr = next;
+                curr      = next;
             }
         }
     }

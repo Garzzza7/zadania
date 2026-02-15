@@ -29,7 +29,7 @@ template <typename T> struct Modular {
     static int
     barrett(uint64_t a) {
         auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
-        auto q = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
+        auto q   = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
         auto res = static_cast<int32_t>(q - mod());
         return res < 0 ? res + mod() : res;
     }
@@ -163,7 +163,7 @@ template <typename T> struct Modular {
         requires std::is_same_v<typename Modular<U>::Type, int64_t>
     {
         int64_t q = int64_t(static_cast<long double>(value) * rhs.value / mod());
-        value = normalize(value * rhs.value - q * mod());
+        value     = normalize(value * rhs.value - q * mod());
         return *this;
     }
     template <typename U = T>
@@ -385,7 +385,7 @@ operator>>(U &stream, Modular<T> &number) {
 }
 
 constexpr int MOD = 998'244'353;
-using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
+using Mint        = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
 
 std::vector<Mint>
 mint_conv(const std::vector<Mint> &a, const std::vector<Mint> &b) {
@@ -404,8 +404,8 @@ template <typename T>
 std::vector<T>
 conv(const std::vector<int> &a, const std::vector<int> &b) {
     constexpr int MOD = 998'244'353;
-    const int n = (int) a.size();
-    const int m = (int) b.size();
+    const int n       = (int) a.size();
+    const int m       = (int) b.size();
     std::vector<T> c(n + m - 1);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -432,17 +432,17 @@ main() {
     for (int i = 0; i < n; i++) {
         int v;
         std::cin >> v;
-        a[i] = v;
+        a[i]  = v;
         aa[i] = v;
     }
 
     for (int i = 0; i < n; i++) {
         int v;
         std::cin >> v;
-        b[i] = v;
+        b[i]  = v;
         bb[i] = v;
     }
-    auto c = conv<int>(a, b);
+    auto c  = conv<int>(a, b);
     auto cc = mint_conv(aa, bb);
     for (const auto &v : c) {
         std::cout << v << " ";

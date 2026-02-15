@@ -48,7 +48,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         int node_id{0};
         for (const auto &i : word) {
             int c{i - BASE};
-            auto &next_id = nodes[node_id].next[c];
+            auto &next_id{nodes[node_id].next[c]};
             if (next_id == -1) {
                 return false;
             }

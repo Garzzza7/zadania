@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#define ll long long
+#define ll      long long
 #define sz(vec) ((int) (vec).size())
 
 template <typename T> struct Modular {
@@ -38,7 +38,7 @@ template <typename T> struct Modular {
     static int
     barrett(uint64_t a) {
         auto BARRETT_M = (static_cast<uint64_t>(-1) / mod());
-        auto q = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
+        auto q   = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
         auto res = static_cast<int32_t>(q - mod());
         return (res < 0) ? res + mod() : res;
     }
@@ -172,7 +172,7 @@ template <typename T> struct Modular {
         requires std::is_same_v<typename Modular<U>::Type, int64_t>
     {
         int64_t q = static_cast<int64_t>(static_cast<long double>(value) * rhs.value / mod());
-        value = normalize(value * rhs.value - q * mod());
+        value     = normalize(value * rhs.value - q * mod());
         return *this;
     }
     template <typename U = T>
@@ -394,7 +394,7 @@ operator>>(U &stream, Modular<T> &number) {
 }
 
 constexpr int MOD = 7919;
-using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
+using Mint        = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
 
 int
 main() {

@@ -9,7 +9,7 @@
 template <typename T = int> struct cactus {
     int id{-1};
     std::vector<T> stack;
-    std::vector<std::unique_ptr<cactus<T> > > branches;
+    std::vector<std::unique_ptr<cactus<T>>> branches;
     cactus<T> *parent{nullptr};
 
     cactus() = default;
@@ -19,7 +19,7 @@ template <typename T = int> struct cactus {
     }
 
     // move version
-    cactus(std::vector<T> stack, std::vector<std::unique_ptr<cactus<T> > > branches)
+    cactus(std::vector<T> stack, std::vector<std::unique_ptr<cactus<T>>> branches)
         : stack(std::move(stack)), branches(std::move(branches)) {
     }
 
@@ -33,7 +33,7 @@ template <typename T = int> struct cactus {
 
     cactus<T> *
     branch_out() {
-        auto cn = std::make_unique<cactus<T> >(this);
+        auto cn        = std::make_unique<cactus<T>>(this);
         cactus<T> *ptr = cn.get();
         branches.push_back(std::move(cn));
         return ptr;
@@ -42,7 +42,7 @@ template <typename T = int> struct cactus {
     void
     delete_branch(cactus<T> *c) {
         auto curr = std::ranges::find_if(branches.begin(), branches.end(),
-                                         [c](const std::unique_ptr<cactus<T> > &branch) { return branch.get() == c; });
+                                         [c](const std::unique_ptr<cactus<T>> &branch) { return branch.get() == c; });
         if (curr != branches.end()) {
             branches.erase(curr);
         }

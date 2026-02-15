@@ -25,8 +25,8 @@ template <typename T> struct point {
 };
 
 template <typename T>
-std::vector<point<T> >
-convex_hull(std::vector<point<T> > points) {
+std::vector<point<T>>
+convex_hull(std::vector<point<T>> points) {
     const int n{(int) points.size()};
 
     auto check{[](const point<T> &curr, const point<T> &l, const point<T> &r) -> int {
@@ -40,8 +40,8 @@ convex_hull(std::vector<point<T> > points) {
         return l.y < r.y;
     });
 
-    std::vector<point<T> > up;
-    std::vector<point<T> > low;
+    std::vector<point<T>> up;
+    std::vector<point<T>> low;
 
     for (int i = 0; i < n; i++) {
         while ((int) low.size() >= 2 and check(low[(int) low.size() - 2], low[(int) low.size() - 1], points[i]) <= 0) {
@@ -68,7 +68,7 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::vector<point<int> > points = {
+    std::vector<point<int>> points = {
         {1, 1}, {10, 1}, {5, 5}, {1, 10}, {5, 12}, {10, 10},
     };
 

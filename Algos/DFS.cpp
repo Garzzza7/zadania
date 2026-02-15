@@ -5,7 +5,7 @@
 
 template <typename T>
 void
-dfs(T vertex, std::vector<std::vector<T> > &adj, std::vector<bool> &visited) {
+dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited) {
     if (visited[vertex]) {
         return;
     }
@@ -18,7 +18,7 @@ dfs(T vertex, std::vector<std::vector<T> > &adj, std::vector<bool> &visited) {
 
 template <typename T>
 void
-iterative_dfs(T vertex, std::vector<std::vector<T> > &adj, std::vector<bool> &visited) {
+iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited) {
     for (auto &&v : visited) {
         v = false;
     }
@@ -49,7 +49,7 @@ main() {
     int vertices;
     std::cin >> vertices;
     std::vector<bool> visited(vertices + 1, false);
-    std::vector<std::vector<int> > adj(vertices + 1, std::vector<int>());
+    std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
     int edges;
     std::cin >> edges;
 

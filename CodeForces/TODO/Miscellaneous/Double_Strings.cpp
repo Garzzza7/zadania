@@ -1,8 +1,11 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <set>
 #include <string>
@@ -11,68 +14,55 @@
 #define sz(vec) (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using u128 = __uint128_t;
-using i64 = long long;
-using u64 = unsigned long long;
+using str = std::string;
+using u8 = unsigned char;
 using i32 = int;
 using u32 = unsigned int;
-using str = std::string;
+using i64 = long long;
+using u64 = unsigned long long;
+using u128 = __uint128_t;
 
 void
-solve() {
-        i32 n;
-        std::cin >> n;
-        std::vector<str> vec(n);
-        std::vector<bool> res(n,false);
-        std::map<str,std::vector<i32>> m;
-
-        for(i32 i = 0 ; i < n ; i++) {
-                str v;
-                std::cin >> v;
-                vec[i] = v;
-                m[v].push_back(i + 1);
+solve(void) {
+    i32 n;
+    std::cin >> n;
+    std::map<str, bool> map;
+    std::vector<str> vec(n);
+    for (i32 _ = 0; _ < n; _++) {
+        str v;
+        std::cin >> v;
+        map[v] = true;
+        vec[_] = v;
+    }
+    for (const auto &v : vec) {
+        bool git = false;
+        str l;
+        str r;
+        for (i32 i = 1; i < sz(v); i++) {
+            l.push_back(v[i - 1]);
+            r = v.substr(i, sz(v) - i);
+            // std::cout << l << " " << r << "\n";
+            git = (map[l] and map[r]) or git;
         }
-       // std::sort(all(vec) , [&] (const auto& l , const auto& r) -> bool {
-       //                 if(sz(l) < sz(r))return true;
-       //                 if(l < r)return true;
-       //                 return false;
-       // });
-        for(i32 i = 0 ; i < n ; i++) {
-                if(sz(m[vec[i] + vec[i]]) != 0){
-                        for(const auto& v : m[vec[i] + vec[i]]) {
-                                res[v-1] = true;
-                        }
-                }
-                for(i32 j = i + 1 ; j < n ; j++) {
-                                if(sz(m[vec[i] + vec[j]]) != 0){
-                                        for(const auto& v : m[vec[i] + vec[j]]) {
-                                                res[v-1] = true;
-                                        }
-                                }
-
-                                if(sz(m[vec[j] + vec[i]]) != 0){
-                                        for(const auto& v : m[vec[j] + vec[i]]) {
-                                                res[v-1] = true;
-                                        }
-                                }
-                        }
+        if (git) {
+            std::cout << 1;
+        } else {
+            std::cout << 0;
         }
-
-        for(const auto& v : res)
-                std::cout << v;
-        std::cout << "\n";
+    }
+    std::cout << "\n";
 }
 
 int
-main() {
-        std::ios_base::sync_with_stdio(false);
-        std::cin.tie(nullptr);
-        std::cout.tie(nullptr);
+main(void) {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-        int _{1};
-        std::cin >> _;
-        while (_--)
-                solve();
+    int _{1};
+    std::cin >> _;
+    while (_--)
+        solve();
 
-        return 0;
+    return 0;
 }

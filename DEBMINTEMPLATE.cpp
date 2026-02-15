@@ -3,7 +3,7 @@
 #ifndef lol
 #include "debug.h"
 #else
-#define debug(...) 42
+#define debug(...)        42
 #define debug_assert(...) 42
 #endif
 

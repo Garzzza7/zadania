@@ -24,14 +24,14 @@ rabin_karp(std::string const &text, std::string const &pattern) {
         text_hash[i + 1] = (text_hash[i] + (text[i] - 'a' + 1) * precalc_powers[i]) % mod;
     }
 
-    long long patter_hash = 0ll;
+    long long patter_hash{0ll};
     for (int i = 0; i < pattern_size; i++) {
         patter_hash = (patter_hash + (pattern[i] - 'a' + 1) * precalc_powers[i]) % mod;
     }
 
     std::vector<int> cnt;
     for (int i = 0; i + pattern_size - 1 < text_size; i++) {
-        const long long curr = (text_hash[i + pattern_size] - text_hash[i] + mod) % mod;
+        const long long curr{(text_hash[i + pattern_size] - text_hash[i] + mod) % mod};
         if (curr == patter_hash * precalc_powers[i] % mod) {
             cnt.push_back(i);
         }

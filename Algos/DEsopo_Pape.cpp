@@ -10,7 +10,7 @@ struct desopo_pape {
         }
     };
 
-    std::vector<std::vector<edge> > adj;
+    std::vector<std::vector<edge>> adj;
     std::deque<int> queue;
     std::vector<int> path;
     std::vector<int> distance;
@@ -18,11 +18,11 @@ struct desopo_pape {
                            // 2 - yet to be calculated
 
     desopo_pape(const int &n) {
-        adj = std::vector<std::vector<edge> >(n + 1, std::vector<edge>());
-        queue = std::deque<int>();
-        path = std::vector<int>(n + 1, -123);
+        adj      = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
+        queue    = std::deque<int>();
+        path     = std::vector<int>(n + 1, -123);
         distance = std::vector<int>(n + 1, 1000000);
-        type = std::vector<int>(n + 1, 2);
+        type     = std::vector<int>(n + 1, 2);
     }
 
     void
@@ -47,7 +47,7 @@ struct desopo_pape {
             for (const auto &e : adj[curr]) {
                 if (distance[e.vertex] > distance[curr] + e.weight) {
                     distance[e.vertex] = distance[curr] + e.weight;
-                    path[e.vertex] = curr;
+                    path[e.vertex]     = curr;
                     if (type[e.vertex] == 2) {
                         type[e.vertex] = 1;
                         queue.push_back(e.vertex);

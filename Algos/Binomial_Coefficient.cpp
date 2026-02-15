@@ -49,7 +49,7 @@ mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
 }
 
 template <typename T>
-std::vector<std::vector<T> >
+std::vector<std::vector<T>>
 mod_bin_coeff(const T &n, const T &mod) {
     std::vector binom(n + 1, std::vector<T>(n + 1));
     binom[0][0] = 1;

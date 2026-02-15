@@ -106,7 +106,7 @@ for cpp_file in cpp_files:
     makefile.write(" " + cpp_file[:-4] + ".sol ")
 makefile.write("\n")
 
-makefile.write("	./" + test_runner)
+makefile.write("	bash " + test_runner)
 
 makefile.write("\n\nall: standard asm\n")
 

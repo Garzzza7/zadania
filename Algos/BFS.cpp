@@ -9,7 +9,7 @@ iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     std::queue<T> que;
     que.push(vertex);
     while (!que.empty()) {
-        const auto current { que.front()};
+        const auto current{que.front()};
         std::cout << current << " ";
         que.pop();
         for (const auto &v : adj[current])

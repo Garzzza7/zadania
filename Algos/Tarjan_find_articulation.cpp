@@ -2,7 +2,7 @@
 #include <vector>
 
 struct tarjan_find_articulation {
-    std::vector<std::vector<int> > adj;
+    std::vector<std::vector<int>> adj;
     std::vector<bool> visited;
     std::vector<bool> is_art_point;
     std::vector<int> entry_time;
@@ -10,11 +10,11 @@ struct tarjan_find_articulation {
     int visit_time{0};
 
     tarjan_find_articulation(const int n) {
-        adj = std::vector(n + 1, std::vector<int>());
-        visited = std::vector(n + 1, false);
+        adj          = std::vector(n + 1, std::vector<int>());
+        visited      = std::vector(n + 1, false);
         is_art_point = std::vector(n + 1, false);
-        entry_time = std::vector<int>(n + 1);
-        low = std::vector<int>(n + 1);
+        entry_time   = std::vector<int>(n + 1);
+        low          = std::vector<int>(n + 1);
     }
 
     void
@@ -33,9 +33,9 @@ struct tarjan_find_articulation {
         if (visited[v]) {
             return;
         }
-        visited[v] = true;
+        visited[v]    = true;
         entry_time[v] = visit_time;
-        low[v] = visit_time;
+        low[v]        = visit_time;
         visit_time++;
         int decs{0};
         for (const auto &e : adj[v]) {

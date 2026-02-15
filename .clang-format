@@ -1,11 +1,12 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 BasedOnStyle: GNU
 IndentWidth: 4
 UseTab: Never
-BreakBeforeBraces: Attach  
+BreakBeforeBraces: Attach
 ColumnLimit: 130
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None 
+AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: false
 SpaceBeforeParens: ControlStatements
@@ -13,6 +14,27 @@ SpaceAfterCStyleCast: true
 SpacesInParentheses: false
 SpacesInAngles: false
 SpacesBeforeTrailingComments: 1
-SortIncludes: true 
+SortIncludes: true
 ReflowComments: true
 Cpp11BracedListStyle: true
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  AlignCaseColons: false
+AlignAfterOpenBracket: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+AlignEscapedNewlines: Right
+AlignOperands: true
+AlignTrailingComments: true

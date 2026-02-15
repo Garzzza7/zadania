@@ -8,12 +8,12 @@ long long iter_sum{0ll};
 
 template <typename T>
 void
-iter_floodfill(std::vector<std::vector<T> > &vec, std::vector<std::vector<bool> > &visited, const int &x, const int &y) {
+iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<bool>> &visited, const int &x, const int &y) {
     auto check{[&](const int &x, const int &y) -> bool {
         return !((x < 0 or x >= (int) vec.size() or y < 0 or y >= (int) vec[0].size()) or vec[x][y] == 0 or visited[x][y]);
     }};
     if (check(x, y)) {
-        std::stack<std::pair<int, int> > stack;
+        std::stack<std::pair<int, int>> stack;
         stack.emplace(x, y);
         while (!stack.empty()) {
             const auto xx{stack.top().first};
@@ -35,7 +35,7 @@ long long sum{0ll};
 
 template <typename T>
 void
-floodfill(std::vector<std::vector<T> > &vec, std::vector<std::vector<bool> > &visited, const int &i, const int &j) {
+floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<bool>> &visited, const int &i, const int &j) {
     if ((i < 0 or i >= (int) vec.size() or j < 0 or j >= (int) vec[0].size()) or vec[i][j] == 0 or visited[i][j]) {
         return;
     }
@@ -61,8 +61,8 @@ main() {
     while (T--) {
         int n, m;
         std::cin >> n >> m;
-        std::vector<std::vector<int> > vec(n, std::vector<int>(m));
-        std::vector<std::vector<bool> > visited(n, std::vector<bool>(m, false));
+        std::vector<std::vector<int>> vec(n, std::vector<int>(m));
+        std::vector<std::vector<bool>> visited(n, std::vector<bool>(m, false));
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
                 std::cin >> vec[i][j];

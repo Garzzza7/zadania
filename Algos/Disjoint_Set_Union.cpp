@@ -37,8 +37,8 @@ template <typename T = int> struct dsu {
     void
     make_set(const T &v) {
         parent[v] = v;
-        size[v] = 1;
-        rank[v] = 0;
+        size[v]   = 1;
+        rank[v]   = 0;
     }
 
     T

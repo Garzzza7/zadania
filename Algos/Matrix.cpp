@@ -6,17 +6,17 @@ template <typename T> struct matrix {
     int is_transposed{0};
     int m;
     int n;
-    std::vector<std::vector<T> > mat;
+    std::vector<std::vector<T>> mat;
 
-    matrix(const matrix &) = default;
-    matrix(matrix &&) = default;
+    matrix(const matrix &)       = default;
+    matrix(matrix &&)            = default;
     matrix &operator=(matrix &&) = default;
-    ~matrix() = default;
+    ~matrix()                    = default;
 
-    matrix(const std::vector<std::vector<T> > &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
+    matrix(const std::vector<std::vector<T>> &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
     }
 
-    matrix(const int m, const int n) : m(m), n(n), mat(std::vector<std::vector<T> >(m, std::vector<T>(n, 0))) {
+    matrix(const int m, const int n) : m(m), n(n), mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix
@@ -143,28 +143,28 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::vector<std::vector<int> > vec1 = {
+    std::vector<std::vector<int>> vec1 = {
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1},
     };
-    std::vector<std::vector<int> > vec2 = {
+    std::vector<std::vector<int>> vec2 = {
         {2, 2, 2},
         {2, 2, 2},
         {2, 2, 2},
     };
-    std::vector<std::vector<int> > vec3 = {
+    std::vector<std::vector<int>> vec3 = {
         {1, 0, 1},
         {2, 1, 1},
         {0, 1, 1},
         {1, 1, 2},
     };
-    std::vector<std::vector<int> > vec4 = {
+    std::vector<std::vector<int>> vec4 = {
         {1, 2, 1},
         {2, 3, 1},
         {4, 2, 2},
     };
-    std::vector<std::vector<int> > vec5 = {
+    std::vector<std::vector<int>> vec5 = {
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
