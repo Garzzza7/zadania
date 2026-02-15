@@ -9,18 +9,18 @@
 template <typename T = int> struct kosaraju {
     T n;
 
-    std::vector<std::vector<T>> adj;
-    std::vector<std::vector<T>> transposed_adj;
+    std::vector<std::vector<T> > adj;
+    std::vector<std::vector<T> > transposed_adj;
     std::stack<T> out;
     std::vector<bool> visited;
 
     int cnt_Components{0};
 
-    std::map<T, std::vector<T>> scc;
+    std::map<T, std::vector<T> > scc;
 
     kosaraju(const T &_n)
-        : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
-          transposed_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
+        : n(_n), adj(std::vector<std::vector<T> >(_n, std::vector<T>())),
+          transposed_adj(std::vector<std::vector<T> >(_n, std::vector<T>())) {
         visited = std::vector<bool>(_n, false);
     }
 
@@ -41,7 +41,7 @@ template <typename T = int> struct kosaraju {
             v = false;
         }
         while (!out.empty()) {
-            T v = out.top();
+            T v{out.top()};
             out.pop();
             if (!visited[v]) {
                 dfs_2(v);

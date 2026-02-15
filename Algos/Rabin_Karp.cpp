@@ -9,8 +9,8 @@ std::vector<int>
 rabin_karp(std::string const &text, std::string const &pattern) {
     constexpr long long mod{1000000007};
 
-    const int text_size = static_cast<int>(text.size());
-    const int pattern_size = static_cast<int>(pattern.size());
+    const int text_size{static_cast<int>(text.size())};
+    const int pattern_size{static_cast<int>(pattern.size())};
 
     std::vector<long long> precalc_powers(std::max(pattern_size, text_size));
     precalc_powers[0] = 1;
@@ -50,7 +50,7 @@ main() {
     std::cin >> pattern;
     std::cout << text << "\n";
     std::cout << pattern << "\n";
-    auto res = rabin_karp(text, pattern);
+    auto res{rabin_karp(text, pattern)};
     std::cout << static_cast<int>(res.size()) << " matches found at:\n";
     for (const auto &c : res)
         std::cout << c << " ";

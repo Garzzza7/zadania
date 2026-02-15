@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <string>
 #include <vector>
 
@@ -34,7 +33,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         patterns.push_back(word);
         for (const auto &i : word) {
             int c{i - BASE};
-            auto &next_id = nodes[node_id].next[c];
+            auto &next_id{nodes[node_id].next[c]};
             if (next_id == -1) {
                 next_id = static_cast<int>(nodes.size());
                 nodes.emplace_back(node(c));
@@ -55,25 +54,25 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 
     void
     build_suffix_links() {
-        std::queue<int> q;
+        std::vector<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            const int &child = nodes[0].next[i];
+            const int &child{nodes[0].next[i]};
             if (child != -1) {
                 nodes[child].suffix_link = 0;
-                q.push(child);
+                q.push_back(child);
             }
         }
 
         while (!q.empty()) {
-            const int id = q.front();
-            q.pop();
+            const int id{q.front()};
+            q.pop_back();
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-                int child = nodes[id].next[i];
+                int child{nodes[id].next[i]};
                 if (child == -1) {
                     continue;
                 }
-                int j = nodes[id].suffix_link;
+                int j{nodes[id].suffix_link};
                 while (j != -1 and nodes[j].next[i] == -1) {
                     j = nodes[j].suffix_link;
                 }
@@ -82,35 +81,36 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
                 } else {
                     nodes[child].suffix_link = nodes[j].next[i];
                 }
-                q.push(child);
+                q.push_back(child);
             }
         }
     }
 
     void
     build_output_links() {
-        std::queue<int> q;
+        std::vector<int> q;
+
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            const int &child = nodes[0].next[i];
+            const int &child{nodes[0].next[i]};
             if (child != -1) {
-                q.push(child);
+                q.push_back(child);
             }
         }
         while (!q.empty()) {
-            int id = q.front();
-            q.pop();
-            const auto &u = nodes[id].suffix_link;
+            int id{q.front()};
+            q.pop_back();
+            const auto &u{nodes[id].suffix_link};
             if (nodes[u].is_accept) {
                 nodes[id].output_link = u;
             } else {
                 nodes[id].output_link = nodes[u].output_link;
             }
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-                int child = nodes[id].next[i];
+                int child{nodes[id].next[i]};
                 if (child == -1) {
                     continue;
                 }
-                q.push(child);
+                q.push_back(child);
             }
         }
     }
@@ -125,7 +125,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     search_connections(const std::string &word) {
         int node_id{0};
         for (int i = 0; i < static_cast<int>(word.size()); i++) {
-            int c = word[i] - BASE;
+            int c{word[i] - BASE};
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }
@@ -144,7 +144,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     search_node(const std::string &word) {
         int node_id{0};
         for (const auto &i : word) {
-            int c = i - BASE;
+            int c{i - BASE};
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }

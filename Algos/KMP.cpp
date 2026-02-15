@@ -4,9 +4,9 @@
 
 bool
 hasSubstring(const std::string &s, const std::string &pattern) {
-    int i = 0;
-    int j = 0;
-    int k = 0;
+    int i{0};
+    int j{0};
+    int k{0};
     while (i < static_cast<int>(s.size()) and j < static_cast<int>(pattern.size())) {
         if (s[i] == pattern[j]) {
             i++;
@@ -26,7 +26,7 @@ hasSubstring(const std::string &s, const std::string &pattern) {
 std::vector<int>
 computeBuffer(std::string pattern) {
     std::vector<int> lps(static_cast<int>(pattern.size()));
-    int index = 0;
+    int index{0};
     for (int i = 1; i < static_cast<int>(pattern.size());) {
         if ((pattern[i] = pattern[index])) {
             lps[i] = index + 1;
@@ -46,9 +46,9 @@ computeBuffer(std::string pattern) {
 
 bool
 KMP(const std::string &s, const std::string &pattern) {
-    const std::vector<int> lps = computeBuffer(pattern);
-    int j = 0;
-    int i = 0;
+    const std::vector<int> lps{computeBuffer(pattern)};
+    int j{0};
+    int i{0};
     while (i < static_cast<int>(s.size()) and j < static_cast<int>(pattern.size())) {
         if (s[i] == pattern[j]) {
             i++;

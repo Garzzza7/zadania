@@ -63,7 +63,7 @@ show_calculation(int x, char c, int y, int n) {
         }
         std::cout << "\n";
     } else {
-        int move = -2;
+        int move{-2};
         for (int i = 0; i <= n; i++) {
             std::cout << recursive_binomial_coefficient(n, i) << " x^" << i << " y^" << n - i;
             if (i != n) {

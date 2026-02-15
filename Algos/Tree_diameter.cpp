@@ -6,7 +6,7 @@ long long at{0ll};
 
 template <typename T>
 void
-dfs(const T v, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, const long long cnt) {
+dfs(const T v, std::vector<std::vector<T> > &adj, std::vector<bool> &visited, const long long cnt) {
     if (visited[v]) {
         return;
     }
@@ -30,7 +30,7 @@ main() {
 
     long long n;
     std::cin >> n;
-    std::vector<std::vector<long long>> adj(n + 1, std::vector<long long>());
+    std::vector<std::vector<long long> > adj(n + 1, std::vector<long long>());
     for (long long i = 0; i < n - 1; i++) {
         long long aa, bb;
         std::cin >> aa >> bb;

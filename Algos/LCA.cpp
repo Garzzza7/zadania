@@ -9,7 +9,7 @@ template <typename T = int> struct lca {
         int size{};
         int LOG{};
         static const TT NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<TT, TT>>> matrix;
+        std::vector<std::vector<std::pair<TT, TT> > > matrix;
         sparse_table() = default;
 
         sparse_table &
@@ -63,11 +63,11 @@ template <typename T = int> struct lca {
     std::vector<int> ids;
     sparse_table<T> st;
 
-    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
+    lca(const std::vector<std::vector<int> > &_adj) : n((int) _adj.size()) {
         ids.resize(n);
         std::vector visited(n, false);
 
-        auto dfs = [&](const auto &self, const int v, const int h) -> void {
+        auto dfs{[&](const auto &self, const int v, const int h) -> void {
             visited[v] = true;
             heights.push_back(h);
             ids[v] = (int) euler.size();
@@ -79,7 +79,7 @@ template <typename T = int> struct lca {
                     heights.push_back(h);
                 }
             }
-        };
+        }};
         dfs(dfs, 0, 0);
     }
 
@@ -91,8 +91,8 @@ template <typename T = int> struct lca {
 
     T
     query(const int l, const int r) {
-        const int lq = ids[l];
-        const int rq = ids[r];
+        const int lq{ids[l]};
+        const int rq{ids[r]};
         return st.query(std::min(lq, rq), std::max(lq, rq));
     }
 };
@@ -105,7 +105,7 @@ main() {
 
     int n, q;
     std::cin >> n >> q;
-    std::vector<std::vector<int>> adj(n, std::vector<int>());
+    std::vector<std::vector<int> > adj(n, std::vector<int>());
     for (int i = 1; i <= n - 1; i++) {
         int a;
         std::cin >> a;

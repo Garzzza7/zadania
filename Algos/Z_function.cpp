@@ -4,11 +4,11 @@
 
 std::vector<int>
 z_function(const std::string &s) {
-    const int n = static_cast<int>(s.size());
+    const int n{static_cast<int>(s.size())};
     std::vector<int> z(n);
     z[0] = n;
-    int l = 0;
-    int r = 0;
+    int l{0};
+    int r{0};
     for (int i = 1; i < n; i++) {
         if (i < r) {
             z[i] = std::min(r - i, z[i - l]);
@@ -35,7 +35,7 @@ main() {
     while (t--) {
         std::string s;
         std::cin >> s;
-        std::vector<int> res = z_function(s);
+        std::vector<int> res{z_function(s)};
         for (const auto &a : res)
             std::cout << a << " ";
         std::cout << "\n";

@@ -40,7 +40,7 @@ main() {
     std::vector<int> vec(n);
     for (auto &&v : vec)
         std::cin >> v;
-    auto og = vec;
+    auto og{vec};
     for (const auto &v : vec)
         std::cout << v << " ";
 

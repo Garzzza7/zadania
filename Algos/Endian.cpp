@@ -29,8 +29,8 @@ main() {
 
     std::string word;
     std::cin >> word;
-    const auto le = find_little_endian(word);
-    const auto be = find_big_endian(word);
+    const auto le{find_little_endian(word)};
+    const auto be{find_big_endian(word)};
     std::cout << "Little Endian: " << le << "\nBig Endian: " << be << '\n';
     return 0;
 }

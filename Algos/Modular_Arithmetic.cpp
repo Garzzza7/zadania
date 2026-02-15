@@ -7,7 +7,9 @@
 template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
-    constexpr Modular() : value() {
+    constexpr
+    Modular()
+        : value() {
     }
     template <typename U> Modular(const U &x) : value(normalize(x)) {
     }
@@ -30,9 +32,9 @@ template <typename T> struct Modular {
 
     static int
     barrett(uint64_t a) {
-        const auto BARRETT_M = static_cast<uint64_t>(-1) / mod();
-        const auto q = static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod());
-        const auto res = static_cast<int32_t>(q - mod());
+        const auto BARRETT_M{static_cast<uint64_t>(-1) / mod()};
+        const auto q{static_cast<uint32_t>(a - static_cast<uint64_t>((static_cast<__uint128_t>(BARRETT_M) * a) >> 64) * mod())};
+        const auto res{static_cast<int32_t>(q - mod())};
         return res < 0 ? res + mod() : res;
     }
 
@@ -153,26 +155,20 @@ template <typename T> struct Modular {
 
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs)
-        requires std::is_same_v<typename Modular<U>::Type, int>
-    {
+    operator*=(const Modular &rhs) requires std::is_same_v<typename Modular<U>::Type, int> {
         value = normalize(static_cast<int64_t>(value) * static_cast<int64_t>(rhs.value));
         return *this;
     }
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs)
-        requires std::is_same_v<typename Modular<U>::Type, int64_t>
-    {
+    operator*=(const Modular &rhs) requires std::is_same_v<typename Modular<U>::Type, int64_t> {
         int64_t q = int64_t(static_cast<long double>(value) * rhs.value / mod());
         value = normalize(value * rhs.value - q * mod());
         return *this;
     }
     template <typename U = T>
     Modular &
-    operator*=(const Modular &rhs)
-        requires(!std::is_integral_v<typename Modular<U>::Type>)
-    {
+    operator*=(const Modular &rhs) requires(!std::is_integral_v<typename Modular<U>::Type>) {
         value = normalize(value * rhs.value);
         return *this;
     }
@@ -386,8 +382,8 @@ operator>>(U &stream, Modular<T> &number) {
     return stream;
 }
 
-constexpr int MOD = 7919;
-using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD>>;
+constexpr int MOD{7919};
+using Mint = Modular<std::integral_constant<std::decay_t<decltype(MOD)>, MOD> >;
 
 // end of modified tourist's template
 
@@ -410,8 +406,8 @@ struct modint {
 
     static int
     barrett(uint64_t a) {
-        auto q = uint32_t(a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * MOD);
-        auto res = int32_t(q - MOD);
+        auto q{uint32_t(a - uint64_t((__uint128_t(BARRETT_M) * a) >> 64) * MOD)};
+        auto res{int32_t(q - MOD)};
         return (res < 0) ? res + MOD : res;
     }
 

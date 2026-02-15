@@ -7,7 +7,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
     struct node {
         std::vector<int> next;
         std::vector<int> accepting;
-        int c;
+        int c{};
         int cnt_shares{0};
         node(const int _c) : c(_c) {
             next = std::vector<int>(CHAR_SIZE + 1, -1);
@@ -26,7 +26,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         int node_id{0};
         for (const auto &i : word) {
             int c{i - BASE};
-            auto &next_id = nodes[node_id].next[c];
+            auto &next_id{nodes[node_id].next[c]};
             if (next_id == -1) {
                 next_id = static_cast<int>(nodes.size());
                 nodes.emplace_back(node(c));
@@ -47,7 +47,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
     search(const std::string &word, bool check_prefix = false) {
         int node_id{0};
         for (const auto &i : word) {
-            int c = i - BASE;
+            int c{i - BASE};
             auto &next_id = nodes[node_id].next[c];
             if (next_id == -1) {
                 return false;

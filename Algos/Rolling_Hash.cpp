@@ -29,7 +29,7 @@ query_hash(const std::vector<long long> &hash, const int &l, const int &r) {
 
 std::vector<long long>
 rolling_hash(const std::string &s) {
-    const int n = static_cast<int>(s.size());
+    const int n{static_cast<int>(s.size())};
     std::vector<long long> res(n + 1, 0);
     for (int i = 0; i < n; i++) {
         res[i + 1] = res[i] * prime % mod + (s[i] - 'a' + 1);
@@ -45,7 +45,7 @@ main() {
 
     std::string s;
     std::cin >> s;
-    auto hashed = rolling_hash(s);
+    auto hashed{rolling_hash(s)};
     for (const auto &h : hashed)
         std::cout << h << " ";
     std::cout << "\n";

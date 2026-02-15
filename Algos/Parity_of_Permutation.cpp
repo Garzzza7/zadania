@@ -16,7 +16,7 @@ parity(std::vector<T> vec) {
             is_even = is_even ? false : true;
             int curr{i};
             while (curr != neutral) {
-                int next = vec[curr];
+                int next{vec[curr]};
                 vec[curr] = neutral;
                 curr = next;
             }

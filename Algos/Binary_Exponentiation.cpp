@@ -4,7 +4,7 @@ constexpr long long mod{1'000'000'007};
 
 long long
 mod_binpow(long long a, long long b) {
-    long long res = 1ll;
+    long long res{1ll};
     while (b > 0) {
         if (b & 1) {
             res = res * a % mod;
@@ -17,7 +17,7 @@ mod_binpow(long long a, long long b) {
 
 long long
 binpow(long long a, long long b) {
-    long long res = 1;
+    long long res{1ll};
     while (b > 0) {
         if (b & 1) {
             res = res * a;
@@ -66,8 +66,8 @@ main() {
 
     long long a, b;
     std::cin >> a >> b;
-    const auto res = binpow(a, b);
-    const auto mod_res = mod_binpow(a, b);
+    const auto res{binpow(a, b)};
+    const auto mod_res{mod_binpow(a, b)};
     std::cout << res << "\n";
     std::cout << mod_res << "\n";
 

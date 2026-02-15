@@ -11,8 +11,8 @@ template <typename T = int> struct edge {
 };
 
 template <typename T> struct kruscal {
-    std::vector<edge<T>> mst;
-    std::vector<edge<T>> edges;
+    std::vector<edge<T> > mst;
+    std::vector<edge<T> > edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
@@ -52,7 +52,7 @@ template <typename T> struct kruscal {
         }
     }
 
-    std::vector<edge<T>>
+    std::vector<edge<T> >
     calc_mst() {
         std::sort(edges.begin(), edges.end(), [](const edge<T> &l, const edge<T> &r) { return l.weight < r.weight; });
         for (const auto &edge : edges) {
@@ -82,7 +82,7 @@ main() {
         graph.add_edge(edge(u, v, w));
     }
 
-    auto res = graph.calc_mst();
+    auto res{graph.calc_mst()};
 
     for (const auto &[u, v, weight] : res) {
         std::cout << u << " -> " << v << " with weight " << weight << "\n";

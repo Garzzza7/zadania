@@ -37,7 +37,7 @@ main() {
         std::vector<int> vec(n);
         for (auto &&v : vec)
             std::cin >> v;
-        auto test = vec;
+        auto test{vec};
         bitonic_sort(vec);
         std::sort(test.begin(), test.end());
         std::cout << (vec == test) << "\n";

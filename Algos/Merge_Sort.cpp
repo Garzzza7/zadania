@@ -33,7 +33,7 @@ template <typename T>
 void
 merge_sort(std::vector<T> &vec, int l, int r) {
     if (l < r) {
-        int q = (r - l) / 2 + l;
+        int q{(r - l) / 2 + l};
         merge_sort(vec, l, q);
         merge_sort(vec, q + 1, r);
         merge(vec, l, q, r);
@@ -54,7 +54,7 @@ main() {
         std::vector<int> vec(n);
         for (int i = 0; i < n; i++)
             std::cin >> vec[i];
-        auto test = vec;
+        auto test{vec};
         std::sort(test.begin(), test.end());
         merge_sort(vec, 0, n - 1);
         std::cout << (test == vec) << "\n";

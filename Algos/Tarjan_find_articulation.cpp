@@ -2,7 +2,7 @@
 #include <vector>
 
 struct tarjan_find_articulation {
-    std::vector<std::vector<int>> adj;
+    std::vector<std::vector<int> > adj;
     std::vector<bool> visited;
     std::vector<bool> is_art_point;
     std::vector<int> entry_time;

@@ -8,7 +8,7 @@
 
 std::vector<ll> path;
 std::vector<bool> visited(100000, false);
-std::vector<std::vector<ll>> adj(100000, std::vector<ll>());
+std::vector<std::vector<ll> > adj(100000, std::vector<ll>());
 
 void
 dfs(ll ver, ll par) {

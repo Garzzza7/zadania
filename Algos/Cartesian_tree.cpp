@@ -6,13 +6,13 @@
 template <typename T>
 std::vector<T>
 cartesian_tree(const std::vector<T> &vec) {
-    const int n = (int) vec.size();
+    const int n{(int) vec.size()};
     std::vector<int> parent(n, -1);
     for (int i = 1; i < n; i++) {
-        int par = i - 1;
-        int l = -1;
+        int par{i - 1};
+        int l{-1};
         while (par != -1 and (vec[i] < vec[par])) {
-            int pp = parent[par];
+            int pp{parent[par]};
             if (l != -1) {
                 parent[l] = par;
             }
@@ -32,7 +32,7 @@ struct cartesian_tree {
         int size;
         int LOG{};
         static const T NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<T, T>>> matrix;
+        std::vector<std::vector<std::pair<T, T> > > matrix;
         std::vector<T> bin_log;
         sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
             bin_log.push_back(0);
@@ -87,17 +87,17 @@ struct cartesian_tree {
     build() {
         sparse_table sp(base);
         sp.process();
-        int l = 0;
-        int r = (int) base.size() - 1;
+        int l{0};
+        int r{(int) base.size() - 1};
         c_tree[0] = sp.query(l, r);
-        auto walk = [&](const auto &self, int l, int r, int id) -> void {
+        auto walk{[&](const auto &self, int l, int r, int id) -> void {
             if (l < 0 or r >= (int) base.size() or l > r) {
                 return;
             }
             c_tree[id] = sp.query(l, r);
             self(self, l, c_tree[id] - 1, id * 2 + 1);
             self(self, c_tree[id] + 1, r, id * 2 + 2);
-        };
+        }};
         walk(walk, l, c_tree[0] - 1, 1);
         walk(walk, c_tree[0] + 1, r, 2);
     }
@@ -117,7 +117,7 @@ main() {
         std::vector<int> vec(n);
         for (int i = 0; i < n; i++)
             std::cin >> vec[i];
-        auto ct = cartesian_tree(vec);
+        auto ct{cartesian_tree(vec)};
         for (int i = 0; i < n; i++) {
             std::cout << ((ct[i] == -1) ? i : ct[i]) << " ";
         }

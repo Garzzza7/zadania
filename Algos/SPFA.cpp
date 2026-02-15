@@ -5,8 +5,8 @@
 
 template <typename T>
 void
-spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<int> &distances) {
-    const int n = (int) adj.size();
+spfa(const T &start, const std::vector<std::vector<std::pair<T, T> > > &adj, std::vector<int> &distances) {
+    const int n{(int) adj.size()};
     for (auto &&v : distances) {
         v = 10000;
     }
@@ -17,13 +17,13 @@ spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::
     q.push(start);
     qed[start] = true;
     while (!q.empty()) {
-        const auto curr = q.front();
+        const auto curr{q.front()};
         q.pop();
         qed[start] = false;
 
         for (const auto &e : adj[curr]) {
-            const auto &t = e.first;
-            const auto &w = e.second;
+            const auto &t{e.first};
+            const auto &w{e.second};
             if (distances[curr] + w < distances[t]) {
                 distances[t] = distances[curr] + w;
                 if (!qed[t]) {
@@ -47,7 +47,7 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());
+    std::vector<std::vector<std::pair<int, int> > > adj(n + 1, std::vector<std::pair<int, int> >());
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;

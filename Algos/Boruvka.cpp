@@ -13,7 +13,7 @@ template <typename T = int> struct edge {
 template <typename T = int> struct boruvka {
     int n;
     T MAX;
-    std::vector<edge<T>> edges;
+    std::vector<edge<T> > edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
@@ -40,8 +40,8 @@ template <typename T = int> struct boruvka {
 
     void
     union_by_rank(const int &u, const int &v) {
-        auto u_leader = find(u);
-        auto v_leader = find(v);
+        auto u_leader{find(u)};
+        auto v_leader{find(v)};
         if (u_leader != v_leader) {
             if (rank[u_leader] < rank[v_leader]) {
                 std::swap(u_leader, v_leader);
@@ -53,22 +53,22 @@ template <typename T = int> struct boruvka {
         }
     }
 
-    std::vector<edge<T>>
+    std::vector<edge<T> >
     mst() {
-        std::vector<edge<T>> mst;
-        std::vector<edge<T>> cheapest(n, edge(-1, -1, MAX));
+        std::vector<edge<T> > mst;
+        std::vector<edge<T> > cheapest(n, edge(-1, -1, MAX));
 
-        int tree_count = n;
+        int tree_count{n};
         T mst_weight{0};
 
         while (tree_count > 1) {
             for (const edge<T> &e : edges) {
-                const auto &u = e.u;
-                const auto &v = e.v;
-                const auto &weight = e.weight;
+                const auto &u{e.u};
+                const auto &v{e.v};
+                const auto &weight{e.weight};
 
-                const auto id1 = find(u);
-                const auto id2 = find(v);
+                const auto id1{find(u)};
+                const auto id2{find(v)};
 
                 if (id1 != id2) {
                     if (cheapest[id1].weight == MAX or cheapest[id1].weight > weight) {
@@ -82,12 +82,12 @@ template <typename T = int> struct boruvka {
 
             for (int ver = 0; ver < n; ver++) {
                 if (cheapest[ver].weight != MAX) {
-                    const auto &u = cheapest[ver].u;
-                    const auto &v = cheapest[ver].v;
-                    const auto &weight = cheapest[ver].weight;
+                    const auto &u{cheapest[ver].u};
+                    const auto &v{cheapest[ver].v};
+                    const auto &weight{cheapest[ver].weight};
 
-                    const int id1 = find(u);
-                    const int id2 = find(v);
+                    const int id1{find(u)};
+                    const int id2{find(v)};
 
                     if (id1 != id2) {
                         mst_weight += weight;
@@ -119,7 +119,7 @@ main() {
         graph.add_edge(edge(u, v, w));
     }
 
-    for (const auto res = graph.mst(); const auto &[u, v, weight] : res)
+    for (const auto res{graph.mst()}; const auto &[u, v, weight] : res)
         std::cout << u << " -> " << v << " with weight " << weight << "\n";
     return 0;
 }

@@ -31,7 +31,7 @@ template <typename T = int> struct ram_seg_tree {
             }
             return;
         }
-        const int mid = (rx - lx) / 2 + lx;
+        const int mid{(rx - lx) / 2 + lx};
         build(arr, 2 * x + 1, lx, mid);
         build(arr, 2 * x + 2, mid, rx);
         vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
@@ -48,7 +48,7 @@ template <typename T = int> struct ram_seg_tree {
             vec[x] = v;
             return;
         }
-        const int mid = (rx - lx) / 2 + lx;
+        const int mid{(rx - lx) / 2 + lx};
         if (i < mid) {
             set(i, v, 2 * x + 1, lx, mid);
         } else {
@@ -71,9 +71,9 @@ template <typename T = int> struct ram_seg_tree {
         if (lx >= l and rx <= r) {
             return vec[x];
         }
-        const int mid = (rx - lx) / 2 + lx;
-        const T p1 = query(l, r, 2 * x + 1, lx, mid);
-        const T s2 = query(l, r, 2 * x + 2, mid, rx);
+        const int mid{(rx - lx) / 2 + lx};
+        const T p1{query(l, r, 2 * x + 1, lx, mid)};
+        const T s2{query(l, r, 2 * x + 2, mid, rx)};
         return operation(p1, s2);
     }
 };

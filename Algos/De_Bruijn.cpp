@@ -7,7 +7,7 @@ de_bruijn_seq(const T &len, const T &alpha) {
     std::vector<T> res;
     std::vector<T> lyndon = {0};
     while (lyndon[0] != alpha - 1) {
-        const T r = (T) lyndon.size();
+        const T r{(T) lyndon.size()};
         if (len % r == 0) {
             for (const auto &c : lyndon) {
                 res.push_back(c);
@@ -33,7 +33,7 @@ main(void) {
 
     int len, alpha;
     std::cin >> len >> alpha;
-    auto bru = de_bruijn_seq(len, alpha);
+    auto bru{de_bruijn_seq(len, alpha)};
     std::cout << bru.size() << "\n";
     for (const auto &v : bru) {
         std::cout << v << " ";

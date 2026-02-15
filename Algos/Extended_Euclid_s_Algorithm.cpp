@@ -28,7 +28,7 @@ main() {
     while (T--) {
         int a, b;
         std::cin >> a >> b;
-        std::vector<int> euclid = extended_euclid(a, b);
+        std::vector<int> euclid{extended_euclid(a, b)};
         std::cout << "d = " << euclid[0] << "\n";
         std::cout << "x = " << euclid[1] << "\n";
         std::cout << "y = " << euclid[2] << "\n";

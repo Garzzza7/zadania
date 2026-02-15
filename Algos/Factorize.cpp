@@ -26,7 +26,7 @@ main() {
     int n;
     std::cin >> n;
     std::cout << n << ": ";
-    const auto vec = factorize(n);
+    const auto vec{factorize(n)};
     for (const auto &v : vec)
         std::cout << v << " ";
 

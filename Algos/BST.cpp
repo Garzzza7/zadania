@@ -72,7 +72,7 @@ template <typename T = int> struct bst {
     }
 
     ~bst() {
-        auto walk = [](const auto &self, node<T> *curr) -> void {
+        auto walk{[](const auto &self, node<T> *curr) -> void {
             if (curr == nullptr) {
                 return;
             }
@@ -83,7 +83,7 @@ template <typename T = int> struct bst {
                 self(self, curr->r);
             }
             delete curr;
-        };
+        }};
         walk(walk, root->l);
         walk(walk, root->r);
         delete root;
@@ -142,13 +142,13 @@ template <typename T = int> struct bst {
             return;
         }
         if (*n == *curr) {
-            auto is_left = [](const node<T> *node) -> bool {
+            auto is_left{[](const node<T> *node) -> bool {
                 // true -> l , false -> r
                 if (node->p->l == node) {
                     return true;
                 }
                 return false;
-            };
+            }};
             if (curr->l == nullptr and curr->r == nullptr) {
                 // leaf
                 if (is_left(curr)) {
@@ -178,13 +178,13 @@ template <typename T = int> struct bst {
                 node<T> *succ = find_successor(curr);
                 if (succ) {
                     // TODO: automate transition in case nodes get more attributes
-                    T buff = succ->val;
+                    T buff{succ->val};
                     remove(succ, curr);
                     curr->val = buff;
                 } else {
                     node<T> *pred = find_predecessor(curr);
                     if (pred) {
-                        T buff = pred->val;
+                        T buff{pred->val};
                         remove(pred, curr);
                         curr->val = buff;
                     }
@@ -368,7 +368,7 @@ template <typename T = int> struct bst {
 
     void
     validate() {
-        auto walk = [](const auto &self, node<T> *curr) -> void {
+        auto walk{[](const auto &self, node<T> *curr) -> void {
             if (curr == nullptr) {
                 return;
             }
@@ -386,7 +386,7 @@ template <typename T = int> struct bst {
                 }
                 self(self, curr->r);
             }
-        };
+        }};
         walk(walk, root);
     }
 };
@@ -394,12 +394,12 @@ template <typename T = int> struct bst {
 int
 main() {
     bst<int> t;
-    auto *n = new node(-1);
-    auto *m = new node(1);
-    auto *nn = new node(10);
-    auto *mm = new node(-2);
-    auto *ll = new node(9);
-    auto *rr = new node(11);
+    auto *n{new node(-1)};
+    auto *m{new node(1)};
+    auto *nn{new node(10)};
+    auto *mm{new node(-2)};
+    auto *ll{new node(9)};
+    auto *rr{new node(11)};
 
     t.insert(69);
     t.insert(n);

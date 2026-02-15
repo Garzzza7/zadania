@@ -5,8 +5,8 @@
 
 int
 levenshtein_distance(const std::string &s1, const std::string &s2) {
-    const int n = static_cast<int>(s1.size());
-    const int m = static_cast<int>(s2.size());
+    const int n{static_cast<int>(s1.size())};
+    const int m{static_cast<int>(s2.size())};
     std::vector dp(n, std::vector<int>(m, 0));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {

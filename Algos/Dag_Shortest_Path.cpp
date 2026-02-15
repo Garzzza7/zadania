@@ -3,12 +3,12 @@
 
 template <typename T>
 std::vector<T>
-topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
+topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T> > > &adj) {
     const int n{(int) adj.size()};
     std::vector<T> res;
     res.reserve(n);
     std::vector<bool> visited(n, false);
-    auto dfs = [&](const auto &self, const T &ver) -> void {
+    auto dfs{[&](const auto &self, const T &ver) -> void {
         visited[ver] = true;
         for (const auto &v : adj[ver]) {
             if (!visited[v.first]) {
@@ -16,23 +16,23 @@ topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
             }
         }
         res.push_back(ver);
-    };
+    }};
     dfs(dfs, s);
     return res;
 }
 
 template <typename T>
 std::vector<int>
-dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &path = {}) {
+dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T> > > &adj, std::vector<T> &path = {}) {
     const std::vector<T> topo = topo_sort(s, adj);
     const int n{(int) topo.size()};
     std::vector<int> dist(n + 1, 1 << 30);
     dist[topo.back()] = 0;
     for (int i = n - 1; i >= 0; i--) {
-        const auto &u = topo[i];
+        const auto &u{topo[i]};
         for (const auto &ver : adj[u]) {
-            const auto &v = ver.first;
-            const auto &w = ver.second;
+            const auto &v{ver.first};
+            const auto &w{ver.second};
             if (dist[v] > dist[u] + w) {
                 dist[v] = dist[u] + w;
                 path[v] = u;
@@ -65,7 +65,7 @@ main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());
+    std::vector<std::vector<std::pair<int, int> > > adj(n + 1, std::vector<std::pair<int, int> >());
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;
@@ -73,7 +73,7 @@ main() {
     }
 
     std::vector<int> path(n + 1, -1);
-    auto res = dag_shortest_path(1, adj, path);
+    auto res{dag_shortest_path(1, adj, path)};
 
     for (int i = 1; i <= n; i++) {
         std::cout << i << ": " << res[i] << "\n";

@@ -6,12 +6,12 @@
 // simple but slow
 std::vector<int>
 suffix_array(const std::string &str) {
-    const std::string s = str + "$";
+    const std::string s{str + "$"};
     const int n{(int) s.size()};
     std::vector<int> p(n);
     std::vector<int> c(n);
     // k = 0 case
-    std::vector<std::pair<char, int>> a(n);
+    std::vector<std::pair<char, int> > a(n);
     for (int i = 0; i < n; i++) {
         a[i] = {s[i], i};
     }
@@ -31,7 +31,7 @@ suffix_array(const std::string &str) {
 
     int k{0};
     while ((1 << k) < n) {
-        std::vector<std::pair<std::pair<int, int>, int>> a(n);
+        std::vector<std::pair<std::pair<int, int>, int> > a(n);
         for (int i = 0; i < n; i++) {
             a[i] = {{c[i], c[(i + (1 << k)) % n]}, i};
         }
@@ -64,7 +64,7 @@ main() {
     while (t--) {
         std::string s;
         std::cin >> s;
-        auto sa = suffix_array(s);
+        auto sa{suffix_array(s)};
         for (const auto &c : sa)
             std::cout << c << "\n";
         std::cout << "\n";

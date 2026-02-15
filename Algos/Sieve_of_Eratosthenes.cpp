@@ -40,8 +40,8 @@ main() {
 
     int n;
     std::cin >> n;
-    const auto siev = cnt_sieve(n);
-    const auto bsiev = bool_sieve(n);
+    const auto siev{cnt_sieve(n)};
+    const auto bsiev{bool_sieve(n)};
     // 0 -> prime
     // !0 -> one of factors
     for (const auto &a : siev) {

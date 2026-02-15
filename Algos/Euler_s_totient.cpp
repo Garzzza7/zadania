@@ -26,7 +26,7 @@ main() {
 
     int n;
     std::cin >> n;
-    const auto res = phi_1_to_n(n);
+    const auto res{phi_1_to_n(n)};
     for (const auto &a : res)
         std::cout << a << " ";
     std::cout << "\n";

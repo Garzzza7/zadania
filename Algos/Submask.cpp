@@ -4,7 +4,7 @@ template <typename T>
 void
 bitmask(const T &num) {
     T limit{1};
-    auto is_on = [](const T &a, const T &b) -> T { return a & (1 << b); };
+    auto is_on{[](const T &a, const T &b) -> T { return a & (1 << b); }};
     while ((limit << 1) < num) {
         limit <<= 1;
     }

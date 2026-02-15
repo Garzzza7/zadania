@@ -35,7 +35,7 @@ derangement(const unsigned long long n) {
     unsigned long long prev1{1ull};
     unsigned long long prev2{0ull};
     for (unsigned long long i = 3; i <= n; i++) {
-        const auto curr = (i - 1) * (prev1 + prev2);
+        const auto curr{(i - 1) * (prev1 + prev2)};
         prev2 = prev1;
         prev1 = curr;
     }
