@@ -15,7 +15,7 @@ fisher_yates_shuffle(std::vector<T> &vec) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

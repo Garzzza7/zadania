@@ -14,7 +14,7 @@ convert_base10_to_base(int num, int base) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

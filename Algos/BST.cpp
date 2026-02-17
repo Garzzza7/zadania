@@ -392,7 +392,11 @@ template <typename T = int> struct bst {
 };
 
 int
-main() {
+main(void) {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+
     bst<int> t;
     auto *n{new node(-1)};
     auto *m{new node(1)};

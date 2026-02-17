@@ -22,7 +22,7 @@ find_big_endian(const std::string &word) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

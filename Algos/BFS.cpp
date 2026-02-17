@@ -38,7 +38,7 @@ bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -51,7 +51,7 @@ maxflow(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::v
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

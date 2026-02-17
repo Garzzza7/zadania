@@ -67,7 +67,7 @@ recursive_bin_search(const long long f, const long long e, const long long targe
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

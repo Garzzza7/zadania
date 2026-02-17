@@ -157,7 +157,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 };
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -18,7 +18,7 @@ build(const int &n, const int &m, std::vector<std::vector<int>> &prefsum, const 
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

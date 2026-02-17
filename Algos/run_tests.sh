@@ -521,6 +521,16 @@ else
     printf "${red}$(cat LCA.test)${normal}\n"
 fi
 
+if [ "$(./LCS.sol <LCS.txt)" == "$(cat LCS.test)" ]; then
+    printf "${green}LCS Passed.${normal}\n"
+else
+    printf "${red}LCS Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./LCS.sol <LCS.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat LCS.test)${normal}\n"
+fi
+
 if [ "$(./Levenshtein_distance.sol <Levenshtein_distance.txt)" == "$(cat Levenshtein_distance.test)" ]; then
     printf "${green}Levenshtein_distance Passed.${normal}\n"
 else
@@ -850,4 +860,3 @@ else
     printf "${red} Should be:\n"
     printf "${red}$(cat Z_function.test)${normal}\n"
 fi
-

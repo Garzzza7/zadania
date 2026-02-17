@@ -16,7 +16,7 @@ floor_sum(T a, T b, T c, T n) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
