@@ -28,18 +28,28 @@ solve(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    int cnt[8001] = {0};
+    std::set<int> set;
     for (auto &&v : vec) {
         std::cin >> v;
-        cnt[v]++;
+        set.insert(v);
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    if (sz(set) == 1) {
+        std::cout << "EQUAL\n";
+        return;
+    } else {
+        auto vv = vec;
+        std::sort(all(vv));
+        if (vv == vec) {
+            std::cout << "NONDECREASING\n";
+            return;
+        }
+        std::sort(all(vv), std::greater<>());
+        if (vv == vec) {
+            std::cout << "NONINCREASING\n";
+            return;
         }
     }
-    std::cout << res << "\n";
+    std::cout << "NONE\n";
 }
 
 int
@@ -49,7 +59,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -1,4 +1,5 @@
 // #include <bits/stdc++.h>
+#include <span>
 #pragma GCC optimize("Ofast")
 #include <alloca.h>
 #include <sys/mman.h>

@@ -25,21 +25,13 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
+    int n, m;
+    std::cin >> n >> m;
+    if (n == m and n == 4) {
+        std::cout << "Yes\n";
+    } else {
+        std::cout << "No\n";
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
-        }
-    }
-    std::cout << res << "\n";
 }
 
 int
@@ -49,7 +41,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

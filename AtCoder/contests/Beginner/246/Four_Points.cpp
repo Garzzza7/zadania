@@ -1,5 +1,6 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <compare>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -25,21 +26,27 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
+    std::map<int, int> cntx;
+    std::map<int, int> cnty;
+    for (int i = 0; i < 3; i++) {
+        int a, b;
+        std::cin >> a >> b;
+        cntx[a]++;
+        cnty[b]++;
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    int x = 0;
+    int y = 0;
+    for (const auto &v : cntx) {
+        if (v.second == 1) {
+            x = v.first;
         }
     }
-    std::cout << res << "\n";
+    for (const auto &v : cnty) {
+        if (v.second == 1) {
+            y = v.first;
+        }
+    }
+    std::cout << x << " " << y << "\n";
 }
 
 int
@@ -49,7 +56,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

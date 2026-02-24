@@ -25,18 +25,25 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
+    int n, m, k;
+    std::cin >> n >> m >> k;
     std::vector<int> vec(n);
-    int cnt[8001] = {0};
     for (auto &&v : vec) {
         std::cin >> v;
-        cnt[v]++;
     }
+    int i;
     int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    for (i = 0; i < n; i++) {
+        if (vec[i] > m) {
+            if (k == 0) {
+                break;
+            } else {
+                k--;
+                res++;
+            }
+        } else {
+            m -= vec[i];
+            res++;
         }
     }
     std::cout << res << "\n";
@@ -49,7 +56,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

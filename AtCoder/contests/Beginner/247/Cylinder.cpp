@@ -9,6 +9,7 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
@@ -25,21 +26,33 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    i64 q;
+    std::cin >> q;
+    std::deque<std::pair<i64, i64>> vec;
+    while (q--) {
+        i64 t;
+        std::cin >> t;
+        if (t == 1) {
+            i64 x, c;
+            std::cin >> x >> c;
+            vec.emplace_back(x, c);
+        } else {
+            i64 c;
+            std::cin >> c;
+            i64 res = 0LL;
+            while (c > 0LL) {
+                auto mini = std::min(vec.front().second, c);
+                res += mini * vec.front().first;
+                if (mini == vec.front().second) {
+                    vec.pop_front();
+                } else {
+                    vec.front().second -= mini;
+                }
+                c -= mini;
+            }
+            std::cout << res << "\n";
         }
     }
-    std::cout << res << "\n";
 }
 
 int
@@ -49,7 +62,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

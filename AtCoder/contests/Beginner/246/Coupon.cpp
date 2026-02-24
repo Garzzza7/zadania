@@ -23,22 +23,49 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T>
+[[nodiscard]] inline T
+bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
+template <typename T>
+[[nodiscard]] inline T
+bin_fl(T x, T y) noexcept {
+    return x / y - ((x ^ y) < 0 && x % y);
+}
+
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
+    i64 n, k, x;
+    std::cin >> n >> k >> x;
+    std::vector<i64> vec(n);
     for (auto &&v : vec) {
         std::cin >> v;
-        cnt[v]++;
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    std::sort(all(vec), std::greater<>());
+    for (auto &&v : vec) {
+        if (v < x) {
+            break;
+        } else {
+            i64 t = (v / x);
+            t     = std::min(t, k);
+            v -= t * x;
+            k -= t;
+        }
+        if (k == 0) {
+            break;
         }
     }
+    std::sort(all(vec), std::greater<>());
+    for (auto &&v : vec) {
+        v = 0;
+        k--;
+        if (k == 0) {
+            break;
+        }
+    }
+    i64 res = std::accumulate(all(vec), 0LL);
     std::cout << res << "\n";
 }
 
@@ -49,7 +76,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

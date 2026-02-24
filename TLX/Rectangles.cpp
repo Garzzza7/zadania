@@ -25,21 +25,14 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
-        }
-    }
-    std::cout << res << "\n";
+    int n, m;
+    int a, b;
+    std::cin >> n >> m;
+    std::cin >> a >> b;
+    int r1 = (n / a) * (m / b);
+    std::swap(a, b);
+    int r2 = (n / a) * (m / b);
+    std::cout << std::max(r1, r2) << "\n";
 }
 
 int
@@ -49,7 +42,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

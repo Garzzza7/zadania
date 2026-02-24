@@ -27,19 +27,16 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    auto cacl = [](const auto &self, int v) -> void {
+        if (v == 1) {
+            std::cout << 1 << " ";
+            return;
         }
-    }
-    std::cout << res << "\n";
+        self(self, v - 1);
+        std::cout << v << " ";
+        self(self, v - 1);
+    };
+    cacl(cacl, n);
 }
 
 int
@@ -49,7 +46,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -27,19 +27,20 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    char c = 'a';
+    if (n == 1) {
+        std::cout << 'a' << "\n";
+    } else if (n == 1) {
+        std::cout << "aa" << "\n";
+    } else {
+        for (int i = 0; i < n; i++) {
+            std::cout << c;
+            c++;
+            if (c > 'c') {
+                c = 'a';
+            }
         }
     }
-    std::cout << res << "\n";
 }
 
 int
@@ -49,7 +50,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

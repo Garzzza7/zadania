@@ -9,11 +9,13 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
+using db   = double;
 using str  = std::string;
 using u8   = unsigned char;
 using i32  = int;

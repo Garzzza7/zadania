@@ -121,9 +121,10 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         build_output_links();
     }
 
-    void
+    std::vector<std::pair<std::string, int>>
     search_connections(const std::string &word) {
         int node_id{0};
+        std::vector<std::pair<std::string, int>> res;
         for (int i = 0; i < static_cast<int>(word.size()); i++) {
             int c{word[i] - BASE};
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
@@ -134,14 +135,15 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
             }
             for (int iter = node_id; iter != -1; iter = nodes[iter].output_link) {
                 for (const auto &p : nodes[iter].accepting) {
-                    std::cout << patterns[p] << " found at " << (i - patterns[p].size() + 1) << "\n";
+                    res.push_back({patterns[p], (i - patterns[p].size() + 1)});
                 }
             }
         }
+        return res;
     }
 
-    void
-    search_node(const std::string &word) {
+    int
+    search_string(const std::string &word) {
         int node_id{0};
         for (const auto &i : word) {
             int c{i - BASE};
@@ -152,7 +154,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
                 node_id = nodes[node_id].next[c];
             }
         }
-        std::cout << node_id << " ";
+        return node_id;
     }
 };
 
@@ -184,7 +186,7 @@ main(void) {
     }
 
     for (const auto &c : strings) {
-        AC.search_node(c);
+        std::cout << AC.search_string(c) << " ";
     }
     std::cout << "\n";
 

@@ -9,6 +9,7 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
@@ -27,19 +28,18 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
+    int t = n / 2020;
+    if (n % 2020 == 0 or n % 2021 == 0) {
+        std::cout << "YES\n";
+        return;
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    for (int i = 1; i <= t; i++) {
+        if (n / (t * 2020) % 2021 == 0 or n / (t * 2021) % 2020 == 0) {
+            std::cout << "YES\n";
+            return;
         }
     }
-    std::cout << res << "\n";
+    std::cout << "NO\n";
 }
 
 int

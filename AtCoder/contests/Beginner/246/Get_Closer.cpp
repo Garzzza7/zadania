@@ -1,7 +1,9 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <map>
@@ -25,21 +27,10 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
-        }
-    }
-    std::cout << res << "\n";
+    db a, b;
+    std::cin >> a >> b;
+    db d = std::sqrt(a * a + b * b);
+    std::cout << a / d << " " << b / d << "\n";
 }
 
 int
@@ -47,9 +38,9 @@ main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+    std::cout << std::setprecision(10);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

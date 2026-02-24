@@ -1,4 +1,4 @@
-#pragma GCC optimize("Ofast")
+#1 2 1 3 1 2 1pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
 #include <functional>
@@ -27,19 +27,31 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
+    std::vector<std::pair<str, str>> vec(n);
+    for (int i = 0; i < n; i++) {
+        str s1, s2;
+        std::cin >> s1 >> s2;
+        vec[i] = {s1, s2};
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    for (int i = 0; i < n; i++) {
+        const auto &r1 = vec[i].first;
+        const auto &r2 = vec[i].second;
+        bool g1        = false;
+        bool g2        = false;
+        for (int j = i + 1; j < n; j++) {
+            if (vec[j].first == r1) {
+                g1 = true;
+            }
+            if (vec[j].second == r2) {
+                g2 = true;
+            }
+        }
+        if (g1 and g2) {
+            std::cout << "No\n";
+            return;
         }
     }
-    std::cout << res << "\n";
+    std::cout << "Yes\n";
 }
 
 int
@@ -49,7 +61,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

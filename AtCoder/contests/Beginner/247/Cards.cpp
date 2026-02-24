@@ -9,37 +9,35 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using db   = double;
-using str  = std::string;
-using u8   = unsigned char;
-using i32  = int;
-using u32  = unsigned int;
-using i64  = long long;
-using u64  = unsigned long long;
-using u128 = __uint128_t;
+using db          = double;
+using str         = std::string;
+using u8          = unsigned char;
+using i32         = int;
+using u32         = unsigned int;
+using i64         = long long;
+using u64         = unsigned long long;
+using u128        = __uint128_t;
+
+constexpr int mod = 998244353;
 
 void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
+    std::vector<int> p(n);
+    std::vector<int> q(n);
+    for (auto &&v : p) {
         std::cin >> v;
-        cnt[v]++;
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
-        }
+    for (auto &&v : q) {
+        std::cin >> v;
     }
-    std::cout << res << "\n";
 }
 
 int
@@ -49,7 +47,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -27,16 +27,18 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
-    }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    int res   = 0;
+    int limit = std::min(100, n);
+    for (int i = limit; i >= 1; i--) {
+        int sum  = 0;
+        int prod = 1;
+        str ss   = std::to_string(i);
+        for (const auto &v : ss) {
+            sum += (v - '0');
+            prod *= (v - '0');
+        }
+        if (sum + prod == i) {
+            res++;
         }
     }
     std::cout << res << "\n";
@@ -49,7 +51,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

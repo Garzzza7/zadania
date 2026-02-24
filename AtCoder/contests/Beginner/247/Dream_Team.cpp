@@ -1,3 +1,4 @@
+#include <compare>
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
@@ -9,6 +10,7 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
@@ -27,19 +29,22 @@ void
 solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    int cnt[8001] = {0};
-    for (auto &&v : vec) {
-        std::cin >> v;
-        cnt[v]++;
+    std::map<int, std::map<int, std::vector<int>>> uni;
+    for (int i = 0; i < n; i++) {
+        int a, b, c;
+        std::cin >> a >> b >> c;
+        uni[a][b].emplace_back(c);
     }
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i - 1; j++) {
-
+    for (auto &&v : uni) {
+        for (auto &&vv : v.second) {
+            std::sort(all(vv.second));
         }
     }
-    std::cout << res << "\n";
+    std::vector<int> res;
+    for (auto &&v : uni) {
+        for (auto &&vv : v.second) {
+        }
+    }
 }
 
 int
@@ -49,7 +54,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 
