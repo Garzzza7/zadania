@@ -9,25 +9,28 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void
 solve(void) {
-    str a , b;
-    std::cin >> a >> b;
-    std::swap(a[0],b[0]);
-    std::cout << a << " " << b << "\n";
+    str s1, s2;
+    std::cin >> s1;
+    std::cin >> s2;
+    std::swap(s1[0], s2[0]);
+    std::cout << s1 << " " << s2 << "\n";
 }
 
 int

@@ -9,47 +9,54 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-#define N 200002 
-
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void
 solve(void) {
-    u64 h , n;
+    i64 h, n;
     std::cin >> h >> n;
-    std::vector<u64> dmg(n);
-    std::vector<u64> cd(n);
-    u64 sum = 0;
-    for(auto&& v : dmg) {
-        std::cin >> v;
-        sum += v;
-    }
-    std::vector<u64> vec(N,0);
-    for(auto&& v : cd) {
+    std::vector<i64> a(n);
+    std::vector<i64> c(n);
+    // std::priority_queue<std::pair<i64, i64>, std::vector<std::pair<i64, i64>>, std::greater<>> pq;
+    std::set<std::pair<i64, i64>> pq;
+    for (auto &&v : a) {
         std::cin >> v;
     }
-    for(u64 i = 0 ; i < n ; i++) {
-        for(u64 j = 0 ; j < N ; j += cd[i]) {
-            vec[j] += dmg[i];
-        }
+    for (auto &&v : c) {
+        std::cin >> v;
     }
-    vec[0] = sum;
-    for(u64 i = 1 ; i < N ; i++) {
-        vec[i] = vec[i-1] + vec[i];
+    for (i64 i = 0; i < n; i++) {
+        // pq.push({c[i], a[i]});
+        pq.insert({1, i});
     }
-    u64 id = std::lower_bound(all(vec) , h) - vec.begin() + 1;
-    std::cout << id << "\n";
+    // std::cout << h << "\n";
+    i64 res = 1ll;
+    while (h > 0ll) {
+        auto t = *pq.begin();
+        pq.erase(pq.begin());
+        res = t.first;
+        h -= a[t.second];
+        pq.insert({t.first + c[t.second], t.second});
+        // auto t = pq.top();
+        // pq.pop();
+        // res = t.first;
+        // h -= t.second;
+        // pq.push({res + t.first, t.second});
+    }
+    std::cout << res << "\n";
 }
 
 int

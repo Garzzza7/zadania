@@ -302,7 +302,13 @@ concept PB = requires(T vec, T::value_type val) { vec.push_back(val); };
 template <typename T>
 concept INS = requires(T vec, T::value_type val) { vec.insert(val); };
 
-using ll    = long long;
+using db    = double;
+using str   = std::string;
+using u8    = unsigned char;
+using i32   = int;
+using u32   = unsigned int;
+using i64   = long long;
+using u64   = unsigned long long;
 using u128  = __uint128_t;
 
 void

@@ -9,44 +9,42 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void
 solve(void) {
-    i64 x , y , z , k;
+    i64 x, y, z, k;
     std::cin >> x >> y >> z >> k;
-    i64 maxi = *std::maxi_element({x , y , z});
-    i64 dim[3] = {};
-    for(i64 i = 1LL ; i<= maxi ; i++) {
-        if (maxi * maxi * maxi == k) {
-            dim[0] = maxi;
-            dim[1] = maxi;
-            dim[2] = maxi;
-        } else if ((maxi - 1) * maxi * maxi == k) {
-            dim[0] = maxi - 1;
-            dim[1] = maxi;
-            dim[2] = maxi;
-        } else if ((maxi - 1) * (maxi - 1) * maxi == k) {
-            dim[0] = maxi - 1;
-            dim[1] = maxi - 1;
-            dim[2] = maxi;
-        } else if ((maxi - 1) * (maxi - 1) * (maxi - 1) == k) {
-            dim[0] = maxi - 1;
-            dim[1] = maxi - 1;
-            dim[2] = maxi - 1;
+    i64 res = 0ll;
+    i64 a, b, c;
+    for (i64 i = 1ll; i <= x; i++) {
+        for (i64 j = 1ll; j <= y; j++) {
+            if (k % (i * j) == 0ll) {
+                a = i;
+                b = j;
+                c = k / (i * j);
+                if (c > z) {
+                    continue;
+                }
+                res = std::max(res, (x - a + 1ll) * (y - b + 1ll) * (z - c + 1ll));
+            }
         }
     }
+    // std::cout << a << " " << b << " " << c << "\n";
+    std::cout << res << "\n";
 }
 
 int

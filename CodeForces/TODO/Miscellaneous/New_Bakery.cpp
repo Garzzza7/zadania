@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#define ll long long
+#define ll      long long
 #define sz(vec) (static_cast<int>((vec).size()))
 
 int
@@ -20,15 +20,15 @@ main() {
     int T{1};
     std::cin >> T;
     while (T--) {
-	ll a, b, n;
-	std::cin >> n >> a >> b;
-	if (a >= b) {
-	    std::cout << n * a << "\n";
-	} else {
-	    auto rem = std::min(b - a, n);
-	    ll res = rem * (b + (b - rem + 1)) / 2 + (n - rem) * a;
-	    std::cout << res << "\n";
-	}
+        ll a, b, n;
+        std::cin >> n >> a >> b;
+        if (a >= b) {
+            std::cout << n * a << "\n";
+        } else {
+            auto rem = std::min(b - a, n);
+            ll res   = rem * (b + (b - rem + 1)) / 2 + (n - rem) * a;
+            std::cout << res << "\n";
+        }
     }
 
     return 0;

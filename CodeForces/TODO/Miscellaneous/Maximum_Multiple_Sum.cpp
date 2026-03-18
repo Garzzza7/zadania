@@ -9,24 +9,32 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void
 solve(void) {
     int n;
     std::cin >> n;
-    std::cout << 2 << "\n";
+    if (n == 2) {
+        std::cout << 2 << "\n";
+    } else if (n == 3) {
+        std::cout << 3 << "\n";
+    } else {
+        std::cout << 2 << "\n";
+    }
 }
 
 int

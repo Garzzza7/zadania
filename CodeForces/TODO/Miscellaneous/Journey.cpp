@@ -1,46 +1,65 @@
+#pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
-#include <iomanip>
+#include <cstdint>
+#include <functional>
 #include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <utility>
 #include <vector>
 
-long double dfs(int vex, int parent, std::vector<std::vector<int>>& adj,
-		std::vector<bool>& visited, std::vector<int>& distance) {
-    if (visited[vex]) {
-	return 0;
-    }
-    visited[vex] = 1;
-    long double sum = 0;
-    int size = 0;
-    for (const auto& v : adj[vex]) {
-	if (v != parent) {
-	    sum += 1 + dfs(v, vex, adj, visited, distance);
-	    size++;
-	}
-    }
-    if (size == 0) {
-	return 0;
-    }
-    return sum / size;
+#define sz(vec)  (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
+
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
+using u128 = __uint128_t;
+
+template <typename T>
+[[nodiscard]] inline T
+bin_fl(T x, T y) noexcept {
+    return x / y - ((x ^ y) < 0 && x % y);
 }
 
-int main() {
+void
+solve(void) {
+    i64 n, a, b, c;
+    std::cin >> n >> a >> b >> c;
+    i64 tri = a + b + c;
+    i64 res = bin_fl(n, tri);
+    res *= 3LL;
+    if (n % tri == 0) {
+        goto gg;
+    } else if (n % tri <= a) {
+        res += 1;
+    } else if (n % tri <= (a + b)) {
+        res += 2;
+    } else {
+        res += 3;
+    }
+gg:
+    std::cout << res << "\n";
+}
+
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
-    std::cout << std::fixed << std::setprecision(15);
 
-    int n;
-    std::cin >> n;
-    std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
-    for (int i = 0; i < n - 1; i++) {
-	int u, v;
-	std::cin >> u >> v;
-	adj[u].push_back(v);
-	adj[v].push_back(u);
-    }
-    std::vector<bool> visited(n + 3, 0);
-    std::vector<int> distance(n + 3, 0);
-    std::cout << dfs(1, 0, adj, visited, distance) << "\n";
+    int _{1};
+    std::cin >> _;
+    while (_--)
+        solve();
+
     return 0;
 }
