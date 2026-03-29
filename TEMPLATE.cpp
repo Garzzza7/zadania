@@ -85,6 +85,12 @@
 
 #define FAST       1
 
+std::string
+to_lower(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
+    return s;
+}
+
 void
 rm_char(std::string &s, const char &c) {
     // std::erase(s, c);

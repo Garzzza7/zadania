@@ -1,5 +1,4 @@
 // #include <bits/stdc++.h>
-#include <span>
 #pragma GCC optimize("Ofast")
 #include <alloca.h>
 #include <sys/mman.h>
@@ -45,6 +44,7 @@
 #include <queue>
 #include <random>
 #include <set>
+#include <span>
 #include <sstream>
 #include <stack>
 #include <stdexcept>
@@ -84,6 +84,12 @@
 #define flip(a, b) ((a) ^= (1 << (b)))
 
 #define FAST       1
+
+std::string
+to_lower(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
+    return s;
+}
 
 void
 rm_char(std::string &s, const char &c) {
@@ -269,8 +275,8 @@ rd() {
 
 [[nodiscard]] int
 random_l_to_r(const int &l, const int &r) {
-    /*std::random_device rd;*/
-    /*std::mt19937 rng(rd());*/
+    // std::random_device rd;
+    // std::mt19937 rng(rd());
     std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
     return dist(rng);

@@ -24,13 +24,19 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-constexpr int mod = 1e9 + 7;
-
+struct point {
+        int x;
+        int y;
+}
 void
 solve(void) {
-        int n , k;
-        std::cin >> n >> k;
-        
+        int n;
+        std::cin >> n;
+        std::vector<int> vec(n);
+        for(auto &&v : vec) {
+                std::cin >> v;
+        }
+        for()
 }
 
 int
@@ -40,7 +46,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

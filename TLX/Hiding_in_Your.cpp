@@ -24,13 +24,12 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-constexpr int mod = 1e9 + 7;
-
 void
 solve(void) {
-        int n , k;
-        std::cin >> n >> k;
-        
+        int x;
+        std::cin >> x;
+        int res = (1023456789 - x);
+        std::cout << res << "\n";
 }
 
 int
@@ -40,7 +39,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

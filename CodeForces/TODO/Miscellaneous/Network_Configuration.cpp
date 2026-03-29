@@ -24,13 +24,32 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-constexpr int mod = 1e9 + 7;
-
 void
 solve(void) {
         int n , k;
         std::cin >> n >> k;
-        
+        std::vector<int> cnt(32769 , 0);
+        for(int i = 0 ; i < n ; i++) {
+                int a;
+                std::cin >> a;
+                cnt[a]++;
+        }
+        std::vector<std::pair<int,int>> vec;
+        for(int i = 0 ; i < sz(cnt) ; i++) {
+                if(cnt[i]) {
+                        vec.push_back({i , cnt[i]});
+                }  
+        }
+        std::sort(all(vec) , std::greater<>());
+        int res = 0;
+        int tot = 0;
+        for(const auto &v : vec) {
+                tot += v.second;
+                if(tot >= k) {
+                        res = std::max(res , v.first);
+                }
+        }
+        std::cout << res << "\n";
 }
 
 int
@@ -40,7 +59,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 
