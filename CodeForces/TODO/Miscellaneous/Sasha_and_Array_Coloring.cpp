@@ -26,20 +26,24 @@ using u128 = __uint128_t;
 
 template <typename T>
 [[nodiscard]] inline T
-bin_fl(T x, T y) noexcept {
-    return x / y - ((x ^ y) < 0 && x % y);
+bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
 }
 
 void
 solve(void) {
-        i64 n;
-        std::cin >> n;
-        i64 res = 0ll;
-        while(n) {
-                res += n;
-                n = bin_fl(n , 2ll);
-        }
-        std::cout << res << "\n";
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    for(auto &&v : vec) {
+        std::cin >> v;
+    }
+    std::sort(all(vec));
+    int res = 0;
+    for(int i = 0 ; i < bin_ce(n , 2) ; i++) {
+        res += vec[n - i - 1] - vec[i];
+    }
+    std::cout << res << "\n";
 }
 
 int

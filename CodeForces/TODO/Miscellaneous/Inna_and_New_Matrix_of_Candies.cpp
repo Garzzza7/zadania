@@ -24,22 +24,27 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T>
-[[nodiscard]] inline T
-bin_fl(T x, T y) noexcept {
-    return x / y - ((x ^ y) < 0 && x % y);
-}
-
 void
 solve(void) {
-        i64 n;
-        std::cin >> n;
-        i64 res = 0ll;
-        while(n) {
-                res += n;
-                n = bin_fl(n , 2ll);
+        int n , m;
+        std::cin >> n >> m;
+        std::vector<str> vec(n);
+        std::set<int> set;
+        for(auto &&v : vec) {
+                std::cin >> v;
+                int s = 0 , g = 0;
+                for(int i = 0 ; i < m ; i++) {
+                        if(v[i] == 'S') s = i;
+                        else if(v[i] == 'G') g = i;
+                }
+                if(s - g > 0) {
+                        set.insert(g - s);
+                } else {
+                        std::cout << -1 << "\n";
+                        return;
+                }
         }
-        std::cout << res << "\n";
+        std::cout << sz(set) << "\n";
 }
 
 int
@@ -49,7 +54,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

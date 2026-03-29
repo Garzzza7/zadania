@@ -9,57 +9,67 @@
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 
-using str = std::string;
-using u8 = unsigned char;
-using i32 = int;
-using u32 = unsigned int;
-using i64 = long long;
-using u64 = unsigned long long;
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
+    i64 n;
     std::cin >> n;
-    std::vector adj(n + 1, std::vector<int>());
-    for(int i = 0 ; i < n - 1 ; i++) {
-        int u , v;
-        std::cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+    std::vector adj(n + 1, std::vector<i64>());
+    for (i64 i = 0; i < n - 1; i++) {
+        i64 u, w;
+        std::cin >> u >> w;
+        adj[u].push_back(w);
+        adj[w].push_back(u);
     }
-    std::vector visited(n + 1 , false);
-    std::vector sub(n + 1 , 0);
-    auto dfs = [&](const auto &self , int v) -> int {
-        visited[v] = true;
-        int res = 0;
-        if (sz(adj[v]) == 1 and v != 1) {
-            sub[v] = 1;
-            return 1;   
+    std::vector<bool> visited(n + 1, false);
+    std::vector<i64> cnt(n + 1, 0);
+
+    auto dfs = [&](const auto &self, i64 ver) -> i64 {
+        visited[ver] = true;
+        i64 tot = 0;
+        bool is_leaf = true;
+        for (const auto &v : adj[ver]) {
+            if (not visited[v]) {
+                tot += self(self, v);
+                is_leaf = false;
+            }
         }
-        for(const auto &vv : adj[v]) {
-            if(not visited[vv]) {
-                res += self(self,vv);
-            } 
+        if(is_leaf) {
+            cnt[ver] = 1;
+            return 1;
         }
-        sub[v] = res;
-        return res;
+        cnt[ver] += tot;
+        return tot;
     };
-    int _ = dfs(dfs,1);
-    int q;
+
+    i64 q;
     std::cin >> q;
-    while(q--) {
-        int x , y;
-        std::cin >> x >> y;
-        i64 res = sub[x] * sub[y];
-        std::cout << res << "\n";
+    dfs(dfs , 1);
+    /*
+    for(i64 i = 1 ; i <= n ; i++) {
+        std::cout << cnt[i] << " ";
     }
-        
+    std::cout << "\n";
+    */
+    while (q--) {
+        i64 x, y;
+        std::cin >> x >> y;
+        std::cout << cnt[x] * cnt[y] << "\n";
+    }
 }
 
 int

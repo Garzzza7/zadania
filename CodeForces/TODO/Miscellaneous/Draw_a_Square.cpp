@@ -24,22 +24,19 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T>
-[[nodiscard]] inline T
-bin_fl(T x, T y) noexcept {
-    return x / y - ((x ^ y) < 0 && x % y);
-}
-
 void
 solve(void) {
-        i64 n;
-        std::cin >> n;
-        i64 res = 0ll;
-        while(n) {
-                res += n;
-                n = bin_fl(n , 2ll);
-        }
-        std::cout << res << "\n";
+    int l , r , d , u;
+    std::cin >> l >> r >> d >> u;
+    if(     std::abs(l) == std::abs(r) and 
+            std::abs(r) == std::abs(d) and 
+            std::abs(d) == std::abs(u) and 
+            std::abs(u) == std::abs(l)  
+      ) {
+        std::cout << "Yes\n";
+    } else {
+        std::cout << "No\n";
+    }
 }
 
 int

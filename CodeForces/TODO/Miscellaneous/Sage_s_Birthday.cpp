@@ -32,14 +32,33 @@ bin_fl(T x, T y) noexcept {
 
 void
 solve(void) {
-        i64 n;
-        std::cin >> n;
-        i64 res = 0ll;
-        while(n) {
-                res += n;
-                n = bin_fl(n , 2ll);
+    i64 n;
+    std::cin >> n;
+    std::vector<i64> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    if (n <= 2) {
+        std::cout << 0 << "\n";
+        for (const auto &v : vec) {
+            std::cout << v << " ";
         }
-        std::cout << res << "\n";
+        std::cout << "\n";
+        return;
+    }
+    std::sort(all(vec));
+    std::vector<i64> res;
+    for (i64 l = 0, r = bin_fl(n, 2LL); r < n; l++, r++) {
+        res.push_back(vec[r]);
+        res.push_back(vec[l]);
+    }
+    if (n % 2) {
+        res.pop_back();
+    }
+    std::cout << bin_fl(n - 1, 2LL) << "\n";
+    for (const auto &v : res) {
+        std::cout << v << " ";
+    }
 }
 
 int
@@ -49,7 +68,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

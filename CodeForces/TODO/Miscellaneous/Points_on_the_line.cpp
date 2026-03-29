@@ -24,22 +24,32 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T>
-[[nodiscard]] inline T
-bin_fl(T x, T y) noexcept {
-    return x / y - ((x ^ y) < 0 && x % y);
-}
-
 void
 solve(void) {
-        i64 n;
-        std::cin >> n;
-        i64 res = 0ll;
-        while(n) {
-                res += n;
-                n = bin_fl(n , 2ll);
+    int n , d;
+    std::cin >> n >> d;
+    std::vector<int> vec(n);
+    for(auto &&v : vec) {
+        std::cin >> v;
+    }
+    if(n == 1) {
+        std::cout << 0 << "\n";
+        return;
+    }
+    std::sort(all(vec));
+    int res = INT32_MAX;
+    for(int  i = 0 ; i < n ; i++) {
+        for(int  j = i + 1 ; j < n ; j++) {
+            if(vec[j] - vec[i] <= d) {
+                res = std::min(res , n - (j - i + 1));
+            }
         }
+    }
+    if(res == INT32_MAX) {
+        std::cout << n - 1 << "\n";
+    } else {
         std::cout << res << "\n";
+    }
 }
 
 int
@@ -49,7 +59,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--)
         solve();
 

@@ -26,27 +26,37 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    for(auto &&v : vec) {
+    i64 n , k;
+    std::cin >> n >> k;
+    constexpr i64 INF = INT32_MAX;
+    std::vector<i64> vec(n + 123 , INF);
+    std::vector<i64> res(n , INF);
+    std::vector<i64> a(k);
+    std::vector<i64> t(k);
+    for(auto&& v : a) {
         std::cin >> v;
         v--;
     }
-    std::sort(all(vec));
-    int m = n + n;
-    constexpr int INF = 1'000'000;
-    std::vector dp(n + 2 , std::vector<int>(m + 2 , INF));
-    dp[0][0] = 0;
-    for(int i = 0 ; i < n ; i++) {
-        for(int j = 0 ; j <= m ; j++) {
-            if(i + 1 < n) {
-                dp[i + 1][j + 1] = std::min(dp[i + 1][j + 1] , dp[i][j] + std::abs(vec[i] - j));
-            }
-            dp[i][j + 1] = std::min(dp[i][j + 1] , dp[i][j]);
-        }
+    for(auto&& v : t) {
+        std::cin >> v;
     }
-    std::cout << dp[n][m + 1] << "\n";
+    for(int i = 0 ; i < k ; i++) {
+        vec[a[i]] = t[i];
+    }
+    std::vector<i64> l(n , INF);
+    std::vector<i64> r(n , INF);
+    l[0] = std::min(l[0] , vec[0]);
+    r[n-1] = std::min(r[n-1] , vec[n-1]);
+    for(int i = 1 ; i < n ; i++) {
+        l[i] = std::min(l[i-1] + 1 , vec[i]);
+    }
+    for(int i = n - 2 ; i >= 0 ; i--) {
+        r[i] = std::min(r[i+1] + 1 , vec[i]);
+    }
+    for(int i = 0 ; i < n ; i++) {
+        std::cout << std::min(l[i] , r[i]) << " ";
+    }
+    std::cout << "\n";
 }
 
 int
