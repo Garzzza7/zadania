@@ -33,12 +33,12 @@ template <typename T = int> struct in_out_ancestor {
     }
 
     void
-    dfs(const T &ver, const std::vector<std::vector<T>> &adj, std::vector<bool> &visited, int &time) {
+    dfs(const T &ver, int &time) {
         visited[ver] = true;
         tin[ver]     = time++;
         for (const auto &v : adj[ver]) {
             if (not visited[v]) {
-                dfs(v, adj, visited, time);
+                dfs(v, time);
             }
         }
         tout[ver] = time++;
@@ -47,7 +47,7 @@ template <typename T = int> struct in_out_ancestor {
     inline void
     calc(const T &root) {
         int time{0};
-        dfs(root, adj, visited, time);
+        dfs(root, time);
     }
 
     [[nodiscard]] bool
