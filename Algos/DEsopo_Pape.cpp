@@ -40,7 +40,7 @@ struct desopo_pape {
     run(const int &start) {
         distance[start] = 0;
         queue.push_back(start);
-        while (!queue.empty()) {
+        while (not queue.empty()) {
             const int curr{queue.front()};
             queue.pop_front();
             type[curr] = 0;

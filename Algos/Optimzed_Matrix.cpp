@@ -305,6 +305,24 @@ template <typename T> struct matrix {
         assert(this->is_square());
         return this->bareiss().mat[this->n - 1][this->n - 1];
     }
+
+    void
+    expo(int b) {
+        assert(this->is_square());
+        const auto &n = (int) this->mat.size();
+        matrix<T> tmp(n, n);
+        for (int i = 0; i < n; i++) {
+            tmp.mat[i][i] = 1;
+        }
+        while (b > 0) {
+            if (b & 1) {
+                tmp = tmp * *this;
+            }
+            *this = *this * *this;
+            b >>= 1;
+        }
+        *this = std::move(tmp);
+    }
 };
 
 int
@@ -346,11 +364,19 @@ main() {
         {1, -4},
     };
 
+    std::vector<std::vector<int>> i = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1},
+    };
+
     matrix m1(vec1);
     matrix m2(vec2);
     matrix m3(vec3);
     matrix m4(vec4);
     matrix m5(vec5);
+    matrix m6(vec6);
+    matrix id(i);
     m1 = m2 + m1;
     m1 += m2;
     m5 = m3 * m4;
@@ -373,7 +399,10 @@ main() {
     m2.print();
     std::cout << "-----------------------\n";
     m1.print();
-    matrix m6(vec6);
-    std::cout << m6.det() << "\n";
+    std::cout << "-----------------------\n";
+    id.print();
+    std::cout << "-----------------------\n";
+    id.expo(5);
+    id.print();
     return 0;
 }

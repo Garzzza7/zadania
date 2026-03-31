@@ -3,10 +3,10 @@
 
 template <typename T>
 std::vector<T>
-de_bruijn_seq(const T &len, const T &alpha) {
+de_bruijn_seq(const T &len, const T &alphabet) {
     std::vector<T> res;
     std::vector<T> lyndon = {0};
-    while (lyndon[0] != alpha - 1) {
+    while (lyndon[0] != alphabet - 1) {
         const T r{(T) lyndon.size()};
         if (len % r == 0) {
             for (const auto &c : lyndon) {
@@ -16,12 +16,12 @@ de_bruijn_seq(const T &len, const T &alpha) {
         for (int i = r; i <= len - 1; i++) {
             lyndon.push_back(lyndon[i - r]);
         }
-        while (lyndon.back() == alpha - 1) {
+        while (lyndon.back() == alphabet - 1) {
             lyndon.pop_back();
         }
         lyndon.back()++;
     }
-    res.push_back(alpha - 1);
+    res.push_back(alphabet - 1);
     return res;
 }
 
@@ -31,9 +31,9 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int len, alpha;
-    std::cin >> len >> alpha;
-    auto bru{de_bruijn_seq(len, alpha)};
+    int len, alphabet;
+    std::cin >> len >> alphabet;
+    const auto bru{de_bruijn_seq(len, alphabet)};
     std::cout << bru.size() << "\n";
     for (const auto &v : bru) {
         std::cout << v << " ";

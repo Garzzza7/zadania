@@ -135,6 +135,29 @@ template <typename T> struct matrix {
         std::swap(this->m, this->n);
         this->is_transposed ^= 1;
     }
+
+    bool
+    is_square() {
+        return this->m == this->n;
+    }
+
+    void
+    expo(int b) {
+        assert(this->is_square());
+        const auto &n = (int) this->mat.size();
+        matrix<T> tmp(n, n);
+        for (int i = 0; i < n; i++) {
+            tmp.mat[i][i] = 1;
+        }
+        while (b > 0) {
+            if (b & 1) {
+                tmp = tmp * *this;
+            }
+            *this = *this * *this;
+            b >>= 1;
+        }
+        *this = std::move(tmp);
+    }
 };
 
 int
@@ -170,12 +193,18 @@ main() {
         {0, 0, 0},
         {0, 0, 0},
     };
+    std::vector<std::vector<int>> i = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1},
+    };
 
     matrix m1(vec1);
     matrix m2(vec2);
     matrix m3(vec3);
     matrix m4(vec4);
     matrix m5(vec5);
+    matrix id(i);
     m1 = m2 + m1;
     m1 += m2;
     m5 = m3 * m4;
@@ -192,5 +221,15 @@ main() {
     m5.transpose();
     std::cout << "-----------------------\n";
     m5.print();
+    std::cout << "-----------------------\n";
+    id.print();
+    std::cout << "-----------------------\n";
+    id.expo(5);
+    id.print();
+    std::cout << "-----------------------\n";
+    m4.print();
+    m4.expo(5);
+    std::cout << "-----------------------\n";
+    m4.print();
     return 0;
 }

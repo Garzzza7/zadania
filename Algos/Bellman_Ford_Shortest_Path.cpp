@@ -22,7 +22,7 @@ bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges, std::vector<T> &
                 }
             }
         }
-        if (!done) {
+        if (not done) {
             std::cout << "No Negative Cycle\n";
             return false;
         }
@@ -80,7 +80,7 @@ main(void) {
         std::vector<int> distances(n + 1);
         std::vector<int> paths(n + 1, -1);
         bool res = bellmand_ford(1, edges, distances, paths);
-        if (!res) {
+        if (not res) {
             for (int i = 1; i <= n; i++)
                 std::cout << i << ": " << distances[i] << "\n";
             shortest_path(1, n, paths);

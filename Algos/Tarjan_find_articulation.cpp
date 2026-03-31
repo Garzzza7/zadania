@@ -61,7 +61,7 @@ struct tarjan_find_articulation {
     void
     run() {
         for (int i = 0; i < static_cast<int>(visited.size()); i++) {
-            if (!visited[i]) {
+            if (not visited[i]) {
                 dfs(-123, i);
             }
         }

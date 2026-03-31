@@ -16,7 +16,7 @@ dfs(const T v, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, con
     }
     visited[v] = true;
     for (const auto &vv : adj[v]) {
-        if (!visited[vv]) {
+        if (not visited[vv]) {
             dfs(vv, adj, visited, cnt + 1);
         }
     }

@@ -13,7 +13,7 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
     std::queue<std::pair<T, T>> q;
     q.push({source, INT32_MAX});
 
-    while (!q.empty()) {
+    while (not q.empty()) {
         const T curr{q.front().first};
         const T flow{q.front().second};
         q.pop();

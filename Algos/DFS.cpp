@@ -26,13 +26,13 @@ iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &vis
     visited[vertex] = true;
     stack.push(vertex);
 
-    while (!stack.empty()) {
+    while (not stack.empty()) {
         T curr{stack.top()};
         std::cout << curr << " ";
         stack.pop();
         for (int i = (int) adj[curr].size() - 1; i >= 0; i--) {
             auto &v{adj[curr][i]};
-            if (!visited[v]) {
+            if (not visited[v]) {
                 visited[v] = true;
                 stack.push(v);
             }

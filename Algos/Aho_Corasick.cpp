@@ -64,7 +64,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
             }
         }
 
-        while (!q.empty()) {
+        while (not q.empty()) {
             const int id{q.front()};
             q.pop_back();
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
@@ -96,7 +96,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
                 q.push_back(child);
             }
         }
-        while (!q.empty()) {
+        while (not q.empty()) {
             int id{q.front()};
             q.pop_back();
             const auto &u{nodes[id].suffix_link};

@@ -72,7 +72,7 @@ struct tarjan_find_bridges {
     void
     run() {
         for (int i = 1; i < static_cast<int>(adj.size()); i++) {
-            if (!visited[i]) {
+            if (not visited[i]) {
                 dfs(i, i);
             }
         }

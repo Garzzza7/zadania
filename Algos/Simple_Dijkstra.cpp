@@ -12,7 +12,7 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T>
     distances[start] = 0;
     std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>, std::greater<>> pq;
     pq.push({0, start});
-    while (!pq.empty()) {
+    while (not pq.empty()) {
         T a{pq.top().second};
         pq.pop();
         if (visited[a]) {

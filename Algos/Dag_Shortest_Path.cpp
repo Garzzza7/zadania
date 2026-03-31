@@ -11,7 +11,7 @@ topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
     auto dfs{[&](const auto &self, const T &ver) -> void {
         visited[ver] = true;
         for (const auto &v : adj[ver]) {
-            if (!visited[v.first]) {
+            if (not visited[v.first]) {
                 self(self, v.first);
             }
         }

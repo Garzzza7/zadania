@@ -73,7 +73,7 @@ template <typename T = int> struct lca {
             ids[v] = (int) euler.size();
             euler.push_back(v);
             for (const auto &ver : _adj[v]) {
-                if (!visited[ver]) {
+                if (not visited[ver]) {
                     self(self, ver, h + 1);
                     euler.push_back(v);
                     heights.push_back(h);

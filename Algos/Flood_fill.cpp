@@ -15,7 +15,7 @@ iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<bool>> 
     if (check(x, y)) {
         std::stack<std::pair<int, int>> stack;
         stack.emplace(x, y);
-        while (!stack.empty()) {
+        while (not stack.empty()) {
             const auto xx{stack.top().first};
             const auto yy{stack.top().second};
             stack.pop();
@@ -70,7 +70,7 @@ main(void) {
         long long res1{0};
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
-                if (!visited[i][j]) {
+                if (not visited[i][j]) {
                     floodfill(vec, visited, i, j);
                     res1 = std::max(res1, sum);
                     sum ^= sum;
@@ -84,7 +84,7 @@ main(void) {
         long long res2{0};
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
-                if (!visited[i][j]) {
+                if (not visited[i][j]) {
                     iter_floodfill(vec, visited, i, j);
                     res2 = std::max(res2, iter_sum);
                     iter_sum ^= iter_sum;

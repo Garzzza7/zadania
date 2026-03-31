@@ -68,7 +68,7 @@ template <typename T = int> struct cactus {
 
     T
     pop() {
-        assert(!stack.empty());
+        assert(not stack.empty());
         assert(branches.empty());
         T top = stack.back();
         stack.pop_back();

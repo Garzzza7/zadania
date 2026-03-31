@@ -15,7 +15,7 @@ topo_sort(const T &s, const std::vector<std::vector<T>> &adj) {
         visited[ver] = true;
         t++;
         for (const auto &v : adj[ver]) {
-            if (!visited[v]) {
+            if (not visited[v]) {
                 self(self, v);
             }
         }

@@ -52,7 +52,7 @@ main(void) {
         adj[b].push_back(a);
     }
     for (int i = 1; i <= n; i++)
-        if (!visited[i]) dfs(i, -1);
+        if (not visited[i]) dfs(i, -1);
     std::cout << "IMPOSSIBLE\n";
     return 0;
 }

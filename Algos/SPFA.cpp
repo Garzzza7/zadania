@@ -16,7 +16,7 @@ spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::
     std::vector<int> indeg(n, 0);
     q.push(start);
     qed[start] = true;
-    while (!q.empty()) {
+    while (not q.empty()) {
         const auto curr{q.front()};
         q.pop();
         qed[start] = false;
@@ -26,7 +26,7 @@ spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::
             const auto &w{e.second};
             if (distances[curr] + w < distances[t]) {
                 distances[t] = distances[curr] + w;
-                if (!qed[t]) {
+                if (not qed[t]) {
                     q.push(t);
                     qed[t] = true;
                     if (++indeg[t] > n) {

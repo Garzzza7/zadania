@@ -8,12 +8,12 @@ iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     std::vector<bool> visited(adj.size(), false);
     std::queue<T> que;
     que.push(vertex);
-    while (!que.empty()) {
+    while (not que.empty()) {
         const auto current{que.front()};
         std::cout << current << " ";
         que.pop();
         for (const auto &v : adj[current])
-            if (!visited[v]) {
+            if (not visited[v]) {
                 visited[v] = true;
                 que.push(v);
             }
@@ -31,7 +31,7 @@ bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited
     for (const auto &v : adj[vertex]) {
         que.push(v);
     }
-    while (!que.empty()) {
+    while (not que.empty()) {
         bfs(que.front(), adj, visited, que);
         que.pop();
     }

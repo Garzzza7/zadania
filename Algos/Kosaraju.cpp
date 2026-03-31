@@ -33,17 +33,17 @@ template <typename T = int> struct kosaraju {
     void
     calc_scc() {
         for (int i = 0; i < n; i++) {
-            if (!visited[i]) {
+            if (not visited[i]) {
                 dfs_1(i);
             }
         }
         for (auto &&v : visited) {
             v = false;
         }
-        while (!out.empty()) {
+        while (not out.empty()) {
             T v{out.top()};
             out.pop();
-            if (!visited[v]) {
+            if (not visited[v]) {
                 dfs_2(v);
                 cnt_Components++;
             }
@@ -54,7 +54,7 @@ template <typename T = int> struct kosaraju {
     dfs_1(const T &v) {
         visited[v] = true;
         for (const auto &vv : adj[v]) {
-            if (!visited[vv]) {
+            if (not visited[vv]) {
                 dfs_1(vv);
             }
         }
@@ -66,7 +66,7 @@ template <typename T = int> struct kosaraju {
         scc[cnt_Components].push_back(v);
         visited[v] = true;
         for (const auto &vv : transposed_adj[v]) {
-            if (!visited[vv]) {
+            if (not visited[vv]) {
                 dfs_2(vv);
             }
         }
