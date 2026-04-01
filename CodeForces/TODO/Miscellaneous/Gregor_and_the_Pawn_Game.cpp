@@ -26,25 +26,20 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-	int b , c , d;
-	std::cin >> b >> c >> d;
-	if (b == c and c == d) {
-		std::cout << 0 << "\n";
-		return;
-	}
-	i64 l = 0;
-	i64 r = 1LL << 60;
-	i64 res = -1LL;
-	int iter = 64;
-	while(l < r and iter--) {
-		i64 a = (l + r) / 2ll;
-		if((a | b) - (a & c) == d) {
-			res = a;
-			break;
-		} else if((a | b) - (a & c) > d) {
-			r = a;
-		} else {
-			l = a;
+	int n;
+	std::cin >> n;
+	str s1 , s2;
+	std::cin >> s1;
+	std::cin >> s2;
+	int res = 0;
+	for(int i = 0 ; i < n ; i++) {
+		if(s2[i] == '1' and s1[i] == '0') {
+			res++;
+		} else if(i - 1 >= 0 and s2[i] == '1' and s1[i - 1] == '1') {
+			res++;
+		} else if(i + 1 < n and s2[i] == '1' and s1[i + 1] == '1') {
+			res++;
+			s1[i + 1] = '0';
 		}
 	}
 	std::cout << res << "\n";

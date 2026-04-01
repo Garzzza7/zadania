@@ -166,37 +166,44 @@ main() {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    std::vector<std::vector<int>> vec1 = {
+    using mat = std::vector<std::vector<int>>;
+
+    mat vec1  = {
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1},
     };
-    std::vector<std::vector<int>> vec2 = {
+    mat vec2 = {
         {2, 2, 2},
         {2, 2, 2},
         {2, 2, 2},
     };
-    std::vector<std::vector<int>> vec3 = {
+    mat vec3 = {
         {1, 0, 1},
         {2, 1, 1},
         {0, 1, 1},
         {1, 1, 2},
     };
-    std::vector<std::vector<int>> vec4 = {
+    mat vec4 = {
         {1, 2, 1},
         {2, 3, 1},
         {4, 2, 2},
     };
-    std::vector<std::vector<int>> vec5 = {
+    mat vec5 = {
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
     };
-    std::vector<std::vector<int>> i = {
+    mat i = {
         {1, 0, 0},
         {0, 1, 0},
         {0, 0, 1},
+    };
+    mat tt = {
+        {0, 0, 1},
+        {0, 1, 0},
+        {1, 0, 0},
     };
 
     matrix m1(vec1);
@@ -205,6 +212,7 @@ main() {
     matrix m4(vec4);
     matrix m5(vec5);
     matrix id(i);
+    matrix ttt(tt);
     m1 = m2 + m1;
     m1 += m2;
     m5 = m3 * m4;

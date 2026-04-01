@@ -24,30 +24,27 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+constexpr double mod = 998244353;
+
+struct seg {
+	int l;
+	int r;
+	double p;
+	double q;
+};
+
 void
 solve(void) {
-	int b , c , d;
-	std::cin >> b >> c >> d;
-	if (b == c and c == d) {
-		std::cout << 0 << "\n";
-		return;
+	int n , m;
+	std::cin >> n >> m;
+	std::vector<seg> vec(n);
+	for(int i = 0 ; i < n ; i++) {
+		int l , r;
+		double p , q;
+		std::cin >> l >> r >> p >> q;
+		vec[i] = {l , r , p , q};
 	}
-	i64 l = 0;
-	i64 r = 1LL << 60;
-	i64 res = -1LL;
-	int iter = 64;
-	while(l < r and iter--) {
-		i64 a = (l + r) / 2ll;
-		if((a | b) - (a & c) == d) {
-			res = a;
-			break;
-		} else if((a | b) - (a & c) > d) {
-			r = a;
-		} else {
-			l = a;
-		}
-	}
-	std::cout << res << "\n";
+	std::vector<double> dp(m);
 }
 
 int

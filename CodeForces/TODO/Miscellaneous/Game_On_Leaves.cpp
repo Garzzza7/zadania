@@ -24,30 +24,48 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+int cnt = 0;
+
 void
 solve(void) {
-	int b , c , d;
-	std::cin >> b >> c >> d;
-	if (b == c and c == d) {
-		std::cout << 0 << "\n";
-		return;
+	int n , x;
+	std::cin >> n >> x;
+	std::vector adj(n + 1 , std::vector<int>());
+	for(int i = 0 ; i < n - 1 ; i++) {
+		int u , v;
+		std::cin >> u >> v;
+		adj[u].push_back(v);
+		adj[v].push_back(u);
 	}
-	i64 l = 0;
-	i64 r = 1LL << 60;
-	i64 res = -1LL;
-	int iter = 64;
-	while(l < r and iter--) {
-		i64 a = (l + r) / 2ll;
-		if((a | b) - (a & c) == d) {
-			res = a;
-			break;
-		} else if((a | b) - (a & c) > d) {
-			r = a;
-		} else {
-			l = a;
+	std::vector<bool> vis(n + 1 , false);
+	std::vector<int> leafs;
+	int tot = 0;
+	auto dfs = [&](const auto &self , int ver) -> void {
+		vis[ver] = true;
+		cnt += 1;
+		if(sz(adj[ver]) == 1) {
+			tot += cnt;
+			cnt = 0;
+			leafs.push_back(ver);
 		}
+		for(const auto &v : adj[ver]) {
+			if(not vis[v]) {
+				self(self , v);
+			}			
+ 		}
+	};
+	dfs(dfs , x);
+	bool one = false;
+	for(const auto &v : leafs) {
+		one |= v == x;
 	}
-	std::cout << res << "\n";
+	if(one or n == 1) {
+		std::cout << "Ayush\n";	
+	}else if(tot % 2 != 0) {
+		std::cout << "Ashish\n";	
+	} else {
+		std::cout << "Ayush\n";
+	}
 }
 
 int
