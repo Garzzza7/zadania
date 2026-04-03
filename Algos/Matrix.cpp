@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename T> struct matrix {
-    int is_transposed{0};
+    bool is_transposed{0};
     int m;
     int n;
     std::vector<std::vector<T>> mat;
@@ -110,6 +110,11 @@ template <typename T> struct matrix {
             }
         }
         return *this;
+    }
+
+    bool
+    operator==(const matrix &rhs) const {
+        return this->mat == rhs.mat;
     }
 
     void
