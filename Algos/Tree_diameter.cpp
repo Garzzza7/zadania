@@ -1,25 +1,32 @@
 #include <iostream>
 #include <vector>
 
-long long maxi{0ll};
-long long at{0ll};
-
 template <typename T>
-void
-dfs(const T v, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, const long long cnt) {
-    if (visited[v]) {
-        return;
-    }
-    if (cnt > maxi) {
-        maxi = cnt;
-        at   = v;
-    }
-    visited[v] = true;
-    for (const auto &vv : adj[v]) {
-        if (not visited[vv]) {
-            dfs(vv, adj, visited, cnt + 1);
+T
+diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
+    const int n{(int) adj.size()};
+    T max_diameter{0};
+    T at{0};
+    std::vector<bool> visited(n + 1, false);
+    auto dfs = [&](const auto &self, const T &ver, T cnt) -> void {
+        if (cnt > max_diameter) {
+            max_diameter = cnt;
+            at           = ver;
         }
+        visited[ver] = true;
+        for (const auto &v : adj[ver]) {
+            if (not visited[v]) {
+                self(self, v, cnt + 1);
+            }
+        }
+    };
+    dfs(dfs, starting_root, 0);
+    max_diameter = 0;
+    for (auto &&v : visited) {
+        v = false;
     }
+    dfs(dfs, at, 0);
+    return max_diameter;
 }
 
 int
@@ -30,18 +37,13 @@ main() {
 
     long long n;
     std::cin >> n;
-    std::vector<std::vector<long long>> adj(n + 1, std::vector<long long>());
+    std::vector adj(n + 1, std::vector<long long>());
     for (long long i = 0; i < n - 1; i++) {
         long long aa, bb;
         std::cin >> aa >> bb;
         adj[aa].push_back(bb);
         adj[bb].push_back(aa);
     }
-    std::vector<bool> visited(300005, false);
-    dfs(1LL, adj, visited, 0ll);
-    maxi ^= maxi;
-    visited = std::vector<bool>(300005, false);
-    dfs(at, adj, visited, 0ll);
-    std::cout << maxi << "\n";
+    std::cout << diameter(adj) << "\n";
     return 0;
 }
