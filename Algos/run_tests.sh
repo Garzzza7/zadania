@@ -721,6 +721,16 @@ else
     printf "${red}$(cat Segment_Tree.test)${normal}\n"
 fi
 
+if [ "$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt)" == "$(cat Sierpinki_triagnle_nth_row.test)" ]; then
+    printf "${green}Sierpinki_triagnle_nth_row Passed.${normal}\n"
+else
+    printf "${red}Sierpinki_triagnle_nth_row Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Sierpinki_triagnle_nth_row.test)${normal}\n"
+fi
+
 if [ "$(./Sieve_of_Eratosthenes.sol <Sieve_of_Eratosthenes.txt)" == "$(cat Sieve_of_Eratosthenes.test)" ]; then
     printf "${green}Sieve_of_Eratosthenes Passed.${normal}\n"
 else
