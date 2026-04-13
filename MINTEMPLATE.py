@@ -1,5 +1,5 @@
 def solve():
-    n = [int(v) for v in input().split()]
+    vec = [int(v) for v in input().split()]
 
 
 t = int(input())

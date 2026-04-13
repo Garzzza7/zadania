@@ -29,6 +29,8 @@ build/*
 *.tmp
 *.ptx
 *.s
+*.ninja
+*deps
 
 CMakeFiles/
 CMakeCache.txt

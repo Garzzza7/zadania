@@ -5,9 +5,9 @@
 // return parent of each node , O(n)
 template <typename T>
 std::vector<T>
-cartesian_tree(const std::vector<T> &vec) {
+cartesian_tree_parents(const std::vector<T> &vec) {
     const int n{(int) vec.size()};
-    std::vector<int> parent(n, -1);
+    std::vector<T> parent(n, -1);
     for (int i = 1; i < n; i++) {
         int par{i - 1};
         int l{-1};
@@ -27,28 +27,28 @@ cartesian_tree(const std::vector<T> &vec) {
 
 // O(nlogn) due to sparse table, asymptotically slower than ^
 // return structure of the tree in an array as in bin heap , segtree etc.
-struct cartesian_tree {
-    template <typename T = int> struct sparse_table {
+template <typename T = int> struct cartesian_tree {
+    template <typename TT = int> struct sparse_table {
         int size;
         int LOG{};
-        static const T NEUTRAL_ELEMENT{INT32_MAX};
-        std::vector<std::vector<std::pair<T, T>>> matrix;
-        std::vector<T> bin_log;
-        sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
+        const TT NEUTRAL_ELEMENT{INT32_MAX};
+        std::vector<std::vector<std::pair<TT, TT>>> matrix;
+        std::vector<TT> bin_log;
+        sparse_table(const std::vector<TT> &_init) : size(static_cast<int>(_init.size())) {
             bin_log.push_back(0);
             bin_log.push_back(0);
             for (int i = 2; i <= size; i++) {
                 bin_log.push_back(bin_log[i / 2] + 1);
             }
             LOG = 63 - __builtin_clzl(size) + 1;
-            matrix.assign(LOG, std::vector(size, std::pair<T, T>(NEUTRAL_ELEMENT, 0)));
+            matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
             for (int i = 0; i < size; i++) {
                 matrix[0][i] = {_init[i], i};
             }
         }
 
-        static std::pair<T, T>
-        operation(const std::pair<T, T> &a, const std::pair<T, T> &b) {
+        static std::pair<TT, TT>
+        operation(const std::pair<TT, T> &a, const std::pair<TT, TT> &b) {
             if (a.first < b.first) {
                 return a;
             }
@@ -64,9 +64,9 @@ struct cartesian_tree {
             }
         }
 
-        T
-        query(int L, const int R) {
-            std::pair<T, T> res{NEUTRAL_ELEMENT, 0};
+        TT
+        query(int L, const int R) const {
+            std::pair<TT, TT> res{NEUTRAL_ELEMENT, 0};
             for (int i = LOG; i >= 0; i--) {
                 if (1 << i <= R - L + 1) {
                     res = operation(res, matrix[i][L]);
@@ -77,29 +77,30 @@ struct cartesian_tree {
         }
     };
 
-    std::vector<int> c_tree;
-    std::vector<int> base;
-    cartesian_tree(const std::vector<int> &arr) : base(arr) {
-        c_tree.assign(base.size() * 3, -1);
+    std::vector<int> tree;
+    std::vector<T> base;
+    cartesian_tree(const std::vector<T> &arr) : base(arr) {
+        // FIXME: sometimes the vector might be too small
+        tree.assign(base.size() * 5, -1);
     }
 
     void
     build() {
-        sparse_table sp(base);
-        sp.process();
+        sparse_table<T> st(base);
+        st.process();
         int l{0};
         int r{(int) base.size() - 1};
-        c_tree[0] = sp.query(l, r);
-        auto walk{[&](const auto &self, int l, int r, int id) -> void {
+        tree[0] = st.query(l, r);
+        auto walk{[this , &st](const auto &self, const int &l, const int &r, const int &id) -> void {
             if (l < 0 or r >= (int) base.size() or l > r) {
                 return;
             }
-            c_tree[id] = sp.query(l, r);
-            self(self, l, c_tree[id] - 1, id * 2 + 1);
-            self(self, c_tree[id] + 1, r, id * 2 + 2);
+            tree[id] = st.query(l, r);
+            self(self, l, tree[id] - 1, id * 2 + 1);
+            self(self, tree[id] + 1, r, id * 2 + 2);
         }};
-        walk(walk, l, c_tree[0] - 1, 1);
-        walk(walk, c_tree[0] + 1, r, 2);
+        walk(walk, l, tree[0] - 1, 1);
+        walk(walk, tree[0] + 1, r, 2);
     }
 };
 
@@ -115,20 +116,21 @@ main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             std::cin >> vec[i];
-        auto ct{cartesian_tree(vec)};
+        }
+        auto ct{cartesian_tree_parents(vec)};
         for (int i = 0; i < n; i++) {
             std::cout << ((ct[i] == -1) ? i : ct[i]) << " ";
         }
         std::cout << "\n";
-
-        // struct cartesian_tree ct2(vec);
-        // ct2.build();
-        // for (const auto &v : ct2.c_tree) {
-        //     std::cout << v << " ";
-        // }
-        // std::cout << "\n";
+        std::cout << "-----------------------\n";
+        cartesian_tree ct2(vec);
+        ct2.build();
+        for (const auto &v : ct2.tree) {
+            std::cout << v << " ";
+        }
+        std::cout << "\n";
     }
     return 0;
 }

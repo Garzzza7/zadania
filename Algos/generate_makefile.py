@@ -126,6 +126,9 @@ testfile.write(warning)
 
 testfile.write(prologue_colors)
 
+testfile.write("cnt_passed=0\n")
+testfile.write("cnt_failed=0\n\n")
+
 for cpp_file in cpp_files:
     testfile.write(
         'if [ "$(./'
@@ -138,7 +141,9 @@ for cpp_file in cpp_files:
         + cpp_file[:-4]
         + '.test)" ]; then\n    printf "${green}'
         + cpp_file[:-4]
-        + ' Passed.${normal}\\n"\nelse\n    printf "${red}'
+        + ' Passed.${normal}\\n"'
+        + '\n    cnt_passed=$((cnt_passed + 1))'
+        + '\nelse\n    printf "${red}'
         + cpp_file[:-4]
         + ' Failed.\\n"\n'
         + '    printf "${red} Got:\\n"\n'
@@ -152,8 +157,12 @@ for cpp_file in cpp_files:
         + '    printf "${red}$(cat '
         + cpp_file[:-4]
         + '.test)${normal}\\n"'
+        + '\n    cnt_failed=$((cnt_failed + 1))'
         + "\nfi\n\n"
     )
+
+testfile.write("echo \"Tests passed : $cnt_passed\"\n")
+testfile.write("echo \"Tests failed : $cnt_failed\"\n")
 
 testfile.close()
 
