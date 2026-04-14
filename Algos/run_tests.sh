@@ -408,6 +408,18 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [ "$(./Euler_Tour.sol <Euler_Tour.txt)" == "$(cat Euler_Tour.test)" ]; then
+	printf "${green}Euler_Tour Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Euler_Tour Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Euler_Tour.sol <Euler_Tour.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Euler_Tour.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [ "$(./Euler_s_totient.sol <Euler_s_totient.txt)" == "$(cat Euler_s_totient.test)" ]; then
 	printf "${green}Euler_s_totient Passed.${normal}\n"
 	cnt_passed=$((cnt_passed + 1))

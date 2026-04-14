@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+WIP: list[str] = ["HLD"]
+
 # file stuff
 current_directory: str = os.getcwd()
 
@@ -89,21 +91,33 @@ makefile.write("COMPILER = " + compiler + "\n\n")
 
 makefile.write("standard:")
 for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".sol ")
+    file = cpp_file[:-4]
+    if file in WIP:
+        continue
+    else:
+        makefile.write(" " + file + ".sol ")
 makefile.write("\n\n")
 
 makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
 
 makefile.write("asm:")
 for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".s ")
+    file = cpp_file[:-4]
+    if file in WIP:
+        continue
+    else:
+        makefile.write(" " + file + ".s ")
 makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
 makefile.write("test:")
 for cpp_file in cpp_files:
-    makefile.write(" " + cpp_file[:-4] + ".sol ")
+    file = cpp_file[:-4]
+    if file in WIP:
+        continue
+    else:
+        makefile.write(" " + file + ".sol ")
 makefile.write("\n")
 
 makefile.write("	bash " + test_runner)
@@ -130,42 +144,45 @@ testfile.write("cnt_passed=0\n")
 testfile.write("cnt_failed=0\n\n")
 
 for cpp_file in cpp_files:
-    testfile.write(
-        'if [ "$(./'
-        + cpp_file[:-4]
-        + ".sol <"
-        + cpp_file[:-4]
-        + ".txt"
-        + ")"
-        + '" == "$(cat '
-        + cpp_file[:-4]
-        + '.test)" ]; then\n    printf "${green}'
-        + cpp_file[:-4]
-        + ' Passed.${normal}\\n"'
-        + '\n    cnt_passed=$((cnt_passed + 1))'
-        + '\nelse\n    printf "${red}'
-        + cpp_file[:-4]
-        + ' Failed.\\n"\n'
-        + '    printf "${red} Got:\\n"\n'
-        + '    printf "${red}$(./'
-        + cpp_file[:-4]
-        + ".sol <"
-        + cpp_file[:-4]
-        + ".txt"
-        + ')\\n"\n'
-        + '    printf "${red} Should be:\\n"\n'
-        + '    printf "${red}$(cat '
-        + cpp_file[:-4]
-        + '.test)${normal}\\n"'
-        + '\n    cnt_failed=$((cnt_failed + 1))'
-        + "\nfi\n\n"
-    )
+    file = cpp_file[:-4]
+    if file in WIP:
+        continue
+    else:
+        testfile.write(
+            'if [ "$(./'
+            + file
+            + ".sol <"
+            + file
+            + ".txt"
+            + ")"
+            + '" == "$(cat '
+            + file
+            + '.test)" ]; then\n    printf "${green}'
+            + file
+            + ' Passed.${normal}\\n"'
+            + "\n    cnt_passed=$((cnt_passed + 1))"
+            + '\nelse\n    printf "${red}'
+            + file
+            + ' Failed.\\n"\n'
+            + '    printf "${red} Got:\\n"\n'
+            + '    printf "${red}$(./'
+            + file
+            + ".sol <"
+            + file
+            + ".txt"
+            + ')\\n"\n'
+            + '    printf "${red} Should be:\\n"\n'
+            + '    printf "${red}$(cat '
+            + file
+            + '.test)${normal}\\n"'
+            + "\n    cnt_failed=$((cnt_failed + 1))"
+            + "\nfi\n\n"
+        )
 
-testfile.write("echo \"Tests passed : $cnt_passed\"\n")
-testfile.write("echo \"Tests failed : $cnt_failed\"\n")
+testfile.write('echo "Tests passed : $cnt_passed"\n')
+testfile.write('echo "Tests failed : $cnt_failed"\n')
 
 testfile.close()
 
 subprocess.run(["chmod", "+x", "run_tests.sh"])
-
 # end of run_tests.sh

@@ -64,7 +64,7 @@ template <typename T = int> struct cartesian_tree {
             }
         }
 
-        TT
+        [[nodiscard]] TT
         query(int L, const int R) const {
             std::pair<TT, TT> res{NEUTRAL_ELEMENT, 0};
             for (int i = LOG; i >= 0; i--) {
@@ -91,7 +91,7 @@ template <typename T = int> struct cartesian_tree {
         int l{0};
         int r{(int) base.size() - 1};
         tree[0] = st.query(l, r);
-        auto walk{[this , &st](const auto &self, const int &l, const int &r, const int &id) -> void {
+        auto walk{[this, &st](const auto &self, const int &l, const int &r, const int &id) -> void {
             if (l < 0 or r >= (int) base.size() or l > r) {
                 return;
             }

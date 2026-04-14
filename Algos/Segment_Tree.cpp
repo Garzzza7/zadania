@@ -13,7 +13,7 @@ template <typename T = int> struct ram_seg_tree {
         vec.assign(2 * size, NEUTRAL_ELEMENT);
     }
 
-    static T
+    static inline T
     operation(const T &a, const T &b) {
         return a + b;
     }

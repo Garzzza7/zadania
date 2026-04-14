@@ -12,7 +12,7 @@ template <typename T = int> struct sparse_table {
         matrix[0] = _init;
     }
 
-    static T
+    static inline T
     operation(const T &a, const T &b) {
         return a + b;
     }
