@@ -372,6 +372,18 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [ "$(./Disjoint_Sparse_Table.sol <Disjoint_Sparse_Table.txt)" == "$(cat Disjoint_Sparse_Table.test)" ]; then
+	printf "${green}Disjoint_Sparse_Table Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Disjoint_Sparse_Table Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Disjoint_Sparse_Table.sol <Disjoint_Sparse_Table.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Disjoint_Sparse_Table.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [ "$(./Edmond_Karp_MaxFlow.sol <Edmond_Karp_MaxFlow.txt)" == "$(cat Edmond_Karp_MaxFlow.test)" ]; then
 	printf "${green}Edmond_Karp_MaxFlow Passed.${normal}\n"
 	cnt_passed=$((cnt_passed + 1))
