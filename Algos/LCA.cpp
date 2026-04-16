@@ -27,7 +27,7 @@ template <typename T = int> struct lca {
             }
         }
 
-        static std::pair<TT, TT>
+        static inline std::pair<TT, TT>
         operation(const std::pair<TT, TT> &a, const std::pair<TT, TT> &b) {
             if (a.first < b.first) {
                 return a;
@@ -44,6 +44,7 @@ template <typename T = int> struct lca {
             }
         }
 
+        // TODO: change to O(1)
         TT
         query(int L, const int R) {
             std::pair<TT, TT> res = {NEUTRAL_ELEMENT, 0};

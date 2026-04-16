@@ -1,5 +1,8 @@
 import os
 import subprocess
+import sys
+
+FILE_NAME: str = sys.argv[0]
 
 WIP: list[str] = ["HLD"]
 
@@ -49,10 +52,16 @@ prologue_colors: str = (
 )
 
 warning: str = (
-    "##################################################################################\n"
-    + "# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#\n"
-    + "##################################################################################\n\n"
+    "# THIS FILE WAS AUTOMATICALLY GENERATED VIA " + FILE_NAME + ". DO NOT EDIT IT. #\n"
 )
+
+padding: str = ""
+
+for _ in range(len(warning) - 1):
+    padding = padding + "#"
+padding = padding + "\n"
+
+warning = padding + warning + padding + "\n"
 
 # flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 

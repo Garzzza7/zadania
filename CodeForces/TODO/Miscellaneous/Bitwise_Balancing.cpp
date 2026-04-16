@@ -24,30 +24,44 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+#define on(a, b)   ((a) |= (1 << (b)))
+#define off(a, b)  ((a) &= ~(1 << (b)))
+#define flip(a, b) ((a) ^= (1 << (b)))
+
+template <typename T>
+[[nodiscard]] inline bool
+is_on(T a, T b) noexcept {
+    return a & (static_cast<T>(1) << b);
+}
+
 void
 solve(void) {
-	int b , c , d;
-	std::cin >> b >> c >> d;
-	if (b == c and c == d) {
-		std::cout << 0 << "\n";
-		return;
-	}
-	i64 l = 0;
-	i64 r = 1LL << 60;
-	i64 res = -1LL;
-	int iter = 64;
-	while(l < r and iter--) {
-		i64 a = (l + r) / 2ll;
-		if((a | b) - (a & c) == d) {
-			res = a;
-			break;
-		} else if((a | b) - (a & c) > d) {
-			r = a;
-		} else {
-			l = a;
-		}
-	}
-	std::cout << res << "\n";
+    i64 b , c , d;
+    std::cin >> b >> c >> d;
+    i64 res = 0LL;
+    bool bad = false;
+    for(i64 mask = 0LL ; mask < 64LL ; mask++) {
+        bool bb = is_on(b , mask);
+        bool bc = is_on(c , mask);
+        bool bd = is_on(d , mask);
+        if(bd) {
+            // 1 - 0 = 1
+            if(( bb == 1 or bb == 0 ) and bc == 0) {
+                on(res , mask);
+            }  
+        } else {
+            // 1 - 1 = 0
+            // 0 - 0 = 0
+            if(bd and bc) {
+                on(res , mask);
+            }  
+        }
+    }
+    if(( res | b ) - ( res & c ) == d) {
+        std::cout << res << "\n";
+    } else {
+        std::cout << -1 << "\n";
+    }
 }
 
 int

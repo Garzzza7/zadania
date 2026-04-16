@@ -1,7 +1,7 @@
 #!/bin/bash
-##################################################################################
-# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT.#
-##################################################################################
+###################################################################################
+# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT. #
+###################################################################################
 
 grey=$(tput setaf 7)
 black=$(tput setaf 16)
