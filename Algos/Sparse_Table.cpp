@@ -1,45 +1,48 @@
-#include <bit>
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct sparse_table {
-    unsigned size{};
+// both queries tested on: https://judge.yosupo.jp/problem/staticrmq
+
+template <typename T, typename OP, T NEUTRAL> struct sparse_table {
+    int size{};
     int LOG{};
-    static constexpr T NEUTRAL_ELEMENT{0};
     std::vector<std::vector<T>> matrix;
-    sparse_table(const std::vector<T> &_init)
-        : size(static_cast<unsigned>(_init.size())), LOG(std::bit_width(size)),
-          matrix(std::vector(LOG, std::vector(size, NEUTRAL_ELEMENT))) {
+    static constexpr OP op{};
+    std::vector<unsigned long long> log_table;
+    sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
+        while (1 << LOG < size) {
+            LOG++;
+        }
+        LOG++;
+        matrix    = std::vector(LOG, std::vector(size, NEUTRAL));
         matrix[0] = _init;
-    }
-
-    static inline T
-    operation(const T &a, const T &b) {
-        return a + b;
-    }
-
-    void
-    process() {
+        log_table = std::vector(1 << LOG, 0ULL);
         for (int i = 1; i <= LOG; i++) {
-            for (unsigned j = 0; j + (1 << i) <= size; j++) {
-                matrix[i][j] = operation(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
+            for (int j = 0; j + (1 << i) <= size; j++) {
+                matrix[i][j] = op(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
+            }
+        }
+        for (int i = 0; i < LOG; i++) {
+            for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+                log_table[j] = i;
             }
         }
     }
 
-    // TODO: test it and change in LCA
     [[nodiscard]] T
     query_idempotent(int L, const int &R) const {
-        const auto log = std::bit_width((unsigned) (R - L + 1));
-        return operation(matrix[log][L], matrix[log][R]);
+        const auto log = log_table[R - L];
+        return op(matrix[log][L], matrix[log][R - (1 << log)]);
     }
 
     [[nodiscard]] T
-    query(int L, const int &R) const {
-        T res{NEUTRAL_ELEMENT};
+    query(int L, int R) const {
+        T res{NEUTRAL};
+        R--;
         for (int i = LOG; i >= 0; i--) {
             if (1 << i <= R - L + 1) {
-                res = operation(res, matrix[i][L]);
+                res = op(res, matrix[i][L]);
                 L += 1 << i;
             }
         }
@@ -47,29 +50,38 @@ template <typename T = int> struct sparse_table {
     }
 };
 
+constexpr auto op = [](const auto &l, const auto &r) -> auto {
+    if (l < r) return l;
+    return r;
+};
+constexpr auto sum = [](const auto &l, const auto &r) -> auto { return l + r; };
+using RMQ          = sparse_table<long long, decltype(op), (long long) (1e9 + 1)>;
+using SUM          = sparse_table<long long, decltype(sum), 0LL>;
+
 int
 main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n;
-    std::cin >> n;
+    int n, q;
+    std::cin >> n >> q;
     std::vector<long long> vec(n);
-    for (int i = 0; i < n; i++) {
-        std::cin >> vec[i];
+    for (auto &&v : vec) {
+        std::cin >> v;
     }
 
-    sparse_table<long long> st_sum(vec);
+    RMQ rmq(vec);
+    SUM s(vec);
 
-    st_sum.process();
+    std::cout << s.query(0, n) << "\n";
 
-    int q;
-    std::cin >> q;
     while (q--) {
-        int L, R;
-        std::cin >> L >> R;
-        std::cout << st_sum.query(L, R) << "\n";
+        int l, r;
+        std::cin >> l >> r;
+        std::cout << rmq.query_idempotent(l, r) << "\n";
+        // std::cout << rmq.query(l, r) << "\n";
     }
+
     return 0;
 }

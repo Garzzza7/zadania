@@ -1,21 +1,22 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct ram_seg_tree {
-    int size{1};
-    static const T NEUTRAL_ELEMENT{0};
+template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
+    int size{0};
     std::vector<T> vec;
+    static constexpr OP op{};
 
     ram_seg_tree(const int &_n) {
-        while (size < _n) {
-            size <<= 1;
+        int log = 1;
+        while (log < _n) {
+            log <<= 1;
         }
-        vec.assign(2 * size, NEUTRAL_ELEMENT);
+        size = log;
+        vec.assign(2 * size, NEUTRAL);
     }
 
-    static inline T
-    operation(const T &a, const T &b) {
-        return a + b;
+    ram_seg_tree(const std::vector<T> &_vec) {
+        build(_vec);
     }
 
     void
@@ -34,7 +35,7 @@ template <typename T = int> struct ram_seg_tree {
         const int mid{(rx - lx) / 2 + lx};
         build(arr, 2 * x + 1, lx, mid);
         build(arr, 2 * x + 2, mid, rx);
-        vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
+        vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
     void
@@ -54,7 +55,7 @@ template <typename T = int> struct ram_seg_tree {
         } else {
             set(i, v, 2 * x + 2, mid, rx);
         }
-        vec[x] = operation(vec[2 * x + 1], vec[2 * x + 2]);
+        vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
     T
@@ -66,7 +67,7 @@ template <typename T = int> struct ram_seg_tree {
     T
     query(const int l, const int r, const int x, const int lx, const int rx) {
         if (lx >= r or l >= rx) {
-            return NEUTRAL_ELEMENT;
+            return NEUTRAL;
         }
         if (lx >= l and rx <= r) {
             return vec[x];
@@ -74,9 +75,13 @@ template <typename T = int> struct ram_seg_tree {
         const int mid{(rx - lx) / 2 + lx};
         const T p1{query(l, r, 2 * x + 1, lx, mid)};
         const T s2{query(l, r, 2 * x + 2, mid, rx)};
-        return operation(p1, s2);
+        return op(p1, s2);
     }
 };
+
+constexpr auto op = [](const auto &l, const auto &r) -> auto { return l + r; };
+
+using segtree     = ram_seg_tree<long long, decltype(op), 0>;
 
 int
 main() {
@@ -87,12 +92,18 @@ main() {
     int n;
     std::cin >> n;
     std::vector<long long> init(n);
-    ram_seg_tree<long long> st(n);
-    for (auto &&v : init)
+    segtree st(n);
+
+    for (auto &&v : init) {
         std::cin >> v;
+    }
+
     st.build(init);
-    for (const auto &a : st.vec)
+
+    for (const auto &a : st.vec) {
         std::cout << a << " ";
+    }
+
     std::cout << "\n";
     std::cout << st.query(1, 5) << "\n";
     return 0;
