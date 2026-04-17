@@ -9,14 +9,14 @@ template <typename T, typename OP> struct disjoint_sparse_table {
     static constexpr OP op{};
     std::vector<std::vector<T>> vec;
     std::vector<T> base;
-    std::vector<unsigned long long> log_table;
+    std::vector<unsigned long long> precalc_log;
 
     disjoint_sparse_table(const std::vector<T> &_input) : size((int) _input.size()), base(_input) {
         while (1 << LOG < size) {
             LOG++;
         }
-        vec       = std::vector(LOG, _input);
-        log_table = std::vector(1 << LOG, 0ULL);
+        vec         = std::vector(LOG, _input);
+        precalc_log = std::vector(1 << LOG, 0ULL);
 
         for (int i = 0; i < LOG; i++) {
             int padding = 1 << i;
@@ -35,7 +35,7 @@ template <typename T, typename OP> struct disjoint_sparse_table {
         }
         for (int i = 0; i < LOG; i++) {
             for (int j = (1 << i); j < (1 << (i + 1)); j++) {
-                log_table[j] = i;
+                precalc_log[j] = i;
             }
         }
     }
@@ -46,7 +46,7 @@ template <typename T, typename OP> struct disjoint_sparse_table {
         if (R - L == 1) {
             return base[L];
         }
-        const auto log = log_table[L ^ (R - 1)];
+        const auto log = precalc_log[L ^ (R - 1)];
         return op(vec[log][L], vec[log][R - 1]);
     }
 };

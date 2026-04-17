@@ -9,15 +9,15 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
     int LOG{};
     std::vector<std::vector<T>> matrix;
     static constexpr OP op{};
-    std::vector<unsigned long long> log_table;
+    std::vector<unsigned long long> precalc_log;
     sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
         while (1 << LOG < size) {
             LOG++;
         }
         LOG++;
-        matrix    = std::vector(LOG, std::vector(size, NEUTRAL));
-        matrix[0] = _init;
-        log_table = std::vector(1 << LOG, 0ULL);
+        matrix      = std::vector(LOG, std::vector(size, NEUTRAL));
+        matrix[0]   = _init;
+        precalc_log = std::vector(1 << LOG, 0ULL);
         for (int i = 1; i <= LOG; i++) {
             for (int j = 0; j + (1 << i) <= size; j++) {
                 matrix[i][j] = op(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
@@ -25,14 +25,14 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
         }
         for (int i = 0; i < LOG; i++) {
             for (int j = (1 << i); j < (1 << (i + 1)); j++) {
-                log_table[j] = i;
+                precalc_log[j] = i;
             }
         }
     }
 
     [[nodiscard]] T
     query_idempotent(int L, const int &R) const {
-        const auto log = log_table[R - L];
+        const auto log = precalc_log[R - L];
         return op(matrix[log][L], matrix[log][R - (1 << log)]);
     }
 

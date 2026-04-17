@@ -5,56 +5,46 @@
 // tested on https://judge.yosupo.jp/problem/lca
 
 template <typename T = int> struct lca {
-    template <typename TT> struct sparse_table {
+    template <typename TT, typename OP, TT NEUTRAL> struct sparse_table {
         int size{};
         int LOG{};
-        static const TT NEUTRAL_ELEMENT{INT32_MAX};
+        static constexpr OP op{};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         sparse_table() = default;
-
+        std::vector<unsigned long long> precalc_log;
         sparse_table &
         operator=(sparse_table &&rhs) noexcept {
-            size   = rhs.size;
-            LOG    = rhs.LOG;
-            matrix = std::move(rhs.matrix);
+            size        = rhs.size;
+            LOG         = rhs.LOG;
+            matrix      = std::move(rhs.matrix);
+            precalc_log = rhs.precalc_log;
             return *this;
         }
-        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler)
-            : size(static_cast<int>(_init.size())), LOG(63 - __builtin_clzl(size) + 1) {
-            matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
+        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler) : size((int) _init.size()) {
+            while (1 << LOG < size) {
+                LOG++;
+            }
+            matrix      = std::vector(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL, 0)));
+            precalc_log = std::vector(1 << LOG, 0ULL);
             for (int i = 0; i < size; i++) {
                 matrix[0][i] = {_init[i], _euler[i]};
             }
-        }
-
-        static inline std::pair<TT, TT>
-        operation(const std::pair<TT, TT> &a, const std::pair<TT, TT> &b) {
-            if (a.first < b.first) {
-                return a;
-            }
-            return b;
-        }
-
-        void
-        process() {
             for (int i = 1; i <= LOG; i++) {
                 for (int j = 0; j + (1 << i) <= size; j++) {
-                    matrix[i][j] = operation(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
+                    matrix[i][j] = op(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
+                }
+            }
+            for (int i = 0; i < LOG; i++) {
+                for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+                    precalc_log[j] = i;
                 }
             }
         }
 
-        // TODO: change to O(1)
-        TT
-        query(int L, const int R) {
-            std::pair<TT, TT> res = {NEUTRAL_ELEMENT, 0};
-            for (int i = LOG; i >= 0; i--) {
-                if (1 << i <= R - L + 1) {
-                    res = operation(res, matrix[i][L]);
-                    L += 1 << i;
-                }
-            }
-            return res.second;
+        [[nodiscard]] TT
+        query(int L, int R) const {
+            const auto log = precalc_log[R - L];
+            return op(matrix[log][L], matrix[log][R - (1 << log)]).second;
         }
     };
 
@@ -62,12 +52,15 @@ template <typename T = int> struct lca {
     std::vector<int> heights;
     std::vector<int> euler;
     std::vector<int> ids;
-    sparse_table<T> st;
+    static constexpr auto op = [](const auto &l, const auto &r) -> auto {
+        if (l.first < r.first) return l;
+        return r;
+    };
+    sparse_table<T, decltype(op), INT32_MAX> st{};
 
     lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
         ids.resize(n);
         std::vector visited(n, false);
-
         auto dfs{[&](const auto &self, const int v, const int h) -> void {
             visited[v] = true;
             heights.push_back(h);
@@ -82,12 +75,7 @@ template <typename T = int> struct lca {
             }
         }};
         dfs(dfs, 0, 0);
-    }
-
-    void
-    build() {
-        st = sparse_table(heights, euler);
-        st.process();
+        st = sparse_table<T, decltype(op), INT32_MAX>(heights, euler);
     }
 
     T
@@ -114,7 +102,7 @@ main() {
         adj[a].push_back(i);
     }
     lca<int> lca(adj);
-    lca.build();
+
     while (q--) {
         int a, b;
         std::cin >> a >> b;
