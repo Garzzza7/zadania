@@ -17,7 +17,7 @@ template <typename T = int> struct lca {
             size        = rhs.size;
             LOG         = rhs.LOG;
             matrix      = std::move(rhs.matrix);
-            precalc_log = rhs.precalc_log;
+            precalc_log = std::move(rhs.precalc_log);
             return *this;
         }
         sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler) : size((int) _init.size()) {
@@ -42,7 +42,7 @@ template <typename T = int> struct lca {
         }
 
         [[nodiscard]] TT
-        query(int L, int R) const {
+        query(const int &L, const int &R) const {
             const auto log = precalc_log[R - L];
             return op(matrix[log][L], matrix[log][R - (1 << log)]).second;
         }
@@ -79,8 +79,8 @@ template <typename T = int> struct lca {
         st = ST(heights, euler);
     }
 
-    T
-    query(const int l, const int r) {
+    [[nodiscard]] T
+    query(const int &l, const int &r) const {
         const int lq{ids[l]};
         const int rq{ids[r]};
         return st.query(std::min(lq, rq), std::max(lq, rq));
@@ -102,6 +102,7 @@ main() {
         adj[i].push_back(a);
         adj[a].push_back(i);
     }
+
     lca<int> lca(adj);
 
     while (q--) {
