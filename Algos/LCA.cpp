@@ -56,7 +56,8 @@ template <typename T = int> struct lca {
         if (l.first < r.first) return l;
         return r;
     };
-    sparse_table<T, decltype(op), INT32_MAX> st{};
+    using ST = sparse_table<T, decltype(op), INT32_MAX>;
+    ST st{};
 
     lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
         ids.resize(n);
@@ -75,7 +76,7 @@ template <typename T = int> struct lca {
             }
         }};
         dfs(dfs, 0, 0);
-        st = sparse_table<T, decltype(op), INT32_MAX>(heights, euler);
+        st = ST(heights, euler);
     }
 
     T
