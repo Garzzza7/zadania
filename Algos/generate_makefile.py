@@ -4,7 +4,7 @@ import sys
 
 FILE_NAME: str = sys.argv[0]
 
-WIP: list[str] = ["HLD"]
+WIP: list[str] = ["HLD", "Kuhn-Munkers"]
 
 # file stuff
 current_directory: str = os.getcwd()
@@ -150,7 +150,8 @@ testfile.write(warning)
 testfile.write(prologue_colors)
 
 testfile.write("cnt_passed=0\n")
-testfile.write("cnt_failed=0\n\n")
+testfile.write("cnt_failed=0\n")
+testfile.write("cnt_aborted=0\n\n")
 
 for cpp_file in cpp_files:
     file = cpp_file[:-4]
@@ -158,7 +159,16 @@ for cpp_file in cpp_files:
         continue
     else:
         testfile.write(
-            'if [ "$(./'
+            'if [[ -n "$(./'
+            + file
+            + ".sol <"
+            + file
+            + '.txt 2>&1 >/dev/null)" ]]; then\n'
+            + '    printf "${red}ABORT at '
+            + file
+            + '.${normal}\\n"\n'
+            + "    cnt_aborted=$((cnt_aborted + 1))\n"
+            + 'elif [ "$(./'
             + file
             + ".sol <"
             + file
@@ -190,6 +200,7 @@ for cpp_file in cpp_files:
 
 testfile.write('echo "Tests passed : $cnt_passed"\n')
 testfile.write('echo "Tests failed : $cnt_failed"\n')
+testfile.write('echo "Tests aborted : $cnt_aborted"\n')
 
 testfile.close()
 

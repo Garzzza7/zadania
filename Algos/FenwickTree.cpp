@@ -3,29 +3,51 @@
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_b
 
-void
-update(std::vector<long long> &vec, const long long val, long long index) {
-    while (index < static_cast<int>(vec.size())) {
-        vec[index] += val;
-        index += ((index) & (-index));
+template <typename T, typename OP> struct fenwick {
+    /*
+     * ONE INDEXED !!!
+     * REMEMBER THIS !!!
+     */
+    int size{0};
+    std::vector<T> vec;
+    static constexpr OP op{};
+    fenwick(const int &_n) : size(_n + 1) {
+        vec.assign(size, 0);
     }
-}
 
-long long
-sum(const std::vector<long long> &vec, long long index) {
-    index += 1;
-    long long sum = 0;
-    while (index) {
-        sum += vec[index];
-        index -= ((index) & (-index));
+    fenwick(const std::vector<T> &_vec) : size((int) _vec.size() + 1) {
+        vec.assign(size, 0);
+        for (int i = 1; i < size; i++) {
+            update(vec[i - 1], i);
+        }
     }
-    return sum;
-}
 
-long long
-rangeSum(const std::vector<long long> &vec, const long long l, const long long r) {
-    return sum(vec, r) - sum(vec, l - 1);
-}
+    void
+    update(const T &val, int idx) {
+        while (idx < size) {
+            vec[idx] = op(vec[idx], val);
+            idx += ((idx) & (-idx));
+        }
+    }
+
+    T
+    query(const int &l, const int &r) {
+        auto calc = [&](int idx) -> T {
+            idx++;
+            T res = 0;
+            while (idx > 0) {
+                res = op(res, vec[idx]);
+                idx -= ((idx) & (-idx));
+            }
+            return res;
+        };
+        return calc(r) - calc(l - 1);
+    }
+};
+
+constexpr auto op = [](const auto &l, const auto &r) -> auto { return l + r; };
+
+using fen         = fenwick<long long, decltype(op)>;
 
 int
 main(void) {
@@ -33,21 +55,30 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    long long n, m;
+    int n, m;
     std::cin >> n >> m;
-    std::vector<long long> vec(n + 1);
-    for (long long i = 1; i <= n; i++) {
+
+    fen fen(n);
+
+    for (int i = 1; i <= n; i++) {
         long long a;
         std::cin >> a;
-        update(vec, a, i);
+        fen.update(a, i);
     }
+
     while (m--) {
-        long long a, b, c;
-        std::cin >> a >> b >> c;
-        if (a == 1)
-            std::cout << rangeSum(vec, b, c - 1) << "\n";
-        else
-            update(vec, c, b + 1);
+        int a;
+        std::cin >> a;
+        if (a == 1) {
+            int b, c;
+            std::cin >> b >> c;
+            std::cout << fen.query(b, c - 1) << "\n";
+        } else {
+            int b;
+            long long c;
+            std::cin >> b >> c;
+            fen.update(c, b + 1);
+        }
     }
 
     return 0;
