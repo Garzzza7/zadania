@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 de_bruijn_seq(const T &len, const T &alphabet) {
     std::vector<T> res;
@@ -13,7 +13,7 @@ de_bruijn_seq(const T &len, const T &alphabet) {
                 res.push_back(c);
             }
         }
-        for (int i = r; i <= len - 1; i++) {
+        for (int i = r; i < len; i++) {
             lyndon.push_back(lyndon[i - r]);
         }
         while (lyndon.back() == alphabet - 1) {

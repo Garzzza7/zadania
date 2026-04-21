@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstdint>
 #include <iostream>
 #include <vector>
@@ -21,6 +22,7 @@ template <typename T = int> struct lca {
             return *this;
         }
         sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler) : size((int) _init.size()) {
+            assert(_init.size() == _euler.size());
             while (1 << LOG < size) {
                 LOG++;
             }
