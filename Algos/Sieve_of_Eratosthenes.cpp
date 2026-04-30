@@ -22,9 +22,9 @@ bool_sieve(const T &n) {
     std::vector<bool> pr(n + 1, true);
     pr[0] = false;
     pr[1] = false;
-    for (int i = 2; i <= n; i++) {
+    for (int i = 2; i * i < n; i++) {
         if (pr[i]) {
-            for (int x = 2 * i; x <= n; x += i) {
+            for (int x = i * i; x <= n; x += i) {
                 pr[x] = false;
             }
         }
