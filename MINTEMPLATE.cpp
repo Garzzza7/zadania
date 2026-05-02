@@ -14,6 +14,10 @@
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
 using db   = double;
 using str  = std::string;

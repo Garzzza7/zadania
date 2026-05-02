@@ -1120,6 +1120,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ -n "$(./Segmented_Sieve.sol <Segmented_Sieve.txt 2>&1 >/dev/null)" ]]; then
+	printf "${red}ABORT at Segmented_Sieve.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Segmented_Sieve.sol <Segmented_Sieve.txt)" == "$(cat Segmented_Sieve.test)" ]; then
+	printf "${green}Segmented_Sieve Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Segmented_Sieve Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Segmented_Sieve.sol <Segmented_Sieve.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Segmented_Sieve.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ -n "$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt 2>&1 >/dev/null)" ]]; then
 	printf "${red}ABORT at Sierpinki_triagnle_nth_row.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
