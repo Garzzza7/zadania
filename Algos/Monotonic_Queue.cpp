@@ -9,7 +9,7 @@ template <typename T> struct monotonic_queue {
 
     void
     push(const T &v) {
-        while (not dq.empty() && dq.back() < v) {
+        while (not dq.empty() and dq.back() < v) {
             dq.pop_back();
         }
         dq.push_back(v);
