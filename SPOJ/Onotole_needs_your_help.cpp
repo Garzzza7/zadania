@@ -26,6 +26,15 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
+    int n;
+    std::cin >> n;
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        int v;
+        std::cin >> v;
+        res ^= v;
+    }
+    std::cout << res << "\n";
 }
 
 int
@@ -35,7 +44,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

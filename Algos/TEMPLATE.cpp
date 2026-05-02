@@ -110,13 +110,13 @@
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec)     std::reverse(vec.begin(), vec.end())
 #define sortpairascS(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.second < right.second; })
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.second < right.second; })
 #define sortpairdesS(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.second > right.second; })
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.second > right.second; })
 #define sortpairascF(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.first < right.first; })
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.first < right.first; })
 #define sortpairdesF(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) { return left.first > right.first; })
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.first > right.first; })
 #define swp(a, b)                                                                                                                \
     a ^= b;                                                                                                                      \
     b ^= a;                                                                                                                      \
@@ -128,7 +128,9 @@
 #define off(a, b)  ((a) &= ~(1 << (b)))
 #define flip(a, b) ((a) ^= (1 << (b)))
 
-#define FAST       1
+#ifndef FAST
+#define FAST
+#endif
 
 std::string
 to_lower(std::string s) {
@@ -373,7 +375,7 @@ main() {
     const auto start = std::chrono::high_resolution_clock::now();
 #endif
 
-#if FAST
+#ifdef FAST
     help;
     me;
     pls;
@@ -381,8 +383,9 @@ main() {
 
     int _{1};
     std::cin >> _;
-    while (_--)
+    while (_--) {
         solve();
+    }
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();

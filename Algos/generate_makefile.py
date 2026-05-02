@@ -61,7 +61,7 @@ for _ in range(len(warning) - 1):
     padding = padding + "#"
 padding = padding + "\n"
 
-warning = padding + warning + padding + "\n"
+warning: str = padding + warning + padding + "\n"
 
 # flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
@@ -100,33 +100,33 @@ makefile.write("COMPILER = " + compiler + "\n\n")
 
 makefile.write("standard:")
 for cpp_file in cpp_files:
-    file = cpp_file[:-4]
-    if file in WIP:
+    FILE: str = cpp_file[:-4]
+    if FILE in WIP:
         continue
     else:
-        makefile.write(" " + file + ".sol ")
+        makefile.write(" " + FILE + ".sol ")
 makefile.write("\n\n")
 
 makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
 
 makefile.write("asm:")
 for cpp_file in cpp_files:
-    file = cpp_file[:-4]
-    if file in WIP:
+    FILE: str = cpp_file[:-4]
+    if FILE in WIP:
         continue
     else:
-        makefile.write(" " + file + ".s ")
+        makefile.write(" " + FILE + ".s ")
 makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
 makefile.write("test:")
 for cpp_file in cpp_files:
-    file = cpp_file[:-4]
-    if file in WIP:
+    FILE: str = cpp_file[:-4]
+    if FILE in WIP:
         continue
     else:
-        makefile.write(" " + file + ".sol ")
+        makefile.write(" " + FILE + ".sol ")
 makefile.write("\n")
 
 makefile.write("	bash " + test_runner)
@@ -154,45 +154,45 @@ testfile.write("cnt_failed=0\n")
 testfile.write("cnt_aborted=0\n\n")
 
 for cpp_file in cpp_files:
-    file = cpp_file[:-4]
-    if file in WIP:
+    FILE: str = cpp_file[:-4]
+    if FILE in WIP:
         continue
     else:
         testfile.write(
             'if [[ -n "$(./'
-            + file
+            + FILE
             + ".sol <"
-            + file
+            + FILE
             + '.txt 2>&1 >/dev/null)" ]]; then\n'
             + '    printf "${red}ABORT at '
-            + file
+            + FILE
             + '.${normal}\\n"\n'
             + "    cnt_aborted=$((cnt_aborted + 1))\n"
             + 'elif [ "$(./'
-            + file
+            + FILE
             + ".sol <"
-            + file
+            + FILE
             + ".txt"
             + ")"
             + '" == "$(cat '
-            + file
+            + FILE
             + '.test)" ]; then\n    printf "${green}'
-            + file
+            + FILE
             + ' Passed.${normal}\\n"'
             + "\n    cnt_passed=$((cnt_passed + 1))"
             + '\nelse\n    printf "${red}'
-            + file
+            + FILE
             + ' Failed.\\n"\n'
             + '    printf "${red} Got:\\n"\n'
             + '    printf "${red}$(./'
-            + file
+            + FILE
             + ".sol <"
-            + file
+            + FILE
             + ".txt"
             + ')\\n"\n'
             + '    printf "${red} Should be:\\n"\n'
             + '    printf "${red}$(cat '
-            + file
+            + FILE
             + '.test)${normal}\\n"'
             + "\n    cnt_failed=$((cnt_failed + 1))"
             + "\nfi\n\n"

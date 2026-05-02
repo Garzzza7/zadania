@@ -36,8 +36,9 @@ main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--)
+    while (_--) {
         solve();
+    }
 
     return 0;
 }

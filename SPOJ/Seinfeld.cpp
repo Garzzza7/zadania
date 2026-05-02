@@ -26,6 +26,36 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
+    str s;
+    int cnt = 1;
+    std::getline(std::cin, s);
+    while (s[0] != '-') {
+        const int n = sz(s);
+        int res     = 0;
+        int l       = 0;
+        int r       = n - 1;
+        int left    = 0;
+        while (l < n and s[l] == '}') {
+            l++;
+            res++;
+        }
+        while (r >= 0 and s[r] == '{') {
+            r--;
+            res++;
+        }
+        for (int i = l; i <= r; i++) {
+            const auto &c = s[i];
+            if (c == '{') {
+                left++;
+            } else {
+                left--;
+            }
+        }
+        res += std::abs(left) / 2;
+        std::cout << cnt << ". " << res << "\n";
+        cnt++;
+        std::getline(std::cin, s);
+    }
 }
 
 int
@@ -35,7 +65,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

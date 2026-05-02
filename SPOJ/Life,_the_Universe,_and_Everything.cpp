@@ -26,6 +26,12 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
+    str s;
+    std::getline(std::cin, s);
+    while (s != "42") {
+        std::cout << s << "\n";
+        std::getline(std::cin, s);
+    }
 }
 
 int
@@ -35,7 +41,6 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

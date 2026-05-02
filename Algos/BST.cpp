@@ -101,7 +101,7 @@ template <typename T = int> struct bst {
     }
 
     inline bool
-    cmp(const node<T> *n1, const node<T> *n2) const {
+    cmp(const node<T> *n1, const node<T> *n2) const noexcept {
         return *n1 <= *n2;
     }
 
@@ -367,7 +367,7 @@ template <typename T = int> struct bst {
     }
 
     void
-    validate() {
+    validate() const {
         auto walk{[](const auto &self, node<T> *curr) -> void {
             if (curr == nullptr) {
                 return;
