@@ -132,9 +132,35 @@
 #define FAST
 #endif
 
+std::vector<std::string>
+split(const std::string &s) {
+    std::vector<std::string> res;
+    std::string buff;
+    for (const auto &c : s) {
+        if (c == ' ') {
+            if (not buff.empty()) {
+                res.push_back(buff);
+                buff.clear();
+            }
+        } else {
+            buff.push_back(c);
+        }
+    }
+    if (not buff.empty()) {
+        res.push_back(buff);
+    }
+    return res;
+}
+
 std::string
 to_lower(std::string s) {
     std::transform(s.begin(), s.end(), s.begin(), [](const auto &c) { return std::tolower(c); });
+    return s;
+}
+
+std::string
+to_upper(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(), [](const auto &c) { return std::toupper(c); });
     return s;
 }
 
