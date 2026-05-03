@@ -17,9 +17,9 @@ cnt_sieve(const T &n) {
 }
 
 template <typename T>
-std::vector<bool>
+std::vector<char>
 bool_sieve(const T &n) {
-    std::vector<bool> pr(n + 1, true);
+    std::vector<char> pr(n + 1, true);
     pr[0] = false;
     pr[1] = false;
     for (int i = 2; i * i < n; i++) {
@@ -51,7 +51,7 @@ main() {
     // true -> prime
     // false -> not prime
     for (const auto &a : bsiev) {
-        std::cout << a << " ";
+        std::cout << (bool) a << " ";
     }
     return 0;
 }

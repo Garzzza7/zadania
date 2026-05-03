@@ -8,7 +8,7 @@
 void
 dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path, std::vector<int> &cost) {
     int iter{(int) adj.size()};
-    std::vector<bool> known((int) adj.size(), false);
+    std::vector<char> known((int) adj.size(), false);
     cost[source] = 0;
     int current{source};
     while (iter--) {

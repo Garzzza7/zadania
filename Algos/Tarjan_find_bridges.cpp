@@ -10,8 +10,8 @@ struct tarjan_find_bridges {
     };
 
     std::vector<std::vector<edge>> adj;
-    std::vector<bool> visited;
-    std::vector<bool> is_bridge;
+    std::vector<char> visited;
+    std::vector<char> is_bridge;
     std::vector<std::pair<int, int>> edges;
     std::vector<int> entry_time;
     std::vector<int> low;
@@ -22,8 +22,8 @@ struct tarjan_find_bridges {
         n++;
         m++;
         adj        = std::vector(n, std::vector<edge>());
-        visited    = std::vector<bool>(n);
-        is_bridge  = std::vector<bool>(m);
+        visited    = std::vector<char>(n);
+        is_bridge  = std::vector<char>(m);
         entry_time = std::vector<int>(n);
         low        = std::vector<int>(n);
         edges      = std::vector<std::pair<int, int>>(m);

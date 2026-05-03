@@ -7,7 +7,7 @@ diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     const int n{(int) adj.size()};
     T max_diameter{0};
     T at{0};
-    std::vector<bool> visited(n + 1, false);
+    std::vector<char> visited(n + 1, false);
     auto dfs = [&](const auto &self, const T &ver, T cnt) -> void {
         if (cnt > max_diameter) {
             max_diameter = cnt;

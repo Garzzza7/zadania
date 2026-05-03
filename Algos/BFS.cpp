@@ -5,7 +5,7 @@
 template <typename T>
 void
 iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
-    std::vector<bool> visited(adj.size(), false);
+    std::vector<char> visited(adj.size(), false);
     std::queue<T> que;
     que.push(vertex);
     while (not que.empty()) {
@@ -22,7 +22,7 @@ iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
 
 template <typename T>
 void
-bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<bool> &visited, std::queue<T> que) {
+bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited, std::queue<T> que) {
     if (visited[vertex]) {
         return;
     }
@@ -46,7 +46,7 @@ main(void) {
     int vertices;
     std::cin >> vertices;
     std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());
-    std::vector<bool> visited(vertices + 1, false);
+    std::vector<char> visited(vertices + 1, false);
     int edges;
     std::cin >> edges;
     for (int i = 0; i < edges; i++) {

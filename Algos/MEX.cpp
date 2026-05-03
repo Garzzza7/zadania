@@ -4,7 +4,7 @@
 template <typename T>
 T
 mex(const std::vector<T> &vec) {
-    std::vector<bool> f(vec.size() + 1, false);
+    std::vector<char> f(vec.size() + 1, false);
     for (const auto &i : vec) {
         if (i <= (int) (vec.size())) {
             f[i] = true;

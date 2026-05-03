@@ -8,7 +8,7 @@ dp_regex(const std::string &s1, const std::string &s2) {
     const auto pattern{" " + s2};
     const int n1{static_cast<int>(word.size())};
     const int n2{static_cast<int>(pattern.size())};
-    std::vector dp(n1, std::vector<bool>(n2, false));
+    std::vector dp(n1, std::vector<char>(n2, false));
 
     dp[0][0] = true;
 

@@ -7,10 +7,10 @@ template <typename T = int> struct in_out_ancestor {
     // in case nodes are not numbers
     // std::map<T, int> tin;
     // std::map<T, int> tout;
-    // std::map<T, bool> visited;
+    // std::map<T, char> visited;
     std::vector<T> tin;
     std::vector<T> tout;
-    std::vector<bool> visited;
+    std::vector<char> visited;
     std::vector<std::vector<T>> adj;
 
     in_out_ancestor() = default;

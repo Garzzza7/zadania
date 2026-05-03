@@ -3,16 +3,16 @@
 
 struct tarjan_find_articulation {
     std::vector<std::vector<int>> adj;
-    std::vector<bool> visited;
-    std::vector<bool> is_art_point;
+    std::vector<char> visited;
+    std::vector<char> is_art_point;
     std::vector<int> entry_time;
     std::vector<int> low;
     int visit_time{0};
 
     tarjan_find_articulation(const int n) {
         adj          = std::vector(n + 1, std::vector<int>());
-        visited      = std::vector(n + 1, false);
-        is_art_point = std::vector(n + 1, false);
+        visited      = std::vector<char>(n + 1, false);
+        is_art_point = std::vector<char>(n + 1, false);
         entry_time   = std::vector<int>(n + 1);
         low          = std::vector<int>(n + 1);
     }

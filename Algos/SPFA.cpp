@@ -12,7 +12,7 @@ spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::
     }
     distances[start] = 0;
     std::queue<T> q;
-    std::vector<bool> qed(n, false);
+    std::vector<char> qed(n, false);
     std::vector<int> indeg(n, 0);
     q.push(start);
     qed[start] = true;

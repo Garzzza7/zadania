@@ -6,7 +6,7 @@
 
 template <typename T>
 void
-djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &distances, std::vector<bool> &visited,
+djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &distances, std::vector<char> &visited,
          std::vector<T> &path = {}) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
     distances[start] = 0;
@@ -60,7 +60,7 @@ main() {
         std::cin >> a >> b >> w;
         adj[a].emplace_back(b, w);
     }
-    std::vector<bool> visited(n + 1, false);
+    std::vector<char> visited(n + 1, false);
     std::vector<int> distances(n + 1, 1);
     std::vector<int> path(n + 1, -1);
     djikstra(1, adj, distances, visited, path);

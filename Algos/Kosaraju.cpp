@@ -12,7 +12,7 @@ template <typename T = int> struct kosaraju {
     std::vector<std::vector<T>> adj;
     std::vector<std::vector<T>> transposed_adj;
     std::stack<T> out;
-    std::vector<bool> visited;
+    std::vector<char> visited;
 
     int cnt_Components{0};
 
@@ -21,7 +21,7 @@ template <typename T = int> struct kosaraju {
     kosaraju(const T &_n)
         : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
           transposed_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
-        visited = std::vector<bool>(_n, false);
+        visited = std::vector<char>(_n, false);
     }
 
     void
