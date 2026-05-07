@@ -29,6 +29,26 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n , m;
+    std::cin >> n >> m;
+    std::vector<int> a(n);
+    std::vector<int> b(m);
+    for(auto &&v : a) {
+        std::cin >> v;
+    }
+    for(auto &&v : b) {
+        std::cin >> v;
+    }
+    int res = INT32_MAX;
+    for(int num = 0 ; num < (1<<9) ; num++) {
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < m; j++) {
+                cnt+=( (a[i]&b[i])|num )==num;
+            }
+        }
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -37,7 +57,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

@@ -27,7 +27,7 @@ def iter_bfs(ver, adj, visited):
 
 v = int(input())
 visited = [False] * (v + 1)
-adj = [[] for _ in range(v + 1)]
+adj: list[list[int]] = [[] for _ in range(v + 1)]
 edges = int(input())
 for i in range(edges):
     inp = input().split()

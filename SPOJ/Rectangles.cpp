@@ -28,7 +28,27 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T>
+[[nodiscard]] inline T
+bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
 void solve(void) {
+    u64 n;
+    std::cin >> n;
+    u64 res = n;
+    u64 l = 2ULL;
+    u64 limit = bin_ce(n, 2ULL);
+    while(limit--) {
+        u64 r = l;
+        while(l*r <= n) {
+            res++;
+            r++;
+        }
+        l++;
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -37,7 +57,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

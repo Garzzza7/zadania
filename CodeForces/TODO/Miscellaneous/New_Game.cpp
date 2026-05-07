@@ -28,10 +28,29 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void solve(void) {
+void
+solve(void) {
+    int n, k;
+    std::cin >> n >> k;
+    std::vector<int> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    std::sort(all(vec));
+    int res = 0;
+    int r   = 0;
+    for (int l = 0; l < n; l++) {
+        r = std::max(r, l);
+        while (r + 1 < n and vec[r + 1] - vec[r] <= 1 and vec[r + 1] - vec[l] < k) {
+            r++;
+        }
+        res = std::max(res, r - l + 1);
+    }
+    std::cout << res << "\n";
 }
 
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

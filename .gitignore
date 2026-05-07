@@ -39,3 +39,4 @@ Makefile
 compile_commands.json
 TAGS
 tags
+.mypy_cache

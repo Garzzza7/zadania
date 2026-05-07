@@ -1,7 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cassert>
 #include <cstdint>
-#include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <limits>
@@ -31,37 +31,45 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    i64 n, k;
-    std::cin >> n >> k;
-    i64 l    = 1;
-    i64 r    = n;
-    auto ari = [&k](i64 i) -> i64 {
-        i64 res = i * k + (i * (i - 1) / 2);
-        return res;
+    int n;
+    std::cin >> n;
+    std::priority_queue<int> pa;
+    std::priority_queue<int> pb;
+    for(int i = 0 ; i < n ; i++) {
+        int v;
+        std::cin >> v;
+        pa.push(v);
+    }
+    for(int i = 0 ; i < n ; i++) {
+        int v;
+        std::cin >> v;
+        pb.push(v);
+    }
+    int res = 0;
+    auto len = [](int a) -> int {
+      int res = 0;
+      while(a > 0) {
+        res++;
+        a /= 10;
+      }
+      return res;
     };
-    i64 best = 0;
-    while (l <= r) {
-        auto mid   = (r - l) / 2 + l;
-        auto left  = ari(mid);
-        auto right = ari(n) - left;
-        if (right > left) {
-            best = mid;
-            l    = mid + 1;
+    while(not pa.empty() and not pb.empty()) {
+        if(pa.top() == pb.top()) {
+            pa.pop();
+            pb.pop();
         } else {
-            r = mid - 1;
+            if(pa.top() > pb.top()) {
+                auto curr = pa.top();
+                pa.pop();
+                pa.push(len(curr));
+            } else {
+                auto curr = pb.top();
+                pb.pop();
+                pb.push(len(curr));
+            }
+            res++;
         }
-    }
-    i64 res = INT64_MAX;
-    {
-        auto left  = ari(best);
-        auto right = ari(n) - left;
-        res        = std::min(res, std::abs(right - left));
-    }
-    best++;
-    {
-        auto left  = ari(best);
-        auto right = ari(n) - left;
-        res        = std::min(res, std::abs(right - left));
     }
     std::cout << res << "\n";
 }

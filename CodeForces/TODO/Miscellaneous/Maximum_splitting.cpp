@@ -28,10 +28,30 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void solve(void) {
+void
+solve(void) {
+    int n;
+    std::cin >> n;
+    bool bad = false;
+    if (n <= 3 or n == 11) {
+        std::cout << -1 << "\n";
+        return;
+    }
+    int res = n / 4;
+    if (n % 4 == 0) {
+    } else if (n % 4 == 1) {
+        res--;
+    } else if (n % 4 == 2) {
+    } else if (n % 4 == 3) {
+        res--;
+    }
+    res = std::max(0, res);
+    if (bad or res == 0) res = -1;
+    std::cout << res << "\n";
 }
 
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

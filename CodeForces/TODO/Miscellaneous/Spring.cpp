@@ -28,10 +28,16 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void solve(void) {
+void
+solve(void) {
+    i64 a, b, c, m;
+    std::cin >> a >> b >> c >> m;
+    i64 cm = std::lcm(a, std::lcm(b, c));
+
 }
 
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
