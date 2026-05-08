@@ -1,25 +1,23 @@
 #include <iostream>
 #include <vector>
 
-static int t{0};
-
 template <typename T>
 std::vector<T>
 topo_sort(const T &s, const std::vector<std::vector<T>> &adj) {
     // must be a dag
+    int time{0};
     const int n{(int) adj.size()};
     std::vector<T> res;
-    res.reserve(n);
     std::vector<char> visited(n, false);
     auto dfs{[&](const auto &self, const T &ver) -> void {
         visited[ver] = true;
-        t++;
+        time++;
         for (const auto &v : adj[ver]) {
             if (not visited[v]) {
                 self(self, v);
             }
         }
-        t++;
+        time++;
         res.push_back(ver);
     }};
     dfs(dfs, s);

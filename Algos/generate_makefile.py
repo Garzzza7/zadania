@@ -4,7 +4,7 @@ import sys
 
 FILE_NAME: str = sys.argv[0]
 
-WIP: list[str] = ["HLD", "Kuhn-Munkers"]
+WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres"]
 
 # file stuff
 current_directory: str = os.getcwd()
@@ -127,6 +127,7 @@ for cpp_file in cpp_files:
         continue
     else:
         makefile.write(" " + FILE + ".sol ")
+        makefile.write(FILE + ".txt")
 makefile.write("\n")
 
 makefile.write("	bash " + test_runner)
@@ -159,11 +160,11 @@ for cpp_file in cpp_files:
         continue
     else:
         testfile.write(
-            'if [[ -n "$(./'
+            'if [[ ! "$(./'
             + FILE
             + ".sol <"
             + FILE
-            + '.txt 2>&1 >/dev/null)" ]]; then\n'
+            + '.txt)" ]]; then\n'
             + '    printf "${red}ABORT at '
             + FILE
             + '.${normal}\\n"\n'
