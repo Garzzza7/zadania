@@ -395,7 +395,7 @@ solve() {
 }
 
 int
-main() {
+main(void) {
     std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
     const auto start = std::chrono::high_resolution_clock::now();

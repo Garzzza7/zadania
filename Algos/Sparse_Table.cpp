@@ -59,7 +59,7 @@ using RMQ          = sparse_table<long long, decltype(op), (long long) (1e9 + 1)
 using SUM          = sparse_table<long long, decltype(sum), 0LL>;
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

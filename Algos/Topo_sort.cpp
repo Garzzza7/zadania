@@ -27,7 +27,7 @@ topo_sort(const T &s, const std::vector<std::vector<T>> &adj) {
 }
 
 int
-main() {
+main(void) {
     int n;
     std::cin >> n;
     std::vector<std::vector<int>> adj(n + 1, std::vector<int>());

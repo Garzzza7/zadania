@@ -41,7 +41,7 @@ merge_sort(std::vector<T> &vec, int l, int r) {
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

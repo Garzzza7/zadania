@@ -21,7 +21,7 @@ bitmask(const T &num) {
 }
 
 int
-main() {
+main(void) {
     int t;
     std::cin >> t;
     while (t--) {
