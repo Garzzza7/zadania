@@ -15,7 +15,10 @@ template <typename T = int> struct dsu {
 
     dsu() = delete;
 
-    dsu(const T _n) : parent(std::vector<T>(_n, 0)), size(std::vector<T>(_n, 1)), rank(std::vector<T>(_n, 0)) {
+    dsu(const T _n)
+        : parent(std::vector<T>(_n, 0)),
+          size(std::vector<T>(_n, 1)),
+          rank(std::vector<T>(_n, 0)) {
         for (T i = 0; i < _n; i++) {
             parent[i] = i;
         }
@@ -29,7 +32,10 @@ template <typename T = int> struct dsu {
     }
     */
 
-    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank) : parent(_parent), size(_size), rank(_rank) {
+    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank)
+        : parent(_parent),
+          size(_size),
+          rank(_rank) {
     }
 
     ~dsu() = default;

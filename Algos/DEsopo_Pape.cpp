@@ -6,7 +6,9 @@ struct desopo_pape {
     struct edge {
         int vertex;
         int weight;
-        edge(const int vv, const int ww) : vertex(vv), weight(ww) {
+        edge(const int vv, const int ww)
+            : vertex(vv),
+              weight(ww) {
         }
     };
 

@@ -14,13 +14,16 @@ template <typename T = int> struct cactus {
 
     cactus() = default;
 
-    cactus(cactus<T> *b) : id((int) (b->branches.size())), parent(b) {
+    cactus(cactus<T> *b)
+        : id((int) (b->branches.size())),
+          parent(b) {
         std::cout << b->id << " created " << (int) (b->branches.size()) << "\n";
     }
 
     // move version
     cactus(std::vector<T> stack, std::vector<std::unique_ptr<cactus<T>>> branches)
-        : stack(std::move(stack)), branches(std::move(branches)) {
+        : stack(std::move(stack)),
+          branches(std::move(branches)) {
     }
 
     // copy version

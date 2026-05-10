@@ -6,10 +6,14 @@ template <typename T> struct point {
     T x;
     T y;
 
-    point(T _x, T _y) : x(_x), y(_y) {
+    point(T _x, T _y)
+        : x(_x),
+          y(_y) {
     }
 
-    point() : x(0), y(0) {
+    point()
+        : x(0),
+          y(0) {
     }
 
     // just in case of a need of not using lambda

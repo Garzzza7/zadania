@@ -8,10 +8,16 @@ template <typename T = double> struct circle {
     T y;
     T r;
 
-    circle() : x(0), y(0), r(0) {
+    circle()
+        : x(0),
+          y(0),
+          r(0) {
     }
 
-    circle(const T &x, const T &y, const T &r) : x(x), y(y), r(r) {
+    circle(const T &x, const T &y, const T &r)
+        : x(x),
+          y(y),
+          r(r) {
     }
 
     ~circle() = default;

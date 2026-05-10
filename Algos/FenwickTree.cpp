@@ -11,11 +11,13 @@ template <typename T, typename OP> struct fenwick {
     int size{0};
     std::vector<T> vec;
     static constexpr OP op{};
-    fenwick(const int &_n) : size(_n + 1) {
+    fenwick(const int &_n)
+        : size(_n + 1) {
         vec.assign(size, 0);
     }
 
-    fenwick(const std::vector<T> &_vec) : size((int) _vec.size() + 1) {
+    fenwick(const std::vector<T> &_vec)
+        : size((int) _vec.size() + 1) {
         vec.assign(size, 0);
         for (int i = 1; i < size; i++) {
             update(vec[i - 1], i);

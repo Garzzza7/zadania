@@ -6,7 +6,10 @@ template <typename T = int> struct edge {
     int u;
     int v;
     T weight;
-    edge(const int &_u, const int &_v, const T &_weight) : u(_u), v(_v), weight(_weight) {
+    edge(const int &_u, const int &_v, const T &_weight)
+        : u(_u),
+          v(_v),
+          weight(_weight) {
     }
 };
 
@@ -17,7 +20,9 @@ template <typename T = int> struct boruvka {
     std::vector<int> parent;
     std::vector<int> rank;
 
-    boruvka(const int &_n) : n(_n), MAX(std::numeric_limits<T>::max()) {
+    boruvka(const int &_n)
+        : n(_n),
+          MAX(std::numeric_limits<T>::max()) {
         parent.assign(n, 0);
         for (int i = 0; i < n; i++) {
             parent[i] = i;

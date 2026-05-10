@@ -9,7 +9,8 @@ template <typename T = int> struct node {
 
     node() = default;
 
-    node(const T &v) : val(v) {
+    node(const T &v)
+        : val(v) {
     }
 
     ~node() = default;
@@ -62,12 +63,14 @@ template <typename T = int> struct bst {
     // node<T> *sentinel;
     // std::vector<node<T>> nodes;
 
-    bst() : root(new node()) {
+    bst()
+        : root(new node()) {
         // sentinel = new node(-2137);
         // root->p = sentinel;
     }
 
-    bst(T v) : root(new node()) {
+    bst(T v)
+        : root(new node()) {
         // nodes.push_back(v);
     }
 

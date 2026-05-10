@@ -34,7 +34,8 @@ template <typename T = int> struct cartesian_tree {
         const TT NEUTRAL_ELEMENT{INT32_MAX};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         std::vector<TT> bin_log;
-        sparse_table(const std::vector<TT> &_init) : size(static_cast<int>(_init.size())) {
+        sparse_table(const std::vector<TT> &_init)
+            : size(static_cast<int>(_init.size())) {
             bin_log.push_back(0);
             bin_log.push_back(0);
             for (int i = 2; i <= size; i++) {
@@ -79,7 +80,8 @@ template <typename T = int> struct cartesian_tree {
 
     std::vector<int> tree;
     std::vector<T> base;
-    cartesian_tree(const std::vector<T> &arr) : base(arr) {
+    cartesian_tree(const std::vector<T> &arr)
+        : base(arr) {
         // FIXME: sometimes the vector might be too small
         tree.assign(base.size() * 5, -1);
     }

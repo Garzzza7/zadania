@@ -7,9 +7,12 @@
 template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
-    constexpr Modular() : value() {
+    constexpr Modular()
+        : value() {
     }
-    template <typename U> Modular(const U &x) : value(normalize(x)) {
+    template <typename U>
+    Modular(const U &x)
+        : value(normalize(x)) {
     }
 
     template <typename TT>
@@ -415,10 +418,12 @@ struct modint {
         return (res < 0) ? res + MOD : res;
     }
 
-    explicit modint() : value(0) {
+    explicit modint()
+        : value(0) {
     }
 
-    explicit modint(uint64_t _value) : value(int(_value % MOD)) {
+    explicit modint(uint64_t _value)
+        : value(int(_value % MOD)) {
         if (value < 0) {
             value += MOD;
         }

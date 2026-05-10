@@ -5,9 +5,12 @@
 template <typename T> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
-    constexpr Modular() : value() {
+    constexpr Modular()
+        : value() {
     }
-    template <typename U> Modular(const U &x) : value(normalize(x)) {
+    template <typename U>
+    Modular(const U &x)
+        : value(normalize(x)) {
     }
 
     template <typename TT>

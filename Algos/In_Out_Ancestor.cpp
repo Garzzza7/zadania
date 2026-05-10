@@ -15,7 +15,8 @@ template <typename T = int> struct in_out_ancestor {
 
     in_out_ancestor() = default;
 
-    in_out_ancestor(const int &_n) : n(_n) {
+    in_out_ancestor(const int &_n)
+        : n(_n) {
         tin.resize(n);
         tout.resize(n);
         visited.resize(n);
@@ -23,7 +24,8 @@ template <typename T = int> struct in_out_ancestor {
         calc(0);
     }
 
-    in_out_ancestor(const std::vector<std::vector<T>> &_adj) : adj(_adj) {
+    in_out_ancestor(const std::vector<std::vector<T>> &_adj)
+        : adj(_adj) {
         n = (int) adj.size();
         tin.resize(n);
         tout.resize(n);

@@ -21,7 +21,8 @@ template <typename T = int> struct lca {
             precalc_log = std::move(rhs.precalc_log);
             return *this;
         }
-        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler) : size((int) _init.size()) {
+        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler)
+            : size((int) _init.size()) {
             assert(_init.size() == _euler.size());
             while (1 << LOG < size) {
                 LOG++;
@@ -61,7 +62,8 @@ template <typename T = int> struct lca {
     using ST = sparse_table<T, decltype(op), INT32_MAX>;
     ST st{};
 
-    lca(const std::vector<std::vector<int>> &_adj) : n((int) _adj.size()) {
+    lca(const std::vector<std::vector<int>> &_adj)
+        : n((int) _adj.size()) {
         ids.resize(n);
         std::vector visited(n, false);
         auto dfs{[&](const auto &self, const int v, const int h) -> void {

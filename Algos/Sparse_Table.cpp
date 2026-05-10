@@ -10,7 +10,8 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
     std::vector<std::vector<T>> matrix;
     static constexpr OP op{};
     std::vector<unsigned long long> precalc_log;
-    sparse_table(const std::vector<T> &_init) : size(static_cast<int>(_init.size())) {
+    sparse_table(const std::vector<T> &_init)
+        : size(static_cast<int>(_init.size())) {
         while (1 << LOG < size) {
             LOG++;
         }

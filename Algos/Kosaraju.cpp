@@ -19,7 +19,8 @@ template <typename T = int> struct kosaraju {
     std::map<T, std::vector<T>> scc;
 
     kosaraju(const T &_n)
-        : n(_n), adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
+        : n(_n),
+          adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
           transposed_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
         visited = std::vector<char>(_n, false);
     }

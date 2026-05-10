@@ -11,7 +11,9 @@ template <typename T, typename OP> struct disjoint_sparse_table {
     std::vector<T> base;
     std::vector<unsigned long long> precalc_log;
 
-    disjoint_sparse_table(const std::vector<T> &_input) : size((int) _input.size()), base(_input) {
+    disjoint_sparse_table(const std::vector<T> &_input)
+        : size((int) _input.size()),
+          base(_input) {
         while (1 << LOG < size) {
             LOG++;
         }

@@ -38,3 +38,4 @@ AlignConsecutiveBitFields:
 AlignEscapedNewlines: Right
 AlignOperands: true
 AlignTrailingComments: true
+PackConstructorInitializers: Never

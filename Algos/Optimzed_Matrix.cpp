@@ -19,10 +19,16 @@ template <typename T> struct matrix {
     matrix &operator=(matrix &&) = default;
     ~matrix()                    = default;
 
-    matrix(const std::vector<std::vector<T>> &in) : m(static_cast<int>(in.size())), n(static_cast<int>(in[0].size())), mat(in) {
+    matrix(const std::vector<std::vector<T>> &in)
+        : m(static_cast<int>(in.size())),
+          n(static_cast<int>(in[0].size())),
+          mat(in) {
     }
 
-    matrix(const int &m, const int &n) : m(m), n(n), mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
+    matrix(const int &m, const int &n)
+        : m(m),
+          n(n),
+          mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
     friend matrix

@@ -14,7 +14,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         int c;
         int cnt_shares{0};
         int parent{0};
-        node(const int c_) : c(c_) {
+        node(const int c_)
+            : c(c_) {
             next.assign(CHAR_SIZE, -1);
         }
     };

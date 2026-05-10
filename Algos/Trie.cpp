@@ -9,7 +9,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         std::vector<int> accepting;
         int c{};
         int cnt_shares{0};
-        node(const int _c) : c(_c) {
+        node(const int _c)
+            : c(_c) {
             next = std::vector<int>(CHAR_SIZE + 1, -1);
         }
     };
