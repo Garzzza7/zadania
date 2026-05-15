@@ -1,6 +1,30 @@
 #include <iostream>
 #include <vector>
 
+template <typename T>
+T
+kadane(const std::vector<T> &vec, const int &l, const int &r) {
+    T best = 0;
+    T sum  = 0;
+    for (int i = l; i < r; i++) {
+        sum  = std::max(vec[i], sum + vec[i]);
+        best = std::max(best, sum);
+    }
+    return best;
+}
+
+template <typename T>
+T
+kadane(const std::vector<T> &vec) {
+    T best = 0;
+    T sum  = 0;
+    for (const auto &v : vec) {
+        sum  = std::max(v, sum + v);
+        best = std::max(best, sum);
+    }
+    return best;
+}
+
 int
 main(void) {
     std::ios_base::sync_with_stdio(false);

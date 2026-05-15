@@ -1,3 +1,4 @@
+#!/bin/python3
 import os
 import subprocess
 import sys
@@ -52,7 +53,7 @@ prologue_colors: str = (
 )
 
 warning: str = (
-    "# THIS FILE WAS AUTOMATICALLY GENERATED VIA " + FILE_NAME + ". DO NOT EDIT IT. #\n"
+    "# THIS FILE WAS AUTOMATICALLY GENERATED VIA " + FILE_NAME + " DO NOT EDIT IT. #\n"
 )
 
 padding: str = ""

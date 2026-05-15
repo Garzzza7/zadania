@@ -25,7 +25,7 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     }
 
     void
-    build(const std::vector<T> &arr, const int x, const int lx, const int rx) {
+    build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
         if (rx - lx == 1) {
             if (lx < static_cast<int>(arr.size())) {
                 vec[x] = arr[lx];
@@ -39,12 +39,12 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     }
 
     void
-    set(const int i, const T v) {
+    set(const int &i, const T &v) {
         set(i, v, 0, 0, size);
     }
 
     void
-    set(const int i, const T v, const int x, const int lx, const int rx) {
+    set(const int i, const T v, const int &x, const int &lx, const int &rx) {
         if (rx - lx == 1) {
             vec[x] = v;
             return;
@@ -58,14 +58,14 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
         vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
-    T
-    query(const int l, const int r) {
+    [[nodiscard]] T
+    query(const int &l, const int &r) const {
         // [l , r)
         return query(l, r, 0, 0, size);
     }
 
-    T
-    query(const int l, const int r, const int x, const int lx, const int rx) {
+    [[nodiscard]] T
+    query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
         if (lx >= r or l >= rx) {
             return NEUTRAL;
         }

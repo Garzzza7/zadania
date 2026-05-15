@@ -1,7 +1,7 @@
 #!/bin/bash
-###################################################################################
-# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py. DO NOT EDIT IT. #
-###################################################################################
+####################################################################################
+# THIS FILE WAS AUTOMATICALLY GENERATED VIA ./generate_makefile.py DO NOT EDIT IT. #
+####################################################################################
 
 grey=$(tput setaf 7)
 black=$(tput setaf 16)
@@ -1105,18 +1105,18 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
-if [[ ! "$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt)" ]]; then
-	printf "${red}ABORT at Sierpinki_triagnle_nth_row.${normal}\n"
+if [[ ! "$(./Sierpinski_triagnle_nth_row.sol <Sierpinski_triagnle_nth_row.txt)" ]]; then
+	printf "${red}ABORT at Sierpinski_triagnle_nth_row.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
-elif [ "$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt)" == "$(cat Sierpinki_triagnle_nth_row.test)" ]; then
-	printf "${green}Sierpinki_triagnle_nth_row Passed.${normal}\n"
+elif [ "$(./Sierpinski_triagnle_nth_row.sol <Sierpinski_triagnle_nth_row.txt)" == "$(cat Sierpinski_triagnle_nth_row.test)" ]; then
+	printf "${green}Sierpinski_triagnle_nth_row Passed.${normal}\n"
 	cnt_passed=$((cnt_passed + 1))
 else
-	printf "${red}Sierpinki_triagnle_nth_row Failed.\n"
+	printf "${red}Sierpinski_triagnle_nth_row Failed.\n"
 	printf "${red} Got:\n"
-	printf "${red}$(./Sierpinki_triagnle_nth_row.sol <Sierpinki_triagnle_nth_row.txt)\n"
+	printf "${red}$(./Sierpinski_triagnle_nth_row.sol <Sierpinski_triagnle_nth_row.txt)\n"
 	printf "${red} Should be:\n"
-	printf "${red}$(cat Sierpinki_triagnle_nth_row.test)${normal}\n"
+	printf "${red}$(cat Sierpinski_triagnle_nth_row.test)${normal}\n"
 	cnt_failed=$((cnt_failed + 1))
 fi
 
