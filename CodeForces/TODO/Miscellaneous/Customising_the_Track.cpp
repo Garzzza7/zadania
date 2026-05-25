@@ -30,6 +30,21 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    i64 tot = 0LL;
+    for(auto &&v : vec) {
+        std::cin >> v;
+        tot += v;
+    }
+    auto rem = tot % n;
+    if(rem == 0) {
+        std::cout << 0 << "\n";
+        return;
+    }
+    i64 res = (n - rem) * rem;
+    std::cout << res << "\n";
 }
 
 int main(void) {

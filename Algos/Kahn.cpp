@@ -21,7 +21,7 @@ kahn(const std::vector<std::vector<T>> &adj) {
         }
     }
     while (not q.empty()) {
-        auto curr = q.front();
+        auto curr{q.front()};
         q.pop();
         res.push_back(curr);
         for (const auto &v : adj[curr]) {

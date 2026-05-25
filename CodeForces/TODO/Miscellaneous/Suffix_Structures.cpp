@@ -30,6 +30,23 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    str s , t;
+    std::cin >> s >> t;
+    auto is_sub = [](str s , str t) -> bool {
+        const int n = sz(s);
+        const int m = sz(t);
+        for(int i = 0 ; i < n ; i++) {
+            bool sub = true;
+            for(int j = 0 ; j < m ; j++) {
+                sub &= s[i + j]  == t[j];
+            }
+            if(sub) {
+                return true;
+            }
+        }
+        return false;
+    };
+    std::cout << is_sub(s , t) << "\n";
 }
 
 int main(void) {
@@ -38,7 +55,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

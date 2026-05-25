@@ -29,7 +29,40 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
+constexpr int mod = 1e9 + 7;
+
+template <typename T>
+[[nodiscard]] inline bool
+is_on(T a, T b) noexcept {
+    return a & (static_cast<T>(1) << b);
+}
+
+template <typename T>
+T
+mod_binpow(T a, T b) {
+    T res{1};
+    while (b > 0) {
+        if (b & 1) {
+            res = res * a % mod;
+        }
+        a = a * a % mod;
+        b >>= 1;
+    }
+    return res;
+}
+
 void solve(void) {
+    i64 n , k;
+    std::cin >> n >> k;
+    i64 res = 0LL;
+    for(i64 i = 0 ; i < 63 ;  i++) {
+        if(is_on(k , i)) {
+            res += mod_binpow(n , i);
+            res %= mod;
+        }
+    }
+    res %= mod;
+    std::cout << res << "\n";
 }
 
 int main(void) {

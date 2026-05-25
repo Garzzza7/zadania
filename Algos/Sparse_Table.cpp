@@ -7,7 +7,7 @@
 template <typename T, typename OP, T NEUTRAL> struct sparse_table {
     int size{};
     int LOG{};
-    std::vector<std::vector<T>> matrix;
+    std::vector<std::vector<T>> vec;
     static constexpr OP op{};
     std::vector<unsigned long long> precalc_log;
     sparse_table(const std::vector<T> &_init)
@@ -16,12 +16,12 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
             LOG++;
         }
         LOG++;
-        matrix      = std::vector(LOG, std::vector(size, NEUTRAL));
-        matrix[0]   = _init;
+        vec         = std::vector(LOG, std::vector(size, NEUTRAL));
+        vec[0]      = _init;
         precalc_log = std::vector(1 << LOG, 0ULL);
         for (int i = 1; i <= LOG; i++) {
             for (int j = 0; j + (1 << i) <= size; j++) {
-                matrix[i][j] = op(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
+                vec[i][j] = op(vec[i - 1][j], vec[i - 1][j + (1 << (i - 1))]);
             }
         }
         for (int i = 0; i < LOG; i++) {
@@ -32,18 +32,18 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
     }
 
     [[nodiscard]] T
-    query_idempotent(int L, const int &R) const {
+    query(const int &L, const int &R) const {
         const auto log = precalc_log[R - L];
-        return op(matrix[log][L], matrix[log][R - (1 << log)]);
+        return op(vec[log][L], vec[log][R - (1 << log)]);
     }
 
     [[nodiscard]] T
-    query(int L, int R) const {
+    query_nonindempotent(int L, int R) const {
         T res{NEUTRAL};
         R--;
         for (int i = LOG; i >= 0; i--) {
             if (1 << i <= R - L + 1) {
-                res = op(res, matrix[i][L]);
+                res = op(res, vec[i][L]);
                 L += 1 << i;
             }
         }
@@ -75,12 +75,12 @@ main(void) {
     RMQ rmq(vec);
     SUM s(vec);
 
-    std::cout << s.query(0, n) << "\n";
+    std::cout << s.query_nonindempotent(0, n) << "\n";
 
     while (q--) {
         int l, r;
         std::cin >> l >> r;
-        std::cout << rmq.query_idempotent(l, r) << "\n";
+        std::cout << rmq.query(l, r) << "\n";
         // std::cout << rmq.query(l, r) << "\n";
     }
 

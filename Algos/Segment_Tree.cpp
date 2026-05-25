@@ -19,11 +19,7 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
         build(_vec);
     }
 
-    void
-    build(const std::vector<T> &arr) {
-        build(arr, 0, 0, size);
-    }
-
+  private:
     void
     build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
         if (rx - lx == 1) {
@@ -36,11 +32,6 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
         build(arr, 2 * x + 1, lx, mid);
         build(arr, 2 * x + 2, mid, rx);
         vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
-    }
-
-    void
-    set(const int &i, const T &v) {
-        set(i, v, 0, 0, size);
     }
 
     void
@@ -59,12 +50,6 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     }
 
     [[nodiscard]] T
-    query(const int &l, const int &r) const {
-        // [l , r)
-        return query(l, r, 0, 0, size);
-    }
-
-    [[nodiscard]] T
     query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
         if (lx >= r or l >= rx) {
             return NEUTRAL;
@@ -76,6 +61,23 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
         const T p1{query(l, r, 2 * x + 1, lx, mid)};
         const T s2{query(l, r, 2 * x + 2, mid, rx)};
         return op(p1, s2);
+    }
+
+  public:
+    void
+    build(const std::vector<T> &arr) {
+        build(arr, 0, 0, size);
+    }
+
+    void
+    set(const int &i, const T &v) {
+        set(i, v, 0, 0, size);
+    }
+
+    [[nodiscard]] T
+    query(const int &l, const int &r) const {
+        // [l , r)
+        return query(l, r, 0, 0, size);
     }
 };
 

@@ -1,94 +1,102 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
-using i64 = long long;
-using u64 = unsigned long long;
-using i32 = int;
-using u32 = unsigned int;
-using str = std::string;
-
-bool git = false;
 
 void
-dfs(int vertex, std::vector<std::vector<int>> &adj, std::vector<bool> &visited,
-    const std::vector<i32> &q, std::set<i32> path) {
-    if (visited[vertex])
-	return;
-    visited[vertex] = true;
-    path.insert(vertex);
-    for (auto &&v : adj[vertex]) {
-	path.insert(v);
-    }
-    i32 cnt{0};
-    for (const auto &v : q) {
-	if (path.find(v) != path.end()) {
-	    cnt++;
-	}
-    }
-    if (cnt == sz(q)) {
-	// std::cout << "AT = " << vertex << "\n";
-	git = true;
-	return;
-    }
-    for (const auto &v : adj[vertex]) {
-	if (!visited[v]) {
-	    dfs(v, adj, visited, q, path);
-	}
-    }
-}
-
-void
-solve() {
-    i32 n, m;
+solve(void) {
+    int n, m;
     std::cin >> n >> m;
-    std::vector adj(n + 10, std::vector<i32>());
-    for (i32 i = 0; i < n - 1; i++) {
-	i32 u, v;
-	std::cin >> u >> v;
-	adj[u].push_back(v);
-	adj[v].push_back(u);
+    std::vector adj(n + 1, std::vector<int>());
+    std::vector<int> in(n + 1, 0);
+    std::vector<int> out(n + 1, 0);
+    std::vector<int> par(n + 1, -1);
+    std::vector<int> deg(n + 1, 0);
+    int T = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int u, v;
+        std::cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-
+    auto dfs = [&](const auto &self, int ver, int p, int d) -> void {
+        in[ver]  = T++;
+        par[ver] = p;
+        deg[ver] = d;
+        for (const auto &v : adj[ver]) {
+            if (v != p) {
+                self(self, v, ver, d + 1);
+            }
+        }
+        out[ver] = T++;
+    };
+    dfs(dfs, 1, 1, 0);
     while (m--) {
-	i32 k;
-	std::cin >> k;
-	std::vector q(k, 0);
-	for (auto &&v : q)
-	    std::cin >> v;
-
-	std::vector<bool> visited(n + 10, false);
-	std::set<i32> path;
-	dfs(1, adj, visited, q, path);
-
-	if (git) {
-	    std::cout << "YES\n";
-	} else {
-	    std::cout << "NO\n";
-	}
-	git = false;
+        int k;
+        std::cin >> k;
+        std::vector<int> qs(k);
+        for (auto &&v : qs) {
+            std::cin >> v;
+        }
+        int bot = *qs.begin();
+        for (int i = 1; i < k; i++) {
+            const auto &curr = qs[i];
+            if (deg[curr] > deg[bot]) {
+                bot = curr;
+            }
+        }
+        for (auto &&v : qs) {
+            if (v != bot) {
+                v = par[v];
+            }
+        }
+        bool git = true;
+        for (const auto &v : qs) {
+            git &= ((in[v] <= in[bot]) and (out[v] >= out[bot]));
+        }
+        if (git) {
+            std::cout << "YES\n";
+        } else {
+            std::cout << "NO\n";
+        }
     }
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
-    while (_--)
-	solve();
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

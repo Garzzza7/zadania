@@ -85,7 +85,7 @@ main(void) {
         graph.add_edge(edge(u, v, w));
     }
 
-    auto res{graph.calc_mst()};
+    const auto res{graph.calc_mst()};
 
     for (const auto &[u, v, weight] : res) {
         std::cout << u << " -> " << v << " with weight " << weight << "\n";

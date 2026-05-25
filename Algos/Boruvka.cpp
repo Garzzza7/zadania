@@ -14,20 +14,20 @@ template <typename T = int> struct edge {
 };
 
 template <typename T = int> struct boruvka {
-    int n;
+    int size;
     T MAX;
     std::vector<edge<T>> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
     boruvka(const int &_n)
-        : n(_n),
+        : size(_n),
           MAX(std::numeric_limits<T>::max()) {
-        parent.assign(n, 0);
-        for (int i = 0; i < n; i++) {
+        parent.assign(size, 0);
+        for (int i = 0; i < size; i++) {
             parent[i] = i;
         }
-        rank.assign(n, 0);
+        rank.assign(size, 0);
     }
 
     void
@@ -59,12 +59,12 @@ template <typename T = int> struct boruvka {
     }
 
     std::vector<edge<T>>
-    mst() {
+    calc_mst() {
         std::vector<edge<T>> mst;
-        std::vector<edge<T>> cheapest(n, edge(-1, -1, MAX));
+        std::vector<edge<T>> cheapest(size, edge(-1, -1, MAX));
 
-        int tree_count{n};
-        T mst_weight{0};
+        int tree_count{size};
+        // T mst_weight{0};
 
         while (tree_count > 1) {
             for (const edge<T> &e : edges) {
@@ -85,7 +85,7 @@ template <typename T = int> struct boruvka {
                 }
             }
 
-            for (int ver = 0; ver < n; ver++) {
+            for (int ver = 0; ver < size; ver++) {
                 if (cheapest[ver].weight != MAX) {
                     const auto &u{cheapest[ver].u};
                     const auto &v{cheapest[ver].v};
@@ -95,7 +95,7 @@ template <typename T = int> struct boruvka {
                     const int id2{find(v)};
 
                     if (id1 != id2) {
-                        mst_weight += weight;
+                        // mst_weight += weight;
                         union_by_rank(id1, id2);
                         mst.emplace_back(edge(u, v, weight));
                         tree_count--;
@@ -124,7 +124,11 @@ main(void) {
         graph.add_edge(edge(u, v, w));
     }
 
-    for (const auto res{graph.mst()}; const auto &[u, v, weight] : res)
+    const auto res{graph.calc_mst()};
+
+    for (const auto &[u, v, weight] : res) {
         std::cout << u << " -> " << v << " with weight " << weight << "\n";
+    }
+
     return 0;
 }

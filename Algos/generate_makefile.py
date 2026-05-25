@@ -52,17 +52,17 @@ prologue_colors: str = (
     + "\n"
 )
 
-warning: str = (
+base_warning: str = (
     "# THIS FILE WAS AUTOMATICALLY GENERATED VIA " + FILE_NAME + " DO NOT EDIT IT. #\n"
 )
 
 padding: str = ""
 
-for _ in range(len(warning) - 1):
+for _ in range(len(base_warning) - 1):
     padding = padding + "#"
 padding = padding + "\n"
 
-warning: str = padding + warning + padding + "\n"
+warning: str = padding + base_warning + padding + "\n"
 
 # flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
@@ -101,34 +101,34 @@ makefile.write("COMPILER = " + compiler + "\n\n")
 
 makefile.write("standard:")
 for cpp_file in cpp_files:
-    FILE: str = cpp_file[:-4]
-    if FILE in WIP:
+    file: str = cpp_file[:-4]
+    if file in WIP:
         continue
     else:
-        makefile.write(" " + FILE + ".sol ")
+        makefile.write(" " + file + ".sol ")
 makefile.write("\n\n")
 
 makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
 
 makefile.write("asm:")
 for cpp_file in cpp_files:
-    FILE: str = cpp_file[:-4]
-    if FILE in WIP:
+    file = cpp_file[:-4]
+    if file in WIP:
         continue
     else:
-        makefile.write(" " + FILE + ".s ")
+        makefile.write(" " + file + ".s ")
 makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
 makefile.write("test:")
 for cpp_file in cpp_files:
-    FILE: str = cpp_file[:-4]
-    if FILE in WIP:
+    file = cpp_file[:-4]
+    if file in WIP:
         continue
     else:
-        makefile.write(" " + FILE + ".sol ")
-        makefile.write(FILE + ".txt")
+        makefile.write(" " + file + ".sol ")
+        makefile.write(file + ".txt")
 makefile.write("\n")
 
 makefile.write("	bash " + test_runner)
@@ -156,45 +156,45 @@ testfile.write("cnt_failed=0\n")
 testfile.write("cnt_aborted=0\n\n")
 
 for cpp_file in cpp_files:
-    FILE: str = cpp_file[:-4]
-    if FILE in WIP:
+    file = cpp_file[:-4]
+    if file in WIP:
         continue
     else:
         testfile.write(
             'if [[ ! "$(./'
-            + FILE
+            + file
             + ".sol <"
-            + FILE
+            + file
             + '.txt)" ]]; then\n'
             + '    printf "${red}ABORT at '
-            + FILE
+            + file
             + '.${normal}\\n"\n'
             + "    cnt_aborted=$((cnt_aborted + 1))\n"
             + 'elif [ "$(./'
-            + FILE
+            + file
             + ".sol <"
-            + FILE
+            + file
             + ".txt"
             + ")"
             + '" == "$(cat '
-            + FILE
+            + file
             + '.test)" ]; then\n    printf "${green}'
-            + FILE
+            + file
             + ' Passed.${normal}\\n"'
             + "\n    cnt_passed=$((cnt_passed + 1))"
             + '\nelse\n    printf "${red}'
-            + FILE
+            + file
             + ' Failed.\\n"\n'
             + '    printf "${red} Got:\\n"\n'
             + '    printf "${red}$(./'
-            + FILE
+            + file
             + ".sol <"
-            + FILE
+            + file
             + ".txt"
             + ')\\n"\n'
             + '    printf "${red} Should be:\\n"\n'
             + '    printf "${red}$(cat '
-            + FILE
+            + file
             + '.test)${normal}\\n"'
             + "\n    cnt_failed=$((cnt_failed + 1))"
             + "\nfi\n\n"
