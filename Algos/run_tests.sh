@@ -670,6 +670,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Hash_function.sol <Hash_function.txt)" ]]; then
+	printf "${red}ABORT at Hash_function.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Hash_function.sol <Hash_function.txt)" == "$(cat Hash_function.test)" ]; then
+	printf "${green}Hash_function Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Hash_function Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Hash_function.sol <Hash_function.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Hash_function.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./In_Out_Ancestor.sol <In_Out_Ancestor.txt)" ]]; then
 	printf "${red}ABORT at In_Out_Ancestor.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
