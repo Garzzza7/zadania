@@ -21,16 +21,16 @@ template <typename T = int> struct lca {
             precalc_log = std::move(rhs.precalc_log);
             return *this;
         }
-        sparse_table(const std::vector<TT> &_init, const std::vector<TT> &_euler)
-            : size((int) _init.size()) {
-            assert(_init.size() == _euler.size());
+        sparse_table(const std::vector<TT> &init, const std::vector<TT> &euler)
+            : size((int) init.size()) {
+            assert(init.size() == euler.size());
             while (1 << LOG < size) {
                 LOG++;
             }
             matrix      = std::vector(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL, 0)));
             precalc_log = std::vector(1 << LOG, 0ULL);
             for (int i = 0; i < size; i++) {
-                matrix[0][i] = {_init[i], _euler[i]};
+                matrix[0][i] = {init[i], euler[i]};
             }
             for (int i = 1; i <= LOG; i++) {
                 for (int j = 0; j + (1 << i) <= size; j++) {
@@ -51,7 +51,7 @@ template <typename T = int> struct lca {
         }
     };
 
-    int n;
+    int size;
     std::vector<int> heights;
     std::vector<int> euler;
     std::vector<int> ids;
@@ -63,9 +63,9 @@ template <typename T = int> struct lca {
     ST st{};
 
     lca(const std::vector<std::vector<int>> &_adj)
-        : n((int) _adj.size()) {
-        ids.resize(n);
-        std::vector visited(n, false);
+        : size((int) _adj.size()) {
+        ids.resize(size);
+        std::vector visited(size, false);
         auto dfs{[&](const auto &self, const int v, const int h) -> void {
             visited[v] = true;
             heights.push_back(h);

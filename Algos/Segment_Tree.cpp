@@ -16,12 +16,12 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     }
 
     ram_seg_tree(const std::vector<T> &_vec) {
-        build(_vec);
+        _build(_vec);
     }
 
   private:
     void
-    build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
+    _build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
         if (rx - lx == 1) {
             if (lx < static_cast<int>(arr.size())) {
                 vec[x] = arr[lx];
@@ -29,28 +29,28 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
             return;
         }
         const int mid{(rx - lx) / 2 + lx};
-        build(arr, 2 * x + 1, lx, mid);
-        build(arr, 2 * x + 2, mid, rx);
+        _build(arr, 2 * x + 1, lx, mid);
+        _build(arr, 2 * x + 2, mid, rx);
         vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
     void
-    set(const int i, const T v, const int &x, const int &lx, const int &rx) {
+    _set(const int i, const T v, const int &x, const int &lx, const int &rx) {
         if (rx - lx == 1) {
             vec[x] = v;
             return;
         }
         const int mid{(rx - lx) / 2 + lx};
         if (i < mid) {
-            set(i, v, 2 * x + 1, lx, mid);
+            _set(i, v, 2 * x + 1, lx, mid);
         } else {
-            set(i, v, 2 * x + 2, mid, rx);
+            _set(i, v, 2 * x + 2, mid, rx);
         }
         vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
     [[nodiscard]] T
-    query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
+    _query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
         if (lx >= r or l >= rx) {
             return NEUTRAL;
         }
@@ -58,26 +58,26 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
             return vec[x];
         }
         const int mid{(rx - lx) / 2 + lx};
-        const T p1{query(l, r, 2 * x + 1, lx, mid)};
-        const T s2{query(l, r, 2 * x + 2, mid, rx)};
+        const T p1{_query(l, r, 2 * x + 1, lx, mid)};
+        const T s2{_query(l, r, 2 * x + 2, mid, rx)};
         return op(p1, s2);
     }
 
   public:
     void
     build(const std::vector<T> &arr) {
-        build(arr, 0, 0, size);
+        _build(arr, 0, 0, size);
     }
 
     void
     set(const int &i, const T &v) {
-        set(i, v, 0, 0, size);
+        _set(i, v, 0, 0, size);
     }
 
     [[nodiscard]] T
     query(const int &l, const int &r) const {
         // [l , r)
-        return query(l, r, 0, 0, size);
+        return _query(l, r, 0, 0, size);
     }
 };
 

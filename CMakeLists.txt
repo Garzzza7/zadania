@@ -5,7 +5,7 @@
 # in case it is not read this https://clangd.llvm.org/installation
 # also you might want to check for colliding versions here
 # /usr/lib/gcc/x86_64-linux-gnu/
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.14)
 project(template.sol)
 project(debminitemplate.sol)
 project(minitemplate.sol)
