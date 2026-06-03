@@ -2,6 +2,8 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED VIA ./generate_makefile.py DO NOT EDIT IT. #
 ####################################################################################
 
+.POSIX:
+
 .PHONY: standard all asm clean
 
 CFLAGS = -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2

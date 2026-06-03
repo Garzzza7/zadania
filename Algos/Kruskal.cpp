@@ -6,10 +6,10 @@ template <typename T = int> struct edge {
     int u;
     int v;
     T weight;
-    edge(const int &_u, const int &_v, const T &_weight)
-        : u(_u),
-          v(_v),
-          weight(_weight) {
+    edge(const int &u, const int &v, const T &weight)
+        : u(u),
+          v(v),
+          weight(weight) {
     }
 };
 
@@ -21,10 +21,10 @@ template <typename T> struct kruscal {
 
     kruscal() = default;
 
-    kruscal(const int &_n) {
-        parent = std::vector<int>(_n);
-        rank   = std::vector<int>(_n, 0);
-        for (int i = 0; i < _n; i++) {
+    kruscal(const int &n) {
+        parent = std::vector<int>(n);
+        rank   = std::vector<int>(n, 0);
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
         }
     }

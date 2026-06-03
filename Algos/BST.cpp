@@ -1,125 +1,88 @@
 #include <exception>
 #include <iostream>
 
-template <typename T = int> struct node {
-    T val{0};
-    node<T> *l{nullptr};
-    node<T> *r{nullptr};
-    node<T> *p{nullptr};
-
-    node() = default;
-
-    node(const T &v)
-        : val(v) {
-    }
-
-    ~node() = default;
-
-    bool
-    operator<=(const node<T> &p) const {
-        return val <= p.val;
-    }
-
-    bool
-    operator<(const node<T> &p) const {
-        return val < p.val;
-    }
-
-    bool
-    operator>=(const node<T> &p) const {
-        return val >= p.val;
-    }
-
-    bool
-    operator>(const node<T> &p) const {
-        return val > p.val;
-    }
-
-    bool
-    operator==(const node<T> &p) const {
-        return val == p.val;
-    }
-
-    friend std::ostream &
-    operator<<(std::ostream &out, const node<T> &n) {
-        return out << n.val;
-    }
-
-    friend std::ostream &
-    operator<<(std::ostream &out, const node<T> *n) {
-        return out << n->val;
-    }
-
-    friend std::istream &
-    operator>>(std::istream &in, node<T> &n) {
-        return in >> n.val;
-    }
-};
-
 // create on stack , add elements from heap
 
 template <typename T = int> struct bst {
-    node<T> *root;
-    // node<T> *sentinel;
-    // std::vector<node<T>> nodes;
+  private:
+    template <typename TT = int> struct _node_type {
+        TT val{0};
+        _node_type<TT> *l{nullptr};
+        _node_type<TT> *r{nullptr};
+        _node_type<TT> *p{nullptr};
 
-    bst()
-        : root(new node()) {
-        // sentinel = new node(-2137);
-        // root->p = sentinel;
-    }
+        _node_type() = default;
 
-    bst(T v)
-        : root(new node()) {
-        // nodes.push_back(v);
-    }
+        _node_type(const TT &v)
+            : val(v) {
+        }
 
-    ~bst() {
-        auto walk{[](const auto &self, node<T> *curr) -> void {
-            if (curr == nullptr) {
-                return;
-            }
-            if (curr->l) {
-                self(self, curr->l);
-            }
-            if (curr->r) {
-                self(self, curr->r);
-            }
-            delete curr;
-        }};
-        walk(walk, root->l);
-        walk(walk, root->r);
-        delete root;
-    }
+        ~_node_type() = default;
+
+        bool
+        operator<=(const _node_type<TT> &p) const {
+            return val <= p.val;
+        }
+
+        bool
+        operator<(const _node_type<TT> &p) const {
+            return val < p.val;
+        }
+
+        bool
+        operator>=(const _node_type<TT> &p) const {
+            return val >= p.val;
+        }
+
+        bool
+        operator>(const _node_type<TT> &p) const {
+            return val > p.val;
+        }
+
+        bool
+        operator==(const _node_type<TT> &p) const {
+            return val == p.val;
+        }
+
+        friend std::ostream &
+        operator<<(std::ostream &out, const _node_type<TT> &n) {
+            return out << n.val;
+        }
+
+        friend std::ostream &
+        operator<<(std::ostream &out, const _node_type<TT> *n) {
+            return out << n->val;
+        }
+
+        friend std::istream &
+        operator>>(std::istream &in, _node_type<TT> &n) {
+            return in >> n.val;
+        }
+    };
+    using node = _node_type<T>;
 
     void
-    insert(const T &n) {
-        node<T> *nn{new node(n)};
-        insert(nn, root);
-    }
-
-    void
-    insert(node<T> *n) {
-        insert(n, root);
+    _insert(node *n) {
+        __insert(n, root);
     }
 
     inline bool
-    cmp(const node<T> *n1, const node<T> *n2) const noexcept {
+    _cmp(const node *n1, const node *n2) const noexcept {
         return *n1 <= *n2;
     }
 
     void
-    insert(node<T> *n, node<T> *curr) {
-        if (cmp(n, curr)) {
+    __insert(node *n, node *curr) {
+        if (_cmp(n, curr)) {
             if (curr->l) {
-                insert(n, curr->l);
+                __insert(n, curr->l);
             } else {
                 curr->l = n;
                 n->p    = curr;
             }
         } else {
             if (curr->r) {
-                insert(n, curr->r);
+                __insert(n, curr->r);
             } else {
                 curr->r = n;
                 n->p    = curr;
@@ -128,26 +91,19 @@ template <typename T = int> struct bst {
     }
 
     void
-    remove(const T &n) {
-        node<T> *nn{new node(n)};
-        remove(nn, root);
-        delete nn;
+    _remove(const node *n) {
+        __remove(n, root);
     }
 
     void
-    remove(const node<T> *n) {
-        remove(n, root);
-    }
-
-    void
-    remove(const node<T> *n, node<T> *curr) {
+    __remove(const node *n, node *curr) {
         if (curr == nullptr) {
             return;
         }
         if (*n == *curr) {
-            auto is_left{[](const node<T> *node) -> bool {
+            auto is_left{[](const node *node) -> bool {
                 // true -> l , false -> r
-                if (node->p->l == node) {
+                if (node->p and node->p->l == node) {
                     return true;
                 }
                 return false;
@@ -178,47 +134,39 @@ template <typename T = int> struct bst {
                 delete curr;
             } else {
                 // has both children
-                node<T> *succ{find_successor(curr)};
+                node *succ{find_successor(curr)};
                 if (succ) {
                     // TODO: automate transition in case nodes get more attributes
                     T buff{succ->val};
-                    remove(succ, curr);
+                    __remove(succ, curr);
                     curr->val = buff;
                 } else {
-                    node<T> *pred{find_predecessor(curr)};
+                    node *pred{find_predecessor(curr)};
                     if (pred) {
                         T buff{pred->val};
-                        remove(pred, curr);
+                        __remove(pred, curr);
                         curr->val = buff;
                     }
                 }
             }
-        } else if (cmp(n, curr)) {
-            return remove(n, curr->l);
+        } else if (_cmp(n, curr)) {
+            return __remove(n, curr->l);
         } else {
-            return remove(n, curr->r);
+            return __remove(n, curr->r);
         }
     }
 
-    node<T> *
-    find_predecessor(const T &n) {
-        node<T> *nn{new node(n)};
-        node<T> *res{find_predecessor(nn)};
-        delete nn;
-        return res;
-    }
-
-    node<T> *
-    find_predecessor(node<T> *n) {
+    node *
+    find_predecessor(node *n) {
         if (n->l) {
-            node<T> *curr{n->l};
+            node *curr{n->l};
             while (curr->r) {
                 curr = curr->r;
             }
             return curr;
         }
-        node<T> *curr{n->p};
-        node<T> *buff{n};
+        node *curr{n->p};
+        node *buff{n};
         while (curr and buff == curr->l) {
             buff = curr;
             curr = curr->p;
@@ -226,25 +174,17 @@ template <typename T = int> struct bst {
         return curr;
     }
 
-    node<T> *
-    find_successor(const T &n) {
-        node<T> *nn{new node(n)};
-        node<T> *res{find_successor(nn)};
-        delete nn;
-        return res;
-    }
-
-    node<T> *
-    find_successor(node<T> *n) {
+    node *
+    find_successor(node *n) {
         if (n->r) {
-            node<T> *curr{n->r};
+            node *curr{n->r};
             while (curr->l) {
                 curr = curr->l;
             }
             return curr;
         }
-        node<T> *curr{n->p};
-        node<T> *buff{n};
+        node *curr{n->p};
+        node *buff{n};
         while (curr and buff == curr->r) {
             buff = curr;
             curr = curr->p;
@@ -253,39 +193,31 @@ template <typename T = int> struct bst {
     }
 
     bool
-    find(const T &n) {
-        node<T> *nn{new node(n)};
-        bool res{find(nn)};
-        delete nn;
-        return res;
-    }
-
-    bool
-    find(node<T> *n) {
+    find(node *n) {
         return find(n, root);
     }
 
     bool
-    find(node<T> *n, node<T> *curr) {
+    find(node *n, node *curr) {
         if (curr == nullptr) {
             return false;
         }
         if (*n == *curr) {
             return true;
         }
-        if (cmp(n, curr)) {
+        if (_cmp(n, curr)) {
             return find(n, curr->l);
         }
         return find(n, curr->r);
     }
 
     bool
-    is_root(node<T> *n) {
+    is_root(node *n) {
         return n->p == nullptr;
     }
 
     bool
-    is_leaf(node<T> *n) {
+    is_leaf(node *n) {
         return n->l == nullptr and n->r == nullptr;
     }
 
@@ -293,18 +225,13 @@ template <typename T = int> struct bst {
 
     void
     pre_order(const T &n) {
-        node<T> *nn{new node(n)};
+        node *nn{new _node_type(n)};
         pre_order(nn);
         delete nn;
     }
 
     void
-    pre_order() {
-        pre_order(root);
-    }
-
-    void
-    pre_order(node<T> *n) {
+    pre_order(node *n) {
         std::cout << n << "\n";
         if (n->l) {
             pre_order(n->l);
@@ -316,7 +243,7 @@ template <typename T = int> struct bst {
 
     void
     in_order(const T &n) {
-        node<T> *nn{new node(n)};
+        node *nn{new _node_type(n)};
         in_order(nn);
         delete nn;
     }
@@ -327,7 +254,7 @@ template <typename T = int> struct bst {
     }
 
     void
-    in_order(node<T> *n) {
+    in_order(node *n) {
         if (n->l) {
             in_order(n->l);
         }
@@ -339,18 +266,13 @@ template <typename T = int> struct bst {
 
     void
     post_order(const T &n) {
-        node<T> *nn{new node(n)};
+        node *nn{new _node_type(n)};
         post_order(nn);
         delete nn;
     }
 
     void
-    post_order() {
-        post_order(root);
-    }
-
-    void
-    post_order(node<T> *n) {
+    post_order(node *n) {
         if (n->l) {
             post_order(n->l);
         }
@@ -361,17 +283,93 @@ template <typename T = int> struct bst {
     }
 
     void
-    disp_pred(node<T> *n) const {
+    disp_pred(node *n) const {
         std::cout << "pred of " << n << " = " << (this->find_predecessor(n) == nullptr ? -69 : this->find_predecessor(n)) << "\n";
     }
     void
-    disp_succ(node<T> *n) const {
+    disp_succ(node *n) const {
         std::cout << "succ of " << n << " = " << (this->find_successor(n) == nullptr ? -69 : this->find_successor(n)) << "\n";
+    }
+
+  public:
+    node *root{nullptr};
+
+    bst()
+        : root(new _node_type()) {
+    }
+
+    bst(const T &v)
+        : root(new _node_type(v)) {
+    }
+
+    ~bst() {
+        auto walk{[](const auto &self, const node *curr) -> void {
+            if (curr == nullptr) {
+                return;
+            }
+            if (curr->l) {
+                self(self, curr->l);
+            }
+            if (curr->r) {
+                self(self, curr->r);
+            }
+            delete curr;
+        }};
+        walk(walk, root->l);
+        walk(walk, root->r);
+        delete root;
+    }
+
+    void
+    insert(const T &n) {
+        node *nn{new _node_type(n)};
+        __insert(nn, root);
+    }
+
+    void
+    remove(const T &n) {
+        node *nn{new _node_type(n)};
+        __remove(nn, root);
+        delete nn;
+    }
+
+    T
+    find_predecessor(const T &n) {
+        node *nn{new _node_type(n)};
+        node *res{find_predecessor(nn)};
+        delete nn;
+        return *res;
+    }
+
+    node *
+    find_successor(const T &n) {
+        node *nn{new _node_type(n)};
+        node *res{find_successor(nn)};
+        delete nn;
+        return res;
+    }
+
+    void
+    pre_order() {
+        pre_order(root);
+    }
+
+    bool
+    find(const T &n) {
+        node *nn{new _node_type(n)};
+        bool res{find(nn)};
+        delete nn;
+        return res;
+    }
+
+    void
+    post_order() {
+        post_order(root);
     }
 
     void
     validate() const {
-        auto walk{[](const auto &self, node<T> *curr) -> void {
+        auto walk{[](const auto &self, node *curr) -> void {
             if (curr == nullptr) {
                 return;
             }
@@ -400,23 +398,17 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    bst<int> t;
-    auto *n{new node(-1)};
-    auto *m{new node(1)};
-    auto *nn{new node(10)};
-    auto *mm{new node(-2)};
-    auto *ll{new node(9)};
-    auto *rr{new node(11)};
+    bst<int> t(0);
 
     t.insert(69);
-    t.insert(n);
-    t.insert(m);
-    t.insert(nn);
-    t.insert(mm);
-    t.insert(ll);
-    t.insert(rr);
+    t.insert(-1);
+    t.insert(1);
+    t.insert(10);
+    t.insert(-2);
+    t.insert(9);
+    t.insert(11);
     t.pre_order();
-    t.remove(nn);
+    t.remove(10);
     t.remove(69);
     t.pre_order();
 

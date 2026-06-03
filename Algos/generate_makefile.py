@@ -64,6 +64,8 @@ padding = padding + "\n"
 
 warning: str = padding + base_warning + padding + "\n"
 
+posix: str = ".POSIX:\n\n"
+
 # flags = " -Wall -g --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
 flags: str = (
@@ -93,6 +95,8 @@ compiler_flags: str = "	" + compiler + flags_var
 makefile = open("Makefile", "w")
 
 makefile.write(warning)
+
+makefile.write(posix)
 
 makefile.write(".PHONY: standard all asm clean\n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")

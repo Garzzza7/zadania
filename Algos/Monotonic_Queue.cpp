@@ -4,9 +4,11 @@
 
 // https://www.spoj.com/problems/ARRAYSUB/
 
-template <typename T> struct monotonic_queue {
+template <typename T = int> struct monotonic_queue {
+  private:
     std::deque<T> dq;
 
+  public:
     void
     push(const T &v) {
         while (not dq.empty() and dq.back() < v) {

@@ -2,26 +2,26 @@
 #include <limits>
 #include <vector>
 
-template <typename T = int> struct edge {
-    int u;
-    int v;
-    T weight;
-    edge(const int &_u, const int &_v, const T &_weight)
-        : u(_u),
-          v(_v),
-          weight(_weight) {
-    }
-};
-
 template <typename T = int> struct boruvka {
+    template <typename TT = int> struct _edge_type {
+        int u;
+        int v;
+        TT weight;
+        _edge_type(const int &u, const int &v, const TT &weight)
+            : u(u),
+              v(v),
+              weight(weight) {
+        }
+    };
+    using edge = _edge_type<T>;
     int size;
     T MAX;
-    std::vector<edge<T>> edges;
+    std::vector<edge> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
-    boruvka(const int &_n)
-        : size(_n),
+    boruvka(const int &n)
+        : size(n),
           MAX(std::numeric_limits<T>::max()) {
         parent.assign(size, 0);
         for (int i = 0; i < size; i++) {
@@ -31,8 +31,8 @@ template <typename T = int> struct boruvka {
     }
 
     void
-    add_edge(const edge<T> &edge) {
-        edges.emplace_back(edge);
+    add_edge(const int &u, const int &v, const T &weight) {
+        edges.emplace_back(edge(u, v, weight));
     }
 
     int
@@ -58,16 +58,16 @@ template <typename T = int> struct boruvka {
         }
     }
 
-    std::vector<edge<T>>
+    std::vector<edge>
     calc_mst() {
-        std::vector<edge<T>> mst;
-        std::vector<edge<T>> cheapest(size, edge(-1, -1, MAX));
+        std::vector<edge> mst;
+        std::vector<edge> cheapest(size, edge(-1, -1, MAX));
 
         int tree_count{size};
         // T mst_weight{0};
 
         while (tree_count > 1) {
-            for (const edge<T> &e : edges) {
+            for (const edge &e : edges) {
                 const auto &u{e.u};
                 const auto &v{e.v};
                 const auto &weight{e.weight};
@@ -121,7 +121,7 @@ main(void) {
         int u, v;
         int w;
         std::cin >> u >> v >> w;
-        graph.add_edge(edge(u, v, w));
+        graph.add_edge(u, v, w);
     }
 
     const auto res{graph.calc_mst()};

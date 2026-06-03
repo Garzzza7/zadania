@@ -6,9 +6,9 @@ template <typename T> struct point {
     T x;
     T y;
 
-    point(T _x, T _y)
-        : x(_x),
-          y(_y) {
+    point(const T &x, const T &y)
+        : x(x),
+          y(y) {
     }
 
     point()
@@ -78,8 +78,9 @@ main(void) {
 
     const auto res{convex_hull(points)};
 
-    for (const auto &p : res)
+    for (const auto &p : res) {
         std::cout << p.x << " " << p.y << "\n";
+    }
 
     return 0;
 }

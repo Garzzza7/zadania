@@ -7,7 +7,7 @@
 // https://codeforces.com/problemset/problem/427/C
 
 template <typename T = int> struct kosaraju {
-    T n;
+    T size;
 
     std::vector<std::vector<T>> adj;
     std::vector<std::vector<T>> transposed_adj;
@@ -18,11 +18,11 @@ template <typename T = int> struct kosaraju {
 
     std::map<T, std::vector<T>> scc;
 
-    kosaraju(const T &_n)
-        : n(_n),
-          adj(std::vector<std::vector<T>>(_n, std::vector<T>())),
-          transposed_adj(std::vector<std::vector<T>>(_n, std::vector<T>())) {
-        visited = std::vector<char>(_n, false);
+    kosaraju(const T &n)
+        : size(n),
+          adj(std::vector<std::vector<T>>(n, std::vector<T>())),
+          transposed_adj(std::vector<std::vector<T>>(n, std::vector<T>())) {
+        visited = std::vector<char>(n, false);
     }
 
     void
@@ -33,7 +33,7 @@ template <typename T = int> struct kosaraju {
 
     void
     calc_scc() {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < size; i++) {
             if (not visited[i]) {
                 dfs_1(i);
             }

@@ -5,31 +5,25 @@
 // tested on: https://judge.yosupo.jp/problem/aho_corasick
 
 template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
-    struct node {
+  private:
+    struct _node_type {
         std::vector<int> next;
         std::vector<int> accepting;
-        bool is_accept{false};
+        bool is_accepting{false};
         int suffix_link{-1};
         int output_link{-1};
         int c;
         int cnt_shares{0};
         int parent{0};
-        node(const int c_)
-            : c(c_) {
+        _node_type(const int c)
+            : c(c) {
             next.assign(CHAR_SIZE, -1);
         }
     };
-
-    std::vector<node> nodes;
-    std::vector<std::string> patterns;
-    int root{'$' - BASE};
-
-    aho_corasick() {
-        nodes.emplace_back(node(root));
-    }
+    using node = _node_type;
 
     void
-    insert(const std::string &word, const int &word_id) {
+    _insert(const std::string &word, const int &word_id) {
         int node_id{0};
         patterns.push_back(word);
         for (const auto &i : word) {
@@ -45,16 +39,11 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         }
         nodes[node_id].cnt_shares++;
         nodes[node_id].accepting.push_back(word_id);
-        nodes[node_id].is_accept = true;
+        nodes[node_id].is_accepting = true;
     }
 
     void
-    insert(const std::string &word) {
-        insert(word, nodes[0].cnt_shares);
-    }
-
-    void
-    build_suffix_links() {
+    _build_suffix_links() {
         std::vector<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
@@ -88,7 +77,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
     }
 
     void
-    build_output_links() {
+    _build_output_links() {
         std::vector<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
@@ -101,7 +90,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
             int id{q.front()};
             q.pop_back();
             const auto &u{nodes[id].suffix_link};
-            if (nodes[u].is_accept) {
+            if (nodes[u].is_accepting) {
                 nodes[id].output_link = u;
             } else {
                 nodes[id].output_link = nodes[u].output_link;
@@ -116,10 +105,24 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         }
     }
 
+  public:
+    std::vector<node> nodes;
+    std::vector<std::string> patterns;
+    int root{'$' - BASE};
+
+    aho_corasick() {
+        nodes.emplace_back(node(root));
+    }
+
     void
     build() {
-        build_suffix_links();
-        build_output_links();
+        _build_suffix_links();
+        _build_output_links();
+    }
+
+    void
+    insert(const std::string &word) {
+        _insert(word, nodes[0].cnt_shares);
     }
 
     std::vector<std::pair<std::string, int>>
