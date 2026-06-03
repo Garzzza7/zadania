@@ -62,8 +62,8 @@ template <typename T = int> struct lca {
     using ST = sparse_table<T, decltype(op), INT32_MAX>;
     ST st{};
 
-    lca(const std::vector<std::vector<int>> &_adj)
-        : size((int) _adj.size()) {
+    lca(const std::vector<std::vector<int>> &adj)
+        : size((int) adj.size()) {
         ids.resize(size);
         std::vector visited(size, false);
         auto dfs{[&](const auto &self, const int v, const int h) -> void {
@@ -71,7 +71,7 @@ template <typename T = int> struct lca {
             heights.push_back(h);
             ids[v] = (int) euler.size();
             euler.push_back(v);
-            for (const auto &ver : _adj[v]) {
+            for (const auto &ver : adj[v]) {
                 if (not visited[ver]) {
                     self(self, ver, h + 1);
                     euler.push_back(v);

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T> struct matrix {
+template <typename T = int> struct matrix {
     bool is_transposed{0};
     int m;
     int n;

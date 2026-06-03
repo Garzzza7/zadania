@@ -3,7 +3,30 @@
 #include <vector>
 
 template <typename T = int> struct in_out_ancestor {
-    int n{0};
+
+    in_out_ancestor() = default;
+
+    in_out_ancestor(const int &n, const T &root = 0)
+        : size(n) {
+        tin.resize(n);
+        tout.resize(n);
+        visited.resize(n);
+        // root is 0 by default
+        _calc(root);
+    }
+
+    in_out_ancestor(const std::vector<std::vector<T>> &adj, const T &root = 0)
+        : size((int) adj.size()),
+          adj(adj) {
+        tin.resize(size);
+        tout.resize(size);
+        visited.resize(size);
+        // root is 0 by default
+        _calc(root);
+    }
+
+  private:
+    int size{0};
     // in case nodes are not numbers
     // std::map<T, int> tin;
     // std::map<T, int> tout;
@@ -12,27 +35,6 @@ template <typename T = int> struct in_out_ancestor {
     std::vector<T> tout;
     std::vector<char> visited;
     std::vector<std::vector<T>> adj;
-
-    in_out_ancestor() = default;
-
-    in_out_ancestor(const int &_n)
-        : n(_n) {
-        tin.resize(n);
-        tout.resize(n);
-        visited.resize(n);
-        // root is 0 by default
-        calc(0);
-    }
-
-    in_out_ancestor(const std::vector<std::vector<T>> &_adj)
-        : adj(_adj) {
-        n = (int) adj.size();
-        tin.resize(n);
-        tout.resize(n);
-        visited.resize(n);
-        // root is 0 by default
-        calc(0);
-    }
 
     void
     dfs(const T &ver, int &time) {
@@ -47,11 +49,12 @@ template <typename T = int> struct in_out_ancestor {
     }
 
     inline void
-    calc(const T &root) {
+    _calc(const T &root) {
         int time{0};
         dfs(root, time);
     }
 
+  public:
     [[nodiscard]] bool
     query(const T &a, const T &b) const {
         return tin[a] <= tin[b] and tout[a] >= tout[b];

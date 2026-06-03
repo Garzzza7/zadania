@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T> struct hungarian {};
+template <typename T = int> struct hungarian {};
 
 int
 main(void) {

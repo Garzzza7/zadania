@@ -1,13 +1,13 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 fl(T x, T y) {
     return x / y - ((x ^ y) < 0 and x % y);
 }
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 extended_euclid(T a, T b) {
     if (b == 0) {

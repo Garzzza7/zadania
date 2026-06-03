@@ -2,23 +2,25 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct edge {
-    int u;
-    int v;
-    T weight;
-    edge(const int &u, const int &v, const T &weight)
-        : u(u),
-          v(v),
-          weight(weight) {
-    }
-};
-
-template <typename T> struct kruscal {
-    std::vector<edge<T>> mst;
-    std::vector<edge<T>> edges;
+template <typename T = int> struct kruscal {
+  private:
+    template <typename TT = int> struct _edge_type {
+        int u;
+        int v;
+        TT weight;
+        _edge_type(const int &u, const int &v, const TT &weight)
+            : u(u),
+              v(v),
+              weight(weight) {
+        }
+    };
+    using edge = _edge_type<T>;
+    std::vector<edge> mst;
+    std::vector<edge> edges;
     std::vector<int> parent;
     std::vector<int> rank;
 
+  public:
     kruscal() = default;
 
     kruscal(const int &n) {
@@ -30,8 +32,8 @@ template <typename T> struct kruscal {
     }
 
     void
-    add_edge(const edge<T> &e) {
-        edges.push_back(e);
+    add_edge(const int &u, const int &v, const T &weight) {
+        edges.push_back(edge(u, v, weight));
     }
 
     int
@@ -55,9 +57,9 @@ template <typename T> struct kruscal {
         }
     }
 
-    std::vector<edge<T>>
+    std::vector<edge>
     calc_mst() {
-        std::sort(edges.begin(), edges.end(), [](const edge<T> &l, const edge<T> &r) { return l.weight < r.weight; });
+        std::sort(edges.begin(), edges.end(), [](const edge &l, const edge &r) { return l.weight < r.weight; });
         for (const auto &edge : edges) {
             if (not(find(edge.u) == find(edge.v))) {
                 mst.push_back(edge);
@@ -82,7 +84,7 @@ main(void) {
         int u, v;
         int w;
         std::cin >> u >> v >> w;
-        graph.add_edge(edge(u, v, w));
+        graph.add_edge(u, v, w);
     }
 
     const auto res{graph.calc_mst()};

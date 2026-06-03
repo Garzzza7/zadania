@@ -1,6 +1,6 @@
 #include <iostream>
 
-template <typename T>
+template <typename T = int>
 T
 rec_gcd(T a, T b) {
     if (b == 0) {
@@ -9,7 +9,7 @@ rec_gcd(T a, T b) {
     return rec_gcd(b, a % b);
 }
 
-template <typename T>
+template <typename T = int>
 T
 gcd(T a, T b) {
     while (b) {
@@ -19,13 +19,13 @@ gcd(T a, T b) {
     return a;
 }
 
-template <typename T>
+template <typename T = int>
 T
 lcm(T a, T b) {
     return a / gcd(a, b) * b;
 }
 
-template <typename T>
+template <typename T = int>
 T
 bit_gcd(T a, T b) {
     if (!a or !b) {

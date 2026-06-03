@@ -9,8 +9,8 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         std::vector<int> accepting;
         int c{};
         int cnt_shares{0};
-        node(const int _c)
-            : c(_c) {
+        node(const int c)
+            : c(c) {
             next = std::vector<int>(CHAR_SIZE + 1, -1);
         }
     };
@@ -22,6 +22,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         nodes.emplace_back(node(root));
     }
 
+  private:
     void
     insert(const std::string &word, int word_id) {
         int node_id{0};
@@ -39,6 +40,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
         nodes[node_id].accepting.push_back(word_id);
     }
 
+  public:
     void
     insert(const std::string &word) {
         insert(word, nodes[0].cnt_shares);

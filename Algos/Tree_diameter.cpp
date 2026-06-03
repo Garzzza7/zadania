@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     const int n{(int) adj.size()};

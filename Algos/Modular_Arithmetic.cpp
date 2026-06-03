@@ -4,7 +4,7 @@
 
 // modified tourist's template
 // AND OR XOR are untested
-template <typename T> struct Modular {
+template <typename T = int> struct Modular {
     using Type = std::decay_t<decltype(T::value)>;
 
     constexpr Modular()
@@ -209,7 +209,7 @@ operator==(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) == rhs;
 }
 
-template <typename T>
+template <typename T = int>
 bool
 operator!=(const Modular<T> &lhs, const Modular<T> &rhs) {
     return !(lhs == rhs);
@@ -225,13 +225,13 @@ operator!=(U lhs, const Modular<T> &rhs) {
     return !(lhs == rhs);
 }
 
-template <typename T>
+template <typename T = int>
 bool
 operator<(const Modular<T> &lhs, const Modular<T> &rhs) {
     return lhs.value < rhs.value;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator^(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
@@ -248,7 +248,7 @@ operator^(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator&(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
@@ -265,7 +265,7 @@ operator&(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator|(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
@@ -282,7 +282,7 @@ operator|(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) |= rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator+(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) += rhs;
@@ -298,7 +298,7 @@ operator+(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) += rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator-(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) -= rhs;
@@ -314,7 +314,7 @@ operator-(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) -= rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator*(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) *= rhs;
@@ -330,7 +330,7 @@ operator*(U lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) *= rhs;
 }
 
-template <typename T>
+template <typename T = int>
 Modular<T>
 operator/(const Modular<T> &lhs, const Modular<T> &rhs) {
     return Modular<T>(lhs) /= rhs;
@@ -362,13 +362,13 @@ power(const Modular<T> &a, const U &b) {
     return res;
 }
 
-template <typename T>
+template <typename T = int>
 bool
 IsZero(const Modular<T> &number) {
     return number() == 0;
 }
 
-template <typename T>
+template <typename T = int>
 std::string
 to_string(const Modular<T> &number) {
     return to_string(number());

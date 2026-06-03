@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 cnt_sieve(const T &n) {
     std::vector<T> cnt(n + 1, 0);
@@ -16,7 +16,7 @@ cnt_sieve(const T &n) {
     return cnt;
 }
 
-template <typename T>
+template <typename T = int>
 std::vector<char>
 bool_sieve(const T &n) {
     std::vector<char> pr(n + 1, true);

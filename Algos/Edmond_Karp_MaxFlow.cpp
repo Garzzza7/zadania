@@ -3,7 +3,7 @@
 #include <queue>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
     for (auto &&v : path) {
@@ -30,7 +30,7 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
     return 0;
 }
 
-template <typename T>
+template <typename T = int>
 T
 maxflow(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities) {
     T maxflow{0};

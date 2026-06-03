@@ -3,7 +3,7 @@
 #include <queue>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 kahn(const std::vector<std::vector<T>> &adj) {
     const int n{(int) adj.size()};

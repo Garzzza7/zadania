@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-template <typename T> struct hashmap {
+template <typename T = int> struct hashmap {
     std::vector<T> vec;
     hashmap(const int &_n)
         : vec(std::vector<T>(_n)) {

@@ -4,7 +4,7 @@
 #include <random>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 kth_order_stat(std::vector<T> &vec, const int l, const int r, const int k) {
     if (r - l <= 1) {

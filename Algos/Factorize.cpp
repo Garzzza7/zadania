@@ -2,7 +2,7 @@
 #include <set>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 sep_factors(T n) {
     std::set<T> factor;
@@ -18,7 +18,7 @@ sep_factors(T n) {
     return std::vector<T>(factor.begin(), factor.end());
 }
 
-template <typename T>
+template <typename T = int>
 int
 cnt_factors(T n) {
     int res{0};
@@ -34,7 +34,7 @@ cnt_factors(T n) {
     return res;
 }
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 factorize(T n) {
     std::vector<T> factor;

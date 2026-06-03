@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T> struct point {
+template <typename T = int> struct point {
     T x;
     T y;
 
@@ -28,7 +28,7 @@ template <typename T> struct point {
     }
 };
 
-template <typename T>
+template <typename T = int>
 std::vector<point<T>>
 convex_hull(std::vector<point<T>> points) {
     const int n{(int) points.size()};

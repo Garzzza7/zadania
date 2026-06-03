@@ -6,7 +6,7 @@
 
 long long iter_sum{0ll};
 
-template <typename T>
+template <typename T = int>
 void
 iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited, const int &x, const int &y) {
     auto check{[&](const int &x, const int &y) -> bool {
@@ -33,7 +33,7 @@ iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> 
 
 long long sum{0ll};
 
-template <typename T>
+template <typename T = int>
 void
 floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited, const int &i, const int &j) {
     if ((i < 0 or i >= (int) vec.size() or j < 0 or j >= (int) vec[0].size()) or vec[i][j] == 0 or visited[i][j]) {

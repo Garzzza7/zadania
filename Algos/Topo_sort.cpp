@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 topo_sort(const T &s, const std::vector<std::vector<T>> &adj) {
     // must be a dag

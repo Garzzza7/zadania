@@ -3,7 +3,7 @@
 #include <random>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 sattoro_cyclic_shuffle(std::vector<T> &vec) {
     int i{static_cast<int>(vec.size()) - 1};

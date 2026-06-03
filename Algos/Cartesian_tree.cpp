@@ -3,7 +3,7 @@
 #include <vector>
 
 // return parent of each node , O(n)
-template <typename T>
+template <typename T = int>
 std::vector<T>
 cartesian_tree_parents(const std::vector<T> &vec) {
     const int n{(int) vec.size()};

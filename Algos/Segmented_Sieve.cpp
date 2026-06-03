@@ -4,7 +4,7 @@
 
 // https://www.spoj.com/problems/PRIME1
 
-template <typename T>
+template <typename T = int>
 std::vector<char>
 segmented_sieve(const T &L, const T &R) {
     std::vector<T> primes;

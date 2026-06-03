@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
     const int n{(int) adj.size()};
@@ -21,7 +21,7 @@ topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
     return res;
 }
 
-template <typename T>
+template <typename T = int>
 std::vector<int>
 dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &path = {}) {
     const std::vector<T> topo = topo_sort(s, adj);
@@ -42,7 +42,7 @@ dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &a
     return dist;
 }
 
-template <typename T>
+template <typename T = int>
 void
 shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;

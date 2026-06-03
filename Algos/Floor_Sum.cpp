@@ -2,7 +2,7 @@
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_c
 
-template <typename T>
+template <typename T = int>
 T
 floor_sum(T a, T b, T c, T n) {
     if (a == 0) {

@@ -1,6 +1,6 @@
 #include <iostream>
 
-template <typename T>
+template <typename T = int>
 void
 bitmask(const T &num) {
     T limit{1};

@@ -4,7 +4,7 @@
 // http://en.wikipedia.org/wiki/Cycle_decomposition_%28group_theory%29
 // https://codeforces.com/problemset/problem/986/B
 
-template <typename T>
+template <typename T = int>
 bool
 // copy so that the array is not messed up later
 parity(std::vector<T> vec) {

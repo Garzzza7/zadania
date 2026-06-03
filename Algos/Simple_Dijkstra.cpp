@@ -4,7 +4,7 @@
 #include <queue>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &distances, std::vector<char> &visited,
          std::vector<T> &path = {}) {
@@ -31,7 +31,7 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T>
     }
 }
 
-template <typename T>
+template <typename T = int>
 void
 shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;

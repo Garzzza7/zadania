@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 kadane(const std::vector<T> &vec, const int &l, const int &r) {
     T best = 0;
@@ -13,7 +13,7 @@ kadane(const std::vector<T> &vec, const int &l, const int &r) {
     return best;
 }
 
-template <typename T>
+template <typename T = int>
 T
 kadane(const std::vector<T> &vec) {
     T best = 0;

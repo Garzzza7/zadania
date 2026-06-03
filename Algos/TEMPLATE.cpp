@@ -207,25 +207,25 @@ to_debug(T x, std::string s)
 }
 #define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T
 bin_xor(T a, T b) noexcept {
     return ~(a & b) & (a | b);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool
 is_on(T a, T b) noexcept {
     return a & (static_cast<T>(1) << b);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool
 cmp(const T &x, const T &y) noexcept {
     return x > y;
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool
 pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
     if (x.second < y.second) {
@@ -234,25 +234,25 @@ pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
     return x.first < y.first;
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T
 bin_min(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x < y));
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T
 bin_max(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x > y));
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T
 bin_ce(T x, T y) noexcept {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T
 bin_fl(T x, T y) noexcept {
     return x / y - ((x ^ y) < 0 && x % y);
@@ -269,17 +269,17 @@ bin_llog(const unsigned long &x) noexcept {
                                               : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] constexpr T
 bin_tlog(const T &x) noexcept {
     return x == static_cast<T>(0) ? static_cast<T>(0) : static_cast<T>(63) - __builtin_clzl(x);
 }
 
 // descending set
-template <typename T> using dset = std::set<T, std::greater<T>>;
+template <typename T = int> using dset = std::set<T, std::greater<T>>;
 
 // ascending pq
-template <typename T> using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+template <typename T = int> using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 // asceding pq of pairs
 template <typename FT, typename ST>
@@ -287,7 +287,7 @@ using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST
 
 // This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
-template <typename T>
+template <typename T = int>
 using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,
                               __gnu_pbds::tree_order_statistics_node_update>;
 // find_by_order(n) -> value at index n
@@ -316,7 +316,7 @@ y_combinator(Fun &&fun) {
 }
 } // namespace std
 
-template <typename T>
+template <typename T = int>
 void
 printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexcept {
     if (begin < 0) begin ^= begin;
@@ -325,7 +325,7 @@ printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexc
         std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
 }
 
-template <typename T>
+template <typename T = int>
 inline constexpr int
 sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
@@ -368,19 +368,19 @@ using namespace __gnu_pbds;
 [[maybe_unused]] static constexpr int mod{1000000007};
 
 // concepts
-template <typename T>
+template <typename T = int>
 concept LT = requires(T x) { x < x; };
 
-template <typename T>
+template <typename T = int>
 concept GT = requires(T x) { x > x; };
 
-template <typename T>
+template <typename T = int>
 concept EQ = requires(T x) { x == x; };
 
-template <typename T>
+template <typename T = int>
 concept PB = requires(T vec, T::value_type val) { vec.push_back(val); };
 
-template <typename T>
+template <typename T = int>
 concept INS = requires(T vec, T::value_type val) { vec.insert(val); };
 
 using db    = double;

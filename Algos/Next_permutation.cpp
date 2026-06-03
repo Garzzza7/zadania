@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 next_permutation(std::vector<T> &nums) {
     const int n{static_cast<int>(nums.size())};

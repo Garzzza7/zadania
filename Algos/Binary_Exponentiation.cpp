@@ -30,7 +30,7 @@ binpow(long long a, long long b) {
 
 // generic versions
 
-template <typename T>
+template <typename T = int>
 T
 binpow(T a, T b) {
     T res{1};
@@ -44,7 +44,7 @@ binpow(T a, T b) {
     return res;
 }
 
-template <typename T>
+template <typename T = int>
 T
 mod_binpow(T a, T b) {
     T res{1};

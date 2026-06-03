@@ -4,7 +4,7 @@
 // quite useless
 // not an algorithm, more like a reminder for myself
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 sierpinski_nth_row(T n, T base) {
     n--;

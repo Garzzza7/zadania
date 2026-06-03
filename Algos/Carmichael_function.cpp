@@ -2,7 +2,7 @@
 
 // TODO: speed up , clarify
 
-template <typename T>
+template <typename T = int>
 T
 carmichael(const T &n) {
     T k = 1, x, a, b, t;

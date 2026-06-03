@@ -2,7 +2,7 @@
 #include <numeric>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 long long
 crt(const std::vector<std::pair<T, T>> &vec) {
     T mod{vec[0].second};

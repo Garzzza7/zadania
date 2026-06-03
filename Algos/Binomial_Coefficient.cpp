@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 rec_bin_coeff(const T &n, const T &k) {
     if (k == 1) {
@@ -13,7 +13,7 @@ rec_bin_coeff(const T &n, const T &k) {
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 
-template <typename T>
+template <typename T = int>
 T
 mult_bin_coeff(const T &n, const T &k) {
     T res{1};
@@ -25,7 +25,7 @@ mult_bin_coeff(const T &n, const T &k) {
     return res;
 }
 
-template <typename T>
+template <typename T = int>
 T
 mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
     T res{1ll};
@@ -48,7 +48,7 @@ mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
     return res % mod;
 }
 
-template <typename T>
+template <typename T = int>
 std::vector<std::vector<T>>
 mod_bin_coeff(const T &n, const T &mod) {
     std::vector binom(n + 1, std::vector<T>(n + 1));

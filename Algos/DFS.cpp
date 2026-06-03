@@ -3,7 +3,7 @@
 #include <stack>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
     if (visited[vertex]) {
@@ -16,7 +16,7 @@ dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
     }
 }
 
-template <typename T>
+template <typename T = int>
 void
 iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
     for (auto &&v : visited) {

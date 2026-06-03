@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 ternary_search(std::vector<T> &vec, const int l, const int r, const T x) {
     if (r >= l) {

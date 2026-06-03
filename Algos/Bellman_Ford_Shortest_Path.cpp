@@ -3,7 +3,7 @@
 #include <vector>
 
 // find neg cycle
-template <typename T>
+template <typename T = int>
 bool
 bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges, std::vector<T> &distances, std::vector<T> &paths) {
     std::fill(distances.begin(), distances.end(), INT32_MAX);
@@ -45,7 +45,7 @@ bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges, std::vector<T> &
     return false;
 }
 
-template <typename T>
+template <typename T = int>
 void
 shortest_path(T start, T target, std::vector<T> &paths) {
     std::vector<T> sp;

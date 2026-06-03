@@ -8,7 +8,7 @@
 #endif
 
 // TODO: test this, add more test cases, add SIMD
-template <typename T> struct matrix {
+template <typename T = int> struct matrix {
     bool is_transposed{0};
     int m;
     int n;

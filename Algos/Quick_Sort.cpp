@@ -3,7 +3,7 @@
 #include <random>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 quick_sort(std::vector<T> &vec, const int l, const int r) {
     if (r - l <= 1) {

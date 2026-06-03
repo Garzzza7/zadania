@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 phi_1_to_n(T n) {
     std::vector<T> phi(n + 1);

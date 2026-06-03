@@ -3,7 +3,7 @@
 #include <random>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 fisher_yates_shuffle(std::vector<T> &vec) {
     for (int i = static_cast<int>(vec.size()) - 1; i >= 1; i--) {

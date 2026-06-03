@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 bitonic_sort(std::vector<T> &a) {
     const int n{static_cast<int>(a.size())};

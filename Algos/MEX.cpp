@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 T
 mex(const std::vector<T> &vec) {
     std::vector<char> f(vec.size() + 1, false);

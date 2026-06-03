@@ -2,7 +2,7 @@
 #include <queue>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     std::vector<char> visited(adj.size(), false);
@@ -20,7 +20,7 @@ iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     }
 }
 
-template <typename T>
+template <typename T = int>
 void
 bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited, std::queue<T> que) {
     if (visited[vertex]) {

@@ -4,7 +4,7 @@
 constexpr int INF{1000007};
 int n, m;
 
-template <typename T>
+template <typename T = int>
 std::vector<std::vector<T>>
 floyd_warshall(std::vector<std::vector<T>> &adj_matrix, std::vector<std::vector<T>> &paths) {
     std::vector<std::vector<T>> dp(n + 1, std::vector<T>(n + 1, 0));
@@ -43,7 +43,7 @@ floyd_warshall(std::vector<std::vector<T>> &adj_matrix, std::vector<std::vector<
     return dp;
 }
 
-template <typename T>
+template <typename T = int>
 void
 shortest_path(T start, T target, std::vector<std::vector<T>> &dp, std::vector<std::vector<T>> &paths) {
     std::vector<T> sp;

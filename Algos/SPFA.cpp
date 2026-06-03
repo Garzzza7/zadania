@@ -3,7 +3,7 @@
 #include <queue>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<int> &distances) {
     const int n{(int) adj.size()};

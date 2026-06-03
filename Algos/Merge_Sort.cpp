@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 void
 merge(std::vector<T> &vec, int p, int q, int r) {
     const int size1{q - p + 1};
@@ -29,7 +29,7 @@ merge(std::vector<T> &vec, int p, int q, int r) {
     }
 }
 
-template <typename T>
+template <typename T = int>
 void
 merge_sort(std::vector<T> &vec, int l, int r) {
     if (l < r) {

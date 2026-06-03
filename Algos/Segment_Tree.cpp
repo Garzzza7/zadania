@@ -6,17 +6,17 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     std::vector<T> vec;
     static constexpr OP op{};
 
-    ram_seg_tree(const int &_n) {
+    ram_seg_tree(const int &n) {
         int log = 1;
-        while (log < _n) {
+        while (log < n) {
             log <<= 1;
         }
         size = log;
         vec.assign(2 * size, NEUTRAL);
     }
 
-    ram_seg_tree(const std::vector<T> &_vec) {
-        _build(_vec);
+    ram_seg_tree(const std::vector<T> &vec) {
+        _build(vec);
     }
 
   private:
@@ -50,7 +50,7 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     }
 
     [[nodiscard]] T
-    _query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
+    query(const int &l, const int &r, const int &x, const int &lx, const int &rx) const {
         if (lx >= r or l >= rx) {
             return NEUTRAL;
         }
@@ -58,8 +58,8 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
             return vec[x];
         }
         const int mid{(rx - lx) / 2 + lx};
-        const T p1{_query(l, r, 2 * x + 1, lx, mid)};
-        const T s2{_query(l, r, 2 * x + 2, mid, rx)};
+        const T p1{query(l, r, 2 * x + 1, lx, mid)};
+        const T s2{query(l, r, 2 * x + 2, mid, rx)};
         return op(p1, s2);
     }
 
@@ -77,7 +77,7 @@ template <typename T, typename OP, T NEUTRAL> struct ram_seg_tree {
     [[nodiscard]] T
     query(const int &l, const int &r) const {
         // [l , r)
-        return _query(l, r, 0, 0, size);
+        return query(l, r, 0, 0, size);
     }
 };
 
