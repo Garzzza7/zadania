@@ -41,3 +41,4 @@ TAGS
 tags
 .mypy_cache
 __pycache__/
+.cmake/

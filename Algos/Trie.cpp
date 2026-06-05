@@ -2,29 +2,24 @@
 #include <string>
 #include <vector>
 
-// size of alphabet , ASCII for 'a' (65 for 'A')
-template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
-    struct node {
+// size of alphabet , in ASCII 97 is for 'a' and 65 for 'A'
+template <int ALPHA_SIZE = 26, int BASE = 97> struct trie {
+  private:
+    struct _node_type {
         std::vector<int> next;
         std::vector<int> accepting;
-        int c{};
-        int cnt_shares{0};
-        node(const int c)
-            : c(c) {
-            next = std::vector<int>(CHAR_SIZE + 1, -1);
+        bool is_accepting{false};
+        int chr{};
+        int cnt_links{0};
+        _node_type(const int &c)
+            : chr(c) {
+            next.assign(ALPHA_SIZE, -1);
         }
     };
+    using node = _node_type;
 
-    std::vector<node> nodes;
-    int root{0};
-
-    trie() {
-        nodes.emplace_back(node(root));
-    }
-
-  private:
     void
-    insert(const std::string &word, int word_id) {
+    _insert(const std::string &word, int word_id) {
         int node_id{0};
         for (const auto &i : word) {
             int c{i - BASE};
@@ -33,17 +28,25 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
                 next_id = static_cast<int>(nodes.size());
                 nodes.emplace_back(node(c));
             }
-            nodes[node_id].cnt_shares++;
+            nodes[node_id].cnt_links++;
             node_id = next_id;
         }
-        nodes[node_id].cnt_shares++;
+        nodes[node_id].cnt_links++;
         nodes[node_id].accepting.push_back(word_id);
+        nodes[node_id].is_accepting = true;
     }
 
   public:
+    std::vector<node> nodes;
+    int root{0};
+
+    trie() {
+        nodes.emplace_back(node(root));
+    }
+
     void
     insert(const std::string &word) {
-        insert(word, nodes[0].cnt_shares);
+        _insert(word, nodes[0].cnt_links);
     }
 
     bool
@@ -67,7 +70,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct trie {
 
     int
     count() {
-        return nodes[0].cnt_shares;
+        return nodes[0].cnt_links;
     }
 
     int

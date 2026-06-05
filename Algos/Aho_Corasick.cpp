@@ -4,7 +4,8 @@
 
 // tested on: https://judge.yosupo.jp/problem/aho_corasick
 
-template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
+// size of alphabet , in ASCII 97 is for 'a' and 65 for 'A'
+template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
   private:
     struct _node_type {
         std::vector<int> next;
@@ -12,12 +13,12 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
         bool is_accepting{false};
         int suffix_link{-1};
         int output_link{-1};
-        int c;
-        int cnt_shares{0};
+        int chr{};
+        int cnt_links{0};
         int parent{0};
-        _node_type(const int c)
-            : c(c) {
-            next.assign(CHAR_SIZE, -1);
+        _node_type(const int &c)
+            : chr(c) {
+            next.assign(ALPHA_SIZE, -1);
         }
     };
     using node = _node_type;
@@ -33,11 +34,11 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
                 next_id = static_cast<int>(nodes.size());
                 nodes.emplace_back(node(c));
             }
-            nodes[node_id].cnt_shares++;
+            nodes[node_id].cnt_links++;
             nodes[next_id].parent = node_id;
             node_id               = next_id;
         }
-        nodes[node_id].cnt_shares++;
+        nodes[node_id].cnt_links++;
         nodes[node_id].accepting.push_back(word_id);
         nodes[node_id].is_accepting = true;
     }
@@ -122,7 +123,7 @@ template <int CHAR_SIZE = 26, int BASE = 97> struct aho_corasick {
 
     void
     insert(const std::string &word) {
-        _insert(word, nodes[0].cnt_shares);
+        _insert(word, nodes[0].cnt_links);
     }
 
     std::vector<std::pair<std::string, int>>
