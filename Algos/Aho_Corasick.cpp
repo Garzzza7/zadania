@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -45,19 +46,19 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
 
     void
     _build_suffix_links() {
-        std::vector<int> q;
+        std::queue<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
             const int &child{nodes[0].next[i]};
             if (child != -1) {
                 nodes[child].suffix_link = 0;
-                q.push_back(child);
+                q.push(child);
             }
         }
 
         while (not q.empty()) {
-            const int id{q.front()};
-            q.pop_back();
+            int id{q.front()};
+            q.pop();
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
                 int child{nodes[id].next[i]};
                 if (child == -1) {
@@ -72,24 +73,24 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
                 } else {
                     nodes[child].suffix_link = nodes[j].next[i];
                 }
-                q.push_back(child);
+                q.push(child);
             }
         }
     }
 
     void
     _build_output_links() {
-        std::vector<int> q;
+        std::queue<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
             const int &child{nodes[0].next[i]};
             if (child != -1) {
-                q.push_back(child);
+                q.push(child);
             }
         }
         while (not q.empty()) {
             int id{q.front()};
-            q.pop_back();
+            q.pop();
             const auto &u{nodes[id].suffix_link};
             if (nodes[u].is_accepting) {
                 nodes[id].output_link = u;
@@ -101,7 +102,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
                 if (child == -1) {
                     continue;
                 }
-                q.push_back(child);
+                q.push(child);
             }
         }
     }
@@ -123,7 +124,9 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
 
     void
     insert(const std::string &word) {
-        _insert(word, nodes[0].cnt_links);
+        // TODO: investigate
+        // _insert(word, nodes[0].cnt_links);
+        _insert(word, (int) patterns.size());
     }
 
     std::vector<std::pair<std::string, int>>
@@ -181,8 +184,6 @@ main(void) {
         AC.insert(s);
     }
 
-    std::string word;
-    std::cin >> word;
     AC.build();
 
     std::cout << AC.nodes.size() << "\n";

@@ -46,6 +46,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct trie {
 
     void
     insert(const std::string &word) {
+        // TODO: investigate
         _insert(word, nodes[0].cnt_links);
     }
 
@@ -60,7 +61,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct trie {
             }
             node_id = next_id;
         }
-        return check_prefix ? true : !nodes[node_id].accepting.empty();
+        return check_prefix ? true : not nodes[node_id].accepting.empty();
     }
 
     bool

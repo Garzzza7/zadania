@@ -1,7 +1,7 @@
 #!/bin/bash
-####################################################################################
-# THIS FILE WAS AUTOMATICALLY GENERATED VIA ./generate_makefile.py DO NOT EDIT IT. #
-####################################################################################
+##################################################################################
+# THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py DO NOT EDIT IT. #
+##################################################################################
 
 grey=$(tput setaf 7)
 black=$(tput setaf 16)
@@ -847,6 +847,21 @@ else
 	printf "${red}$(./MEX.sol <MEX.txt)\n"
 	printf "${red} Should be:\n"
 	printf "${red}$(cat MEX.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
+if [[ ! "$(./Manacher.sol <Manacher.txt)" ]]; then
+	printf "${red}ABORT at Manacher.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Manacher.sol <Manacher.txt)" == "$(cat Manacher.test)" ]; then
+	printf "${green}Manacher Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Manacher Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Manacher.sol <Manacher.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Manacher.test)${normal}\n"
 	cnt_failed=$((cnt_failed + 1))
 fi
 
