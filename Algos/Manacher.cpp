@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,6 +9,7 @@ template <typename Container = std::string>
 std::vector<int>
 manacher(const Container &s) {
     Container t{};
+    t.reserve(2 * s.size() + 3);
     t.push_back('@');
     for (const auto &c : s) {
         t.push_back(' ');
