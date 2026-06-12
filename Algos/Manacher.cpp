@@ -4,17 +4,18 @@
 
 // tested on https://judge.yosupo.jp/problem/enumerate_palindromes
 
+template <typename Container = std::string>
 std::vector<int>
-manacher(const std::string &s) {
-    std::string t{};
+manacher(const Container &s) {
+    Container t{};
     t.reserve(s.size() * 2 + 3);
-    t += '@';
+    t.push_back('@');
     for (const auto &c : s) {
-        t += ' ';
-        t += c;
+        t.push_back(' ');
+        t.push_back(c);
     }
-    t += ' ';
-    t += '$';
+    t.push_back(' ');
+    t.push_back('$');
     const int n{(int) (t.size())};
     std::vector<int> v(n);
     int l{0};
