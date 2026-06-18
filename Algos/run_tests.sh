@@ -595,6 +595,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Find_Cycles_Directed.sol <Find_Cycles_Directed.txt)" ]]; then
+	printf "${red}ABORT at Find_Cycles_Directed.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Find_Cycles_Directed.sol <Find_Cycles_Directed.txt)" == "$(cat Find_Cycles_Directed.test)" ]; then
+	printf "${green}Find_Cycles_Directed Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Find_Cycles_Directed Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Find_Cycles_Directed.sol <Find_Cycles_Directed.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Find_Cycles_Directed.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Find_Cycles_Undirected.sol <Find_Cycles_Undirected.txt)" ]]; then
 	printf "${red}ABORT at Find_Cycles_Undirected.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
@@ -907,6 +922,21 @@ else
 	printf "${red}$(./Merge_Sort.sol <Merge_Sort.txt)\n"
 	printf "${red} Should be:\n"
 	printf "${red}$(cat Merge_Sort.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
+if [[ ! "$(./Miller_Rabin.sol <Miller_Rabin.txt)" ]]; then
+	printf "${red}ABORT at Miller_Rabin.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Miller_Rabin.sol <Miller_Rabin.txt)" == "$(cat Miller_Rabin.test)" ]; then
+	printf "${green}Miller_Rabin Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Miller_Rabin Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Miller_Rabin.sol <Miller_Rabin.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Miller_Rabin.test)${normal}\n"
 	cnt_failed=$((cnt_failed + 1))
 fi
 
