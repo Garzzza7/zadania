@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -27,6 +28,7 @@ find_cycles_directed(const std::vector<std::vector<T>> &adj) {
                     cur = parent[cur];
                 }
                 cycle.push_back(v);
+                std::reverse(cycle.begin(), cycle.end());
                 cycles.push_back(std::move(cycle));
             }
         }
