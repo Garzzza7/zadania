@@ -1,16 +1,20 @@
-#include <cstdint>
+#include <algorithm>
 #include <functional>
 #include <iostream>
+#include <limits>
 #include <queue>
 #include <vector>
 
-template <typename T = int>
-void
-djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &distances, std::vector<char> &visited,
-         std::vector<T> &path = {}) {
-    std::fill(distances.begin(), distances.end(), INT32_MAX);
-    distances[start] = 0;
+// tested on https://judge.yosupo.jp/problem/shortest_path
+
+template <typename T = long long, typename RET_T = unsigned long long>
+std::vector<RET_T>
+dijkstra(const T &start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &path) {
+    const int n{static_cast<int>(adj.size())};
+    std::vector<char> visited(n + 1, false);
+    std::vector<RET_T> distances(n + 1, std::numeric_limits<RET_T>::max());
     std::priority_queue<std::pair<T, T>, std::vector<std::pair<T, T>>, std::greater<>> pq;
+    distances[start] = 0;
     pq.push({0, start});
     while (not pq.empty()) {
         T a{pq.top().second};
@@ -18,7 +22,7 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T>
         if (visited[a]) {
             continue;
         }
-        visited[a] = 1;
+        visited[a] = true;
         for (const auto &v : adj[a]) {
             const T b{v.first};
             const T w{v.second};
@@ -29,21 +33,19 @@ djikstra(T start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T>
             }
         }
     }
+    return distances;
 }
 
 template <typename T = int>
-void
-shortest_path(T start, T target, std::vector<T> &path) {
+std::vector<T>
+shortest_path(const T &s, const T &t, const std::vector<T> &path) {
     std::vector<T> sp;
-    for (int i = target; i != -1; i = path[i]) {
+    for (T i = t; i != s; i = path[i]) {
         sp.push_back(i);
     }
-
-    std::cout << "Path from " << start << " to " << target << ": ";
-    for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
-        std::cout << sp[i] << (i != 0 ? " -> " : "\n");
-    }
-    std::cout << "\n";
+    sp.push_back(s);
+    std::reverse(sp.begin(), sp.end());
+    return sp;
 }
 
 int
@@ -52,21 +54,27 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n, m;
-    std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());
+    long long n, m, s, t;
+    std::cin >> n >> m >> s >> t;
+    std::vector adj(n + 1, std::vector<std::pair<long long, long long>>());
     for (int i = 0; i < m; i++) {
         int a, b, w;
         std::cin >> a >> b >> w;
         adj[a].emplace_back(b, w);
     }
-    std::vector<char> visited(n + 1, false);
-    std::vector<int> distances(n + 1, 1);
-    std::vector<int> path(n + 1, -1);
-    djikstra(1, adj, distances, visited, path);
-    for (int i = 1; i <= n; i++)
-        std::cout << i << ": " << distances[i] << "\n";
-    shortest_path(1, 3, path);
+    std::vector<long long> path(n + 1, -1);
+    auto distances{dijkstra(s, adj, path)};
+    if (distances[t] == std::numeric_limits<unsigned long long>::max()) {
+        std::cout << -1 << "\n";
+    } else {
+        auto p{shortest_path(s, t, path)};
+        std::cout << distances[t] << " " << p.size() - 1 << "\n";
+        auto last{p[0]};
+        for (int i = 1; i < (int) p.size(); i++) {
+            std::cout << last << " " << p[i] << "\n";
+            last = p[i];
+        }
+    }
 
     return 0;
 }
