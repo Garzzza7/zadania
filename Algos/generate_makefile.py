@@ -88,6 +88,7 @@ HELP_COMMANDS: dict[str, str] = {
     "all        :   ": "Build everything.",
     "asm        :   ": "Build assembly files.",
     "clean      :   ": "Remove generated files.",
+    "regenerate :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
     "standard   :   ": "Build c++ files.",
     "test       :   ": "Build c++ files and run the test script.",
 }
@@ -107,7 +108,7 @@ makefile.write(warning)
 
 makefile.write(posix)
 
-makefile.write(".PHONY: standard all asm clean help test\n\n")
+makefile.write(".PHONY: standard all asm clean help test regenerate\n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")
 makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
 makefile.write("COMPILER = " + compiler + "\n\n")
@@ -118,7 +119,7 @@ for cpp_file in cpp_files:
     if file in WIP:
         continue
     else:
-        makefile.write(" " + file + ".sol ")
+        makefile.write(" " + file + ".sol")
 makefile.write("\n\n")
 
 makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
@@ -136,7 +137,7 @@ for cpp_file in cpp_files:
     if file in WIP:
         continue
     else:
-        makefile.write(" " + file + ".s ")
+        makefile.write(" " + file + ".s")
 makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
@@ -154,6 +155,9 @@ makefile.write("\n")
 makefile.write("	bash " + test_runner)
 
 makefile.write("\n\nall: standard asm\n")
+
+makefile.write("\nregenerate:\n")
+makefile.write("	python3 " + FILE_NAME + "\n")
 
 makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
 
