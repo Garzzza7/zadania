@@ -4,7 +4,7 @@
 
 .POSIX:
 
-.PHONY: standard all asm clean
+.PHONY: standard all asm clean help test
 
 CFLAGS = -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2
 
@@ -16,6 +16,16 @@ standard: 2D_Prefix_Sum.sol  Aho_Corasick.sol  BFS.sol  BST.sol  Base_conversion
 
 %.sol: %.cpp
 	$(COMPILER) $(CFLAGS) $< -o $@
+
+help:
+	@echo #
+	@echo help       :    Print this help message.
+	@echo all        :    Build everything.
+	@echo asm        :    Build assembly files.
+	@echo clean      :    Remove generated files.
+	@echo standard   :    Build c++ files.
+	@echo test       :    Build c++ files and run the test script.
+	@echo #
 
 asm: 2D_Prefix_Sum.s  Aho_Corasick.s  BFS.s  BST.s  Base_conversion.s  Bellman_Ford_Shortest_Path.s  Binary_Exponentiation.s  Binary_Lifting.s  Binary_Search.s  Binomial_Coefficient.s  Binomial_Theorem.s  Bitonic_Sort.s  Boruvka.s  CRT.s  Cactus_Stack.s  Carmichael_function.s  Cartesian_tree.s  Circle.s  Convolution.s  Counting_Sort.s  DEsopo_Pape.s  DFS.s  DP_Regex.s  Dag_Shortest_Path.s  De_Bruijn.s  Derangement.s  Difference_Array.s  Dijkstra.s  Disjoint_Set_Union.s  Disjoint_Sparse_Table.s  Edmond_Karp_MaxFlow.s  Endian.s  Euclid_GCD_LCM.s  Euler_Tour.s  Euler_s_totient.s  Extended_Euclid_s_Algorithm.s  Factorize.s  FenwickTree.s  Find_Cycles_Directed.s  Find_Cycles_Undirected.s  Fisher_Yates.s  Flood_fill.s  Floor_Sum.s  Floyd_Warshall.s  Hash_function.s  In_Out_Ancestor.s  KMP.s  Kadane_s_Algorithm.s  Kahn.s  Kosaraju.s  Kruskal.s  Kth_Order_Statistics.s  LCA.s  LCS.s  Levenshtein_distance.s  MEX.s  Manacher.s  Matrix.s  Max_Heap.s  Merge_Sort.s  Miller_Rabin.s  Min_Heap.s  Modular_Arithmetic.s  Monotone_chain.s  Monotonic_Queue.s  Next_permutation.s  Optimzed_Matrix.s  Parity_of_Permutation.s  Priority_Queue.s  Quick_Sort.s  Rabin_Karp.s  Rolling_Hash.s  SPFA.s  Sattoro_shuffle.s  Segment_Tree.s  Segmented_Sieve.s  Sierpinski_triagnle_nth_row.s  Sieve_of_Eratosthenes.s  Simple_Dijkstra.s  Sparse_Table.s  Submask.s  Subsets.s  Suffix_array.s  TEMPLATE.s  Tarjan_find_articulation.s  Tarjan_find_bridges.s  Ternary_Search.s  Topo_sort.s  Tree_diameter.s  Trie.s  Z_function.s
 

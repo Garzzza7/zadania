@@ -83,6 +83,15 @@ subp: str = subprocess.run(
 if subp.find("avx2") != -1:
     flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
+HELP_COMMANDS: dict[str, str] = {
+    "help       :   ": "Print this help message.",
+    "all        :   ": "Build everything.",
+    "asm        :   ": "Build assembly files.",
+    "clean      :   ": "Remove generated files.",
+    "standard   :   ": "Build c++ files.",
+    "test       :   ": "Build c++ files and run the test script.",
+}
+
 flags_var: str = " $(CFLAGS) "
 
 fast_flags: str = " -g0 --std=c++20 -O0"
@@ -98,7 +107,7 @@ makefile.write(warning)
 
 makefile.write(posix)
 
-makefile.write(".PHONY: standard all asm clean\n\n")
+makefile.write(".PHONY: standard all asm clean help test\n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")
 makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
 makefile.write("COMPILER = " + compiler + "\n\n")
@@ -113,6 +122,13 @@ for cpp_file in cpp_files:
 makefile.write("\n\n")
 
 makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
+
+makefile.write("help:\n")
+makefile.write("	" + "@echo " + "#" + "\n")
+for command, desc in HELP_COMMANDS.items():
+    makefile.write("	" + "@echo " + command + " " + desc + "\n")
+makefile.write("	" + "@echo " + "#" + "\n")
+makefile.write("\n")
 
 makefile.write("asm:")
 for cpp_file in cpp_files:

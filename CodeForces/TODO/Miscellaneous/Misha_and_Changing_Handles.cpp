@@ -30,19 +30,33 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n , t;
-    std::cin >> n >> t;
-    str s;
-    std::cin >> s;
-    while(t--) {
-        for(int i = 0 ; i < n - 1 ; i++) {
-            if(s[i] == 'B' and s[i + 1] == 'G') {
-                std::swap(s[i] , s[i + 1]);
-                i++;
-            }
+    int q;
+    std::cin >> q;
+    std::map<std::string , std::vector<std::string>> adj;
+    std::set<std::string> seen;
+    std::vector<std::string> res;
+    while(q--) {
+        str s1 , s2;
+        std::cin >> s1 >> s2;
+        if(seen.find(s1) == seen.end()) {
+            res.pb(s1);
         }
+        seen.insert(s2);
+        adj[s1].pb(s2);
     }
-    std::cout << s << "\n";
+    str leaf = "";
+    auto walk = [&](const auto &self , str ver) -> void {
+        if(adj[ver].empty()) {
+            leaf = ver;
+            return;
+        }
+        self(self , adj[ver][0]);
+    };
+    std::cout << sz(res) << "\n";
+    for(const auto &v : res) {
+        walk(walk , v);
+        std::cout << v << " " << leaf << "\n";
+    }
 }
 
 int main(void) {

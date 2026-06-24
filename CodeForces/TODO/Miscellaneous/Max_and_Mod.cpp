@@ -30,19 +30,17 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n , t;
-    std::cin >> n >> t;
-    str s;
-    std::cin >> s;
-    while(t--) {
-        for(int i = 0 ; i < n - 1 ; i++) {
-            if(s[i] == 'B' and s[i + 1] == 'G') {
-                std::swap(s[i] , s[i + 1]);
-                i++;
-            }
-        }
+    int n;
+    std::cin >> n;
+    if(n%2 == 0) {
+        std::cout << -1 << "\n";
+        return;
     }
-    std::cout << s << "\n";
+    std::cout << n << " ";
+    for(int i = 1 ; i <= n - 1 ; i++) {
+        std::cout << i << " ";
+    }
+    std::cout << "\n";
 }
 
 int main(void) {
@@ -51,6 +49,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

@@ -299,7 +299,9 @@ template <class Fun> class y_combinator_result {
     Fun fun_;
 
   public:
-    template <class T> explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {
+    template <class T>
+    explicit y_combinator_result(T &&fun)
+        : fun_(std::forward<T>(fun)) {
     }
     template <class... Args>
     decltype(auto)
@@ -391,11 +393,11 @@ using u64   = unsigned long long;
 using u128  = __uint128_t;
 
 void
-solve() {
+solve(void) {
 }
 
 int
-main() {
+main(void) {
     std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
     const auto start = std::chrono::high_resolution_clock::now();
