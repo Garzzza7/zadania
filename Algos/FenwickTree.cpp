@@ -8,26 +8,29 @@ template <typename T, typename OP> struct fenwick {
      * ONE INDEXED !!!
      * REMEMBER THIS !!!
      */
-    int size{0};
-    std::vector<T> vec;
+  private:
+    int _size{0};
+    std::vector<T> _vec;
     static constexpr OP op{};
+
+  public:
     fenwick(const int &_n)
-        : size(_n + 1) {
-        vec.assign(size, 0);
+        : _size(_n + 1) {
+        _vec.assign(_size, 0);
     }
 
-    fenwick(const std::vector<T> &_vec)
-        : size((int) _vec.size() + 1) {
-        vec.assign(size, 0);
-        for (int i = 1; i < size; i++) {
-            update(vec[i - 1], i);
+    fenwick(const std::vector<T> &init)
+        : _size((int) init.size() + 1) {
+        _vec.assign(_size, 0);
+        for (int i = 1; i < _size; i++) {
+            update(_vec[i - 1], i);
         }
     }
 
     void
     update(const T &val, int idx) {
-        while (idx < size) {
-            vec[idx] = op(vec[idx], val);
+        while (idx < _size) {
+            _vec[idx] = op(_vec[idx], val);
             idx += ((idx) & (-idx));
         }
     }
@@ -38,7 +41,7 @@ template <typename T, typename OP> struct fenwick {
             idx++;
             T res = 0;
             while (idx > 0) {
-                res = op(res, vec[idx]);
+                res = op(res, _vec[idx]);
                 idx -= ((idx) & (-idx));
             }
             return res;

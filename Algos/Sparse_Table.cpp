@@ -5,45 +5,48 @@
 // both queries tested on: https://judge.yosupo.jp/problem/staticrmq
 
 template <typename T, typename OP, T NEUTRAL> struct sparse_table {
-    int size{};
-    int LOG{};
-    std::vector<std::vector<T>> vec;
+  private:
+    int _size{};
+    int _LOG{};
+    std::vector<std::vector<T>> _vec;
     static constexpr OP op{};
-    std::vector<unsigned long long> precalc_log;
-    sparse_table(const std::vector<T> &_init)
-        : size(static_cast<int>(_init.size())) {
-        while (1 << LOG < size) {
-            LOG++;
+    std::vector<unsigned long long> _precalc_log;
+
+  public:
+    sparse_table(const std::vector<T> &init)
+        : _size(static_cast<int>(init.size())) {
+        while (1 << _LOG < _size) {
+            _LOG++;
         }
-        LOG++;
-        vec         = std::vector(LOG, std::vector(size, NEUTRAL));
-        vec[0]      = _init;
-        precalc_log = std::vector(1 << LOG, 0ULL);
-        for (int i = 1; i <= LOG; i++) {
-            for (int j = 0; j + (1 << i) <= size; j++) {
-                vec[i][j] = op(vec[i - 1][j], vec[i - 1][j + (1 << (i - 1))]);
+        _LOG++;
+        _vec         = std::vector(_LOG, std::vector(_size, NEUTRAL));
+        _vec[0]      = init;
+        _precalc_log = std::vector(1 << _LOG, 0ULL);
+        for (int i = 1; i <= _LOG; i++) {
+            for (int j = 0; j + (1 << i) <= _size; j++) {
+                _vec[i][j] = op(_vec[i - 1][j], _vec[i - 1][j + (1 << (i - 1))]);
             }
         }
-        for (int i = 0; i < LOG; i++) {
+        for (int i = 0; i < _LOG; i++) {
             for (int j = (1 << i); j < (1 << (i + 1)); j++) {
-                precalc_log[j] = i;
+                _precalc_log[j] = i;
             }
         }
     }
 
     [[nodiscard]] T
     query(const int &L, const int &R) const {
-        const auto log = precalc_log[R - L];
-        return op(vec[log][L], vec[log][R - (1 << log)]);
+        const auto log = _precalc_log[R - L];
+        return op(_vec[log][L], _vec[log][R - (1 << log)]);
     }
 
     [[nodiscard]] T
     query_nonindempotent(int L, int R) const {
         T res{NEUTRAL};
         R--;
-        for (int i = LOG; i >= 0; i--) {
+        for (int i = _LOG; i >= 0; i--) {
             if (1 << i <= R - L + 1) {
-                res = op(res, vec[i][L]);
+                res = op(res, _vec[i][L]);
                 L += 1 << i;
             }
         }

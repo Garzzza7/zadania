@@ -44,10 +44,11 @@ main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec)
+        for (auto &&v : vec) {
             std::cin >> v;
-        quick_sort(vec, 0, n - 1);
+        }
         auto test{vec};
+        quick_sort(vec, 0, n - 1);
         std::sort(test.begin(), test.end());
         std::cout << (test == vec) << "\n";
     }

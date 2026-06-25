@@ -1,60 +1,50 @@
 #include <iostream>
-// #include <map>
 #include <vector>
 
 // https://atcoder.jp/contests/practice2/tasks/practice2_a
 
 template <typename T = int> struct dsu {
   private:
-    // in case the values are not numbers
-    // std::map<T, T> parent;
-    // std::map<T, int> size;
-    // std::map<T, int> rank;
-    std::vector<T> parent;
-    std::vector<T> size;
-    std::vector<T> rank;
+    std::vector<T> _parent;
+    std::vector<T> _size;
+    std::vector<T> _rank;
 
   public:
-    dsu() = delete;
-
-    dsu(const T n)
-        : parent(std::vector<T>(n, 0)),
-          size(std::vector<T>(n, 1)),
-          rank(std::vector<T>(n, 0)) {
+    dsu(const T &n)
+        : _parent(std::vector<T>(n, 0)),
+          _size(std::vector<T>(n, 1)),
+          _rank(std::vector<T>(n, 0)) {
         for (T i = 0; i < n; i++) {
-            parent[i] = i;
+            _parent[i] = i;
         }
     }
 
-    // This constructor moves input arrays.
+    // This constructor moves the input arrays.
     /*
-    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank)
-        : parent(std::move(_parent)), size(std::move(_size)),
-          rank(std::move(_rank)) {
+    dsu(const std::vector<T> &parent, const std::vector<T> &size, const std::vector<T> &rank)
+        : _parent(std::move(parent)),
+          _size(std::move(size)),
+          _rank(std::move(rank)) {
     }
     */
 
-    dsu(std::vector<T> parent, std::vector<T> size, std::vector<T> rank)
-        : parent(parent),
-          size(size),
-          rank(rank) {
+    dsu(const std::vector<T> &parent, const std::vector<T> &size, const std::vector<T> &rank)
+        : _parent(parent),
+          _size(size),
+          _rank(rank) {
     }
-
-    ~dsu() = default;
 
     void
     make_set(const T &v) {
-        parent[v] = v;
-        size[v]   = 1;
-        rank[v]   = 0;
+        _parent[v] = v;
+        _size[v]   = 1;
+        _rank[v]   = 0;
     }
 
     T
     find(const T &v) {
-        if (v == parent[v]) [[likely]] {
-            return v;
-        }
-        return parent[v] = find(parent[v]);
+        if (v == _parent[v]) return v;
+        return _parent[v] = find(_parent[v]);
     }
 
     void
@@ -62,11 +52,11 @@ template <typename T = int> struct dsu {
         a = find(a);
         b = find(b);
         if (a != b) {
-            if (size[a] < size[b]) {
+            if (_size[a] < _size[b]) {
                 std::swap(a, b);
             }
-            parent[b] = a;
-            size[a] += size[b];
+            _parent[b] = a;
+            _size[a] += _size[b];
         }
     }
 
@@ -75,11 +65,11 @@ template <typename T = int> struct dsu {
         a = find(a);
         b = find(b);
         if (a != b) {
-            if (rank[a] < rank[b]) {
+            if (_rank[a] < _rank[b]) {
                 std::swap(a, b);
             }
-            parent[b] = a;
-            rank[a] += rank[a] == rank[b];
+            _parent[b] = a;
+            _rank[a] += _rank[a] == _rank[b];
         }
     }
 
@@ -89,8 +79,13 @@ template <typename T = int> struct dsu {
     }
 
     T
-    get_size(const T &v) {
-        return size[find(v)];
+    size(const T &v) {
+        return _size[find(v)];
+    }
+
+    T
+    rank(const T &v) {
+        return _rank[find(v)];
     }
 };
 

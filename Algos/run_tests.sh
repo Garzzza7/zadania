@@ -205,6 +205,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Blum_Floyd_Pratt_Rivest_Tarjan.sol <Blum_Floyd_Pratt_Rivest_Tarjan.txt)" ]]; then
+	printf "${red}ABORT at Blum_Floyd_Pratt_Rivest_Tarjan.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Blum_Floyd_Pratt_Rivest_Tarjan.sol <Blum_Floyd_Pratt_Rivest_Tarjan.txt)" == "$(cat Blum_Floyd_Pratt_Rivest_Tarjan.test)" ]; then
+	printf "${green}Blum_Floyd_Pratt_Rivest_Tarjan Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Blum_Floyd_Pratt_Rivest_Tarjan Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Blum_Floyd_Pratt_Rivest_Tarjan.sol <Blum_Floyd_Pratt_Rivest_Tarjan.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Blum_Floyd_Pratt_Rivest_Tarjan.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Boruvka.sol <Boruvka.txt)" ]]; then
 	printf "${red}ABORT at Boruvka.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
