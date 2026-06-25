@@ -1,20 +1,40 @@
+// # vi: set shiftwidth=4 tabstop=4:
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <cstdint>
+#include <functional>
 #include <iostream>
-// #include <map>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
 
-// https://atcoder.jp/contests/practice2/tasks/practice2_a
+#define sz(vec)  (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
+
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
+using u128 = __uint128_t;
 
 template <typename T = int> struct dsu {
-  private:
-    // in case the values are not numbers
-    // std::map<T, T> parent;
-    // std::map<T, int> size;
-    // std::map<T, int> rank;
     std::vector<T> parent;
     std::vector<T> size;
     std::vector<T> rank;
 
-  public:
     dsu() = delete;
 
     dsu(const T n)
@@ -25,14 +45,6 @@ template <typename T = int> struct dsu {
             parent[i] = i;
         }
     }
-
-    // This constructor moves input arrays.
-    /*
-    dsu(std::vector<T> _parent, std::vector<T> _size, std::vector<T> _rank)
-        : parent(std::move(_parent)), size(std::move(_size)),
-          rank(std::move(_rank)) {
-    }
-    */
 
     dsu(std::vector<T> parent, std::vector<T> size, std::vector<T> rank)
         : parent(parent),
@@ -87,12 +99,26 @@ template <typename T = int> struct dsu {
     is_same_set(const T &a, const T &b) {
         return find(a) == find(b);
     }
-
-    T
-    get_size(const T &v) {
-        return size[find(v)];
-    }
 };
+
+void
+solve(void) {
+
+    int n;
+    std::cin >> n;
+    std::vector<std::tuple<int, int, int>> vec(n - 1);
+    for (auto &&[w, u, v] : vec) {
+        std::cin >> u >> v >> w;
+    }
+    std::sort(all(vec));
+    dsu<int> dsu(n + 1);
+    i64 res = 0LL;
+    for (const auto &[w, u, v] : vec) {
+        res += (i64) w * dsu.size[dsu.find(u)] * dsu.size[dsu.find(v)];
+        dsu.union_by_size(u, v);
+    }
+    std::cout << res << "\n";
+}
 
 int
 main(void) {
@@ -100,29 +126,10 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    long long n;
-    int q;
-    std::cin >> n >> q;
-
-    dsu<long long> dsu(n + 1);
-
-    while (q--) {
-        long long a, b, c;
-        std::cin >> a >> b >> c;
-        if (a == 0) {
-            long long bb = dsu.find(b);
-            long long cc = dsu.find(c);
-            dsu.union_by_rank(bb, cc);
-        } else {
-            long long res1 = dsu.find(b);
-            long long res2 = dsu.find(c);
-            if (res1 == res2) {
-                std::cout << '1';
-            } else {
-                std::cout << '0';
-            }
-            std::cout << "\n";
-        }
+    int _{1};
+    while (_--) {
+        solve();
     }
+
     return 0;
 }

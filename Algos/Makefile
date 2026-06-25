@@ -20,8 +20,8 @@ standard: 2D_Prefix_Sum.sol Aho_Corasick.sol BFS.sol BST.sol Base_conversion.sol
 help:
 	@echo #
 	@echo help       :    Print this help message.
-	@echo all        :    Build everything.
-	@echo asm        :    Build assembly files.
+	@echo all        :    Build and generate everything.
+	@echo asm        :    Generate assembly files.
 	@echo clean      :    Remove generated files.
 	@echo regenerate :    Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.
 	@echo standard   :    Build c++ files.

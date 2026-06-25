@@ -85,8 +85,8 @@ if subp.find("avx2") != -1:
 
 HELP_COMMANDS: dict[str, str] = {
     "help       :   ": "Print this help message.",
-    "all        :   ": "Build everything.",
-    "asm        :   ": "Build assembly files.",
+    "all        :   ": "Build and generate everything.",
+    "asm        :   ": "Generate assembly files.",
     "clean      :   ": "Remove generated files.",
     "regenerate :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
     "standard   :   ": "Build c++ files.",

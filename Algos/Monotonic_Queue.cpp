@@ -3,15 +3,17 @@
 #include <vector>
 
 // https://www.spoj.com/problems/ARRAYSUB/
+// https://atcoder.jp/contests/awc0001/tasks/awc0001_e
 
-template <typename T = int> struct monotonic_queue {
+template <typename T, typename OP> struct monotonic_queue {
   private:
     std::deque<T> dq;
+    OP op;
 
   public:
     void
     push(const T &v) {
-        while (not dq.empty() and dq.back() < v) {
+        while (not dq.empty() and op(dq.back(), v)) {
             dq.pop_back();
         }
         dq.push_back(v);
@@ -49,7 +51,8 @@ main(void) {
     }
     int k;
     std::cin >> k;
-    monotonic_queue<int> q;
+    auto op = [](const auto &l, const auto &r) -> bool { return l < r; };
+    monotonic_queue<int, decltype(op)> q;
     int i;
     for (i = 0; i < k; i++) {
         q.push(vec[i]);
