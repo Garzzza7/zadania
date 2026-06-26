@@ -2,7 +2,7 @@
 
 // https://stackoverflow.com/a/12996028
 
-template <typename T = unsigned>
+template <typename T = unsigned int>
 T
 hash(T x) noexcept {
     x = ((x >> 16) ^ x) * 0x45d9f3bu;

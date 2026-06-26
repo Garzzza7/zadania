@@ -27,6 +27,7 @@ cartesian_tree_parents(const std::vector<T> &vec) {
 
 // O(nlogn) due to sparse table, asymptotically slower than ^
 // return structure of the tree in an array as in bin heap , segtree etc.
+// TODO: rework
 template <typename T = int> struct cartesian_tree {
     template <typename TT = int> struct sparse_table {
         int size;
@@ -34,8 +35,8 @@ template <typename T = int> struct cartesian_tree {
         const TT NEUTRAL_ELEMENT{INT32_MAX};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         std::vector<TT> bin_log;
-        sparse_table(const std::vector<TT> &_init)
-            : size(static_cast<int>(_init.size())) {
+        sparse_table(const std::vector<TT> &init)
+            : size(static_cast<int>(init.size())) {
             bin_log.push_back(0);
             bin_log.push_back(0);
             for (int i = 2; i <= size; i++) {
@@ -44,7 +45,7 @@ template <typename T = int> struct cartesian_tree {
             LOG = 63 - __builtin_clzl(size) + 1;
             matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
             for (int i = 0; i < size; i++) {
-                matrix[0][i] = {_init[i], i};
+                matrix[0][i] = {init[i], i};
             }
         }
 

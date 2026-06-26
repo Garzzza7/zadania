@@ -9,11 +9,11 @@ template <typename T = int> struct HLD {
     std::vector<T> subtree_size;
     std::vector<std::vector<T>> adj;
     HLD() = default;
-    HLD(const T &_n) {
-        in.resize(_n);
-        out.resize(_n);
-        subtree_size.resize(_n);
-        adj.resize(_n);
+    HLD(const T &n) {
+        in.resize(n);
+        out.resize(n);
+        subtree_size.resize(n);
+        adj.resize(n);
     }
     void
     add_edge(const T &u, const T &v) {

@@ -5,9 +5,9 @@ struct tarjan_find_bridges {
     struct edge {
         int vertex;
         int id;
-        edge(const int _vv, const int _idd)
-            : vertex(_vv),
-              id(_idd) {
+        edge(const int vv, const int idd)
+            : vertex(vv),
+              id(idd) {
         }
     };
 
