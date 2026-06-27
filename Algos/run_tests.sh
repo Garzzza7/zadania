@@ -1255,6 +1255,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Subset_Sums.sol <Subset_Sums.txt)" ]]; then
+	printf "${red}ABORT at Subset_Sums.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Subset_Sums.sol <Subset_Sums.txt)" == "$(cat Subset_Sums.test)" ]; then
+	printf "${green}Subset_Sums Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Subset_Sums Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Subset_Sums.sol <Subset_Sums.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Subset_Sums.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Subsets.sol <Subsets.txt)" ]]; then
 	printf "${red}ABORT at Subsets.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
