@@ -1,8 +1,33 @@
+// # vi: set shiftwidth=4 tabstop=4:
+#pragma GCC optimize("Ofast")
+#include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <utility>
 #include <vector>
 
-// both queries tested on: https://judge.yosupo.jp/problem/staticrmq
+#define sz(vec)  (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
+
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
+using u128 = __uint128_t;
 
 template <typename T, typename OP, T NEUTRAL> struct sparse_table {
   private:
@@ -36,7 +61,6 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
 
     [[nodiscard]] T
     query(const int &L, const int &R) const {
-        // <L , R)
         const auto log = _precalc_log[R - L];
         return op(_vec[log][L], _vec[log][R - (1 << log)]);
     }
@@ -56,12 +80,26 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
 };
 
 constexpr auto op = [](const auto &l, const auto &r) -> auto {
-    if (l < r) return l;
+    if (l >= r) return l;
     return r;
 };
-constexpr auto sum = [](const auto &l, const auto &r) -> auto { return l + r; };
-using RMQ          = sparse_table<long long, decltype(op), (long long) (1e9 + 1)>;
-using SUM          = sparse_table<long long, decltype(sum), 0LL>;
+using MAX = sparse_table<long long, decltype(op), INT64_MIN>;
+
+void
+solve(void) {
+    int n, q;
+    std::cin >> n >> q;
+    std::vector<long long> vec(n);
+    for (auto &&v : vec)
+        std::cin >> v;
+    MAX st(vec);
+    while (q--) {
+        int l, r;
+        std::cin >> l >> r;
+        l--;
+        std::cout << st.query(l, r) << "\n";
+    }
+}
 
 int
 main(void) {
@@ -69,23 +107,9 @@ main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
-    int n, q;
-    std::cin >> n >> q;
-    std::vector<long long> vec(n);
-    for (auto &&v : vec) {
-        std::cin >> v;
-    }
-
-    RMQ rmq(vec);
-    SUM s(vec);
-
-    std::cout << s.query_nonindempotent(0, n) << "\n";
-
-    while (q--) {
-        int l, r;
-        std::cin >> l >> r;
-        std::cout << rmq.query(l, r) << "\n";
-        // std::cout << rmq.query(l, r) << "\n";
+    int _{1};
+    while (_--) {
+        solve();
     }
 
     return 0;
