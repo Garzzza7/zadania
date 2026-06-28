@@ -33,9 +33,13 @@ void
 solve(void) {
     int n, k;
     std::cin >> n >> k;
-    std::vector<int> vec(n);
-    for (auto &&v : vec)
+    u64 res = 0;
+    for (int i = 0; i < n; i++) {
+        int v;
         std::cin >> v;
+        res += v * (v % k == 0);
+    }
+    std::cout << res << "\n";
 }
 
 int

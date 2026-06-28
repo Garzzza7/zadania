@@ -31,11 +31,22 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n, k;
-    std::cin >> n >> k;
-    std::vector<int> vec(n);
-    for (auto &&v : vec)
+    int n, m, k;
+    std::cin >> n >> m >> k;
+    std::vector<int> s(n);
+    for (auto &&v : s)
         std::cin >> v;
+    for (int _ = 0; _ < m; _++) {
+        int p, v;
+        std::cin >> p >> v;
+        p--;
+        s[p] = v;
+    }
+    u64 res = 0;
+    for (const auto &v : s) {
+        res += v < k;
+    }
+    std::cout << res << "\n";
 }
 
 int
