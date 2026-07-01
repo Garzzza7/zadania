@@ -31,34 +31,34 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n, m;
+    u64 n, m;
     std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(n);
-    for (int i = 0; i < m; i++) {
-        int a, b;
+    std::vector<std::pair<u64, u64>> vec(m);
+    for (i64 i = 0; i < m; i++) {
+        u64 a, b;
         std::cin >> a >> b;
         vec[i] = {a, b};
     }
     std::sort(all(vec));
-    bool git = true;
-    int cnt  = 1;
-    int l    = 0;
-    int r    = 0;
-    int i    = 0;
-    while (i < n) {
-        int iter = i + 1;
-        int best = vec[i].second;
-        while (iter < n) {
-            auto &&a = vec[iter].first;
-            auto &&b = vec[iter].second;
-        }
-        cnt++;
-        i = iter + 1;
+    if (n < vec[0].first) {
+        std::cout << n << "\n";
+        return;
     }
-    if (git and l == 1 and r == n)
-        std::cout << cnt << "\n";
-    else
-        std::cout << -1 << "\n";
+    i64 rainy = 0;
+    auto last = vec[0];
+    for (i64 i = 1; i < m; i++) {
+        auto &&a = vec[i].first;
+        auto &&b = vec[i].second;
+        if (a > last.second) {
+            rainy += last.second - last.first + 1;
+            last.first  = a;
+            last.second = b;
+        } else {
+            last.second = std::max(last.second, b);
+        }
+    }
+    rainy += last.second - last.first + 1;
+    std::cout << n + rainy << "\n";
 }
 
 int

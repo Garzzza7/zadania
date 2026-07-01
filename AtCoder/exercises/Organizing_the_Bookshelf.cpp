@@ -30,37 +30,28 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 template <typename T, typename OP> struct fenwick {
+    // 0-indexed for queries and updates
   private:
     int _size;
     std::vector<T> _vec;
     static constexpr OP op{};
 
-    T
-    prefix(int idx) const {
-        idx++;
-        T res = 0;
-        while (idx > 0) {
-            res = op(res, _vec[idx]);
-            idx -= idx & -idx;
-        }
-        return res;
-    }
-
   public:
-    explicit fenwick(int n)
-        : _size(n + 1),
-          _vec(n + 1, 0) {
+    fenwick(const int &n)
+        : _size(n + 1) {
+        _vec.assign(_size, 0);
     }
 
-    explicit fenwick(const std::vector<T> &init)
-        : _size((int) init.size() + 1),
-          _vec(_size, 0) {
-        for (int i = 0; i < (int) init.size(); i++)
-            update(init[i], i);
+    fenwick(const std::vector<T> &init)
+        : _size((int) init.size() + 1) {
+        _vec.assign(_size, 0);
+        for (int i = 0; i < (int) init.size(); i++) {
+            add(i, init[i]);
+        }
     }
 
     void
-    update(const T &val, int idx) {
+    add(int idx, const T &val) {
         idx++;
         while (idx < _size) {
             _vec[idx] = op(_vec[idx], val);
@@ -68,9 +59,19 @@ template <typename T, typename OP> struct fenwick {
         }
     }
 
-    T
-    query(int l, int r) const {
-        return prefix(r) - (l ? prefix(l - 1) : 0);
+    [[nodiscard]] T
+    query(const int &l, const int &r) const {
+        // <l , r>
+        auto calc = [this](int idx) -> T {
+            idx++;
+            T res = 0;
+            while (idx > 0) {
+                res = op(res, _vec[idx]);
+                idx -= idx & -idx;
+            }
+            return res;
+        };
+        return calc(r) - (l ? calc(l - 1) : 0);
     }
 };
 
@@ -80,44 +81,32 @@ using fen         = fenwick<long long, decltype(op)>;
 
 void
 solve(void) {
-    int n, q;
-    std::cin >> n >> q;
-
-    fen fw(n);
-    std::vector<long long> a(n);
-
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+        v--;
+    }
+    fen fen(n);
+    i64 res = 0;
     for (int i = 0; i < n; i++) {
-        std::cin >> a[i];
-        fw.update(a[i], i);
+        res += fen.query(vec[i] + 1, n - 1);
+        fen.add(vec[i], (i64) 1);
     }
-
-    while (q--) {
-        int t;
-        std::cin >> t;
-
-        if (t == 1) {
-            int l, r;
-            std::cin >> l >> r;
-            l--;
-            r--;
-            std::cout << fw.query(l, r) << '\n';
-        } else {
-            int x;
-            long long v;
-            std::cin >> x >> v;
-            x--;
-            fw.update(v - a[x], x);
-            a[x] = v;
-        }
-    }
+    std::cout << res << "\n";
 }
 
 int
 main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-    solve();
+    int _{1};
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

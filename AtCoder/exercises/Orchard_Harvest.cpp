@@ -33,32 +33,27 @@ void
 solve(void) {
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(n);
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        std::cin >> a >> b;
-        vec[i] = {a, b};
+    std::priority_queue<std::pair<i64, i64>, std::vector<std::pair<i64, i64>>, std::less<>> pq;
+    std::vector<int> a(n);
+    std::vector<int> b(n);
+    for (int i = 0; i < n; i++) {
+        int aa, bb;
+        std::cin >> aa >> bb;
+        a[i] = aa;
+        b[i] = bb;
+        pq.push({a[i], i});
     }
-    std::sort(all(vec));
-    bool git = true;
-    int cnt  = 1;
-    int l    = 0;
-    int r    = 0;
-    int i    = 0;
-    while (i < n) {
-        int iter = i + 1;
-        int best = vec[i].second;
-        while (iter < n) {
-            auto &&a = vec[iter].first;
-            auto &&b = vec[iter].second;
-        }
-        cnt++;
-        i = iter + 1;
+
+    i64 res = 0;
+    while (m--) {
+        auto top = pq.top();
+        pq.pop();
+        if (top.first <= 0) break;
+        res += top.first;
+        a[top.second] -= b[top.second];
+        pq.push({a[top.second], top.second});
     }
-    if (git and l == 1 and r == n)
-        std::cout << cnt << "\n";
-    else
-        std::cout << -1 << "\n";
+    std::cout << res << "\n";
 }
 
 int

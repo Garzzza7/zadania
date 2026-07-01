@@ -31,34 +31,14 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n, m;
-    std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(n);
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        std::cin >> a >> b;
-        vec[i] = {a, b};
+    int n, w, k;
+    std::cin >> n >> w >> k;
+    n--;
+    if (n * (k) <= (w)) {
+        std::cout << "Yes\n";
+    } else {
+        std::cout << "No\n";
     }
-    std::sort(all(vec));
-    bool git = true;
-    int cnt  = 1;
-    int l    = 0;
-    int r    = 0;
-    int i    = 0;
-    while (i < n) {
-        int iter = i + 1;
-        int best = vec[i].second;
-        while (iter < n) {
-            auto &&a = vec[iter].first;
-            auto &&b = vec[iter].second;
-        }
-        cnt++;
-        i = iter + 1;
-    }
-    if (git and l == 1 and r == n)
-        std::cout << cnt << "\n";
-    else
-        std::cout << -1 << "\n";
 }
 
 int
