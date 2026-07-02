@@ -970,6 +970,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Min_Number_of_Swaps_to_Permutation.sol <Min_Number_of_Swaps_to_Permutation.txt)" ]]; then
+	printf "${red}ABORT at Min_Number_of_Swaps_to_Permutation.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Min_Number_of_Swaps_to_Permutation.sol <Min_Number_of_Swaps_to_Permutation.txt)" == "$(cat Min_Number_of_Swaps_to_Permutation.test)" ]; then
+	printf "${green}Min_Number_of_Swaps_to_Permutation Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Min_Number_of_Swaps_to_Permutation Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Min_Number_of_Swaps_to_Permutation.sol <Min_Number_of_Swaps_to_Permutation.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Min_Number_of_Swaps_to_Permutation.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Modular_Arithmetic.sol <Modular_Arithmetic.txt)" ]]; then
 	printf "${red}ABORT at Modular_Arithmetic.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
