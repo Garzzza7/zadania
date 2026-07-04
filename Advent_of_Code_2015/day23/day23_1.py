@@ -1,10 +1,9 @@
 from sys import stdin
 
 stack = []
-a: int = 0
-b: int = 0
 
 ternary = ["jio", "jie"]
+registers = {"a": 0, "b": 0}
 
 
 def parse(s: str) -> None:
@@ -25,30 +24,18 @@ def parse(s: str) -> None:
 
 def run() -> None:
     i: int = 0
-    global a
-    global b
     while i < len(stack):
         curr = stack[i]
-        print(curr, a, b)
         name = curr[0]
         if name == "hlf":
             r = curr[1]
-            if r == "a":
-                a = a // 2
-            else:
-                b = b // 2
+            registers[r] = registers[r] // 2
         elif name == "tpl":
             r = curr[1]
-            if r == "a":
-                a = a * 3
-            else:
-                b = b * 3
+            registers[r] = registers[r] * 3
         elif name == "inc":
             r = curr[1]
-            if r == "a":
-                a += 1
-            else:
-                b += 1
+            registers[r] = registers[r] + 1
         elif name == "jmp":
             offset = curr[1]
             i += offset
@@ -56,29 +43,19 @@ def run() -> None:
         elif name == "jie":
             r = curr[1]
             offset = curr[2]
-            if r == "a":
-                if a % 2 == 0:
-                    i += offset
-                    continue
-            else:
-                if b % 2 == 0:
-                    i += offset
-                    continue
-        elif name == "jio":
+            if registers[r] % 2 == 0:
+                i += offset
+                continue
+        else:
             r = curr[1]
             offset = curr[2]
-            if r == "a":
-                if a == 1:
-                    i += offset
-                    continue
-            else:
-                if b == 1:
-                    i += offset
-                    continue
+            if registers[r] == 1:
+                i += offset
+                continue
         i += 1
 
 
 for line in stdin:
     parse(line)
 run()
-print(a, b)
+print(registers["b"])
