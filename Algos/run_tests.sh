@@ -865,6 +865,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Longest_Palindromic_Subsequence.sol <Longest_Palindromic_Subsequence.txt)" ]]; then
+	printf "${red}ABORT at Longest_Palindromic_Subsequence.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Longest_Palindromic_Subsequence.sol <Longest_Palindromic_Subsequence.txt)" == "$(cat Longest_Palindromic_Subsequence.test)" ]; then
+	printf "${green}Longest_Palindromic_Subsequence Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Longest_Palindromic_Subsequence Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Longest_Palindromic_Subsequence.sol <Longest_Palindromic_Subsequence.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Longest_Palindromic_Subsequence.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./MEX.sol <MEX.txt)" ]]; then
 	printf "${red}ABORT at MEX.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
