@@ -54,9 +54,7 @@ template <typename T, typename OP> struct disjoint_sparse_table {
 };
 
 constexpr auto op = [](const auto &l, const auto &r) -> auto {
-    if (l < r) {
-        return l;
-    }
+    if (l < r) return l;
     return r;
 };
 using RMQ = disjoint_sparse_table<long long, decltype(op)>;

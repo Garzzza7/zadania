@@ -66,7 +66,7 @@ template <typename T = int> struct lca {
         : size((int) adj.size()) {
         ids.resize(size);
         std::vector visited(size, false);
-        auto dfs{[&](const auto &self, const int v, const int h) -> void {
+        auto dfs{[&](const auto &self, const int &v, const int &h) -> void {
             visited[v] = true;
             heights.push_back(h);
             ids[v] = (int) euler.size();
