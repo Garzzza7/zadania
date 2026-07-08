@@ -249,7 +249,7 @@ template <typename T = int> struct bst {
     }
 
     void
-    in_order() {
+    in_order(void) {
         in_order(root);
     }
 
@@ -302,7 +302,7 @@ template <typename T = int> struct bst {
         : root(new _node_type(v)) {
     }
 
-    ~bst() {
+    ~bst(void) {
         auto walk{[](const auto &self, const node *curr) -> void {
             if (curr == nullptr) {
                 return;
@@ -350,7 +350,7 @@ template <typename T = int> struct bst {
     }
 
     void
-    pre_order() {
+    pre_order(void) {
         pre_order(root);
     }
 
@@ -363,12 +363,12 @@ template <typename T = int> struct bst {
     }
 
     void
-    post_order() {
+    post_order(void) {
         post_order(root);
     }
 
     void
-    validate() const {
+    validate(void) const {
         auto walk{[](const auto &self, node *curr) -> void {
             if (curr == nullptr) {
                 return;

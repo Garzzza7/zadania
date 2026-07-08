@@ -40,7 +40,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct trie {
     std::vector<node> nodes;
     int root{0};
 
-    trie() {
+    trie(void) {
         nodes.emplace_back(node(root));
     }
 
@@ -70,12 +70,12 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct trie {
     }
 
     int
-    count() {
+    count(void) {
         return nodes[0].cnt_links;
     }
 
     int
-    size() {
+    size(void) {
         return static_cast<int>(nodes.size());
     }
 };

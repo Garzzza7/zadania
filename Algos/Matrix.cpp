@@ -124,7 +124,7 @@ template <typename T = int> struct matrix {
     }
 
     void
-    print() {
+    print(void) {
         for (const auto &vv : this->mat) {
             for (const auto &v : vv)
                 std::cout << v << " ";
@@ -133,7 +133,7 @@ template <typename T = int> struct matrix {
     }
 
     void
-    transpose() {
+    transpose(void) {
         const auto n{static_cast<int>(this->mat.size())};
         const auto m{static_cast<int>(this->mat[0].size())};
         matrix tmp(m, n);
@@ -148,7 +148,7 @@ template <typename T = int> struct matrix {
     }
 
     bool
-    is_square() {
+    is_square(void) {
         return this->m == this->n;
     }
 

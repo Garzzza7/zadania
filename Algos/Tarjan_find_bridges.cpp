@@ -72,7 +72,7 @@ struct tarjan_find_bridges {
     }
 
     void
-    run() {
+    run(void) {
         for (int i = 1; i < static_cast<int>(adj.size()); i++) {
             if (not visited[i]) {
                 dfs(i, i);
@@ -81,7 +81,7 @@ struct tarjan_find_bridges {
     }
 
     void
-    print() const {
+    print(void) const {
         for (const auto &ee : adj) {
             for (const auto &e : ee) {
                 std::cout << e.vertex << " ";

@@ -1135,6 +1135,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Rational_Number.sol <Rational_Number.txt)" ]]; then
+	printf "${red}ABORT at Rational_Number.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Rational_Number.sol <Rational_Number.txt)" == "$(cat Rational_Number.test)" ]; then
+	printf "${green}Rational_Number Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Rational_Number Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Rational_Number.sol <Rational_Number.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Rational_Number.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Rolling_Hash.sol <Rolling_Hash.txt)" ]]; then
 	printf "${red}ABORT at Rolling_Hash.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))

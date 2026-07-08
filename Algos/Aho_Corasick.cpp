@@ -45,7 +45,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
     }
 
     void
-    _build_suffix_links() {
+    _build_suffix_links(void) {
         std::queue<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
@@ -79,7 +79,7 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
     }
 
     void
-    _build_output_links() {
+    _build_output_links(void) {
         std::queue<int> q;
 
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
@@ -112,12 +112,12 @@ template <int ALPHA_SIZE = 26, int BASE = 97> struct aho_corasick {
     std::vector<std::string> patterns;
     int root{'$' - BASE};
 
-    aho_corasick() {
+    aho_corasick(void) {
         nodes.emplace_back(node(root));
     }
 
     void
-    build() {
+    build(void) {
         _build_suffix_links();
         _build_output_links();
     }

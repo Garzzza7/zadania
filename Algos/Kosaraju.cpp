@@ -32,7 +32,7 @@ template <typename T = int> struct kosaraju {
     }
 
     void
-    calc_scc() {
+    calc_scc(void) {
         for (int i = 0; i < size; i++) {
             if (not visited[i]) {
                 dfs_1(i);

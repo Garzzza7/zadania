@@ -20,7 +20,7 @@ template <typename T, typename OP> struct monotonic_queue {
     }
 
     [[nodiscard]] T
-    top() const {
+    top(void) const {
         return dq.front();
     }
 
@@ -32,7 +32,7 @@ template <typename T, typename OP> struct monotonic_queue {
     }
 
     void
-    pop() {
+    pop(void) {
         dq.pop_front();
     }
 };

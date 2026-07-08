@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -30,10 +29,23 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void solve(void) {
+void
+solve(void) {
+    int n, m, k;
+    std::cin >> n >> m >> k;
+    std::vector<int> t(m);
+    for (auto &&v : t)
+        std::cin >> v;
+    std::vector vec(n, std::vector<int>(m));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cin >> vec[i][j];
+        }
+    }
 }
 
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

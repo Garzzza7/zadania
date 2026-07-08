@@ -52,12 +52,12 @@ template <typename T = double> struct circle {
     }
 
     T
-    circum() {
+    circum(void) {
         return (T) 2 * pi * r;
     }
 
     T
-    area() {
+    area(void) {
         return pi * r * r;
     }
 

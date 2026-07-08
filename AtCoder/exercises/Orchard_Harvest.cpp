@@ -33,27 +33,21 @@ void
 solve(void) {
     int n, m;
     std::cin >> n >> m;
-    std::priority_queue<std::pair<i64, i64>, std::vector<std::pair<i64, i64>>, std::less<>> pq;
-    std::vector<int> a(n);
-    std::vector<int> b(n);
-    for (int i = 0; i < n; i++) {
-        int aa, bb;
-        std::cin >> aa >> bb;
-        a[i] = aa;
-        b[i] = bb;
-        pq.push({a[i], i});
-    }
-
-    i64 res = 0;
+    std::vector<i64> vec(n);
+    for (auto &&v : vec)
+        std::cin >> v;
+    std::vector<i64> diff(n + 2, 0);
     while (m--) {
-        auto top = pq.top();
-        pq.pop();
-        if (top.first <= 0) break;
-        res += top.first;
-        a[top.second] -= b[top.second];
-        pq.push({a[top.second], top.second});
+        int l, r;
+        std::cin >> l >> r;
+        diff[l]++;
+        diff[r + 1]--;
     }
-    std::cout << res << "\n";
+    for (int i = 1; i <= n; i++)
+        diff[i] += diff[i - 1];
+    for (int i = 1; i <= n; i++)
+        std::cout << vec[i - 1] * diff[i] << " ";
+    std::cout << "\n";
 }
 
 int

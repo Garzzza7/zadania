@@ -261,7 +261,7 @@ template <typename T = int> struct matrix {
     }
 
     void
-    print() const {
+    print(void) const {
         for (const auto &vv : this->mat) {
             for (const auto &v : vv) {
                 std::cout << v << " ";
@@ -271,18 +271,18 @@ template <typename T = int> struct matrix {
     }
 
     void
-    transpose() {
+    transpose(void) {
         std::swap(this->m, this->n);
         this->is_transposed ^= 1;
     }
 
     bool
-    is_square() {
+    is_square(void) {
         return this->m == this->n;
     }
 
     T
-    trace() {
+    trace(void) {
         T sum{0};
         // const auto n { std::min(this->m, this->n)};
         const auto n{this->m ^ ((this->n ^ this->m) & -(this->n < this->m))};
@@ -294,7 +294,7 @@ template <typename T = int> struct matrix {
 
     // TODO: FIX THIS
     matrix
-    bareiss() {
+    bareiss(void) {
         assert(this->is_square());
         const auto n{(int) this->mat.size()};
         matrix cp(this->mat);
@@ -312,7 +312,7 @@ template <typename T = int> struct matrix {
     }
 
     T
-    det() {
+    det(void) {
         assert(this->is_square());
         return this->bareiss().mat[this->n - 1][this->n - 1];
     }

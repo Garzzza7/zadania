@@ -59,7 +59,7 @@ template <typename T = int> struct boruvka {
     }
 
     std::vector<edge>
-    calc_mst() {
+    calc_mst(void) {
         std::vector<edge> mst;
         std::vector<edge> cheapest(size, edge(-1, -1, MAX));
 

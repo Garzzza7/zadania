@@ -35,7 +35,7 @@ template <typename T = int> struct cactus {
     ~cactus() = default;
 
     cactus<T> *
-    branch_out() {
+    branch_out(void) {
         auto cn        = std::make_unique<cactus<T>>(this);
         cactus<T> *ptr = cn.get();
         branches.push_back(std::move(cn));
@@ -70,7 +70,7 @@ template <typename T = int> struct cactus {
     }
 
     T
-    pop() {
+    pop(void) {
         assert(not stack.empty());
         assert(branches.empty());
         T top = stack.back();
@@ -79,7 +79,7 @@ template <typename T = int> struct cactus {
     }
 
     void
-    print() const {
+    print(void) const {
         for (const auto &v : stack) {
             std::cout << v << " ";
         }
@@ -87,7 +87,7 @@ template <typename T = int> struct cactus {
     }
 
     void
-    print_branches() const {
+    print_branches(void) const {
         for (const auto &v : branches) {
             std::cout << v->id << " ";
         }
@@ -95,12 +95,12 @@ template <typename T = int> struct cactus {
     }
 
     void
-    print_branches_count() const {
+    print_branches_count(void) const {
         std::cout << "Number of branches: " << branches.size() << "\n";
     }
 
     void
-    dfs() const {
+    dfs(void) const {
         std::cout << "Cactus ID: " << id << " from " << (parent == nullptr ? -1 : parent->id) << " | Stack: ";
         print();
 

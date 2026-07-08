@@ -58,7 +58,7 @@ template <typename T = int> struct kruscal {
     }
 
     std::vector<edge>
-    calc_mst() {
+    calc_mst(void) {
         std::sort(edges.begin(), edges.end(), [](const edge &l, const edge &r) { return l.weight < r.weight; });
         for (const auto &edge : edges) {
             if (not(find(edge.u) == find(edge.v))) {

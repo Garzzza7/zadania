@@ -59,7 +59,7 @@ struct tarjan_find_articulation {
     }
 
     void
-    run() {
+    run(void) {
         for (int i = 0; i < static_cast<int>(visited.size()); i++) {
             if (not visited[i]) {
                 dfs(-123, i);
@@ -68,7 +68,7 @@ struct tarjan_find_articulation {
     }
 
     void
-    print() {
+    print(void) {
         for (const auto &ee : adj) {
             for (const auto &e : ee)
                 std::cout << e << " ";

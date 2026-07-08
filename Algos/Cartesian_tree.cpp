@@ -58,7 +58,7 @@ template <typename T = int> struct cartesian_tree {
         }
 
         void
-        process() {
+        process(void) {
             for (int i = 1; i <= LOG; i++) {
                 for (int j = 0; j + (1 << i) <= size; j++) {
                     matrix[i][j] = operation(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
@@ -88,7 +88,7 @@ template <typename T = int> struct cartesian_tree {
     }
 
     void
-    build() {
+    build(void) {
         sparse_table<T> st(base);
         st.process();
         int l{0};
