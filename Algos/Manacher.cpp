@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-// manacher tested on https://judge.yosupo.jp/problem/enumerate_palindromes
+// manacher tested on: https://judge.yosupo.jp/problem/enumerate_palindromes
 
 template <typename Container = std::string>
 std::vector<int>

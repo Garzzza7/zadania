@@ -29,27 +29,23 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void solve(void) {
+    int n;
+    std::cin >> n;
+    std::vector<int> cnt(n + 1);
+    std::vector<int> res(n + 1);
+    for(int i = 0 ; i < n ; i++) {
+        int v;
+        std::cin >> v;
+        if(v<=n) cnt[v]++;
+    }
+    for(int i = 1 ; i <= n ; i++) {
+        for(int j = i ; j <= n ; j+=i) {
+            res[j]+=cnt[i];
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
-}
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
+    std::cout << *std::max_element(all(res)) << "\n";
 }
 
 int main(void) {
@@ -58,6 +54,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

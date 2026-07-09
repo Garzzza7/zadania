@@ -1,6 +1,7 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -29,35 +30,30 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
-        }
+#define LSB(a)     ((a) & -(a))
+
+void
+solve(void) {
+    int x;
+    std::cin >> x;
+    int c = LSB(~x);
+    std::vector<int> vec = {x , c , x^c};
+    std::sort(all(vec));
+    if(vec[0] + vec[1] < vec[2]) {
+        std::cout << c << "\n";
+    } else {
+        std::cout << -1 << "\n";
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

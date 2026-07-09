@@ -29,30 +29,47 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n, q;
+    std::cin >> n >> q;
+    str s;
+    std::cin >> s;
+    s += s;
+    std::vector<str> vec;
+    for (int i = 0; i < n; i++) {
+        str tmp;
+        for (int j = 0; j < n; j++) {
+            tmp.push_back(s[i + j]);
+            vec.push_back(tmp);
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
+    std::sort(all(vec));
+    auto calc = [&](int v, int len) -> str {
+        str ret;
+        for (int i = 0; i < len; i++) {
+            ret.push_back(s[v + i]);
+        }
+        return ret;
+    };
+    for (const auto &v : vec) {
+        std::cout << v << "\n";
     }
-    return res;
+    int p = 0;
+    while (q--) {
+        int a, l;
+        std::cin >> a >> l;
+        a--;
+        p += a;
+        p %= n;
+        str curr = calc(p, l);
+        int id   = std::lower_bound(all(vec), curr) - vec.begin();
+        std::cout << id << "\n";
+    }
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

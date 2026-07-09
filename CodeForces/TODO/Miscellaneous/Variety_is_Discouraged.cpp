@@ -29,27 +29,46 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
-        }
-    }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
-}
-
 void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    std::vector<int> cnt(200005 , 0);
+    for(auto &&v : vec) {
+        std::cin >> v;
+        cnt[v]++;
+    }
+    if(n == 1) {
+        std::cout << 1 << " " << 1 << "\n";
+        return;
+    }
+    int rl = 0;
+    int rr = 0;
+    int best = 0;
+    int iter = 0;
+    while(iter < n) {
+        int tot = 0;
+        int beg = iter;
+        while(iter < n and cnt[iter] == 1) {
+            iter++;
+            tot++;
+        }
+        int end = iter - 1;
+        if(tot > best) {
+            best = tot;
+            rl = beg;
+            rr = end;
+        }
+        // if(iter >= n) break;
+        iter++;
+    }
+    rl++;
+    rr++;
+    if(best == 0) {
+        std::cout << 0 << "\n";
+    } else {
+        std::cout << rl << " " << rr << "\n";
+    }
 }
 
 int main(void) {
@@ -58,6 +77,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

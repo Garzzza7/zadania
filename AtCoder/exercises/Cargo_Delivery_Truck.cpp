@@ -29,30 +29,42 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<int> w(n);
+    std::vector<int> c(m);
+    for (auto &&v : w)
+        std::cin >> v;
+    for (auto &&v : c)
+        std::cin >> v;
+    std::sort(all(w));
+    std::sort(all(c), std::greater<>());
+    int cnt   = 0;
+    int iter1 = 0;
+    int iter2 = 0;
+    bool git  = true;
+    while (iter1 < m) {
+        int i = iter2;
+        while (i < n and c[iter1] - w[i] >= 0) {
+            i++;
+            c[iter1] -= w[i];
         }
+        iter2 = i + 1;
+        if (iter2 >= n) {
+            break;
+        }
+        iter1++;
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+    if (iter1 == m - 1)
+        std::cout << "Yes\n";
+    else
+        std::cout << "No\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

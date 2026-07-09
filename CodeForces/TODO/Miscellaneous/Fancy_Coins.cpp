@@ -1,6 +1,7 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -29,35 +30,38 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    i64 m , k , a1 , ak;
+    std::cin >> m >> k >> a1 >> ak;
+    i64 l = 0;
+    i64 r = 1'000'000;
+    i64 res = INT32_MAX;
+    i64 target = m - a1 - k * ak;
+    if(target <= 0) {
+        std::cout << 0 << "\n";
+        return;
+    }
+    while(l < r) {
+        auto special = (r - l) / 2 + l;
+        if(special * k <= target) {
+            res = std::min(res , special + ( target - special * k ));
+            l = special + 1;
+        } else {
+            r = special - 1;
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+    std::cout << res << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

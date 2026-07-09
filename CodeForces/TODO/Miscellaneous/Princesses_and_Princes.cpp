@@ -32,22 +32,43 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-	int n;
-	std::cin >> n;
-	std::vector<std::pair<int,int>> vec(n);
-	for(int i = 0 ; i < n ; i++) {
-		int v;
-		std::cin >> v;
-		vec[i] = {v , i + 1};
-	} 
-	i64 res = 0;
-	std::sort(all(vec));
-	for(int i = 0 ; i < n and vec[i].first * vec[i].first <= 2 * n ; i++) {
-		for(int j = i + 1 ; j < n and vec[i].first * vec[j].first <= 2 * n ; j++) {
-			if(vec[i].first * vec[j].first == vec[i].second + vec[j].second) res++;
-		}
-	}	
-	std::cout << res << "\n";
+    int n;
+    std::cin >> n;
+    std::vector<char> w(n + 1 , false);
+    std::vector<char> m(n + 1 , false);
+    int cnt = 0;
+    for(int i = 0 ; i < n ; i++) {
+        int k;
+        std::cin >> k;
+        bool found = false;
+        for (int j = 0 ; j < k ; j++) {
+            int v;
+            std::cin >> v;
+            v--;
+            if(found) continue;
+            if(not m[v]) {
+                w[i] = true;
+                m[v] = true;
+                found = true;
+                cnt++;
+            }
+        }
+    }
+    if(cnt == n) {
+        std::cout << "OPTIMAL\n";
+    } else {
+        std::cout << "IMPROVE\n";
+        int r1 = -1 , r2 = -1;
+        for(int i = 0 ; i < n ; i++) {
+            if(not w[i] and r1 == -1) {
+                r1 = i + 1;
+            }
+            if(not m[i] and r2 == -1) {
+                r2 = i + 1;
+            }
+        }
+        std::cout << r1 << " " << r2 << "\n";
+    }
 }
 
 int

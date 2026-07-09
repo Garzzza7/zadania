@@ -1,76 +1,73 @@
+// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
+#include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
-#define sz(vec) (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
+using db   = double;
+using str  = std::string;
+using u8   = unsigned char;
+using i32  = int;
+using u32  = unsigned int;
+using i64  = long long;
+using u64  = unsigned long long;
 using u128 = __uint128_t;
-using i64 = long long;
-using u64 = unsigned long long;
-using i32 = int;
-using u32 = unsigned int;
-using str = std::string;
 
 void
-solve() {
-    i32 n, s;
+solve(void) {
+    int n , s;
     std::cin >> n >> s;
-    std::vector vec(n, 0);
-    i32 sum{0};
-    for (auto &&v : vec) {
-	std::cin >> v;
-	sum += v;
+    std::vector<int> vec(n);
+    int cnt = 0;
+    for(auto &&v : vec) {
+        std::cin >> v;
+        cnt += v == 1;
     }
-    if (sum < s) {
-	std::cout << -1 << "\n";
-	return;
+    if(cnt < s) {
+        std::cout << -1 << "\n";
+        return;
     }
-    if (sum == s) {
-	std::cout << 0 << "\n";
-	return;
+    if(cnt == s) {
+        std::cout << 0 << "\n";
+        return;
     }
-    std::vector pref(n, 0);
-    std::vector suff(n, 0);
-    pref[0] = vec[0];
-    suff[0] = vec[n - 1];
-    for (i32 i = 1; i < n; i++) {
-	pref[i] = pref[i - 1] + vec[i];
-	suff[i] = suff[i - 1] + vec[n - 1 - i];
+    std::vector<int> pref(n + 1, 0);
+    std::vector<int> pr(n + 1, 0);
+        pref[i + 1] = pref[i] + vec[i];
     }
-
-    i32 res{INT32_MAX};
-
-    i32 diff = sum - s;
-
-    for (i32 l = 0; l < n; l++) {
-	i32 tar = diff - pref[l];
-	if (tar >= 0) {
-	    i32 r = std::lower_bound(suff.begin(), suff.end() - l - 1, tar)
-		    - suff.begin();
-	    res = std::min(res, l + r + 1);
-	}
+    for(int i = 0 ; i < n ; i++) {
+        auto curr = pref[i];
     }
-
-    std::cout << res << "\n";
 }
 
 int
-main() {
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
     std::cin >> _;
-    while (_--)
-	solve();
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

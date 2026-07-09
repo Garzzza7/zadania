@@ -29,30 +29,32 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    using T = std::tuple<int, int, int>;
+    int n, k;
+    std::cin >> n >> k;
+    std::vector<T> vec(n);
+    for (int i = 0; i < n; i++) {
+        int a, b;
+        std::cin >> a >> b;
+        int diff = a - b;
+        vec[i]   = {diff, a, b};
+    }
+    std::sort(all(vec), std::greater<>());
+    u64 tot = 0;
+    for (int i = 0; i < n; i++) {
+        if (i < k) {
+            tot += std::get<2>(vec[i]);
+        } else {
+            tot += std::get<1>(vec[i]);
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+    std::cout << tot << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

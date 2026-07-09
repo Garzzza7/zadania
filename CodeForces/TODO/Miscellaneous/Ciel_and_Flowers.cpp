@@ -29,27 +29,20 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
-        }
-    }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
-}
-
 void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
+    u64 r , g , b;
+    std::cin >> r >> g >> b;
+    u64 res = std::max({
+            std::min({r,g,b}) + (r - std::min({r,g,b})) / 3 + (g - std::min({r,g,b})) / 3 + (b - std::min({r,g,b})) / 3,
+            r / 3 + std::min({r%3,g,b}) + (g - std::min({r%3,g,b})) / 3 + (b - std::min({r%3,g,b})) / 3,
+            g / 3 + std::min({r,g%3,b}) + (r - std::min({r,g%3,b})) / 3 + (b - std::min({r,g%3,b})) / 3,
+            b / 3 + std::min({r,g,b%3}) + (r - std::min({r,g,b%3})) / 3 + (g - std::min({r,g,b%3})) / 3,
+            r / 3 + g / 3 + std::min({r%3,g%3,b}) + (b - std::min({r%3,g%3,b})) / 3,
+            r / 3 + b / 3 + std::min({r%3,g,b%3}) + (g - std::min({r%3,g,b%3})) / 3,
+            g / 3 + b / 3 + std::min({r,g%3,b%3}) + (r - std::min({r,g%3,b%3})) / 3,
+            r / 3 + g / 3 + b / 3 + std::min({r%3,g%3,b%3})
+            });
+    std::cout << res << "\n";
 }
 
 int main(void) {

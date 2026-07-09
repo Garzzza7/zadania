@@ -1,6 +1,7 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -29,35 +30,42 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n;
+    std::cin >> n;
+    std::vector<u64> vec(n);
+    for(auto &&v : vec) std::cin >> v;
+    u64 l = 0;
+    u64 r = 1e18;
+    auto check = [](u64 val , std::vector<u64> vec) -> u64 {
+        std::set<u64> tmp;
+        for(const auto &v : vec) tmp.insert(v % val);
+        return (u64)tmp.size();
+    };
+    while(l < r) {
+        auto mid = (r - l) / 2 + l;
+        auto res = check(mid , vec) ;
+        if(res == 2ULL) {
+            std::cout << mid << "\n";
+            return;
+        } else if(res > 2ULL) {
+            r = mid - 1;
+        } else {
+            l = mid + 1;
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+    std::cout << l + 1 << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

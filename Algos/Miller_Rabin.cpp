@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// tested on https://judge.yosupo.jp/problem/primality_test
+// tested on: https://judge.yosupo.jp/problem/primality_test
 
 template <typename T = unsigned long long>
 bool

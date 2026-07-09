@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// tested on https://judge.yosupo.jp/problem/point_add_range_sum
+// tested on: https://judge.yosupo.jp/problem/point_add_range_sum
 
 template <typename T, typename OP> struct fenwick {
     // 0-indexed for queries and updates

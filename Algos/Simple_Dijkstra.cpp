@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 
-// tested on https://judge.yosupo.jp/problem/shortest_path
+// tested on: https://judge.yosupo.jp/problem/shortest_path
 
 template <typename T = long long, typename RET_T = unsigned long long>
 std::vector<RET_T>

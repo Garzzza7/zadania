@@ -1,6 +1,7 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -29,35 +30,44 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n , m;
+    std::cin >> n >> m;
+    std::vector cols(m , std::vector<int>());
+    for(int i = 0 ; i < n ; i++) {
+        for(int j = 0 ; j < m ; j++) {
+            int v;
+            std::cin >> v;
+            cols[j].push_back(v);
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
+    // for(const auto &vv : cols) {
+    //     for(const auto &v : vv) {
+    //         std::cout << v << " ";
+    //     }
+    //     std::cout << "\n";
+    // }
+    i64 res = 0;
+    for(auto &&col : cols) {
+        std::sort(all(col));
+        i64 pref = 0;
+        for(int j = 0 ; j < sz(col) - 1 ; j++) {
+            pref += col[j];
+            res += col[j + 1] * (i64)(j + 1) - pref;
+        }
     }
-    return res;
+    std::cout << res << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) {
         solve();
     }

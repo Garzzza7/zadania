@@ -29,30 +29,30 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
-        }
+void
+solve(void) {
+    i64 n, k;
+    std::cin >> n >> k;
+    std::vector<i64> a(n);
+    i64 res = 0;
+    for (auto &&v : a) {
+        std::cin >> v;
+        // res += v == k;
     }
-    T res{0};
-    while (f[res]) {
-        res++;
+    std::vector<i64> pref(n + 1, 0);
+    std::map<i64, i64> cnt;
+    cnt[0]++;
+    for (i64 i = 0; i < n; i++) {
+        pref[i + 1] = pref[i] + a[i];
+        i64 need    = pref[i + 1] - k;
+        res += cnt[need];
+        cnt[pref[i + 1]]++;
     }
-    return res;
+    std::cout << res << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

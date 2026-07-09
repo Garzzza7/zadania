@@ -29,30 +29,40 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<int> c(n);
+    std::vector<int> r(m);
+    for (auto &&v : c)
+        std::cin >> v;
+    for (auto &&v : r)
+        std::cin >> v;
+    std::sort(all(c));
+    std::sort(all(r));
+    int res   = 0;
+    int iter1 = 0;
+    int iter2 = 0;
+    while (iter1 < n and iter2 < m) {
+        int i = iter2;
+        while (i < m and r[i] < c[iter1]) {
+            i++;
+        }
+        if (i < m) {
+            res++;
+            iter1++;
+            iter2 = i + 1;
+        } else {
+            break;
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+
+    std::cout << res << "\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

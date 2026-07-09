@@ -30,29 +30,39 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
-        }
-    }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+[[nodiscard]] inline T
+bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
+template <typename T = int>
+[[nodiscard]] inline T
+bin_fl(T x, T y) noexcept {
+    return x / y - ((x ^ y) < 0 && x % y);
 }
 
-int main(void) {
+void
+solve(void) {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<std::pair<int, int>> vec(n);
+    for (int i = 0; i < n; i++) {
+        int a, b;
+        std::cin >> a >> b;
+        vec[i] = {a, b};
+    }
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        auto &a  = vec[i].first;
+        auto &b  = vec[i].second;
+        int curr = bin_ce(m - a, b);
+        res      = std::max(res, curr);
+    }
+    std::cout << res << "\n";
+}
+
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

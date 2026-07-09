@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-// tested on https://judge.yosupo.jp/problem/lca
+// tested on: https://judge.yosupo.jp/problem/lca
 
 template <typename T = int> struct lca {
     template <typename TT, typename OP, TT NEUTRAL> struct sparse_table {

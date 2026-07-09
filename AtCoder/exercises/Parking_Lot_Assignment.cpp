@@ -29,30 +29,40 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T = int>
-T
-mex(const std::vector<T> &vec) {
-    std::vector<char> f(vec.size() + 1, false);
-    for (const auto &i : vec) {
-        if (i <= (int) (vec.size())) {
-            f[i] = true;
+void
+solve(void) {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<std::pair<int, int>> vec(m);
+    std::vector<int> diff(n + 1, 0);
+    std::vector<int> pref(n + 123);
+    for (int i = 0; i < m; i++) {
+        int a, b;
+        std::cin >> a >> b;
+        vec[i] = {a, b};
+        diff[a]++;
+        diff[b + 1]--;
+    }
+    for (int i = 1; i <= n; i++) {
+        pref[i] = pref[i - 1] + diff[i - 1];
+    }
+    bool git = true;
+    for (const auto &[a, b] : vec) {
+        int d = b - a + 1;
+        std::cout << pref[b] << " " << d << "\n";
+        if (pref[b] > d) {
+            git = false;
+            // break;
         }
     }
-    T res{0};
-    while (f[res]) {
-        res++;
-    }
-    return res;
+    if (git)
+        std::cout << "Yes\n";
+    else
+        std::cout << "No\n";
 }
 
-void solve(void) {
-    int a , b;
-    std::cin >> a >> b;
-    std::vector<int> vec = {a , b , 0};
-    std::cout << mex(vec) << "\n";
-}
-
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

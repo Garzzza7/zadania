@@ -225,7 +225,7 @@ template <typename T = int> struct bst {
 
     void
     pre_order(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         pre_order(nn);
         delete nn;
     }
@@ -243,7 +243,7 @@ template <typename T = int> struct bst {
 
     void
     in_order(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         in_order(nn);
         delete nn;
     }
@@ -266,7 +266,7 @@ template <typename T = int> struct bst {
 
     void
     post_order(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         post_order(nn);
         delete nn;
     }
@@ -295,11 +295,11 @@ template <typename T = int> struct bst {
     node *root{nullptr};
 
     bst()
-        : root(new _node_type()) {
+        : root(new node()) {
     }
 
     bst(const T &v)
-        : root(new _node_type(v)) {
+        : root(new node(v)) {
     }
 
     ~bst(void) {
@@ -322,20 +322,20 @@ template <typename T = int> struct bst {
 
     void
     insert(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         __insert(nn, root);
     }
 
     void
     remove(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         __remove(nn, root);
         delete nn;
     }
 
     T
     find_predecessor(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         node *res{find_predecessor(nn)};
         delete nn;
         return *res;
@@ -343,7 +343,7 @@ template <typename T = int> struct bst {
 
     node *
     find_successor(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         node *res{find_successor(nn)};
         delete nn;
         return res;
@@ -356,7 +356,7 @@ template <typename T = int> struct bst {
 
     bool
     find(const T &n) {
-        node *nn{new _node_type(n)};
+        node *nn{new node(n)};
         bool res{find(nn)};
         delete nn;
         return res;
