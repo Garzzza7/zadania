@@ -700,6 +700,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Grundy.sol <Grundy.txt)" ]]; then
+	printf "${red}ABORT at Grundy.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Grundy.sol <Grundy.txt)" == "$(cat Grundy.test)" ]; then
+	printf "${green}Grundy Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Grundy Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Grundy.sol <Grundy.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Grundy.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./Hash_function.sol <Hash_function.txt)" ]]; then
 	printf "${red}ABORT at Hash_function.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))

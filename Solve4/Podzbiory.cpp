@@ -47,9 +47,9 @@ solve(void) {
         bin_subset(n);
         std::sort(all(res));
     }
-    for(const auto &vv : res) {
-        if(vv.empty()) continue;
-        for(const auto &v : vv) {
+    for (const auto &vv : res) {
+        if (vv.empty()) continue;
+        for (const auto &v : vv) {
             std::cout << v << " ";
         }
         std::cout << "\n";

@@ -26,15 +26,15 @@ using u128 = __uint128_t;
 
 void
 solve(void) {
-    int n , k;
+    int n, k;
     std::cin >> n >> k;
     std::vector<int> vec(n);
     int cnt = 0;
-    for(auto &&v : vec) {
+    for (auto &&v : vec) {
         std::cin >> v;
         cnt += v % k == 0;
     }
-    if(cnt == n) {
+    if (cnt == n) {
         std::cout << "TAK\n";
     } else {
         std::cout << "NIE\n";

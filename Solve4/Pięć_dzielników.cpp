@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-using u64  = unsigned long long;
+using u64 = unsigned long long;
 
 template <typename T = unsigned long long>
 bool

@@ -4,7 +4,7 @@
 
 // TODO: verify
 
-template <typename T>
+template <typename T = int>
 T
 median_of_medians(const std::vector<T> &vec) {
     const int n{(int) vec.size()};

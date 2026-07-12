@@ -31,10 +31,10 @@ solve(void) {
     str s = std::to_string(n);
     std::sort(all(s));
     int i;
-    for(i = 0 ; i < n ; i++) {
-        if(s[i] != '0') break;
+    for (i = 0; i < n; i++) {
+        if (s[i] != '0') break;
     }
-    std::swap(s[0] , s[i]);
+    std::swap(s[0], s[i]);
     std::cout << s << "\n";
 }
 

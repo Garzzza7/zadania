@@ -1,0 +1,7 @@
+Grundy(0) = 0
+Grundy(1) = 1
+Grundy(2) = 0
+Grundy(3) = 0
+Grundy(4) = 1
+Grundy(5) = 0
+Max Grundy = 1

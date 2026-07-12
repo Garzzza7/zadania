@@ -1,5 +1,7 @@
+// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -14,6 +16,10 @@
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
 using db   = double;
 using str  = std::string;
@@ -24,45 +30,34 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-template <typename T>
-T
-gcd(T a, T b) {
-    while (b) {
-        a %= b;
-        std::swap(a, b);
-    }
-    return a;
-}
-
-template <typename T>
-T
-lcm(T a, T b) {
-    return a / gcd(a, b) * b;
-}
-
 void
 solve(void) {
-    int n;
+    i64 n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    std::set<int> check;
-    for (auto &&v : vec) {
-        std::cin >> v;
-        check.insert(v);
-    }
-    int maxi = vec[0];
-    for (int i = 0; i < n; i++) {
-        maxi = lcm(maxi, vec[i]);
-    }
-    std::set<int> res;
-    res.insert(maxi);
-    for (int i = 0; i < n; i++) {
-        int g = maxi / vec[i];
-        if (check.find(g) == check.end()) {
-            res.insert(g);
+    i64 res = 0;
+    // if(n >= 5) {
+    //     res++;
+    // } else {
+    //     std::cout << 0 << "\n";
+    //     return;
+    // }
+    i64 ten  = 1;
+    i64 num  = 0;
+    i64 num2 = 1;
+    i64 five = 5;
+    loop {
+        if (n < ten and n < five) break;
+        if (n >= ten) {
+            ten *= 10;
+            res += num++;
+        }
+        if (n >= five) {
+            five *= 5;
+            // two *= 2;
+            res += num2++;
         }
     }
-    std::cout << sz(res) << "\n";
+    std::cout << res << "\n";
 }
 
 int
@@ -72,8 +67,9 @@ main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    while (_--)
+    while (_--) {
         solve();
+    }
 
     return 0;
 }

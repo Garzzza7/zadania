@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
+template <typename T = int>
 std::vector<T>
 cnt_sort(const std::vector<T> &vec) {
     const int n{(int) vec.size()};
