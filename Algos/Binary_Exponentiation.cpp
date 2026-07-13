@@ -2,26 +2,20 @@
 
 constexpr long long mod{1'000'000'007};
 
-long long
-mod_binpow(long long a, long long b) {
+long long mod_binpow(long long a, long long b) {
     long long res{1ll};
     while (b > 0) {
-        if (b & 1) {
-            res = res * a % mod;
-        }
+        if (b & 1) { res = res * a % mod; }
         a = a * a % mod;
         b >>= 1;
     }
     return res;
 }
 
-long long
-binpow(long long a, long long b) {
+long long binpow(long long a, long long b) {
     long long res{1ll};
     while (b > 0) {
-        if (b & 1) {
-            res = res * a;
-        }
+        if (b & 1) { res = res * a; }
         a = a * a;
         b >>= 1;
     }
@@ -31,13 +25,10 @@ binpow(long long a, long long b) {
 // generic versions
 
 template <typename T = int>
-T
-binpow(T a, T b) {
+T binpow(T a, T b) {
     T res{1};
     while (b > 0) {
-        if (b & 1) {
-            res = res * a;
-        }
+        if (b & 1) { res = res * a; }
         a = a * a;
         b >>= 1;
     }
@@ -45,21 +36,17 @@ binpow(T a, T b) {
 }
 
 template <typename T = int>
-T
-mod_binpow(T a, T b) {
+T mod_binpow(T a, T b) {
     T res{1};
     while (b > 0) {
-        if (b & 1) {
-            res = res * a % mod;
-        }
+        if (b & 1) { res = res * a % mod; }
         a = a * a % mod;
         b >>= 1;
     }
     return res;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

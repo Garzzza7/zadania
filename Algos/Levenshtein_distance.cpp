@@ -3,8 +3,7 @@
 #include <string>
 #include <vector>
 
-int
-levenshtein_distance(const std::string &s1, const std::string &s2) {
+int levenshtein_distance(const std::string &s1, const std::string &s2) {
     const int n{static_cast<int>(s1.size())};
     const int m{static_cast<int>(s2.size())};
     std::vector dp(n, std::vector<int>(m, 0));
@@ -24,8 +23,7 @@ levenshtein_distance(const std::string &s1, const std::string &s2) {
     return dp[n - 1][m - 1];
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

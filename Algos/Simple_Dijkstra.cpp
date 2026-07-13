@@ -8,8 +8,8 @@
 // tested on: https://judge.yosupo.jp/problem/shortest_path
 
 template <typename T = long long, typename RET_T = unsigned long long>
-std::vector<RET_T>
-dijkstra(const T &start, std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &path) {
+std::vector<RET_T> dijkstra(const T &start, std::vector<std::vector<std::pair<T, T>>> &adj,
+                            std::vector<T> &path) {
     const int n{static_cast<int>(adj.size())};
     std::vector<char> visited(n + 1, false);
     std::vector<RET_T> distances(n + 1, std::numeric_limits<RET_T>::max());
@@ -19,16 +19,14 @@ dijkstra(const T &start, std::vector<std::vector<std::pair<T, T>>> &adj, std::ve
     while (not pq.empty()) {
         T a{pq.top().second};
         pq.pop();
-        if (visited[a]) {
-            continue;
-        }
+        if (visited[a]) { continue; }
         visited[a] = true;
         for (const auto &v : adj[a]) {
             const T b{v.first};
             const T w{v.second};
             if (distances[a] + w < distances[b]) {
                 distances[b] = distances[a] + w;
-                path[b]      = a;
+                path[b] = a;
                 pq.push({distances[b], b});
             }
         }
@@ -37,19 +35,15 @@ dijkstra(const T &start, std::vector<std::vector<std::pair<T, T>>> &adj, std::ve
 }
 
 template <typename T = int>
-std::vector<T>
-shortest_path(const T &s, const T &t, const std::vector<T> &path) {
+std::vector<T> shortest_path(const T &s, const T &t, const std::vector<T> &path) {
     std::vector<T> sp;
-    for (T i = t; i != s; i = path[i]) {
-        sp.push_back(i);
-    }
+    for (T i = t; i != s; i = path[i]) { sp.push_back(i); }
     sp.push_back(s);
     std::reverse(sp.begin(), sp.end());
     return sp;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

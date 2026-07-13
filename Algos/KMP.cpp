@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 
-bool
-hasSubstring(const std::string &s, const std::string &pattern) {
+bool hasSubstring(const std::string &s, const std::string &pattern) {
     int i{0};
     int j{0};
     int k{0};
@@ -17,14 +16,11 @@ hasSubstring(const std::string &s, const std::string &pattern) {
             i = k;
         }
     }
-    if (j == (int) pattern.size()) {
-        return true;
-    }
+    if (j == (int) pattern.size()) { return true; }
     return false;
 }
 
-std::vector<int>
-computeBuffer(std::string pattern) {
+std::vector<int> computeBuffer(std::string pattern) {
     std::vector<int> lps(static_cast<int>(pattern.size()));
     int index{0};
     for (int i = 1; i < static_cast<int>(pattern.size());) {
@@ -44,8 +40,7 @@ computeBuffer(std::string pattern) {
     return lps;
 }
 
-bool
-KMP(const std::string &s, const std::string &pattern) {
+bool KMP(const std::string &s, const std::string &pattern) {
     const std::vector<int> lps{computeBuffer(pattern)};
     int j{0};
     int i{0};
@@ -61,14 +56,11 @@ KMP(const std::string &s, const std::string &pattern) {
             }
         }
     }
-    if (j == static_cast<int>(pattern.size())) {
-        return true;
-    }
+    if (j == static_cast<int>(pattern.size())) { return true; }
     return false;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

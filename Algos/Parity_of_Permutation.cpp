@@ -18,15 +18,14 @@ parity(std::vector<T> vec) {
             while (curr != neutral) {
                 int next{vec[curr]};
                 vec[curr] = neutral;
-                curr      = next;
+                curr = next;
             }
         }
     }
     return is_even;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

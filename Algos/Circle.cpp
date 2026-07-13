@@ -2,7 +2,8 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = double> struct circle {
+template <typename T = double>
+struct circle {
     [[maybe_unused]] static constexpr double pi{std::numbers::pi};
     T x;
     T y;
@@ -22,47 +23,37 @@ template <typename T = double> struct circle {
 
     ~circle() = default;
 
-    bool
-    is_kiss(const circle<T> &c) {
+    bool is_kiss(const circle<T> &c) {
         const T dx{this->x - c.x};
         const T dy{this->y - c.y};
         return ((dx * dx) + (dy * dy)) == (this->r + c.r) * (this->r + c.r);
     }
 
-    bool
-    is_inside(const circle<T> &c) {
+    bool is_inside(const circle<T> &c) {
         const T dx{this->x - c.x};
         const T dy{this->y - c.y};
         const T dist{std::sqrt(dx + dy)};
-        if (dist < std::abs(c.r - this->r)) {
-            return true;
-        }
+        if (dist < std::abs(c.r - this->r)) { return true; }
         return false;
     }
 
-    bool
-    is_coincident(const circle<T> &c) {
+    bool is_coincident(const circle<T> &c) {
         const T dx{this->x - c.x};
         const T dy{this->y - c.y};
         const T dist{std::sqrt(dx * dx + dy * dy)};
-        if (dist == 0 and this->r == c.r) {
-            return true;
-        }
+        if (dist == 0 and this->r == c.r) { return true; }
         return false;
     }
 
-    T
-    circum(void) {
+    T circum(void) {
         return (T) 2 * pi * r;
     }
 
-    T
-    area(void) {
+    T area(void) {
         return pi * r * r;
     }
 
-    std::vector<std::pair<T, T>>
-    intersections(const circle<T> &c) {
+    std::vector<std::pair<T, T>> intersections(const circle<T> &c) {
         const auto &c1{*this};
         int manhattan{std::abs(c.x - c1.x) + std::abs(c.y - c1.y)};
         if (manhattan > c.r + c1.r) {
@@ -76,8 +67,7 @@ template <typename T = double> struct circle {
     // TODO: expand
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -92,9 +82,7 @@ main(void) {
         v = cc;
     }
     for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            std::cout << vec[i].is_kiss(vec[j]) << "\n";
-        }
+        for (int j = i + 1; j < n; j++) { std::cout << vec[i].is_kiss(vec[j]) << "\n"; }
     }
 
     return 0;

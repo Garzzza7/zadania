@@ -2,8 +2,10 @@
 #include <limits>
 #include <vector>
 
-template <typename T = int> struct boruvka {
-    template <typename TT = int> struct _edge_type {
+template <typename T = int>
+struct boruvka {
+    template <typename TT = int>
+    struct _edge_type {
         int u;
         int v;
         TT weight;
@@ -24,42 +26,30 @@ template <typename T = int> struct boruvka {
         : size(n),
           MAX(std::numeric_limits<T>::max()) {
         parent.assign(size, 0);
-        for (int i = 0; i < size; i++) {
-            parent[i] = i;
-        }
+        for (int i = 0; i < size; i++) { parent[i] = i; }
         rank.assign(size, 0);
     }
 
-    void
-    add_edge(const int &u, const int &v, const T &weight) {
+    void add_edge(const int &u, const int &v, const T &weight) {
         edges.emplace_back(edge(u, v, weight));
     }
 
-    int
-    find(const int &vertex) {
-        if (parent[vertex] == vertex) {
-            return parent[vertex];
-        }
+    int find(const int &vertex) {
+        if (parent[vertex] == vertex) { return parent[vertex]; }
         return parent[vertex] = find(parent[vertex]);
     }
 
-    void
-    union_by_rank(const int &u, const int &v) {
+    void union_by_rank(const int &u, const int &v) {
         auto u_leader{find(u)};
         auto v_leader{find(v)};
         if (u_leader != v_leader) {
-            if (rank[u_leader] < rank[v_leader]) {
-                std::swap(u_leader, v_leader);
-            }
+            if (rank[u_leader] < rank[v_leader]) { std::swap(u_leader, v_leader); }
             parent[v_leader] = u_leader;
-            if (rank[u_leader] == rank[v_leader]) {
-                rank[u_leader]++;
-            }
+            if (rank[u_leader] == rank[v_leader]) { rank[u_leader]++; }
         }
     }
 
-    std::vector<edge>
-    calc_mst(void) {
+    std::vector<edge> calc_mst(void) {
         std::vector<edge> mst;
         std::vector<edge> cheapest(size, edge(-1, -1, MAX));
 
@@ -107,8 +97,7 @@ template <typename T = int> struct boruvka {
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

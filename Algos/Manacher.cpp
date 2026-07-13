@@ -6,8 +6,7 @@
 // manacher tested on: https://judge.yosupo.jp/problem/enumerate_palindromes
 
 template <typename Container = std::string>
-std::vector<int>
-manacher(const Container &s) {
+std::vector<int> manacher(const Container &s) {
     Container t{};
     t.reserve(2 * s.size() + 3);
     t.push_back('@');
@@ -39,8 +38,7 @@ manacher(const Container &s) {
 }
 
 template <typename Container = std::string>
-std::string
-largest_palindrome(const Container &s) {
+std::string largest_palindrome(const Container &s) {
     auto man{manacher(s)};
     const int n{(int) man.size()};
     int id{0};
@@ -48,7 +46,7 @@ largest_palindrome(const Container &s) {
     for (int i = 2; i < n - 2; i++) {
         if (man[i] > val) {
             val = man[i];
-            id  = i;
+            id = i;
         }
     }
     std::string res{};
@@ -78,8 +76,8 @@ largest_palindrome(const Container &s) {
 }
 
 template <typename Container = std::string>
-std::vector<std::pair<int, std::string>>
-all_palindromes(const Container &s, const int &threshold = 1) {
+std::vector<std::pair<int, std::string>> all_palindromes(const Container &s,
+                                                         const int &threshold = 1) {
     auto man{manacher(s)};
     auto extract_string = [&s](const int &id, int val) -> std::pair<int, std::string> {
         std::string res{};
@@ -113,20 +111,15 @@ all_palindromes(const Container &s, const int &threshold = 1) {
     const int n{(int) man.size()};
     std::vector<std::pair<int, int>> vals;
     for (int i = 2; i < n - 2; i++) {
-        if (man[i] >= threshold) {
-            vals.push_back({i, man[i]});
-        }
+        if (man[i] >= threshold) { vals.push_back({i, man[i]}); }
     }
     std::vector<std::pair<int, std::string>> res;
     res.reserve(vals.size());
-    for (const auto &v : vals) {
-        res.push_back(extract_string(v.first, v.second));
-    }
+    for (const auto &v : vals) { res.push_back(extract_string(v.first, v.second)); }
     return res;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -135,15 +128,11 @@ main(void) {
     std::cin >> s;
     auto res{manacher(s)};
     const int n{(int) res.size()};
-    for (int i = 2; i < n - 2; i++) {
-        std::cout << res[i] << " ";
-    }
+    for (int i = 2; i < n - 2; i++) { std::cout << res[i] << " "; }
     std::cout << "\n";
     std::cout << largest_palindrome(s) << "\n";
     auto pali{all_palindromes(s)};
-    for (const auto &v : pali) {
-        std::cout << v.first << " " << v.second << "\n";
-    }
+    for (const auto &v : pali) { std::cout << v.first << " " << v.second << "\n"; }
 
     return 0;
 }

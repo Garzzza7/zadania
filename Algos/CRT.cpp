@@ -3,8 +3,7 @@
 #include <vector>
 
 template <typename T = int>
-long long
-crt(const std::vector<std::pair<T, T>> &vec) {
+long long crt(const std::vector<std::pair<T, T>> &vec) {
     T mod{vec[0].second};
     T buff{vec[0].first};
     auto lcm{[](T a, T b) -> T {
@@ -25,9 +24,7 @@ crt(const std::vector<std::pair<T, T>> &vec) {
         while (buff % vec[i + 1].second != vec[i + 1].first) {
             if (buff % vec[i + 1].second == check) {
                 cnt++;
-                if (cnt == 2) {
-                    return -1;
-                }
+                if (cnt == 2) { return -1; }
             }
             buff += mod;
         }
@@ -36,8 +33,7 @@ crt(const std::vector<std::pair<T, T>> &vec) {
     return static_cast<long long>(buff);
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -2,8 +2,7 @@
 #include <vector>
 
 template <typename T = int>
-T
-diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
+T diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     const int n{(int) adj.size()};
     T max_diameter{0};
     T at{0};
@@ -11,26 +10,21 @@ diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     auto dfs = [&](const auto &self, const T &ver, T cnt) -> void {
         if (cnt > max_diameter) {
             max_diameter = cnt;
-            at           = ver;
+            at = ver;
         }
         visited[ver] = true;
         for (const auto &v : adj[ver]) {
-            if (not visited[v]) {
-                self(self, v, cnt + 1);
-            }
+            if (not visited[v]) { self(self, v, cnt + 1); }
         }
     };
     dfs(dfs, starting_root, 0);
     max_diameter = 0;
-    for (auto &&v : visited) {
-        v = false;
-    }
+    for (auto &&v : visited) { v = false; }
     dfs(dfs, at, 0);
     return max_diameter;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

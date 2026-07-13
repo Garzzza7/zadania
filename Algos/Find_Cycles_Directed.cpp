@@ -5,8 +5,7 @@
 // TODO: test
 
 template <typename T = int>
-std::vector<std::vector<T>>
-find_cycles_directed(const std::vector<std::vector<T>> &adj) {
+std::vector<std::vector<T>> find_cycles_directed(const std::vector<std::vector<T>> &adj) {
     enum COLOR : char { WHITE, GREY, BLACK };
     const int n{static_cast<int>(adj.size())};
     std::vector<COLOR> color(n, WHITE);
@@ -36,16 +35,13 @@ find_cycles_directed(const std::vector<std::vector<T>> &adj) {
     }};
 
     for (T i = 0; i < n; i++) {
-        if (color[i] == WHITE) {
-            dfs(dfs, i);
-        }
+        if (color[i] == WHITE) { dfs(dfs, i); }
     }
 
     return cycles;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -65,9 +61,7 @@ main(void) {
 
     for (const auto &cycle : cycles) {
         std::cout << cycle.size() << "\n";
-        for (const auto &v : cycle) {
-            std::cout << v << " ";
-        }
+        for (const auto &v : cycle) { std::cout << v << " "; }
         std::cout << "\n--------\n";
     }
     return 0;

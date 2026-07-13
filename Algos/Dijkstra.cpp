@@ -5,8 +5,8 @@
 #include <set>
 #include <vector>
 
-void
-dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path, std::vector<int> &cost) {
+void dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
+              std::vector<int> &path, std::vector<int> &cost) {
     int iter{(int) adj.size()};
     std::vector<char> known((int) adj.size(), false);
     cost[source] = 0;
@@ -16,7 +16,7 @@ dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::ve
         for (int i = 0; i < (int) known.size(); i++) {
             if (known[i] == false and cost[i] < currentMinimum) {
                 currentMinimum = cost[i];
-                current        = i;
+                current = i;
             }
         }
         known[current] = true;
@@ -29,16 +29,14 @@ dijkstra(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::ve
     }
 }
 
-void
-dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path, std::vector<int> &cost) {
+void dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
+                     std::vector<int> &path, std::vector<int> &cost) {
     std::set<std::pair<int, int>> set;
     set.insert({source, 0});
     cost[source] = 0;
     while (set.empty() == false) {
         auto current{set.extract(set.begin())};
-        if (current.value().second != cost[current.value().first]) {
-            continue;
-        }
+        if (current.value().second != cost[current.value().first]) { continue; }
         for (const auto &b : adj[current.value().first]) {
             if (cost[current.value().first] + b.second < cost[b.first]) {
                 cost[b.first] = cost[current.value().first] + b.second;
@@ -49,10 +47,10 @@ dijkstraWithSet(int source, std::vector<std::vector<std::pair<int, int>>> &adj, 
     }
 }
 
-void
-dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int>>> &adj, std::vector<int> &path,
-                      std::vector<int> &cost) {
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> queue;
+void dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int>>> &adj,
+                           std::vector<int> &path, std::vector<int> &cost) {
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>>
+        queue;
     queue.emplace(source, 0);
     cost[source] = 0;
     int currentNode;
@@ -61,9 +59,7 @@ dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int>>> 
         currentNode = queue.top().first;
         currentCost = queue.top().second;
         queue.pop();
-        if (currentCost != cost[currentNode]) {
-            continue;
-        }
+        if (currentCost != cost[currentNode]) { continue; }
         for (const auto &b : adj[currentNode]) {
             if (cost[currentNode] + b.second < cost[b.first]) {
                 cost[b.first] = cost[currentNode] + b.second;
@@ -74,8 +70,7 @@ dijkstraWithPrioQueue(int source, std::vector<std::vector<std::pair<int, int>>> 
     }
 }
 
-std::vector<int>
-shortestPath(int source, int target, std::vector<int> &path) {
+std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
     std::vector<int> res;
     int current{target};
     while (current != source) {
@@ -87,8 +82,7 @@ shortestPath(int source, int target, std::vector<int> &path) {
     return res;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -100,11 +94,11 @@ main(void) {
         int a, b, w;
         std::cin >> a >> b >> w;
         std::pair<int, int> p;
-        p.first  = b;
+        p.first = b;
         p.second = w;
         adj[a].push_back(p);
 
-        p.first  = a;
+        p.first = a;
         p.second = w;
         adj[b].push_back(p);
     }
@@ -118,16 +112,12 @@ main(void) {
     // dijkstraWithPrioQueue(0, adj, path, cost);
     std::cout << "PATH\n";
     int i{0};
-    for (const auto &a : path)
-        std::cout << i++ << " -> " << a << "\n";
+    for (const auto &a : path) std::cout << i++ << " -> " << a << "\n";
     std::cout << "COST\n";
     i = 0;
-    for (const auto &a : cost) {
-        std::cout << i++ << " -> " << a << "\n";
-    }
+    for (const auto &a : cost) { std::cout << i++ << " -> " << a << "\n"; }
     std::cout << "SHORTEST PATH\n";
     std::vector<int> shortpath{shortestPath(source, target, path)};
-    for (const auto &a : shortpath)
-        std::cout << a << " ";
+    for (const auto &a : shortpath) std::cout << a << " ";
     return 0;
 }

@@ -20,26 +20,23 @@ struct desopo_pape {
                            // 2 - yet to be calculated
 
     desopo_pape(const int &n) {
-        adj      = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
-        queue    = std::deque<int>();
-        path     = std::vector<int>(n + 1, -123);
+        adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());
+        queue = std::deque<int>();
+        path = std::vector<int>(n + 1, -123);
         distance = std::vector<int>(n + 1, 1000000);
-        type     = std::vector<int>(n + 1, 2);
+        type = std::vector<int>(n + 1, 2);
     }
 
-    void
-    add_edge(const int p, const int v, const int w) {
+    void add_edge(const int p, const int v, const int w) {
         adj[p].emplace_back(v, w);
     }
 
-    void
-    add_bi_edge(const int p, const int v, const int w) {
+    void add_bi_edge(const int p, const int v, const int w) {
         adj[p].emplace_back(v, w);
         adj[v].emplace_back(p, w);
     }
 
-    void
-    run(const int &start) {
+    void run(const int &start) {
         distance[start] = 0;
         queue.push_back(start);
         while (not queue.empty()) {
@@ -49,7 +46,7 @@ struct desopo_pape {
             for (const auto &e : adj[curr]) {
                 if (distance[e.vertex] > distance[curr] + e.weight) {
                     distance[e.vertex] = distance[curr] + e.weight;
-                    path[e.vertex]     = curr;
+                    path[e.vertex] = curr;
                     if (type[e.vertex] == 2) {
                         type[e.vertex] = 1;
                         queue.push_back(e.vertex);
@@ -62,17 +59,13 @@ struct desopo_pape {
         }
     }
 
-    int
-    get_cost(const int v) {
+    int get_cost(const int v) {
         return distance[v];
     }
 
-    void
-    get_path(const int start, const int target) {
+    void get_path(const int start, const int target) {
         std::vector<int> sp;
-        for (int i = target; i != -123; i = path[i]) {
-            sp.push_back(i);
-        }
+        for (int i = target; i != -123; i = path[i]) { sp.push_back(i); }
         std::cout << "Path from " << start << " to " << target << ": ";
         for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
             std::cout << sp[i] << (i != 0 ? " -> " : "\n");
@@ -81,8 +74,7 @@ struct desopo_pape {
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -5,47 +5,41 @@
 
 // tested on: https://judge.yosupo.jp/problem/lca
 
-template <typename T = int> struct lca {
-    template <typename TT, typename OP, TT NEUTRAL> struct sparse_table {
+template <typename T = int>
+struct lca {
+    template <typename TT, typename OP, TT NEUTRAL>
+    struct sparse_table {
         int size{};
         int LOG{};
         static constexpr OP op{};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         sparse_table() = default;
         std::vector<unsigned long long> precalc_log;
-        sparse_table &
-        operator=(sparse_table &&rhs) noexcept {
-            size        = rhs.size;
-            LOG         = rhs.LOG;
-            matrix      = std::move(rhs.matrix);
+        sparse_table &operator=(sparse_table &&rhs) noexcept {
+            size = rhs.size;
+            LOG = rhs.LOG;
+            matrix = std::move(rhs.matrix);
             precalc_log = std::move(rhs.precalc_log);
             return *this;
         }
         sparse_table(const std::vector<TT> &init, const std::vector<TT> &euler)
             : size((int) init.size()) {
             assert(init.size() == euler.size());
-            while (1 << LOG < size) {
-                LOG++;
-            }
-            matrix      = std::vector(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL, 0)));
+            while (1 << LOG < size) { LOG++; }
+            matrix = std::vector(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL, 0)));
             precalc_log = std::vector(1 << LOG, 0ULL);
-            for (int i = 0; i < size; i++) {
-                matrix[0][i] = {init[i], euler[i]};
-            }
+            for (int i = 0; i < size; i++) { matrix[0][i] = {init[i], euler[i]}; }
             for (int i = 1; i <= LOG; i++) {
                 for (int j = 0; j + (1 << i) <= size; j++) {
                     matrix[i][j] = op(matrix[i - 1][j], matrix[i - 1][j + (1 << (i - 1))]);
                 }
             }
             for (int i = 0; i < LOG; i++) {
-                for (int j = (1 << i); j < (1 << (i + 1)); j++) {
-                    precalc_log[j] = i;
-                }
+                for (int j = (1 << i); j < (1 << (i + 1)); j++) { precalc_log[j] = i; }
             }
         }
 
-        [[nodiscard]] TT
-        query(const int &L, const int &R) const {
+        [[nodiscard]] TT query(const int &L, const int &R) const {
             const auto log = precalc_log[R - L];
             return op(matrix[log][L], matrix[log][R - (1 << log)]).second;
         }
@@ -83,16 +77,14 @@ template <typename T = int> struct lca {
         st = ST(heights, euler);
     }
 
-    [[nodiscard]] T
-    query(const int &l, const int &r) const {
+    [[nodiscard]] T query(const int &l, const int &r) const {
         const int lq{ids[l]};
         const int rq{ids[r]};
         return st.query(std::min(lq, rq), std::max(lq, rq));
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

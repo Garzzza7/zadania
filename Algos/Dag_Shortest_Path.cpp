@@ -2,8 +2,7 @@
 #include <vector>
 
 template <typename T = int>
-std::vector<T>
-topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
+std::vector<T> topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
     const int n{(int) adj.size()};
     std::vector<T> res;
     res.reserve(n);
@@ -11,9 +10,7 @@ topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
     auto dfs{[&](const auto &self, const T &ver) -> void {
         visited[ver] = true;
         for (const auto &v : adj[ver]) {
-            if (not visited[v.first]) {
-                self(self, v.first);
-            }
+            if (not visited[v.first]) { self(self, v.first); }
         }
         res.push_back(ver);
     }};
@@ -22,8 +19,8 @@ topo_sort(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj) {
 }
 
 template <typename T = int>
-std::vector<int>
-dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj, std::vector<T> &path = {}) {
+std::vector<int> dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &adj,
+                                   std::vector<T> &path = {}) {
     const std::vector<T> topo = topo_sort(s, adj);
     const int n{(int) topo.size()};
     std::vector<int> dist(n + 1, 1 << 30);
@@ -43,12 +40,9 @@ dag_shortest_path(const T &s, const std::vector<std::vector<std::pair<T, T>>> &a
 }
 
 template <typename T = int>
-void
-shortest_path(T start, T target, std::vector<T> &path) {
+void shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;
-    for (int i = target; i != -1; i = path[i]) {
-        sp.push_back(i);
-    }
+    for (int i = target; i != -1; i = path[i]) { sp.push_back(i); }
 
     std::cout << "Path from " << start << " to " << target << ": ";
     for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
@@ -57,8 +51,7 @@ shortest_path(T start, T target, std::vector<T> &path) {
     std::cout << "\n";
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -75,9 +68,7 @@ main(void) {
     std::vector<int> path(n + 1, -1);
     auto res{dag_shortest_path(1, adj, path)};
 
-    for (int i = 1; i <= n; i++) {
-        std::cout << i << ": " << res[i] << "\n";
-    }
+    for (int i = 1; i <= n; i++) { std::cout << i << ": " << res[i] << "\n"; }
 
     shortest_path(1, 3, path);
 

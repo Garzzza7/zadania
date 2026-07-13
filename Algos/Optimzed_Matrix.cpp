@@ -8,16 +8,17 @@
 #endif
 
 // TODO: test this, add more test cases, add SIMD
-template <typename T = int> struct matrix {
+template <typename T = int>
+struct matrix {
     bool is_transposed{0};
     int m;
     int n;
     std::vector<std::vector<T>> mat;
 
-    matrix(const matrix &)       = default;
-    matrix(matrix &&)            = default;
+    matrix(const matrix &) = default;
+    matrix(matrix &&) = default;
     matrix &operator=(matrix &&) = default;
-    ~matrix()                    = default;
+    ~matrix() = default;
 
     matrix(const std::vector<std::vector<T>> &in)
         : m(static_cast<int>(in.size())),
@@ -31,8 +32,7 @@ template <typename T = int> struct matrix {
           mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
     }
 
-    friend matrix
-    operator+(const matrix &lhs, const matrix &rhs) {
+    friend matrix operator+(const matrix &lhs, const matrix &rhs) {
         assert(lhs.n == rhs.n);
         assert(lhs.m == rhs.m);
 #ifdef SIMD
@@ -43,8 +43,8 @@ template <typename T = int> struct matrix {
             matrix ret(m, n);
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n / BLOCK; j++) {
-                    __m256i a   = _mm256_loadu_si256((__m256i *) (lhs.mat[i].data() + BLOCK * j));
-                    __m256i b   = _mm256_loadu_si256((__m256i *) (rhs.mat[i].data() + BLOCK * j));
+                    __m256i a = _mm256_loadu_si256((__m256i *) (lhs.mat[i].data() + BLOCK * j));
+                    __m256i b = _mm256_loadu_si256((__m256i *) (rhs.mat[i].data() + BLOCK * j));
                     __m256i res = _mm256_add_epi32(a, b);
                     _mm256_storeu_si256((__m256i *) (ret.mat[i].data() + BLOCK * j), res);
                 }
@@ -59,33 +59,25 @@ template <typename T = int> struct matrix {
         matrix ret(m, n);
         if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++)
-                    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
+                for (int j = 0; j < n; j++) ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
         } else if (lhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j];
-                }
+                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j]; }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i];
-                }
+                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i]; }
             }
         } else {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
-                }
+                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j]; }
             }
         }
         return ret;
 #endif
     }
 
-    matrix &
-    operator+=(const matrix &rhs) {
+    matrix &operator+=(const matrix &rhs) {
         assert(this->n == rhs.n);
         assert(this->m == rhs.m);
 #ifdef SIMD
@@ -95,35 +87,26 @@ template <typename T = int> struct matrix {
         const auto &n{this->n};
         if (this->is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    this->mat[i][j] += rhs.mat[i][j];
-                }
+                for (int j = 0; j < n; j++) { this->mat[i][j] += rhs.mat[i][j]; }
             }
         } else if (this->is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    this->mat[j][i] += rhs.mat[i][j];
-                }
+                for (int j = 0; j < n; j++) { this->mat[j][i] += rhs.mat[i][j]; }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    this->mat[i][j] += rhs.mat[j][i];
-                }
+                for (int j = 0; j < n; j++) { this->mat[i][j] += rhs.mat[j][i]; }
             }
         } else {
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    this->mat[i][j] += rhs.mat[i][j];
-                }
+                for (int j = 0; j < m; j++) { this->mat[i][j] += rhs.mat[i][j]; }
             }
         }
         return *this;
 #endif
     }
 
-    friend matrix
-    operator*(const matrix &lhs, const matrix &rhs) {
+    friend matrix operator*(const matrix &lhs, const matrix &rhs) {
         assert(lhs.n == rhs.m);
 #ifdef SIMD
         std::cout << "WIP\n";
@@ -134,33 +117,25 @@ template <typename T = int> struct matrix {
         if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
-                        ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j];
-                    }
+                    for (int k = 0; k < n; k++) { ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j]; }
                 }
             }
         } else if (lhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
-                        ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j];
-                    }
+                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j]; }
                 }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
-                        ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k];
-                    }
+                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k]; }
                 }
             }
         } else {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
-                        ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
-                    }
+                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j]; }
                 }
             }
         }
@@ -168,8 +143,7 @@ template <typename T = int> struct matrix {
 #endif
     }
 
-    matrix &
-    operator*=(const matrix &rhs) {
+    matrix &operator*=(const matrix &rhs) {
         assert(this->n == rhs.m);
 #ifdef SIMD
         std::cout << "WIP\n";
@@ -214,8 +188,7 @@ template <typename T = int> struct matrix {
 #endif
     }
 
-    matrix &
-    operator*=(const T &scalar) {
+    matrix &operator*=(const T &scalar) {
 #ifdef SIMD
         const auto &m{this->m};
         const auto &n{this->n};
@@ -223,23 +196,20 @@ template <typename T = int> struct matrix {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n / BLOCK; j++) {
                 __m256i a = _mm256_loadu_si256((__m256i *) (this->mat[i].data() + BLOCK * j));
-                a         = _mm256_set1_epi32(scalar);
+                a = _mm256_set1_epi32(scalar);
                 _mm256_storeu_si256((__m256i *) (this->mat[i].data() + BLOCK * j), a);
             }
         }
         return *this;
 #else
         for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) {
-                this->mat[i][j] *= scalar;
-            }
+            for (int j = 0; j < this->n; j++) { this->mat[i][j] *= scalar; }
         }
         return *this;
 #endif
     }
 
-    matrix &
-    operator=(const matrix &rhs) {
+    matrix &operator=(const matrix &rhs) {
         assert(this->m == rhs.m);
         assert(this->n == rhs.n);
 #ifdef SIMD
@@ -247,54 +217,42 @@ template <typename T = int> struct matrix {
 #else
         if (this == &rhs) return *this;
         for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) {
-                this->mat[i][j] = rhs.mat[i][j];
-            }
+            for (int j = 0; j < this->n; j++) { this->mat[i][j] = rhs.mat[i][j]; }
         }
         return *this;
 #endif
     }
 
-    bool
-    operator==(const matrix &rhs) const {
+    bool operator==(const matrix &rhs) const {
         return this->mat == rhs.mat;
     }
 
-    void
-    print(void) const {
+    void print(void) const {
         for (const auto &vv : this->mat) {
-            for (const auto &v : vv) {
-                std::cout << v << " ";
-            }
+            for (const auto &v : vv) { std::cout << v << " "; }
             std::cout << "\n";
         }
     }
 
-    void
-    transpose(void) {
+    void transpose(void) {
         std::swap(this->m, this->n);
         this->is_transposed ^= 1;
     }
 
-    bool
-    is_square(void) {
+    bool is_square(void) {
         return this->m == this->n;
     }
 
-    T
-    trace(void) {
+    T trace(void) {
         T sum{0};
         // const auto n { std::min(this->m, this->n)};
         const auto n{this->m ^ ((this->n ^ this->m) & -(this->n < this->m))};
-        for (int i = 0; i < n; i++) {
-            sum += this->mat[i][i];
-        }
+        for (int i = 0; i < n; i++) { sum += this->mat[i][i]; }
         return sum;
     }
 
     // TODO: FIX THIS
-    matrix
-    bareiss(void) {
+    matrix bareiss(void) {
         assert(this->is_square());
         const auto n{(int) this->mat.size()};
         matrix cp(this->mat);
@@ -311,24 +269,18 @@ template <typename T = int> struct matrix {
         return cp;
     }
 
-    T
-    det(void) {
+    T det(void) {
         assert(this->is_square());
         return this->bareiss().mat[this->n - 1][this->n - 1];
     }
 
-    void
-    expo(int b) {
+    void expo(int b) {
         assert(this->is_square());
         const auto &n = (int) this->mat.size();
         matrix<T> tmp(n, n);
-        for (int i = 0; i < n; i++) {
-            tmp.mat[i][i] = 1;
-        }
+        for (int i = 0; i < n; i++) { tmp.mat[i][i] = 1; }
         while (b > 0) {
-            if (b & 1) {
-                tmp = tmp * *this;
-            }
+            if (b & 1) { tmp = tmp * *this; }
             *this = *this * *this;
             b >>= 1;
         }
@@ -336,8 +288,7 @@ template <typename T = int> struct matrix {
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 
-int
-lcs(const std::string &s1, const std::string &s2) {
+int lcs(const std::string &s1, const std::string &s2) {
     const int n{static_cast<int>(s1.size())};
     const int m{static_cast<int>(s2.size())};
     std::vector dp(n + 1, std::vector<int>(m + 1, 0));
@@ -21,8 +20,7 @@ lcs(const std::string &s1, const std::string &s2) {
     return dp[n][m];
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

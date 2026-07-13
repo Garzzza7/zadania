@@ -3,14 +3,15 @@
 
 // tested on: https://judge.yosupo.jp/problem/point_add_range_sum
 
-template <typename T, typename OP> struct fenwick {
+template <typename T, typename OP>
+struct fenwick {
     // 0-indexed for queries and updates
-  private:
+   private:
     int _size;
     std::vector<T> _vec;
     static constexpr OP op{};
 
-  public:
+   public:
     fenwick(const int &n)
         : _size(n + 1) {
         _vec.assign(_size, 0);
@@ -19,13 +20,10 @@ template <typename T, typename OP> struct fenwick {
     fenwick(const std::vector<T> &init)
         : _size((int) init.size() + 1) {
         _vec.assign(_size, 0);
-        for (int i = 0; i < (int) init.size(); i++) {
-            add(i, init[i]);
-        }
+        for (int i = 0; i < (int) init.size(); i++) { add(i, init[i]); }
     }
 
-    void
-    add(int idx, const T &val) {
+    void add(int idx, const T &val) {
         idx++;
         while (idx < _size) {
             _vec[idx] = op(_vec[idx], val);
@@ -33,8 +31,7 @@ template <typename T, typename OP> struct fenwick {
         }
     }
 
-    [[nodiscard]] T
-    query(const int &l, const int &r) const {
+    [[nodiscard]] T query(const int &l, const int &r) const {
         // <l , r>
         auto calc = [this](int idx) -> T {
             idx++;
@@ -51,10 +48,9 @@ template <typename T, typename OP> struct fenwick {
 
 constexpr auto op = [](const auto &a, const auto &b) { return a + b; };
 
-using fen         = fenwick<long long, decltype(op)>;
+using fen = fenwick<long long, decltype(op)>;
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

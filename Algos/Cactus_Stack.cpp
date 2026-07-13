@@ -6,7 +6,8 @@
 // root should be allocated on the stack, rest on the heap
 // -1 -> root
 // TODO: debullshitfy
-template <typename T = int> struct cactus {
+template <typename T = int>
+struct cactus {
     int id{-1};
     std::vector<T> stack;
     std::vector<std::unique_ptr<cactus<T>>> branches;
@@ -34,43 +35,36 @@ template <typename T = int> struct cactus {
 
     ~cactus() = default;
 
-    cactus<T> *
-    branch_out(void) {
-        auto cn        = std::make_unique<cactus<T>>(this);
+    cactus<T> *branch_out(void) {
+        auto cn = std::make_unique<cactus<T>>(this);
         cactus<T> *ptr = cn.get();
         branches.push_back(std::move(cn));
         return ptr;
     }
 
-    void
-    delete_branch(cactus<T> *c) {
-        auto curr = std::ranges::find_if(branches.begin(), branches.end(),
-                                         [c](const std::unique_ptr<cactus<T>> &branch) { return branch.get() == c; });
-        if (curr != branches.end()) {
-            branches.erase(curr);
-        }
+    void delete_branch(cactus<T> *c) {
+        auto curr = std::ranges::find_if(
+            branches.begin(), branches.end(),
+            [c](const std::unique_ptr<cactus<T>> &branch) { return branch.get() == c; });
+        if (curr != branches.end()) { branches.erase(curr); }
     }
 
-    void
-    delete_branch(int id) {
+    void delete_branch(int id) {
         assert(id >= 0 and id < (int) (branches.size()));
         branches.erase(branches.begin() + id);
     }
 
     // copy version
-    void
-    push(const T &v) {
+    void push(const T &v) {
         stack.push_back(v);
     }
 
     // move version
-    void
-    push(T &&v) {
+    void push(T &&v) {
         stack.push_back(std::move(v));
     }
 
-    T
-    pop(void) {
+    T pop(void) {
         assert(not stack.empty());
         assert(branches.empty());
         T top = stack.back();
@@ -78,40 +72,30 @@ template <typename T = int> struct cactus {
         return top;
     }
 
-    void
-    print(void) const {
-        for (const auto &v : stack) {
-            std::cout << v << " ";
-        }
+    void print(void) const {
+        for (const auto &v : stack) { std::cout << v << " "; }
         std::cout << "\n";
     }
 
-    void
-    print_branches(void) const {
-        for (const auto &v : branches) {
-            std::cout << v->id << " ";
-        }
+    void print_branches(void) const {
+        for (const auto &v : branches) { std::cout << v->id << " "; }
         std::cout << "\n";
     }
 
-    void
-    print_branches_count(void) const {
+    void print_branches_count(void) const {
         std::cout << "Number of branches: " << branches.size() << "\n";
     }
 
-    void
-    dfs(void) const {
-        std::cout << "Cactus ID: " << id << " from " << (parent == nullptr ? -1 : parent->id) << " | Stack: ";
+    void dfs(void) const {
+        std::cout << "Cactus ID: " << id << " from " << (parent == nullptr ? -1 : parent->id)
+                  << " | Stack: ";
         print();
 
-        for (const auto &b : branches) {
-            b->dfs();
-        }
+        for (const auto &b : branches) { b->dfs(); }
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

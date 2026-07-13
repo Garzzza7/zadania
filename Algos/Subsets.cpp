@@ -1,12 +1,9 @@
 #include <iostream>
 #include <vector>
 
-void
-rec_subset(const int &k, const int &n, std::vector<int> &subset) {
+void rec_subset(const int &k, const int &n, std::vector<int> &subset) {
     if (k == n) {
-        for (const auto &v : subset) {
-            std::cout << v << " ";
-        }
+        for (const auto &v : subset) { std::cout << v << " "; }
         std::cout << "\n";
     } else {
         rec_subset(k + 1, n, subset);
@@ -16,24 +13,18 @@ rec_subset(const int &k, const int &n, std::vector<int> &subset) {
     }
 }
 
-void
-bin_subset(const int &n) {
+void bin_subset(const int &n) {
     for (int i = 0; i < (1 << n); i++) {
         std::vector<int> subset;
         for (int j = 0; j < n; j++) {
-            if (i & (1 << j)) {
-                subset.push_back(j);
-            }
+            if (i & (1 << j)) { subset.push_back(j); }
         }
-        for (const auto &v : subset) {
-            std::cout << v << " ";
-        }
+        for (const auto &v : subset) { std::cout << v << " "; }
         std::cout << "\n";
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -4,21 +4,16 @@
 #include <vector>
 
 template <typename T = int>
-std::vector<T>
-kahn(const std::vector<std::vector<T>> &adj) {
+std::vector<T> kahn(const std::vector<std::vector<T>> &adj) {
     const int n{(int) adj.size()};
     std::vector<int> in(n + 1, 0);
     std::vector<T> res;
     for (const auto &vv : adj) {
-        for (const auto &v : vv) {
-            in[v]++;
-        }
+        for (const auto &v : vv) { in[v]++; }
     }
     std::queue<T> q;
     for (int i = 0; i < n; i++) {
-        if (in[i] == 0) {
-            q.push(i);
-        }
+        if (in[i] == 0) { q.push(i); }
     }
     while (not q.empty()) {
         auto curr{q.front()};
@@ -26,17 +21,14 @@ kahn(const std::vector<std::vector<T>> &adj) {
         res.push_back(curr);
         for (const auto &v : adj[curr]) {
             in[v]--;
-            if (in[v] == 0) {
-                q.push(v);
-            }
+            if (in[v] == 0) { q.push(v); }
         }
     }
     assert((int) res.size() == n);
     return res;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -50,9 +42,7 @@ main(void) {
         adj[a].push_back(b);
     }
     auto res{kahn(adj)};
-    for (const auto &v : res) {
-        std::cout << v << " ";
-    }
+    for (const auto &v : res) { std::cout << v << " "; }
     std::cout << "\n";
 
     return 0;

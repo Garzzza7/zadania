@@ -43,3 +43,6 @@ tags
 __pycache__/
 .cmake/
 .kateproject.build
+*.err
+*.mh
+Mercury/

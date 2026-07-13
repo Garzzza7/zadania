@@ -4,11 +4,8 @@
 #include <vector>
 
 template <typename T = int>
-void
-quick_sort(std::vector<T> &vec, const int l, const int r) {
-    if (r - l <= 1) {
-        return;
-    }
+void quick_sort(std::vector<T> &vec, const int l, const int r) {
+    if (r - l <= 1) { return; }
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(l, r);
@@ -32,8 +29,7 @@ quick_sort(std::vector<T> &vec, const int l, const int r) {
     quick_sort(vec, r_iter, r);
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -44,9 +40,7 @@ main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec) {
-            std::cin >> v;
-        }
+        for (auto &&v : vec) { std::cin >> v; }
         auto test{vec};
         quick_sort(vec, 0, n - 1);
         std::sort(test.begin(), test.end());

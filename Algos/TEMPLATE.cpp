@@ -1,5 +1,8 @@
 // #include <bits/stdc++.h>
 #pragma GCC optimize("Ofast")
+#include <cxxabi.h>
+#include <stdbit.h>
+
 #include <algorithm>
 #include <any>
 #include <array>
@@ -35,7 +38,6 @@
 #include <cuchar>
 #include <cwchar>
 #include <cwctype>
-#include <cxxabi.h>
 #include <deque>
 #include <exception>
 #include <expected>
@@ -81,7 +83,6 @@
 #include <sstream>
 #include <stack>
 #include <stacktrace>
-#include <stdbit.h>
 #include <stdexcept>
 #include <stdfloat>
 #include <stop_token>
@@ -109,17 +110,25 @@
 #define sortasc(vec) std::sort(vec.begin(), vec.end())
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec)     std::reverse(vec.begin(), vec.end())
-#define sortpairascS(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.second < right.second; })
-#define sortpairdesS(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.second > right.second; })
-#define sortpairascF(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.first < right.first; })
-#define sortpairdesF(vec)                                                                                                        \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool { return left.first > right.first; })
-#define swp(a, b)                                                                                                                \
-    a ^= b;                                                                                                                      \
-    b ^= a;                                                                                                                      \
+#define sortpairascS(vec)                                                                          \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
+        return left.second < right.second;                                                         \
+    })
+#define sortpairdesS(vec)                                                                          \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
+        return left.second > right.second;                                                         \
+    })
+#define sortpairascF(vec)                                                                          \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
+        return left.first < right.first;                                                           \
+    })
+#define sortpairdesF(vec)                                                                          \
+    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
+        return left.first > right.first;                                                           \
+    })
+#define swp(a, b)                                                                                  \
+    a ^= b;                                                                                        \
+    b ^= a;                                                                                        \
     a ^= b;
 // bits
 #define LSB(a)     ((a) & -(a))
@@ -132,8 +141,7 @@
 #define FAST
 #endif
 
-std::vector<std::string>
-split(const std::string &s) {
+std::vector<std::string> split(const std::string &s) {
     std::vector<std::string> res;
     std::string buff;
     for (const auto &c : s) {
@@ -146,34 +154,28 @@ split(const std::string &s) {
             buff.push_back(c);
         }
     }
-    if (not buff.empty()) {
-        res.push_back(buff);
-    }
+    if (not buff.empty()) { res.push_back(buff); }
     return res;
 }
 
-std::string
-to_lower(std::string s) {
+std::string to_lower(std::string s) {
     std::transform(s.begin(), s.end(), s.begin(), [](const auto &c) { return std::tolower(c); });
     return s;
 }
 
-std::string
-to_upper(std::string s) {
+std::string to_upper(std::string s) {
     std::transform(s.begin(), s.end(), s.begin(), [](const auto &c) { return std::toupper(c); });
     return s;
 }
 
-void
-rm_char(std::string &s, const char &c) {
+void rm_char(std::string &s, const char &c) {
     // std::erase(s, c);
     s.erase(std::remove(s.begin(), s.end(), c), s.end());
     // s.erase(std::ranges::remove(s, c).begin(), s.end());
     // std::ranges::remove(s.begin(), s.end(), c);
 }
 
-[[nodiscard]] double
-deg_to_rad(const int &d) noexcept {
+[[nodiscard]] double deg_to_rad(const int &d) noexcept {
     constexpr double ratio = 0.1745;
     return d * ratio;
 }
@@ -182,108 +184,96 @@ deg_to_rad(const int &d) noexcept {
 template <class T, size_t size = std::tuple_size_v<T>>
 std::string to_debug(T, std::string s = "")
     requires(not std::ranges::range<T>);
-std::string
-to_debug(auto x)
+std::string to_debug(auto x)
     requires requires(std::ostream &os) { os << x; }
 {
     return static_cast<std::ostringstream>(std::ostringstream() << x).str();
 }
-std::string
-to_debug(std::ranges::range auto x, std::string s = "")
+std::string to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
-    for (const auto &xi : x) {
-        s += ", " + to_debug(xi);
-    }
+    for (const auto &xi : x) { s += ", " + to_debug(xi); }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
 }
 template <class T, size_t size>
-std::string
-to_debug(T x, std::string s)
+std::string to_debug(T x, std::string s)
     requires(not std::ranges::range<T>)
 {
-    [&]<size_t... I>(std::index_sequence<I...>) { ((s += ", " + to_debug(get<I>(x))), ...); }(std::make_index_sequence<size>());
+    [&]<size_t... I>(std::index_sequence<I...>) {
+        ((s += ", " + to_debug(get<I>(x))), ...);
+    }(std::make_index_sequence<size>());
     return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
 #define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
 template <typename T = int>
-[[nodiscard]] inline T
-bin_xor(T a, T b) noexcept {
+[[nodiscard]] inline T bin_xor(T a, T b) noexcept {
     return ~(a & b) & (a | b);
 }
 
 template <typename T = int>
-[[nodiscard]] inline bool
-is_on(T a, T b) noexcept {
+[[nodiscard]] inline bool is_on(T a, T b) noexcept {
     return a & (static_cast<T>(1) << b);
 }
 
 template <typename T = int>
-[[nodiscard]] inline bool
-cmp(const T &x, const T &y) noexcept {
+[[nodiscard]] inline bool cmp(const T &x, const T &y) noexcept {
     return x > y;
 }
 
 template <typename T = int>
-[[nodiscard]] inline bool
-pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
-    if (x.second < y.second) {
-        return x.second < y.second;
-    }
+[[nodiscard]] inline bool pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
+    if (x.second < y.second) { return x.second < y.second; }
     return x.first < y.first;
 }
 
 template <typename T = int>
-[[nodiscard]] inline T
-bin_min(const T &x, const T &y) noexcept {
+[[nodiscard]] inline T bin_min(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 template <typename T = int>
-[[nodiscard]] inline T
-bin_max(const T &x, const T &y) noexcept {
+[[nodiscard]] inline T bin_max(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x > y));
 }
 
 template <typename T = int>
-[[nodiscard]] inline T
-bin_ce(T x, T y) noexcept {
+[[nodiscard]] inline T bin_ce(T x, T y) noexcept {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
 template <typename T = int>
-[[nodiscard]] inline T
-bin_fl(T x, T y) noexcept {
+[[nodiscard]] inline T bin_fl(T x, T y) noexcept {
     return x / y - ((x ^ y) < 0 && x % y);
 }
 
-[[nodiscard]] constexpr unsigned int
-bin_log(const unsigned int &x) noexcept {
-    return x == static_cast<unsigned int>(0) ? static_cast<unsigned int>(0) : static_cast<unsigned int>(31) - __builtin_clz(x);
+[[nodiscard]] constexpr unsigned int bin_log(const unsigned int &x) noexcept {
+    return x == static_cast<unsigned int>(0) ? static_cast<unsigned int>(0)
+                                             : static_cast<unsigned int>(31) - __builtin_clz(x);
 }
 
-[[nodiscard]] constexpr unsigned long
-bin_llog(const unsigned long &x) noexcept {
+[[nodiscard]] constexpr unsigned long bin_llog(const unsigned long &x) noexcept {
     return x == static_cast<unsigned long>(0) ? static_cast<unsigned long>(0)
                                               : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
 template <typename T = int>
-[[nodiscard]] constexpr T
-bin_tlog(const T &x) noexcept {
+[[nodiscard]] constexpr T bin_tlog(const T &x) noexcept {
     return x == static_cast<T>(0) ? static_cast<T>(0) : static_cast<T>(63) - __builtin_clzl(x);
 }
 
 // descending set
-template <typename T = int> using dset = std::set<T, std::greater<T>>;
+template <typename T = int>
+using dset = std::set<T, std::greater<T>>;
 
 // ascending pq
-template <typename T = int> using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+template <typename T = int>
+using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 // asceding pq of pairs
 template <typename FT, typename ST>
-using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST>>, std::greater<std::pair<FT, ST>>>;
+using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST>>,
+                                 std::greater<std::pair<FT, ST>>>;
 
 // This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
@@ -295,30 +285,28 @@ using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds
 
 // y combinator
 namespace std {
-template <class Fun> class y_combinator_result {
+template <class Fun>
+class y_combinator_result {
     Fun fun_;
 
-  public:
+   public:
     template <class T>
     explicit y_combinator_result(T &&fun)
         : fun_(std::forward<T>(fun)) {
     }
     template <class... Args>
-    decltype(auto)
-    operator()(Args &&...args) {
+    decltype(auto) operator()(Args &&...args) {
         return fun_(std::ref(*this), std::forward<Args>(args)...);
     }
 };
 template <class Fun>
-decltype(auto)
-y_combinator(Fun &&fun) {
+decltype(auto) y_combinator(Fun &&fun) {
     return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));
 }
 } // namespace std
 
 template <typename T = int>
-void
-printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexcept {
+void printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexcept {
     if (begin < 0) begin ^= begin;
     if (end < 0) end = static_cast<int>(v.size());
     for (int i = begin; i < end; i++)
@@ -326,33 +314,30 @@ printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexc
 }
 
 template <typename T = int>
-inline constexpr int
-sz(const std::vector<T> &vec) {
+inline constexpr int sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
 
 // random number functions
 // https://codeforces.com/blog/entry/60442
-uint32_t
-rdrand32() {
+uint32_t rdrand32() {
     uint32_t ret{0};
     assert(__builtin_ia32_rdtscp(&ret));
     return ret;
 }
 
 // asm version
-uint32_t
-rd() {
+uint32_t rd() {
     uint32_t ret{0};
     asm volatile("rdrand %0" : "=a"(ret)::"cc");
     return ret;
 }
 
-[[nodiscard]] int
-random_l_to_r(const int &l, const int &r) {
+[[nodiscard]] int random_l_to_r(const int &l, const int &r) {
     // std::random_device rd;
     // std::mt19937 rng(rd());
-    std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
+    std::mt19937 rng(
+        static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
     return dist(rng);
 }
@@ -383,21 +368,19 @@ concept PB = requires(T vec, T::value_type val) { vec.push_back(val); };
 template <typename T = int>
 concept INS = requires(T vec, T::value_type val) { vec.insert(val); };
 
-using db    = double;
-using str   = std::string;
-using u8    = unsigned char;
-using i32   = int;
-using u32   = unsigned int;
-using i64   = long long;
-using u64   = unsigned long long;
-using u128  = __uint128_t;
+using db = double;
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
+using u128 = __uint128_t;
 
-void
-solve() {
+void solve() {
 }
 
-int
-main(void) {
+int main(void) {
     std::cout << std::setprecision(10) << std::fixed;
 #ifdef TIME
     const auto start = std::chrono::high_resolution_clock::now();
@@ -411,14 +394,13 @@ main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) {
-        solve();
-    }
+    while (_--) { solve(); }
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();
     std::cout << std::setprecision(4) << std::fixed;
-    std::cout << "Execution time: " << std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count()
+    std::cout << "Execution time: "
+              << std::chrono::duration_cast<std::chrono::duration<double>>(finish - start).count()
               << " seconds\n";
 #endif
     return 0;

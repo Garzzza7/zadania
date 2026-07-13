@@ -4,11 +4,9 @@
 #include <vector>
 
 template <typename T = int>
-T
-bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities, std::vector<T> &path) {
-    for (auto &&v : path) {
-        v = -1;
-    }
+T bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities,
+      std::vector<T> &path) {
+    for (auto &&v : path) { v = -1; }
     path[source] = -2137;
     std::queue<std::pair<T, T>> q;
     q.push({source, INT32_MAX});
@@ -21,9 +19,7 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
             if (path[next] == -1 and capacities[curr][next]) {
                 path[next] = curr;
                 T bottleneck{std::min(flow, capacities[curr][next])};
-                if (next == target) {
-                    return bottleneck;
-                }
+                if (next == target) { return bottleneck; }
                 q.push({next, bottleneck});
             }
     }
@@ -31,8 +27,8 @@ bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vecto
 }
 
 template <typename T = int>
-T
-maxflow(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities) {
+T maxflow(T source, T target, std::vector<std::vector<T>> &adj,
+          std::vector<std::vector<T>> &capacities) {
     T maxflow{0};
     std::vector<T> path(static_cast<int>(adj.size()));
     T bottleneck{0};
@@ -50,8 +46,7 @@ maxflow(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::v
     return maxflow;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -6,7 +6,8 @@
 // https://atcoder.jp/contests/practice2/tasks/practice2_g
 // https://codeforces.com/problemset/problem/427/C
 
-template <typename T = int> struct kosaraju {
+template <typename T = int>
+struct kosaraju {
     T size;
 
     std::vector<std::vector<T>> adj;
@@ -25,22 +26,16 @@ template <typename T = int> struct kosaraju {
         visited = std::vector<char>(n, false);
     }
 
-    void
-    add_edge(const T &a, const T &b) {
+    void add_edge(const T &a, const T &b) {
         adj[a].push_back(b);
         transposed_adj[b].push_back(a);
     }
 
-    void
-    calc_scc(void) {
+    void calc_scc(void) {
         for (int i = 0; i < size; i++) {
-            if (not visited[i]) {
-                dfs_1(i);
-            }
+            if (not visited[i]) { dfs_1(i); }
         }
-        for (auto &&v : visited) {
-            v = false;
-        }
+        for (auto &&v : visited) { v = false; }
         while (not out.empty()) {
             T v{out.top()};
             out.pop();
@@ -51,31 +46,24 @@ template <typename T = int> struct kosaraju {
         }
     }
 
-    void
-    dfs_1(const T &v) {
+    void dfs_1(const T &v) {
         visited[v] = true;
         for (const auto &vv : adj[v]) {
-            if (not visited[vv]) {
-                dfs_1(vv);
-            }
+            if (not visited[vv]) { dfs_1(vv); }
         }
         out.push(v);
     }
 
-    void
-    dfs_2(const T &v) {
+    void dfs_2(const T &v) {
         scc[cnt_Components].push_back(v);
         visited[v] = true;
         for (const auto &vv : transposed_adj[v]) {
-            if (not visited[vv]) {
-                dfs_2(vv);
-            }
+            if (not visited[vv]) { dfs_2(vv); }
         }
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -93,8 +81,7 @@ main(void) {
     std::cout << kosaraju.scc.size() << "\n";
     for (const auto &[fst, snd] : kosaraju.scc) {
         std::cout << snd.size() << " ";
-        for (const auto &aa : snd)
-            std::cout << aa << " ";
+        for (const auto &aa : snd) std::cout << aa << " ";
         std::cout << "\n";
     }
 

@@ -4,24 +4,16 @@
 #include <vector>
 
 template <typename T = int>
-void
-dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
-    if (visited[vertex]) {
-        return;
-    }
+void dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
+    if (visited[vertex]) { return; }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    for (const auto &v : adj[vertex]) {
-        dfs(v, adj, visited);
-    }
+    for (const auto &v : adj[vertex]) { dfs(v, adj, visited); }
 }
 
 template <typename T = int>
-void
-iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
-    for (auto &&v : visited) {
-        v = false;
-    }
+void iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
+    for (auto &&v : visited) { v = false; }
     std::stack<T> stack;
     visited[vertex] = true;
     stack.push(vertex);
@@ -40,8 +32,7 @@ iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &vis
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

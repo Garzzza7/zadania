@@ -4,8 +4,7 @@
 // tested on: https://judge.yosupo.jp/problem/primality_test
 
 template <typename T = unsigned long long>
-bool
-miller_rabin(const T &n) {
+bool miller_rabin(const T &n) {
     // DO NOT MODIFY THE T TYPE
     if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
     auto modmul = [](T a, T b, T mod) -> T {
@@ -19,20 +18,17 @@ miller_rabin(const T &n) {
         return ans;
     };
     const std::vector<T> guards = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
-    T s                         = __builtin_ctzll(n - 1);
-    T d                         = n >> s;
+    T s = __builtin_ctzll(n - 1);
+    T d = n >> s;
     for (const auto &a : guards) {
         T p = modpow(a % n, d, n), i = s;
-        while (p != 1 and p != n - 1 and a % n and i--) {
-            p = modmul(p, p, n);
-        }
+        while (p != 1 and p != n - 1 and a % n and i--) { p = modmul(p, p, n); }
         if (p != n - 1 and i != s) return false;
     }
     return true;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

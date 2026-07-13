@@ -1,17 +1,13 @@
 #include <iostream>
 
 template <typename T = int>
-T
-rec_gcd(T a, T b) {
-    if (b == 0) {
-        return a;
-    }
+T rec_gcd(T a, T b) {
+    if (b == 0) { return a; }
     return rec_gcd(b, a % b);
 }
 
 template <typename T = int>
-T
-gcd(T a, T b) {
+T gcd(T a, T b) {
     while (b) {
         a %= b;
         std::swap(a, b);
@@ -20,31 +16,24 @@ gcd(T a, T b) {
 }
 
 template <typename T = int>
-T
-lcm(T a, T b) {
+T lcm(T a, T b) {
     return a / gcd(a, b) * b;
 }
 
 template <typename T = int>
-T
-bit_gcd(T a, T b) {
-    if (!a or !b) {
-        return a | b;
-    }
+T bit_gcd(T a, T b) {
+    if (!a or !b) { return a | b; }
     unsigned shift = __builtin_ctz(a | b);
     a >>= __builtin_ctz(a);
     do {
         b >>= __builtin_ctz(b);
-        if (a > b) {
-            std::swap(a, b);
-        }
+        if (a > b) { std::swap(a, b); }
         b -= a;
     } while (b);
     return a << shift;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

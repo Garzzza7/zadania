@@ -4,11 +4,11 @@
 #include <vector>
 
 template <typename T = int>
-void
-sattoro_cyclic_shuffle(std::vector<T> &vec) {
+void sattoro_cyclic_shuffle(std::vector<T> &vec) {
     int i{static_cast<int>(vec.size()) - 1};
     while (i > 1) {
-        std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
+        std::mt19937 rng(
+            static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
         std::uniform_int_distribution<> dist(0, i - 1);
         const int j{dist(rng)};
         std::swap(vec[i], vec[j]);
@@ -16,8 +16,7 @@ sattoro_cyclic_shuffle(std::vector<T> &vec) {
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -26,8 +25,7 @@ main(void) {
     std::cin >> n;
     std::vector<char> vec(n);
     const auto og{vec};
-    for (auto &&v : vec)
-        std::cin >> v;
+    for (auto &&v : vec) std::cin >> v;
     sattoro_cyclic_shuffle(vec);
     std::cout << (og != vec) << "\n";
 

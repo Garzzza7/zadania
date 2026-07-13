@@ -5,12 +5,10 @@
 #include <vector>
 
 template <typename T = int>
-T
-kth_order_stat(std::vector<T> &vec, const int l, const int r, const int k) {
-    if (r - l <= 1) {
-        return vec[k];
-    }
-    std::mt19937 rng(static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
+T kth_order_stat(std::vector<T> &vec, const int l, const int r, const int k) {
+    if (r - l <= 1) { return vec[k]; }
+    std::mt19937 rng(
+        static_cast<uint32_t>(std::chrono::steady_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<> dist(l, r);
     const T x{vec[dist(rng)]};
     int l_limit{l};
@@ -36,8 +34,7 @@ kth_order_stat(std::vector<T> &vec, const int l, const int r, const int k) {
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -48,8 +45,7 @@ main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec)
-            std::cin >> v;
+        for (auto &&v : vec) std::cin >> v;
         const int kth{kth_order_stat(vec, 0, n - 1, 9)};
         std::nth_element(vec.begin(), vec.begin() + 9, vec.end());
         std::cout << (kth == vec[9]) << "\n";

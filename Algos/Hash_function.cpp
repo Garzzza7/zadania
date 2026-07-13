@@ -3,16 +3,14 @@
 // https://stackoverflow.com/a/12996028
 
 template <typename T = unsigned int>
-T
-hash(T x) noexcept {
+T hash(T x) noexcept {
     x = ((x >> 16) ^ x) * 0x45d9f3bu;
     x = ((x >> 16) ^ x) * 0x45d9f3bu;
     x = (x >> 16) ^ x;
     return x;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

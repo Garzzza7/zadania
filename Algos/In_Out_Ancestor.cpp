@@ -2,8 +2,8 @@
 #include <map>
 #include <vector>
 
-template <typename T = int> struct in_out_ancestor {
-
+template <typename T = int>
+struct in_out_ancestor {
     in_out_ancestor() = default;
 
     in_out_ancestor(const int &n, const T &root = 0)
@@ -25,7 +25,7 @@ template <typename T = int> struct in_out_ancestor {
         _calc(root);
     }
 
-  private:
+   private:
     int size{0};
     // in case nodes are not numbers
     // std::map<T, int> tin;
@@ -36,33 +36,27 @@ template <typename T = int> struct in_out_ancestor {
     std::vector<char> visited;
     std::vector<std::vector<T>> adj;
 
-    void
-    dfs(const T &ver, int &time) {
+    void dfs(const T &ver, int &time) {
         visited[ver] = true;
-        tin[ver]     = time++;
+        tin[ver] = time++;
         for (const auto &v : adj[ver]) {
-            if (not visited[v]) {
-                dfs(v, time);
-            }
+            if (not visited[v]) { dfs(v, time); }
         }
         tout[ver] = time++;
     }
 
-    inline void
-    _calc(const T &root) {
+    inline void _calc(const T &root) {
         int time{0};
         dfs(root, time);
     }
 
-  public:
-    [[nodiscard]] bool
-    query(const T &a, const T &b) const {
+   public:
+    [[nodiscard]] bool query(const T &a, const T &b) const {
         return tin[a] <= tin[b] and tout[a] >= tout[b];
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

@@ -2,9 +2,11 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct kruscal {
-  private:
-    template <typename TT = int> struct _edge_type {
+template <typename T = int>
+struct kruscal {
+   private:
+    template <typename TT = int>
+    struct _edge_type {
         int u;
         int v;
         TT weight;
@@ -20,46 +22,37 @@ template <typename T = int> struct kruscal {
     std::vector<int> parent;
     std::vector<int> rank;
 
-  public:
+   public:
     kruscal() = default;
 
     kruscal(const int &n) {
         parent = std::vector<int>(n);
-        rank   = std::vector<int>(n, 0);
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-        }
+        rank = std::vector<int>(n, 0);
+        for (int i = 0; i < n; i++) { parent[i] = i; }
     }
 
-    void
-    add_edge(const int &u, const int &v, const T &weight) {
+    void add_edge(const int &u, const int &v, const T &weight) {
         edges.push_back(edge(u, v, weight));
     }
 
-    int
-    find(const int &v) {
-        if (v == parent[v]) {
-            return v;
-        }
+    int find(const int &v) {
+        if (v == parent[v]) { return v; }
         return parent[v] = find(parent[v]);
     }
 
-    void
-    union_by_rank(int a, int b) {
+    void union_by_rank(int a, int b) {
         a = find(a);
         b = find(b);
         if (a != b) {
-            if (rank[a] < rank[b]) {
-                std::swap(a, b);
-            }
+            if (rank[a] < rank[b]) { std::swap(a, b); }
             parent[b] = a;
             rank[a] += rank[a] == rank[b];
         }
     }
 
-    std::vector<edge>
-    calc_mst(void) {
-        std::sort(edges.begin(), edges.end(), [](const edge &l, const edge &r) { return l.weight < r.weight; });
+    std::vector<edge> calc_mst(void) {
+        std::sort(edges.begin(), edges.end(),
+                  [](const edge &l, const edge &r) { return l.weight < r.weight; });
         for (const auto &edge : edges) {
             if (not(find(edge.u) == find(edge.v))) {
                 mst.push_back(edge);
@@ -70,8 +63,7 @@ template <typename T = int> struct kruscal {
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

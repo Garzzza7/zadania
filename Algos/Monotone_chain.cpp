@@ -2,7 +2,8 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct point {
+template <typename T = int>
+struct point {
     T x;
     T y;
 
@@ -17,20 +18,17 @@ template <typename T = int> struct point {
     }
 
     // just in case of a need of not using lambda
-    bool
-    operator<(const point &p) const {
+    bool operator<(const point &p) const {
         return x < p.x or (x == p.x and y < p.y);
     }
 
-    bool
-    operator==(const point &p) const {
+    bool operator==(const point &p) const {
         return x == p.x and y == p.y;
     }
 };
 
 template <typename T = int>
-std::vector<point<T>>
-convex_hull(std::vector<point<T>> points) {
+std::vector<point<T>> convex_hull(std::vector<point<T>> points) {
     const int n{(int) points.size()};
 
     auto check{[](const point<T> &curr, const point<T> &l, const point<T> &r) -> int {
@@ -38,9 +36,7 @@ convex_hull(std::vector<point<T>> points) {
     }};
 
     std::sort(points.begin(), points.end(), [](const point<T> &l, const point<T> &r) {
-        if (l.x != r.x) {
-            return l.x < r.x;
-        }
+        if (l.x != r.x) { return l.x < r.x; }
         return l.y < r.y;
     });
 
@@ -48,14 +44,16 @@ convex_hull(std::vector<point<T>> points) {
     std::vector<point<T>> low;
 
     for (int i = 0; i < n; i++) {
-        while ((int) low.size() >= 2 and check(low[(int) low.size() - 2], low[(int) low.size() - 1], points[i]) <= 0) {
+        while ((int) low.size() >= 2 and
+               check(low[(int) low.size() - 2], low[(int) low.size() - 1], points[i]) <= 0) {
             low.pop_back();
         }
         low.push_back(points[i]);
     }
 
     for (int i = n - 1; i > 0; i--) {
-        while ((int) up.size() >= 2 and check(up[(int) up.size() - 2], up[(int) up.size() - 1], points[i - 1]) <= 0) {
+        while ((int) up.size() >= 2 and
+               check(up[(int) up.size() - 2], up[(int) up.size() - 1], points[i - 1]) <= 0) {
             up.pop_back();
         }
         up.push_back(points[i - 1]);
@@ -66,8 +64,7 @@ convex_hull(std::vector<point<T>> points) {
     return up;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -78,9 +75,7 @@ main(void) {
 
     const auto res{convex_hull(points)};
 
-    for (const auto &p : res) {
-        std::cout << p.x << " " << p.y << "\n";
-    }
+    for (const auto &p : res) { std::cout << p.x << " " << p.y << "\n"; }
 
     return 0;
 }

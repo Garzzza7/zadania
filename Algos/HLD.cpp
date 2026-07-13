@@ -2,7 +2,8 @@
 #include <string>
 #include <vector>
 
-template <typename T = int> struct HLD {
+template <typename T = int>
+struct HLD {
     // in-out ancestor is here just because of the similarities.
     std::vector<T> in;
     std::vector<T> out;
@@ -15,19 +16,16 @@ template <typename T = int> struct HLD {
         subtree_size.resize(n);
         adj.resize(n);
     }
-    void
-    add_edge(const T &u, const T &v) {
+    void add_edge(const T &u, const T &v) {
         adj[u].push_back(v);
     }
-    void
-    bi_add_edge(const T &u, const T &v) {
+    void bi_add_edge(const T &u, const T &v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

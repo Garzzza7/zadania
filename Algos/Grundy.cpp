@@ -3,25 +3,24 @@
 #include <iostream>
 #include <vector>
 
-template <typename T = int> struct grundy {
+template <typename T = int>
+struct grundy {
     // must be a dag !!!
     // 0-indexed
-  private:
+   private:
     static constexpr T NEUTRAL{static_cast<T>(-1)};
     static constexpr T VISITING{static_cast<T>(-2)};
     std::vector<T> _colors;
-    static T
-    _mex(const std::vector<T> &values) {
-        std::vector<char> used(values.size() + 1, false);
-        for (const auto &v : values)
-            if (v >= 0 and v <= static_cast<T>(values.size())) used[v] = true;
+    static T _mex(const std::vector<T> &vec) {
+        std::vector<char> used(vec.size() + 1, false);
+        for (const auto &v : vec)
+            if (v >= 0 and v <= static_cast<T>(vec.size())) used[v] = true;
         T res = 0;
-        while (used[res])
-            res++;
+        while (used[res]) res++;
         return res;
     }
 
-  public:
+   public:
     grundy(const std::vector<std::vector<T>> &adj) {
         const T n{static_cast<T>(adj.size())};
         _colors.assign(n, NEUTRAL);
@@ -31,9 +30,7 @@ template <typename T = int> struct grundy {
             assert(_colors[ver] != VISITING);
             _colors[ver] = VISITING;
             std::vector<T> child;
-            for (const auto &v : adj[ver]) {
-                child.push_back(self(self, v));
-            }
+            for (const auto &v : adj[ver]) { child.push_back(self(self, v)); }
             return _colors[ver] = _mex(child);
         };
         for (T i = 0; i < n; i++) {
@@ -42,20 +39,17 @@ template <typename T = int> struct grundy {
     }
 
     [[nodiscard]]
-    T
-    max() const {
+    T max(void) const {
         return *std::max_element(_colors.begin(), _colors.end());
     }
 
     [[nodiscard]]
-    const std::vector<T> &
-    values() const {
+    const std::vector<T> &values(void) const {
         return _colors;
     }
 };
 
-int
-main() {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

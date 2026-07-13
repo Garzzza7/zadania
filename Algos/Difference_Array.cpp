@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -27,8 +26,7 @@ main(void) {
         overlapping_segments[i] = total;
     }
 
-    for (const auto &seg : overlapping_segments)
-        std::cout << seg << " ";
+    for (const auto &seg : overlapping_segments) std::cout << seg << " ";
     std::cout << "\n";
 
     return 0;

@@ -5,8 +5,7 @@
 // TODO: verify
 
 template <typename T = int>
-T
-median_of_medians(const std::vector<T> &vec) {
+T median_of_medians(const std::vector<T> &vec) {
     const int n{(int) vec.size()};
     if (n <= 5) {
         std::vector<T> ret = vec;
@@ -24,8 +23,7 @@ median_of_medians(const std::vector<T> &vec) {
     return median_of_medians(medians);
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -33,9 +31,7 @@ main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) {
-        std::cin >> v;
-    }
+    for (auto &&v : vec) { std::cin >> v; }
     std::cout << median_of_medians(vec) << "\n";
     return 0;
 }

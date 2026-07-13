@@ -5,8 +5,7 @@
 // https://www.spoj.com/problems/PRIME1
 
 template <typename T = int>
-std::vector<char>
-segmented_sieve(const T &L, const T &R) {
+std::vector<char> segmented_sieve(const T &L, const T &R) {
     std::vector<T> primes;
     {
         const auto lim = (T) std::sqrt(R);
@@ -14,9 +13,7 @@ segmented_sieve(const T &L, const T &R) {
         for (T i = 2; i <= lim; i++) {
             if (not not_prime[i]) {
                 primes.push_back(i);
-                for (T j = i * i; j <= lim; j += i) {
-                    not_prime[j] = true;
-                }
+                for (T j = i * i; j <= lim; j += i) { not_prime[j] = true; }
             }
         }
     }
@@ -27,14 +24,11 @@ segmented_sieve(const T &L, const T &R) {
             is_prime[i - L] = false;
         }
     }
-    if (L == 1) {
-        is_prime[0] = false;
-    }
+    if (L == 1) { is_prime[0] = false; }
     return is_prime;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -46,9 +40,7 @@ main(void) {
         std::cin >> n >> m;
         auto sieve = segmented_sieve(n, m);
         for (long long i = 0; i < (decltype(i)) sieve.size(); i++) {
-            if (sieve[i]) {
-                std::cout << i + n << "\n";
-            }
+            if (sieve[i]) { std::cout << i + n << "\n"; }
         }
         std::cout << "\n";
     }

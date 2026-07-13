@@ -2,20 +2,14 @@
 #include <vector>
 
 template <typename T = int>
-T
-rec_bin_coeff(const T &n, const T &k) {
-    if (k == 1) {
-        return n;
-    }
-    if (n == k or k == 0) {
-        return 1;
-    }
+T rec_bin_coeff(const T &n, const T &k) {
+    if (k == 1) { return n; }
+    if (n == k or k == 0) { return 1; }
     return rec_bin_coeff(n - 1, k - 1) + rec_bin_coeff(n - 1, k);
 }
 
 template <typename T = int>
-T
-mult_bin_coeff(const T &n, const T &k) {
+T mult_bin_coeff(const T &n, const T &k) {
     T res{1};
     const T kk{std::min(k, n - k)};
     for (int i = 1; i <= kk; i++) {
@@ -26,8 +20,7 @@ mult_bin_coeff(const T &n, const T &k) {
 }
 
 template <typename T = int>
-T
-mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
+T mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
     T res{1ll};
     const T kk{std::min(k, n - k)};
     auto mod_binpow{[&](T a, T b) -> T {
@@ -49,8 +42,7 @@ mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
 }
 
 template <typename T = int>
-std::vector<std::vector<T>>
-mod_bin_coeff(const T &n, const T &mod) {
+std::vector<std::vector<T>> mod_bin_coeff(const T &n, const T &mod) {
     std::vector binom(n + 1, std::vector<T>(n + 1));
     binom[0][0] = 1;
     for (int i = 1; i <= n; i++) {
@@ -62,8 +54,7 @@ mod_bin_coeff(const T &n, const T &mod) {
     return binom;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

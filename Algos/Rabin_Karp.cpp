@@ -4,8 +4,7 @@
 
 // BASED ON: https://cses.fi/problemset/task/1753/
 
-std::vector<int>
-rabin_karp(std::string const &text, std::string const &pattern) {
+std::vector<int> rabin_karp(std::string const &text, std::string const &pattern) {
     constexpr long long mod{1000000007};
     constexpr long long prime{16777619};
 
@@ -31,15 +30,12 @@ rabin_karp(std::string const &text, std::string const &pattern) {
     std::vector<int> ids;
     for (int i = 0; i + pattern_size - 1 < text_size; i++) {
         const long long curr{(text_hash[i + pattern_size] - text_hash[i] + mod) % mod};
-        if (curr == patter_hash * precalc_powers[i] % mod) {
-            ids.push_back(i);
-        }
+        if (curr == patter_hash * precalc_powers[i] % mod) { ids.push_back(i); }
     }
     return ids;
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -51,9 +47,7 @@ main(void) {
     std::cout << pattern << "\n";
     auto res{rabin_karp(text, pattern)};
     std::cout << static_cast<int>(res.size()) << " matches found at:\n";
-    for (const auto &c : res) {
-        std::cout << c << " ";
-    }
+    for (const auto &c : res) { std::cout << c << " "; }
     std::cout << "\n";
     return 0;
 }

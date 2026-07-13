@@ -4,8 +4,7 @@
 #include <vector>
 
 template <typename T = int>
-void
-merge_sort(std::vector<T> &vec, int l, int r) {
+void merge_sort(std::vector<T> &vec, int l, int r) {
     if (l < r) {
         int q{(r - l) / 2 + l};
         merge_sort(vec, l, q);
@@ -15,12 +14,8 @@ merge_sort(std::vector<T> &vec, int l, int r) {
             const int size2{r - q};
             std::vector<T> L(size1 + 1, std::numeric_limits<T>::max());
             std::vector<T> R(size2 + 1, std::numeric_limits<T>::max());
-            for (int i = 0; i < size1; i++) {
-                L[i] = vec[p + i];
-            }
-            for (int i = 0; i < size2; i++) {
-                R[i] = vec[q + i + 1];
-            }
+            for (int i = 0; i < size1; i++) { L[i] = vec[p + i]; }
+            for (int i = 0; i < size2; i++) { R[i] = vec[q + i + 1]; }
             int i{0};
             int j{0};
             for (int k = p; k <= r; k++) {
@@ -33,8 +28,7 @@ merge_sort(std::vector<T> &vec, int l, int r) {
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -45,9 +39,7 @@ main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (int i = 0; i < n; i++) {
-            std::cin >> vec[i];
-        }
+        for (int i = 0; i < n; i++) { std::cin >> vec[i]; }
         auto test{vec};
         std::sort(test.begin(), test.end());
         merge_sort(vec, 0, n - 1);

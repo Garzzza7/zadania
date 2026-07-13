@@ -23,76 +23,60 @@ struct tarjan_find_bridges {
     tarjan_find_bridges(int n, int m) {
         n++;
         m++;
-        adj        = std::vector(n, std::vector<edge>());
-        visited    = std::vector<char>(n);
-        is_bridge  = std::vector<char>(m);
+        adj = std::vector(n, std::vector<edge>());
+        visited = std::vector<char>(n);
+        is_bridge = std::vector<char>(m);
         entry_time = std::vector<int>(n);
-        low        = std::vector<int>(n);
-        edges      = std::vector<std::pair<int, int>>(m);
+        low = std::vector<int>(n);
+        edges = std::vector<std::pair<int, int>>(m);
     }
 
-    void
-    add_edge(int p, int v) {
+    void add_edge(int p, int v) {
         adj[p].emplace_back(v, edge_id);
         edges[edge_id] = {p, v};
         edge_id++;
     }
 
-    void
-    add_bi_edge(int p, int v) {
+    void add_bi_edge(int p, int v) {
         adj[p].emplace_back(v, edge_id);
         adj[v].emplace_back(p, edge_id);
         edges[edge_id] = {p, v};
         edge_id++;
     }
 
-    void
-    dfs(const int p, const int v) {
-        if (visited[v]) {
-            return;
-        }
-        visited[v]    = true;
-        low[v]        = visit_time;
+    void dfs(const int p, const int v) {
+        if (visited[v]) { return; }
+        visited[v] = true;
+        low[v] = visit_time;
         entry_time[v] = visit_time;
         visit_time++;
         for (const auto &e : adj[v]) {
-            if (e.vertex == p) {
-                continue;
-            }
+            if (e.vertex == p) { continue; }
             if (visited[e.vertex]) {
                 low[v] = std::min(low[v], entry_time[e.vertex]);
             } else {
                 dfs(v, e.vertex);
                 low[v] = std::min(low[v], low[e.vertex]);
-                if (low[e.vertex] > entry_time[v]) {
-                    is_bridge[e.id] = true;
-                }
+                if (low[e.vertex] > entry_time[v]) { is_bridge[e.id] = true; }
             }
         }
     }
 
-    void
-    run(void) {
+    void run(void) {
         for (int i = 1; i < static_cast<int>(adj.size()); i++) {
-            if (not visited[i]) {
-                dfs(i, i);
-            }
+            if (not visited[i]) { dfs(i, i); }
         }
     }
 
-    void
-    print(void) const {
+    void print(void) const {
         for (const auto &ee : adj) {
-            for (const auto &e : ee) {
-                std::cout << e.vertex << " ";
-            }
+            for (const auto &e : ee) { std::cout << e.vertex << " "; }
             std::cout << "\n";
         }
     }
 };
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -108,7 +92,8 @@ main(void) {
     graph.run();
     for (int i = 0; i < static_cast<int>(graph.is_bridge.size()); i++)
         if (graph.is_bridge[i])
-            std::cout << "edge " << graph.edges[i].first << " to " << graph.edges[i].second << " is a bridge.\n";
+            std::cout << "edge " << graph.edges[i].first << " to " << graph.edges[i].second
+                      << " is a bridge.\n";
 
     return 0;
 }

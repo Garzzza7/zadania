@@ -4,23 +4,22 @@
 
 // both queries tested on: https://judge.yosupo.jp/problem/staticrmq
 
-template <typename T, typename OP, T NEUTRAL> struct sparse_table {
-  private:
+template <typename T, typename OP, T NEUTRAL>
+struct sparse_table {
+   private:
     int _size{};
     int _LOG{};
     std::vector<std::vector<T>> _vec;
     static constexpr OP op{};
     std::vector<unsigned long long> _precalc_log;
 
-  public:
+   public:
     sparse_table(const std::vector<T> &init)
         : _size(static_cast<int>(init.size())) {
-        while (1 << _LOG < _size) {
-            _LOG++;
-        }
+        while (1 << _LOG < _size) { _LOG++; }
         _LOG++;
-        _vec         = std::vector(_LOG, std::vector(_size, NEUTRAL));
-        _vec[0]      = init;
+        _vec = std::vector(_LOG, std::vector(_size, NEUTRAL));
+        _vec[0] = init;
         _precalc_log = std::vector(1 << _LOG, 0ULL);
         for (int i = 1; i <= _LOG; i++) {
             for (int j = 0; j + (1 << i) <= _size; j++) {
@@ -28,21 +27,17 @@ template <typename T, typename OP, T NEUTRAL> struct sparse_table {
             }
         }
         for (int i = 0; i < _LOG; i++) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j++) {
-                _precalc_log[j] = i;
-            }
+            for (int j = (1 << i); j < (1 << (i + 1)); j++) { _precalc_log[j] = i; }
         }
     }
 
-    [[nodiscard]] T
-    query(const int &L, const int &R) const {
+    [[nodiscard]] T query(const int &L, const int &R) const {
         // <L , R)
         const auto log = _precalc_log[R - L];
         return op(_vec[log][L], _vec[log][R - (1 << log)]);
     }
 
-    [[nodiscard]] T
-    query_nonindempotent(int L, int R) const {
+    [[nodiscard]] T query_nonindempotent(int L, int R) const {
         T res{NEUTRAL};
         R--;
         for (int i = _LOG; i >= 0; i--) {
@@ -60,11 +55,10 @@ constexpr auto op = [](const auto &l, const auto &r) -> auto {
     return r;
 };
 constexpr auto sum = [](const auto &l, const auto &r) -> auto { return l + r; };
-using RMQ          = sparse_table<long long, decltype(op), (long long) (1e9 + 1)>;
-using SUM          = sparse_table<long long, decltype(sum), 0LL>;
+using RMQ = sparse_table<long long, decltype(op), (long long) (1e9 + 1)>;
+using SUM = sparse_table<long long, decltype(sum), 0LL>;
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -72,9 +66,7 @@ main(void) {
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> vec(n);
-    for (auto &&v : vec) {
-        std::cin >> v;
-    }
+    for (auto &&v : vec) { std::cin >> v; }
 
     RMQ rmq(vec);
     SUM s(vec);

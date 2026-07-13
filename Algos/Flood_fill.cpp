@@ -7,10 +7,11 @@
 long long iter_sum{0ll};
 
 template <typename T = int>
-void
-iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited, const int &x, const int &y) {
+void iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited,
+                    const int &x, const int &y) {
     auto check{[&](const int &x, const int &y) -> bool {
-        return !((x < 0 or x >= (int) vec.size() or y < 0 or y >= (int) vec[0].size()) or vec[x][y] == 0 or visited[x][y]);
+        return !((x < 0 or x >= (int) vec.size() or y < 0 or y >= (int) vec[0].size()) or
+                 vec[x][y] == 0 or visited[x][y]);
     }};
     if (check(x, y)) {
         std::stack<std::pair<int, int>> stack;
@@ -34,9 +35,10 @@ iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> 
 long long sum{0ll};
 
 template <typename T = int>
-void
-floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited, const int &i, const int &j) {
-    if ((i < 0 or i >= (int) vec.size() or j < 0 or j >= (int) vec[0].size()) or vec[i][j] == 0 or visited[i][j]) {
+void floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited,
+               const int &i, const int &j) {
+    if ((i < 0 or i >= (int) vec.size() or j < 0 or j >= (int) vec[0].size()) or vec[i][j] == 0 or
+        visited[i][j]) {
         return;
     }
 
@@ -50,8 +52,7 @@ floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visi
 
 // BASED ON THIS: https://codeforces.com/contest/1829/problem/E
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -64,8 +65,7 @@ main(void) {
         std::vector<std::vector<int>> vec(n, std::vector<int>(m));
         std::vector<std::vector<char>> visited(n, std::vector<char>(m, false));
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                std::cin >> vec[i][j];
+            for (int j = 0; j < m; j++) std::cin >> vec[i][j];
 
         long long res1{0};
         for (int i = 0; i < n; i++)
@@ -78,8 +78,7 @@ main(void) {
         std::cout << "rec = " << res1 << "\n";
 
         for (auto &&vv : visited)
-            for (auto &&v : vv)
-                v = false;
+            for (auto &&v : vv) v = false;
 
         long long res2{0};
         for (int i = 0; i < n; i++)

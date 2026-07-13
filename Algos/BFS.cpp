@@ -3,8 +3,7 @@
 #include <vector>
 
 template <typename T = int>
-void
-iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
+void iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
     std::vector<char> visited(adj.size(), false);
     std::queue<T> que;
     que.push(vertex);
@@ -21,24 +20,19 @@ iterative_bfs(const T vertex, const std::vector<std::vector<T>> &adj) {
 }
 
 template <typename T = int>
-void
-bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited, std::queue<T> que) {
-    if (visited[vertex]) {
-        return;
-    }
+void bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited,
+         std::queue<T> que) {
+    if (visited[vertex]) { return; }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    for (const auto &v : adj[vertex]) {
-        que.push(v);
-    }
+    for (const auto &v : adj[vertex]) { que.push(v); }
     while (not que.empty()) {
         bfs(que.front(), adj, visited, que);
         que.pop();
     }
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
