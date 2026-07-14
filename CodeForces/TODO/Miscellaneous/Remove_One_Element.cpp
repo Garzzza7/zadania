@@ -32,28 +32,30 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
-        } else {
-            std::cout << str(n2 + 1, '1') << "\n";
+    int n;
+    std::cin >> n;
+    // std::vector<int> vec(n + 1, -123);
+    // for (int i = 1; i <= n; i++) { std::cin >> vec[i]; }
+    std::vector<int> vec(n);
+    for (auto &&v : vec) std::cin >> v;
+    // std::vector<int> pref(n + 1);
+    // for (int i = 0; i < n; i++) { pref[i + 1] = pref[i] + (vec[i + 1] > vec[i]); }
+    int last = 0;
+    int l = 0;
+    int res = 0;
+    while (l < n) {
+        int r = l + 1;
+        if (r >= n or vec[r] <= vec[l]) {
+            l++;
+            continue;
         }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
+        while (r < n and vec[r] > vec[r - 1]) { r++; }
+        int curr = r - l;
+        res = std::max(res, curr + last);
+        last = curr;
+        l = r + 1;
     }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -62,7 +64,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

@@ -31,29 +31,32 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+constexpr u64 limit = 1e9 * 3;
+
+std::vector<u64> powers = {0, 1};
+
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
-        } else {
-            std::cout << str(n2 + 1, '1') << "\n";
+    int n;
+    std::cin >> n;
+    std::vector<u64> vec(n);
+    std::map<u64, u64> cnt;
+    for (auto &&v : vec) std::cin >> v, cnt[v]++;
+    std::set<u64> set = {all(vec)};
+    u64 res1 = 0;
+    u64 res2 = 0;
+    for (const auto &v : set) {
+        for (const auto &p : powers) {
+            if (cnt[p - v]) {
+                if (v == p - v) {
+                    res1 += (cnt[v]) * (cnt[v] - 1) / 2;
+                } else {
+                    res2 += (cnt[v] * cnt[p - v]);
+                }
+            }
         }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
     }
+    u64 res = res1 + res2 / 2;
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -61,8 +64,9 @@ int main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
+    for (int i = 2; i * powers.back() <= limit;) { powers.push_back(powers.back() * i); }
+
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

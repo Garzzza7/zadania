@@ -31,40 +31,49 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n;
+    std::cin >> n;
     str s;
     std::cin >> s;
-    const int n = sz(s);
-    auto run = [](const str &s , int i , int j) -> int {
-        int res = 0;
-        for(const auto &c : s) {
-            if(c - '0' == i) {
-                res++;
-                i ^= j;
-                j ^= i;
-                i ^= j;
+    std::vector<int> ans(n);
+    std::vector<int> zero, one;
+    int id = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '0') {
+            if (one.empty()) {
+                id++;
+                ans[i] = id;
+            } else {
+                ans[i] = one.back();
+                one.pop_back();
             }
-        }
-        // rem
-        if(i != j and res & 1) res--;
-        return res;
-    };
-    int res = 0;
-    for(int i = 0 ; i <= 9 ; i++) {
-        for(int j = 0 ; j <= 9 ; j++) {
-            res = std::max(res , run(s,i,j));
+            zero.push_back(ans[i]);
+        } else {
+            if (zero.empty()) {
+                id++;
+                ans[i] = id;
+            } else {
+                ans[i] = zero.back();
+                zero.pop_back();
+            }
+            one.push_back(ans[i]);
         }
     }
-    std::cout << n - res << "\n";
+
+    std::cout << id << "\n";
+    for (const auto &v : ans) {
+        std::cout << v << " ";
+    }
+    std::cout << "\n";
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
+    std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
 
-    int _{1};
-    std::cin >> _;
-    while (_--) {
+    int t;
+    std::cin >> t;
+    while (t--) {
         solve();
     }
 

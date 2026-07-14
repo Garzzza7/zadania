@@ -2,26 +2,20 @@
 using namespace std;
 
 long long maxi = 0;
-long long at   = 0;
-void
-dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited, long long cnt) {
-    if (visited[v]) {
-        return;
-    }
+long long at = 0;
+void dfs(long long v, vector<vector<long long>> &adj, vector<bool> &visited, long long cnt) {
+    if (visited[v]) { return; }
     if (cnt > maxi) {
         maxi = cnt;
-        at   = v;
+        at = v;
     }
     visited[v] = 1;
     for (auto &&vv : adj[v]) {
-        if (!visited[vv]) {
-            dfs(vv, adj, visited, cnt + 1);
-        }
+        if (!visited[vv]) { dfs(vv, adj, visited, cnt + 1); }
     }
 }
 
-int
-main() {
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     long long n;

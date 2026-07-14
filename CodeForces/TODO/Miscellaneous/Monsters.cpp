@@ -33,40 +33,25 @@ using u128 = __uint128_t;
 void solve(void) {
     int n , k;
     std::cin >> n >> k;
-    str s;
-    std::cin >> s;
-    int one = 0;
-    int zero = 0;
-    int q = 0;
-    std::vector<int> prefo(n + 1);
-    std::vector<int> prefz(n + 1);
-    std::vector<int> prefq(n + 1);
+    // std::vector<std::pair<int,int>> vec(n);
+    std::vector<int> vec(n);
+    std::vector<int> res(n);
     for(int i = 0 ; i < n ; i++) {
-        prefo[i + 1] = prefo[i] + ( s[i] == '1' );
-        prefz[i + 1] = prefz[i] + ( s[i] == '0' );
-        prefq[i + 1] = prefq[i] + ( s[i] == '?' );
+        int v;
+        std::cin >> v;
+        v %= k;
+        if(v == 0) v += k;
+        vec[i] = v;
     }
-    bool git = false;
-    for(int i = 1 ; i + k - 1 <= n ; i++) {
-        int r = i + k - 1;
-        auto ones = prefo[r] - prefo[i - 1];
-        auto zeros = prefz[r] - prefz[i - 1];
-        auto qs = prefq[r] - prefq[i - 1];
-        auto diff = std::abs(ones - zeros);
-        if(diff > qs) {
-            git = false;
-        } else {
-            qs -= diff;
-            if(qs % 2 == 0) {
-                git = true;
-            } else {
-                git = false;
-            }
-        }
-        // std::cout << i << " " << r << " " << zeros << "\n";
-    }
-    if(git) std::cout << "YES\n"; 
-    else    std::cout << "NO\n";
+    std::iota(all(res) , 0);
+    std::sort(all(res) , [&](const auto &l , const auto &r) -> bool {
+            return vec[l] > vec[r];
+            // if(l.first > r.first) return true;
+            // if(l.first == r.first) return l.second < r.second;
+            // return l.second < r.second;
+            });
+    for(const auto &v : res) std::cout << v + 1 << " ";
+    std::cout << "\n";
 }
 
 int main(void) {

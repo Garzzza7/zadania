@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -30,23 +29,47 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void solve(void) {
-    int n , m;
-    std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(m);
-    for (int i = 0; i < m; i++) {
-        int a , b;
-        std::cin >> a >> b;
+void
+solve(void) {
+    int n, q;
+    str s;
+    std::cin >> n >> q;
+    std::cin >> s;
+    while (q--) {
+        int l, r;
+        std::cin >> l >> r;
+        l--;
+        r--;
+        str tmp;
+        for (int i = l; i <= r; i++) {
+            tmp.push_back(s[i]);
+        }
+        bool git = true;
+        int last = -123;
+        for (int i = 0, j = -1; i < sz(tmp) and j < n; i++) {
+            while (j < n and tmp[i] != s[j]) {
+                j++;
+            }
+            last = j;
+            j += 1;
+        }
+        if (git) {
+            std::cout << "YES\n";
+        } else {
+            std::cout << "NO\n";
+        }
     }
 }
 
-int main(void) {
+int
+main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
     std::cin >> _;
+    // _ = 1;
     while (_--) {
         solve();
     }

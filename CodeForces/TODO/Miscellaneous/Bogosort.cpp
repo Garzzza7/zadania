@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -32,28 +31,13 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
-        } else {
-            std::cout << str(n2 + 1, '1') << "\n";
-        }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
-    }
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    for (auto &&v : vec) std::cin >> v;
+    std::sort(all(vec), std::greater<>());
+    for (const auto &v : vec) std::cout << v << " ";
+    std::cout << "\n";
 }
 
 int main(void) {

@@ -32,28 +32,32 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
-        } else {
-            std::cout << str(n2 + 1, '1') << "\n";
-        }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
+    int n;
+    std::cin >> n;
+    std::multiset<int> set;
+    for (int i = 0; i < n; i++) {
+        int v;
+        std::cin >> v;
+        set.insert(v);
     }
+    std::vector<int> res;
+    int pref = 0;
+    loop {
+        int curr = 0;
+        for (const auto &v : set) {
+            if ((v & (((1LL << 31) - 1) ^ pref)) > (curr & (((1LL << 31) - 1) ^ pref))) curr = v;
+        }
+        if (curr) {
+            set.erase(set.lower_bound(curr));
+            res.push_back(curr);
+            pref |= curr;
+        } else {
+            break;
+        }
+    }
+    for (const auto &v : set) res.push_back(v);
+    for (const auto &v : res) std::cout << v << " ";
+    std::cout << "\n";
 }
 
 int main(void) {

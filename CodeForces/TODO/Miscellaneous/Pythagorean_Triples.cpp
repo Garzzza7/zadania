@@ -31,13 +31,11 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n , m;
-    std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(m);
-    for (int i = 0; i < m; i++) {
-        int a , b;
-        std::cin >> a >> b;
-    }
+    i64 n;
+    std::cin >> n;
+    i64 res = 0;
+    for(i64 i = 3 ; i * i <= 2 * n ; i += 2) res++;
+    std::cout << res << "\n";
 }
 
 int main(void) {

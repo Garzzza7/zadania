@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -33,40 +32,19 @@ using u128 = __uint128_t;
 void solve(void) {
     int n , k;
     std::cin >> n >> k;
-    str s;
-    std::cin >> s;
-    int one = 0;
-    int zero = 0;
-    int q = 0;
-    std::vector<int> prefo(n + 1);
-    std::vector<int> prefz(n + 1);
-    std::vector<int> prefq(n + 1);
+    std::vector<int> vec(n);
+    int maxi = 0;
     for(int i = 0 ; i < n ; i++) {
-        prefo[i + 1] = prefo[i] + ( s[i] == '1' );
-        prefz[i + 1] = prefz[i] + ( s[i] == '0' );
-        prefq[i + 1] = prefq[i] + ( s[i] == '?' );
+        int v;
+        std::cin >> v;
+        vec[i] = v;
+        maxi = std::max(maxi , v);
     }
-    bool git = false;
-    for(int i = 1 ; i + k - 1 <= n ; i++) {
-        int r = i + k - 1;
-        auto ones = prefo[r] - prefo[i - 1];
-        auto zeros = prefz[r] - prefz[i - 1];
-        auto qs = prefq[r] - prefq[i - 1];
-        auto diff = std::abs(ones - zeros);
-        if(diff > qs) {
-            git = false;
-        } else {
-            qs -= diff;
-            if(qs % 2 == 0) {
-                git = true;
-            } else {
-                git = false;
-            }
-        }
-        // std::cout << i << " " << r << " " << zeros << "\n";
+    if(k == 1) {
+        std::cout << maxi << "\n";
+    } else {
+        std::cout << 1000000000 << "\n";
     }
-    if(git) std::cout << "YES\n"; 
-    else    std::cout << "NO\n";
 }
 
 int main(void) {

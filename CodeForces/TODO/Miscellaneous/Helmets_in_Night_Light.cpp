@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -20,7 +19,10 @@
 #define f        first
 #define s        second
 #define loop     for (;;)
-#define pb       push_back
+#define rep(n)                                                                                     \
+    auto tn = n;                                                                                   \
+    while (tn--)
+#define pb push_back
 
 using db = double;
 using str = std::string;
@@ -32,28 +34,21 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
-        } else {
-            std::cout << str(n2 + 1, '1') << "\n";
-        }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
+    int n, p;
+    std::cin >> n >> p;
+    std::vector<int> a(n), b(n);
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq;
+    for (auto &&v : a) std::cin >> v;
+    for (auto &&v : b) std::cin >> v;
+    for (int i = 0; i < n; i++) { pq.emplace(b[i], a[i]); }
+    i64 tot = p;
+    rep(n - 1) {
+        auto curr = pq.top();
+        tot += std::min(curr.first, p);
+        pq.pop();
+        if (curr.second > 1) pq.emplace(curr.first, curr.second - 1);
     }
+    std::cout << tot << "\n";
 }
 
 int main(void) {

@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -13,6 +12,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <cmath>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -31,13 +31,20 @@ using u64  = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n , m;
-    std::cin >> n >> m;
-    std::vector<std::pair<int, int>> vec(m);
-    for (int i = 0; i < m; i++) {
-        int a , b;
-        std::cin >> a >> b;
+    int a;
+    std::cin >> a;
+    int top = 0;
+    int bot = 0;
+    for(int i = 2 ; i <= a - 1 ; i++) {
+        auto tmp = a;
+        while(tmp) {
+            top += tmp % i;
+            tmp /= i;
+        }
+        bot++;
     }
+    auto g = std::gcd(top , bot);
+    std::cout << top / g << "/" << bot / g << "\n"; 
 }
 
 int main(void) {
@@ -46,7 +53,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

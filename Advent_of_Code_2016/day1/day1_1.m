@@ -1,4 +1,4 @@
-:- module mintemplate.
+:- module day1_1.
 
 :- interface.
 
@@ -575,14 +575,35 @@ read_string_list(Out, !IO) :-(
       Out = []
     )
 ).
+:- pred iterate(list(string)::out , int::out , int::out) is det.
+:- pred iterate_sub(list(string)::out , int::in , int::in , int::out , int::out) is det.
+
+iterate_sub(In , Tmp1 , Tmp2 , Out1 , Out2) :-(
+    % TODO: find a way to convert between list(char) and string
+    In = [] , Out1 = Tmp1 , Out2 = Tmp2
+    ; In = [H | T] ,
+      string.to_char_list(H , List),
+      str_head(List , F),
+      str_last(List , L),
+      ( if L = ','
+        then str_pop_back(H , H2)
+      )
+      ( if F = 'R'
+        then string.to_
+        else
+      )
+).
+
+iterate(In , Out1 , Out2) :-(
+    In = [] , Out = 0
+    ; In = [_ | _] ,
+      iterate_sub(In , 0 , 0 , Out1 , Out2)
+).
 
 solve(!IO) :-(
-    read_int(Int , !IO),
-    read_string(Str , !IO),
-    read_int_list(Ints , !IO),
-    io.write(Int , !IO),
-    io.write(Str , !IO),
-    io.write(Ints , !IO)
+    read_string_list(Str , !IO),
+    iterate(Str , Res),
+    io.write(Res , !IO)
 ).
 
 loop(In , !IO) :-(
@@ -600,4 +621,4 @@ main(!IO) :-(
     ; solve(!IO)
 ).
 
-:- end_module mintemplate.
+:- end_module day1_1.

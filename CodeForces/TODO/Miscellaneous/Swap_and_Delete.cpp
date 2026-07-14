@@ -1,7 +1,6 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -15,12 +14,13 @@
 #include <utility>
 #include <vector>
 
-#define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 #define f        first
-#define s        second
 #define loop     for (;;)
 #define pb       push_back
+#define rep(n)   while (n--)
+#define s        second
+#define sz(vec)  (static_cast<int>((vec).size()))
 
 using db = double;
 using str = std::string;
@@ -32,28 +32,30 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n0, n1, n2;
-    std::cin >> n0 >> n1 >> n2;
-    if (n1 == 0) {
-        if (n0) {
-            std::cout << str(n0 + 1, '0') << "\n";
+    str s;
+    std::cin >> s;
+    const int n = sz(s);
+    int o = 0;
+    for (const auto &c : s) o += c == '1';
+    int z = n - o;
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        const auto &c = s[i];
+        if (c == '1') {
+            if (z == 0) {
+                res++;
+                i++;
+            } else
+                z--;
         } else {
-            std::cout << str(n2 + 1, '1') << "\n";
+            if (o == 0) {
+                res++;
+                i++;
+            } else
+                o--;
         }
-    } else {
-        str res = "";
-        for (int i = 0; i < n1 + 1; i++) {
-            if (i & 1)
-                res += "0";
-            else
-                res += "1";
-        }
-        str zero(n0, '0');
-        str one(n2, '1');
-        res.insert(1, zero);
-        res.insert(0, one);
-        std::cout << res << "\n";
     }
+    std::cout << n - res << "\n";
 }
 
 int main(void) {
@@ -63,7 +65,9 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve(); }
+    rep(_) {
+        solve();
+    }
 
     return 0;
 }
