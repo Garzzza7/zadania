@@ -5,45 +5,46 @@
 
 template <typename T, typename OP>
 struct disjoint_sparse_table {
-    int size{};
-    int LOG{0};
+   private:
+    int _size{};
+    int _LOG{0};
     static constexpr OP op{};
-    std::vector<std::vector<T>> vec;
-    std::vector<T> base;
-    std::vector<unsigned long long> precalc_log;
+    std::vector<std::vector<T>> _vec;
+    std::vector<T> _base;
+    std::vector<unsigned long long> _precalc_log;
 
+   public:
     disjoint_sparse_table(const std::vector<T> &input)
-        : size((int) input.size()),
-          base(input) {
-        while (1 << LOG < size) { LOG++; }
-        vec = std::vector(LOG, input);
-        precalc_log = std::vector(1 << LOG, 0ULL);
-
-        for (int i = 0; i < LOG; i++) {
+        : _size((int) input.size()),
+          _base(input) {
+        while (1 << _LOG < _size) { _LOG++; }
+        _vec = std::vector(_LOG, input);
+        _precalc_log = std::vector(1 << _LOG, 0ULL);
+        for (int i = 0; i < _LOG; i++) {
             int padding = 1 << i;
-            for (int l = 0; l + padding < size; l += padding + padding) {
+            for (int l = 0; l + padding < _size; l += padding + padding) {
                 int mid = l + padding;
-                int r = std::min(mid + padding, size);
-                // leftsite suffix
+                int r = std::min(mid + padding, _size);
+                // leftside suffix
                 for (int iter = mid - 2; iter >= l; iter--) {
-                    vec[i][iter] = op(vec[i][iter + 1], base[iter]);
+                    _vec[i][iter] = op(_vec[i][iter + 1], _base[iter]);
                 }
-                // rightsite prefix
+                // rightside prefix
                 for (int iter = mid + 1; iter < r; iter++) {
-                    vec[i][iter] = op(vec[i][iter - 1], base[iter]);
+                    _vec[i][iter] = op(_vec[i][iter - 1], _base[iter]);
                 }
             }
         }
-        for (int i = 0; i < LOG; i++) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j++) { precalc_log[j] = i; }
+        for (int i = 0; i < _LOG; i++) {
+            for (int j = (1 << i); j < (1 << (i + 1)); j++) { _precalc_log[j] = i; }
         }
     }
 
     [[nodiscard]] T query(int L, int R) const {
         // [L , R)
-        if (R - L == 1) { return base[L]; }
-        const auto log = precalc_log[L ^ (R - 1)];
-        return op(vec[log][L], vec[log][R - 1]);
+        if (R - L == 1) { return _base[L]; }
+        const auto log = _precalc_log[L ^ (R - 1)];
+        return op(_vec[log][L], _vec[log][R - 1]);
     }
 };
 

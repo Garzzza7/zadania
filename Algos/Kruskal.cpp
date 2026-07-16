@@ -17,49 +17,47 @@ struct kruscal {
         }
     };
     using edge = _edge_type<T>;
-    std::vector<edge> mst;
-    std::vector<edge> edges;
-    std::vector<int> parent;
-    std::vector<int> rank;
+    std::vector<edge> _mst;
+    std::vector<edge> _edges;
+    std::vector<int> _parent;
+    std::vector<int> _rank;
 
    public:
-    kruscal() = default;
-
     kruscal(const int &n) {
-        parent = std::vector<int>(n);
-        rank = std::vector<int>(n, 0);
-        for (int i = 0; i < n; i++) { parent[i] = i; }
+        _parent = std::vector<int>(n);
+        _rank = std::vector<int>(n, 0);
+        for (int i = 0; i < n; i++) { _parent[i] = i; }
     }
 
     void add_edge(const int &u, const int &v, const T &weight) {
-        edges.push_back(edge(u, v, weight));
+        _edges.push_back(edge(u, v, weight));
     }
 
     int find(const int &v) {
-        if (v == parent[v]) { return v; }
-        return parent[v] = find(parent[v]);
+        if (v == _parent[v]) { return v; }
+        return _parent[v] = find(_parent[v]);
     }
 
     void union_by_rank(int a, int b) {
         a = find(a);
         b = find(b);
         if (a != b) {
-            if (rank[a] < rank[b]) { std::swap(a, b); }
-            parent[b] = a;
-            rank[a] += rank[a] == rank[b];
+            if (_rank[a] < _rank[b]) { std::swap(a, b); }
+            _parent[b] = a;
+            _rank[a] += _rank[a] == _rank[b];
         }
     }
 
     std::vector<edge> calc_mst(void) {
-        std::sort(edges.begin(), edges.end(),
+        std::sort(_edges.begin(), _edges.end(),
                   [](const edge &l, const edge &r) { return l.weight < r.weight; });
-        for (const auto &edge : edges) {
+        for (const auto &edge : _edges) {
             if (not(find(edge.u) == find(edge.v))) {
-                mst.push_back(edge);
+                _mst.push_back(edge);
                 union_by_rank(edge.u, edge.v);
             }
         }
-        return mst;
+        return _mst;
     }
 };
 

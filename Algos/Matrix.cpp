@@ -4,7 +4,7 @@
 
 template <typename T = int>
 struct matrix {
-    bool is_transposed{0};
+    bool is_transposed{false};
     int m;
     int n;
     std::vector<std::vector<T>> mat;

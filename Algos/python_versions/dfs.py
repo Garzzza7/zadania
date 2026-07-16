@@ -2,7 +2,7 @@ def dfs(ver, adj, visited):
     visited[ver] = True
     print(ver, end=" ")
     for v in adj[ver]:
-        if visited[v] == False:
+        if visited[v] is False:
             dfs(v, adj, visited)
 
 
@@ -17,7 +17,7 @@ def iter_dfs(ver, adj, visited):
         stack.pop()
         visited[curr] = True
         for i in range(len(adj[curr]) - 1, -1, -1):
-            if visited[adj[curr][i]] == False:
+            if visited[adj[curr][i]] is False:
                 stack.append(adj[curr][i])
 
 

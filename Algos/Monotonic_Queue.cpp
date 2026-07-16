@@ -8,25 +8,25 @@
 template <typename T, typename OP>
 struct monotonic_queue {
    private:
-    std::deque<T> dq;
+    std::deque<T> _dq;
     OP op;
 
    public:
     void push(const T &v) {
-        while (not dq.empty() and op(dq.back(), v)) { dq.pop_back(); }
-        dq.push_back(v);
+        while (not _dq.empty() and op(_dq.back(), v)) { _dq.pop_back(); }
+        _dq.push_back(v);
     }
 
     [[nodiscard]] T top(void) const {
-        return dq.front();
+        return _dq.front();
     }
 
     void pop(const T &v) {
-        if (v == dq.front()) { dq.pop_front(); }
+        if (v == _dq.front()) { _dq.pop_front(); }
     }
 
     void pop(void) {
-        dq.pop_front();
+        _dq.pop_front();
     }
 };
 

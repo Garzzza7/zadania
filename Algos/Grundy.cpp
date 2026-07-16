@@ -8,8 +8,8 @@ struct grundy {
     // must be a dag !!!
     // 0-indexed
    private:
-    static constexpr T NEUTRAL{static_cast<T>(-1)};
-    static constexpr T VISITING{static_cast<T>(-2)};
+    static constexpr T _NEUTRAL{static_cast<T>(-1)};
+    static constexpr T _VISITING{static_cast<T>(-2)};
     std::vector<T> _colors;
     static T _mex(const std::vector<T> &vec) {
         std::vector<char> used(vec.size() + 1, false);
@@ -23,18 +23,18 @@ struct grundy {
    public:
     grundy(const std::vector<std::vector<T>> &adj) {
         const T n{static_cast<T>(adj.size())};
-        _colors.assign(n, NEUTRAL);
+        _colors.assign(n, _NEUTRAL);
         auto dfs = [this, &adj](const auto &self, T ver) -> T {
             if (_colors[ver] >= 0) return _colors[ver];
             // cycle
-            assert(_colors[ver] != VISITING);
-            _colors[ver] = VISITING;
+            assert(_colors[ver] != _VISITING);
+            _colors[ver] = _VISITING;
             std::vector<T> child;
             for (const auto &v : adj[ver]) { child.push_back(self(self, v)); }
             return _colors[ver] = _mex(child);
         };
         for (T i = 0; i < n; i++) {
-            if (_colors[i] == NEUTRAL) dfs(dfs, i);
+            if (_colors[i] == _NEUTRAL) dfs(dfs, i);
         }
     }
 

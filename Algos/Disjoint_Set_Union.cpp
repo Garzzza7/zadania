@@ -68,11 +68,11 @@ struct dsu {
         return find(a) == find(b);
     }
 
-    T size(const T &v) {
+    [[nodiscard]] T size(const T &v) const {
         return _size[find(v)];
     }
 
-    T rank(const T &v) {
+    [[nodiscard]] T rank(const T &v) const {
         return _rank[find(v)];
     }
 };

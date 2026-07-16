@@ -4,55 +4,53 @@
 
 template <typename T = int>
 struct in_out_ancestor {
-    in_out_ancestor() = default;
+   private:
+    int _size{0};
+    // in case nodes are not numbers
+    // std::map<T, int> tin;
+    // std::map<T, int> tout;
+    // std::map<T, char> visited;
+    std::vector<T> _tin;
+    std::vector<T> _tout;
+    std::vector<char> _visited;
+    std::vector<std::vector<T>> _adj;
 
+    inline void _dfs(const T &ver, int &time) {
+        _visited[ver] = true;
+        _tin[ver] = time++;
+        for (const auto &v : _adj[ver]) {
+            if (not _visited[v]) { _dfs(v, time); }
+        }
+        _tout[ver] = time++;
+    }
+
+    inline void _calc(const T &root) {
+        int time{0};
+        _dfs(root, time);
+    }
+
+   public:
     in_out_ancestor(const int &n, const T &root = 0)
-        : size(n) {
-        tin.resize(n);
-        tout.resize(n);
-        visited.resize(n);
+        : _size(n) {
+        _tin.resize(n);
+        _tout.resize(n);
+        _visited.resize(n);
         // root is 0 by default
         _calc(root);
     }
 
     in_out_ancestor(const std::vector<std::vector<T>> &adj, const T &root = 0)
-        : size((int) adj.size()),
-          adj(adj) {
-        tin.resize(size);
-        tout.resize(size);
-        visited.resize(size);
+        : _size((int) adj.size()),
+          _adj(adj) {
+        _tin.resize(_size);
+        _tout.resize(_size);
+        _visited.resize(_size);
         // root is 0 by default
         _calc(root);
     }
 
-   private:
-    int size{0};
-    // in case nodes are not numbers
-    // std::map<T, int> tin;
-    // std::map<T, int> tout;
-    // std::map<T, char> visited;
-    std::vector<T> tin;
-    std::vector<T> tout;
-    std::vector<char> visited;
-    std::vector<std::vector<T>> adj;
-
-    void dfs(const T &ver, int &time) {
-        visited[ver] = true;
-        tin[ver] = time++;
-        for (const auto &v : adj[ver]) {
-            if (not visited[v]) { dfs(v, time); }
-        }
-        tout[ver] = time++;
-    }
-
-    inline void _calc(const T &root) {
-        int time{0};
-        dfs(root, time);
-    }
-
-   public:
     [[nodiscard]] bool query(const T &a, const T &b) const {
-        return tin[a] <= tin[b] and tout[a] >= tout[b];
+        return _tin[a] <= _tin[b] and _tout[a] >= _tout[b];
     }
 };
 
