@@ -132,6 +132,7 @@
     a ^= b;
 // bits
 #define LSB(a)     ((a) & -(a))
+#define MSB(a)     63 - __builtin_clzll(a);
 #define cntbits(a) __builtin_popcount(a)
 #define on(a, b)   ((a) |= (1 << (b)))
 #define off(a, b)  ((a) &= ~(1 << (b)))

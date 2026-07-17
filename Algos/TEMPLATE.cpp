@@ -132,6 +132,7 @@
     a ^= b;
 // bits
 #define LSB(a)     ((a) & -(a))
+#define MSB(a)     63 - __builtin_clzll(a);
 #define cntbits(a) __builtin_popcount(a)
 #define on(a, b)   ((a) |= (1 << (b)))
 #define off(a, b)  ((a) &= ~(1 << (b)))
@@ -206,43 +207,43 @@ std::string to_debug(T x, std::string s)
 }
 #define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline T bin_xor(T a, T b) noexcept {
     return ~(a & b) & (a | b);
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline bool is_on(T a, T b) noexcept {
     return a & (static_cast<T>(1) << b);
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline bool cmp(const T &x, const T &y) noexcept {
     return x > y;
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline bool pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
     if (x.second < y.second) { return x.second < y.second; }
     return x.first < y.first;
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline T bin_min(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x < y));
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline T bin_max(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x > y));
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline T bin_ce(T x, T y) noexcept {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] inline T bin_fl(T x, T y) noexcept {
     return x / y - ((x ^ y) < 0 && x % y);
 }
@@ -257,17 +258,17 @@ template <typename T = int>
                                               : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
-template <typename T = int>
+template <typename T>
 [[nodiscard]] constexpr T bin_tlog(const T &x) noexcept {
     return x == static_cast<T>(0) ? static_cast<T>(0) : static_cast<T>(63) - __builtin_clzl(x);
 }
 
 // descending set
-template <typename T = int>
+template <typename T>
 using dset = std::set<T, std::greater<T>>;
 
 // ascending pq
-template <typename T = int>
+template <typename T>
 using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 // asceding pq of pairs
@@ -277,7 +278,7 @@ using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST
 
 // This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
-template <typename T = int>
+template <typename T>
 using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,
                               __gnu_pbds::tree_order_statistics_node_update>;
 // find_by_order(n) -> value at index n
@@ -305,7 +306,7 @@ decltype(auto) y_combinator(Fun &&fun) {
 }
 } // namespace std
 
-template <typename T = int>
+template <typename T>
 void printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexcept {
     if (begin < 0) begin ^= begin;
     if (end < 0) end = static_cast<int>(v.size());
@@ -313,7 +314,7 @@ void printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) 
         std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
 }
 
-template <typename T = int>
+template <typename T>
 inline constexpr int sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
@@ -353,19 +354,19 @@ using namespace __gnu_pbds;
 [[maybe_unused]] static constexpr int mod{1000000007};
 
 // concepts
-template <typename T = int>
+template <typename T>
 concept LT = requires(T x) { x < x; };
 
-template <typename T = int>
+template <typename T>
 concept GT = requires(T x) { x > x; };
 
-template <typename T = int>
+template <typename T>
 concept EQ = requires(T x) { x == x; };
 
-template <typename T = int>
+template <typename T>
 concept PB = requires(T vec, T::value_type val) { vec.push_back(val); };
 
-template <typename T = int>
+template <typename T>
 concept INS = requires(T vec, T::value_type val) { vec.insert(val); };
 
 using db = double;
@@ -377,7 +378,7 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve() {
+void solve(void) {
 }
 
 int main(void) {
