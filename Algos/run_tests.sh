@@ -745,6 +745,21 @@ else
 	cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Iterated_Sqrt.sol <Iterated_Sqrt.txt)" ]]; then
+	printf "${red}ABORT at Iterated_Sqrt.${normal}\n"
+	cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Iterated_Sqrt.sol <Iterated_Sqrt.txt)" == "$(cat Iterated_Sqrt.test)" ]; then
+	printf "${green}Iterated_Sqrt Passed.${normal}\n"
+	cnt_passed=$((cnt_passed + 1))
+else
+	printf "${red}Iterated_Sqrt Failed.\n"
+	printf "${red} Got:\n"
+	printf "${red}$(./Iterated_Sqrt.sol <Iterated_Sqrt.txt)\n"
+	printf "${red} Should be:\n"
+	printf "${red}$(cat Iterated_Sqrt.test)${normal}\n"
+	cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./KMP.sol <KMP.txt)" ]]; then
 	printf "${red}ABORT at KMP.${normal}\n"
 	cnt_aborted=$((cnt_aborted + 1))
