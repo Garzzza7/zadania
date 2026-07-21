@@ -9,7 +9,6 @@ struct HLD {
     std::vector<T> out;
     std::vector<T> subtree_size;
     std::vector<std::vector<T>> adj;
-    HLD() = default;
     HLD(const T &n) {
         in.resize(n);
         out.resize(n);

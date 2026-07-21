@@ -13,13 +13,9 @@ struct bst {
         _node_type<TT> *r{nullptr};
         _node_type<TT> *p{nullptr};
 
-        _node_type() = default;
-
         _node_type(const TT &v)
             : val(v) {
         }
-
-        ~_node_type() = default;
 
         bool operator<=(const _node_type<TT> &p) const {
             return val <= p.val;

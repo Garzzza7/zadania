@@ -21,8 +21,6 @@ struct circle {
           r(r) {
     }
 
-    ~circle() = default;
-
     bool is_kiss(const circle<T> &c) {
         const T dx{this->x - c.x};
         const T dy{this->y - c.y};

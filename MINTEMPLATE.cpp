@@ -1,4 +1,3 @@
-// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <array>

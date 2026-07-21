@@ -21,8 +21,6 @@ struct hashmap {
         : vec(std::vector<T>(n)) {
     }
 
-    hashmap() = default;
-
     void insert(const T elem) {
     }
 
