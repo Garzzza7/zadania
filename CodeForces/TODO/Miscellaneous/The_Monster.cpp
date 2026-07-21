@@ -31,22 +31,20 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
-    int n;
-    std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+void solve(void) {
+    int a, b, c, d;
+    std::cin >> a >> b;
+    std::cin >> c >> d;
+    constexpr int limit = 1000;
+    for (int i = 0; i <= limit; i++) {
+        for (int j = 0; j <= limit; j++) {
+            if (b + i * a == d + j * c) {
+                std::cout << b + i * a << "\n";
+                return;
+            }
+        }
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    std::cout << -1 << "\n";
 }
 
 int main(void) {
@@ -55,8 +53,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

@@ -1,4 +1,3 @@
-// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <array>
@@ -31,40 +30,33 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+#define F                                                                                          \
+    std::cout << "First\n";                                                                        \
+    return;
+#define S                                                                                          \
+    std::cout << "Second\n";                                                                       \
+    return;
+
+template <typename T>
+[[nodiscard]] inline T bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
+template <typename T>
+[[nodiscard]] inline T bin_fl(T x, T y) noexcept {
+    return x / y - ((x ^ y) < 0 && x % y);
+}
+
 void solve(void) {
-    int n;
-    std::cin >> n;
-    str s;
-    std::cin >> s;
-    int res = 0;
-    int cnt1 = 0;
-    int cnt2 = 0;
-    for (const auto &v : s) {
-        if (v == '>') break;
-        cnt1++;
+    int a, b, c;
+    std::cin >> a >> b >> c;
+    int anna = a + bin_ce(c, 2);
+    int kate = b + bin_fl(c, 2);
+    if (anna > kate) {
+        F
+    } else {
+        S
     }
-    std::reverse(all(s));
-    for (const auto &v : s) {
-        if (v == '<') break;
-        cnt2++;
-    }
-    res = std::min(cnt1, cnt2);
-    std::cout << res << "\n";
-    // int res = 0;
-    // std::set<str> set;
-    // for (int i = 1; i < n; i++) {
-    //     str tmp(n, '>');
-    //     for (int j = 0; j < i; j++) { tmp[j] = '<'; }
-    //     set.insert(tmp);
-    // }
-    // if (set.contains(s)) {
-    //     int cnt = 0;
-    //     for (const auto &v : s) { cnt += v == '<'; }
-    //     res = std::min(cnt, n - cnt);
-    // } else {
-    //     res = 0;
-    // }
-    // std::cout << res << "\n";
 }
 
 int main(void) {

@@ -1,102 +1,64 @@
-#include <bits/stdc++.h>
+// # vi: set shiftwidth=4 tabstop=4:
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <array>
 #include <cmath>
+#include <cstdint>
+#include <functional>
 #include <iostream>
-#include <stdlib.h>
-#define print_rvalues(vec)     \
-    for (auto &&a : (vec)) {   \
-	std::cout << a << ' '; \
-    }                          \
-    std::cout << '\n';
-#define print_lvalues(vec)        \
-    for (const auto &a : (vec)) { \
-	std::cout << a << ' ';    \
-    }                             \
-    std::cout << '\n';
-#define help ios::sync_with_stdio(false)
-#define me cin.tie(0)
-#define sortasc(vec) std::sort(vec.begin(), vec.end())
-#define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
-#define rev(vec) std::reverse(vec.begin(), vec.end())
-#define setasc(vec) std::set<int, std::greater<int>> vec
-#define sortpairascS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second < right.second;                          \
-    })
-#define sortpairdesS(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.second > right.second;                          \
-    })
-#define sortpairascF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first < right.first;                            \
-    })
-#define sortpairdesF(vec)                                           \
-    std::sort(vec.begin(), vec.end(), [](auto &left, auto &right) { \
-	return left.first > right.first;                            \
-    })
-#define swpint(a, b) \
-    a ^= b;          \
-    b ^= a;          \
-    a ^= b;
-#define LSB(a) a & -a
-#define MOD 1000000007
-#define DEBUG 0
-#define FAST 1
-#define TIME 0
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
-using namespace std;
+#define sz(vec)  (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
-template <typename T_vector>
-void printarr(const T_vector &v, bool inc = 0, int begin = -1, int end = -1) {
-    if (begin < 0) {
-	begin ^= begin;
+using db = double;
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
+using u128 = __uint128_t;
+/*
+ 0 0 and = 0, xor = 0
+ 1 0 and = 0, xor = 1
+ 0 1 and = 0, xor = 1
+ 1 1 and = 1, xor = 0
+*/
+void solve1(void) {
+    int n;
+    std::cin >> n;
+    std::vector<i64> vec(n);
+    std::map<i64, i64> map;
+    auto msb = [](i64 val) -> i64 { return 63 - __builtin_clzll(val); };
+    for (auto &&v : vec) {
+        std::cin >> v;
+        map[msb(v)]++;
     }
-    if (end < 0) {
-	end = int(v.size());
-    }
-
-    for (int i = begin; i < end; i++) {
-	std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? ' ' : '\n');
-    }
+    i64 res = 0;
+    for (const auto &[f, s] : map) { res += (s - 1) * s / 2; }
+    std::cout << res << "\n";
 }
 
-int main() {
-#if TIME
-    auto begin = std::chrono::high_resolution_clock::now();
-#endif
+int main(void) {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
-#if FAST
-    help;
-    me;
-#endif
+    int _{1};
+    std::cin >> _;
+    while (_--) { solve1(); }
 
-    int T;
-    cin >> T;
-    while (T--) {
-	int N;
-	cin >> N;
-	vector<int> vec(N);
-	for (int i = 0; i < N; i++) {
-	    cin >> vec[i];
-	}
-	int cnt = 0;
-	for (int i = 0; i < N; i++) {
-	    for (int j = i + 1; j < N; j++) {
-		if ((vec[i] & vec[j]) >= (vec[i] ^ vec[j]))
-		    cnt++;
-	    }
-	}
-	cout << cnt << "\n";
-    }
-
-#if TIME
-    auto end = std::chrono::high_resolution_clock::now();
-    cout << setprecision(4) << fixed;
-    cout << "Execution time: "
-	 << std::chrono::duration_cast<std::chrono::duration<double>>(end -
-								      begin)
-		.count()
-	 << " seconds\n";
-#endif
     return 0;
 }

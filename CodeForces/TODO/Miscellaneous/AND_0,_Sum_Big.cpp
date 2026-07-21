@@ -31,22 +31,24 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
-    int n;
-    std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+constexpr int mod = 0x3b9aca07;
+
+template <typename T = int>
+T mod_binpow(T a, T b) {
+    T res{1};
+    while (b > 0) {
+        if (b & 1) { res = res * a % mod; }
+        a = a * a % mod;
+        b >>= 1;
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    return res;
+}
+
+void solve1(void) {
+    i64 n, k;
+    std::cin >> n >> k;
+    i64 res = mod_binpow(n, k);
+    std::cout << res << "\n";
 }
 
 int main(void) {

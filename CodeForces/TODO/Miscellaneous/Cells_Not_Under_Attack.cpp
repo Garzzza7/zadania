@@ -15,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-#define sz(vec)  (static_cast<int>((vec).size()))
+#define sz(vec)  (static_cast<unsigned long long>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 #define f        first
 #define s        second
@@ -31,22 +31,19 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
-    int n;
-    std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+void solve(void) {
+    u64 n, m;
+    std::cin >> n >> m;
+    std::set<u64> xs, ys;
+    while (m--) {
+        u64 x, y;
+        std::cin >> x >> y;
+        xs.insert(x);
+        ys.insert(y);
+        u64 res = n * n - (sz(xs) * n + sz(ys) * n - sz(xs) * sz(ys));
+        std::cout << res << " ";
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    std::cout << "\n";
 }
 
 int main(void) {
@@ -55,8 +52,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

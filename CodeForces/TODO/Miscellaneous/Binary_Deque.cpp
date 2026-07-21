@@ -1,6 +1,7 @@
 // # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -21,53 +22,49 @@
 #define loop     for (;;)
 #define pb       push_back
 
-using db   = double;
-using str  = std::string;
-using u8   = unsigned char;
-using i32  = int;
-using u32  = unsigned int;
-using i64  = long long;
-using u64  = unsigned long long;
+using db = double;
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void
-solve(void) {
-    int n , s;
+void solve1(void) {
+    int n;
+    i64 s;
     std::cin >> n >> s;
     std::vector<int> vec(n);
-    int cnt = 0;
-    for(auto &&v : vec) {
-        std::cin >> v;
-        cnt += v == 1;
-    }
-    if(cnt < s) {
+    i64 tot = 0;
+    for (auto &&v : vec) std::cin >> v, tot += v;
+    if (tot < s) {
         std::cout << -1 << "\n";
         return;
     }
-    if(cnt == s) {
-        std::cout << 0 << "\n";
-        return;
+    std::vector<i64> pref = {0};
+    for (const auto &v : vec) pref.push_back(pref.back() + v);
+    std::reverse(all(vec));
+    std::vector<i64> suff = {0};
+    for (const auto &v : vec) suff.push_back(suff.back() + v);
+    i64 res = INT32_MAX;
+    for (int i = 0; i < sz(pref); i++) {
+        const auto &l = pref[i];
+        i64 need = tot - s - l;
+        auto id = (i64) (std::lower_bound(all(suff), need) - suff.begin());
+        res = std::min(res, i + id);
     }
-    std::vector<int> pref(n + 1, 0);
-    std::vector<int> pr(n + 1, 0);
-        pref[i + 1] = pref[i] + vec[i];
-    }
-    for(int i = 0 ; i < n ; i++) {
-        auto curr = pref[i];
-    }
+    std::cout << res << "\n";
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
     int _{1};
     std::cin >> _;
-    while (_--) {
-        solve();
-    }
+    while (_--) { solve1(); }
 
     return 0;
 }

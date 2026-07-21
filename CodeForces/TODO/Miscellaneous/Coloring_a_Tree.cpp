@@ -31,22 +31,41 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
+void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+    std::vector adj(n + 1, std::vector<int>());
+    std::vector<int> col(n + 1, 0);
+    for (int i = 1; i < n; i++) {
+        int v;
+        std::cin >> v;
+        v--;
+        adj[i].push_back(v);
+        adj[v].push_back(i);
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    for (int i = 0; i < n; i++) {
+        int v;
+        std::cin >> v;
+        col[i] = v;
+    }
+    int res = col[0] != 0;
+    std::vector<char> vis(n + 1, false);
+    int jumps = 0;
+    auto dfs = [&](const auto &self, int ver) -> void {
+        vis[ver] = true;
+        for (const auto &v : adj[ver]) {
+            if (not vis[v]) {
+                if (col[v] != col[ver]) { jumps++; }
+                self(self, v);
+            }
+        }
+    };
+    for (const auto &v : adj[0]) {
+        jumps = 0;
+        dfs(dfs, v);
+        res += jumps;
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -55,8 +74,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

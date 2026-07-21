@@ -22,7 +22,7 @@
 #define loop     for (;;)
 #define pb       push_back
 
-using db = double;
+using db = long double;
 using str = std::string;
 using u8 = unsigned char;
 using i32 = int;
@@ -31,22 +31,22 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
+void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
-    }
+    int px, py, qx, qy;
+    std::cin >> px >> py >> qx >> qy;
+    std::vector<db> vec(n);
+    for (auto &&v : vec) std::cin >> v;
+    db dist = std::sqrt((px - qx) * (px - qx) + (py - qy) * (py - qy));
+    vec.push_back(dist);
     std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    auto sum = std::accumulate(vec.begin(), vec.end() - 1, 0.0);
+    if (vec.back() > sum) {
+        std::cout << "NO\n";
+    } else {
+        std::cout << "YES\n";
+    }
 }
 
 int main(void) {
@@ -56,7 +56,7 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

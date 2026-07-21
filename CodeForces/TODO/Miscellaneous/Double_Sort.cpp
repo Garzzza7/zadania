@@ -31,22 +31,32 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
+void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+    std::vector<int> a(n), b(n);
+    for (auto &&v : a) std::cin >> v;
+    for (auto &&v : b) std::cin >> v;
+    std::vector<std::pair<int, int>> res;
+    for (int i = 0; i < n; i++) {
+        int mini = a[i];
+        int id = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < mini) {
+                mini = a[j];
+                id = j;
+            }
+        }
+        if (i != id) res.emplace_back(i + 1, id + 1);
+        std::swap(a[i], a[id]);
+        std::swap(b[i], b[id]);
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    if (std::is_sorted(all(a)) and std::is_sorted(all(b))) {
+        std::cout << sz(res) << "\n";
+        for (const auto &[f, s] : res) std::cout << f << " " << s << "\n";
+    } else {
+        std::cout << -1 << "\n";
+    }
 }
 
 int main(void) {
@@ -56,7 +66,7 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

@@ -1,4 +1,3 @@
-// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <array>
@@ -31,22 +30,32 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
+void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
+    str s = std::to_string(n);
+    if (sz(s) == 1) {
+        std::cout << n << "\n";
         return;
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    auto calc = [](int val) -> int {
+        int res = 1;
+        while (val) {
+            res *= val % 10;
+            val /= 10;
+        }
+        return res;
+    };
+    int res = calc(n);
+    for (int i = sz(s) - 1; i >= 1; i--) {
+        s[i] = '9';
+        if (s[i - 1] == '0')
+            s[i - 1] = 9;
+        else
+            s[i - 1]--;
+        res = std::max(res, calc(std::stoi(s)));
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -55,8 +64,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

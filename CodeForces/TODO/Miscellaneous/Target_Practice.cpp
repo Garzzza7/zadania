@@ -31,22 +31,29 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
-    int n;
-    std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
-    }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+void solve(void) {
+    constexpr int n = 10;
+    std::vector<str> vec(n);
+    for (auto &&v : vec) std::cin >> v;
+    auto calc = [&](int start, int len, int val) -> int {
+        int res = 0;
+        // top
+        for (int i = 0; i < len; i++) { res += (vec[start][start + i] == 'X') * val; }
+        // bot
+        for (int i = 0; i < len; i++) { res += (vec[n - start - 1][start + i] == 'X') * val; }
+        // left
+        for (int i = 1; i < len - 1; i++) { res += (vec[start + i][start] == 'X') * val; }
+        // right
+        for (int i = 1; i < len - 1; i++) { res += (vec[start + i][n - start - 1] == 'X') * val; }
+        return res;
+    };
+    int res = 0;
+    res += calc(0, 10, 1);
+    res += calc(1, 8, 2);
+    res += calc(2, 6, 3);
+    res += calc(3, 4, 4);
+    res += calc(4, 2, 5);
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -56,7 +63,7 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

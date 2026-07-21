@@ -31,22 +31,29 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
+std::vector<i64> perf;
+
+void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
+    std::vector<char> vis(sz(perf), false);
+    std::vector<int> res(n);
+    for (int i = n - 1; i >= 0; i--) {
+        for (const auto &p : perf) {
+            if (p - i >= 0 and p - i < n and !vis[p - i]) {
+                vis[p - i] = true;
+                res[p - i] = i;
+                break;
+            }
+        }
     }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+    // std::set<int> set = {all(res)};
+    // if (sz(set) == n) {
+    for (const auto &v : res) std::cout << v << " ";
+    std::cout << "\n";
+    // } else {
+    // std::cout << -1 << "\n";
+    // }
 }
 
 int main(void) {
@@ -54,9 +61,12 @@ int main(void) {
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 
+    for (i64 i = 1; i * i <= 200000; i++) { perf.push_back(i * i); }
+    std::reverse(all(perf));
+
     int _{1};
     std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }

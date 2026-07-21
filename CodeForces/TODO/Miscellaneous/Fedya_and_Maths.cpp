@@ -15,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-#define sz(vec)  (static_cast<int>((vec).size()))
+#define sz(vec)  (((vec).size() + 1))
 #define all(vec) vec.begin(), vec.end()
 #define f        first
 #define s        second
@@ -31,22 +31,22 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
-void solve1(void) {
-    int n;
-    std::cin >> n;
-    std::vector<i64> vec(n);
-    i64 cnt = 0;
-    for (auto &&v : vec) std::cin >> v, cnt += v % 2 == 0;
-    if (cnt != 0 and cnt != n) {
-        std::cout << 2 << "\n";
-        return;
-    }
-    std::sort(all(vec));
-    auto b = vec[0];
-    i64 curr = 0;
-    for (auto &&v : vec) v -= b;
-    for (const auto &v : vec) curr = std::gcd(curr, v);
-    std::cout << curr * 2 << "\n";
+void solve(void) {
+    str s;
+    std::cin >> s;
+    std::vector<int> circle1 = {1};
+    std::vector<int> circle2 = {2, 4, 3, 1};
+    std::vector<int> circle3 = {3, 4, 2, 1};
+    std::vector<int> circle4 = {4, 1};
+    int num = s.back() - '0';
+    // std::cout << "num = " << num << "\n";
+    // std::cout << circle1[num % sz(circle1)] << "\n";
+    // std::cout << circle2[num % sz(circle2)] << "\n";
+    // std::cout << circle3[num % sz(circle3)] << "\n";
+    // std::cout << circle4[num % sz(circle4)] << "\n";
+    int res = circle1[num % (sz(circle1))] + circle2[num % sz(circle2)] +
+              circle3[num % sz(circle3)] + circle4[num % sz(circle4)];
+    std::cout << res % 5 << "\n";
 }
 
 int main(void) {
@@ -55,8 +55,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) { solve1(); }
+    while (_--) { solve(); }
 
     return 0;
 }
