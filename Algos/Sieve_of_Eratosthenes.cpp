@@ -1,6 +1,28 @@
 #include <iostream>
 #include <vector>
 
+// TODO: test this and maybe replace the rest by it?
+template <typename T>
+struct sieve {
+    std::vector<T> primes;
+    std::vector<char> is_prime;
+    sieve(const T &n, bool calc_primes = false) {
+        is_prime.assign(n + 1, true);
+        is_prime[0] = false;
+        is_prime[1] = false;
+        for (T i = 2; i * i < n; i++) {
+            if (is_prime[i]) {
+                for (T x = i * i; x <= n; x += i) { is_prime[x] = false; }
+            }
+        }
+        if (calc_primes) {
+            for (T i = 2; i < is_prime.size(); i++) {
+                if (is_prime[i]) { primes.push_back(i); }
+            }
+        }
+    }
+};
+
 template <typename T = int>
 std::vector<T> cnt_sieve(const T &n) {
     std::vector<T> cnt(n + 1, 0);
