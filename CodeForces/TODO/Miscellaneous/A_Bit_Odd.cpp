@@ -33,33 +33,25 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    std::vector adj(n, std::vector<i64>(n, INT32_MAX));
-    std::vector<i64> vec(n);
-    std::vector<i64> res(n);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) { std::cin >> adj[i][j]; }
+    str s;
+    std::cin >> s;
+    int l = 0;
+    int r = n - 1;
+    while (l < n and s[l] == '0') l++;
+    while (r >= 0 and s[r] == '1') r--;
+    if (l > r) {
+        std::cout << "Bob\n";
+        return;
     }
-    for (auto &&v : vec) {
-        std::cin >> v;
-        v--;
-    }
-    std::reverse(all(vec));
-    for (int iter = 0; iter < n; iter++) {
-        const auto &v = vec[iter];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) { adj[i][j] = std::min(adj[i][j], adj[i][v] + adj[v][j]); }
+    auto ns = s.substr(l, r - l + 1);
+    const int nn = sz(ns);
+    for (int i = 0; i < nn; i += 2) {
+        if (ns[i] != ns[i + 1]) {
+            std::cout << "Alice\n";
+            return;
         }
-        i64 tot = 0LL;
-        for (int i = 0; i <= iter; i++) {
-            for (int j = 0; j <= iter; j++) {
-                if (adj[vec[i]][vec[j]] != INT32_MAX) tot += adj[vec[i]][vec[j]];
-            }
-        }
-        res[iter] = tot;
     }
-    std::reverse(all(res));
-    for (const auto &v : res) { std::cout << v << " "; }
-    std::cout << "\n";
+    std::cout << "Bob\n";
 }
 
 int main(void) {
@@ -68,6 +60,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
+    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

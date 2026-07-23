@@ -1,141 +1,101 @@
-#include <bits/stdc++.h>
+#pragma GCC optimize("Ofast")
+#include <algorithm>
+#include <array>
+#include <cmath>
+#include <cstdint>
+#include <functional>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
-using namespace std;
+#define sz(vec)  (static_cast<int>((vec).size()))
+#define all(vec) vec.begin(), vec.end()
+#define f        first
+#define s        second
+#define loop     for (;;)
+#define pb       push_back
 
-using ll = long long;
-using ld = long double;
-using pii = pair<int, int>;
-using cd = complex<ld>;
+using db = double;
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
+using u128 = __uint128_t;
 
-const int N = 50'000;
+#define YES                                                                                        \
+    std::cout << "YES\n";                                                                          \
+    return;
+#define NO                                                                                         \
+    std::cout << "NO\n";                                                                           \
+    return;
 
-bool isPrime[N];
-vector<int> primes;
+constexpr i64 limit = 1e5 + 1;
 
-void precalc() {
-    fill(isPrime + 2, isPrime + N, true);
-    for (int i = 2; i * i < N; i++) {
-	for (int j = i * i; j < N; j += i) {
-	    isPrime[j] = false;
-	}
+template <typename T = int>
+std::vector<char> bool_sieve(const T &n) {
+    std::vector<char> pr(n + 1, true);
+    pr[0] = false;
+    pr[1] = false;
+    for (int i = 2; i * i < n; i++) {
+        if (pr[i]) {
+            for (int x = i * i; x <= n; x += i) { pr[x] = false; }
+        }
     }
-    for (int i = 2; i < N; i++) {
-	if (isPrime[i]) {
-	    primes.push_back(i);
-	}
-    }
+    return pr;
 }
 
-int calcPrime(int n) {
-    int res = 0;
-    for (int i : primes) {
-	if (i * i > n) {
-	    break;
-	}
-	while (n % i == 0) {
-	    n /= i;
-	    res++;
-	}
+std::vector<i64> primes;
+
+template <typename T = int>
+int cnt_factors(T n) {
+    int res{0};
+    for (const auto &i : primes) {
+        if (i * i > n) break;
+        while (n % i == 0) {
+            n /= i;
+            res++;
+        }
     }
-    if (n > 1) {
-	res++;
-    }
+    res += n > 1;
     return res;
 }
 
-map<int, int> decompose(int n) {
-    map<int, int> a;
-    for (int i : primes) {
-	if (i * i > n) {
-	    break;
-	}
-	int p = 0;
-	while (n % i == 0) {
-	    n /= i;
-	    p++;
-	}
-	if (p > 0) {
-	    a[i] = p;
-	}
+void solve(void) {
+    i64 a, b, k;
+    std::cin >> a >> b >> k;
+    if (a == b and k == 1) { NO }
+    int least = 2;
+    if (a == b)
+        least = 0;
+    else if (std::gcd(a, b) == a or std::gcd(a, b) == b)
+        least = 1;
+    int tot = cnt_factors(a) + cnt_factors(b);
+    if (least <= k and tot >= k) {
+        YES
+    } else {
+        NO
     }
-    if (n > 1) {
-	a[n] = 1;
-    }
-    return a;
 }
 
-bool check(const map<int, int> &divs, map<int, int>::const_iterator it,
-	   map<int, int> &divsA, map<int, int> &divsB, int low, int high,
-	   int k) {
-    if (it == divs.end()) {
-	return __builtin_popcount(low) <= k && k <= high;
-    }
-    for (int p = 0; p <= it->second; p++) {
-	int pa = divsA[it->first];
-	int pb = divsB[it->first];
-	int nextLow = low;
-	if (p != pa) {
-	    nextLow |= 1;
-	}
-	if (p != pb) {
-	    nextLow |= 2;
-	}
-	if (check(divs, next(it), divsA, divsB, nextLow, high + pa + pb - 2 * p,
-		  k)) {
-	    return true;
-	}
-    }
-    return false;
-}
+int main(void) {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+    auto is_prime = bool_sieve(limit);
+    for (i64 i = 2; i < limit; i++)
+        if (is_prime[i]) primes.push_back(i);
 
-void solve() {
-    int a, b, k;
-    cin >> a >> b >> k;
-    int g = __gcd(a, b);
-    int low = 0;
-    int high = 0;
-    {
-	int t;
-	int ta = 1;
-	while ((t = __gcd(a, g)) != 1) {
-	    a /= t;
-	    ta *= t;
-	}
-	high += calcPrime(a);
-	if (a != 1) {
-	    low |= 1;
-	}
-	a = ta;
-    }
-    {
-	int t;
-	int tb = 1;
-	while ((t = __gcd(b, g)) != 1) {
-	    b /= t;
-	    tb *= t;
-	}
-	high += calcPrime(b);
-	if (b != 1) {
-	    low |= 2;
-	}
-	b = tb;
-    }
-    auto divs = decompose(g);
-    auto divsA = decompose(a);
-    auto divsB = decompose(b);
-    cout << (check(divs, divs.begin(), divsA, divsB, low, high, k) ? "YES"
-								   : "NO")
-	 << endl;
-}
-
-int main() {
-    precalc();
-
-    int t;
-    cin >> t;
-    while (t--) {
-	solve();
-    }
+    int _{1};
+    std::cin >> _;
+    while (_--) { solve(); }
 
     return 0;
 }

@@ -31,16 +31,15 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n, k;
-    std::cin >> n >> k;
-    std::vector<i64> vec(n);
-    for (auto &&v : vec) std::cin >> v;
-    i64 maxi = *std::max_element(all(vec));
-    i64 need = 0;
-    for (const auto &v : vec) need += maxi - v;
-    if (need < k) {
-    } else {
-    }
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<i64> a(n), b(m);
+    for (auto &&v : a) std::cin >> v;
+    for (auto &&v : b) std::cin >> v;
+    i64 g = 0;
+    for (const auto &v : a) { g = std::gcd(g, v); }
+    for (const auto &v : b) { std::cout << (g + v) / std::gcd(g, v) << " "; }
+    std::cout << "\n";
 }
 
 int main(void) {
@@ -49,7 +48,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;
