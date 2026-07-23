@@ -69,7 +69,6 @@ fn solve1() -> io::Result<()> {
         let line = line?;
         let (git, val) = calc(&line);
         if git == true {
-            println!("{}", line);
             res += val;
         }
     }
