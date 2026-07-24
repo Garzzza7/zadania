@@ -730,6 +730,21 @@ else
     cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Huffman_Coding.sol <Huffman_Coding.txt)" ]]; then
+    printf "${red}ABORT at Huffman_Coding.${normal}\n"
+    cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Huffman_Coding.sol <Huffman_Coding.txt)" == "$(cat Huffman_Coding.test)" ]; then
+    printf "${green}Huffman_Coding Passed.${normal}\n"
+    cnt_passed=$((cnt_passed + 1))
+else
+    printf "${red}Huffman_Coding Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Huffman_Coding.sol <Huffman_Coding.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Huffman_Coding.test)${normal}\n"
+    cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./In_Out_Ancestor.sol <In_Out_Ancestor.txt)" ]]; then
     printf "${red}ABORT at In_Out_Ancestor.${normal}\n"
     cnt_aborted=$((cnt_aborted + 1))
