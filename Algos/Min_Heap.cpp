@@ -37,10 +37,6 @@ void deleteNode(std::vector<int> &vec, int num) {
     for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) heapify(vec, i);
 }
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     std::vector<int> vec;

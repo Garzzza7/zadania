@@ -29,10 +29,6 @@ std::vector<char> segmented_sieve(const T &L, const T &R) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int T{1};
     std::cin >> T;
     while (T--) {

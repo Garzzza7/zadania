@@ -25,10 +25,6 @@ void next_permutation(std::vector<T> &nums) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     std::vector<int> vec(n);

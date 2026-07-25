@@ -30,10 +30,6 @@ void dfs(ll ver, ll par) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     ll n, m;
     std::cin >> n >> m;
 

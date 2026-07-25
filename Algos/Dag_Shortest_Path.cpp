@@ -52,10 +52,6 @@ void shortest_path(T start, T target, std::vector<T> &path) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, m;
     std::cin >> n >> m;
     std::vector<std::vector<std::pair<int, int>>> adj(n + 1, std::vector<std::pair<int, int>>());

@@ -55,10 +55,6 @@ constexpr auto op = [](const auto &l, const auto &r) -> auto {
 using RMQ = disjoint_sparse_table<long long, decltype(op)>;
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> vec(n);

@@ -146,10 +146,6 @@ struct aho_corasick {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     aho_corasick<26, 'a'> AC;

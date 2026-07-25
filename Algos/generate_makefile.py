@@ -5,7 +5,7 @@ import sys
 
 FILE_NAME: str = sys.argv[0]
 
-WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres"]
+WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres", "Point"]
 
 # file stuff
 current_directory: str = os.getcwd()

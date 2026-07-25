@@ -324,10 +324,6 @@ struct bst {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     bst<int> t(0);
 
     t.insert(69);

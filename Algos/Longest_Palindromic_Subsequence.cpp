@@ -20,10 +20,6 @@ int lps(const std::string &s) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::string s;
     std::cin >> s;
     std::cout << lps(s) << "\n";

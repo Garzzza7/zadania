@@ -289,10 +289,6 @@ struct matrix {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::vector<std::vector<int>> vec1 = {
         {1, 1, 1},
         {1, 1, 1},

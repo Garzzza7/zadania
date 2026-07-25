@@ -9,10 +9,6 @@ double iter_sqrt(const double &v, const double &threshold = 0.01) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::cout << iter_sqrt(9.0) << "\n";
     std::cout << iter_sqrt(4.0) << "\n";
     std::cout << iter_sqrt(25.0) << "\n";

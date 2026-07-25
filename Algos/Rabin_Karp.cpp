@@ -36,10 +36,6 @@ std::vector<int> rabin_karp(std::string const &text, std::string const &pattern)
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::string text, pattern;
     std::cin >> text;
     std::cin >> pattern;

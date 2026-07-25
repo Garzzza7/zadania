@@ -53,10 +53,6 @@ void floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> 
 // BASED ON THIS: https://codeforces.com/contest/1829/problem/E
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int T;
     std::cin >> T;
     while (T--) {

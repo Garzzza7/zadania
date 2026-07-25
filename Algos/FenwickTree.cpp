@@ -51,10 +51,6 @@ constexpr auto op = [](const auto &a, const auto &b) { return a + b; };
 using fen = fenwick<long long, decltype(op)>;
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, q;
     std::cin >> n >> q;
 

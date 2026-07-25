@@ -513,10 +513,6 @@ struct modint {
 // end of mine
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     Mint x = 10000000000;
     Mint y = 512321321;
     std::cout << x + y << "\n";

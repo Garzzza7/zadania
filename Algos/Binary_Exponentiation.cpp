@@ -47,10 +47,6 @@ T mod_binpow(T a, T b) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     long long a, b;
     std::cin >> a >> b;
     const auto res{binpow(a, b)};

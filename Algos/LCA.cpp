@@ -81,10 +81,6 @@ struct lca {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, q;
     std::cin >> n >> q;
     std::vector adj(n, std::vector<int>());

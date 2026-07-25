@@ -70,10 +70,6 @@ void shortest_path(T start, T target, std::vector<std::vector<T>> &dp,
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::cin >> n >> m;
     std::vector<std::vector<int>> adj_matrix(n + 1, std::vector<int>(n + 1, INF));
     for (int i = 0; i < m; i++) {

@@ -14,10 +14,6 @@ std::vector<T> phi_1_to_n(T n) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     const auto res{phi_1_to_n(n)};

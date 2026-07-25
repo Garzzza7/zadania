@@ -33,10 +33,6 @@ void bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &vi
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int vertices;
     std::cin >> vertices;
     std::vector<std::vector<int>> adj(vertices + 1, std::vector<int>());

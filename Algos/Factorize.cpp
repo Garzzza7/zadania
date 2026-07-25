@@ -42,10 +42,6 @@ std::vector<T> factorize(T n) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     const auto vec{factorize(n)};

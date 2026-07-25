@@ -25,10 +25,6 @@ T diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     long long n;
     std::cin >> n;
     std::vector adj(n + 1, std::vector<long long>());

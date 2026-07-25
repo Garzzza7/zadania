@@ -35,7 +35,7 @@ build/*
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
-Makefile
+/Makefile
 compile_commands.json
 TAGS
 tags
@@ -48,3 +48,4 @@ __pycache__/
 Mercury/
 *.lock
 *.temp
+mintemplate

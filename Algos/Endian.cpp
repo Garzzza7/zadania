@@ -21,10 +21,6 @@ std::string find_big_endian(const std::string &word) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::string word;
     std::cin >> word;
     const auto le{find_little_endian(word)};

@@ -29,10 +29,6 @@ bool dp_regex(const std::string &s1, const std::string &s2) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int T;
     std::cin >> T;
     while (T--) {

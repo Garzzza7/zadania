@@ -47,10 +47,6 @@ std::vector<char> bool_sieve(const T &n) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     const auto siev{cnt_sieve(n)};

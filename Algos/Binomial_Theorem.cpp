@@ -69,10 +69,6 @@ void show_calculation(int x, char c, int y, int n) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int x, y, n;
     char c;
     std::cin >> x >> c >> y >> n;

@@ -83,10 +83,6 @@ std::vector<int> shortestPath(int source, int target, std::vector<int> &path) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, m;
     std::cin >> n >> m;
     std::vector<std::vector<std::pair<int, int>>> adj(n);

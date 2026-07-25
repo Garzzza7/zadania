@@ -60,10 +60,6 @@ long long recursive_bin_search(const long long f, const long long e, const long 
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     std::vector<long long> vec(n);

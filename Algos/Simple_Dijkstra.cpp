@@ -44,10 +44,6 @@ std::vector<T> shortest_path(const T &s, const T &t, const std::vector<T> &path)
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     long long n, m, s, t;
     std::cin >> n >> m >> s >> t;
     std::vector adj(n + 1, std::vector<std::pair<long long, long long>>());

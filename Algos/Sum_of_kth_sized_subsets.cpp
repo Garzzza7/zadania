@@ -28,10 +28,6 @@ T mod_kth_subset_sum(const std::vector<T> &vec, int k, T mod) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n, k;
     long long mod;
     std::cin >> n >> k >> mod;

@@ -53,10 +53,6 @@ struct subset_sums {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     unsigned long long n;
     unsigned long long s;
     std::cin >> n >> s;

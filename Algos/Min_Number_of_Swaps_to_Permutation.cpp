@@ -20,10 +20,6 @@ int min_swaps_to_permutation(const std::vector<int> &vec) {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::vector<int> vec = {5, 4, 3, 2, 1, 0};
     std::cout << min_swaps_to_permutation(vec) << "\n";
 

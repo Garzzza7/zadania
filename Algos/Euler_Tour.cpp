@@ -19,10 +19,6 @@ std::vector<T> euler_tour(const std::vector<std::vector<T>> &adj, T root = 0) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int n;
     std::cin >> n;
     std::vector adj(n, std::vector<int>());

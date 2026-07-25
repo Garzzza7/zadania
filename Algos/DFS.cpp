@@ -33,10 +33,6 @@ void iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char>
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int vertices;
     std::cin >> vertices;
     std::vector<char> visited(vertices + 1, false);

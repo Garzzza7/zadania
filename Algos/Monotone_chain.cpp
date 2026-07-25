@@ -65,10 +65,6 @@ std::vector<point<T>> convex_hull(std::vector<point<T>> points) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     std::vector<point<int>> points = {
         {1, 1}, {10, 1}, {5, 5}, {1, 10}, {5, 12}, {10, 10},
     };

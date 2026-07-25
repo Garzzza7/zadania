@@ -175,10 +175,6 @@ struct rational {
 };
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     rational<int> r1(4, 6);
     rational<int> r2(5, 7);
     r1.reduce();

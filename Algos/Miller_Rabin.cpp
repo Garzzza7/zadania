@@ -31,10 +31,6 @@ bool miller_rabin(const T &n) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int q;
     std::cin >> q;
     while (q--) {

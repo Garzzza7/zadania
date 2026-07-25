@@ -19,10 +19,6 @@ std::vector<T> de_bruijn_seq(const T &len, const T &alphabet) {
 }
 
 int main(void) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-
     int len, alphabet;
     std::cin >> len >> alphabet;
     const auto bru{de_bruijn_seq(len, alphabet)};
