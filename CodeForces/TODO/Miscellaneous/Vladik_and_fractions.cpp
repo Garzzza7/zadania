@@ -28,11 +28,12 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n;
+    u64 n;
     std::cin >> n;
-    if (n == 2) {
-        std::cout << 0 << "\n";
+    if (n == 1) {
+        std::cout << -1 << "\n";
     } else {
+        std::cout << n << " " << n + 1 << " " << n * (n + 1) << "\n";
     }
 }
 
@@ -42,7 +43,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

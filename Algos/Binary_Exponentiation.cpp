@@ -4,6 +4,7 @@ constexpr long long mod{1'000'000'007};
 
 long long mod_binpow(long long a, long long b) {
     long long res{1ll};
+    a %= mod;
     while (b > 0) {
         if (b & 1) { res = res * a % mod; }
         a = a * a % mod;
@@ -38,6 +39,7 @@ T binpow(T a, T b) {
 template <typename T = int>
 T mod_binpow(T a, T b) {
     T res{1};
+    a %= mod;
     while (b > 0) {
         if (b & 1) { res = res * a % mod; }
         a = a * a % mod;

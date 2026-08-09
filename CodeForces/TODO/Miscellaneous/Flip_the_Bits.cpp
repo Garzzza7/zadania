@@ -17,6 +17,7 @@
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 #define loop     for (;;)
+#define el       "\n"
 
 using db = double;
 using str = std::string;
@@ -30,10 +31,34 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    if (n == 2) {
-        std::cout << 0 << "\n";
-    } else {
+    str a, b;
+    std::cin >> a >> b;
+    if (a == b) {
+        std::cout << "YES" << el;
+        return;
     }
+    std::vector<int> pref(n + 1);
+    for (int i = 0; i < n; i++) {
+        if (i) {
+            pref[i] = pref[i - 1] + (a[i] == '1') - (a[i] == '0');
+        } else {
+            pref[i] = (a[i] == '1') - (a[i] == '0');
+        }
+    }
+    bool git = true;
+    a += '$';
+    b += '$';
+    for (int i = 0; i < n; i++) {
+        if (((a[i] == b[i] and a[i + 1] != b[i + 1]) or (a[i] != b[i] and a[i + 1] == b[i + 1])) and
+            pref[i] != 0) {
+            git = false;
+            break;
+        }
+    }
+    if (git)
+        std::cout << "YES" << el;
+    else
+        std::cout << "NO" << el;
 }
 
 int main(void) {

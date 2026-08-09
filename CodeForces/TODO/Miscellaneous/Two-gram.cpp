@@ -30,10 +30,24 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    if (n == 2) {
-        std::cout << 0 << "\n";
-    } else {
+    str s;
+    std::cin >> s;
+    std::map<str, int> map;
+    for (int i = 0; i < n - 1; i++) {
+        str tmp;
+        tmp.push_back(s[i]);
+        tmp.push_back(s[i + 1]);
+        map[tmp]++;
     }
+    str res;
+    int maxi = 0;
+    for (const auto &[f, s] : map) {
+        if (maxi < s) {
+            maxi = s;
+            res = f;
+        }
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
@@ -42,7 +56,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

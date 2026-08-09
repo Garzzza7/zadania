@@ -1,6 +1,6 @@
-// # vi: set shiftwidth=4 tabstop=4:
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -16,26 +16,30 @@
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
-#define f        first
-#define s        second
 #define loop     for (;;)
-#define pb       push_back
 
-using db   = double;
-using str  = std::string;
-using u8   = unsigned char;
-using i32  = int;
-using u32  = unsigned int;
-using i64  = long long;
-using u64  = unsigned long long;
+using db = double;
+using str = std::string;
+using u8 = unsigned char;
+using i32 = int;
+using u32 = unsigned int;
+using i64 = long long;
+using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
     i64 n;
     std::cin >> n;
-    i64 res = 0;
-    for(i64 i = 3 ; i * i <= 2 * n ; i += 2) res++;
-    std::cout << res << "\n";
+    if (n == 1 or n == 2) {
+        std::cout << -1 << "\n";
+        return;
+    }
+    i64 nn = n * n;
+    if (nn & 1) {
+        std::cout << (nn - 1) / 2 << " " << (nn + 1) / 2 << "\n";
+    } else {
+        std::cout << (nn - 1) / 2 << " " << (nn + 1) / 2 << "\n";
+    }
 }
 
 int main(void) {
@@ -44,10 +48,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
-    while (_--) {
-        solve();
-    }
+    while (_--) { solve(); }
 
     return 0;
 }

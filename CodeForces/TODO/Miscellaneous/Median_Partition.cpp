@@ -16,10 +16,7 @@
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
-#define f        first
-#define s        second
 #define loop     for (;;)
-#define pb       push_back
 
 using db = double;
 using str = std::string;
@@ -34,34 +31,47 @@ void solve(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) std::cin >> v;
-    auto bitup = [](std::vector<int> vec) -> int {
-        bool up = true;
-        std::reverse(all(vec));
-        int last = vec[0];
-        const int n = sz(vec);
-        int i;
-        for (i = 1; i < n; i++) {
-            if (up) {
-                if (vec[i] >= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    up = false;
-                }
-            } else {
-                if (vec[i] <= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    break;
-                }
-            }
-            last = vec[i];
+    std::map<int,int> map;
+    for(auto &&v : vec) {
+        std::cin >> v;
+        map[v]++;
+    }
+    std::sort(all(vec));
+    int res = 1;
+    for(const auto&[f , s] : map) {
+        int sm = 0;
+        int bi = 0;
+        int cnt = s;
+        int curr = 0;
+        for(const auto&v : vec) {
+            sm += v < f;
+            bi += v > f;
         }
-        return i;
-    };
-    std::cout << n - bitup(vec) << "\n";
+        int mini = std::min(sm , bi);
+        sm -= mini;
+        bi -= mini;
+        cnt -= 1;
+        curr++;
+        if(sm) {
+            if(sm > cnt / 2) {
+                curr = -123;
+            } else {
+                cnt -= sm * 2;
+                curr += sm;
+                curr += cnt;
+            }
+        } else {
+            if(bi > cnt / 2) {
+                curr = -123;
+            } else {
+                cnt -= bi * 2;
+                curr += bi;
+                curr += cnt;
+            }
+        }
+        res = std::max(res , curr);
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {

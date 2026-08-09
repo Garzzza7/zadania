@@ -31,37 +31,38 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    for (auto &&v : vec) std::cin >> v;
-    auto bitup = [](std::vector<int> vec) -> int {
-        bool up = true;
-        std::reverse(all(vec));
-        int last = vec[0];
-        const int n = sz(vec);
-        int i;
-        for (i = 1; i < n; i++) {
-            if (up) {
-                if (vec[i] >= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    up = false;
-                }
+    i64 n, q;
+    std::cin >> n >> q;
+    std::vector<i64> vec(n);
+    std::vector<i64> time_mod(200001, -1);
+    i64 tot = 0;
+    for (auto &&v : vec) std::cin >> v, tot += v;
+    i64 val = 0;
+    i64 tot_mod = -2;
+    for (int t = 0; t < q; t++) {
+        i64 type;
+        std::cin >> type;
+        if (type == 1) {
+            i64 i, x;
+            std::cin >> i >> x;
+            i--;
+            if (time_mod[i] > tot_mod) {
+                tot -= vec[i];
             } else {
-                if (vec[i] <= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    break;
-                }
+                tot -= val;
             }
-            last = vec[i];
+            time_mod[i] = t;
+            vec[i] = x;
+            tot += x;
+        } else {
+            i64 x;
+            std::cin >> x;
+            val = x;
+            tot_mod = t;
+            tot = n * x;
         }
-        return i;
-    };
-    std::cout << n - bitup(vec) << "\n";
+        std::cout << tot << "\n";
+    }
 }
 
 int main(void) {
@@ -70,7 +71,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

@@ -28,12 +28,31 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n;
-    std::cin >> n;
-    if (n == 2) {
-        std::cout << 0 << "\n";
-    } else {
+    int n , a , b;
+    std::cin >> n >> a >> b;
+    std::vector<int> vec(n + 1 , 0);
+    std::vector<int> pref(n + 1 , 0);
+    for(int i = 1 ; i <= n ; i++) {
+        std::cin >> vec[i];
     }
+    std::sort(all(vec));
+    for(int i = 1 ; i <= n ; i++) {
+        pref[i] = vec[i] + pref[i - 1];
+    }
+    int curr = 0;
+    i64 res = 0LL;
+    for(int i = 1 ; i <= n ; i++) {
+        i64 l = b * (pref[i] - vec[curr] * i);
+        i64 r = b * (pref[n] - vec[curr] * (n - i));
+        i64 cr = a * (pref[i] - pref[curr]) + b * (pref[n] - vec[i] * (n - i));
+        if(cr < r) {
+            res += a * (pref[i] - pref[curr]) + l;
+            curr = i;
+        } else {
+            res += l;
+        }
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {

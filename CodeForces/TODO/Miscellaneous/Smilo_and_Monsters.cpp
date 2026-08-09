@@ -30,35 +30,36 @@ using i64  = long long;
 using u64  = unsigned long long;
 using u128 = __uint128_t;
 
-void
-solve(void) {
-    i64 n, s;
-    std::cin >> n >> s;
-    auto sum = [](i64 n) -> int {
-        int res = 0;
-        while (n) {
-            res += n % 10;
-            n /= 10;
-        }
-        return res;
-    };
-    if (sum(n) <= s) {
-        std::cout << 0 << "\n";
-        return;
+void solve(void) {
+    int n;
+    std::cin >> n;
+    std::map<int,int>map;
+    for(int i = 0 ; i < n ; i++) {
+        int v;
+        std::cin >> v;
+        map[v]++;
     }
+    std::vector<int> vec;
+    for(const auto &v : map) vec.push_back(v.second);
+    std::sort(all(vec));
+    int l = 0;
+    int r = sz(vec) - 1;
     i64 res = 0;
-    for (i64 i = 0, base = 1; i < 18; i++, base *= 10) {
-        i64 last   = (n / base) % 10;
-        i64 filler = ((10 - last) % 10) * base;
-        n += filler;
-        res += filler;
-        if (sum(n) <= s) break;
+    i64 curr = 0;
+    while(l < r) {
+        if(curr < vec[r]) {
+            curr += vec[l];
+            res += vec[l];
+            l++;
+        } else {
+            res += 1;
+            curr ^= curr;
+        }
     }
     std::cout << res << "\n";
 }
 
-int
-main(void) {
+int main(void) {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);

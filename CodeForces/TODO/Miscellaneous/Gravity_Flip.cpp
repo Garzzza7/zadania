@@ -30,10 +30,11 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    if (n == 2) {
-        std::cout << 0 << "\n";
-    } else {
-    }
+    std::vector<int> vec(n);
+    for(auto &&v : vec) std::cin >> v;
+    std::sort(all(vec));
+    for(const auto &v : vec) std::cout << v << " ";
+    std::cout << "\n";
 }
 
 int main(void) {
@@ -42,7 +43,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

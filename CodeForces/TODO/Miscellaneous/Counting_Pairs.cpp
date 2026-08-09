@@ -31,37 +31,21 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    for (auto &&v : vec) std::cin >> v;
-    auto bitup = [](std::vector<int> vec) -> int {
-        bool up = true;
-        std::reverse(all(vec));
-        int last = vec[0];
-        const int n = sz(vec);
-        int i;
-        for (i = 1; i < n; i++) {
-            if (up) {
-                if (vec[i] >= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    up = false;
-                }
-            } else {
-                if (vec[i] <= last) {
-                    last = vec[i];
-                    continue;
-                } else {
-                    break;
-                }
-            }
-            last = vec[i];
-        }
-        return i;
-    };
-    std::cout << n - bitup(vec) << "\n";
+    i64 n, x, y;
+    std::cin >> n >> x >> y;
+    i64 S = 0;
+    std::vector<i64> vec(n);
+    for (auto &&v : vec) std::cin >> v, S += v;
+    std::sort(all(vec));
+    i64 res = 0;
+    for (int iter = 0; iter < n; iter++) {
+        auto i = vec[iter];
+        auto j = S - x - i;
+        i64 bot = std::lower_bound(vec.begin() + iter, vec.end(), x) - vec.begin();
+        i64 top = std::upper_bound(vec.begin() + iter, vec.end(), y) - vec.begin() + 1;
+        res += top - bot;
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {
