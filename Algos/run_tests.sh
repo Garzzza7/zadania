@@ -595,6 +595,21 @@ else
     cnt_failed=$((cnt_failed + 1))
 fi
 
+if [[ ! "$(./Fast_Range_Xor.sol < Fast_Range_Xor.txt)" ]]; then
+    printf "${red}ABORT at Fast_Range_Xor.${normal}\n"
+    cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Fast_Range_Xor.sol < Fast_Range_Xor.txt)" == "$(cat Fast_Range_Xor.test)" ]; then
+    printf "${green}Fast_Range_Xor Passed.${normal}\n"
+    cnt_passed=$((cnt_passed + 1))
+else
+    printf "${red}Fast_Range_Xor Failed.\n"
+    printf "${red} Got:\n"
+    printf "${red}$(./Fast_Range_Xor.sol < Fast_Range_Xor.txt)\n"
+    printf "${red} Should be:\n"
+    printf "${red}$(cat Fast_Range_Xor.test)${normal}\n"
+    cnt_failed=$((cnt_failed + 1))
+fi
+
 if [[ ! "$(./FenwickTree.sol < FenwickTree.txt)" ]]; then
     printf "${red}ABORT at FenwickTree.${normal}\n"
     cnt_aborted=$((cnt_aborted + 1))

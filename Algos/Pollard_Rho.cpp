@@ -26,7 +26,7 @@ struct factorizer {
     }
     bool _is_prime(ull n) {
         if (n < 2) return false;
-        for (auto y : {2, 3, 5}) {
+        for (const auto &y : {2, 3, 5}) {
             if (n == y) return true;
             if (n % y == 0) return false;
         }
@@ -42,7 +42,7 @@ struct factorizer {
             return x < n ? x : x - n;
         };
         auto en = [&](ull x) -> ull { return mul(x, e); };
-        auto pow = [&](ull a, ull b) {
+        auto pow = [&](ull a, ull b) -> ull {
             ull res = t, base = en(a);
             while (b) {
                 if (b & 1) res = mul(res, base);
@@ -54,7 +54,7 @@ struct factorizer {
         ull d = n - 1;
         int z = __builtin_ctzll(d);
         d >>= z;
-        auto miller_rabin = [&](ull b) {
+        auto miller_rabin = [&](ull b) -> bool {
             if (b == 0) return true;
             ull y = pow(b, d);
             if (de(y) == 1) return true;
@@ -111,10 +111,11 @@ struct factorizer {
                         for (ull j = 0; j < m; j++) {
                             z = f(z);
                             if ((g = _gcd(de(dif(z, x)), n)) != 1) {
-                                if (g < n)
+                                if (g < n) {
                                     return g;
-                                else
+                                } else {
                                     goto fail;
+                                }
                             }
                         }
                     }
@@ -127,7 +128,7 @@ struct factorizer {
    public:
     std::vector<ull> factorize(ull x) {
         std::vector<ull> ans;
-        auto dfs = [&](const auto &self, ull v) {
+        auto dfs = [&](const auto &self, ull v) -> void {
             if (v == 1) return;
             ull y = _pollard_rho(v);
             if (v == y) {
