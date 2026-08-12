@@ -31,6 +31,8 @@ asm_automatic: str = "$(COMPILER) $(ASM_CFLAGS) $< -o $@"
 
 test_runner: str = "run_tests.sh"
 
+INDENT_BLOCK: str = ""
+
 prologue_colors: str = (
     "grey=$(tput setaf 7)\n"
     + "black=$(tput setaf 16)\n"
@@ -49,7 +51,6 @@ prologue_colors: str = (
     + "white=$(tput setaf 15)\n"
     + "yellow=$(tput setaf 3)\n"
     + "ygreen=$(tput setaf 2)\n"
-    + "\n"
 )
 
 base_warning: str = (
@@ -62,7 +63,7 @@ for _ in range(len(base_warning) - 1):
     padding = padding + "#"
 padding = padding + "\n"
 
-warning: str = padding + base_warning + padding + "\n"
+warning: str = padding + base_warning + padding
 
 posix: str = ".POSIX:\n\n"
 
@@ -84,13 +85,13 @@ if subp.find("avx2") != -1:
     flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2"
 
 HELP_COMMANDS: dict[str, str] = {
-    "help       :   ": "Print this help message.",
-    "all        :   ": "Build and generate everything.",
-    "asm        :   ": "Generate assembly files.",
-    "clean      :   ": "Remove generated files.",
-    "regenerate :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
-    "standard   :   ": "Build c++ files.",
-    "test       :   ": "Build c++ files and run the test script.",
+    "test (default) : ": "Build c++ files and run the test script.",
+    "all            :   ": "Build and generate everything.",
+    "asm            :   ": "Generate assembly files.",
+    "clean          :   ": "Remove generated files.",
+    "regenerate     :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
+    "standard       :   ": "Build c++ files.",
+    "help           :   ": "Print this help message.",
 }
 
 flags_var: str = " $(CFLAGS) "
@@ -108,14 +109,27 @@ makefile.write(warning)
 
 makefile.write(posix)
 
-makefile.write(".PHONY: standard all asm clean help test regenerate\n\n")
+makefile.write(".PHONY: all asm clean help regenerate standard test \n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")
 makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
 makefile.write("COMPILER = " + compiler + "\n\n")
 
-makefile.write("standard:")
+makefile.write("test:")
 for cpp_file in cpp_files:
     file: str = cpp_file[:-4]
+    if file in WIP:
+        continue
+    else:
+        makefile.write(" " + file + ".sol ")
+        makefile.write(file + ".txt")
+makefile.write("\n")
+
+makefile.write("	bash " + test_runner)
+makefile.write("\n\n")
+
+makefile.write("standard:")
+for cpp_file in cpp_files:
+    file = cpp_file[:-4]
     if file in WIP:
         continue
     else:
@@ -142,25 +156,12 @@ makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
-makefile.write("test:")
-for cpp_file in cpp_files:
-    file = cpp_file[:-4]
-    if file in WIP:
-        continue
-    else:
-        makefile.write(" " + file + ".sol ")
-        makefile.write(file + ".txt")
-makefile.write("\n")
-
-makefile.write("	bash " + test_runner)
-
 makefile.write("\n\nall: standard asm\n")
 
 makefile.write("\nregenerate:\n")
 makefile.write("	python3 " + FILE_NAME + "\n")
 
 makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
-
 
 makefile.close()
 
@@ -177,7 +178,7 @@ testfile.write(prologue_colors)
 
 testfile.write("cnt_passed=0\n")
 testfile.write("cnt_failed=0\n")
-testfile.write("cnt_aborted=0\n\n")
+testfile.write("cnt_aborted=0\n")
 
 for cpp_file in cpp_files:
     file = cpp_file[:-4]
@@ -190,10 +191,12 @@ for cpp_file in cpp_files:
             + ".sol <"
             + file
             + '.txt)" ]]; then\n'
-            + '    printf "${red}ABORT at '
+            + INDENT_BLOCK
+            + 'printf "${red}ABORT at '
             + file
             + '.${normal}\\n"\n'
-            + "    cnt_aborted=$((cnt_aborted + 1))\n"
+            + INDENT_BLOCK
+            + "cnt_aborted=$((cnt_aborted + 1))\n"
             + 'elif [ "$(./'
             + file
             + ".sol <"
@@ -202,26 +205,38 @@ for cpp_file in cpp_files:
             + ")"
             + '" == "$(cat '
             + file
-            + '.test)" ]; then\n    printf "${green}'
+            + '.test)" ]; then\n'
+            + INDENT_BLOCK
+            + 'printf "${green}'
             + file
             + ' Passed.${normal}\\n"'
-            + "\n    cnt_passed=$((cnt_passed + 1))"
-            + '\nelse\n    printf "${red}'
+            + "\n"
+            + INDENT_BLOCK
+            + "cnt_passed=$((cnt_passed + 1))"
+            + "\nelse\n"
+            + INDENT_BLOCK
+            + 'printf "${red}'
             + file
             + ' Failed.\\n"\n'
-            + '    printf "${red} Got:\\n"\n'
-            + '    printf "${red}$(./'
+            + INDENT_BLOCK
+            + 'printf "${red} Got:\\n"\n'
+            + INDENT_BLOCK
+            + 'printf "${red}$(./'
             + file
             + ".sol <"
             + file
             + ".txt"
             + ')\\n"\n'
-            + '    printf "${red} Should be:\\n"\n'
-            + '    printf "${red}$(cat '
+            + INDENT_BLOCK
+            + 'printf "${red} Should be:\\n"\n'
+            + INDENT_BLOCK
+            + 'printf "${red}$(cat '
             + file
             + '.test)${normal}\\n"'
-            + "\n    cnt_failed=$((cnt_failed + 1))"
-            + "\nfi\n\n"
+            + "\n"
+            + INDENT_BLOCK
+            + "cnt_failed=$((cnt_failed + 1))"
+            + "\nfi\n"
         )
 
 testfile.write('echo "Tests passed : $cnt_passed"\n')

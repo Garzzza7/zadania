@@ -56,15 +56,15 @@ struct lca {
         _ids.resize(_size);
         std::vector visited(_size, false);
         // NOTE: for c++23 this const auto &self could be used
-        auto dfs{[&](const auto &self, const int &v, const int &h) -> void {
-            visited[v] = true;
+        auto dfs{[&](const auto &self, const int &ver, const int &h) -> void {
+            visited[ver] = true;
             _heights.push_back(h);
-            _ids[v] = (int) _euler.size();
-            _euler.push_back(v);
-            for (const auto &ver : adj[v]) {
-                if (not visited[ver]) {
-                    self(self, ver, h + 1);
-                    _euler.push_back(v);
+            _ids[ver] = (int) _euler.size();
+            _euler.push_back(ver);
+            for (const auto &v : adj[ver]) {
+                if (not visited[v]) {
+                    self(self, v, h + 1);
+                    _euler.push_back(ver);
                     _heights.push_back(h);
                 }
             }
