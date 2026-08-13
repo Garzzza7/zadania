@@ -1,5 +1,32 @@
 #include <iostream>
+#include <map>
 #include <vector>
+
+template <typename T>
+std::map<std::pair<T, T>, bool> find_bridges(const std::vector<std::vector<T>> &adj) {
+    std::map<std::pair<T, T>, bool> res;
+    const int n = (int) adj.size() + 1;
+    std::vector<char> vis(n, false);
+    std::vector<int> tin(n), low(n);
+    int time = 0;
+    auto dfs = [&](const auto &self, T ver) -> void {
+        vis[ver] = true;
+        tin[ver] = low[ver] = time++;
+        for (const auto &v : adj[ver]) {
+            if (vis[v]) {
+                low[ver] = std::min(low[ver], tin[v]);
+            } else {
+                self(self, v);
+                low[ver] = std::min(low[ver], low[v]);
+                if (low[v] > tin[ver]) { res[{ver, v}] = res[{v, ver}] = true; }
+            }
+        }
+    };
+    for (T i = 0; i < n; i++) {
+        if (not vis[i]) { dfs(dfs, i); }
+    }
+    return res;
+}
 
 struct tarjan_find_bridges {
     struct edge {
@@ -44,20 +71,20 @@ struct tarjan_find_bridges {
         edge_id++;
     }
 
-    void dfs(const int p, const int v) {
-        if (visited[v]) { return; }
-        visited[v] = true;
-        low[v] = visit_time;
-        entry_time[v] = visit_time;
+    void dfs(const int p, const int ver) {
+        if (visited[ver]) { return; }
+        visited[ver] = true;
+        low[ver] = visit_time;
+        entry_time[ver] = visit_time;
         visit_time++;
-        for (const auto &e : adj[v]) {
+        for (const auto &e : adj[ver]) {
             if (e.vertex == p) { continue; }
             if (visited[e.vertex]) {
-                low[v] = std::min(low[v], entry_time[e.vertex]);
+                low[ver] = std::min(low[ver], entry_time[e.vertex]);
             } else {
-                dfs(v, e.vertex);
-                low[v] = std::min(low[v], low[e.vertex]);
-                if (low[e.vertex] > entry_time[v]) { is_bridge[e.id] = true; }
+                dfs(ver, e.vertex);
+                low[ver] = std::min(low[ver], low[e.vertex]);
+                if (low[e.vertex] > entry_time[ver]) { is_bridge[e.id] = true; }
             }
         }
     }
@@ -65,13 +92,6 @@ struct tarjan_find_bridges {
     void run(void) {
         for (int i = 1; i < static_cast<int>(adj.size()); i++) {
             if (not visited[i]) { dfs(i, i); }
-        }
-    }
-
-    void print(void) const {
-        for (const auto &ee : adj) {
-            for (const auto &e : ee) { std::cout << e.vertex << " "; }
-            std::cout << "\n";
         }
     }
 };
