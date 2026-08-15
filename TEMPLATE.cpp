@@ -111,29 +111,25 @@
 #define sortdes(vec) std::sort(vec.begin(), vec.end(), std::greater<>())
 #define rev(vec)     std::reverse(vec.begin(), vec.end())
 #define sortpairascS(vec)                                                                          \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
-        return left.second < right.second;                                                         \
-    })
+    std::sort(vec.begin(), vec.end(),                                                              \
+              [](const auto &l, const auto &r) -> bool { return l.second < r.second; })
 #define sortpairdesS(vec)                                                                          \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
-        return left.second > right.second;                                                         \
-    })
+    std::sort(vec.begin(), vec.end(),                                                              \
+              [](const auto &l, const auto &r) -> bool { return l.second > r.second; })
 #define sortpairascF(vec)                                                                          \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
-        return left.first < right.first;                                                           \
-    })
+    std::sort(vec.begin(), vec.end(),                                                              \
+              [](const auto &l, const auto &r) -> bool { return l.first < r.first; })
 #define sortpairdesF(vec)                                                                          \
-    std::sort(vec.begin(), vec.end(), [](const auto &left, const auto &right) -> bool {            \
-        return left.first > right.first;                                                           \
-    })
+    std::sort(vec.begin(), vec.end(),                                                              \
+              [](const auto &l, const auto &r) -> bool { return l.first > r.first; })
 #define swp(a, b)                                                                                  \
     a ^= b;                                                                                        \
     b ^= a;                                                                                        \
     a ^= b;
 // bits
 #define LSB(a)     ((a) & -(a))
-#define MSB(a)     63 - __builtin_clzll(a);
-#define cntbits(a) __builtin_popcount(a)
+#define MSB(a)     (63 - __builtin_clzll(a))
+#define cntbits(a) (__builtin_popcount(a))
 #define on(a, b)   ((a) |= (1 << (b)))
 #define off(a, b)  ((a) &= ~(1 << (b)))
 #define flip(a, b) ((a) ^= (1 << (b)))
@@ -142,11 +138,11 @@
 #define FAST
 #endif
 
-std::vector<std::string> split(const std::string &s) {
+std::vector<std::string> split(const std::string &s, const char &sep = ' ') {
     std::vector<std::string> res;
     std::string buff;
     for (const auto &c : s) {
-        if (c == ' ') {
+        if (c == sep) {
             if (not buff.empty()) {
                 res.push_back(buff);
                 buff.clear();
@@ -193,7 +189,9 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
-    for (const auto &xi : x) { s += ", " + to_debug(xi); }
+    for (const auto &xi : x) {
+        s += ", " + to_debug(xi);
+    }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
 }
 template <class T, size_t size>
@@ -264,21 +262,21 @@ template <typename T>
 }
 
 // descending set
-template <typename T>
+template <typename T = int>
 using dset = std::set<T, std::greater<T>>;
 
 // ascending pq
-template <typename T>
+template <typename T = int>
 using apq = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 // asceding pq of pairs
-template <typename FT, typename ST>
+template <typename FT = int, typename ST = int>
 using appq = std::priority_queue<std::pair<FT, ST>, std::vector<std::pair<FT, ST>>,
                                  std::greater<std::pair<FT, ST>>>;
 
 // This is a standard c++ set enhanced with indexes, works with g++
 // not tested with clang++!!!
-template <typename T>
+template <typename T = int>
 using iset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,
                               __gnu_pbds::tree_order_statistics_node_update>;
 // find_by_order(n) -> value at index n
@@ -395,7 +393,9 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve(); }
+    while (_--) {
+        solve();
+    }
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();
