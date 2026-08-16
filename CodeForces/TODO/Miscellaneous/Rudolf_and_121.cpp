@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,36 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n;
+    std::cin >> n;
+    std::vector<int> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    bool git = true;
+    for (const auto &v : vec) {
+        if (v < 0) {
+            std::cout << "NO\n";
+            return;
+        }
+    }
+    for (int i = 0; i < n - 2; i++) {
+        if (vec[i] != 0) {
+            auto tmp = vec[i];
+            vec[i] -= tmp;
+            vec[i + 1] -= 2 * tmp;
+            vec[i + 2] -= tmp;
+        }
+    }
+    for (const auto &v : vec) {
+        if (v != 0) {
+            git = false;
+        }
+    }
+    if (git)
+        std::cout << "YES\n";
+    else
+        std::cout << "NO\n";
 }
 
 int main(void) {

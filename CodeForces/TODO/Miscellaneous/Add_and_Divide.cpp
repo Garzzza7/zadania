@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -24,7 +27,31 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T>
+[[nodiscard]] inline T bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
+template <typename T>
+[[nodiscard]] inline T bin_fl(T x, T y) noexcept {
+    return x / y - ((x ^ y) < 0 && x % y);
+}
+
 void solve(void) {
+    int a, b;
+    std::cin >> a >> b;
+    if (a == b) {
+        std::cout << 2 << "\n";
+    } else if (a < b) {
+        std::cout << 1 << "\n";
+    } else {
+        int times = bin_ce(a, b);
+        int res = INT32_MAX;
+        for (int i = 1; i <= times; i++) {
+            res = std::min(res, a / (b + i));
+        }
+        std::cout << res << "\n";
+    }
 }
 
 int main(void) {

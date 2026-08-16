@@ -27,28 +27,34 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T>
+[[nodiscard]] inline bool is_on(T a, T b) noexcept {
+    return a & (static_cast<T>(1) << b);
+}
+
 void solve(void) {
-    int a, b, k;
-    std::cin >> a >> b >> k;
-    std::vector<std::pair<int, int>> ed(k);
-    std::vector<int> boy_deg(a), girl_deg(b);
-    for (auto &&v : ed) {
-        std::cin >> v.first;
-        v.first--;
-    }
-    for (auto &&v : ed) {
-        std::cin >> v.second;
-        v.second--;
-    }
-    for (const auto &[f, s] : ed) {
-        boy_deg[f]++;
-        girl_deg[s]++;
+    i64 n, l, r, x;
+    std::cin >> n >> l >> r >> x;
+    std::vector<i64> c(n);
+    for (auto &&v : c) {
+        std::cin >> v;
     }
     i64 res = 0;
-    for (const auto &[f, s] : ed) {
-        res += k - (boy_deg[f] + girl_deg[s]) + 1;
+    for (i64 mask = 0; mask <= (1 << n); mask++) {
+        std::vector<i64> tmp;
+        i64 tot = 0;
+        i64 mini = INT32_MAX;
+        i64 maxi = INT32_MIN;
+        for (i64 i = 0; i < n; i++) {
+            if (is_on(mask, i)) {
+                tmp.push_back(c[i]);
+                tot += c[i];
+                mini = std::min(mini, c[i]);
+                maxi = std::max(maxi, c[i]);
+            }
+        }
+        if (sz(tmp) >= 2 and tot >= l and tot <= r and (maxi - mini) >= x) { res++; }
     }
-    res >>= 1;
     std::cout << res << "\n";
 }
 
@@ -58,7 +64,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

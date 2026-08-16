@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,28 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n , r , b;
+    std::cin >> n >> r >> b;
+    str s;
+    int diff = r - b;
+    int rat = diff / b;
+    for(int i = 0 ; i < b ; i++) {
+        if(diff) {
+            s += 'R';
+            for(int _ = 0 ; _ < rat ; _++) {
+                s += 'R';
+            }
+            s += 'B';
+            diff--;
+        } else {
+            s += 'B';
+            s += 'R';
+        }
+    }
+    if(sz(s) != n) {
+        s = "R" + s;
+    }
+    std::cout << s << "\n";
 }
 
 int main(void) {

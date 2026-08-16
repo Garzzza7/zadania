@@ -1,5 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
+#include <chrono>
+#include <random>
 #include <array>
 #include <cmath>
 #include <cstdint>
@@ -10,6 +12,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -24,7 +29,15 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+#define MSB(a)     ( 63 - __builtin_clzll(a) );
+
 void solve(void) {
+    i64 n;
+    std::cin >> n;
+    i64 limit = 1 << MSB(n - 1);
+    for(auto i = limit - 1 ; i >= 0 ; i--) std::cout << i << " ";
+    for(auto i = limit ; i < n ; i++) std::cout << i << " ";
+    std::cout << "\n";
 }
 
 int main(void) {

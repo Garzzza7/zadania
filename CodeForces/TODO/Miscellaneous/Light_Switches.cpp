@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,24 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int n, k;
+    std::cin >> n >> k;
+    std::vector<int> vec(n);
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
+    std::sort(all(vec));
+    int res = vec.front();
+    for (int i = 1; i < n; i++) {
+        const auto &v = vec[i];
+        if (v - res < k) {
+            continue;
+        } else {
+            auto diff = v - res;
+            res = diff / k + ((diff / k) & 1);
+        }
+    }
+    std::cout << res << "\n";
 }
 
 int main(void) {

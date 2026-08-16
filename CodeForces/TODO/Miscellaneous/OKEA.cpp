@@ -28,29 +28,41 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    str s;
-    std::cin >> s;
-    const int n = sz(s);
-    int c0 = 0;
-    int c1 = 0;
-    for (const auto &c : s) {
-        c0 += c == '0';
-        c1 += c == '1';
-    }
-    int good = 0;
-    for (int i = 0; i < n; i++) {
-        const auto &c = s[i];
-        if (c == '1') {
-            if (c0 == 0) { break; }
-            c0--;
-        } else {
-            if (c1 == 0) { break; }
-            c1--;
+    int n , k;
+    std::cin >> n >> k;
+    if (k == 1) {
+        std::cout << "YES\n";
+        for(int i = 1 ; i <= n ; i++) {
+            std::cout << i << "\n";
         }
-        good++;
+        return;
     }
-    std::cout << n - good << "\n";
-}
+    if(n & 1) {
+        std::cout << "NO\n";
+        return;
+    }
+    std::vector<int> even , odd;
+    for(int i = 1 ; i <= n * k ; i++) {
+        if(i & 1) {
+            odd.push_back(i);
+        } else {
+            even.push_back(i);
+        }
+    }
+    int i1 = 0;
+    int i2 = 0;
+    std::cout << "YES\n";
+    for(int i = 0 ; i < n ; i++) {
+        for(int j = 0 ; j < k ; j++) {
+            if(i & 1) {
+                std::cout << odd[i1++] << " ";
+            } else {
+                std::cout <<  even[i2++] << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+} 
 
 int main(void) {
     std::ios_base::sync_with_stdio(false);
@@ -59,7 +71,9 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve(); }
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

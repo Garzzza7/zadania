@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,24 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    u64 n;
+    std::cin >> n;
+    u64 l = 0ULL;
+    u64 r = 1'000'000ULL;
+    while (r - l > 1) {
+        u64 mid = (r - l) / 2 + l;
+        u64 val = mid * mid * mid;
+        if (n < val) {
+            r = mid - 1;
+        } else {
+            l = mid;
+        }
+    }
+    if (r * r * r <= n) {
+        std::cout << r << "\n";
+    } else {
+        std::cout << l << "\n";
+    }
 }
 
 int main(void) {
@@ -33,7 +54,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }

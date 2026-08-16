@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,14 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    int w, h;
+    std::cin >> w >> h;
+    std::vector<std::pair<int, int>> hor, ver;
+    {
+        int k;
+        std::cin >> k;
+        while (k--) {}
+    }
 }
 
 int main(void) {

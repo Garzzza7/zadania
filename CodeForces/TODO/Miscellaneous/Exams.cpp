@@ -10,6 +10,9 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -25,6 +28,24 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
+    i64 n;
+    std::cin >> n;
+    std::vector<std::pair<i64, i64>> vec(n);
+    for (i64 i = 0; i < n; i++) {
+        i64 a, b;
+        std::cin >> a >> b;
+        vec[i] = {a, b};
+    }
+    std::sort(all(vec));
+    i64 curr = vec.front().second;
+    for (int i = 1; i < n; i++) {
+        if (curr <= vec[i].second) {
+            curr = vec[i].second;
+        } else {
+            curr = vec[i].first;
+        }
+    }
+    std::cout << curr << "\n";
 }
 
 int main(void) {
@@ -33,7 +54,6 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    std::cin >> _;
     while (_--) {
         solve();
     }
