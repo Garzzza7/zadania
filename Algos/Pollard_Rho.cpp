@@ -10,9 +10,9 @@
 
 struct factorizer {
    private:
-    using ull = unsigned long long;
+    using u64 = unsigned long long;
     using u128 = __uint128_t;
-    inline ull _gcd(ull x, ull y) {
+    inline u64 _gcd(u64 x, u64 y) {
         // Stein's Algorithm
         if (!x || !y) return x | y;
         int c = __builtin_ctzll(x | y);
@@ -24,26 +24,26 @@ struct factorizer {
         }
         return y << c;
     }
-    bool _is_prime(ull n) {
+    bool _is_prime(u64 n) {
         if (n < 2) return false;
         for (const auto &y : {2, 3, 5}) {
             if (n == y) return true;
             if (n % y == 0) return false;
         }
         assert(n < (1ull << 62)); // use Montgomery
-        ull r = n & 3;
+        u64 r = n & 3;
         for (int _ = 0; _ < 5; _++) r *= 2 - n * r;
         r = -r;
-        ull t = -n % n, e = -u128(n) % n;
-        auto redc = [&](u128 x) -> ull { return (x + u128((ull) (x) *r) * n) >> 64; };
-        auto mul = [&](ull x, ull y) -> ull { return redc(u128(x) * y); };
-        auto de = [&](ull x) -> ull {
+        u64 t = -n % n, e = -u128(n) % n;
+        auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };
+        auto mul = [&](u64 x, u64 y) -> u64 { return redc(u128(x) * y); };
+        auto de = [&](u64 x) -> u64 {
             x = redc(x);
             return x < n ? x : x - n;
         };
-        auto en = [&](ull x) -> ull { return mul(x, e); };
-        auto pow = [&](ull a, ull b) -> ull {
-            ull res = t, base = en(a);
+        auto en = [&](u64 x) -> u64 { return mul(x, e); };
+        auto pow = [&](u64 a, u64 b) -> u64 {
+            u64 res = t, base = en(a);
             while (b) {
                 if (b & 1) res = mul(res, base);
                 base = mul(base, base);
@@ -51,12 +51,12 @@ struct factorizer {
             }
             return res;
         };
-        ull d = n - 1;
+        u64 d = n - 1;
         int z = __builtin_ctzll(d);
         d >>= z;
-        auto miller_rabin = [&](ull b) -> bool {
+        auto miller_rabin = [&](u64 b) -> bool {
             if (b == 0) return true;
-            ull y = pow(b, d);
+            u64 y = pow(b, d);
             if (de(y) == 1) return true;
             for (int i = 0; i < z; i++) {
                 if (de(y) == n - 1) return true;
@@ -73,42 +73,42 @@ struct factorizer {
         }
         return true;
     }
-    ull _pollard_rho(ull p) {
+    u64 _pollard_rho(u64 p) {
         assert(p >= 2);
         if (p % 2 == 0) return 2;
         if (_is_prime(p)) return p;
         assert(p < (1ull << 62)); // use Montgomery
-        ull n = p, n2 = n * 2, r = n & 3;
+        u64 n = p, n2 = n * 2, r = n & 3;
         for (int _ = 0; _ < 5; _++) r *= 2 - n * r;
         r = -r;
-        ull t = -n % n;
-        auto redc = [&](u128 x) -> ull { return (x + u128((ull) (x) *r) * n) >> 64; };
-        auto mul = [&](ull x, ull y) -> ull { return redc(u128(x) * y); };
-        auto dif = [&](ull x, ull y) -> ull {
+        u64 t = -n % n;
+        auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };
+        auto mul = [&](u64 x, u64 y) -> u64 { return redc(u128(x) * y); };
+        auto dif = [&](u64 x, u64 y) -> u64 {
             x += n2 - y;
             return x < n2 ? x : x - n2;
         };
-        auto de = [&](ull x) -> ull {
+        auto de = [&](u64 x) -> u64 {
             x = redc(x);
             return x < n ? x : x - n;
         };
         std::mt19937_64 rnd;
         for (;;) {
-            ull c = rnd() % (p - 1) + 1, y = rnd() % (p - 1) + 1;
-            auto f = [&](ull x) -> ull { return redc(u128(x) * x + c); };
-            for (ull s = 1;; s <<= 1) {
-                ull x = y;
-                const ull m = std::min(1ull << std::max(int(std::__lg(p)) / 3 - 8, 0), s);
-                for (ull i = 0; i < s / m; i++) {
-                    ull w = t, z = y;
-                    for (ull j = 0; j < m; j++) {
+            u64 c = rnd() % (p - 1) + 1, y = rnd() % (p - 1) + 1;
+            auto f = [&](u64 x) -> u64 { return redc(u128(x) * x + c); };
+            for (u64 s = 1;; s <<= 1) {
+                u64 x = y;
+                const u64 m = std::min(1ull << std::max(int(std::__lg(p)) / 3 - 8, 0), s);
+                for (u64 i = 0; i < s / m; i++) {
+                    u64 w = t, z = y;
+                    for (u64 j = 0; j < m; j++) {
                         y = f(y);
                         w = mul(w, dif(y, x));
                     }
-                    ull g = _gcd(de(w), n);
+                    u64 g = _gcd(de(w), n);
                     if (g > 1) {
                         if (g < n) return g;
-                        for (ull j = 0; j < m; j++) {
+                        for (u64 j = 0; j < m; j++) {
                             z = f(z);
                             if ((g = _gcd(de(dif(z, x)), n)) != 1) {
                                 if (g < n) {
@@ -126,11 +126,11 @@ struct factorizer {
     }
 
    public:
-    std::vector<ull> factorize(ull x) {
-        std::vector<ull> ans;
-        auto dfs = [&](const auto &self, ull v) -> void {
+    std::vector<u64> factorize(u64 x) {
+        std::vector<u64> ans;
+        auto dfs = [&](const auto &self, u64 v) -> void {
             if (v == 1) return;
-            ull y = _pollard_rho(v);
+            u64 y = _pollard_rho(v);
             if (v == y) {
                 ans.push_back(v);
                 return;

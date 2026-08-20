@@ -1254,6 +1254,20 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Simple_Dijkstra.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
+if [[ ! "$(./Simple_Polygon.sol <Simple_Polygon.txt)" ]]; then
+printf "${red}ABORT at Simple_Polygon.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Simple_Polygon.sol <Simple_Polygon.txt)" == "$(cat Simple_Polygon.test)" ]; then
+printf "${green}Simple_Polygon Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Simple_Polygon Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Simple_Polygon.sol <Simple_Polygon.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Simple_Polygon.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
 if [[ ! "$(./Sparse_Table.sol <Sparse_Table.txt)" ]]; then
 printf "${red}ABORT at Sparse_Table.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))

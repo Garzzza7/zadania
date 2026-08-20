@@ -2,9 +2,8 @@
 #include <vector>
 
 template <typename T = int>
-T kadane(const std::vector<T> &vec, const int &l, const int &r) {
-    T best = 0;
-    T sum = 0;
+T range_kadane(const std::vector<T> &vec, const int &l, const int &r) {
+    T best = 0, sum = 0;
     for (int i = l; i < r; i++) {
         sum = std::max(vec[i], sum + vec[i]);
         best = std::max(best, sum);
@@ -14,8 +13,7 @@ T kadane(const std::vector<T> &vec, const int &l, const int &r) {
 
 template <typename T = int>
 T kadane(const std::vector<T> &vec) {
-    T best = 0;
-    T sum = 0;
+    T best = 0, sum = 0;
     for (const auto &v : vec) {
         sum = std::max(v, sum + v);
         best = std::max(best, sum);
@@ -27,7 +25,7 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) std::cin >> vec[i];
+    for (auto &&v : vec) std::cin >> v;
     std::vector<int> b = {0};
     std::vector<int> s = {0};
     int best = 0, sum = 0;

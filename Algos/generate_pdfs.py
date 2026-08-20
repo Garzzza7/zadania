@@ -11,7 +11,7 @@ for cpp_file in cpp_files:
         "mutool convert -F pdf -S 9 -W 500 -H 600 -o "
         + cpp_file[:-4]
         + ".pdf TEMP_"
-            + cpp_file[:-4]
+        + cpp_file[:-4]
         + ".txt"
     )
     os.system("mv " + cpp_file[:-4] + ".pdf pdfs/")
