@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -20,9 +21,21 @@ struct simple_polygon {
             : x(p.first),
               y(p.second) {
         }
+        bool operator<(const _point_type &p) const {
+            return x < p.x or (x == p.x and y < p.y);
+        }
+        bool operator>(const _point_type &p) const {
+            return x > p.x or (x == p.x and y > p.y);
+        }
+        bool operator==(const _point_type &p) const {
+            return x == p.x and y == p.y;
+        }
     };
     using point = _point_type<T>;
     std::vector<point> _points;
+    int _check(const point &curr, const point &l, const point &r) {
+        return (l.x - curr.x) * (r.y - curr.y) - (l.y - curr.y) * (r.x - curr.x);
+    };
 
    public:
     simple_polygon() = default;
@@ -54,6 +67,17 @@ struct simple_polygon {
     }
     const std::vector<point> &points(void) {
         return _points;
+    }
+    void sort(void) {
+        // same sort as in convex hull
+        std::sort(_points.begin(), _points.end(), [](const point &l, const point &r) -> bool {
+            if (l.x != r.x) { return l.x < r.x; }
+            return l.y < r.y;
+        });
+    }
+    // TODO: verify
+    [[nodiscard]] bool is_ccw() const {
+        return _check(_points[0], _points[0], _points[0]) > 0;
     }
 };
 

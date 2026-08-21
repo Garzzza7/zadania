@@ -27,27 +27,27 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    constexpr int LIMIT = 501;
-    std::array<std::array<int, LIMIT>, 3> dp{0};
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        if (vec[i] == 0) {
-            if (i - 1 >= 0) {
-                dp[i][0] = std::max({dp[i - 1][0], dp[i - 1][1], dp[i - 1][2]});
-            } else {
-                dp[i][0] = 1;
-            }
-        } else if (vec[i] == 1) {
-            if (i - 1 >= 0) { dp[i][1] = dp[i - 1][2] + 1; }
-        } else if (vec[i] == 2) {
-            if (i - 1 >= 0) { dp[i][2] = dp[i - 1][1] + 1; }
-        } else if (vec[i] == 3) {
+    str s;
+    std::cin >> s;
+    if(n == 1) {
+        std::cout << 0 << "\n";
+        return;
+    }
+    s.push_back('W');
+    n = sz(s);
+    int res = 1 , cnt = 0;
+    bool found = false;
+    for(int i = 0 ; i < n ; i++) {
+        const auto &c = s[i];
+        if(c == 'B') {
+            cnt++;
+            found = true;
+        } else {
+            res = std::max(res,  cnt + 1);
+            cnt = 0;
         }
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < 3; j++) { res = std::max(res, dp[i][j]); }
-    }
+    res = std::max(res,  cnt + 1);
     std::cout << res << "\n";
 }
 
@@ -58,7 +58,9 @@ int main(void) {
 
     int _{1};
     // std::cin >> _;
-    while (_--) { solve(); }
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

@@ -1,3 +1,4 @@
+#include <vector>
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <array>
@@ -27,26 +28,43 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(n);
-    constexpr int LIMIT = 501;
-    std::array<std::array<int, LIMIT>, 3> dp{0};
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        if (vec[i] == 0) {
-            if (i - 1 >= 0) {
-                dp[i][0] = std::max({dp[i - 1][0], dp[i - 1][1], dp[i - 1][2]});
-            } else {
-                dp[i][0] = 1;
+    str s;
+    std::cin >> s;
+    s.push_back('.');
+    n = sz(s);
+    int cnt = 0;
+    int maxi = 0;
+    int l = 0, r = 0;
+    std::vector<int> good;
+    for (int i = 0; i < sz(s); i++) {
+        const auto &c = s[i];
+        if (c == '.') {
+            if (cnt > maxi) {
+                maxi = cnt;
+                r = i;
+                l = i - cnt - 1;
             }
-        } else if (vec[i] == 1) {
-            if (i - 1 >= 0) { dp[i][1] = dp[i - 1][2] + 1; }
-        } else if (vec[i] == 2) {
-            if (i - 1 >= 0) { dp[i][2] = dp[i - 1][1] + 1; }
-        } else if (vec[i] == 3) {
+            cnt = 0;
+        } else {
+            good.push_back(i);
+            cnt++;
         }
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < 3; j++) { res = std::max(res, dp[i][j]); }
+    auto rr = r;
+    auto ll = l;
+    int res = 0;
+    // std::cout << l << " " << r << "\n";
+    for (int i = rr; i < sz(s); i++) {
+        if (s[i] == '*') {
+            res += std::abs(r - i);
+            r++;
+        }
+    }
+    for (int i = ll; i >= 0; i--) {
+        if (s[i] == '*') {
+            res += std::abs(l - i);
+            l--;
+        }
     }
     std::cout << res << "\n";
 }
@@ -57,7 +75,7 @@ int main(void) {
     std::cout.tie(nullptr);
 
     int _{1};
-    // std::cin >> _;
+    std::cin >> _;
     while (_--) { solve(); }
 
     return 0;

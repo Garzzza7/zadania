@@ -27,14 +27,10 @@ using u128 = __uint128_t;
 void solve(void) {
     int n;
     std::cin >> n;
-    std::vector<int> vec(2 * n);
-    std::map<int, int> map;
-    for (auto &&v : vec) {
-        std::cin >> v;
-        map[v]++;
-    }
-    std::sort(all(vec));
-    for (int i = 0; i < 2 * n; i++) {}
+    std::vector<int> a(n) , b(n) , c(n);
+    for(auto &&v : a) std::cin >> v;
+    for(auto &&v : b) std::cin >> v;
+    for(auto &&v : c) std::cin >> v;
 }
 
 int main(void) {
@@ -44,7 +40,9 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) { solve(); }
+    while (_--) {
+        solve();
+    }
 
     return 0;
 }

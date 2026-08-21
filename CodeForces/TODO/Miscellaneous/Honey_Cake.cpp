@@ -1,6 +1,7 @@
 #pragma GCC optimize("Ofast")
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <cmath>
 #include <cstdint>
 #include <functional>
@@ -9,7 +10,9 @@
 #include <map>
 #include <numeric>
 #include <queue>
+#include <random>
 #include <set>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
@@ -24,31 +27,34 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T = u64>
+T bit_gcd(T a, T b) {
+    if (!a or !b) { return a | b; }
+    unsigned shift = __builtin_ctz(a | b);
+    a >>= __builtin_ctz(a);
+    do {
+        b >>= __builtin_ctz(b);
+        if (a > b) { std::swap(a, b); }
+        b -= a;
+    } while (b);
+    return a << shift;
+}
+
 void solve(void) {
-    int n;
+    u64 w, h, d, n;
+    std::cin >> w >> h >> d;
     std::cin >> n;
-    std::vector<int> vec(n);
-    constexpr int LIMIT = 501;
-    std::array<std::array<int, LIMIT>, 3> dp{0};
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        if (vec[i] == 0) {
-            if (i - 1 >= 0) {
-                dp[i][0] = std::max({dp[i - 1][0], dp[i - 1][1], dp[i - 1][2]});
-            } else {
-                dp[i][0] = 1;
-            }
-        } else if (vec[i] == 1) {
-            if (i - 1 >= 0) { dp[i][1] = dp[i - 1][2] + 1; }
-        } else if (vec[i] == 2) {
-            if (i - 1 >= 0) { dp[i][2] = dp[i - 1][1] + 1; }
-        } else if (vec[i] == 3) {
-        }
+    u64 a = bit_gcd(n, w);
+    n /= a;
+    u64 b = bit_gcd(n, h);
+    n /= b;
+    u64 c = bit_gcd(n, d);
+    n /= c;
+    if (n == 1ULL) {
+        std::cout << a - 1 << " " << b - 1 << " " << c - 1 << "\n";
+    } else {
+        std::cout << -1 << "\n";
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < 3; j++) { res = std::max(res, dp[i][j]); }
-    }
-    std::cout << res << "\n";
 }
 
 int main(void) {

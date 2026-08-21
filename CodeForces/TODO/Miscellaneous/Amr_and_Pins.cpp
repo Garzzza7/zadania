@@ -24,31 +24,29 @@ using i64 = long long;
 using u64 = unsigned long long;
 using u128 = __uint128_t;
 
+template <typename T>
+[[nodiscard]] inline T bin_ce(T x, T y) noexcept {
+    return x / y + ((x ^ y) > 0 && x % y);
+}
+
+double iter_sqrt(const double &v, const double &threshold = 0.01) {
+    if (v <= threshold) return 1.0;
+    double res = 1.0;
+    while (std::fabs(res * res - v) > threshold) { res = 0.5 * (res + v / res); }
+    return res;
+}
+
 void solve(void) {
-    int n;
-    std::cin >> n;
-    std::vector<int> vec(n);
-    constexpr int LIMIT = 501;
-    std::array<std::array<int, LIMIT>, 3> dp{0};
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        if (vec[i] == 0) {
-            if (i - 1 >= 0) {
-                dp[i][0] = std::max({dp[i - 1][0], dp[i - 1][1], dp[i - 1][2]});
-            } else {
-                dp[i][0] = 1;
-            }
-        } else if (vec[i] == 1) {
-            if (i - 1 >= 0) { dp[i][1] = dp[i - 1][2] + 1; }
-        } else if (vec[i] == 2) {
-            if (i - 1 >= 0) { dp[i][2] = dp[i - 1][1] + 1; }
-        } else if (vec[i] == 3) {
-        }
+    i64 r, x, y, nx, ny;
+    std::cin >> r >> x >> y >> nx >> ny;
+    if (x == nx and y == ny) {
+        std::cout << 0 << "\n";
+        return;
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < 3; j++) { res = std::max(res, dp[i][j]); }
-    }
-    std::cout << res << "\n";
+    auto dx = std::abs(x - nx);
+    auto dy = std::abs(y - ny);
+    auto dist = std::sqrt((dx * dx) + (dy * dy));
+    std::cout << std::ceil(dist / (r + r)) << "\n";
 }
 
 int main(void) {
