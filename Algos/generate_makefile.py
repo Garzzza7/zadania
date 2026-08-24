@@ -110,6 +110,7 @@ makefile.write(warning)
 makefile.write(posix)
 
 makefile.write(".PHONY: all asm clean help regenerate standard test \n\n")
+makefile.write("MAKEFLAGS := --jobs=1 --keep-going --warn-undefined-variables\n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")
 makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
 makefile.write("COMPILER = " + compiler + "\n\n")
@@ -156,9 +157,9 @@ makefile.write("\n\n")
 
 makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
 
-makefile.write("\n\nall: standard asm\n")
+makefile.write("all: standard asm\n\n")
 
-makefile.write("\nregenerate:\n")
+makefile.write("regenerate:\n")
 makefile.write("	python3 " + FILE_NAME + "\n")
 
 makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
