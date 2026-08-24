@@ -10,9 +10,8 @@
 // TODO: test this, add more test cases, add SIMD
 template <typename T = int>
 struct matrix {
-    bool is_transposed{0};
-    int m;
-    int n;
+    bool is_transposed{false};
+    int m, n;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;

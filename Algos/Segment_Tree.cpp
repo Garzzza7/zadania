@@ -44,13 +44,13 @@ struct ram_seg_tree {
         vec[x] = op(vec[2 * x + 1], vec[2 * x + 2]);
     }
 
-    [[nodiscard]] T query(const int &l, const int &r, const int &x, const int &lx,
-                          const int &rx) const {
+    [[nodiscard]] T _query(const int &l, const int &r, const int &x, const int &lx,
+                           const int &rx) const {
         if (lx >= r or l >= rx) { return NEUTRAL; }
         if (lx >= l and rx <= r) { return vec[x]; }
         const int mid{(rx - lx) / 2 + lx};
-        const T p1{query(l, r, 2 * x + 1, lx, mid)};
-        const T s2{query(l, r, 2 * x + 2, mid, rx)};
+        const T p1{_query(l, r, 2 * x + 1, lx, mid)};
+        const T s2{_query(l, r, 2 * x + 2, mid, rx)};
         return op(p1, s2);
     }
 
@@ -65,7 +65,7 @@ struct ram_seg_tree {
 
     [[nodiscard]] T query(const int &l, const int &r) const {
         // [l , r)
-        return query(l, r, 0, 0, size);
+        return _query(l, r, 0, 0, size);
     }
 };
 

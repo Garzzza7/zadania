@@ -5,7 +5,7 @@ template <typename T = int>
 std::vector<T> euler_tour(const std::vector<std::vector<T>> &adj, T root = 0) {
     const int n = (int) adj.size();
     std::vector<T> euler;
-    std::vector visited(n, false);
+    std::vector<char> visited(n, false);
     auto dfs = [&](const auto &self, const int v) -> void {
         visited[v] = true;
         euler.push_back(v);

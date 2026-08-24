@@ -2,8 +2,7 @@
 
 template <typename T = int>
 struct point {
-    T x;
-    T y;
+    T x, y;
     point(const T &x, const T &y)
         : x(x),
           y(y) {

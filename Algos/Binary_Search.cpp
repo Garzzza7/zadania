@@ -2,9 +2,7 @@
 #include <vector>
 
 long long iterative_bin_search(const long long target, const std::vector<long long> &vec) {
-    long long l = 0;
-    long long r = static_cast<int>(vec.size()) - 1;
-    long long mid = 0;
+    long long l = 0, r = static_cast<int>(vec.size()) - 1, mid = 0;
     while (l <= r) {
         mid = (r - l) / 2 + l;
         if (vec[mid] < target) {
@@ -19,8 +17,7 @@ long long iterative_bin_search(const long long target, const std::vector<long lo
 }
 
 long long leftmost_bin_search(const long long target, const std::vector<long long> &vec) {
-    long long l = 0;
-    long long r = static_cast<int>(vec.size()) - 1;
+    long long l = 0, r = static_cast<int>(vec.size()) - 1;
     while (l < r)
         if (const long long mid = (r - l) / 2 + l; vec[mid] < target) {
             l = mid + 1;
@@ -31,8 +28,7 @@ long long leftmost_bin_search(const long long target, const std::vector<long lon
 }
 
 long long rightmost_bin_search(const long long target, const std::vector<long long> &vec) {
-    long long l = 0;
-    long long r = static_cast<int>(vec.size()) - 1;
+    long long l = 0, r = static_cast<int>(vec.size()) - 1;
     while (l < r) {
         long long mid = (r - l) / 2 + l;
         if (vec[mid] > target) {

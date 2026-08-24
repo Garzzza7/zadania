@@ -11,8 +11,7 @@ template <typename T = int>
 struct kosaraju {
    private:
     T _size;
-    std::vector<std::vector<T>> _adj;
-    std::vector<std::vector<T>> _rev_adj;
+    std::vector<std::vector<T>> _adj, _rev_adj;
     std::stack<T> _out;
     std::vector<char> _vis;
     int _cnt_components{0};

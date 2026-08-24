@@ -2,16 +2,12 @@
 #include <vector>
 
 void heapify(std::vector<int> &vec, int i) {
-    int largest{i};
-    int l{2 * i + 1};
-    int r{2 * i + 2};
-    if (l < static_cast<int>(vec.size()) && vec[l] > vec[largest]) largest = l;
-    if (r < static_cast<int>(vec.size()) && vec[r] > vec[largest]) largest = r;
+    int largest{i}, l{2 * i + 1}, r{2 * i + 2};
+    if (l < static_cast<int>(vec.size()) and vec[l] > vec[largest]) largest = l;
+    if (r < static_cast<int>(vec.size()) and vec[r] > vec[largest]) largest = r;
 
     if (largest != i) {
-        vec[i] ^= vec[largest];
-        vec[largest] ^= vec[i];
-        vec[i] ^= vec[largest];
+        std::swap(vec[i], vec[largest]);
         heapify(vec, largest);
     }
 }
@@ -29,10 +25,7 @@ void deleteNode(std::vector<int> &vec, int num) {
     int i;
     for (i = 0; i < (int) vec.size(); i++)
         if (num == vec[i]) break;
-    vec[i] ^= vec[(int) vec.size() - 1];
-    vec[(int) vec.size() - 1] ^= vec[i];
-    vec[i] ^= vec[(int) vec.size() - 1];
-
+    std::swap(vec[i], vec[(int) vec.size() - 1]);
     vec.pop_back();
     for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) heapify(vec, i);
 }

@@ -3,10 +3,8 @@
 #include <vector>
 
 int lcs(const std::string &s1, const std::string &s2) {
-    const int n{static_cast<int>(s1.size())};
-    const int m{static_cast<int>(s2.size())};
+    const int n{static_cast<int>(s1.size())}, m{static_cast<int>(s2.size())};
     std::vector dp(n + 1, std::vector<int>(m + 1, 0));
-
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
             if (s1[i - 1] == s2[j - 1]) {
@@ -16,7 +14,6 @@ int lcs(const std::string &s1, const std::string &s2) {
             }
         }
     }
-
     return dp[n][m];
 }
 

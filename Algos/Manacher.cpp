@@ -18,8 +18,7 @@ std::vector<int> manacher(const Container &s) {
     t.push_back('$');
     const int n{(int) (t.size())};
     std::vector<int> res(n);
-    int l{0};
-    int r{0};
+    int l{0}, r{0};
     for (int i = 1; i < n - 1; i++) {
         int j{1};
         if (i <= r) {
@@ -41,16 +40,14 @@ template <typename Container = std::string>
 std::string largest_palindrome(const Container &s) {
     auto man{manacher(s)};
     const int n{(int) man.size()};
-    int id{0};
-    int val{0};
+    int id{0}, val{0};
     for (int i = 2; i < n - 2; i++) {
         if (man[i] > val) {
             val = man[i];
             id = i;
         }
     }
-    std::string res{};
-    std::string tmp{};
+    std::string res{}, tmp{};
     if (val & 1) {
         int idx{id / 2 - 1};
         val -= 1;
@@ -80,8 +77,7 @@ std::vector<std::pair<int, std::string>> all_palindromes(const Container &s,
                                                          const int &threshold = 1) {
     auto man{manacher(s)};
     auto extract_string = [&s](const int &id, int val) -> std::pair<int, std::string> {
-        std::string res{};
-        std::string tmp{};
+        std::string res{}, tmp{};
         int index{};
         if (val & 1) {
             int idx{id / 2 - 1};
@@ -96,8 +92,7 @@ std::vector<std::pair<int, std::string>> all_palindromes(const Container &s,
             std::reverse(tmp.begin(), tmp.end());
             res = tmp + res;
         } else {
-            int idx{id / 2};
-            int cnt{val / 2};
+            int idx{id / 2}, cnt{val / 2};
             index = idx - cnt;
             for (int i = 0; i < cnt; i++) {
                 tmp.push_back(s[idx - 1 - i]);

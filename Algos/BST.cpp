@@ -9,9 +9,7 @@ struct bst {
     template <typename TT = int>
     struct _node_type {
         TT val{0};
-        _node_type<TT> *l{nullptr};
-        _node_type<TT> *r{nullptr};
-        _node_type<TT> *p{nullptr};
+        _node_type<TT> *l{nullptr}, *r{nullptr}, *p{nullptr};
 
         _node_type(const TT &v)
             : val(v) {

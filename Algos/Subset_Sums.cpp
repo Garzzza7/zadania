@@ -8,10 +8,8 @@
 template <typename T = unsigned long long>
 struct subset_sums {
    private:
-    std::vector<T> _l;
-    std::vector<T> _r;
-    std::map<T, T> _l_map;
-    std::map<T, T> _r_map;
+    std::vector<T> _l, _r;
+    std::map<T, T> _l_map, _r_map;
 
     inline bool _is_on(T a, T b) {
         return a & (static_cast<T>(1) << b);

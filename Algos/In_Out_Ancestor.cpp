@@ -10,8 +10,7 @@ struct in_out_ancestor {
     // std::map<T, int> tin;
     // std::map<T, int> tout;
     // std::map<T, char> visited;
-    std::vector<T> _tin;
-    std::vector<T> _tout;
+    std::vector<T> _tin, _tout;
     std::vector<char> _visited;
     std::vector<std::vector<T>> _adj;
 

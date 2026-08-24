@@ -5,9 +5,7 @@
 template <typename T = double>
 struct circle {
     [[maybe_unused]] static constexpr double pi{std::numbers::pi};
-    T x;
-    T y;
-    T r;
+    T x, y, r;
 
     circle()
         : x(0),

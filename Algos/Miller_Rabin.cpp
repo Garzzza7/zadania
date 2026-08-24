@@ -20,8 +20,7 @@ bool miller_rabin(const T &n) {
         return ans;
     };
     const std::vector<T> guards = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
-    T s = __builtin_ctzll(n - 1);
-    T d = n >> s;
+    T s = __builtin_ctzll(n - 1), d = n >> s;
     for (const auto &a : guards) {
         T p = modpow(a % n, d, n), i = s;
         while (p != 1 and p != n - 1 and a % n and i--) { p = modmul(p, p, n); }

@@ -5,11 +5,10 @@
 // BASED ON: https://cses.fi/problemset/task/1753/
 
 std::vector<int> rabin_karp(std::string const &text, std::string const &pattern) {
-    constexpr long long mod{1000000007};
-    constexpr long long prime{16777619};
+    constexpr long long mod{1000000007}, prime{16777619};
 
-    const int text_size{static_cast<int>(text.size())};
-    const int pattern_size{static_cast<int>(pattern.size())};
+    const int text_size{static_cast<int>(text.size())},
+        pattern_size{static_cast<int>(pattern.size())};
 
     std::vector<long long> precalc_powers(std::max(pattern_size, text_size));
     precalc_powers[0] = 1;

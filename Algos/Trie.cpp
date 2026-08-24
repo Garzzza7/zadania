@@ -7,11 +7,9 @@ template <int ALPHA_SIZE = 26, int BASE = 97>
 struct trie {
    private:
     struct _node_type {
-        std::vector<int> next;
-        std::vector<int> accepting;
+        std::vector<int> next, accepting;
         bool is_accepting{false};
-        int chr{};
-        int cnt_links{0};
+        int chr{}, cnt_links{1};
         _node_type(const int &c)
             : chr(c) {
             next.assign(ALPHA_SIZE, -1);

@@ -8,8 +8,7 @@ struct grundy {
     // must be a dag !!!
     // 0-indexed
    private:
-    static constexpr T _NEUTRAL{static_cast<T>(-1)};
-    static constexpr T _VISITING{static_cast<T>(-2)};
+    static constexpr T _NEUTRAL{static_cast<T>(-1)}, _VISITING{static_cast<T>(-2)};
     std::vector<T> _colors;
     static T _mex(const std::vector<T> &vec) {
         std::vector<char> used(vec.size() + 1, false);

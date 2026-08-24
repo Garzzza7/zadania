@@ -5,10 +5,9 @@
 template <typename T = int>
 T ternary_search(std::vector<T> &vec, const int l, const int r, const T x) {
     if (r >= l) {
-        const int mid1{l + (r - l) / 3};
-        const int mid2{r - (r - l) / 3};
-        if (vec[mid1] == x) { return mid1; }
-        if (vec[mid2] == x) { return mid2; }
+        const int mid1{l + (r - l) / 3}, mid2{r - (r - l) / 3};
+        if (vec[mid1] == x) return mid1;
+        if (vec[mid2] == x) return mid2;
         if (x < vec[mid1]) {
             return ternary_search(vec, l, mid1 - 1, x);
         } else if (x > vec[mid2]) {

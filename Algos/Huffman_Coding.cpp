@@ -10,9 +10,7 @@ struct huffman {
     struct _node_type {
         int num;
         char c;
-        _node_type *left;
-        _node_type *right;
-        _node_type *p;
+        _node_type *left, *right, *p;
         _node_type(const int &num)
             : num(num),
               c(' '),
@@ -82,8 +80,7 @@ struct huffman {
     }
 
     std::string decode(const std::string &s, const std::map<char, std::string> &mapping) {
-        std::string res;
-        std::string tmp;
+        std::string res, tmp;
         std::map<std::string, char> rev_mapping;
         for (const auto &[f, s] : mapping) { rev_mapping[s] = f; }
         for (const auto &c : s) {

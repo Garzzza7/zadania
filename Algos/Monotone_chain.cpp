@@ -4,8 +4,7 @@
 
 template <typename T = int>
 struct point {
-    T x;
-    T y;
+    T x, y;
 
     point(const T &x, const T &y)
         : x(x),
@@ -40,8 +39,7 @@ std::vector<point<T>> convex_hull(std::vector<point<T>> points) {
         return l.y < r.y;
     });
 
-    std::vector<point<T>> up;
-    std::vector<point<T>> low;
+    std::vector<point<T>> up, low;
 
     for (int i = 0; i < n; i++) {
         while ((int) low.size() >= 2 and

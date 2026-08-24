@@ -4,8 +4,7 @@
 template <typename T = int>
 T diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     const int n{(int) adj.size()};
-    T max_diameter{0};
-    T at{0};
+    T max_diameter{0}, at{0};
     std::vector<char> visited(n + 1, false);
     auto dfs = [&](const auto &self, const T &ver, T cnt) -> void {
         if (cnt > max_diameter) {

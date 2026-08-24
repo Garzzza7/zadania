@@ -10,14 +10,9 @@ template <int ALPHA_SIZE = 26, int BASE = 97>
 struct aho_corasick {
    private:
     struct _node_type {
-        std::vector<int> next;
-        std::vector<int> accepting;
+        std::vector<int> next, accepting;
         bool is_accepting{false};
-        int suffix_link{-1};
-        int output_link{-1};
-        int chr{};
-        int cnt_links{0};
-        int parent{0};
+        int suffix_link{-1}, output_link{-1}, chr{}, cnt_links{0}, parent{0};
         _node_type(const int &c)
             : chr(c) {
             next.assign(ALPHA_SIZE, -1);

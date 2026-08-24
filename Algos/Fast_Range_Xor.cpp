@@ -18,9 +18,7 @@ int main(void) {
         int n;
         std::cin >> n;
         int xo = 0;
-        for (int i = 1; i <= n; i++) {
-            xo ^= i;
-        }
+        for (int i = 1; i <= n; i++) { xo ^= i; }
         std::cout << (fast_xor(n) == xo) << "\n";
     }
     return 0;

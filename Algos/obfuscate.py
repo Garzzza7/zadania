@@ -4,11 +4,11 @@ import re
 import sys
 import textwrap
 
-MAX_LINE_LENGTH = 100
+MAX_LINE_LENGTH: int = 100
 
 
 def remove_main_function(text: str) -> str:
-    match = re.search(r"\b(?:int|auto)\s+main\s*\([^)]*\)\s*\{", text)
+    match = re.search(r"\b(?:int|auto|void)\s+main\s*\([^)]*\)\s*\{", text)
     if not match:
         return text
     start: int = match.start()
@@ -157,10 +157,19 @@ def wrap_text(text: str) -> str:
     )
 
 
+def remove_includes(text: str) -> str:
+    return re.sub(r"^[ \t]*#include[^\n]*(?:\n|$)", "", text, flags=re.MULTILINE)
+
+
+def remove_pragmas(text: str) -> str:
+    return re.sub(r"^[ \t]*#pragma[^\n]*(?:\n|$)", "", text, flags=re.MULTILINE)
+
+
 def process_file(path: str) -> None:
     with open(path, "r", encoding="utf-8") as f:
-        text = f.read()
-    text = re.sub(r"^[ \t]*#include[^\n]*(?:\n|$)", "", text, flags=re.MULTILINE)
+        text: str = f.read()
+    text = remove_includes(text)
+    text = remove_pragmas(text)
     text = remove_main_function(text)
     text = remove_cpp_comments(text)
     text = normalize_whitespace(text)
@@ -171,7 +180,7 @@ def process_file(path: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <file>")
+        print(f"Usage: python3 {sys.argv[0]} <file>")
         sys.exit(1)
     try:
         process_file(sys.argv[1])

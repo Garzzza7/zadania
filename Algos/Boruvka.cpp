@@ -6,8 +6,7 @@ template <typename T = int>
 struct boruvka {
     template <typename TT = int>
     struct _edge_type {
-        int u;
-        int v;
+        int u, v;
         TT weight;
         _edge_type(const int &u, const int &v, const TT &weight)
             : u(u),
@@ -19,8 +18,7 @@ struct boruvka {
     int size;
     T MAX;
     std::vector<edge> edges;
-    std::vector<int> parent;
-    std::vector<int> rank;
+    std::vector<int> parent, rank;
 
     boruvka(const int &n)
         : size(n),

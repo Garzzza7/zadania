@@ -7,8 +7,7 @@
 template <typename T, typename OP, T NEUTRAL>
 struct sparse_table {
    private:
-    int _size{};
-    int _LOG{};
+    int _size{}, _LOG{};
     std::vector<std::vector<T>> _vec;
     static constexpr OP op{};
     std::vector<unsigned long long> _precalc_log;

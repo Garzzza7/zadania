@@ -29,8 +29,7 @@ template <typename T = int>
 struct cartesian_tree {
     template <typename TT = int>
     struct sparse_table {
-        int size;
-        int LOG{};
+        int size, LOG{};
         const TT NEUTRAL_ELEMENT{INT32_MAX};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         std::vector<TT> bin_log;

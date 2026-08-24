@@ -30,8 +30,7 @@ std::map<std::pair<T, T>, bool> find_bridges(const std::vector<std::vector<T>> &
 
 struct tarjan_find_bridges {
     struct edge {
-        int vertex;
-        int id;
+        int vertex, id;
         edge(const int vv, const int idd)
             : vertex(vv),
               id(idd) {
@@ -39,13 +38,10 @@ struct tarjan_find_bridges {
     };
 
     std::vector<std::vector<edge>> adj;
-    std::vector<char> visited;
-    std::vector<char> is_bridge;
+    std::vector<char> visited, is_bridge;
     std::vector<std::pair<int, int>> edges;
-    std::vector<int> entry_time;
-    std::vector<int> low;
-    int visit_time{0};
-    int edge_id{0};
+    std::vector<int> entry_time, low;
+    int visit_time{0}, edge_id{0};
 
     tarjan_find_bridges(int n, int m) {
         n++;

@@ -7,8 +7,7 @@
 std::vector<int> suffix_array(const std::string &str) {
     const std::string s{str + "$"};
     const int n{(int) s.size()};
-    std::vector<int> p(n);
-    std::vector<int> c(n);
+    std::vector<int> p(n), c(n);
     // k = 0 case
     std::vector<std::pair<char, int>> a(n);
     for (int i = 0; i < n; i++) { a[i] = {s[i], i}; }

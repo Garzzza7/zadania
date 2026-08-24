@@ -3,8 +3,7 @@
 
 template <typename T = int>
 std::vector<T> de_bruijn_seq(const T &len, const T &alphabet) {
-    std::vector<T> res;
-    std::vector<T> lyndon = {0};
+    std::vector<T> res, lyndon = {0};
     while (lyndon[0] != alphabet - 1) {
         const T r{(T) lyndon.size()};
         if (len % r == 0) {

@@ -6,9 +6,8 @@ std::vector<int> z_function(const std::string &text, const std::string &pattern)
     const std::string s = text + "$" + pattern;
     const int n{static_cast<int>(s.size())};
     std::vector<int> z(n);
+    int l{0}, r{0};
     z[0] = n;
-    int l{0};
-    int r{0};
     for (int i = 1; i < n; i++) {
         if (i < r) { z[i] = std::min(r - i, z[i - l]); }
         while (i + z[i] < n and s[z[i]] == s[i + z[i]]) { z[i]++; }
@@ -23,9 +22,8 @@ std::vector<int> z_function(const std::string &text, const std::string &pattern)
 std::vector<int> z_function(const std::string &s) {
     const int n{static_cast<int>(s.size())};
     std::vector<int> z(n);
+    int l{0}, r{0};
     z[0] = n;
-    int l{0};
-    int r{0};
     for (int i = 1; i < n; i++) {
         if (i < r) { z[i] = std::min(r - i, z[i - l]); }
         while (i + z[i] < n and s[z[i]] == s[i + z[i]]) { z[i]++; }

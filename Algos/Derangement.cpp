@@ -25,10 +25,9 @@ static const std::vector<unsigned long long> derangements = {1,
                                                              895'014'631'192'902'100};
 
 unsigned long long derangement(const unsigned long long n) {
-    if (n == 1ull) { return 0ull; }
-    if (n == 2ull) { return 1ull; }
-    unsigned long long prev1{1ull};
-    unsigned long long prev2{0ull};
+    if (n == 1ull) return 0ull;
+    if (n == 2ull) return 1ull;
+    unsigned long long prev1{1ull}, prev2{0ull};
     for (unsigned long long i = 3; i <= n; i++) {
         const auto curr{(i - 1) * (prev1 + prev2)};
         prev2 = prev1;

@@ -6,8 +6,7 @@
 template <typename T, typename OP>
 struct disjoint_sparse_table {
    private:
-    int _size{};
-    int _LOG{0};
+    int _size{}, _LOG{0};
     static constexpr OP op{};
     std::vector<std::vector<T>> _vec;
     std::vector<T> _base;

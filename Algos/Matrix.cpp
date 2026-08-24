@@ -5,8 +5,7 @@
 template <typename T = int>
 struct matrix {
     bool is_transposed{false};
-    int m;
-    int n;
+    int m, n;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;

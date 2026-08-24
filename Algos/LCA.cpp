@@ -45,9 +45,7 @@ struct lca {
     using ST = _sparse_table<T, decltype(op), INT32_MAX>;
 
     int _size;
-    std::vector<int> _heights;
-    std::vector<int> _euler;
-    std::vector<int> _ids;
+    std::vector<int> _heights, _euler, _ids;
     ST _st = ST();
 
    public:

@@ -30,8 +30,7 @@ struct rational {
 
    public:
     using rat = rational<T>;
-    T num{};
-    T denum{};
+    T num{}, denum{};
 
     rational(const auto &num, const auto &denum)
         : num(num),

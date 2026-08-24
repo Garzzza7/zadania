@@ -4,8 +4,7 @@
 
 struct desopo_pape {
     struct edge {
-        int vertex;
-        int weight;
+        int vertex, weight;
         edge(const int vv, const int ww)
             : vertex(vv),
               weight(ww) {
@@ -14,10 +13,8 @@ struct desopo_pape {
 
     std::vector<std::vector<edge>> adj;
     std::deque<int> queue;
-    std::vector<int> path;
-    std::vector<int> distance;
-    std::vector<int> type; // 0 - calculated , 1 - currently being calculated
-                           // 2 - yet to be calculated
+    std::vector<int> path, distance, type; // 0 - calculated , 1 - currently being calculated
+                                           // 2 - yet to be calculated
 
     desopo_pape(const int &n) {
         adj = std::vector<std::vector<edge>>(n + 1, std::vector<edge>());

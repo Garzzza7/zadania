@@ -4,8 +4,7 @@
 int main(void) {
     int n, q;
     std::cin >> n >> q;
-    std::vector<long long> difference_array(n + 1, 0);
-    std::vector<long long> overlapping_segments(n, 0);
+    std::vector<long long> difference_array(n + 1, 0), overlapping_segments(n, 0);
 
     for (int i = 0; i < q; i++) {
         long long l, r;

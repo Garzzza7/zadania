@@ -21,8 +21,7 @@ long long recursive_binomial_coefficient(long long n, long long k) {
 }
 
 long long multiplicative_binomial_coefficient(long long n, long long k) {
-    long long res{1};
-    long long kk{std::min(k, n - k)};
+    long long res{1}, kk{std::min(k, n - k)};
     for (int i = 1; i <= kk; i++) {
         res *= n + 1 - i;
         res /= i;

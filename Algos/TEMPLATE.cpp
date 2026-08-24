@@ -189,9 +189,7 @@ std::string to_debug(auto x)
 std::string to_debug(std::ranges::range auto x, std::string s = "")
     requires(not std::is_same_v<decltype(x), std::string>)
 {
-    for (const auto &xi : x) {
-        s += ", " + to_debug(xi);
-    }
+    for (const auto &xi : x) { s += ", " + to_debug(xi); }
     return "[" + s.substr(s.empty() ? 0 : 2) + "]";
 }
 template <class T, size_t size>
@@ -393,9 +391,7 @@ int main(void) {
 
     int _{1};
     std::cin >> _;
-    while (_--) {
-        solve();
-    }
+    while (_--) { solve(); }
 
 #ifdef TIME
     const auto finish = std::chrono::high_resolution_clock::now();

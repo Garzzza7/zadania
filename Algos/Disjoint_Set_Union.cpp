@@ -6,9 +6,7 @@
 template <typename T = int>
 struct dsu {
    private:
-    std::vector<T> _parent;
-    std::vector<T> _size;
-    std::vector<T> _rank;
+    std::vector<T> _parent, _size, _rank;
 
    public:
     dsu(const T &n)

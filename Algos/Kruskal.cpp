@@ -7,8 +7,7 @@ struct kruscal {
    private:
     template <typename TT = int>
     struct _edge_type {
-        int u;
-        int v;
+        int u, v;
         TT weight;
         _edge_type(const int &u, const int &v, const TT &weight)
             : u(u),
@@ -17,10 +16,8 @@ struct kruscal {
         }
     };
     using edge = _edge_type<T>;
-    std::vector<edge> _mst;
-    std::vector<edge> _edges;
-    std::vector<int> _parent;
-    std::vector<int> _rank;
+    std::vector<edge> _mst, _edges;
+    std::vector<int> _parent, _rank;
 
    public:
     kruscal(const int &n) {
