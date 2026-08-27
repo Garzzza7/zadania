@@ -18,7 +18,9 @@ int main(void) {
     int n;
     std::cin >> n;
     auto vec = sierpinski_nth_row(n, 67);
-    for (const auto &v : vec) { std::cout << v << " "; }
+    for (const auto &v : vec) {
+        std::cout << v << " ";
+    }
     std::cout << "\n";
 
     return 0;

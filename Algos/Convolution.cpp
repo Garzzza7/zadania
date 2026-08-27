@@ -338,7 +338,9 @@ std::vector<Mint> mint_conv(const std::vector<Mint> &a, const std::vector<Mint> 
     const int m = (int) b.size();
     std::vector<Mint> c(n + m - 1);
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) { c[i + j] += a[i] * b[j]; }
+        for (int j = 0; j < m; j++) {
+            c[i + j] += a[i] * b[j];
+        }
     }
     return c;
 }
@@ -350,9 +352,12 @@ std::vector<T> conv(const std::vector<int> &a, const std::vector<int> &b) {
     const int m = (int) b.size();
     std::vector<T> c(n + m - 1);
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) { c[i + j] += (T) a[i] * b[j] % MOD; }
+        for (int j = 0; j < m; j++) {
+            c[i + j] += (T) a[i] * b[j] % MOD;
+        }
     }
-    for (auto &&k : c) k %= MOD;
+    for (auto &&k : c)
+        k %= MOD;
     return c;
 }
 
@@ -378,10 +383,14 @@ int main(void) {
     }
     auto c = conv<int>(a, b);
     auto cc = mint_conv(aa, bb);
-    for (const auto &v : c) { std::cout << v << " "; }
+    for (const auto &v : c) {
+        std::cout << v << " ";
+    }
     std::cout << "\n";
 
-    for (const auto &v : cc) { std::cout << v << " "; }
+    for (const auto &v : cc) {
+        std::cout << v << " ";
+    }
     std::cout << "\n";
 
     return 0;

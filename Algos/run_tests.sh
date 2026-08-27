@@ -526,6 +526,20 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Euler_s_totient.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
+if [[ ! "$(./Expression.sol <Expression.txt)" ]]; then
+printf "${red}ABORT at Expression.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Expression.sol <Expression.txt)" == "$(cat Expression.test)" ]; then
+printf "${green}Expression Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Expression Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Expression.sol <Expression.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Expression.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
 if [[ ! "$(./Extended_Euclid_s_Algorithm.sol <Extended_Euclid_s_Algorithm.txt)" ]]; then
 printf "${red}ABORT at Extended_Euclid_s_Algorithm.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))

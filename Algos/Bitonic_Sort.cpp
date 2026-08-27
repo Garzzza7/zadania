@@ -25,7 +25,8 @@ int main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec) std::cin >> v;
+        for (auto &&v : vec)
+            std::cin >> v;
         auto test{vec};
         bitonic_sort(vec);
         std::sort(test.begin(), test.end());

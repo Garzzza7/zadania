@@ -21,7 +21,9 @@ int cnt_factors(T n) {
     for (int i = 2; i * i <= n; i++) {
         if (n % i == 0) {
             res++;
-            while (n % i == 0) { n /= i; }
+            while (n % i == 0) {
+                n /= i;
+            }
         }
     }
     res += n > 1;
@@ -54,7 +56,9 @@ int main(void) {
     std::cout << "\n";
     std::cout << set.size() << " " << cnt_factors(n) << "\n";
     auto sep = sep_factors(n);
-    for (const auto &v : sep) { std::cout << v << " "; }
+    for (const auto &v : sep) {
+        std::cout << v << " ";
+    }
 
     return 0;
 }

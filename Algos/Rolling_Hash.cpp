@@ -25,7 +25,9 @@ long long query_hash(const std::vector<long long> &hash, const int &l, const int
 std::vector<long long> rolling_hash(const std::string &s) {
     const int n{static_cast<int>(s.size())};
     std::vector<long long> res(n + 1, 0);
-    for (int i = 0; i < n; i++) { res[i + 1] = res[i] * prime % mod + (s[i] - 'a' + 1); }
+    for (int i = 0; i < n; i++) {
+        res[i + 1] = res[i] * prime % mod + (s[i] - 'a' + 1);
+    }
     return res;
 }
 
@@ -33,7 +35,8 @@ int main(void) {
     std::string s;
     std::cin >> s;
     auto hashed{rolling_hash(s)};
-    for (const auto &h : hashed) std::cout << h << " ";
+    for (const auto &h : hashed)
+        std::cout << h << " ";
     std::cout << "\n";
     std::cout << "Hash of " << s << " = " << *(hashed.end() - 1) << "\n";
     std::cout << query_hash(hashed, 0, 2) << "\n";

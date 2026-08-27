@@ -23,7 +23,9 @@ bool miller_rabin(const T &n) {
     T s = __builtin_ctzll(n - 1), d = n >> s;
     for (const auto &a : guards) {
         T p = modpow(a % n, d, n), i = s;
-        while (p != 1 and p != n - 1 and a % n and i--) { p = modmul(p, p, n); }
+        while (p != 1 and p != n - 1 and a % n and i--) {
+            p = modmul(p, p, n);
+        }
         if (p != n - 1 and i != s) return false;
     }
     return true;

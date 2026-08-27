@@ -37,7 +37,9 @@ std::vector<RET_T> dijkstra(const T &start, std::vector<std::vector<std::pair<T,
 template <typename T = int>
 std::vector<T> shortest_path(const T &s, const T &t, const std::vector<T> &path) {
     std::vector<T> sp;
-    for (T i = t; i != s; i = path[i]) { sp.push_back(i); }
+    for (T i = t; i != s; i = path[i]) {
+        sp.push_back(i);
+    }
     sp.push_back(s);
     std::reverse(sp.begin(), sp.end());
     return sp;

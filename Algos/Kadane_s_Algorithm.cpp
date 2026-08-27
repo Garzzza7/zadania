@@ -25,7 +25,8 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) std::cin >> v;
+    for (auto &&v : vec)
+        std::cin >> v;
     std::vector<int> b = {0};
     std::vector<int> s = {0};
     int best = 0, sum = 0;
@@ -38,15 +39,18 @@ int main(void) {
     std::cout << best << '\n';
 
     std::cout << "vec: ";
-    for (const auto &v : vec) std::cout << v << " ";
+    for (const auto &v : vec)
+        std::cout << v << " ";
     std::cout << "\n";
 
     std::cout << "sums: ";
-    for (const auto &v : s) std::cout << v << " ";
+    for (const auto &v : s)
+        std::cout << v << " ";
     std::cout << "\n";
 
     std::cout << "bests: ";
-    for (const auto &v : b) std::cout << v << " ";
+    for (const auto &v : b)
+        std::cout << v << " ";
     std::cout << "\n";
 
     return 0;

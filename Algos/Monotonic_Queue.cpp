@@ -13,7 +13,9 @@ struct monotonic_queue {
 
    public:
     void push(const T &v) {
-        while (not _dq.empty() and op(_dq.back(), v)) { _dq.pop_back(); }
+        while (not _dq.empty() and op(_dq.back(), v)) {
+            _dq.pop_back();
+        }
         _dq.push_back(v);
     }
 
@@ -34,13 +36,17 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) { std::cin >> v; }
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
     int k;
     std::cin >> k;
     auto op = [](const auto &l, const auto &r) -> bool { return l < r; };
     monotonic_queue<int, decltype(op)> q;
     int i;
-    for (i = 0; i < k; i++) { q.push(vec[i]); }
+    for (i = 0; i < k; i++) {
+        q.push(vec[i]);
+    }
     for (int iter = i; iter < n; iter++) {
         std::cout << q.top() << " ";
         q.pop(vec[iter - k]);

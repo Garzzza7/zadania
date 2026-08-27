@@ -4,7 +4,9 @@
 double iter_sqrt(const double &v, const double &threshold = 0.01) {
     if (v <= threshold) return 1.0;
     double res = 1.0;
-    while (std::fabs(res * res - v) > threshold) { res = 0.5 * (res + v / res); }
+    while (std::fabs(res * res - v) > threshold) {
+        res = 0.5 * (res + v / res);
+    }
     return res;
 }
 

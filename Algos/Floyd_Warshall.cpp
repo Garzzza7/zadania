@@ -84,7 +84,8 @@ int main(void) {
     /*shortest_path(1, 3, dp, paths);*/
 
     for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) std::cout << dp[i][j] << " ";
+        for (int j = 1; j <= n; j++)
+            std::cout << dp[i][j] << " ";
         std::cout << "\n";
     }
     return 0;

@@ -110,7 +110,9 @@ std::vector<std::pair<int, std::string>> all_palindromes(const Container &s,
     }
     std::vector<std::pair<int, std::string>> res;
     res.reserve(vals.size());
-    for (const auto &v : vals) { res.push_back(extract_string(v.first, v.second)); }
+    for (const auto &v : vals) {
+        res.push_back(extract_string(v.first, v.second));
+    }
     return res;
 }
 
@@ -119,11 +121,15 @@ int main(void) {
     std::cin >> s;
     auto res{manacher(s)};
     const int n{(int) res.size()};
-    for (int i = 2; i < n - 2; i++) { std::cout << res[i] << " "; }
+    for (int i = 2; i < n - 2; i++) {
+        std::cout << res[i] << " ";
+    }
     std::cout << "\n";
     std::cout << largest_palindrome(s) << "\n";
     auto pali{all_palindromes(s)};
-    for (const auto &v : pali) { std::cout << v.first << " " << v.second << "\n"; }
+    for (const auto &v : pali) {
+        std::cout << v.first << " " << v.second << "\n";
+    }
 
     return 0;
 }

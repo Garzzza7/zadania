@@ -35,7 +35,9 @@ int main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec) { std::cin >> v; }
+        for (auto &&v : vec) {
+            std::cin >> v;
+        }
         auto test{vec};
         quick_sort(vec, 0, n - 1);
         std::sort(test.begin(), test.end());

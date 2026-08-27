@@ -31,7 +31,9 @@ int main(void) {
         adj[v].push_back(u);
     }
     auto euler = euler_tour(adj, 0);
-    for (const auto &v : euler) { std::cout << v + 1 << " "; }
+    for (const auto &v : euler) {
+        std::cout << v + 1 << " ";
+    }
     std::cout << "\n";
 
     return 0;

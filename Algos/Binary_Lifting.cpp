@@ -33,7 +33,9 @@ int main(void) {
     std::cin >> n >> m;
     int limit{0};
     std::vector<std::vector<int>> adj(n + 1, std::vector<int>());
-    while ((1 << limit) <= n) { limit++; }
+    while ((1 << limit) <= n) {
+        limit++;
+    }
     int root{-1};
     for (int i = 0; i < m; i++) {
         int p, v;

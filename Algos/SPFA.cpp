@@ -7,7 +7,9 @@ template <typename T = int>
 void spfa(const T &start, const std::vector<std::vector<std::pair<T, T>>> &adj,
           std::vector<int> &distances) {
     const int n{(int) adj.size()};
-    for (auto &&v : distances) { v = 10000; }
+    for (auto &&v : distances) {
+        v = 10000;
+    }
     distances[start] = 0;
     std::queue<T> q;
     std::vector<char> qed(n, false);
@@ -49,7 +51,8 @@ int main(void) {
     std::vector<int> distances(n + 1, 1);
     spfa(1, adj, distances);
 
-    for (int i = 1; i <= n; i++) std::cout << i << ": " << distances[i] << "\n";
+    for (int i = 1; i <= n; i++)
+        std::cout << i << ": " << distances[i] << "\n";
 
     return 0;
 }

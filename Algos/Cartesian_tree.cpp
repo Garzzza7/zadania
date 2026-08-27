@@ -37,10 +37,14 @@ struct cartesian_tree {
             : size(static_cast<int>(init.size())) {
             bin_log.push_back(0);
             bin_log.push_back(0);
-            for (int i = 2; i <= size; i++) { bin_log.push_back(bin_log[i / 2] + 1); }
+            for (int i = 2; i <= size; i++) {
+                bin_log.push_back(bin_log[i / 2] + 1);
+            }
             LOG = 63 - __builtin_clzl(size) + 1;
             matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
-            for (int i = 0; i < size; i++) { matrix[0][i] = {init[i], i}; }
+            for (int i = 0; i < size; i++) {
+                matrix[0][i] = {init[i], i};
+            }
         }
 
         static std::pair<TT, TT> operation(const std::pair<TT, T> &a, const std::pair<TT, TT> &b) {
@@ -100,14 +104,20 @@ int main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (int i = 0; i < n; i++) { std::cin >> vec[i]; }
+        for (int i = 0; i < n; i++) {
+            std::cin >> vec[i];
+        }
         auto ct{cartesian_tree_parents(vec)};
-        for (int i = 0; i < n; i++) { std::cout << ((ct[i] == -1) ? i : ct[i]) << " "; }
+        for (int i = 0; i < n; i++) {
+            std::cout << ((ct[i] == -1) ? i : ct[i]) << " ";
+        }
         std::cout << "\n";
         std::cout << "-----------------------\n";
         cartesian_tree ct2(vec);
         ct2.build();
-        for (const auto &v : ct2.tree) { std::cout << v << " "; }
+        for (const auto &v : ct2.tree) {
+            std::cout << v << " ";
+        }
         std::cout << "\n";
     }
     return 0;

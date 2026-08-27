@@ -15,7 +15,8 @@ struct grundy {
         for (const auto &v : vec)
             if (v >= 0 and v <= static_cast<T>(vec.size())) used[v] = true;
         T res = 0;
-        while (used[res]) res++;
+        while (used[res])
+            res++;
         return res;
     }
 
@@ -29,7 +30,9 @@ struct grundy {
             assert(_colors[ver] != _VISITING);
             _colors[ver] = _VISITING;
             std::vector<T> child;
-            for (const auto &v : adj[ver]) { child.push_back(self(self, v)); }
+            for (const auto &v : adj[ver]) {
+                child.push_back(self(self, v));
+            }
             return _colors[ver] = _mex(child);
         };
         for (T i = 0; i < n; i++) {

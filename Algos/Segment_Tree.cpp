@@ -9,7 +9,9 @@ struct ram_seg_tree {
 
     ram_seg_tree(const int &n) {
         int log = 1;
-        while (log < n) { log <<= 1; }
+        while (log < n) {
+            log <<= 1;
+        }
         size = log;
         vec.assign(2 * size, NEUTRAL);
     }
@@ -79,11 +81,15 @@ int main(void) {
     std::vector<long long> init(n);
     segtree st(n);
 
-    for (auto &&v : init) { std::cin >> v; }
+    for (auto &&v : init) {
+        std::cin >> v;
+    }
 
     st.build(init);
 
-    for (const auto &a : st.vec) { std::cout << a << " "; }
+    for (const auto &a : st.vec) {
+        std::cout << a << " ";
+    }
 
     std::cout << "\n";
     std::cout << st.query(1, 5) << "\n";

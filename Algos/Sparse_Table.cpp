@@ -15,7 +15,9 @@ struct sparse_table {
    public:
     sparse_table(const std::vector<T> &init)
         : _size(static_cast<int>(init.size())) {
-        while (1 << _LOG < _size) { _LOG++; }
+        while (1 << _LOG < _size) {
+            _LOG++;
+        }
         _LOG++;
         _vec = std::vector(_LOG, std::vector(_size, NEUTRAL));
         _vec[0] = init;
@@ -26,7 +28,9 @@ struct sparse_table {
             }
         }
         for (int i = 0; i < _LOG; i++) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j++) { _precalc_log[j] = i; }
+            for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+                _precalc_log[j] = i;
+            }
         }
     }
 
@@ -61,7 +65,9 @@ int main(void) {
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> vec(n);
-    for (auto &&v : vec) { std::cin >> v; }
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
 
     RMQ rmq(vec);
     SUM s(vec);

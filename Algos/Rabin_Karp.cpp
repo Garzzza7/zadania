@@ -42,7 +42,9 @@ int main(void) {
     std::cout << pattern << "\n";
     auto res{rabin_karp(text, pattern)};
     std::cout << static_cast<int>(res.size()) << " matches found at:\n";
-    for (const auto &c : res) { std::cout << c << " "; }
+    for (const auto &c : res) {
+        std::cout << c << " ";
+    }
     std::cout << "\n";
     return 0;
 }

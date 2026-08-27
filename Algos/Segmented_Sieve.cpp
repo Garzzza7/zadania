@@ -13,7 +13,9 @@ std::vector<char> segmented_sieve(const T &L, const T &R) {
         for (T i = 2; i <= lim; i++) {
             if (not not_prime[i]) {
                 primes.push_back(i);
-                for (T j = i * i; j <= lim; j += i) { not_prime[j] = true; }
+                for (T j = i * i; j <= lim; j += i) {
+                    not_prime[j] = true;
+                }
             }
         }
     }

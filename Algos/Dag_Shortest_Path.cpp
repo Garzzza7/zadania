@@ -42,7 +42,9 @@ std::vector<int> dag_shortest_path(const T &s, const std::vector<std::vector<std
 template <typename T = int>
 void shortest_path(T start, T target, std::vector<T> &path) {
     std::vector<T> sp;
-    for (int i = target; i != -1; i = path[i]) { sp.push_back(i); }
+    for (int i = target; i != -1; i = path[i]) {
+        sp.push_back(i);
+    }
 
     std::cout << "Path from " << start << " to " << target << ": ";
     for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
@@ -64,7 +66,9 @@ int main(void) {
     std::vector<int> path(n + 1, -1);
     auto res{dag_shortest_path(1, adj, path)};
 
-    for (int i = 1; i <= n; i++) { std::cout << i << ": " << res[i] << "\n"; }
+    for (int i = 1; i <= n; i++) {
+        std::cout << i << ": " << res[i] << "\n";
+    }
 
     shortest_path(1, 3, path);
 

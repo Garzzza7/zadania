@@ -58,18 +58,25 @@ struct matrix {
         matrix ret(m, n);
         if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
+                for (int j = 0; j < n; j++)
+                    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
         } else if (lhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j]; }
+                for (int j = 0; j < n; j++) {
+                    ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j];
+                }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i]; }
+                for (int j = 0; j < n; j++) {
+                    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i];
+                }
             }
         } else {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j]; }
+                for (int j = 0; j < n; j++) {
+                    ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
+                }
             }
         }
         return ret;
@@ -86,19 +93,27 @@ struct matrix {
         const auto &n{this->n};
         if (this->is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { this->mat[i][j] += rhs.mat[i][j]; }
+                for (int j = 0; j < n; j++) {
+                    this->mat[i][j] += rhs.mat[i][j];
+                }
             }
         } else if (this->is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { this->mat[j][i] += rhs.mat[i][j]; }
+                for (int j = 0; j < n; j++) {
+                    this->mat[j][i] += rhs.mat[i][j];
+                }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) { this->mat[i][j] += rhs.mat[j][i]; }
+                for (int j = 0; j < n; j++) {
+                    this->mat[i][j] += rhs.mat[j][i];
+                }
             }
         } else {
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) { this->mat[i][j] += rhs.mat[i][j]; }
+                for (int j = 0; j < m; j++) {
+                    this->mat[i][j] += rhs.mat[i][j];
+                }
             }
         }
         return *this;
@@ -116,25 +131,33 @@ struct matrix {
         if (lhs.is_transposed and rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) { ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j]; }
+                    for (int k = 0; k < n; k++) {
+                        ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j];
+                    }
                 }
             }
         } else if (lhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j]; }
+                    for (int k = 0; k < n; k++) {
+                        ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j];
+                    }
                 }
             }
         } else if (rhs.is_transposed) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k]; }
+                    for (int k = 0; k < n; k++) {
+                        ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k];
+                    }
                 }
             }
         } else {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j]; }
+                    for (int k = 0; k < n; k++) {
+                        ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
+                    }
                 }
             }
         }
@@ -202,7 +225,9 @@ struct matrix {
         return *this;
 #else
         for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) { this->mat[i][j] *= scalar; }
+            for (int j = 0; j < this->n; j++) {
+                this->mat[i][j] *= scalar;
+            }
         }
         return *this;
 #endif
@@ -216,7 +241,9 @@ struct matrix {
 #else
         if (this == &rhs) return *this;
         for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) { this->mat[i][j] = rhs.mat[i][j]; }
+            for (int j = 0; j < this->n; j++) {
+                this->mat[i][j] = rhs.mat[i][j];
+            }
         }
         return *this;
 #endif
@@ -228,7 +255,9 @@ struct matrix {
 
     void print(void) const {
         for (const auto &vv : this->mat) {
-            for (const auto &v : vv) { std::cout << v << " "; }
+            for (const auto &v : vv) {
+                std::cout << v << " ";
+            }
             std::cout << "\n";
         }
     }
@@ -246,7 +275,9 @@ struct matrix {
         T sum{0};
         // const auto n { std::min(this->m, this->n)};
         const auto n{this->m ^ ((this->n ^ this->m) & -(this->n < this->m))};
-        for (int i = 0; i < n; i++) { sum += this->mat[i][i]; }
+        for (int i = 0; i < n; i++) {
+            sum += this->mat[i][i];
+        }
         return sum;
     }
 
@@ -277,7 +308,9 @@ struct matrix {
         assert(this->is_square());
         const auto &n = (int) this->mat.size();
         matrix<T> tmp(n, n);
-        for (int i = 0; i < n; i++) { tmp.mat[i][i] = 1; }
+        for (int i = 0; i < n; i++) {
+            tmp.mat[i][i] = 1;
+        }
         while (b > 0) {
             if (b & 1) { tmp = tmp * *this; }
             *this = *this * *this;

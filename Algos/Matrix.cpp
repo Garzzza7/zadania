@@ -32,7 +32,9 @@ struct matrix {
         const auto m{static_cast<int>(rhs.mat[0].size())};
         matrix ret(n, m);
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) { ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j]; }
+            for (int j = 0; j < m; j++) {
+                ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
+            }
         }
         return ret;
     }
@@ -43,7 +45,9 @@ struct matrix {
         const auto n{static_cast<int>(rhs.mat.size())};
         const auto m{static_cast<int>(rhs.mat[0].size())};
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) { this->mat[i][j] += rhs.mat[i][j]; }
+            for (int j = 0; j < m; j++) {
+                this->mat[i][j] += rhs.mat[i][j];
+            }
         }
         return *this;
     }
@@ -56,7 +60,9 @@ struct matrix {
         matrix ret(m, p);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) { ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j]; }
+                for (int k = 0; k < n; k++) {
+                    ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
+                }
             }
         }
         return ret;
@@ -70,7 +76,9 @@ struct matrix {
         matrix tmp(m, p);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) { tmp.mat[i][j] += this->mat[i][k] * rhs.mat[k][j]; }
+                for (int k = 0; k < n; k++) {
+                    tmp.mat[i][j] += this->mat[i][k] * rhs.mat[k][j];
+                }
             }
         }
         *this = tmp;
@@ -81,7 +89,9 @@ struct matrix {
         const auto n{static_cast<int>(this->mat.size())};
         const auto m{static_cast<int>(this->mat[0].size())};
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) { this->mat[i][j] *= scalar; }
+            for (int j = 0; j < m; j++) {
+                this->mat[i][j] *= scalar;
+            }
         }
         return *this;
     }
@@ -93,7 +103,9 @@ struct matrix {
         const auto n{static_cast<int>(rhs.mat.size())};
         const auto m{static_cast<int>(rhs.mat[0].size())};
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) { this->mat[i][j] = rhs.mat[i][j]; }
+            for (int j = 0; j < m; j++) {
+                this->mat[i][j] = rhs.mat[i][j];
+            }
         }
         return *this;
     }
@@ -104,7 +116,8 @@ struct matrix {
 
     void print(void) {
         for (const auto &vv : this->mat) {
-            for (const auto &v : vv) std::cout << v << " ";
+            for (const auto &v : vv)
+                std::cout << v << " ";
             std::cout << "\n";
         }
     }
@@ -114,7 +127,9 @@ struct matrix {
         const auto m{static_cast<int>(this->mat[0].size())};
         matrix tmp(m, n);
         for (int j = 0; j < m; j++) {
-            for (int i = 0; i < n; i++) { tmp.mat[j][i] = this->mat[i][j]; }
+            for (int i = 0; i < n; i++) {
+                tmp.mat[j][i] = this->mat[i][j];
+            }
         }
         *this = std::move(tmp);
         std::swap(this->m, this->n);
@@ -129,7 +144,9 @@ struct matrix {
         assert(this->is_square());
         const auto &n = (int) this->mat.size();
         matrix<T> tmp(n, n);
-        for (int i = 0; i < n; i++) { tmp.mat[i][i] = 1; }
+        for (int i = 0; i < n; i++) {
+            tmp.mat[i][i] = 1;
+        }
         while (b > 0) {
             if (b & 1) { tmp = tmp * *this; }
             *this = *this * *this;

@@ -55,7 +55,9 @@ int main(void) {
     unsigned long long s;
     std::cin >> n >> s;
     std::vector<unsigned long long> vec(n);
-    for (auto &&v : vec) { std::cin >> v; }
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
     subset_sums<unsigned long long> ss(vec);
     std::cout << ss.query(s) << "\n";
 

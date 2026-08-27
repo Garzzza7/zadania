@@ -24,7 +24,9 @@ struct boruvka {
         : size(n),
           MAX(std::numeric_limits<T>::max()) {
         parent.assign(size, 0);
-        for (int i = 0; i < size; i++) { parent[i] = i; }
+        for (int i = 0; i < size; i++) {
+            parent[i] = i;
+        }
         rank.assign(size, 0);
     }
 

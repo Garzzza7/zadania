@@ -69,7 +69,9 @@ int main(void) {
 
     const auto res{convex_hull(points)};
 
-    for (const auto &p : res) { std::cout << p.x << " " << p.y << "\n"; }
+    for (const auto &p : res) {
+        std::cout << p.x << " " << p.y << "\n";
+    }
 
     return 0;
 }

@@ -27,7 +27,9 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) { std::cin >> v; }
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
     std::cout << median_of_medians(vec) << "\n";
     return 0;
 }

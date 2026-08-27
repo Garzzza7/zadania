@@ -36,7 +36,9 @@ struct huffman {
         pq q;
         {
             std::unordered_map<char, int> cnt;
-            for (const auto &c : s) { cnt[c]++; }
+            for (const auto &c : s) {
+                cnt[c]++;
+            }
             for (const auto &[f, s] : cnt) {
                 node *new_node = new node(f, s);
                 q.push(new_node);
@@ -75,14 +77,18 @@ struct huffman {
     std::string encode(const std::string &s, std::map<char, std::string> mapping = {}) {
         if (mapping.empty()) { mapping = calculate_mapping(s); }
         std::string res;
-        for (const auto &c : s) { res += mapping[c]; }
+        for (const auto &c : s) {
+            res += mapping[c];
+        }
         return res;
     }
 
     std::string decode(const std::string &s, const std::map<char, std::string> &mapping) {
         std::string res, tmp;
         std::map<std::string, char> rev_mapping;
-        for (const auto &[f, s] : mapping) { rev_mapping[s] = f; }
+        for (const auto &[f, s] : mapping) {
+            rev_mapping[s] = f;
+        }
         for (const auto &c : s) {
             tmp.push_back(c);
             if (rev_mapping.contains(tmp)) {
@@ -102,7 +108,9 @@ int main(void) {
     std::string s = "aabacdaca";
     huffman huffman;
     auto mapping = huffman.calculate_mapping(s);
-    for (const auto &[f, s] : mapping) { std::cout << f << " " << s << "\n"; }
+    for (const auto &[f, s] : mapping) {
+        std::cout << f << " " << s << "\n";
+    }
     auto encoded = huffman.encode(s, mapping);
     auto decoded = huffman.decode(encoded, mapping);
     std::cout << encoded << "\n";

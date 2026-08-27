@@ -8,12 +8,16 @@ void dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited)
     if (visited[vertex]) { return; }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    for (const auto &v : adj[vertex]) { dfs(v, adj, visited); }
+    for (const auto &v : adj[vertex]) {
+        dfs(v, adj, visited);
+    }
 }
 
 template <typename T = int>
 void iterative_dfs(T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &visited) {
-    for (auto &&v : visited) { v = false; }
+    for (auto &&v : visited) {
+        v = false;
+    }
     std::stack<T> stack;
     visited[vertex] = true;
     stack.push(vertex);

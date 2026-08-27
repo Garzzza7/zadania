@@ -61,7 +61,8 @@ int main(void) {
         std::vector<std::vector<int>> vec(n, std::vector<int>(m));
         std::vector<std::vector<char>> visited(n, std::vector<char>(m, false));
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++) std::cin >> vec[i][j];
+            for (int j = 0; j < m; j++)
+                std::cin >> vec[i][j];
 
         long long res1{0};
         for (int i = 0; i < n; i++)
@@ -74,7 +75,8 @@ int main(void) {
         std::cout << "rec = " << res1 << "\n";
 
         for (auto &&vv : visited)
-            for (auto &&v : vv) v = false;
+            for (auto &&v : vv)
+                v = false;
 
         long long res2{0};
         for (int i = 0; i < n; i++)

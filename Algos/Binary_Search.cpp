@@ -59,7 +59,8 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<long long> vec(n);
-    for (int i = 0; i < n; i++) std::cin >> vec[i];
+    for (int i = 0; i < n; i++)
+        std::cin >> vec[i];
     std::cout << "Iterative:\n " << "Index: " << iterative_bin_search(6, vec)
               << " Value: " << vec[iterative_bin_search(6, vec)] << "\n";
 

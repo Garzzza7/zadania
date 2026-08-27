@@ -19,7 +19,8 @@ int main(void) {
         int n, base;
         std::cin >> n >> base;
         const auto vec{convert_base10_to_base(n, base)};
-        for (const auto &v : vec) std::cout << v;
+        for (const auto &v : vec)
+            std::cout << v;
         std::cout << "\n";
     }
 

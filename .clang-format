@@ -11,7 +11,7 @@ AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: true
-AllowShortLoopsOnASingleLine: true
+AllowShortLoopsOnASingleLine: false
 SpaceBeforeParens: ControlStatements
 SpaceAfterCStyleCast: true
 SpacesInParentheses: false

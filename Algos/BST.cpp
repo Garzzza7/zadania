@@ -3,62 +3,48 @@
 
 // create on stack , add elements from heap
 
-template <typename T = int>
-struct bst {
+template <typename T, typename OP>
+struct binary_search_tree {
    private:
-    template <typename TT = int>
+    template <typename TT = T>
     struct _node_type {
         TT val{0};
         _node_type<TT> *l{nullptr}, *r{nullptr}, *p{nullptr};
-
         _node_type(const TT &v)
             : val(v) {
         }
-
         bool operator<=(const _node_type<TT> &p) const {
             return val <= p.val;
         }
-
         bool operator<(const _node_type<TT> &p) const {
             return val < p.val;
         }
-
         bool operator>=(const _node_type<TT> &p) const {
             return val >= p.val;
         }
-
         bool operator>(const _node_type<TT> &p) const {
             return val > p.val;
         }
-
         bool operator==(const _node_type<TT> &p) const {
             return val == p.val;
         }
-
         friend std::ostream &operator<<(std::ostream &out, const _node_type<TT> &n) {
             return out << n.val;
         }
-
         friend std::ostream &operator<<(std::ostream &out, const _node_type<TT> *n) {
             return out << n->val;
         }
-
         friend std::istream &operator>>(std::istream &in, _node_type<TT> &n) {
             return in >> n.val;
         }
     };
     using node = _node_type<T>;
-
+    constexpr static OP _op{};
     void _insert(node *n) {
         __insert(n, root);
     }
-
-    inline bool _cmp(const node *n1, const node *n2) const noexcept {
-        return *n1 <= *n2;
-    }
-
     void __insert(node *n, node *curr) {
-        if (_cmp(n, curr)) {
+        if (_op(n, curr)) {
             if (curr->l) {
                 __insert(n, curr->l);
             } else {
@@ -74,21 +60,17 @@ struct bst {
             }
         }
     }
-
     void _remove(const node *n) {
         __remove(n, root);
     }
-
     void __remove(const node *n, node *curr) {
         if (curr == nullptr) { return; }
         if (*n == *curr) {
             auto is_left{[](const node *node) -> bool {
-                // true -> l , false -> r
                 if (node->p and node->p->l == node) { return true; }
                 return false;
             }};
             if (curr->l == nullptr and curr->r == nullptr) {
-                // leaf
                 if (is_left(curr)) {
                     curr->p->l = nullptr;
                 } else {
@@ -96,7 +78,6 @@ struct bst {
                 }
                 delete curr;
             } else if (curr->l == nullptr and curr->r) {
-                // has one child r
                 if (is_left(curr)) {
                     curr->p->l = curr->r;
                 } else {
@@ -104,7 +85,6 @@ struct bst {
                 }
                 delete curr;
             } else if (curr->l and curr->r == nullptr) {
-                // has one child l
                 if (is_left(curr)) {
                     curr->p->l = curr->l;
                 } else {
@@ -112,10 +92,8 @@ struct bst {
                 }
                 delete curr;
             } else {
-                // has both children
                 node *succ{find_successor(curr)};
                 if (succ) {
-                    // TODO: automate transition in case nodes get more attributes
                     T buff{succ->val};
                     __remove(succ, curr);
                     curr->val = buff;
@@ -128,17 +106,18 @@ struct bst {
                     }
                 }
             }
-        } else if (_cmp(n, curr)) {
+        } else if (_op(n, curr)) {
             return __remove(n, curr->l);
         } else {
             return __remove(n, curr->r);
         }
     }
-
     node *find_predecessor(node *n) {
         if (n->l) {
             node *curr{n->l};
-            while (curr->r) { curr = curr->r; }
+            while (curr->r) {
+                curr = curr->r;
+            }
             return curr;
         }
         node *curr{n->p};
@@ -149,11 +128,12 @@ struct bst {
         }
         return curr;
     }
-
     node *find_successor(node *n) {
         if (n->r) {
             node *curr{n->r};
-            while (curr->l) { curr = curr->l; }
+            while (curr->l) {
+                curr = curr->l;
+            }
             return curr;
         }
         node *curr{n->p};
@@ -164,68 +144,54 @@ struct bst {
         }
         return curr;
     }
-
     bool find(node *n) {
         return find(n, root);
     }
-
     bool find(node *n, node *curr) {
         if (curr == nullptr) { return false; }
         if (*n == *curr) { return true; }
-        if (_cmp(n, curr)) { return find(n, curr->l); }
+        if (_op(n, curr)) { return find(n, curr->l); }
         return find(n, curr->r);
     }
-
     bool is_root(node *n) {
         return n->p == nullptr;
     }
-
     bool is_leaf(node *n) {
         return n->l == nullptr and n->r == nullptr;
     }
-
-    // walking
-
     void pre_order(const T &n) {
         node *nn{new node(n)};
         pre_order(nn);
         delete nn;
     }
-
     void pre_order(node *n) {
         std::cout << n << "\n";
         if (n->l) { pre_order(n->l); }
         if (n->r) { pre_order(n->r); }
     }
-
     void in_order(const T &n) {
         node *nn{new node(n)};
         in_order(nn);
         delete nn;
     }
-
     void in_order(void) {
         in_order(root);
     }
-
     void in_order(node *n) {
         if (n->l) { in_order(n->l); }
         std::cout << n << "\n";
         if (n->r) { in_order(n->r); }
     }
-
     void post_order(const T &n) {
         node *nn{new node(n)};
         post_order(nn);
         delete nn;
     }
-
     void post_order(node *n) {
         if (n->l) { post_order(n->l); }
         if (n->r) { post_order(n->r); }
         std::cout << n << "\n";
     }
-
     void disp_pred(node *n) const {
         std::cout << "pred of " << n << " = "
                   << (this->find_predecessor(n) == nullptr ? -69 : this->find_predecessor(n))
@@ -238,16 +204,13 @@ struct bst {
 
    public:
     node *root{nullptr};
-
-    bst()
+    binary_search_tree()
         : root(new node()) {
     }
-
-    bst(const T &v)
+    binary_search_tree(const T &v)
         : root(new node(v)) {
     }
-
-    ~bst(void) {
+    ~binary_search_tree(void) {
         auto walk{[](const auto &self, const node *curr) -> void {
             if (curr == nullptr) { return; }
             if (curr->l) { self(self, curr->l); }
@@ -258,47 +221,39 @@ struct bst {
         walk(walk, root->r);
         delete root;
     }
-
     void insert(const T &n) {
         node *nn{new node(n)};
         __insert(nn, root);
     }
-
     void remove(const T &n) {
         node *nn{new node(n)};
         __remove(nn, root);
         delete nn;
     }
-
     T find_predecessor(const T &n) {
         node *nn{new node(n)};
         node *res{find_predecessor(nn)};
         delete nn;
         return *res;
     }
-
     node *find_successor(const T &n) {
         node *nn{new node(n)};
         node *res{find_successor(nn)};
         delete nn;
         return res;
     }
-
     void pre_order(void) {
         pre_order(root);
     }
-
     bool find(const T &n) {
         node *nn{new node(n)};
         bool res{find(nn)};
         delete nn;
         return res;
     }
-
     void post_order(void) {
         post_order(root);
     }
-
     void validate(void) const {
         auto walk{[](const auto &self, node *curr) -> void {
             if (curr == nullptr) { return; }
@@ -320,9 +275,14 @@ struct bst {
         walk(walk, root);
     }
 };
+constexpr auto op = [](const auto *l, const auto *r) -> auto {
+    if (*l <= *r) return true;
+    return false;
+};
+using bst = binary_search_tree<int, decltype(op)>;
 
 int main(void) {
-    bst<int> t(0);
+    bst t(0);
 
     t.insert(69);
     t.insert(-1);

@@ -9,7 +9,9 @@ T kth_subset_sum(const std::vector<T> &vec, int k) {
     std::vector<T> poly(k + 1, 0);
     poly[0] = 1;
     for (const auto &v : vec) {
-        for (T i = k; i >= 1; i--) { poly[i] += poly[i - 1] * v; }
+        for (T i = k; i >= 1; i--) {
+            poly[i] += poly[i - 1] * v;
+        }
     }
     return poly[k];
 }
@@ -32,7 +34,8 @@ int main(void) {
     long long mod;
     std::cin >> n >> k >> mod;
     std::vector<long long> vec(n);
-    for (auto &&v : vec) std::cin >> v;
+    for (auto &&v : vec)
+        std::cin >> v;
     std::cout << kth_subset_sum(vec, k) << "\n";
     std::cout << mod_kth_subset_sum(vec, k, mod) << "\n";
 

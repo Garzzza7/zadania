@@ -9,7 +9,9 @@ std::vector<T> kahn(const std::vector<std::vector<T>> &adj) {
     std::vector<int> in(n + 1, 0);
     std::vector<T> res;
     for (const auto &vv : adj) {
-        for (const auto &v : vv) { in[v]++; }
+        for (const auto &v : vv) {
+            in[v]++;
+        }
     }
     std::queue<T> q;
     for (int i = 0; i < n; i++) {
@@ -38,7 +40,9 @@ int main(void) {
         adj[a].push_back(b);
     }
     auto res{kahn(adj)};
-    for (const auto &v : res) { std::cout << v << " "; }
+    for (const auto &v : res) {
+        std::cout << v << " ";
+    }
     std::cout << "\n";
 
     return 0;

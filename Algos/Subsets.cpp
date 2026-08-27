@@ -3,7 +3,9 @@
 
 void rec_subset(const int &k, const int &n, std::vector<int> &subset) {
     if (k == n) {
-        for (const auto &v : subset) { std::cout << v << " "; }
+        for (const auto &v : subset) {
+            std::cout << v << " ";
+        }
         std::cout << "\n";
     } else {
         rec_subset(k + 1, n, subset);
@@ -19,7 +21,9 @@ void bin_subset(const int &n) {
         for (int j = 0; j < n; j++) {
             if (i & (1 << j)) { subset.push_back(j); }
         }
-        for (const auto &v : subset) { std::cout << v << " "; }
+        for (const auto &v : subset) {
+            std::cout << v << " ";
+        }
         std::cout << "\n";
     }
 }

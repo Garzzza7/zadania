@@ -19,17 +19,23 @@ struct lca {
         _sparse_table(const std::vector<TT> &init, const std::vector<TT> &euler)
             : __size((int) init.size()) {
             assert(init.size() == euler.size());
-            while (1 << __LOG < __size) { __LOG++; }
+            while (1 << __LOG < __size) {
+                __LOG++;
+            }
             __vec = std::vector(__LOG, std::vector(__size, std::pair<TT, TT>(NEUTRAL, 0)));
             __precalc_log = std::vector(1 << __LOG, 0ULL);
-            for (int i = 0; i < __size; i++) { __vec[0][i] = {init[i], euler[i]}; }
+            for (int i = 0; i < __size; i++) {
+                __vec[0][i] = {init[i], euler[i]};
+            }
             for (int i = 1; i <= __LOG; i++) {
                 for (int j = 0; j + (1 << i) <= __size; j++) {
                     __vec[i][j] = op(__vec[i - 1][j], __vec[i - 1][j + (1 << (i - 1))]);
                 }
             }
             for (int i = 0; i < __LOG; i++) {
-                for (int j = (1 << i); j < (1 << (i + 1)); j++) { __precalc_log[j] = i; }
+                for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+                    __precalc_log[j] = i;
+                }
             }
         }
 

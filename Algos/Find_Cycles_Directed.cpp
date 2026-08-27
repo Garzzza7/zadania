@@ -57,7 +57,9 @@ int main(void) {
 
     for (const auto &cycle : cycles) {
         std::cout << cycle.size() << "\n";
-        for (const auto &v : cycle) { std::cout << v << " "; }
+        for (const auto &v : cycle) {
+            std::cout << v << " ";
+        }
         std::cout << "\n--------\n";
     }
     return 0;

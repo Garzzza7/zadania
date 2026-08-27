@@ -5,7 +5,9 @@
 int lps(const std::string &s) {
     const int n{(int) s.size()};
     std::vector dp(n + 1, std::vector<int>(n + 1, 0));
-    for (int i = 0; i < n + 1; i++) { dp[i][i] = 1; }
+    for (int i = 0; i < n + 1; i++) {
+        dp[i][i] = 1;
+    }
     for (int i = n - 1; i >= 0; i--) {
         for (int j = i + 1; j < n; j++) {
             if (s[i] == s[j]) {

@@ -9,7 +9,9 @@ bool dp_regex(const std::string &s1, const std::string &s2) {
 
     dp[0][0] = true;
 
-    for (int i = 2; i < n2; i++) { dp[0][i] = (dp[0][i - 2]) and (pattern[i] == '*'); }
+    for (int i = 2; i < n2; i++) {
+        dp[0][i] = (dp[0][i - 2]) and (pattern[i] == '*');
+    }
 
     for (int i = 1; i < n1; i++) {
         for (int j = 1; j < n2; j++) {

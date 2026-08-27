@@ -18,7 +18,9 @@ void dfs(ll ver, ll par) {
             if (path[i] == ver) { break; }
         }
         std::cout << sz(res) << "\n";
-        for (const auto &v : res) { std::cout << v << " "; }
+        for (const auto &v : res) {
+            std::cout << v << " ";
+        }
         exit(0);
     }
     visited[ver] = true;

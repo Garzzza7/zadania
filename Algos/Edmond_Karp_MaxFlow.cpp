@@ -6,7 +6,9 @@
 template <typename T = int>
 T bfs(T source, T target, std::vector<std::vector<T>> &adj, std::vector<std::vector<T>> &capacities,
       std::vector<T> &path) {
-    for (auto &&v : path) { v = -1; }
+    for (auto &&v : path) {
+        v = -1;
+    }
     path[source] = -2137;
     std::queue<std::pair<T, T>> q;
     q.push({source, INT32_MAX});

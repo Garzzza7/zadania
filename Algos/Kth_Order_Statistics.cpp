@@ -40,7 +40,8 @@ int main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (auto &&v : vec) std::cin >> v;
+        for (auto &&v : vec)
+            std::cin >> v;
         const int kth{kth_order_stat(vec, 0, n - 1, 9)};
         std::nth_element(vec.begin(), vec.begin() + 9, vec.end());
         std::cout << (kth == vec[9]) << "\n";

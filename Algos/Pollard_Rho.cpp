@@ -32,7 +32,8 @@ struct factorizer {
         }
         assert(n < (1ull << 62)); // use Montgomery
         u64 r = n & 3;
-        for (int _ = 0; _ < 5; _++) r *= 2 - n * r;
+        for (int _ = 0; _ < 5; _++)
+            r *= 2 - n * r;
         r = -r;
         u64 t = -n % n, e = -u128(n) % n;
         auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };
@@ -79,7 +80,8 @@ struct factorizer {
         if (_is_prime(p)) return p;
         assert(p < (1ull << 62)); // use Montgomery
         u64 n = p, n2 = n * 2, r = n & 3;
-        for (int _ = 0; _ < 5; _++) r *= 2 - n * r;
+        for (int _ = 0; _ < 5; _++)
+            r *= 2 - n * r;
         r = -r;
         u64 t = -n % n;
         auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };
@@ -153,7 +155,9 @@ int main(void) {
         factorizer factorizer;
         auto res = factorizer.factorize(a);
         std::cout << res.size() << " ";
-        for (const auto &v : res) { std::cout << v << " "; }
+        for (const auto &v : res) {
+            std::cout << v << " ";
+        }
         std::cout << "\n";
     }
     return 0;

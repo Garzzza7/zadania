@@ -23,7 +23,9 @@ struct kruscal {
     kruscal(const int &n) {
         _parent = std::vector<int>(n);
         _rank = std::vector<int>(n, 0);
-        for (int i = 0; i < n; i++) { _parent[i] = i; }
+        for (int i = 0; i < n; i++) {
+            _parent[i] = i;
+        }
     }
 
     void add_edge(const int &u, const int &v, const T &weight) {

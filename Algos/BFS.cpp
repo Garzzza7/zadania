@@ -25,7 +25,9 @@ void bfs(const T vertex, std::vector<std::vector<T>> &adj, std::vector<char> &vi
     if (visited[vertex]) { return; }
     visited[vertex] = true;
     std::cout << vertex << " ";
-    for (const auto &v : adj[vertex]) { que.push(v); }
+    for (const auto &v : adj[vertex]) {
+        que.push(v);
+    }
     while (not que.empty()) {
         bfs(que.front(), adj, visited, que);
         que.pop();

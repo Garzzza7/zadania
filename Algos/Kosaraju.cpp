@@ -50,7 +50,9 @@ struct kosaraju {
         for (int i = 0; i < _size; i++) {
             if (not _vis[i]) dfs_1(i);
         }
-        for (auto &&v : _vis) { v = false; }
+        for (auto &&v : _vis) {
+            v = false;
+        }
         while (not _out.empty()) {
             T v{_out.top()};
             _out.pop();
@@ -80,7 +82,8 @@ int main(void) {
     std::cout << kosaraju.scc().size() << "\n";
     for (const auto &[f, s] : kosaraju.scc()) {
         std::cout << s.size() << " ";
-        for (const auto &aa : s) std::cout << aa << " ";
+        for (const auto &aa : s)
+            std::cout << aa << " ";
         std::cout << "\n";
     }
 

@@ -13,7 +13,9 @@ struct dsu {
         : _parent(std::vector<T>(n, 0)),
           _size(std::vector<T>(n, 1)),
           _rank(std::vector<T>(n, 0)) {
-        for (T i = 0; i < n; i++) { _parent[i] = i; }
+        for (T i = 0; i < n; i++) {
+            _parent[i] = i;
+        }
     }
 
     // This constructor moves the input arrays.

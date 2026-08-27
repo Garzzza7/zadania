@@ -32,7 +32,9 @@ int main(void) {
         adj[a].push_back(b);
     }
     auto res{topo_sort(0, adj)};
-    for (const auto &v : res) { std::cout << v << " "; }
+    for (const auto &v : res) {
+        std::cout << v << " ";
+    }
     std::cout << "\n";
 
     return 0;

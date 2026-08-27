@@ -43,7 +43,9 @@ struct simple_polygon {
         : _points(points) {
     }
     simple_polygon(const std::vector<std::pair<T, T>> &vec) {
-        for (const auto &[f, s] : vec) { _points.push_back(point(f, s)); }
+        for (const auto &[f, s] : vec) {
+            _points.push_back(point(f, s));
+        }
     }
     [[nodiscard]] long double area(void) const {
         long double res{0.0};

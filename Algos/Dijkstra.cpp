@@ -108,12 +108,16 @@ int main(void) {
     // dijkstraWithPrioQueue(0, adj, path, cost);
     std::cout << "PATH\n";
     int i{0};
-    for (const auto &a : path) std::cout << i++ << " -> " << a << "\n";
+    for (const auto &a : path)
+        std::cout << i++ << " -> " << a << "\n";
     std::cout << "COST\n";
     i = 0;
-    for (const auto &a : cost) { std::cout << i++ << " -> " << a << "\n"; }
+    for (const auto &a : cost) {
+        std::cout << i++ << " -> " << a << "\n";
+    }
     std::cout << "SHORTEST PATH\n";
     std::vector<int> shortpath{shortestPath(source, target, path)};
-    for (const auto &a : shortpath) std::cout << a << " ";
+    for (const auto &a : shortpath)
+        std::cout << a << " ";
     return 0;
 }

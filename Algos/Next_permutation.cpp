@@ -28,15 +28,18 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (auto &&v : vec) std::cin >> v;
+    for (auto &&v : vec)
+        std::cin >> v;
     auto og{vec};
-    for (const auto &v : vec) std::cout << v << " ";
+    for (const auto &v : vec)
+        std::cout << v << " ";
 
     std::cout << "\n";
 
     next_permutation(vec);
 
-    for (const auto &v : vec) std::cout << v << " ";
+    for (const auto &v : vec)
+        std::cout << v << " ";
     std::cout << "\n";
     std::next_permutation(og.begin(), og.end());
     std::cout << (og == vec) << "\n";

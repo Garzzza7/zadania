@@ -18,7 +18,9 @@ T diameter(const std::vector<std::vector<T>> &adj, T starting_root = 1) {
     };
     dfs(dfs, starting_root, 0);
     max_diameter = 0;
-    for (auto &&v : visited) { v = false; }
+    for (auto &&v : visited) {
+        v = false;
+    }
     dfs(dfs, at, 0);
     return max_diameter;
 }

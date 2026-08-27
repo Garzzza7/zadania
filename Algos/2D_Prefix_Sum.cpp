@@ -24,7 +24,9 @@ int main(void) {
     std::vector<std::vector<int>> prefsum(n + 1, std::vector<int>(m + 1));
     std::vector<std::vector<int>> vec(n + 1, std::vector<int>(m + 1));
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) { std::cin >> vec[i + 1][j + 1]; }
+        for (int j = 0; j < m; j++) {
+            std::cin >> vec[i + 1][j + 1];
+        }
     }
 
     build(n, m, prefsum, vec);

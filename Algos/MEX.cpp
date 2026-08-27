@@ -8,7 +8,9 @@ T mex(const std::vector<T> &vec) {
         if (i <= (int) (vec.size())) { f[i] = true; }
     }
     T res{0};
-    while (f[res]) { res++; }
+    while (f[res]) {
+        res++;
+    }
     return res;
 }
 
@@ -16,7 +18,8 @@ int main(void) {
     int n;
     std::cin >> n;
     std::vector<int> vec(n);
-    for (int i = 0; i < n; i++) std::cin >> vec[i];
+    for (int i = 0; i < n; i++)
+        std::cin >> vec[i];
     std::cout << mex(vec) << "\n";
     return 0;
 }

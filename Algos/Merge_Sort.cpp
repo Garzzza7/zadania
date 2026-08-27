@@ -13,8 +13,12 @@ void merge_sort(std::vector<T> &vec, int l, int r) {
             const int size1{q - p + 1}, size2{r - q};
             std::vector<T> L(size1 + 1, std::numeric_limits<T>::max()),
                 R(size2 + 1, std::numeric_limits<T>::max());
-            for (int i = 0; i < size1; i++) { L[i] = vec[p + i]; }
-            for (int i = 0; i < size2; i++) { R[i] = vec[q + i + 1]; }
+            for (int i = 0; i < size1; i++) {
+                L[i] = vec[p + i];
+            }
+            for (int i = 0; i < size2; i++) {
+                R[i] = vec[q + i + 1];
+            }
             int i{0}, j{0};
             for (int k = p; k <= r; k++) {
                 if (L[i] <= R[j])
@@ -33,7 +37,9 @@ int main(void) {
         int n;
         std::cin >> n;
         std::vector<int> vec(n);
-        for (int i = 0; i < n; i++) { std::cin >> vec[i]; }
+        for (int i = 0; i < n; i++) {
+            std::cin >> vec[i];
+        }
         auto test{vec};
         std::sort(test.begin(), test.end());
         merge_sort(vec, 0, n - 1);

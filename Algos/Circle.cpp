@@ -74,7 +74,9 @@ int main(void) {
         v = cc;
     }
     for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) { std::cout << vec[i].is_kiss(vec[j]) << "\n"; }
+        for (int j = i + 1; j < n; j++) {
+            std::cout << vec[i].is_kiss(vec[j]) << "\n";
+        }
     }
 
     return 0;

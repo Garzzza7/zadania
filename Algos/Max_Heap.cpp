@@ -17,7 +17,8 @@ void insert(std::vector<int> &vec, int newNum) {
         vec.push_back(newNum);
     } else {
         vec.push_back(newNum);
-        for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) heapify(vec, i);
+        for (int i = (int) vec.size() / 2 - 1; i >= 0; i--)
+            heapify(vec, i);
     }
 }
 
@@ -27,7 +28,8 @@ void deleteNode(std::vector<int> &vec, int num) {
         if (num == vec[i]) break;
     std::swap(vec[i], vec[(int) vec.size() - 1]);
     vec.pop_back();
-    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--) heapify(vec, i);
+    for (int i = (int) vec.size() / 2 - 1; i >= 0; i--)
+        heapify(vec, i);
 }
 
 int main(void) {
@@ -45,22 +47,28 @@ int main(void) {
     insert(vec, 1000);
     insert(vec, 10000);
 
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     deleteNode(vec, 10000);
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     deleteNode(vec, 100);
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     deleteNode(vec, 1000);
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     deleteNode(vec, 10);
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     deleteNode(vec, 9);
-    for (const auto &a : vec) std::cout << a << " ";
+    for (const auto &a : vec)
+        std::cout << a << " ";
     std::cout << "\n";
     return 0;
 }

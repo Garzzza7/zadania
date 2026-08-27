@@ -20,7 +20,9 @@ struct fenwick {
     fenwick(const std::vector<T> &init)
         : _size((int) init.size() + 1) {
         _vec.assign(_size, 0);
-        for (int i = 0; i < (int) init.size(); i++) { add(i, init[i]); }
+        for (int i = 0; i < (int) init.size(); i++) {
+            add(i, init[i]);
+        }
     }
 
     void add(int idx, const T &val) {

@@ -73,12 +73,16 @@ struct cactus {
     }
 
     void print(void) const {
-        for (const auto &v : stack) { std::cout << v << " "; }
+        for (const auto &v : stack) {
+            std::cout << v << " ";
+        }
         std::cout << "\n";
     }
 
     void print_branches(void) const {
-        for (const auto &v : branches) { std::cout << v->id << " "; }
+        for (const auto &v : branches) {
+            std::cout << v->id << " ";
+        }
         std::cout << "\n";
     }
 
@@ -91,7 +95,9 @@ struct cactus {
                   << " | Stack: ";
         print();
 
-        for (const auto &b : branches) { b->dfs(); }
+        for (const auto &b : branches) {
+            b->dfs();
+        }
     }
 };
 

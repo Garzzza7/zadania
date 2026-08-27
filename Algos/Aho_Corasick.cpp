@@ -55,7 +55,9 @@ struct aho_corasick {
                 int child{nodes[id].next[i]};
                 if (child == -1) { continue; }
                 int j{nodes[id].suffix_link};
-                while (j != -1 and nodes[j].next[i] == -1) { j = nodes[j].suffix_link; }
+                while (j != -1 and nodes[j].next[i] == -1) {
+                    j = nodes[j].suffix_link;
+                }
                 if (j == -1) {
                     nodes[child].suffix_link = 0;
                 } else {
@@ -160,7 +162,9 @@ int main(void) {
         std::cout << AC.nodes[i].parent << " " << AC.nodes[i].suffix_link << "\n";
     }
 
-    for (const auto &c : strings) { std::cout << AC.search_string(c) << " "; }
+    for (const auto &c : strings) {
+        std::cout << AC.search_string(c) << " ";
+    }
     std::cout << "\n";
 
     return 0;

@@ -16,7 +16,9 @@ struct disjoint_sparse_table {
     disjoint_sparse_table(const std::vector<T> &input)
         : _size((int) input.size()),
           _base(input) {
-        while (1 << _LOG < _size) { _LOG++; }
+        while (1 << _LOG < _size) {
+            _LOG++;
+        }
         _vec = std::vector(_LOG, input);
         _precalc_log = std::vector(1 << _LOG, 0ULL);
         for (int i = 0; i < _LOG; i++) {
@@ -35,7 +37,9 @@ struct disjoint_sparse_table {
             }
         }
         for (int i = 0; i < _LOG; i++) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j++) { _precalc_log[j] = i; }
+            for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+                _precalc_log[j] = i;
+            }
         }
     }
 
@@ -57,7 +61,9 @@ int main(void) {
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> vec(n);
-    for (auto &&v : vec) { std::cin >> v; }
+    for (auto &&v : vec) {
+        std::cin >> v;
+    }
 
     RMQ dst(vec);
 

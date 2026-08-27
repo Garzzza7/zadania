@@ -48,7 +48,9 @@ bool bellmand_ford(T start, std::vector<std::tuple<T, T, T>> &edges, std::vector
 template <typename T = int>
 void shortest_path(T start, T target, std::vector<T> &paths) {
     std::vector<T> sp;
-    for (int cur = target; cur != -1; cur = paths[cur]) { sp.push_back(cur); }
+    for (int cur = target; cur != -1; cur = paths[cur]) {
+        sp.push_back(cur);
+    }
 
     std::cout << "Path from " << start << " to " << target << ": ";
     for (int i = static_cast<int>(sp.size()) - 1; i >= 0; i--) {
@@ -73,7 +75,8 @@ int main(void) {
         std::vector<int> paths(n + 1, -1);
         bool res = bellmand_ford(1, edges, distances, paths);
         if (not res) {
-            for (int i = 1; i <= n; i++) std::cout << i << ": " << distances[i] << "\n";
+            for (int i = 1; i <= n; i++)
+                std::cout << i << ": " << distances[i] << "\n";
             shortest_path(1, n, paths);
         }
     }
