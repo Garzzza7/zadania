@@ -1058,18 +1058,18 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Next_permutation.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
-if [[ ! "$(./Optimzed_Matrix.sol <Optimzed_Matrix.txt)" ]]; then
-printf "${red}ABORT at Optimzed_Matrix.${normal}\n"
+if [[ ! "$(./Optimized_Matrix.sol <Optimized_Matrix.txt)" ]]; then
+printf "${red}ABORT at Optimized_Matrix.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))
-elif [ "$(./Optimzed_Matrix.sol <Optimzed_Matrix.txt)" == "$(cat Optimzed_Matrix.test)" ]; then
-printf "${green}Optimzed_Matrix Passed.${normal}\n"
+elif [ "$(./Optimized_Matrix.sol <Optimized_Matrix.txt)" == "$(cat Optimized_Matrix.test)" ]; then
+printf "${green}Optimized_Matrix Passed.${normal}\n"
 cnt_passed=$((cnt_passed + 1))
 else
-printf "${red}Optimzed_Matrix Failed.\n"
+printf "${red}Optimized_Matrix Failed.\n"
 printf "${red} Got:\n"
-printf "${red}$(./Optimzed_Matrix.sol <Optimzed_Matrix.txt)\n"
+printf "${red}$(./Optimized_Matrix.sol <Optimized_Matrix.txt)\n"
 printf "${red} Should be:\n"
-printf "${red}$(cat Optimzed_Matrix.test)${normal}\n"
+printf "${red}$(cat Optimized_Matrix.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
 if [[ ! "$(./Parity_of_Permutation.sol <Parity_of_Permutation.txt)" ]]; then
