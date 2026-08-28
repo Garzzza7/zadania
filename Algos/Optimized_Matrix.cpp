@@ -2,12 +2,41 @@
 #include <iostream>
 #include <vector>
 
+// TODO: test this, add more test cases, add SIMD
 #ifdef SIMD
 #define BLOCK 8
 #include <immintrin.h>
+// types
+#define aligned_256f   __m256;
+#define aligned_256i   __m256i;
+#define aligned_256d   __m256d;
+#define unaligned_256f __m256_u;
+#define unaligned_256i __m256i_u;
+#define unaligned_256d __m256d_u;
+
+#define aligned_512f   __m512;
+#define aligned_512i   __m512i;
+#define aligned_512d   __m512d;
+#define unaligned_512f __m512_u;
+#define unaligned_512i __m512i_u;
+#define unaligned_512d __m512d_u;
+// functions
+// Addsub adds the even-indexed values and subtracts the odd-indexed values of
+#define add_256d             _mm256_add_pd;
+#define add_256f             _mm256_add_ps;
+#define sub_256d             _mm256_sub_pd;
+#define sub_256f             _mm256_sub_ps;
+#define load_256d_aligned    _mm256_load_pd;
+#define store_256d_aligned   _mm256_store_pd;
+#define load_256f_aligned    _mm256_load_ps;
+#define store_256f_aligned   _mm256_store_ps;
+#define load_256d_unaligned  _mm256_loadu_pd;
+#define store_256d_unaligned _mm256_storeu_pd;
+#define load_256f_unaligned  _mm256_loadu_ps;
+#define store_256f_unaligned _mm256_storeu_ps;
+#define load_256i_aligned    _mm256_load_si256;
 #endif
 
-// TODO: test this, add more test cases, add SIMD
 template <typename T = int>
 struct matrix {
     bool is_transposed{false};
