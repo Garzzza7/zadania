@@ -85,7 +85,7 @@ if subp.find("avx2") != -1:
     flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2 -fsanitize=address"
 
 HELP_COMMANDS: dict[str, str] = {
-    "test (default) : ": "Build c++ files and run the test script.",
+    "test (default) :   ": "Build c++ files and run the test script.",
     "all            :   ": "Build and generate everything.",
     "asm            :   ": "Generate assembly files.",
     "clean          :   ": "Remove generated files.",
@@ -109,13 +109,13 @@ makefile.write(warning)
 
 makefile.write(posix)
 
-makefile.write(".PHONY: all asm clean help regenerate standard test \n\n")
+makefile.write(".PHONY : all asm clean help regenerate standard test \n\n")
 makefile.write("MAKEFLAGS := --jobs=1 --keep-going --warn-undefined-variables\n\n")
 makefile.write("CFLAGS = " + flags + "\n\n")
 makefile.write("ASM_CFLAGS = " + asm_flags + "\n\n")
 makefile.write("COMPILER = " + compiler + "\n\n")
 
-makefile.write("test:")
+makefile.write("test :")
 for cpp_file in cpp_files:
     file: str = cpp_file[:-4]
     if file in WIP:
@@ -128,7 +128,7 @@ makefile.write("\n")
 makefile.write("	bash " + test_runner)
 makefile.write("\n\n")
 
-makefile.write("standard:")
+makefile.write("standard :")
 for cpp_file in cpp_files:
     file = cpp_file[:-4]
     if file in WIP:
@@ -137,16 +137,16 @@ for cpp_file in cpp_files:
         makefile.write(" " + file + ".sol")
 makefile.write("\n\n")
 
-makefile.write("%.sol: %.cpp\n" + "	" + automatic + "\n\n")
+makefile.write("%.sol : %.cpp\n" + "	" + automatic + "\n\n")
 
-makefile.write("help:\n")
+makefile.write("help :\n")
 makefile.write("	" + "@echo " + "#" + "\n")
 for command, desc in HELP_COMMANDS.items():
     makefile.write("	" + "@echo " + command + " " + desc + "\n")
 makefile.write("	" + "@echo " + "#" + "\n")
 makefile.write("\n")
 
-makefile.write("asm:")
+makefile.write("asm :")
 for cpp_file in cpp_files:
     file = cpp_file[:-4]
     if file in WIP:
@@ -155,14 +155,14 @@ for cpp_file in cpp_files:
         makefile.write(" " + file + ".s")
 makefile.write("\n\n")
 
-makefile.write("%.s: %.cpp\n" + "	" + asm_automatic + "\n\n")
+makefile.write("%.s : %.cpp\n" + "	" + asm_automatic + "\n\n")
 
-makefile.write("all: standard asm\n\n")
+makefile.write("all : standard asm\n\n")
 
-makefile.write("regenerate:\n")
+makefile.write("regenerate :\n")
 makefile.write("	python3 " + FILE_NAME + "\n")
 
-makefile.write("\nclean:\n" + "	rm *.sol *.s\n")
+makefile.write("\nclean :\n" + "	rm *.sol *.s\n")
 
 makefile.close()
 
