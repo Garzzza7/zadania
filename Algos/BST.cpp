@@ -3,7 +3,7 @@
 #include <vector>
 
 // TODO: overload operators in order to enable merging trees
-template <typename T, typename OP, bool allow_duplicates = true, bool run_destructor = false>
+template <typename T, typename OP, bool allow_duplicates = true, bool run_destructor = true>
 struct binary_search_tree {
    private:
     template <typename TT = T>
@@ -51,9 +51,9 @@ struct binary_search_tree {
         vec.push_back(curr->val);
         _in_order(curr->r, vec);
     }
-    void _insert(const T &n, node *curr) {
+    bool _insert(const T &n, node *curr) {
         while (curr) {
-            if (!allow_duplicates and n == curr->val) { return; }
+            if (!allow_duplicates and n == curr->val) { return false; }
             if (_op(n, curr->val)) {
                 if (curr->l) {
                     curr = curr->l;
@@ -61,7 +61,7 @@ struct binary_search_tree {
                     node *nn = new node(n);
                     curr->l = nn;
                     nn->p = curr;
-                    break;
+                    return true;
                 }
             } else {
                 if (curr->r) {
@@ -70,10 +70,11 @@ struct binary_search_tree {
                     node *nn = new node(n);
                     curr->r = nn;
                     nn->p = curr;
-                    break;
+                    return true;
                 }
             }
         }
+        return false;
     }
     void _erase(const T &n, node *curr) {
         if (curr == nullptr) { return; }
@@ -199,19 +200,19 @@ struct binary_search_tree {
             delete _root;
         }
     }
-    [[nodiscard]] const std::size_t &size(void) const {
+    [[nodiscard]] std::size_t size(void) const {
         return _sz;
     }
-    bool empty(void) {
+    [[nodiscard]] bool empty(void) const {
         return _root == nullptr;
     }
     void insert(const T &n) {
         if (this->empty()) {
             _root = new node(n);
+            _sz++;
         } else {
-            _insert(n, _root);
+            if (_insert(n, _root)) { _sz++; }
         }
-        _sz++;
     }
     [[nodiscard]] T leftmost(void) const {
         if (_root == nullptr) return 0;
