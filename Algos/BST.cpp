@@ -1,18 +1,23 @@
 #include <exception>
 #include <iostream>
+#include <vector>
 
-// create on stack , add elements from heap
-
-template <typename T, typename OP>
+// TODO: overload operators in order to enable merging trees
+template <typename T, typename OP, bool allow_duplicates = true, bool run_destructor = false>
 struct binary_search_tree {
    private:
     template <typename TT = T>
     struct _node_type {
-        TT val{0};
+        TT val;
         _node_type<TT> *l{nullptr}, *r{nullptr}, *p{nullptr};
+        _node_type(const _node_type &) = delete;
+        _node_type(_node_type &&) = delete;
+        _node_type &operator=(const _node_type &) = delete;
+        _node_type &operator=(_node_type &&) = delete;
         _node_type(const TT &v)
             : val(v) {
         }
+        ~_node_type(void) = default;
         bool operator<=(const _node_type<TT> &p) const {
             return val <= p.val;
         }
@@ -40,79 +45,101 @@ struct binary_search_tree {
     };
     using node = _node_type<T>;
     constexpr static OP _op{};
-    void _insert(node *n) {
-        __insert(n, root);
+    void _in_order(node *curr, std::vector<T> &vec) {
+        if (curr == nullptr) return;
+        _in_order(curr->l, vec);
+        vec.push_back(curr->val);
+        _in_order(curr->r, vec);
     }
-    void __insert(node *n, node *curr) {
-        if (_op(n, curr)) {
-            if (curr->l) {
-                __insert(n, curr->l);
+    void _insert(const T &n, node *curr) {
+        while (curr) {
+            if (!allow_duplicates and n == curr->val) { return; }
+            if (_op(n, curr->val)) {
+                if (curr->l) {
+                    curr = curr->l;
+                } else {
+                    node *nn = new node(n);
+                    curr->l = nn;
+                    nn->p = curr;
+                    break;
+                }
             } else {
-                curr->l = n;
-                n->p = curr;
-            }
-        } else {
-            if (curr->r) {
-                __insert(n, curr->r);
-            } else {
-                curr->r = n;
-                n->p = curr;
+                if (curr->r) {
+                    curr = curr->r;
+                } else {
+                    node *nn = new node(n);
+                    curr->r = nn;
+                    nn->p = curr;
+                    break;
+                }
             }
         }
     }
-    void _remove(const node *n) {
-        __remove(n, root);
-    }
-    void __remove(const node *n, node *curr) {
+    void _erase(const node *n, node *curr) {
         if (curr == nullptr) { return; }
-        if (*n == *curr) {
-            auto is_left{[](const node *node) -> bool {
-                if (node->p and node->p->l == node) { return true; }
-                return false;
-            }};
+        if (n->val == curr->val) {
+            auto is_left = [](const node *node) -> bool {
+                if (node->p == nullptr) return false;
+                return node->p->l == node;
+            };
             if (curr->l == nullptr and curr->r == nullptr) {
-                if (is_left(curr)) {
+                if (curr->p == nullptr) {
+                    _root = nullptr;
+                } else if (is_left(curr)) {
                     curr->p->l = nullptr;
                 } else {
                     curr->p->r = nullptr;
                 }
                 delete curr;
+                _sz--;
             } else if (curr->l == nullptr and curr->r) {
-                if (is_left(curr)) {
+                if (curr->p == nullptr) {
+                    _root = curr->r;
+                    curr->r->p = nullptr;
+                } else if (is_left(curr)) {
                     curr->p->l = curr->r;
+                    curr->r->p = curr->p;
                 } else {
                     curr->p->r = curr->r;
+                    curr->r->p = curr->p;
                 }
                 delete curr;
+                _sz--;
             } else if (curr->l and curr->r == nullptr) {
-                if (is_left(curr)) {
+                if (curr->p == nullptr) {
+                    _root = curr->l;
+                    curr->l->p = nullptr;
+                } else if (is_left(curr)) {
                     curr->p->l = curr->l;
+                    curr->l->p = curr->p;
                 } else {
                     curr->p->r = curr->l;
+                    curr->l->p = curr->p;
                 }
                 delete curr;
+                _sz--;
             } else {
-                node *succ{find_successor(curr)};
+                node *succ{_find_successor(curr)};
                 if (succ) {
                     T buff{succ->val};
-                    __remove(succ, curr);
+                    _erase(succ, curr);
                     curr->val = buff;
                 } else {
-                    node *pred{find_predecessor(curr)};
+                    node *pred{_find_predecessor(curr)};
                     if (pred) {
                         T buff{pred->val};
-                        __remove(pred, curr);
+                        _erase(pred, curr);
                         curr->val = buff;
                     }
                 }
             }
-        } else if (_op(n, curr)) {
-            return __remove(n, curr->l);
+        } else if (_op(n->val, curr->val)) {
+            return _erase(n, curr->l);
         } else {
-            return __remove(n, curr->r);
+            return _erase(n, curr->r);
         }
     }
-    node *find_predecessor(node *n) {
+    node *_find_predecessor(node *n) {
         if (n->l) {
             node *curr{n->l};
             while (curr->r) {
@@ -128,7 +155,7 @@ struct binary_search_tree {
         }
         return curr;
     }
-    node *find_successor(node *n) {
+    node *_find_successor(node *n) {
         if (n->r) {
             node *curr{n->r};
             while (curr->l) {
@@ -144,157 +171,131 @@ struct binary_search_tree {
         }
         return curr;
     }
-    bool find(node *n) {
-        return find(n, root);
-    }
-    bool find(node *n, node *curr) {
-        if (curr == nullptr) { return false; }
-        if (*n == *curr) { return true; }
-        if (_op(n, curr)) { return find(n, curr->l); }
-        return find(n, curr->r);
-    }
-    bool is_root(node *n) {
-        return n->p == nullptr;
-    }
-    bool is_leaf(node *n) {
-        return n->l == nullptr and n->r == nullptr;
-    }
-    void pre_order(const T &n) {
-        node *nn{new node(n)};
-        pre_order(nn);
-        delete nn;
-    }
-    void pre_order(node *n) {
-        std::cout << n << "\n";
-        if (n->l) { pre_order(n->l); }
-        if (n->r) { pre_order(n->r); }
-    }
-    void in_order(const T &n) {
-        node *nn{new node(n)};
-        in_order(nn);
-        delete nn;
-    }
-    void in_order(void) {
-        in_order(root);
-    }
-    void in_order(node *n) {
-        if (n->l) { in_order(n->l); }
-        std::cout << n << "\n";
-        if (n->r) { in_order(n->r); }
-    }
-    void post_order(const T &n) {
-        node *nn{new node(n)};
-        post_order(nn);
-        delete nn;
-    }
-    void post_order(node *n) {
-        if (n->l) { post_order(n->l); }
-        if (n->r) { post_order(n->r); }
-        std::cout << n << "\n";
-    }
-    void disp_pred(node *n) const {
-        std::cout << "pred of " << n << " = "
-                  << (this->find_predecessor(n) == nullptr ? -69 : this->find_predecessor(n))
-                  << "\n";
-    }
-    void disp_succ(node *n) const {
-        std::cout << "succ of " << n << " = "
-                  << (this->find_successor(n) == nullptr ? -69 : this->find_successor(n)) << "\n";
-    }
+    node *_root{nullptr};
+    std::size_t _sz;
 
    public:
-    node *root{nullptr};
-    binary_search_tree()
-        : root(new node()) {
+    binary_search_tree(void)
+        : _sz(0) {
     }
+    binary_search_tree(binary_search_tree &&) = delete;
+    binary_search_tree &operator=(binary_search_tree &&) = delete;
+    binary_search_tree(const binary_search_tree &) = delete;
+    binary_search_tree &operator=(const binary_search_tree &) = delete;
     binary_search_tree(const T &v)
-        : root(new node(v)) {
+        : _root(new node(v)),
+          _sz(1) {
     }
     ~binary_search_tree(void) {
-        auto walk{[](const auto &self, const node *curr) -> void {
-            if (curr == nullptr) { return; }
-            if (curr->l) { self(self, curr->l); }
-            if (curr->r) { self(self, curr->r); }
-            delete curr;
-        }};
-        walk(walk, root->l);
-        walk(walk, root->r);
-        delete root;
+        if (_root and run_destructor) {
+            auto walk = [](const auto &self, const node *curr) -> void {
+                if (curr == nullptr) { return; }
+                if (curr->l) { self(self, curr->l); }
+                if (curr->r) { self(self, curr->r); }
+                delete curr;
+            };
+            walk(walk, _root->l);
+            walk(walk, _root->r);
+            delete _root;
+        }
+    }
+    [[nodiscard]] const std::size_t &size(void) const {
+        return _sz;
+    }
+    bool empty(void) {
+        return _root == nullptr;
     }
     void insert(const T &n) {
-        node *nn{new node(n)};
-        __insert(nn, root);
+        if (this->empty()) {
+            _root = new node(n);
+        } else {
+            _insert(n, _root);
+        }
+        _sz++;
     }
-    void remove(const T &n) {
-        node *nn{new node(n)};
-        __remove(nn, root);
+    [[nodiscard]] T leftmost(void) const {
+        if (_root == nullptr) return 0;
+        node *curr = _root;
+        while (curr->l) {
+            curr = curr->l;
+        }
+        return curr->val;
+    }
+    [[nodiscard]] T rightmost(void) const {
+        if (_root == nullptr) return 0;
+        node *curr = _root;
+        while (curr->r) {
+            curr = curr->r;
+        }
+        return curr->val;
+    }
+    void erase(const T &n) {
+        if (this->empty()) { return; }
+        const node *nn{new node(n)};
+        _erase(nn, _root);
         delete nn;
     }
-    T find_predecessor(const T &n) {
-        node *nn{new node(n)};
-        node *res{find_predecessor(nn)};
-        delete nn;
-        return *res;
+    [[nodiscard]] bool find(const T &val) const {
+        node *curr = _root;
+        while (curr) {
+            if (val == curr->val) { return true; }
+            if (_op(val, curr->val)) {
+                curr = curr->l;
+            } else {
+                curr = curr->r;
+            }
+        }
+        return false;
     }
-    node *find_successor(const T &n) {
-        node *nn{new node(n)};
-        node *res{find_successor(nn)};
-        delete nn;
-        return res;
-    }
-    void pre_order(void) {
-        pre_order(root);
-    }
-    bool find(const T &n) {
-        node *nn{new node(n)};
-        bool res{find(nn)};
-        delete nn;
-        return res;
-    }
-    void post_order(void) {
-        post_order(root);
+    std::vector<T> vec(void) {
+        std::vector<T> vec;
+        _in_order(_root, vec);
+        return vec;
     }
     void validate(void) const {
-        auto walk{[](const auto &self, node *curr) -> void {
+        auto walk = [](const auto &self, node *curr) -> void {
             if (curr == nullptr) { return; }
             if (curr->l) {
-                if (curr->l->val > curr->val) {
+                if (not _op(curr->l->val, curr->val)) {
                     std::cerr << curr->l->val << " > " << curr->val << "\n";
                     std::terminate();
                 }
                 self(self, curr->l);
             }
             if (curr->r) {
-                if (curr->r->val < curr->val) {
+                if (not _op(curr->val, curr->r->val)) {
                     std::cerr << curr->r->val << " < " << curr->val << "\n";
                     std::terminate();
                 }
                 self(self, curr->r);
             }
-        }};
-        walk(walk, root);
+        };
+        walk(walk, _root);
     }
 };
-constexpr auto op = [](const auto *l, const auto *r) -> auto {
-    if (*l <= *r) return true;
-    return false;
-};
-using bst = binary_search_tree<int, decltype(op)>;
+static constexpr auto op = [](const auto &l, const auto &r) -> auto { return l <= r; };
+using bst = binary_search_tree<long long, decltype(op), true, true>;
 
 int main(void) {
     bst t(0);
 
     t.insert(69);
+    t.insert(69);
     t.insert(-1);
+    std::cout << t.find(69) << "\n";
+    std::cout << t.find(67) << "\n";
     t.insert(1);
     t.insert(10);
     t.insert(-2);
     t.insert(9);
     t.insert(11);
-    t.pre_order();
-    t.remove(10);
-    t.remove(69);
-    t.pre_order();
+    t.erase(10);
+    t.erase(69);
+    auto vec = t.vec();
+    for (const auto &v : vec) {
+        std::cout << v << " ";
+    }
+    std::cout << "\n";
 
     t.validate();
 

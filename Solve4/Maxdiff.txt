@@ -1,0 +1,13 @@
+12
+maxdiff
+insert 7
+insert 10
+insert 9
+maxdiff
+insert 5
+maxdiff
+erase 10
+maxdiff
+erase 10
+insert 5
+maxdiff
