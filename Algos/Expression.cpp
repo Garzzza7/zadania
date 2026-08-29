@@ -4,35 +4,46 @@
 #include <string>
 #include <vector>
 
+// TODO: validate expression
+
 template <typename T = long long>
 T calc_rpn(const std::string &s) {
     // must be a valid expression
-    // separate each value with a space
-    // TODO: make it more generic , don't require spaces
     using str = std::string;
-    auto split = [](const str &s, const char &sep) -> std::vector<str> {
+    auto parse = [](const str &s) -> std::vector<str> {
         std::vector<str> res;
-        str buff;
+        str tmp;
         for (const auto &c : s) {
-            if (c == sep) {
-                if (not buff.empty()) {
-                    res.push_back(buff);
-                    buff.clear();
+            if (c == ' ') {
+                if (not tmp.empty()) {
+                    res.push_back(tmp);
+                    tmp.clear();
                 }
+                continue;
+            } else if (c == '(' or c == ')' or c == '+' or c == '-' or c == '*' or c == '/' or
+                       c == '^') {
+                if (not tmp.empty()) {
+                    res.push_back(tmp);
+                    tmp.clear();
+                }
+                res.emplace_back(1, c);
             } else {
-                buff.push_back(c);
+                tmp.push_back((char) c);
             }
         }
-        if (not buff.empty()) { res.push_back(buff); }
+        if (not tmp.empty()) {
+            res.push_back(tmp);
+            tmp.clear();
+        }
         return res;
     };
-    auto is_numeric = [](const std::string &s) -> bool {
+    auto is_numeric = [](const str &s) -> bool {
         for (const auto &c : s) {
             if (c < '0' or c > '9') return false;
         }
         return true;
     };
-    auto vec = split(s, ' ');
+    const auto vec = parse(s);
     std::stack<T> stack;
     for (const auto &v : vec) {
         if (is_numeric(v)) {
@@ -60,24 +71,33 @@ T calc_rpn(const std::string &s) {
 
 std::string expr_to_rpn(const std::string &expr) {
     // must be a valid expression
-    // separate each value with a space
-    // TODO: make it more generic , don't require spaces
     using str = std::string;
     str res;
-    auto split = [](const str &s, const char &sep) -> std::vector<str> {
+    auto parse = [](const str &s) -> std::vector<str> {
         std::vector<str> res;
-        str buff;
+        str tmp;
         for (const auto &c : s) {
-            if (c == sep) {
-                if (not buff.empty()) {
-                    res.push_back(buff);
-                    buff.clear();
+            if (c == ' ') {
+                if (not tmp.empty()) {
+                    res.push_back(tmp);
+                    tmp.clear();
                 }
+                continue;
+            } else if (c == '(' or c == ')' or c == '+' or c == '-' or c == '*' or c == '/' or
+                       c == '^') {
+                if (not tmp.empty()) {
+                    res.push_back(tmp);
+                    tmp.clear();
+                }
+                res.emplace_back(1, c);
             } else {
-                buff.push_back(c);
+                tmp.push_back((char) c);
             }
         }
-        if (not buff.empty()) { res.push_back(buff); }
+        if (not tmp.empty()) {
+            res.push_back(tmp);
+            tmp.clear();
+        }
         return res;
     };
     auto prio = [](const str &s) -> int {
@@ -89,10 +109,9 @@ std::string expr_to_rpn(const std::string &expr) {
         return 0;
     };
     auto is_op = [](const str &s) -> bool {
-        if (s == "+" or s == "-" or s == "*" or s == "/" or s == "^") return true;
-        return false;
+        return s == "+" or s == "-" or s == "*" or s == "/" or s == "^";
     };
-    auto vec = split(expr, ' ');
+    const auto vec = parse(expr);
     std::stack<str> stack;
     for (const auto &v : vec) {
         if (v == "(") {
@@ -127,7 +146,7 @@ std::string expr_to_rpn(const std::string &expr) {
 }
 
 int main(void) {
-    std::string s1, s2;
+    std::string s1, s2, s3;
     std::getline(std::cin, s1);
     std::cout << s1 << "\n";
     std::cout << calc_rpn(s1) << "\n";

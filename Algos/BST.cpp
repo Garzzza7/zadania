@@ -75,9 +75,9 @@ struct binary_search_tree {
             }
         }
     }
-    void _erase(const node *n, node *curr) {
+    void _erase(const T &n, node *curr) {
         if (curr == nullptr) { return; }
-        if (n->val == curr->val) {
+        if (n == curr->val) {
             auto is_left = [](const node *node) -> bool {
                 if (node->p == nullptr) return false;
                 return node->p->l == node;
@@ -121,19 +121,19 @@ struct binary_search_tree {
             } else {
                 node *succ{_find_successor(curr)};
                 if (succ) {
-                    T buff{succ->val};
-                    _erase(succ, curr);
+                    auto buff{succ->val};
+                    _erase(buff, curr);
                     curr->val = buff;
                 } else {
                     node *pred{_find_predecessor(curr)};
                     if (pred) {
-                        T buff{pred->val};
-                        _erase(pred, curr);
+                        auto buff{pred->val};
+                        _erase(buff, curr);
                         curr->val = buff;
                     }
                 }
             }
-        } else if (_op(n->val, curr->val)) {
+        } else if (_op(n, curr->val)) {
             return _erase(n, curr->l);
         } else {
             return _erase(n, curr->r);
@@ -231,9 +231,7 @@ struct binary_search_tree {
     }
     void erase(const T &n) {
         if (this->empty()) { return; }
-        const node *nn{new node(n)};
-        _erase(nn, _root);
-        delete nn;
+        _erase(n, _root);
     }
     [[nodiscard]] bool find(const T &val) const {
         node *curr = _root;
@@ -249,6 +247,7 @@ struct binary_search_tree {
     }
     std::vector<T> vec(void) {
         std::vector<T> vec;
+        vec.reserve(_sz);
         _in_order(_root, vec);
         return vec;
     }
