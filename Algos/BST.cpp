@@ -3,7 +3,8 @@
 #include <vector>
 
 // TODO: overload operators in order to enable merging trees
-template <typename T, typename OP, bool allow_duplicates = true, bool run_destructor = true>
+template <typename T, typename OP, const bool allow_duplicates = true,
+          const bool run_destructor = true>
 struct binary_search_tree {
    private:
     template <typename TT = T>
@@ -188,7 +189,8 @@ struct binary_search_tree {
           _sz(1) {
     }
     ~binary_search_tree(void) {
-        if (_root and run_destructor) {
+        if constexpr (run_destructor) {
+            if (_root == nullptr) return;
             auto walk = [](const auto &self, const node *curr) -> void {
                 if (curr == nullptr) { return; }
                 if (curr->l) { self(self, curr->l); }
@@ -231,7 +233,7 @@ struct binary_search_tree {
         return curr->val;
     }
     void erase(const T &n) {
-        if (this->empty()) { return; }
+        if (_root == nullptr) return;
         _erase(n, _root);
     }
     [[nodiscard]] bool find(const T &val) const {
