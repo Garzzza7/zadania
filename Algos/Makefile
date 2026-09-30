@@ -1,5 +1,3 @@
-.PHONY: regenerate test all help asm standard clean
-
 ##################################################################################
 # THIS FILE WAS AUTOMATICALLY GENERATED VIA generate_makefile.py DO NOT EDIT IT. #
 ##################################################################################
@@ -25,13 +23,13 @@ standard : 2D_Prefix_Sum.sol Aho_Corasick.sol BFS.sol BST.sol Base_conversion.so
 
 help :
 	@echo #
-	@echo test (default) :    Build c++ files and run the test script.
-	@echo all            :    Build and generate everything.
-	@echo asm            :    Generate assembly files.
-	@echo clean          :    Remove generated files.
-	@echo regenerate     :    Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.
-	@echo standard       :    Build c++ files.
-	@echo help           :    Print this help message.
+	@echo test \(default\)   :    Build c++ files and run the test script.
+	@echo all                :    Build and generate everything.
+	@echo asm                :    Generate assembly files.
+	@echo clean              :    Remove generated files.
+	@echo regenerate         :    Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.
+	@echo standard           :    Build c++ files.
+	@echo help               :    Print this help message.
 	@echo #
 
 asm : 2D_Prefix_Sum.s Aho_Corasick.s BFS.s BST.s Base_conversion.s Bellman_Ford_Shortest_Path.s Binary_Exponentiation.s Binary_Lifting.s Binary_Search.s Binomial_Coefficient.s Binomial_Theorem.s Bitonic_Sort.s Blum_Floyd_Pratt_Rivest_Tarjan.s Boruvka.s CRT.s Cactus_Stack.s Carmichael_function.s Cartesian_tree.s Circle.s Convolution.s Counting_Sort.s DEsopo_Pape.s DFS.s DP_Regex.s Dag_Shortest_Path.s De_Bruijn.s Derangement.s Difference_Array.s Dijkstra.s Disjoint_Set_Union.s Disjoint_Sparse_Table.s Edmond_Karp_MaxFlow.s Endian.s Euclid_GCD_LCM.s Euler_Tour.s Euler_s_totient.s Expression.s Extended_Euclid_s_Algorithm.s Factorize.s Fast_Range_Xor.s FenwickTree.s Find_Cycles_Directed.s Find_Cycles_Undirected.s Fisher_Yates.s Flood_fill.s Floor_Sum.s Floyd_Warshall.s Grundy.s Hash_function.s Huffman_Coding.s In_Out_Ancestor.s Iterated_Sqrt.s KMP.s Kadane_s_Algorithm.s Kahn.s Kosaraju.s Kruskal.s Kth_Order_Statistics.s LCA.s LCS.s Levenshtein_distance.s Longest_Palindromic_Subsequence.s MEX.s Manacher.s Matrix.s Max_Heap.s Merge_Sort.s Miller_Rabin.s Min_Heap.s Min_Number_of_Swaps_to_Permutation.s Modular_Arithmetic.s Monotone_chain.s Monotonic_Queue.s Next_permutation.s Optimized_Matrix.s Parity_of_Permutation.s Pollard_Rho.s Priority_Queue.s Quick_Sort.s Rabin_Karp.s Rational_Number.s Rolling_Hash.s SPFA.s Sattoro_shuffle.s Segment_Tree.s Segmented_Sieve.s Sierpinski_triagnle_nth_row.s Sieve_of_Eratosthenes.s Simple_Dijkstra.s Simple_Polygon.s Sparse_Table.s Submask.s Subset_Sums.s Subsets.s Suffix_array.s Sum_of_kth_sized_subsets.s TEMPLATE.s Tarjan_find_articulation.s Tarjan_find_bridges.s Ternary_Search.s Topo_sort.s Tree_diameter.s Trie.s Z_function.s

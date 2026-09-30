@@ -2,15 +2,15 @@
 #include <iostream>
 #include <vector>
 
-// TODO: overload operators in order to enable merging trees
 template <typename T, typename OP, const bool allow_duplicates = true,
           const bool run_destructor = true>
-struct binary_search_tree {
+struct avl_tree {
    private:
     template <typename TT = T>
     struct _node_type {
         TT val;
         _node_type<TT> *l{nullptr}, *r{nullptr}, *p{nullptr};
+        int balance_factor{0};
         _node_type(const _node_type &) = delete;
         _node_type(_node_type &&) = delete;
         _node_type &operator=(const _node_type &) = delete;
@@ -46,6 +46,15 @@ struct binary_search_tree {
     };
     using node = _node_type<T>;
     constexpr static OP _op{};
+    void _r(node *a) {
+        node *b = a->r;
+        if (b == nullptr) return;
+        a->r = b->l;
+        a->r->p = a;
+        b->p = a->p;
+        a->p = b;
+        b->l = a;
+    }
     void _in_order(node *curr, std::vector<T> &vec) {
         if (curr == nullptr) return;
         _in_order(curr->l, vec);
@@ -54,7 +63,7 @@ struct binary_search_tree {
     }
     bool _insert(const T &n, node *curr) {
         while (curr) {
-            if ((not allow_duplicates) and n == curr->val) { return false; }
+            if (!allow_duplicates and n == curr->val) { return false; }
             if (_op(n, curr->val)) {
                 if (curr->l) {
                     curr = curr->l;
@@ -175,29 +184,26 @@ struct binary_search_tree {
     }
     node *_root{nullptr};
     std::size_t _sz;
-    std::size_t _height;
 
    public:
-    binary_search_tree(void)
-        : _sz(0),
-          _height(0) {
+    avl_tree(void)
+        : _sz(0) {
     }
-    binary_search_tree(binary_search_tree &&) = delete;
-    binary_search_tree &operator=(binary_search_tree &&) = delete;
-    binary_search_tree(const binary_search_tree &) = delete;
-    binary_search_tree &operator=(const binary_search_tree &) = delete;
-    binary_search_tree(const T &v)
+    avl_tree(avl_tree &&) = delete;
+    avl_tree &operator=(avl_tree &&) = delete;
+    avl_tree(const avl_tree &) = delete;
+    avl_tree &operator=(const avl_tree &) = delete;
+    avl_tree(const T &v)
         : _root(new node(v)),
-          _sz(1),
-          _height(0) {
+          _sz(1) {
     }
-    ~binary_search_tree(void) {
+    ~avl_tree(void) {
         if constexpr (run_destructor) {
             if (_root == nullptr) return;
             auto walk = [](const auto &self, const node *curr) -> void {
                 if (curr == nullptr) { return; }
-                if (curr->l != nullptr) { self(self, curr->l); }
-                if (curr->r != nullptr) { self(self, curr->r); }
+                if (curr->l) { self(self, curr->l); }
+                if (curr->r) { self(self, curr->r); }
                 delete curr;
             };
             walk(walk, _root->l);
@@ -205,53 +211,8 @@ struct binary_search_tree {
             delete _root;
         }
     }
-    void DSW(void) {
-        auto l_rotate = [](node *&a) -> void {
-            node *b = a->r;
-            a->r = b->l;
-            if (b->l) { b->l->p = a; }
-            b->p = a->p;
-            if (a->p) {
-                if (a->p->l == a) {
-                    a->p->l = b;
-                } else {
-                    a->p->r = b;
-                }
-            }
-            b->l = a;
-            a->p = b;
-        };
-        auto r_rotate = [](node *&a) -> void {
-            node *&b = a->l;
-            a->l = b->r;
-            if (b->r) { b->r->p = a; }
-            b->p = a->p;
-            if (a->p) {
-                if (a->p->l == a) {
-                    a->p->l = b;
-                } else {
-                    a->p->r = b;
-                }
-            }
-            b->r = a;
-            a->p = b;
-        };
-        node *&curr = _root;
-        // while (curr) {
-        //     while (curr->l != nullptr) {
-        r_rotate(curr);
-        std::cout << curr->val << "\n";
-        //         curr = curr->p;
-        //     }
-        //     curr = curr->r;
-        // }
-        // _root = curr;
-    }
     [[nodiscard]] std::size_t size(void) const {
         return _sz;
-    }
-    [[nodiscard]] std::size_t height(void) const {
-        return _height;
     }
     [[nodiscard]] bool empty(void) const {
         return _root == nullptr;
@@ -265,7 +226,7 @@ struct binary_search_tree {
         }
     }
     [[nodiscard]] T leftmost(void) const {
-        if (_root == nullptr) { return 0; }
+        if (_root == nullptr) return 0;
         node *curr = _root;
         while (curr->l) {
             curr = curr->l;
@@ -273,7 +234,7 @@ struct binary_search_tree {
         return curr->val;
     }
     [[nodiscard]] T rightmost(void) const {
-        if (_root == nullptr) { return 0; }
+        if (_root == nullptr) return 0;
         node *curr = _root;
         while (curr->r) {
             curr = curr->r;
@@ -296,7 +257,7 @@ struct binary_search_tree {
         }
         return false;
     }
-    std::vector<T> output(void) {
+    std::vector<T> vec(void) {
         std::vector<T> vec;
         vec.reserve(_sz);
         _in_order(_root, vec);
@@ -324,49 +285,30 @@ struct binary_search_tree {
     }
 };
 static constexpr auto op = [](const auto &l, const auto &r) -> auto { return l <= r; };
-using bst = binary_search_tree<long long, decltype(op), true, true>;
+using avl = avl_tree<long long, decltype(op), true, true>;
 
 int main(void) {
-    // bst t(0);
-    //
-    // t.insert(69);
-    // t.insert(69);
-    // t.insert(-1);
-    // std::cout << t.find(69) << "\n";
-    // std::cout << t.find(67) << "\n";
-    // t.insert(1);
-    // t.insert(10);
-    // t.insert(-2);
-    // t.insert(9);
-    // t.insert(11);
-    // t.erase(10);
-    // t.erase(69);
-    // auto vec = t.output();
-    // for (const auto &v : vec) {
-    //     std::cout << v << " ";
-    // }
-    // std::cout << "\n";
-    //
-    // t.validate();
-    // t.DSW();
-    // t.validate();
-    bst t(10);
-    t.insert(5);
-    t.insert(2);
+    avl t(0);
+
+    t.insert(69);
+    t.insert(69);
+    t.insert(-1);
+    std::cout << t.find(69) << "\n";
+    std::cout << t.find(67) << "\n";
     t.insert(1);
-    auto vec = t.output();
+    t.insert(10);
+    t.insert(-2);
+    t.insert(9);
+    t.insert(11);
+    t.erase(10);
+    t.erase(69);
+    auto vec = t.vec();
     for (const auto &v : vec) {
         std::cout << v << " ";
     }
     std::cout << "\n";
+
     t.validate();
-    t.DSW();
-    t.validate();
-    vec = t.output();
-    for (const auto &v : vec) {
-        std::cout << v << " ";
-    }
-    std::cout << "\n";
 
     return 0;
 }

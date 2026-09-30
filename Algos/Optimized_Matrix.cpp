@@ -1,5 +1,7 @@
 #include <cassert>
+#include <cstddef>
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 // TODO: test this, add more test cases, add SIMD
@@ -50,24 +52,24 @@ using unaligned_512d = __m512d_u;
 template <typename T = int>
 struct matrix {
     bool is_transposed{false};
-    int m, n;
+    std::size_t n, m;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;
     matrix(matrix &&) = default;
     matrix &operator=(matrix &&) = default;
-    ~matrix() = default;
+    ~matrix(void) = default;
 
     matrix(const std::vector<std::vector<T>> &in)
-        : m(static_cast<int>(in.size())),
-          n(static_cast<int>(in[0].size())),
+        : n(in.size()),
+          m(in[0].size()),
           mat(in) {
     }
 
-    matrix(const int &m, const int &n)
-        : m(m),
-          n(n),
-          mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
+    matrix(std::size_t n, std::size_t m)
+        : n(n),
+          m(m),
+          mat(std::vector<std::vector<T>>(n, std::vector<T>(m, 0))) {
     }
 
     friend matrix operator+(const matrix &lhs, const matrix &rhs) {
@@ -92,28 +94,28 @@ struct matrix {
             std::cout << "WIP\n";
         }
 #else
-        const auto &m{lhs.m};
         const auto &n{lhs.n};
-        matrix ret(m, n);
+        const auto &m{lhs.m};
+        matrix ret(n, m);
         if (lhs.is_transposed and rhs.is_transposed) {
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++)
+            for (std::size_t i = 0; i < n; i++)
+                for (std::size_t j = 0; j < m; j++)
                     ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[j][i];
         } else if (lhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     ret.mat[i][j] += lhs.mat[j][i] + rhs.mat[i][j];
                 }
             }
         } else if (rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[j][i];
                 }
             }
         } else {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
                 }
             }
@@ -128,29 +130,29 @@ struct matrix {
 #ifdef SIMD
         std::cout << "WIP\n";
 #else
-        const auto &m{this->m};
         const auto &n{this->n};
+        const auto &m{this->m};
         if (this->is_transposed and rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     this->mat[i][j] += rhs.mat[i][j];
                 }
             }
         } else if (this->is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     this->mat[j][i] += rhs.mat[i][j];
                 }
             }
         } else if (rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
                     this->mat[i][j] += rhs.mat[j][i];
                 }
             }
         } else {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
+            for (std::size_t i = 0; i < m; i++) {
+                for (std::size_t j = 0; j < n; j++) {
                     this->mat[i][j] += rhs.mat[i][j];
                 }
             }
@@ -160,41 +162,41 @@ struct matrix {
     }
 
     friend matrix operator*(const matrix &lhs, const matrix &rhs) {
-        assert(lhs.n == rhs.m);
+        assert(lhs.m == rhs.n);
 #ifdef SIMD
         std::cout << "WIP\n";
 #else
-        const auto &m{lhs.m};
-        const auto &n{rhs.n};
-        matrix ret(m, n);
+        const auto &n{lhs.n};
+        const auto &m{rhs.m};
+        matrix ret(n, m);
         if (lhs.is_transposed and rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[j][i] += lhs.mat[i][k] * rhs.mat[k][j];
                     }
                 }
             }
         } else if (lhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += lhs.mat[k][i] * rhs.mat[k][j];
                     }
                 }
             }
         } else if (rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[j][k];
                     }
                 }
             }
         } else {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
                     }
                 }
@@ -205,41 +207,41 @@ struct matrix {
     }
 
     matrix &operator*=(const matrix &rhs) {
-        assert(this->n == rhs.m);
+        assert(this->m == rhs.n);
 #ifdef SIMD
         std::cout << "WIP\n";
 #else
-        const auto &m{this->m};
-        const auto &n{rhs.n};
-        matrix ret(m, n);
+        const auto &n{this->n};
+        const auto &m{rhs.m};
+        matrix ret(n, m);
         if (this->is_transposed and rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[j][i] += this->mat[i][k] * rhs.mat[k][j];
                     }
                 }
             }
         } else if (this->is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += this->mat[k][i] * rhs.mat[k][j];
                     }
                 }
             }
         } else if (rhs.is_transposed) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += this->mat[i][k] * rhs.mat[j][k];
                     }
                 }
             }
         } else {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n; k++) {
+            for (std::size_t i = 0; i < n; i++) {
+                for (std::size_t j = 0; j < m; j++) {
+                    for (std::size_t k = 0; k < m; k++) {
                         ret.mat[i][j] += this->mat[i][k] * rhs.mat[k][j];
                     }
                 }
@@ -263,8 +265,8 @@ struct matrix {
         }
         return *this;
 #else
-        for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) {
+        for (std::size_t i = 0; i < this->n; i++) {
+            for (std::size_t j = 0; j < this->m; j++) {
                 this->mat[i][j] *= scalar;
             }
         }
@@ -273,14 +275,16 @@ struct matrix {
     }
 
     matrix &operator=(const matrix &rhs) {
+        // std::cout << this->m << " " << rhs.m << "\n";
+        // std::cout << this->n << " " << rhs.n << "\n";
         assert(this->m == rhs.m);
         assert(this->n == rhs.n);
 #ifdef SIMD
         std::cout << "WIP\n";
 #else
         if (this == &rhs) return *this;
-        for (int i = 0; i < this->m; i++) {
-            for (int j = 0; j < this->n; j++) {
+        for (std::size_t i = 0; i < this->n; i++) {
+            for (std::size_t j = 0; j < this->m; j++) {
                 this->mat[i][j] = rhs.mat[i][j];
             }
         }
@@ -292,10 +296,10 @@ struct matrix {
         return this->mat == rhs.mat;
     }
 
-    void print(void) const {
+    void print(const std::string &sep = " ") const {
         for (const auto &vv : this->mat) {
             for (const auto &v : vv) {
-                std::cout << v << " ";
+                std::cout << v << sep;
             }
             std::cout << "\n";
         }
@@ -306,7 +310,7 @@ struct matrix {
         this->is_transposed ^= 1;
     }
 
-    bool is_square(void) {
+    [[nodiscard]] bool is_square(void) const {
         return this->m == this->n;
     }
 
@@ -314,7 +318,7 @@ struct matrix {
         T sum{0};
         // const auto n { std::min(this->m, this->n)};
         const auto n{this->m ^ ((this->n ^ this->m) & -(this->n < this->m))};
-        for (int i = 0; i < n; i++) {
+        for (std::size_t i = 0; i < n; i++) {
             sum += this->mat[i][i];
         }
         return sum;
@@ -323,7 +327,7 @@ struct matrix {
     // TODO: FIX THIS
     matrix bareiss(void) {
         assert(this->is_square());
-        const auto n{(int) this->mat.size()};
+        const auto n{this->mat.size()};
         matrix cp(this->mat);
         for (int k = 0; k < n - 1; k++) {
             for (int i = k + 1; i < n; i++) {
@@ -345,12 +349,12 @@ struct matrix {
 
     void expo(int b) {
         assert(this->is_square());
-        const auto &n = (int) this->mat.size();
+        const auto &n = this->mat.size();
         matrix<T> tmp(n, n);
-        for (int i = 0; i < n; i++) {
+        for (std::size_t i = 0; i < n; i++) {
             tmp.mat[i][i] = 1;
         }
-        while (b > 0) {
+        while (b) {
             if (b & 1) { tmp = tmp * *this; }
             *this = *this * *this;
             b >>= 1;
@@ -360,40 +364,41 @@ struct matrix {
 };
 
 int main(void) {
-    std::vector<std::vector<int>> vec1 = {
+    using mat = std::vector<std::vector<int>>;
+    mat vec1 = {
         {1, 1, 1},
         {1, 1, 1},
         {1, 1, 1},
     };
-    std::vector<std::vector<int>> vec2 = {
+    mat vec2 = {
         {2, 2, 2},
         {2, 2, 2},
         {2, 2, 2},
     };
-    std::vector<std::vector<int>> vec3 = {
+    mat vec3 = {
         {1, 0, 1},
         {2, 1, 1},
         {0, 1, 1},
         {1, 1, 2},
     };
-    std::vector<std::vector<int>> vec4 = {
+    mat vec4 = {
         {1, 2, 1},
         {2, 3, 1},
         {4, 2, 2},
     };
-    std::vector<std::vector<int>> vec5 = {
+    mat vec5 = {
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
     };
 
-    std::vector<std::vector<int>> vec6 = {
+    mat vec6 = {
         {3, 7},
         {1, -4},
     };
 
-    std::vector<std::vector<int>> i = {
+    mat i = {
         {1, 0, 0},
         {0, 1, 0},
         {0, 0, 1},

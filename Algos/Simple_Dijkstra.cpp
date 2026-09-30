@@ -22,8 +22,8 @@ std::vector<RET_T> dijkstra(const T &start, std::vector<std::vector<std::pair<T,
         if (visited[a]) { continue; }
         visited[a] = true;
         for (const auto &v : adj[a]) {
-            const T b{v.first};
-            const T w{v.second};
+            const auto &b{v.first};
+            const auto &w{v.second};
             if (distances[a] + w < distances[b]) {
                 distances[b] = distances[a] + w;
                 path[b] = a;

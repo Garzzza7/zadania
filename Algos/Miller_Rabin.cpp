@@ -7,23 +7,27 @@ template <typename T = unsigned long long>
 bool miller_rabin(const T &n) {
     // DO NOT MODIFY THE T TYPE
     if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
-    for (T p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
+    for (const T p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
         if (n % p == 0) return n == p;
     auto modmul = [](T a, T b, T mod) -> T {
         long long ret = a * b - mod * T(1.L / mod * a * b);
         return ret + mod * (ret < 0) - mod * (ret >= (long long) mod);
     };
-    auto modpow = [&modmul](T b, T e, T mod) -> T {
-        T ans = 1;
-        for (; e; b = modmul(b, b, mod), e /= 2)
-            if (e & 1) ans = modmul(ans, b, mod);
+    auto modpow = [&modmul](T a, T b, T mod) -> T {
+        T ans{1};
+        a %= mod;
+        while (b) {
+            if (b & 1) ans = modmul(ans, a, mod);
+            a = modmul(a, a, mod);
+            b >>= 1;
+        }
         return ans;
     };
-    const std::vector<T> guards = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+    const T witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
     T s = __builtin_ctzll(n - 1), d = n >> s;
-    for (const auto &a : guards) {
-        T p = modpow(a % n, d, n), i = s;
-        while (p != 1 and p != n - 1 and a % n and i--) {
+    for (const auto &wit : witness) {
+        T p = modpow(wit, d, n), i = s;
+        while (p != 1 and p != n - 1 and wit % n and i--) {
             p = modmul(p, p, n);
         }
         if (p != n - 1 and i != s) return false;

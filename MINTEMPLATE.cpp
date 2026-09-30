@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -16,6 +17,7 @@
 #define loop     for (;;)
 
 using db = double;
+using st = std::size_t;
 using str = std::string;
 using u8 = unsigned char;
 using i32 = int;

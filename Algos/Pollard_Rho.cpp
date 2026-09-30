@@ -10,78 +10,58 @@
 
 struct factorizer {
    private:
+    using i64 = long long;
     using u64 = unsigned long long;
     using u128 = __uint128_t;
-    inline u64 _gcd(u64 x, u64 y) {
-        // Stein's Algorithm
-        if (!x || !y) return x | y;
-        int c = __builtin_ctzll(x | y);
-        x >>= __builtin_ctzll(x), y >>= __builtin_ctzll(y);
-        while (x != y) {
-            if (x < y) std::swap(x, y);
-            x -= y;
-            x >>= __builtin_ctzll(x);
-        }
-        return y << c;
+    inline u64 _gcd(u64 a, u64 b) {
+        if (!a or !b) { return a | b; }
+        unsigned shift = __builtin_ctz(a | b);
+        a >>= __builtin_ctz(a);
+        do {
+            b >>= __builtin_ctz(b);
+            if (a > b) { std::swap(a, b); }
+            b -= a;
+        } while (b);
+        return a << shift;
     }
-    bool _is_prime(u64 n) {
-        if (n < 2) return false;
-        for (const auto &y : {2, 3, 5}) {
-            if (n == y) return true;
-            if (n % y == 0) return false;
-        }
-        assert(n < (1ull << 62)); // use Montgomery
-        u64 r = n & 3;
-        for (int _ = 0; _ < 5; _++)
-            r *= 2 - n * r;
-        r = -r;
-        u64 t = -n % n, e = -u128(n) % n;
-        auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };
-        auto mul = [&](u64 x, u64 y) -> u64 { return redc(u128(x) * y); };
-        auto de = [&](u64 x) -> u64 {
-            x = redc(x);
-            return x < n ? x : x - n;
+    bool _miller_rabin(u64 n) {
+        if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
+        for (const u64 p :
+             {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
+            if (n % p == 0) return n == p;
+        auto modmul = [](u64 a, u64 b, u64 mod) -> u64 {
+            i64 ret = a * b - mod * u64(1.L / mod * a * b);
+            return ret + mod * (ret < 0) - mod * (ret >= (i64) mod);
         };
-        auto en = [&](u64 x) -> u64 { return mul(x, e); };
-        auto pow = [&](u64 a, u64 b) -> u64 {
-            u64 res = t, base = en(a);
+        auto modpow = [&modmul](u64 a, u64 b, u64 mod) -> u64 {
+            u64 ans{1};
+            a %= mod;
             while (b) {
-                if (b & 1) res = mul(res, base);
-                base = mul(base, base);
+                if (b & 1) ans = modmul(ans, a, mod);
+                a = modmul(a, a, mod);
                 b >>= 1;
             }
-            return res;
+            return ans;
         };
-        u64 d = n - 1;
-        int z = __builtin_ctzll(d);
-        d >>= z;
-        auto miller_rabin = [&](u64 b) -> bool {
-            if (b == 0) return true;
-            u64 y = pow(b, d);
-            if (de(y) == 1) return true;
-            for (int i = 0; i < z; i++) {
-                if (de(y) == n - 1) return true;
-                y = mul(y, y);
+        const u64 witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+        u64 s = __builtin_ctzll(n - 1), d = n >> s;
+        for (const auto &wit : witness) {
+            u64 p = modpow(wit, d, n), i = s;
+            while (p != 1 and p != n - 1 and wit % n and i--) {
+                p = modmul(p, p, n);
             }
-            return false;
-        };
-        if (n < 4759123141ull) {
-            for (const auto &b : {2, 7, 61})
-                if (!miller_rabin(b % n)) return false;
-        } else {
-            for (const auto &b : {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
-                if (!miller_rabin(b % n)) return false;
+            if (p != n - 1 and i != s) return false;
         }
         return true;
     }
     u64 _pollard_rho(u64 p) {
         assert(p >= 2);
         if (p % 2 == 0) return 2;
-        if (_is_prime(p)) return p;
-        assert(p < (1ull << 62)); // use Montgomery
+        if (_miller_rabin(p)) return p;
         u64 n = p, n2 = n * 2, r = n & 3;
-        for (int _ = 0; _ < 5; _++)
+        for (int _ = 0; _ < 5; _++) {
             r *= 2 - n * r;
+        }
         r = -r;
         u64 t = -n % n;
         auto redc = [&](u128 x) -> u64 { return (x + u128((u64) (x) *r) * n) >> 64; };

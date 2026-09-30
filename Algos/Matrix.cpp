@@ -1,38 +1,39 @@
 #include <cassert>
 #include <iostream>
+#include <string>
 #include <vector>
 
 template <typename T = int>
 struct matrix {
     bool is_transposed{false};
-    int m, n;
+    std::size_t n, m;
     std::vector<std::vector<T>> mat;
 
     matrix(const matrix &) = default;
     matrix(matrix &&) = default;
     matrix &operator=(matrix &&) = default;
-    ~matrix() = default;
+    ~matrix(void) = default;
 
     matrix(const std::vector<std::vector<T>> &in)
-        : m(static_cast<int>(in.size())),
-          n(static_cast<int>(in[0].size())),
+        : n(in.size()),
+          m(in[0].size()),
           mat(in) {
     }
 
-    matrix(const int m, const int n)
-        : m(m),
-          n(n),
-          mat(std::vector<std::vector<T>>(m, std::vector<T>(n, 0))) {
+    matrix(std::size_t n, std::size_t m)
+        : n(n),
+          m(m),
+          mat(std::vector(n, std::vector<T>(m, 0))) {
     }
 
     friend matrix operator+(const matrix &lhs, const matrix &rhs) {
         assert(lhs.mat.size() == rhs.mat.size());
         assert(lhs.mat[0].size() == rhs.mat[0].size());
-        const auto n{static_cast<int>(rhs.mat.size())};
-        const auto m{static_cast<int>(rhs.mat[0].size())};
+        const auto &n{rhs.mat.size()};
+        const auto &m{rhs.mat[0].size()};
         matrix ret(n, m);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        for (std::size_t i = 0; i < n; i++) {
+            for (std::size_t j = 0; j < m; j++) {
                 ret.mat[i][j] += lhs.mat[i][j] + rhs.mat[i][j];
             }
         }
@@ -42,10 +43,10 @@ struct matrix {
     matrix &operator+=(const matrix &rhs) {
         assert(this->mat.size() == rhs.mat.size());
         assert(this->mat[0].size() == rhs.mat[0].size());
-        const auto n{static_cast<int>(rhs.mat.size())};
-        const auto m{static_cast<int>(rhs.mat[0].size())};
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        const auto &n{rhs.mat.size()};
+        const auto &m{rhs.mat[0].size()};
+        for (std::size_t i = 0; i < n; i++) {
+            for (std::size_t j = 0; j < m; j++) {
                 this->mat[i][j] += rhs.mat[i][j];
             }
         }
@@ -54,13 +55,13 @@ struct matrix {
 
     friend matrix operator*(const matrix &lhs, const matrix &rhs) {
         assert(lhs.mat[0].size() == rhs.mat.size());
-        const auto m{static_cast<int>(lhs.mat.size())};
-        const auto p{static_cast<int>(rhs.mat[0].size())};
-        const auto n{static_cast<int>(lhs.mat[0].size())};
-        matrix ret(m, p);
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) {
+        const auto &n{lhs.mat.size()};
+        const auto &p{rhs.mat[0].size()};
+        const auto &m{lhs.mat[0].size()};
+        matrix ret(n, p);
+        for (std::size_t i = 0; i < n; i++) {
+            for (std::size_t j = 0; j < p; j++) {
+                for (std::size_t k = 0; k < m; k++) {
                     ret.mat[i][j] += lhs.mat[i][k] * rhs.mat[k][j];
                 }
             }
@@ -70,13 +71,13 @@ struct matrix {
 
     matrix &operator*=(const matrix &rhs) {
         assert(this->mat[0].size() == rhs.mat.size());
-        const auto m{static_cast<int>(this->mat.size())};
-        const auto p{static_cast<int>(rhs.mat[0].size())};
-        const auto n{static_cast<int>(this->mat[0].size())};
+        const auto &n{this->mat[0].size()};
+        const auto &m{this->mat.size()};
+        const auto &p{rhs.mat[0].size()};
         matrix tmp(m, p);
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < p; j++) {
-                for (int k = 0; k < n; k++) {
+        for (std::size_t i = 0; i < m; i++) {
+            for (std::size_t j = 0; j < p; j++) {
+                for (std::size_t k = 0; k < n; k++) {
                     tmp.mat[i][j] += this->mat[i][k] * rhs.mat[k][j];
                 }
             }
@@ -86,10 +87,10 @@ struct matrix {
     }
 
     matrix &operator*=(const T &scalar) {
-        const auto n{static_cast<int>(this->mat.size())};
-        const auto m{static_cast<int>(this->mat[0].size())};
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        const auto &n{this->mat.size()};
+        const auto &m{this->mat[0].size()};
+        for (std::size_t i = 0; i < n; i++) {
+            for (std::size_t j = 0; j < m; j++) {
                 this->mat[i][j] *= scalar;
             }
         }
@@ -100,10 +101,10 @@ struct matrix {
         assert(this->mat.size() == rhs.mat.size());
         assert(this->mat[0].size() == rhs.mat[0].size());
         if (this == &rhs) { return *this; }
-        const auto n{static_cast<int>(rhs.mat.size())};
-        const auto m{static_cast<int>(rhs.mat[0].size())};
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        const auto &n{rhs.mat.size()};
+        const auto &m{rhs.mat[0].size()};
+        for (std::size_t i = 0; i < n; i++) {
+            for (std::size_t j = 0; j < m; j++) {
                 this->mat[i][j] = rhs.mat[i][j];
             }
         }
@@ -114,20 +115,20 @@ struct matrix {
         return this->mat == rhs.mat;
     }
 
-    void print(void) {
+    void print(const std::string &sep = " ") const {
         for (const auto &vv : this->mat) {
             for (const auto &v : vv)
-                std::cout << v << " ";
+                std::cout << v << sep;
             std::cout << "\n";
         }
     }
 
     void transpose(void) {
-        const auto n{static_cast<int>(this->mat.size())};
-        const auto m{static_cast<int>(this->mat[0].size())};
+        const auto &n{this->mat.size()};
+        const auto &m{this->mat[0].size()};
         matrix tmp(m, n);
-        for (int j = 0; j < m; j++) {
-            for (int i = 0; i < n; i++) {
+        for (std::size_t j = 0; j < m; j++) {
+            for (std::size_t i = 0; i < n; i++) {
                 tmp.mat[j][i] = this->mat[i][j];
             }
         }
@@ -136,18 +137,18 @@ struct matrix {
         this->is_transposed ^= 1;
     }
 
-    bool is_square(void) {
+    [[nodiscard]] bool is_square(void) const {
         return this->m == this->n;
     }
 
-    void expo(int b) {
+    void expo(unsigned int b) {
         assert(this->is_square());
-        const auto &n = (int) this->mat.size();
+        const auto &n{this->mat.size()};
         matrix<T> tmp(n, n);
-        for (int i = 0; i < n; i++) {
+        for (std::size_t i = 0; i < n; i++) {
             tmp.mat[i][i] = 1;
         }
-        while (b > 0) {
+        while (b) {
             if (b & 1) { tmp = tmp * *this; }
             *this = *this * *this;
             b >>= 1;
@@ -158,7 +159,6 @@ struct matrix {
 
 int main(void) {
     using mat = std::vector<std::vector<int>>;
-
     mat vec1 = {
         {1, 1, 1},
         {1, 1, 1},

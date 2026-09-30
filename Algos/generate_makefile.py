@@ -5,7 +5,7 @@ import sys
 
 FILE_NAME: str = sys.argv[0]
 
-WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres", "Point"]
+WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres", "Point", "AVL", "tmp", "Treap"]
 
 # file stuff
 current_directory: str = os.getcwd()
@@ -85,13 +85,13 @@ if subp.find("avx2") != -1:
     flags = " -Wall -g3 --std=c++20 -Wextra -pedantic -Ofast -Wconversion -Wfloat-equal -Wduplicated-cond -Wlogical-op -DTIME -DFAST -Wuse-after-free -Wuseless-cast -Wno-pragmas -Wcast-align -Wduplicated-branches -Wduplicated-cond -Wformat -Wlogical-op -Wmissing-include-dirs -mavx2 -fsanitize=address"
 
 HELP_COMMANDS: dict[str, str] = {
-    "test (default) :   ": "Build c++ files and run the test script.",
-    "all            :   ": "Build and generate everything.",
-    "asm            :   ": "Generate assembly files.",
-    "clean          :   ": "Remove generated files.",
-    "regenerate     :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
-    "standard       :   ": "Build c++ files.",
-    "help           :   ": "Print this help message.",
+    "test \\(default\\)   :   ": "Build c++ files and run the test script.",
+    "all                :   ": "Build and generate everything.",
+    "asm                :   ": "Generate assembly files.",
+    "clean              :   ": "Remove generated files.",
+    "regenerate         :   ": "Regenerate the Makefile and the test script removing all changes done to it. Use this in case you ignored the warning at the top and something does not work.",
+    "standard           :   ": "Build c++ files.",
+    "help               :   ": "Print this help message.",
 }
 
 flags_var: str = " $(CFLAGS) "
