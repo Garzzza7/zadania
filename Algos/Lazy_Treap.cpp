@@ -65,12 +65,13 @@ struct lazy_implicit_treap {
     }
     void _recalc_children(node *curr) {
         if (curr) {
-            curr->subtree_size = 1 + (curr->l ? curr->l->subtree_size : 0) + (curr->r ? curr->r->subtree_size : 0);
+            curr->subtree_size =
+                1 + (curr->l ? curr->l->subtree_size : 0) + (curr->r ? curr->r->subtree_size : 0);
         }
     }
     node *_merge(node *l, node *r) {
-        if(l == nullptr) { return r; }
-        if(r == nullptr) { return l; }
+        if (l == nullptr) { return r; }
+        if (r == nullptr) { return l; }
         if (l->priority < r->priority) {
             _propagate_lazy(l);
             l->r = _merge(l->r, r);

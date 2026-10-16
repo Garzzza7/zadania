@@ -46,6 +46,24 @@ struct fenwick {
         };
         return calc(r) - (l ? calc(l - 1) : 0);
     }
+
+    [[nodiscard]] std::size_t lower_bound(const T &v) const {
+        // TODO: test
+        // https://codeforces.com/blog/entry/61364
+        std::size_t idx = 0;
+        T pow = 1;
+        while ((pow << 1) <= _size) {
+            pow <<= 1;
+        }
+        while (pow) {
+            if (idx + pow <= _size and _vec[idx + pow] < v) {
+                v -= _vec[idx + pow];
+                idx += pow;
+            }
+            pow >>= 1;
+        }
+        return idx;
+    }
 };
 
 constexpr auto op = [](const auto &a, const auto &b) { return a + b; };
