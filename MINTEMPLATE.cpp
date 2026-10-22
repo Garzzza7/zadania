@@ -11,6 +11,8 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <string>
+#include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()

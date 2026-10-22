@@ -23,7 +23,7 @@ bool miller_rabin(const T &n) {
         }
         return ans;
     };
-    const T witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+    constexpr T witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
     T s = __builtin_ctzll(n - 1), d = n >> s;
     for (const auto &wit : witness) {
         T p = modpow(wit, d, n), i = s;

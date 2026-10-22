@@ -43,6 +43,23 @@ std::vector<T> factorize(T n) {
     return factor;
 }
 
+template <typename T = int>
+std::vector<T> factorize_blobs(T n) {
+    std::vector<T> factor;
+    for (T i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            T cur{1};
+            while (n % i == 0) {
+                n /= i;
+                cur *= i;
+            }
+            factor.push_back(cur);
+        }
+    }
+    if (n > 1) { factor.push_back(n); }
+    return factor;
+}
+
 int main(void) {
     int n;
     std::cin >> n;

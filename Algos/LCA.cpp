@@ -10,7 +10,7 @@ struct lca {
    private:
     template <typename TT, typename OP, TT NEUTRAL>
     struct _sparse_table {
-        _sparse_table() {};
+        _sparse_table(void) {};
         int __size{};
         int __LOG{};
         static constexpr OP op{};

@@ -5,9 +5,6 @@ instruction_set = "x86-64"
 
 [default_config.opts]
 compiler = "g++"
-compile_flags_txt = [
-    "-O0",
-    "--std=c++20",
-]
+compile_flags_txt = ["-O0", "--std=c++20"]
 diagnostics = true
 default_diagnostics = false

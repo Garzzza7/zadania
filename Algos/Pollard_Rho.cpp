@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <map>
 #include <random>
+#include <set>
 #include <vector>
 
-// TODO: implement my own, this one comes from:
-// https://codeforces.com/contest/2238/submission/380478559
 // tested on: https://judge.yosupo.jp/problem/factorize
 
 struct factorizer {
@@ -13,7 +13,7 @@ struct factorizer {
     using i64 = long long;
     using u64 = unsigned long long;
     using u128 = __uint128_t;
-    inline u64 _gcd(u64 a, u64 b) {
+    [[nodiscard]] inline u64 _gcd(u64 a, u64 b) const {
         if (!a or !b) { return a | b; }
         unsigned shift = __builtin_ctz(a | b);
         a >>= __builtin_ctz(a);
@@ -24,7 +24,7 @@ struct factorizer {
         } while (b);
         return a << shift;
     }
-    bool _miller_rabin(u64 n) {
+    [[nodiscard]] bool _miller_rabin(u64 n) const {
         if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
         for (const u64 p :
              {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
@@ -43,7 +43,7 @@ struct factorizer {
             }
             return ans;
         };
-        const u64 witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+        constexpr u64 witness[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
         u64 s = __builtin_ctzll(n - 1), d = n >> s;
         for (const auto &wit : witness) {
             u64 p = modpow(wit, d, n), i = s;
@@ -54,7 +54,7 @@ struct factorizer {
         }
         return true;
     }
-    u64 _pollard_rho(u64 p) {
+    [[nodiscard]] u64 _pollard_rho(u64 p) const {
         assert(p >= 2);
         if (p % 2 == 0) return 2;
         if (_miller_rabin(p)) return p;
@@ -108,7 +108,7 @@ struct factorizer {
     }
 
    public:
-    std::vector<u64> factorize(u64 x) {
+    [[nodiscard]] std::vector<u64> factorize(u64 x) const {
         std::vector<u64> ans;
         auto dfs = [&](const auto &self, u64 v) -> void {
             if (v == 1) return;
@@ -124,6 +124,50 @@ struct factorizer {
         std::sort(ans.begin(), ans.end());
         return ans;
     }
+    [[nodiscard]] std::set<u64> factorize_sep(u64 x) const {
+        std::set<u64> ans;
+        auto dfs = [&](const auto &self, u64 v) -> void {
+            if (v == 1) return;
+            u64 y = _pollard_rho(v);
+            if (v == y) {
+                ans.insert(v);
+                return;
+            }
+            self(self, y);
+            self(self, v / y);
+        };
+        dfs(dfs, x);
+        return ans;
+    }
+    std::vector<u64> factorize_blobs(u64 x) {
+        std::vector<u64> ans;
+        std::map<u64, u64> map;
+        auto pow = [](u64 a, u64 b) -> u64 {
+            u64 ans{1};
+            while (b) {
+                if (b & 1) ans *= a;
+                a *= a;
+                b >>= 1;
+            }
+            return ans;
+        };
+        auto dfs = [&](const auto &self, u64 v) -> void {
+            if (v == 1) return;
+            u64 y = _pollard_rho(v);
+            if (v == y) {
+                map[v]++;
+                return;
+            }
+            self(self, y);
+            self(self, v / y);
+        };
+        dfs(dfs, x);
+        ans.reserve(map.size());
+        for (const auto &[f, s] : map) {
+            ans.push_back(pow(f, s));
+        }
+        return ans;
+    }
 };
 
 int main(void) {
@@ -132,7 +176,7 @@ int main(void) {
     while (q--) {
         unsigned long long a;
         std::cin >> a;
-        factorizer factorizer;
+        const factorizer factorizer;
         auto res = factorizer.factorize(a);
         std::cout << res.size() << " ";
         for (const auto &v : res) {
