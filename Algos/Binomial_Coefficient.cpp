@@ -23,7 +23,7 @@ template <typename T = int>
 T mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
     T res{1ll};
     const T kk{std::min(k, n - k)};
-    auto mod_binpow{[&](T a, T b) -> T {
+    auto mod_binpow = [&](T a, T b) -> T {
         T tot = 1ll;
         while (b > 0) {
             if (b & 1) tot = tot * a % mod;
@@ -31,7 +31,7 @@ T mod_mult_bin_coeff(const T &n, const T &k, const T &mod) {
             b >>= 1;
         }
         return tot;
-    }};
+    };
     for (int i = 1; i <= kk; i++) {
         res *= (n + 1 - i) % mod;
         res %= mod;

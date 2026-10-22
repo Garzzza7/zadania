@@ -9,10 +9,10 @@ long long iter_sum{0ll};
 template <typename T = int>
 void iter_floodfill(std::vector<std::vector<T>> &vec, std::vector<std::vector<char>> &visited,
                     const int &x, const int &y) {
-    auto check{[&](const int &x, const int &y) -> bool {
+    auto check = [&](const int &x, const int &y) -> bool {
         return !((x < 0 or x >= (int) vec.size() or y < 0 or y >= (int) vec[0].size()) or
                  vec[x][y] == 0 or visited[x][y]);
-    }};
+    };
     if (check(x, y)) {
         std::stack<std::pair<int, int>> stack;
         stack.emplace(x, y);

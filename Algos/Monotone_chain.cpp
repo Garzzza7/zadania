@@ -30,9 +30,9 @@ template <typename T = int>
 std::vector<point<T>> convex_hull(std::vector<point<T>> points) {
     const int n{(int) points.size()};
 
-    auto check{[](const point<T> &curr, const point<T> &l, const point<T> &r) -> int {
+    auto check = [](const point<T> &curr, const point<T> &l, const point<T> &r) -> int {
         return (l.x - curr.x) * (r.y - curr.y) - (l.y - curr.y) * (r.x - curr.x);
-    }};
+    };
 
     std::sort(points.begin(), points.end(), [](const point<T> &l, const point<T> &r) {
         if (l.x != r.x) { return l.x < r.x; }

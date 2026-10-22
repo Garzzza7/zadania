@@ -60,7 +60,7 @@ struct lca {
         _ids.resize(_size);
         std::vector visited(_size, false);
         // NOTE: for c++23 this const auto &self could be used
-        auto dfs{[&](const auto &self, const int &ver, const int &h) -> void {
+        auto dfs = [&](const auto &self, const int &ver, const int &h) -> void {
             visited[ver] = true;
             _heights.push_back(h);
             _ids[ver] = (int) _euler.size();
@@ -72,7 +72,7 @@ struct lca {
                     _heights.push_back(h);
                 }
             }
-        }};
+        };
         dfs(dfs, 0, 0);
         _st = ST(_heights, _euler);
     }

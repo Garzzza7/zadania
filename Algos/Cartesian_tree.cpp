@@ -86,12 +86,13 @@ struct cartesian_tree {
         int l{0};
         int r{(int) base.size() - 1};
         tree[0] = st.query(l, r);
-        auto walk{[this, &st](const auto &self, const int &l, const int &r, const int &id) -> void {
+        auto walk = [this, &st](const auto &self, const int &l, const int &r,
+                                const int &id) -> void {
             if (l < 0 or r >= (int) base.size() or l > r) { return; }
             tree[id] = st.query(l, r);
             self(self, l, tree[id] - 1, id * 2 + 1);
             self(self, tree[id] + 1, r, id * 2 + 2);
-        }};
+        };
         walk(walk, l, tree[0] - 1, 1);
         walk(walk, tree[0] + 1, r, 2);
     }

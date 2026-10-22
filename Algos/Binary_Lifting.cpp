@@ -21,7 +21,7 @@ int query(const int vertex, const int kth, const std::vector<int> &depth,
           const std::vector<std::vector<int>> &ancestors, const int &limit) {
     int ancestor{vertex};
     if (depth[vertex] < kth or kth < 0) { return -123; }
-    auto is_on{[](const int &a, const int &b) -> bool { return a & (1 << b); }};
+    auto is_on = [](const int &a, const int &b) -> bool { return a & (1 << b); };
     for (int comb = 0; comb < limit; comb++) {
         if (is_on(kth, comb)) { ancestor = ancestors[ancestor][comb]; }
     }

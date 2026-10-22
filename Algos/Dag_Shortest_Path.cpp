@@ -7,13 +7,13 @@ std::vector<T> topo_sort(const T &s, const std::vector<std::vector<std::pair<T, 
     std::vector<T> res;
     res.reserve(n);
     std::vector<char> visited(n, false);
-    auto dfs{[&](const auto &self, const T &ver) -> void {
+    auto dfs = [&](const auto &self, const T &ver) -> void {
         visited[ver] = true;
         for (const auto &v : adj[ver]) {
             if (not visited[v.first]) { self(self, v.first); }
         }
         res.push_back(ver);
-    }};
+    };
     dfs(dfs, s);
     return res;
 }

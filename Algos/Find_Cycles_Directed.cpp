@@ -13,7 +13,7 @@ std::vector<std::vector<T>> find_cycles_directed(const std::vector<std::vector<T
     std::vector<T> parent(n, -1);
     std::vector<std::vector<T>> cycles;
 
-    auto dfs{[&](const auto &self, const T &ver) -> void {
+    auto dfs = [&](const auto &self, const T &ver) -> void {
         color[ver] = COLOR::GREY;
         for (const auto &v : adj[ver]) {
             if (color[v] == COLOR::WHITE) {
@@ -33,7 +33,7 @@ std::vector<std::vector<T>> find_cycles_directed(const std::vector<std::vector<T
             }
         }
         color[ver] = COLOR::BLACK;
-    }};
+    };
 
     for (T i = 0; i < n; i++) {
         if (color[i] == COLOR::WHITE) { dfs(dfs, i); }
