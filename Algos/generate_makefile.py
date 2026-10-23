@@ -5,7 +5,18 @@ import sys
 
 FILE_NAME: str = sys.argv[0]
 
-WIP: list[str] = ["HLD", "Hashmap", "Kuhn-Munkres", "Point", "AVL", "tmp", "Treap"]
+WIP: list[str] = [
+    "HLD",
+    "Hashmap",
+    "Kuhn-Munkres",
+    "Point",
+    "AVL",
+    "tmp",
+    "Treap",
+    "Lazy_Implicit_Treap",
+    "Lazy_Treap",
+    "Implicit_Treap",
+]
 
 # file stuff
 current_directory: str = os.getcwd()

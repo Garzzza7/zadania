@@ -582,18 +582,18 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Fast_Range_Xor.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
-if [[ ! "$(./FenwickTree.sol <FenwickTree.txt)" ]]; then
-printf "${red}ABORT at FenwickTree.${normal}\n"
+if [[ ! "$(./Fenwick_Tree.sol <Fenwick_Tree.txt)" ]]; then
+printf "${red}ABORT at Fenwick_Tree.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))
-elif [ "$(./FenwickTree.sol <FenwickTree.txt)" == "$(cat FenwickTree.test)" ]; then
-printf "${green}FenwickTree Passed.${normal}\n"
+elif [ "$(./Fenwick_Tree.sol <Fenwick_Tree.txt)" == "$(cat Fenwick_Tree.test)" ]; then
+printf "${green}Fenwick_Tree Passed.${normal}\n"
 cnt_passed=$((cnt_passed + 1))
 else
-printf "${red}FenwickTree Failed.\n"
+printf "${red}Fenwick_Tree Failed.\n"
 printf "${red} Got:\n"
-printf "${red}$(./FenwickTree.sol <FenwickTree.txt)\n"
+printf "${red}$(./Fenwick_Tree.sol <Fenwick_Tree.txt)\n"
 printf "${red} Should be:\n"
-printf "${red}$(cat FenwickTree.test)${normal}\n"
+printf "${red}$(cat Fenwick_Tree.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
 if [[ ! "$(./Find_Cycles_Directed.sol <Find_Cycles_Directed.txt)" ]]; then
