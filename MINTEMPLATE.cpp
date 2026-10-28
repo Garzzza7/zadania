@@ -17,6 +17,7 @@
 #define sz(vec)  (static_cast<int>((vec).size()))
 #define all(vec) vec.begin(), vec.end()
 #define loop     for (;;)
+#define UR       _Pragma("unroll")
 
 using db = double;
 using st = std::size_t;

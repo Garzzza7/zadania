@@ -17,19 +17,19 @@ struct kosaraju {
     int _cnt_components{0};
     std::map<T, std::vector<T>> _scc;
 
-    void dfs_1(const T &v) {
+    void _dfs1(const T &v) {
         _vis[v] = true;
         for (const auto &vv : _adj[v]) {
-            if (not _vis[vv]) { dfs_1(vv); }
+            if (not _vis[vv]) { _dfs1(vv); }
         }
         _out.push(v);
     }
 
-    void dfs_2(const T &v) {
+    void _dfs2(const T &v) {
         _scc[_cnt_components].push_back(v);
         _vis[v] = true;
         for (const auto &vv : _rev_adj[v]) {
-            if (not _vis[vv]) { dfs_2(vv); }
+            if (not _vis[vv]) { _dfs2(vv); }
         }
     }
 
@@ -48,7 +48,7 @@ struct kosaraju {
 
     void calc_scc(void) {
         for (int i = 0; i < _size; i++) {
-            if (not _vis[i]) dfs_1(i);
+            if (not _vis[i]) _dfs1(i);
         }
         for (auto &&v : _vis) {
             v = false;
@@ -57,7 +57,7 @@ struct kosaraju {
             T v{_out.top()};
             _out.pop();
             if (not _vis[v]) {
-                dfs_2(v);
+                _dfs2(v);
                 _cnt_components++;
             }
         }

@@ -7,11 +7,11 @@ struct boruvka {
     template <typename TT = int>
     struct _edge_type {
         int u, v;
-        TT weight;
-        _edge_type(const int &u, const int &v, const TT &weight)
+        TT w;
+        _edge_type(const int &u, const int &v, const TT &w)
             : u(u),
               v(v),
-              weight(weight) {
+              w(w) {
         }
     };
     using edge = _edge_type<T>;
@@ -60,7 +60,7 @@ struct boruvka {
             for (const edge &e : edges) {
                 const auto &u{e.u};
                 const auto &v{e.v};
-                const auto &weight{e.weight};
+                const auto &weight{e.w};
 
                 const auto id1{find(u)};
                 const auto id2{find(v)};

@@ -7,7 +7,7 @@ struct circle {
     [[maybe_unused]] static constexpr double pi{std::numbers::pi};
     T x, y, r;
 
-    circle()
+    circle(void)
         : x(0),
           y(0),
           r(0) {

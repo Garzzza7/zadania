@@ -9,7 +9,7 @@ struct sparse_table {
    private:
     int _size{}, _LOG{};
     std::vector<std::vector<T>> _vec;
-    static constexpr OP op{};
+    static constexpr OP _op{};
     std::vector<unsigned long long> _precalc_log;
 
    public:
@@ -24,7 +24,7 @@ struct sparse_table {
         _precalc_log = std::vector(1 << _LOG, 0ULL);
         for (int i = 1; i <= _LOG; i++) {
             for (int j = 0; j + (1 << i) <= _size; j++) {
-                _vec[i][j] = op(_vec[i - 1][j], _vec[i - 1][j + (1 << (i - 1))]);
+                _vec[i][j] = _op(_vec[i - 1][j], _vec[i - 1][j + (1 << (i - 1))]);
             }
         }
         for (int i = 0; i < _LOG; i++) {
@@ -37,7 +37,7 @@ struct sparse_table {
     [[nodiscard]] T query(const int &L, const int &R) const {
         // <L , R)
         const auto log = _precalc_log[R - L];
-        return op(_vec[log][L], _vec[log][R - (1 << log)]);
+        return _op(_vec[log][L], _vec[log][R - (1 << log)]);
     }
 
     [[nodiscard]] T query_nonindempotent(int L, int R) const {
@@ -45,7 +45,7 @@ struct sparse_table {
         R--;
         for (int i = _LOG; i >= 0; i--) {
             if (1 << i <= R - L + 1) {
-                res = op(res, _vec[i][L]);
+                res = _op(res, _vec[i][L]);
                 L += 1 << i;
             }
         }

@@ -1,4 +1,5 @@
 #include <cassert>
+#include <cstdio>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -82,7 +83,7 @@ struct matrix {
                 }
             }
         }
-        *this = tmp;
+        *this = std::move(tmp);
         return *this;
     }
 

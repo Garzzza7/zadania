@@ -139,7 +139,7 @@ struct factorizer {
         dfs(dfs, x);
         return ans;
     }
-    std::vector<u64> factorize_blobs(u64 x) {
+    [[nodiscard]] std::vector<u64> factorize_blobs(u64 x) const {
         std::vector<u64> ans;
         std::map<u64, u64> map;
         auto pow = [](u64 a, u64 b) -> u64 {

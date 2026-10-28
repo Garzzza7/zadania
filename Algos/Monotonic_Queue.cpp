@@ -9,11 +9,12 @@ template <typename T, typename OP>
 struct monotonic_queue {
    private:
     std::deque<T> _dq;
-    OP op;
+    OP _op;
 
    public:
+    monotonic_queue(void) = default;
     void push(const T &v) {
-        while (not _dq.empty() and op(_dq.back(), v)) {
+        while (not _dq.empty() and _op(_dq.back(), v)) {
             _dq.pop_back();
         }
         _dq.push_back(v);

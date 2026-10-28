@@ -3,53 +3,37 @@
 
 std::vector<long long> tree;
 int tree_size;
-long long
-sum_query(long long start_node, long long node_left, long long node_right,
-	  long long query_left, long long query_right) {
-    if (node_left >= query_left && node_right <= query_right) {
-	return tree[start_node];
-    }
-    if (node_right < query_left || node_left > query_right) {
-	return 0;
-    }
+long long sum_query(long long start_node, long long node_left, long long node_right,
+                    long long query_left, long long query_right) {
+    if (node_left >= query_left && node_right <= query_right) { return tree[start_node]; }
+    if (node_right < query_left || node_left > query_right) { return 0; }
     long long mid = (node_left + node_right) / 2;
-    long long sum
-	= sum_query(2 * start_node, node_left, mid, query_left, query_right)
-	  + sum_query(2 * start_node + 1, mid + 1, node_right, query_left,
-		      query_right);
+    long long sum = sum_query(2 * start_node, node_left, mid, query_left, query_right) +
+                    sum_query(2 * start_node + 1, mid + 1, node_right, query_left, query_right);
     return sum;
 }
-void
-recursive_update(long long start_node, long long node_left,
-		 long long node_right, long long query_left,
-		 long long query_right, long long value) {
+void recursive_update(long long start_node, long long node_left, long long node_right,
+                      long long query_left, long long query_right, long long value) {
     if (node_left >= query_left && node_right <= query_right) {
-	tree[start_node] = value;
-	return;
+        tree[start_node] = value;
+        return;
     }
-    if (node_right < query_left || node_left > query_right) {
-	return;
-    }
+    if (node_right < query_left || node_left > query_right) { return; }
     long long mid = (node_left + node_right) / 2;
-    recursive_update(2 * start_node, node_left, mid, query_left, query_right,
-		     value);
-    recursive_update(2 * start_node + 1, mid + 1, node_right, query_left,
-		     query_right, value);
+    recursive_update(2 * start_node, node_left, mid, query_left, query_right, value);
+    recursive_update(2 * start_node + 1, mid + 1, node_right, query_left, query_right, value);
     tree[start_node] = tree[start_node * 2] + tree[start_node * 2 + 1];
 }
-void
-iterative_update(long long index, long long value) {
+void iterative_update(long long index, long long value) {
     tree[tree_size + index] = value;
     for (int i = (tree_size + index) / 2ll; i >= 1; i /= 2) {
-	tree[i] = tree[i * 2] + tree[i * 2 + 1];
+        tree[i] = tree[i * 2] + tree[i * 2 + 1];
     }
 }
-void
-range_update() {
+void range_update() {
 }
 
-int
-main() {
+int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
@@ -57,30 +41,30 @@ main() {
     std::cin >> tree_size;
     std::vector<long long> initial_array;
     for (int i = 0; i < tree_size; i++) {
-	int a;
-	std::cin >> a;
-	initial_array.push_back(a);
+        int a;
+        std::cin >> a;
+        initial_array.push_back(a);
     }
     while (__builtin_popcount(tree_size) != 1) {
-	initial_array.push_back(0);
-	tree_size++;
+        initial_array.push_back(0);
+        tree_size++;
     }
     tree.resize(2 * tree_size);
     for (int i = 0; i < tree_size; i++) {
-	tree[tree_size + i] = initial_array[i];
+        tree[tree_size + i] = initial_array[i];
     }
     for (int i = tree_size - 1; i >= 1; i--) {
-	tree[i] = tree[2 * i] + tree[2 * i + 1];
+        tree[i] = tree[2 * i] + tree[2 * i + 1];
     }
     std::cout << sum_query(1, 0, tree_size - 1, 0, 7) << "\n";
     for (auto &&a : tree) {
-	std::cout << a << " ";
+        std::cout << a << " ";
     }
     std::cout << "\n";
     // recursive_update(1, 0, tree_size - 1, 5, 5, 100);
     iterative_update(5, 100);
     for (const auto &a : tree) {
-	std::cout << a << " ";
+        std::cout << a << " ";
     }
     return 0;
 }
