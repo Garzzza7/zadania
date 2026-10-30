@@ -60,26 +60,26 @@ struct boruvka {
             for (const edge &e : edges) {
                 const auto &u{e.u};
                 const auto &v{e.v};
-                const auto &weight{e.w};
+                const auto &w{e.w};
 
                 const auto id1{find(u)};
                 const auto id2{find(v)};
 
                 if (id1 != id2) {
-                    if (cheapest[id1].weight == MAX or cheapest[id1].weight > weight) {
-                        cheapest[id1] = edge(u, v, weight);
+                    if (cheapest[id1].w == MAX or cheapest[id1].w > w) {
+                        cheapest[id1] = edge(u, v, w);
                     }
-                    if (cheapest[id2].weight == MAX or cheapest[id2].weight > weight) {
-                        cheapest[id2] = edge(u, v, weight);
+                    if (cheapest[id2].w == MAX or cheapest[id2].w > w) {
+                        cheapest[id2] = edge(u, v, w);
                     }
                 }
             }
 
             for (int ver = 0; ver < size; ver++) {
-                if (cheapest[ver].weight != MAX) {
+                if (cheapest[ver].w != MAX) {
                     const auto &u{cheapest[ver].u};
                     const auto &v{cheapest[ver].v};
-                    const auto &weight{cheapest[ver].weight};
+                    const auto &w{cheapest[ver].w};
 
                     const int id1{find(u)};
                     const int id2{find(v)};
@@ -87,7 +87,7 @@ struct boruvka {
                     if (id1 != id2) {
                         // mst_weight += weight;
                         union_by_rank(id1, id2);
-                        mst.emplace_back(edge(u, v, weight));
+                        mst.emplace_back(edge(u, v, w));
                         tree_count--;
                     }
                 }

@@ -78,8 +78,8 @@ struct lca {
     }
 
     [[nodiscard]] T query(const int &l, const int &r) const {
-        const int lq{_ids[l]};
-        const int rq{_ids[r]};
+        const auto &lq{_ids[l]};
+        const auto &rq{_ids[r]};
         return _st.query(std::min(lq, rq), std::max(lq, rq));
     }
 };
