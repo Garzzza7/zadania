@@ -274,6 +274,20 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Cartesian_tree.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
+if [[ ! "$(./Center_of_a_tree.sol <Center_of_a_tree.txt)" ]]; then
+printf "${red}ABORT at Center_of_a_tree.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Center_of_a_tree.sol <Center_of_a_tree.txt)" == "$(cat Center_of_a_tree.test)" ]; then
+printf "${green}Center_of_a_tree Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Center_of_a_tree Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Center_of_a_tree.sol <Center_of_a_tree.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Center_of_a_tree.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
 if [[ ! "$(./Circle.sol <Circle.txt)" ]]; then
 printf "${red}ABORT at Circle.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))
@@ -398,6 +412,20 @@ printf "${red} Got:\n"
 printf "${red}$(./Derangement.sol <Derangement.txt)\n"
 printf "${red} Should be:\n"
 printf "${red}$(cat Derangement.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
+if [[ ! "$(./Diameter_of_a_tree.sol <Diameter_of_a_tree.txt)" ]]; then
+printf "${red}ABORT at Diameter_of_a_tree.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Diameter_of_a_tree.sol <Diameter_of_a_tree.txt)" == "$(cat Diameter_of_a_tree.test)" ]; then
+printf "${green}Diameter_of_a_tree Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Diameter_of_a_tree Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Diameter_of_a_tree.sol <Diameter_of_a_tree.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Diameter_of_a_tree.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
 if [[ ! "$(./Difference_Array.sol <Difference_Array.txt)" ]]; then
@@ -1434,20 +1462,6 @@ printf "${red} Got:\n"
 printf "${red}$(./Topo_sort.sol <Topo_sort.txt)\n"
 printf "${red} Should be:\n"
 printf "${red}$(cat Topo_sort.test)${normal}\n"
-cnt_failed=$((cnt_failed + 1))
-fi
-if [[ ! "$(./Tree_diameter.sol <Tree_diameter.txt)" ]]; then
-printf "${red}ABORT at Tree_diameter.${normal}\n"
-cnt_aborted=$((cnt_aborted + 1))
-elif [ "$(./Tree_diameter.sol <Tree_diameter.txt)" == "$(cat Tree_diameter.test)" ]; then
-printf "${green}Tree_diameter Passed.${normal}\n"
-cnt_passed=$((cnt_passed + 1))
-else
-printf "${red}Tree_diameter Failed.\n"
-printf "${red} Got:\n"
-printf "${red}$(./Tree_diameter.sol <Tree_diameter.txt)\n"
-printf "${red} Should be:\n"
-printf "${red}$(cat Tree_diameter.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
 if [[ ! "$(./Trie.sol <Trie.txt)" ]]; then
