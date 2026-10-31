@@ -7,7 +7,8 @@ template <typename T = unsigned long long>
 bool miller_rabin(const T &n) {
     // DO NOT MODIFY THE T TYPE
     if (n < 2 or n % 6 % 4 != 1) return (n | 1) == 3;
-    for (const T p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
+    for (const auto &p :
+         {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71})
         if (n % p == 0) return n == p;
     auto modmul = [](T a, T b, T mod) -> T {
         long long ret = a * b - mod * T(1.L / mod * a * b);

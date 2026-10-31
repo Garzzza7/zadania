@@ -13,7 +13,7 @@ struct cactus {
     std::vector<std::unique_ptr<cactus<T>>> branches;
     cactus<T> *parent{nullptr};
 
-    cactus() = default;
+    cactus(void) = default;
 
     cactus(cactus<T> *b)
         : id((int) (b->branches.size())),
@@ -33,7 +33,7 @@ struct cactus {
     // : stack(stack), branches(branches) {
     //    }
 
-    ~cactus() = default;
+    ~cactus(void) = default;
 
     cactus<T> *branch_out(void) {
         auto cn = std::make_unique<cactus<T>>(this);

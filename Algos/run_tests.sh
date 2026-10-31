@@ -764,6 +764,20 @@ printf "${red} Should be:\n"
 printf "${red}$(cat In_Out_Ancestor.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
+if [[ ! "$(./Is_Cactus.sol <Is_Cactus.txt)" ]]; then
+printf "${red}ABORT at Is_Cactus.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Is_Cactus.sol <Is_Cactus.txt)" == "$(cat Is_Cactus.test)" ]; then
+printf "${green}Is_Cactus Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Is_Cactus Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Is_Cactus.sol <Is_Cactus.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Is_Cactus.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
 if [[ ! "$(./Iterated_Sqrt.sol <Iterated_Sqrt.txt)" ]]; then
 printf "${red}ABORT at Iterated_Sqrt.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))
