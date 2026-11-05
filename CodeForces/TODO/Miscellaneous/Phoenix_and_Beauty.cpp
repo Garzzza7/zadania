@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -11,7 +12,6 @@
 #include <queue>
 #include <set>
 #include <string>
-#include <utility>
 #include <vector>
 
 #define sz(vec)  (static_cast<int>((vec).size()))
@@ -19,6 +19,7 @@
 #define loop     for (;;)
 
 using db = double;
+using st = std::size_t;
 using str = std::string;
 using u8 = unsigned char;
 using i32 = int;
@@ -28,20 +29,10 @@ using u64 = unsigned long long;
 using u128 = __uint128_t;
 
 void solve(void) {
-    int n, k;
+    int n , k;
     std::cin >> n >> k;
     std::vector<int> vec(n);
-    for (auto &&v : vec) {
-        std::cin >> v;
-    }
-    auto res = vec;
-    if (n == k) goto end;
-end:
-    std::cout << sz(res) << "\n";
-    for (const auto &v : res) {
-        std::cout << v << " ";
-    }
-    std::cout << "\n";
+    for(auto &&v : vec) std::cin >> v;
 }
 
 int main(void) {
@@ -57,3 +48,6 @@ int main(void) {
 
     return 0;
 }
+/*
+
+*/

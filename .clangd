@@ -11,6 +11,7 @@ Diagnostics:
         cppcoreguidelines-avoid-magic-numbers,
         modernize-redundant-void-arg,
         cppcoreguidelines-pro-bounds-avoid-unchecked-container-access,
+        cppcoreguidelines-pro-bounds-constant-array-index,
       ]
     FastCheckFilter: Strict
 Index:
