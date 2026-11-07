@@ -6,8 +6,8 @@
 // tested on: https://judge.yosupo.jp/problem/range_add_range_min
 
 template <typename T, typename OP1, typename OP2, T NEUTRAL_1, T NEUTRAL_2>
-struct ram_seg_tree {
-    ram_seg_tree(const std::size_t &n) {
+struct ram_lazy_seg_tree {
+    ram_lazy_seg_tree(const std::size_t &n) {
         std::size_t log = 1;
         while (log < n) {
             log <<= 1;
@@ -17,7 +17,7 @@ struct ram_seg_tree {
         _lazy.assign(2 * _size, NEUTRAL_2);
     }
 
-    ram_seg_tree(const std::vector<T> &arr) {
+    ram_lazy_seg_tree(const std::vector<T> &arr) {
         std::size_t log = 1;
         while (log < arr.size()) {
             log <<= 1;
@@ -127,19 +127,19 @@ struct ram_seg_tree {
 constexpr auto op1 = [](const auto &l, const auto &r) -> auto { return std::min(l, r); };
 constexpr auto op2 = [](const auto &l, const auto &r) -> auto { return l + r; };
 
-using lazy_segtree = ram_seg_tree<long long, decltype(op1), decltype(op2), INT64_MAX, 0LL>;
+using lazy_segtree = ram_lazy_seg_tree<long long, decltype(op1), decltype(op2), INT64_MAX, 0LL>;
 
 int main(void) {
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> init(n);
-    lazy_segtree st(n);
+    lazy_segtree lst(n);
 
     for (auto &&v : init) {
         std::cin >> v;
     }
 
-    st.build(init);
+    lst.build(init);
 
     while (q--) {
         int t;
@@ -147,12 +147,12 @@ int main(void) {
         if (t) {
             int l, r;
             std::cin >> l >> r;
-            std::cout << st.query(l, r) << "\n";
+            std::cout << lst.query(l, r) << "\n";
         } else {
             int l, r;
             long long x;
             std::cin >> l >> r >> x;
-            st.update(l, r, x);
+            lst.update(l, r, x);
         }
     }
 
