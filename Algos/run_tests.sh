@@ -218,6 +218,20 @@ printf "${red} Should be:\n"
 printf "${red}$(cat Boruvka.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
+if [[ ! "$(./Boyer_Moore.sol <Boyer_Moore.txt)" ]]; then
+printf "${red}ABORT at Boyer_Moore.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Boyer_Moore.sol <Boyer_Moore.txt)" == "$(cat Boyer_Moore.test)" ]; then
+printf "${green}Boyer_Moore Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Boyer_Moore Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Boyer_Moore.sol <Boyer_Moore.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Boyer_Moore.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
 if [[ ! "$(./CRT.sol <CRT.txt)" ]]; then
 printf "${red}ABORT at CRT.${normal}\n"
 cnt_aborted=$((cnt_aborted + 1))
@@ -902,6 +916,20 @@ printf "${red} Got:\n"
 printf "${red}$(./LCS.sol <LCS.txt)\n"
 printf "${red} Should be:\n"
 printf "${red}$(cat LCS.test)${normal}\n"
+cnt_failed=$((cnt_failed + 1))
+fi
+if [[ ! "$(./Lazy_Segment_Tree.sol <Lazy_Segment_Tree.txt)" ]]; then
+printf "${red}ABORT at Lazy_Segment_Tree.${normal}\n"
+cnt_aborted=$((cnt_aborted + 1))
+elif [ "$(./Lazy_Segment_Tree.sol <Lazy_Segment_Tree.txt)" == "$(cat Lazy_Segment_Tree.test)" ]; then
+printf "${green}Lazy_Segment_Tree Passed.${normal}\n"
+cnt_passed=$((cnt_passed + 1))
+else
+printf "${red}Lazy_Segment_Tree Failed.\n"
+printf "${red} Got:\n"
+printf "${red}$(./Lazy_Segment_Tree.sol <Lazy_Segment_Tree.txt)\n"
+printf "${red} Should be:\n"
+printf "${red}$(cat Lazy_Segment_Tree.test)${normal}\n"
 cnt_failed=$((cnt_failed + 1))
 fi
 if [[ ! "$(./Levenshtein_distance.sol <Levenshtein_distance.txt)" ]]; then

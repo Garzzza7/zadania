@@ -5,7 +5,7 @@
 
 // tested on: https://judge.yosupo.jp/problem/aho_corasick
 
-// size of alphabet , in ASCII 97 is for 'a' and 65 for 'A'
+// size of alphabet , in ASCII 97 stands for 'a' and 65 for 'A'
 template <int ALPHA_SIZE = 26, int BASE = 97>
 struct aho_corasick {
    private:

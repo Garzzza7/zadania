@@ -30,7 +30,7 @@ struct cartesian_tree {
     template <typename TT = int>
     struct sparse_table {
         int size, LOG{};
-        const TT NEUTRAL_ELEMENT{INT32_MAX};
+        const TT NEUTRAL{INT32_MAX};
         std::vector<std::vector<std::pair<TT, TT>>> matrix;
         std::vector<TT> bin_log;
         sparse_table(const std::vector<TT> &init)
@@ -41,7 +41,7 @@ struct cartesian_tree {
                 bin_log.push_back(bin_log[i / 2] + 1);
             }
             LOG = 63 - __builtin_clzl(size) + 1;
-            matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL_ELEMENT, 0)));
+            matrix.assign(LOG, std::vector(size, std::pair<TT, TT>(NEUTRAL, 0)));
             for (int i = 0; i < size; i++) {
                 matrix[0][i] = {init[i], i};
             }
@@ -61,7 +61,7 @@ struct cartesian_tree {
         }
 
         [[nodiscard]] TT query(int L, const int R) const {
-            std::pair<TT, TT> res{NEUTRAL_ELEMENT, 0};
+            std::pair<TT, TT> res{NEUTRAL, 0};
             for (int i = LOG; i >= 0; i--) {
                 if (1 << i <= R - L + 1) {
                     res = operation(res, matrix[i][L]);
