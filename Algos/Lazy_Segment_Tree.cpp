@@ -34,12 +34,13 @@ struct ram_seg_tree {
     static constexpr OP1 _op1{};
     static constexpr OP2 _op2{};
 
-    void _build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
+    void _build(const std::vector<T> &arr, const std::size_t &x, const std::size_t &lx,
+                const std::size_t &rx) {
         if (rx - lx == 1) {
-            if (lx < static_cast<int>(arr.size())) { _vec[x] = arr[lx]; }
+            if (lx < arr.size()) { _vec[x] = arr[lx]; }
             return;
         }
-        const int mid{(rx - lx) / 2 + lx};
+        const std::size_t mid{(rx - lx) / 2 + lx};
         _build(arr, 2 * x + 1, lx, mid);
         _build(arr, 2 * x + 2, mid, rx);
         _vec[x] = _op1(_vec[2 * x + 1], _vec[2 * x + 2]);
@@ -148,7 +149,8 @@ int main(void) {
             std::cin >> l >> r;
             std::cout << st.query(l, r) << "\n";
         } else {
-            int l, r, x;
+            int l, r;
+            long long x;
             std::cin >> l >> r >> x;
             st.update(l, r, x);
         }
