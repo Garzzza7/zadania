@@ -126,13 +126,13 @@ struct ram_seg_tree {
 constexpr auto op1 = [](const auto &l, const auto &r) -> auto { return std::min(l, r); };
 constexpr auto op2 = [](const auto &l, const auto &r) -> auto { return l + r; };
 
-using segtree = ram_seg_tree<long long, decltype(op1), decltype(op2), INT64_MAX, 0LL>;
+using lazy_segtree = ram_seg_tree<long long, decltype(op1), decltype(op2), INT64_MAX, 0LL>;
 
 int main(void) {
     int n, q;
     std::cin >> n >> q;
     std::vector<long long> init(n);
-    segtree st(n);
+    lazy_segtree st(n);
 
     for (auto &&v : init) {
         std::cin >> v;
