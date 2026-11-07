@@ -3,8 +3,8 @@
 
 template <typename T, typename OP, T NEUTRAL>
 struct ram_seg_tree {
-    ram_seg_tree(const int &n) {
-        int log = 1;
+    ram_seg_tree(const std::size_t &n) {
+        std::size_t log = 1;
         while (log < n) {
             log <<= 1;
         }
@@ -13,7 +13,7 @@ struct ram_seg_tree {
     }
 
     ram_seg_tree(const std::vector<T> &vec) {
-        _build(vec);
+        this->build(vec);
     }
 
    private:
@@ -21,23 +21,25 @@ struct ram_seg_tree {
     std::vector<T> _vec;
     static constexpr OP _op{};
 
-    void _build(const std::vector<T> &arr, const int &x, const int &lx, const int &rx) {
+    void _build(const std::vector<T> &arr, const std::size_t &x, const std::size_t &lx,
+                const std::size_t &rx) {
         if (rx - lx == 1) {
-            if (lx < static_cast<int>(arr.size())) { _vec[x] = arr[lx]; }
+            if (lx < arr.size()) { _vec[x] = arr[lx]; }
             return;
         }
-        const int mid{(rx - lx) / 2 + lx};
+        const std::size_t mid{(rx - lx) / 2 + lx};
         _build(arr, 2 * x + 1, lx, mid);
         _build(arr, 2 * x + 2, mid, rx);
         _vec[x] = _op(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    void _set(const int i, const T v, const int &x, const int &lx, const int &rx) {
+    void _set(const std::size_t &i, const T &v, const std::size_t &x, const std::size_t &lx,
+              const std::size_t &rx) {
         if (rx - lx == 1) {
             _vec[x] = v;
             return;
         }
-        const int mid{(rx - lx) / 2 + lx};
+        const std::size_t mid{(rx - lx) / 2 + lx};
         if (i < mid) {
             _set(i, v, 2 * x + 1, lx, mid);
         } else {
@@ -46,11 +48,11 @@ struct ram_seg_tree {
         _vec[x] = _op(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    [[nodiscard]] T _query(const int &l, const int &r, const int &x, const int &lx,
-                           const int &rx) const {
+    [[nodiscard]] T _query(const std::size_t &l, const std::size_t &r, const std::size_t &x,
+                           const std::size_t &lx, const std::size_t &rx) const {
         if (lx >= r or l >= rx) { return NEUTRAL; }
         if (lx >= l and rx <= r) { return _vec[x]; }
-        const int mid{(rx - lx) / 2 + lx};
+        const std::size_t mid{(rx - lx) / 2 + lx};
         const T p1{_query(l, r, 2 * x + 1, lx, mid)};
         const T s2{_query(l, r, 2 * x + 2, mid, rx)};
         return _op(p1, s2);
@@ -60,10 +62,10 @@ struct ram_seg_tree {
     void build(const std::vector<T> &arr) {
         _build(arr, 0, 0, _size);
     }
-    void set(const int &i, const T &v) {
+    void set(const std::size_t &i, const T &v) {
         _set(i, v, 0, 0, _size);
     }
-    [[nodiscard]] T query(const int &l, const int &r) const {
+    [[nodiscard]] T query(const std::size_t &l, const std::size_t &r) const {
         // [l , r)
         return _query(l, r, 0, 0, _size);
     }
