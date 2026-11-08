@@ -7,8 +7,9 @@
 
 template <typename T, typename OP1, typename OP2, T NEUTRAL_1, T NEUTRAL_2>
 struct ram_lazy_seg_tree {
-    ram_lazy_seg_tree(const std::size_t &n) {
-        std::size_t log = 1;
+    using st = std::size_t;
+    ram_lazy_seg_tree(const st &n) {
+        st log = 1;
         while (log < n) {
             log <<= 1;
         }
@@ -18,7 +19,7 @@ struct ram_lazy_seg_tree {
     }
 
     ram_lazy_seg_tree(const std::vector<T> &arr) {
-        std::size_t log = 1;
+        st log = 1;
         while (log < arr.size()) {
             log <<= 1;
         }
@@ -29,44 +30,42 @@ struct ram_lazy_seg_tree {
     }
 
    private:
-    std::size_t _size{0};
+    st _size{0};
     std::vector<T> _vec, _lazy;
     static constexpr OP1 _op1{};
     static constexpr OP2 _op2{};
 
-    void _build(const std::vector<T> &arr, const std::size_t &x, const std::size_t &lx,
-                const std::size_t &rx) {
+    void _build(const std::vector<T> &arr, const st &x, const st &lx, const st &rx) {
         if (rx - lx == 1) {
             if (lx < arr.size()) { _vec[x] = arr[lx]; }
             return;
         }
-        const std::size_t mid{(rx - lx) / 2 + lx};
+        const st mid{(rx - lx) / 2 + lx};
         _build(arr, 2 * x + 1, lx, mid);
         _build(arr, 2 * x + 2, mid, rx);
         _vec[x] = _op1(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    void _apply(const std::size_t &x, const T &v) {
+    void _apply(const st &x, const T &v) {
         _vec[x] = _op2(_vec[x], v);
         _lazy[x] = _op2(_lazy[x], v);
     }
 
-    void _push(const std::size_t &x, const std::size_t &lx, const std::size_t &rx) {
+    void _push(const st &x, const st &lx, const st &rx) {
         if (_lazy[x] == NEUTRAL_2 or rx - lx == 1) { return; }
         _apply(2 * x + 1, _lazy[x]);
         _apply(2 * x + 2, _lazy[x]);
         _lazy[x] = NEUTRAL_2;
     }
 
-    void _set(const std::size_t &i, const T &v, const std::size_t &x, const std::size_t &lx,
-              const std::size_t &rx) {
+    void _set(const st &i, const T &v, const st &x, const st &lx, const st &rx) {
         if (rx - lx == 1) {
             _vec[x] = v;
             _lazy[x] = NEUTRAL_2;
             return;
         }
         _push(x, lx, rx);
-        const std::size_t mid{(rx - lx) / 2 + lx};
+        const st mid{(rx - lx) / 2 + lx};
         if (i < mid) {
             _set(i, v, 2 * x + 1, lx, mid);
         } else {
@@ -75,26 +74,24 @@ struct ram_lazy_seg_tree {
         _vec[x] = _op1(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    void _update(const std::size_t &l, const std::size_t &r, const T &v, const std::size_t &x,
-                 const std::size_t &lx, const std::size_t &rx) {
+    void _update(const st &l, const st &r, const T &v, const st &x, const st &lx, const st &rx) {
         if (lx >= r or l >= rx) { return; }
         if (lx >= l and rx <= r) {
             _apply(x, v);
             return;
         }
         _push(x, lx, rx);
-        const std::size_t mid{(rx - lx) / 2 + lx};
+        const st mid{(rx - lx) / 2 + lx};
         _update(l, r, v, 2 * x + 1, lx, mid);
         _update(l, r, v, 2 * x + 2, mid, rx);
         _vec[x] = _op1(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    [[nodiscard]] T _query(const std::size_t &l, const std::size_t &r, const std::size_t &x,
-                           const std::size_t &lx, const std::size_t &rx) {
+    [[nodiscard]] T _query(const st &l, const st &r, const st &x, const st &lx, const st &rx) {
         if (lx >= r or l >= rx) { return NEUTRAL_1; }
         if (lx >= l and rx <= r) { return _vec[x]; }
         _push(x, lx, rx);
-        const std::size_t mid{(rx - lx) / 2 + lx};
+        const st mid{(rx - lx) / 2 + lx};
         const T p1{_query(l, r, 2 * x + 1, lx, mid)};
         const T p2{_query(l, r, 2 * x + 2, mid, rx)};
         return _op1(p1, p2);
@@ -104,18 +101,18 @@ struct ram_lazy_seg_tree {
     void build(const std::vector<T> &arr) {
         _build(arr, 0, 0, _size);
     }
-    void set(const std::size_t &i, const T &v) {
+    void set(const st &i, const T &v) {
         _set(i, v, 0, 0, _size);
     }
-    void update(const std::size_t &l, const std::size_t &r, const T &v) {
+    void update(const st &l, const st &r, const T &v) {
         // [l , r)
         _update(l, r, v, 0, 0, _size);
     }
-    [[nodiscard]] T query(const std::size_t &l, const std::size_t &r) {
+    [[nodiscard]] T query(const st &l, const st &r) {
         // [l , r)
         return _query(l, r, 0, 0, _size);
     }
-    [[nodiscard]] const std::size_t &size(void) const {
+    [[nodiscard]] const st &size(void) const {
         return _size;
     }
     [[nodiscard]] const std::vector<T> &vec(void) const {
