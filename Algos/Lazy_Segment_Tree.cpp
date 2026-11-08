@@ -46,16 +46,15 @@ struct ram_lazy_seg_tree {
         _vec[x] = _op1(_vec[2 * x + 1], _vec[2 * x + 2]);
     }
 
-    void _apply(const std::size_t &x, const std::size_t &lx, const std::size_t &rx, const T &v) {
+    void _apply(const std::size_t &x, const T &v) {
         _vec[x] = _op2(_vec[x], v);
         _lazy[x] = _op2(_lazy[x], v);
     }
 
     void _push(const std::size_t &x, const std::size_t &lx, const std::size_t &rx) {
         if (_lazy[x] == NEUTRAL_2 or rx - lx == 1) { return; }
-        const std::size_t mid{(rx - lx) / 2 + lx};
-        _apply(2 * x + 1, lx, mid, _lazy[x]);
-        _apply(2 * x + 2, mid, rx, _lazy[x]);
+        _apply(2 * x + 1, _lazy[x]);
+        _apply(2 * x + 2, _lazy[x]);
         _lazy[x] = NEUTRAL_2;
     }
 
@@ -80,7 +79,7 @@ struct ram_lazy_seg_tree {
                  const std::size_t &lx, const std::size_t &rx) {
         if (lx >= r or l >= rx) { return; }
         if (lx >= l and rx <= r) {
-            _apply(x, lx, rx, v);
+            _apply(x, v);
             return;
         }
         _push(x, lx, rx);
