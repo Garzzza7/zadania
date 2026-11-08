@@ -205,43 +205,43 @@ std::string to_debug(T x, std::string s)
 }
 #define db(...) std::cerr << #__VA_ARGS__ << "=" << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T bin_xor(T a, T b) noexcept {
     return ~(a & b) & (a | b);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool is_on(T a, T b) noexcept {
     return a & (static_cast<T>(1) << b);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool cmp(const T &x, const T &y) noexcept {
     return x > y;
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline bool pair_cmp(const std::pair<T, T> &x, const std::pair<T, T> &y) noexcept {
     if (x.second < y.second) { return x.second < y.second; }
     return x.first < y.first;
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T bin_min(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x < y));
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T bin_max(const T &x, const T &y) noexcept {
     return y ^ ((x ^ y) & -(x > y));
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T bin_ce(T x, T y) noexcept {
     return x / y + ((x ^ y) > 0 && x % y);
 }
 
-template <typename T>
+template <typename T = int>
 [[nodiscard]] inline T bin_fl(T x, T y) noexcept {
     return x / y - ((x ^ y) < 0 && x % y);
 }
@@ -256,7 +256,7 @@ template <typename T>
                                               : static_cast<unsigned long>(63) - __builtin_clzl(x);
 }
 
-template <typename T>
+template <typename T = long long>
 [[nodiscard]] constexpr T bin_tlog(const T &x) noexcept {
     return x == static_cast<T>(0) ? static_cast<T>(0) : static_cast<T>(63) - __builtin_clzl(x);
 }
@@ -304,7 +304,7 @@ decltype(auto) y_combinator(Fun &&fun) {
 }
 } // namespace std
 
-template <typename T>
+template <typename T = int>
 void printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) noexcept {
     if (begin < 0) begin ^= begin;
     if (end < 0) end = static_cast<int>(v.size());
@@ -312,21 +312,21 @@ void printarr(const T &v, const bool inc = false, int begin = -1, int end = -1) 
         std::cout << v[i] + (inc ? 1 : 0) << (i < end - 1 ? " " : "\n");
 }
 
-template <typename T>
+template <typename T = int>
 inline constexpr int sz(const std::vector<T> &vec) {
     return static_cast<int>(vec.size());
 }
 
 // random number functions
 // https://codeforces.com/blog/entry/60442
-uint32_t rdrand32() {
+uint32_t rdrand32(void) {
     uint32_t ret{0};
     assert(__builtin_ia32_rdtscp(&ret));
     return ret;
 }
 
 // asm version
-uint32_t rd() {
+uint32_t rd(void) {
     uint32_t ret{0};
     asm volatile("rdrand %0" : "=a"(ret)::"cc");
     return ret;
