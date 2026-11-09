@@ -140,6 +140,17 @@ struct aho_corasick {
         }
         return node_id;
     }
+
+    std::size_t longest_common_prefix(const std::string &word) {
+        int node_id = 0;
+        for (std::size_t i = 0; i < word.size(); i++) {
+            int c = word[i] - BASE;
+            int next_id = nodes[node_id].next[c];
+            if (nodes[next_id].cnt_links == 1) { return i + 1; }
+            node_id = next_id;
+        }
+        return word.size();
+    }
 };
 
 int main(void) {
