@@ -21,11 +21,11 @@ struct aho_corasick {
     using node = _node_type;
 
     void _insert(const std::string &word, const int &word_id) {
-        int node_id{0};
+        int node_id = 0;
         patterns.push_back(word);
         for (const auto &i : word) {
-            int c{i - BASE};
-            auto &next_id{nodes[node_id].next[c]};
+            int c = i - BASE;
+            auto &&next_id = nodes[node_id].next[c];
             if (next_id == -1) {
                 next_id = static_cast<int>(nodes.size());
                 nodes.emplace_back(node(c));
@@ -42,19 +42,19 @@ struct aho_corasick {
     void _build_suffix_links(void) {
         std::queue<int> q;
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            const int &child{nodes[0].next[i]};
+            const int &child = nodes[0].next[i];
             if (child != -1) {
                 nodes[child].suffix_link = 0;
                 q.push(child);
             }
         }
         while (not q.empty()) {
-            int id{q.front()};
+            int id = q.front();
             q.pop();
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-                int child{nodes[id].next[i]};
+                int child = nodes[id].next[i];
                 if (child == -1) { continue; }
-                int j{nodes[id].suffix_link};
+                int j = nodes[id].suffix_link;
                 while (j != -1 and nodes[j].next[i] == -1) {
                     j = nodes[j].suffix_link;
                 }
@@ -71,20 +71,20 @@ struct aho_corasick {
     void _build_output_links(void) {
         std::queue<int> q;
         for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
-            const int &child{nodes[0].next[i]};
+            const int &child = nodes[0].next[i];
             if (child != -1) { q.push(child); }
         }
         while (not q.empty()) {
-            int id{q.front()};
+            int id = q.front();
             q.pop();
-            const auto &u{nodes[id].suffix_link};
+            const auto &u = nodes[id].suffix_link;
             if (nodes[u].is_accepting) {
                 nodes[id].output_link = u;
             } else {
                 nodes[id].output_link = nodes[u].output_link;
             }
             for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
-                int child{nodes[id].next[i]};
+                int child = nodes[id].next[i];
                 if (child == -1) { continue; }
                 q.push(child);
             }
@@ -94,7 +94,7 @@ struct aho_corasick {
    public:
     std::vector<node> nodes;
     std::vector<std::string> patterns;
-    int root{'$' - BASE};
+    int root = '$' - BASE;
 
     aho_corasick(void) {
         nodes.emplace_back(node(root));
@@ -111,11 +111,12 @@ struct aho_corasick {
         _insert(word, (int) patterns.size());
     }
 
-    std::vector<std::pair<std::string, int>> search_connections(const std::string &word) {
-        int node_id{0};
+    [[nodiscard]] std::vector<std::pair<std::string, int>> search_connections(
+        const std::string &word) {
+        int node_id = 0;
         std::vector<std::pair<std::string, int>> res;
         for (int i = 0; i < static_cast<int>(word.size()); i++) {
-            int c{word[i] - BASE};
+            int c = word[i] - BASE;
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }
@@ -129,10 +130,10 @@ struct aho_corasick {
         return res;
     }
 
-    int search_string(const std::string &word) {
-        int node_id{0};
+    [[nodiscard]] int search_string(const std::string &word) {
+        int node_id = 0;
         for (const auto &i : word) {
-            int c{i - BASE};
+            int c = i - BASE;
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;
             }
@@ -141,7 +142,7 @@ struct aho_corasick {
         return node_id;
     }
 
-    std::size_t longest_common_prefix(const std::string &word) {
+    [[nodiscard]] std::size_t longest_common_prefix(const std::string &word) {
         int node_id = 0;
         for (std::size_t i = 0; i < word.size(); i++) {
             int c = word[i] - BASE;
