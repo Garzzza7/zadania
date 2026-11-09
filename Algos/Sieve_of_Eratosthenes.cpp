@@ -31,8 +31,11 @@ std::vector<T> cnt_sieve(const T &n) {
     for (int i = 2; i <= n; i++) {
         if (cnt[i]) { continue; }
         for (int x = 2 * i; x <= n; x += i) {
-            cnt[x] = i;
+            cnt[x] += 1;
         }
+    }
+    for (int i = 2; i <= n; i++) {
+        if (cnt[i] == 0) { cnt[i] = 1; }
     }
     return cnt;
 }
