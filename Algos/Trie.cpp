@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+// https://dmoj.ca/problem/fhc15c1p2
+
 // size of alphabet , in ASCII 97 is for 'a' and 65 for 'A'
 template <int ALPHA_SIZE = 26, int BASE = 97>
 struct trie {
@@ -9,7 +11,7 @@ struct trie {
     struct _node_type {
         std::vector<int> next, accepting;
         bool is_accepting{false};
-        int chr{}, cnt_links{1};
+        int chr{}, cnt_links{0};
         _node_type(const int &c)
             : chr(c) {
             next.assign(ALPHA_SIZE, -1);
@@ -18,12 +20,13 @@ struct trie {
     using node = _node_type;
 
     void _insert(const std::string &word, int word_id) {
-        int node_id{0};
+        int node_id = 0;
         for (const auto &i : word) {
-            int c{i - BASE};
-            auto &next_id{nodes[node_id].next[c]};
+            int c = i - BASE;
+            int next_id = nodes[node_id].next[c];
             if (next_id == -1) {
                 next_id = static_cast<int>(nodes.size());
+                nodes[node_id].next[c] = next_id;
                 nodes.emplace_back(node(c));
             }
             nodes[node_id].cnt_links++;
@@ -48,14 +51,25 @@ struct trie {
     }
 
     bool search(const std::string &word, bool check_prefix = false) {
-        int node_id{0};
+        int node_id = 0;
         for (const auto &i : word) {
-            int c{i - BASE};
-            auto &next_id{nodes[node_id].next[c]};
+            int c = i - BASE;
+            int next_id = nodes[node_id].next[c];
             if (next_id == -1) { return false; }
             node_id = next_id;
         }
         return check_prefix ? true : not nodes[node_id].accepting.empty();
+    }
+
+    std::size_t longest_common_prefix(const std::string &word) {
+        int node_id = 0;
+        for (std::size_t i = 0; i < word.size(); i++) {
+            int c = word[i] - BASE;
+            int next_id = nodes[node_id].next[c];
+            if (nodes[next_id].cnt_links == 1) { return i + 1; }
+            node_id = next_id;
+        }
+        return word.size();
     }
 
     bool starts_with_pref(const std::string &prefix) {
