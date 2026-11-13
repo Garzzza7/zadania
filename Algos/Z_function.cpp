@@ -2,13 +2,13 @@
 #include <string>
 #include <vector>
 
-std::vector<int> z_function(const std::string &text, const std::string &pattern) {
+std::vector<std::size_t> z_function(const std::string &text, const std::string &pattern) {
     const std::string s = text + "$" + pattern;
-    const int n{static_cast<int>(s.size())};
-    std::vector<int> z(n);
-    int l{0}, r{0};
+    const std::size_t n = s.size();
+    std::vector<std::size_t> z(n);
+    std::size_t l{0}, r{0};
     z[0] = n;
-    for (int i = 1; i < n; i++) {
+    for (std::size_t i = 1; i < n; i++) {
         if (i < r) { z[i] = std::min(r - i, z[i - l]); }
         while (i + z[i] < n and s[z[i]] == s[i + z[i]]) {
             z[i]++;
@@ -21,12 +21,12 @@ std::vector<int> z_function(const std::string &text, const std::string &pattern)
     return z;
 }
 
-std::vector<int> z_function(const std::string &s) {
-    const int n{static_cast<int>(s.size())};
-    std::vector<int> z(n);
-    int l{0}, r{0};
+std::vector<std::size_t> z_function(const std::string &s) {
+    const std::size_t n = s.size();
+    std::vector<std::size_t> z(n);
+    std::size_t l{0}, r{0};
     z[0] = n;
-    for (int i = 1; i < n; i++) {
+    for (std::size_t i = 1; i < n; i++) {
         if (i < r) { z[i] = std::min(r - i, z[i - l]); }
         while (i + z[i] < n and s[z[i]] == s[i + z[i]]) {
             z[i]++;
@@ -45,7 +45,7 @@ int main(void) {
     while (t--) {
         std::string s;
         std::cin >> s;
-        std::vector<int> res{z_function(s)};
+        auto res{z_function(s)};
         for (const auto &a : res) {
             std::cout << a << " ";
         }

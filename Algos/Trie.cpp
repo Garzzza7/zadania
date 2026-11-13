@@ -80,8 +80,8 @@ struct trie {
         return nodes[0].cnt_links;
     }
 
-    int size(void) {
-        return static_cast<int>(nodes.size());
+    std::size_t size(void) {
+        return nodes.size();
     }
 };
 

@@ -4,13 +4,13 @@
 
 template <typename T = int>
 std::vector<T> cnt_sort(const std::vector<T> &vec) {
-    const int n{(int) vec.size()};
+    const std::size_t n = vec.size();
     std::vector<unsigned int> cnt(*std::max_element(vec.begin(), vec.end()) + 1, 0);
     std::vector<T> res(n);
     for (const auto &v : vec) {
         cnt[v]++;
     }
-    for (int i = 1; i < (int) cnt.size(); i++) {
+    for (std::size_t i = 1; i < cnt.size(); i++) {
         cnt[i] += cnt[i - 1];
     }
     for (const auto &v : vec) {

@@ -41,7 +41,7 @@ struct aho_corasick {
 
     void _build_suffix_links(void) {
         std::queue<int> q;
-        for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
+        for (std::size_t i = 0; i < nodes[0].next.size(); i++) {
             const int &child = nodes[0].next[i];
             if (child != -1) {
                 nodes[child].suffix_link = 0;
@@ -51,7 +51,7 @@ struct aho_corasick {
         while (not q.empty()) {
             int id = q.front();
             q.pop();
-            for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
+            for (std::size_t i = 0; i < nodes[id].next.size(); i++) {
                 int child = nodes[id].next[i];
                 if (child == -1) { continue; }
                 int j = nodes[id].suffix_link;
@@ -70,7 +70,7 @@ struct aho_corasick {
 
     void _build_output_links(void) {
         std::queue<int> q;
-        for (int i = 0; i < static_cast<int>(nodes[0].next.size()); i++) {
+        for (std::size_t i = 0; i < nodes[0].next.size(); i++) {
             const int &child = nodes[0].next[i];
             if (child != -1) { q.push(child); }
         }
@@ -83,7 +83,7 @@ struct aho_corasick {
             } else {
                 nodes[id].output_link = nodes[u].output_link;
             }
-            for (int i = 0; i < static_cast<int>(nodes[id].next.size()); i++) {
+            for (std::size_t i = 0; i < nodes[id].next.size(); i++) {
                 int child = nodes[id].next[i];
                 if (child == -1) { continue; }
                 q.push(child);
@@ -115,7 +115,7 @@ struct aho_corasick {
         const std::string &word) {
         int node_id = 0;
         std::vector<std::pair<std::string, int>> res;
-        for (int i = 0; i < static_cast<int>(word.size()); i++) {
+        for (std::size_t i = 0; i < word.size(); i++) {
             int c = word[i] - BASE;
             while (node_id != 0 and nodes[node_id].next[c] == -1) {
                 node_id = nodes[node_id].suffix_link;

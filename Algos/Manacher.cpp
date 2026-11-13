@@ -5,9 +5,9 @@
 
 // manacher tested on: https://judge.yosupo.jp/problem/enumerate_palindromes
 
-template <typename Container = std::string>
-std::vector<int> manacher(const Container &s) {
-    Container t{};
+template <typename container = std::string>
+std::vector<int> manacher(const container &s) {
+    container t{};
     t.reserve(2 * s.size() + 3);
     t.push_back('@');
     for (const auto &c : s) {
@@ -36,8 +36,8 @@ std::vector<int> manacher(const Container &s) {
     return res;
 }
 
-template <typename Container = std::string>
-std::string largest_palindrome(const Container &s) {
+template <typename container = std::string>
+std::string largest_palindrome(const container &s) {
     auto man{manacher(s)};
     const int n{(int) man.size()};
     int id{0}, val{0};
@@ -72,8 +72,8 @@ std::string largest_palindrome(const Container &s) {
     return res;
 }
 
-template <typename Container = std::string>
-std::vector<std::pair<int, std::string>> all_palindromes(const Container &s,
+template <typename container = std::string>
+std::vector<std::pair<int, std::string>> all_palindromes(const container &s,
                                                          const int &threshold = 1) {
     auto man{manacher(s)};
     auto extract_string = [&s](const int &id, int val) -> std::pair<int, std::string> {

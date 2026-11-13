@@ -49,3 +49,4 @@ Mercury/
 *.lock
 *.temp
 mintemplate
+target/

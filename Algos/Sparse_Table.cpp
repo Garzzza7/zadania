@@ -7,35 +7,35 @@
 template <typename T, typename OP, T NEUTRAL>
 struct sparse_table {
    private:
-    int _size{}, _LOG{};
+    std::size_t _size{}, _LOG{};
     std::vector<std::vector<T>> _vec;
     static constexpr OP _op{};
     std::vector<unsigned long long> _precalc_log;
 
    public:
     sparse_table(const std::vector<T> &init)
-        : _size(static_cast<int>(init.size())) {
-        while (1 << _LOG < _size) {
+        : _size(init.size()) {
+        while (1ULL << _LOG < _size) {
             _LOG++;
         }
         _LOG++;
         _vec = std::vector(_LOG, std::vector(_size, NEUTRAL));
         _vec[0] = init;
         _precalc_log = std::vector(1 << _LOG, 0ULL);
-        for (int i = 1; i <= _LOG; i++) {
-            for (int j = 0; j + (1 << i) <= _size; j++) {
+        for (std::size_t i = 1; i <= _LOG; i++) {
+            for (std::size_t j = 0; j + (1 << i) <= _size; j++) {
                 _vec[i][j] = _op(_vec[i - 1][j], _vec[i - 1][j + (1 << (i - 1))]);
             }
         }
-        for (int i = 0; i < _LOG; i++) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j++) {
+        for (std::size_t i = 0; i < _LOG; i++) {
+            for (std::size_t j = (1ULL << i); j < (1ULL << (i + 1)); j++) {
                 _precalc_log[j] = i;
             }
         }
     }
 
     [[nodiscard]] T query(const int &L, const int &R) const {
-        // <L , R)
+        // [l , r)
         const auto log = _precalc_log[R - L];
         return _op(_vec[log][L], _vec[log][R - (1 << log)]);
     }
@@ -43,7 +43,7 @@ struct sparse_table {
     [[nodiscard]] T query_nonindempotent(int L, int R) const {
         T res{NEUTRAL};
         R--;
-        for (int i = _LOG; i >= 0; i--) {
+        for (int i = (int) _LOG; i >= 0; i--) {
             if (1 << i <= R - L + 1) {
                 res = _op(res, _vec[i][L]);
                 L += 1 << i;
@@ -53,10 +53,7 @@ struct sparse_table {
     }
 };
 
-constexpr auto op = [](const auto &l, const auto &r) -> auto {
-    if (l < r) return l;
-    return r;
-};
+constexpr auto op = [](const auto &l, const auto &r) -> auto { return std::min(l, r); };
 constexpr auto sum = [](const auto &l, const auto &r) -> auto { return l + r; };
 using RMQ = sparse_table<long long, decltype(op), (long long) (1e9 + 1)>;
 using SUM = sparse_table<long long, decltype(sum), 0LL>;
