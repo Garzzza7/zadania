@@ -1,9 +1,10 @@
 mod algorithms;
+
 use crate::algorithms::*;
 
 #[test]
 fn z_function() {
-    let t = 2;
+    let t: usize = 2;
     let input: [&str; 2] = ["aaaasdfaaafsafaaaafdsfaaasdfaaaasdfaaa", "ACBACDACBACBACDA"];
     let results: [Vec<usize>; 2] = [
         vec![
