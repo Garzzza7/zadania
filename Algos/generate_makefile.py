@@ -17,6 +17,7 @@ WIP: list[str] = [
     "Lazy_Treap",
     "Implicit_Treap",
     "Persistent_Disjoint_Set_Union",
+    "Skip_List",
 ]
 
 # file stuff
