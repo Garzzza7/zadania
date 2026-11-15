@@ -4,15 +4,15 @@
 
 template <typename T = int>
 std::vector<T> sep_factors(T n) {
-    std::set<T> factor;
+    std::set<T> res;
     for (int i = 2; i * i <= n; i++) {
         while (n % i == 0) {
-            factor.insert(i);
+            res.insert(i);
             n /= i;
         }
     }
-    if (n > 1) { factor.insert(n); }
-    return std::vector<T>(factor.begin(), factor.end());
+    if (n > 1) { res.insert(n); }
+    return std::vector<T>(res.begin(), res.end());
 }
 
 template <typename T = int>
@@ -32,20 +32,20 @@ int cnt_factors(T n) {
 
 template <typename T = int>
 std::vector<T> factorize(T n) {
-    std::vector<T> factor;
+    std::vector<T> res;
     for (int i = 2; i * i <= n; i++) {
         while (n % i == 0) {
-            factor.push_back(i);
+            res.push_back(i);
             n /= i;
         }
     }
-    if (n > 1) { factor.push_back(n); }
-    return factor;
+    if (n > 1) { res.push_back(n); }
+    return res;
 }
 
 template <typename T = int>
 std::vector<T> factorize_blobs(T n) {
-    std::vector<T> factor;
+    std::vector<T> res;
     for (T i = 2; i * i <= n; i++) {
         if (n % i == 0) {
             T cur{1};
@@ -53,11 +53,21 @@ std::vector<T> factorize_blobs(T n) {
                 n /= i;
                 cur *= i;
             }
-            factor.push_back(cur);
+            res.push_back(cur);
         }
     }
-    if (n > 1) { factor.push_back(n); }
-    return factor;
+    if (n > 1) { res.push_back(n); }
+    return res;
+}
+
+template <typename T = int>
+std::vector<T> factorize_all(T n) {
+    std::vector<T> res;
+    for (T i = 2; i * i <= n; i++) {
+        if (n % i == 0) { res.push_back(i); }
+    }
+    res.push_back(n);
+    return res;
 }
 
 int main(void) {
